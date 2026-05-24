@@ -1,0 +1,2243 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RayveNet · RayveLabs</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+:root{
+  --bg:#fbfbf9;
+  --paper:#ffffff;
+  --paper2:#f3f3f0;
+  --line:#d4d4d4;
+  --line2:#1a1a1a;
+  --ink:#1a1a1a;
+  --dim:#525252;
+  --faint:#909090;
+  --rule:#d4d4d4;
+
+  /* status / method palette — muted academic */
+  --cyan:#1a1a1a;
+  --cyandim:#525252;
+  --green:#2d5e3a;
+  --amber:#8a6321;
+  --violet:#5b3d8a;
+  --rose:#8a3a3a;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:'Source Serif Pro',Georgia,serif;
+  font-size:16px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+a{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;text-decoration-color:var(--rule);transition:text-decoration-color .15s}
+a:hover{text-decoration-color:var(--ink)}
+
+.wrap{max-width:1200px;margin:0 auto;padding:48px 48px 96px}
+@media(max-width:720px){.wrap{padding:32px 20px 64px}}
+.mono{font-family:'JetBrains Mono',ui-monospace,Menlo,monospace}
+
+/* header */
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  padding-bottom:20px;
+  border-bottom:1px solid var(--ink);
+  margin-bottom:36px;
+  flex-wrap:wrap;
+  gap:16px;
+}
+.brand-row{display:flex;align-items:baseline;gap:0;font-family:'Source Serif Pro',Georgia,serif;font-size:20px;font-weight:600;letter-spacing:-.3px}
+.brand-row a{color:var(--dim);text-decoration:none;font-weight:500}
+.brand-row a:hover{color:var(--ink)}
+.brand-row .sep{color:var(--faint);margin:0 10px;font-weight:400}
+.brand-row .cur{color:var(--ink);font-weight:600}
+header .meta{font-family:'Inter',system-ui,sans-serif;font-size:12.5px;color:var(--dim);font-weight:500}
+header .meta a{color:var(--dim)}
+header .meta a:hover{color:var(--ink)}
+
+/* hero (compact) */
+.lede{max-width:760px;margin-bottom:28px}
+.lede h2{
+  font-family:'Source Serif Pro',Georgia,serif;
+  font-size:30px;
+  font-weight:600;
+  letter-spacing:-.5px;
+  line-height:1.2;
+  margin-bottom:10px;
+  color:var(--ink);
+}
+.lede h2 em{font-style:italic}
+.lede p{font-size:16.5px;color:var(--dim);line-height:1.6;max-width:680px}
+
+/* instructor credit — academic acknowledgment */
+.instructor-credit{
+  margin:0 0 28px;
+  padding:14px 0;
+  border-top:1px solid var(--rule);
+  border-bottom:1px solid var(--rule);
+  display:flex;
+  align-items:baseline;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.instructor-credit .ic-label{
+  font-family:'Source Serif Pro',Georgia,serif;
+  font-style:italic;
+  font-weight:400;
+  color:var(--dim);
+  font-size:14.5px;
+}
+.instructor-credit .ic-name{
+  font-family:'Source Serif Pro',Georgia,serif;
+  font-weight:600;
+  color:var(--ink);
+  font-size:15.5px;
+  letter-spacing:-.1px;
+}
+.instructor-credit .ic-sep{
+  color:var(--faint);
+  font-size:13px;
+}
+.instructor-credit .ic-meta{
+  font-family:'Inter',system-ui,sans-serif;
+  font-size:11.5px;
+  color:var(--dim);
+  letter-spacing:.6px;
+  font-weight:500;
+}
+
+/* privacy notice — loud and clear */
+.privacy-notice{
+  border:1px solid var(--ink);
+  background:var(--paper);
+  padding:18px 22px;
+  margin-bottom:32px;
+  font-family:'Source Serif Pro',Georgia,serif;
+  font-size:14.5px;
+  line-height:1.55;
+  color:var(--ink);
+  border-radius:4px;
+}
+.privacy-notice .pn-label{
+  font-family:'Inter',system-ui,sans-serif;
+  font-size:10.5px;
+  font-weight:700;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  color:var(--ink);
+  margin-bottom:6px;
+}
+.privacy-notice b{font-weight:600;color:var(--ink)}
+
+/* practice mode notice — yellow/amber-tinted */
+.practice-notice{
+  border:1px solid var(--amber);
+  background:#fbf6e8;
+  border-left-width:4px;
+  padding:18px 22px;
+  margin-bottom:32px;
+  font-family:'Source Serif Pro',Georgia,serif;
+  font-size:14.5px;
+  line-height:1.55;
+  color:var(--ink);
+  border-radius:4px;
+}
+.practice-notice .pn-label{
+  font-family:'Inter',system-ui,sans-serif;
+  font-size:10.5px;
+  font-weight:700;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  color:var(--amber);
+  margin-bottom:6px;
+}
+.practice-notice b{font-weight:600;color:var(--ink)}
+
+/* tabs */
+.tabs{display:flex;gap:0;border-bottom:1px solid var(--line);margin:24px 0 32px;flex-wrap:wrap}
+.tab{
+  padding:12px 0 14px 0;
+  margin-right:32px;
+  cursor:pointer;
+  font-family:'Inter',system-ui,sans-serif;
+  font-size:14px;
+  color:var(--dim);
+  background:transparent;
+  border:none;
+  border-bottom:2px solid transparent;
+  transition:all .15s;
+  font-weight:500;
+  margin-bottom:-1px;
+}
+.tab:hover{color:var(--ink)}
+.tab.on{color:var(--ink);border-bottom-color:var(--ink);font-weight:600}
+.pane{display:none}
+.pane.on{display:block}
+
+/* cards */
+.card{
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:4px;
+  padding:28px;
+  margin-bottom:20px;
+}
+.label{
+  font-family:'Inter',system-ui,sans-serif;
+  font-size:11px;
+  letter-spacing:1.4px;
+  text-transform:uppercase;
+  color:var(--faint);
+  margin-bottom:18px;
+  font-weight:600;
+}
+
+/* buttons - restrained */
+.btn{
+  background:var(--paper);
+  border:1px solid var(--line);
+  color:var(--ink);
+  padding:9px 18px;
+  border-radius:4px;
+  cursor:pointer;
+  font-family:'Inter',system-ui,sans-serif;
+  font-size:13px;
+  font-weight:500;
+  margin:6px 6px 0 0;
+  transition:all .15s;
+}
+.btn:hover:not(:disabled){border-color:var(--ink);background:var(--paper2)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn.ghost{color:var(--dim)}
+.btn.ghost:hover{color:var(--ink)}
+.btn.primary{background:var(--ink);color:var(--paper);border-color:var(--ink);font-weight:600}
+.btn.primary:hover:not(:disabled){background:#333}
+
+/* OS tabs */
+.ostabs{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.ostab{flex:1;min-width:90px;border:1px solid var(--line);background:var(--paper);color:var(--dim);padding:11px;border-radius:4px;cursor:pointer;font-family:'Inter',system-ui,sans-serif;font-size:13px;text-align:center;transition:all .15s;font-weight:500}
+.ostab:hover{color:var(--ink);border-color:var(--dim)}
+.ostab.on{border-color:var(--ink);color:var(--ink);background:var(--paper2);font-weight:600}
+
+/* cmdbox */
+.cmdbox{position:relative;background:var(--paper2);border:1px solid var(--line);border-radius:4px;padding:14px 56px 14px 16px;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--ink);word-break:break-all;margin-bottom:8px;line-height:1.55}
+.copy{position:absolute;top:9px;right:9px;background:var(--paper);border:1px solid var(--line);color:var(--dim);border-radius:3px;padding:4px 9px;cursor:pointer;font-family:'Inter',system-ui,sans-serif;font-size:11px;font-weight:500}
+.copy:hover{color:var(--ink);border-color:var(--ink)}
+
+/* textarea */
+textarea{width:100%;height:150px;background:var(--paper2);color:var(--ink);border:1px solid var(--line);border-radius:4px;padding:14px;font-family:'JetBrains Mono',monospace;font-size:13px;resize:vertical;line-height:1.55}
+textarea:focus{outline:none;border-color:var(--ink)}
+textarea::placeholder{color:var(--faint)}
+
+.hint{font-size:13px;color:var(--dim);margin-top:8px;font-family:'Source Serif Pro',Georgia,serif}
+.hint .mono{background:var(--paper2);border:1px solid var(--line);padding:1px 6px;border-radius:2px;font-size:12.5px;color:var(--ink)}
+.note{font-size:14.5px;color:var(--dim);margin-top:14px;line-height:1.65;font-family:'Source Serif Pro',Georgia,serif}
+.note b{color:var(--ink);font-weight:600}
+.privacy{display:none}
+
+details{margin-bottom:14px}
+details summary{cursor:pointer;font-family:'Inter',system-ui,sans-serif;font-size:13px;color:var(--ink);list-style:none;padding:6px 0;font-weight:500}
+details summary::-webkit-details-marker{display:none}
+details summary::before{content:"▸ ";color:var(--faint)}
+details[open] summary::before{content:"▾ "}
+details pre{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--dim);background:var(--paper2);padding:14px;border-radius:4px;border:1px solid var(--line);white-space:pre-wrap;margin-top:8px;line-height:1.55}
+
+/* method runner buttons */
+.methods{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.method-btn{background:var(--paper);border:1px solid var(--line);color:var(--dim);padding:13px 18px;border-radius:4px;cursor:pointer;font-family:'Inter',system-ui,sans-serif;font-size:13.5px;display:flex;align-items:center;gap:10px;transition:all .15s;min-width:185px;font-weight:500}
+.method-btn:hover:not(.done):not(:disabled){border-color:var(--ink);color:var(--ink)}
+.method-btn .dot{width:9px;height:9px;border-radius:50%;background:var(--faint)}
+.method-btn.arp .dot{background:#2d5e3a}
+.method-btn.mdns .dot{background:#5b3d8a}
+.method-btn.ssdp .dot{background:#8a6321}
+.method-btn.tcp .dot{background:#2c5e6a}
+.method-btn.done{background:var(--paper2);border-color:var(--ink);color:var(--ink);cursor:default;font-weight:600}
+.method-btn .badge{margin-left:auto;padding:3px 9px;background:var(--ink);color:var(--paper);border-radius:3px;font-size:11px;font-weight:600;font-family:'JetBrains Mono',monospace}
+
+/* scorecard */
+.scorecard{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:720px){.scorecard{grid-template-columns:1fr}}
+.score{background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:22px}
+.score .sk{font-family:'Inter',system-ui,sans-serif;font-size:11px;letter-spacing:1.3px;text-transform:uppercase;color:var(--faint);font-weight:600}
+.score .sv{font-family:'Source Serif Pro',Georgia,serif;font-size:42px;font-weight:600;margin-top:6px;letter-spacing:-1.2px;color:var(--ink)}
+.score .sn{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--dim);margin-top:4px}
+.bar{height:4px;background:var(--paper2);border-radius:2px;overflow:hidden;margin-top:14px}
+.bar>i{display:block;height:100%;width:0;transition:width .8s;background:var(--ink)}
+.bar.cyan>i{background:var(--ink)}
+.bar.amber>i{background:var(--ink)}
+.bar.rose>i{background:var(--ink)}
+
+/* diagram */
+.diagram-wrap{background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:28px;position:relative;overflow:auto}
+.diagram-wrap svg{width:100%;height:auto;display:block;min-width:980px}
+.legend{display:flex;flex-wrap:wrap;gap:18px;margin-top:14px;padding-top:14px;border-top:1px solid var(--line);font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--dim)}
+.legend .li{display:flex;align-items:center;gap:6px}
+.legend .li .sw{width:14px;height:2px;border-radius:1px}
+
+/* popup */
+.popup{position:absolute;background:var(--paper);border:1px solid var(--ink);border-radius:4px;padding:14px 16px;font-size:12px;box-shadow:0 12px 36px rgba(0,0,0,.10);pointer-events:none;z-index:10;min-width:260px;max-width:300px;display:none}
+.popup .ip{font-family:'JetBrains Mono',monospace;color:var(--ink);font-weight:700;font-size:13.5px;margin-bottom:8px}
+.popup .row{display:flex;justify-content:space-between;gap:12px;margin-top:5px;font-family:'JetBrains Mono',monospace;font-size:11.5px}
+.popup .row span:first-child{color:var(--faint)}
+.popup .row span:last-child{color:var(--ink);text-align:right}
+.popup .ghost{margin-top:10px;font-size:11px;color:var(--rose);font-family:'JetBrains Mono',monospace;padding-top:8px;border-top:1px solid var(--line);font-weight:600}
+
+/* table */
+.tbl{overflow-x:auto}
+table{width:100%;border-collapse:collapse}
+th{text-align:left;font-family:'Inter',system-ui,sans-serif;font-size:11px;color:var(--faint);text-transform:uppercase;letter-spacing:1.2px;padding:12px;border-bottom:1px solid var(--ink);font-weight:600}
+td{padding:12px;border-bottom:1px solid var(--line);font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--dim);vertical-align:middle}
+tbody tr:hover{background:var(--paper2)}
+.chip{font-family:'JetBrains Mono',monospace;font-size:10px;padding:2px 7px;border-radius:2px;text-transform:uppercase;letter-spacing:.5px;font-weight:700;display:inline-block;margin-right:4px}
+.chip.arp{background:#e8eee8;color:#2d5e3a}
+.chip.mdns{background:#ede8f0;color:#5b3d8a}
+.chip.ssdp{background:#f0ebe2;color:#8a6321}
+.chip.tcp{background:#e8eef0;color:#2c5e6a}
+.chip.exists{background:#e8eee8;color:#2d5e3a}
+.chip.phantom{background:#f0e8e8;color:#8a3a3a}
+
+/* analytics */
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:18px}
+@media(max-width:720px){.metrics{grid-template-columns:repeat(2,1fr)}}
+.metric{background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:18px}
+.metric .mk{font-family:'Inter',system-ui,sans-serif;font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:var(--faint);font-weight:600}
+.metric .mv{font-family:'Source Serif Pro',Georgia,serif;font-size:32px;font-weight:600;margin-top:4px;letter-spacing:-.6px;color:var(--ink)}
+.metric .mn{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--dim);margin-top:4px}
+
+.subhead{font-family:'Inter',system-ui,sans-serif;font-size:11px;color:var(--faint);text-transform:uppercase;letter-spacing:1.2px;margin:22px 0 10px;font-weight:600}
+.typebar{display:flex;height:28px;border-radius:3px;overflow:hidden;border:1px solid var(--line);margin-bottom:10px}
+.typebar>div{display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--paper);font-weight:700;white-space:nowrap;overflow:hidden;transition:width .5s}
+.typelegend{display:flex;flex-wrap:wrap;gap:14px;font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--dim)}
+.typelegend .ti{display:flex;align-items:center;gap:6px}
+.typelegend .ti .sw{width:10px;height:10px;border-radius:2px}
+
+/* teach callouts — academic, restrained */
+.teach{border-left:3px solid var(--violet);background:var(--paper2);padding:14px 18px;border-radius:0 4px 4px 0;font-family:'Source Serif Pro',Georgia,serif;font-size:14.5px;color:var(--ink);margin-bottom:12px;line-height:1.65}
+.teach b{font-weight:600}
+.teach .hl{color:var(--violet);font-weight:700;text-transform:uppercase;font-family:'Inter',system-ui,sans-serif;font-size:11px;letter-spacing:1.2px}
+.teach.amber{border-color:var(--amber)}
+.teach.amber .hl{color:var(--amber)}
+.teach.rose{border-color:var(--rose)}
+.teach.rose .hl{color:var(--rose)}
+.teach.green{border-color:var(--green)}
+.teach.green .hl{color:var(--green)}
+
+/* summary */
+.summary{background:var(--paper);border:1px solid var(--line);border-left:3px solid var(--ink);padding:20px 24px;font-family:'Source Serif Pro',Georgia,serif;font-size:15.5px;line-height:1.7;margin-bottom:20px;color:var(--ink)}
+.summary b{color:var(--ink);font-weight:600}
+
+/* router intel — academic */
+.router-intel{background:var(--paper);border:1px solid var(--ink);border-radius:4px;padding:32px;margin-bottom:18px}
+.router-intel .ri-head{display:flex;align-items:center;gap:18px;margin-bottom:22px;padding-bottom:18px;border-bottom:1px solid var(--line)}
+.router-intel .ri-icon{width:52px;height:52px;border:1px solid var(--ink);border-radius:4px;display:grid;place-items:center;font-size:26px;flex:none;background:var(--paper2)}
+.router-intel .ri-title{font-family:'Source Serif Pro',Georgia,serif;font-size:24px;font-weight:600;color:var(--ink);letter-spacing:-.3px}
+.router-intel .ri-meta{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--dim);margin-top:4px}
+.router-intel .ri-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px 36px;margin-bottom:14px}
+@media(max-width:680px){.router-intel .ri-grid{grid-template-columns:1fr}}
+.router-intel .ri-key{font-family:'Inter',system-ui,sans-serif;font-size:11px;color:var(--faint);text-transform:uppercase;letter-spacing:1.3px;font-weight:600;margin-bottom:6px}
+.router-intel .ri-val{font-family:'Source Serif Pro',Georgia,serif;font-size:14.5px;color:var(--ink);line-height:1.6}
+.router-intel .ri-val .pill{background:var(--paper2);border:1px solid var(--line);color:var(--ink);border-radius:2px;padding:1px 6px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;display:inline-block}
+.router-intel .ri-subhead{font-family:'Inter',system-ui,sans-serif;font-size:11px;color:var(--faint);text-transform:uppercase;letter-spacing:1.3px;font-weight:600;margin:22px 0 12px}
+.router-intel .ri-tips{list-style:none;padding:0;margin:0}
+.router-intel .ri-tips li{position:relative;padding-left:24px;margin-bottom:9px;font-family:'Source Serif Pro',Georgia,serif;font-size:14.5px;color:var(--ink);line-height:1.6}
+.router-intel .ri-tips li::before{content:"713";position:absolute;left:0;top:0;color:var(--green);font-weight:700;font-size:14px}
+.router-intel .ri-warn{margin-top:14px;padding:14px 18px;background:var(--paper2);border-left:3px solid var(--rose);font-family:'Source Serif Pro',Georgia,serif;font-size:14px;color:var(--ink);line-height:1.6;border-radius:0 4px 4px 0}
+.router-intel .ri-warn b{color:var(--rose);font-weight:700;letter-spacing:.5px}
+
+/* glossary */
+.glossary-intro{font-family:'Source Serif Pro',Georgia,serif;font-style:italic;font-size:17px;color:var(--dim);line-height:1.65;margin-bottom:28px;max-width:720px}
+.glossary-group{margin-bottom:40px}
+.glossary-group-title{font-family:'Inter',system-ui,sans-serif;font-size:11px;color:var(--faint);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:16px;font-weight:600;padding-bottom:10px;border-bottom:1px solid var(--ink)}
+.term{display:grid;grid-template-columns:240px 1fr;gap:32px;padding:22px 0;border-bottom:1px solid var(--line)}
+.term:last-child{border-bottom:none}
+@media(max-width:680px){.term{grid-template-columns:1fr;gap:8px}}
+.term .t-name{font-family:'Source Serif Pro',Georgia,serif;font-size:20px;color:var(--ink);font-weight:600;letter-spacing:-.3px}
+.term .t-sym{font-family:'Inter',system-ui,sans-serif;font-size:12px;color:var(--dim);margin-top:4px;font-style:italic}
+.term .t-def{font-family:'Source Serif Pro',Georgia,serif;font-size:15px;color:var(--ink);line-height:1.7}
+.term .t-def b{font-weight:600}
+.term .t-def code,.term .t-def .mono{background:var(--paper2);border:1px solid var(--line);padding:1px 6px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--ink)}
+.term .t-tag{display:inline-block;margin-top:8px;padding:3px 10px;background:var(--paper2);border:1px solid var(--line);border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--dim);font-weight:500}
+
+footer{margin-top:64px;padding-top:24px;border-top:1px solid var(--line);font-family:'Inter',system-ui,sans-serif;font-size:12px;color:var(--faint);text-align:left}
+footer a{color:var(--dim);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;text-decoration-color:var(--line)}
+footer a:hover{color:var(--ink);text-decoration-color:var(--ink)}
+
+.hide{display:none}
+.gold-rule{display:none}
+.cta-drop,.cta-email,.cta-linkedin,.about-section,.header-row{display:none !important}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="brand-row">
+    <a href="/">RayveLabs</a><span class="sep">/</span><span class="cur">RayveNet</span>
+  </div>
+  <div class="meta">A network-discovery walkthrough</div>
+</header>
+
+<div class="lede">
+  <h2>See what's <em>really</em> on your network.</h2>
+  <p>Practice on a simulated network where ground truth is known. Then scan your own and see why a real network won't let you measure what you missed.</p>
+</div>
+
+<div class="instructor-credit">
+  <span class="ic-label">In gratitude to</span>
+  <span class="ic-name">Dr. Ravinder Mallarapu</span>
+  <span class="ic-sep">·</span>
+  <span class="ic-meta">Analytical Tools for Cyber · SEAS-8414 · DC9 · The George Washington University</span>
+</div>
+
+<div class="tabs">
+  <button class="tab on" data-pane="scan">Scan your network</button>
+  <button class="tab" data-pane="learn">Simulation 1</button>
+  <button class="tab" data-pane="terms">Key terms</button>
+</div>
+
+<!-- ===================== LEARN MODE ===================== -->
+<div id="learn" class="pane">
+
+  <div class="practice-notice">
+    <div class="pn-label">Practice mode</div>
+    <b>Nothing on this page touches your real network.</b> Simulation 1 runs against a fake, built-in network of 12 known devices. The four buttons below reveal which simulated devices each discovery method would have found — they're a teaching exercise, not a scanner. To actually scan your own network, switch to the <b>"Scan your network"</b> tab.
+  </div>
+
+  <div class="card">
+    <div class="label">Step 1 — Simulate the discovery methods</div>
+    <p style="font-family:'Source Serif Pro',Georgia,serif;font-size:15px;color:var(--dim);line-height:1.65">
+      A simulated network with <b style="color:var(--ink)">12 real devices</b> in ground truth. Each button below runs that method against the fake network; results merge into the same host records. Try passive (mDNS, SSDP) before active (TCP) — the order matters. Watch the diagram build.
+    </p>
+    <div class="methods">
+      <button class="method-btn arp" data-method="ARP"><span class="dot"></span> 1. Simulate ARP <span class="badge hide"></span></button>
+      <button class="method-btn mdns" data-method="mDNS"><span class="dot"></span> 2. Simulate mDNS <span class="badge hide"></span></button>
+      <button class="method-btn ssdp" data-method="SSDP"><span class="dot"></span> 3. Simulate SSDP <span class="badge hide"></span></button>
+      <button class="method-btn tcp" data-method="TCP"><span class="dot"></span> 4. Simulate TCP probe <span class="badge hide"></span></button>
+      <button class="btn ghost" id="learnReset" style="margin-left:auto;align-self:center">↻ Reset</button>
+    </div>
+  </div>
+
+  <div id="learnTeach"></div>
+
+  <div class="card hide" id="learnScoreCard">
+    <div class="label">Measure (ground truth is known here)</div>
+    <p style="font-size:12.5px;color:var(--dim);margin-bottom:14px;line-height:1.55">
+      Because this is simulated, we know there are <b style="color:var(--ink)">12 real devices</b>. Real networks
+      never give you that ground truth — so this is the only place you can <i>measure</i> what you missed.
+    </p>
+    <div class="scorecard">
+      <div class="score">
+        <div class="sk">Completeness</div>
+        <div class="sv" id="cmpVal" style="color:var(--cyan)">—</div>
+        <div class="sn" id="cmpDetail">found ÷ real</div>
+        <div class="bar cyan"><i id="cmpBar"></i></div>
+      </div>
+      <div class="score">
+        <div class="sk">Soundness</div>
+        <div class="sv" id="sndVal" style="color:var(--amber)">—</div>
+        <div class="sn" id="sndDetail">real ÷ discovered</div>
+        <div class="bar amber"><i id="sndBar"></i></div>
+      </div>
+      <div class="score">
+        <div class="sk">Discovery Gap</div>
+        <div class="sv" id="gapVal" style="color:var(--rose)">—</div>
+        <div class="sn" id="gapDetail">1 − completeness</div>
+        <div class="bar rose"><i id="gapBar"></i></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card hide" id="learnDiagramCard">
+    <div class="label">Network diagram</div>
+    <p class="note" style="margin-top:0;margin-bottom:12px;color:var(--dim)">
+      Topology view, top-down. <b style="color:var(--ink)">Internet</b> → <b style="color:var(--ink)">Gateway</b> (your vantage point) → device <b style="color:var(--ink)">clusters</b> grouped by inferred type. Each cluster box shows the devices in that class; the colored border encodes the cluster category. Dashed borders / dashed connection lines = randomized MAC (identity hidden).
+    </p>
+    <div class="diagram-wrap" id="learnDiagramWrap">
+      <div id="learnDiagram"></div>
+      <div class="popup" id="learnPopup"></div>
+      <div class="legend">
+        <div class="li"><div class="sw" style="background:#2d5e3a"></div>ARP (active L2)</div>
+        <div class="li"><div class="sw" style="background:#5b3d8a"></div>mDNS (passive)</div>
+        <div class="li"><div class="sw" style="background:#8a6321"></div>SSDP (passive)</div>
+        <div class="li"><div class="sw" style="background:#2c5e6a"></div>TCP probe (active)</div>
+        <div class="li" style="margin-left:auto"><span style="display:inline-block;width:12px;height:12px;border:1.5px dashed #909090;border-radius:50%"></span>dashed = identity inferred / hidden</div>
+      </div>
+    </div>
+    <div style="margin-top:12px">
+      <button class="btn ghost" data-dl="png" data-svg="learnDiagram">⬇ download PNG</button>
+      <button class="btn ghost" data-dl="svg" data-svg="learnDiagram">⬇ download SVG</button>
+    </div>
+  </div>
+
+  <div class="card hide" id="learnAnalyticsCard">
+    <div class="label">Analytics</div>
+    <div id="learnAnalytics"></div>
+  </div>
+
+  <div class="card hide" id="learnRecordsCard">
+    <div class="label">Host records</div>
+    <div class="tbl" id="learnRecords"></div>
+  </div>
+</div>
+
+<!-- ===================== SCAN MY NETWORK ===================== -->
+<div id="scan" class="pane on">
+
+  <div class="privacy-notice">
+    <div class="pn-label">Your data is yours</div>
+    Everything runs locally in your browser. The command you copy runs on <b>your</b> machine. The output you paste is parsed <b>in this tab</b> and never uploaded, logged, or transmitted to RayveLabs or anyone else. Reload the page and every trace disappears. I don't keep anything.
+  </div>
+
+  <div class="card">
+    <div class="label">Step 1 — Pick your system & copy the command</div>
+    <p class="note" style="margin-top:0;margin-bottom:16px">
+      This pings every IP on your subnet, then reads the ARP cache. It forces sleeping devices to respond — a much fuller picture than reading the cache alone. Runs locally on your machine in about 4 seconds; nothing leaves your computer.
+    </p>
+    <div class="ostabs">
+      <div class="ostab on" data-os="mac">macOS</div>
+      <div class="ostab" data-os="win">Windows</div>
+      <div class="ostab" data-os="lin">Linux</div>
+    </div>
+    <div class="cmdbox"><span id="cmdText">for i in $(seq 1 254); do ping -c1 -t1 192.168.1.$i &gt;/dev/null 2&gt;&amp;1 &amp; done; sleep 3; arp -a</span><button class="copy" data-copy="cmdText">copy</button></div>
+    <div class="hint" id="cmdHint">Replace <span class="mono" style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:3px">192.168.1</span> with your actual subnet if different. Find it: <span class="mono" style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:3px">ifconfig | grep "inet "</span></div>
+  </div>
+
+  <div class="card">
+    <div class="label">Step 2 — Paste the output</div>
+    <details>
+      <summary>what should it look like? (example)</summary>
+      <pre>? (192.168.1.1) at f0:9f:c2:1:22:33 on en0 ifscope [ethernet]
+? (192.168.1.10) at ac:bc:32:4:55:66 on en0 ifscope [ethernet]
+? (192.168.1.50) at 8c:ea:48:de:ad:be on en0 ifscope [ethernet]</pre>
+    </details>
+    <textarea id="pasteBox" placeholder="paste your command output…  (or click 'try sample')"></textarea>
+    <div style="margin-top:8px">
+      <button class="btn primary" id="analyzeBtn">▶ analyze</button>
+      <button class="btn" id="sampleBtn">try sample</button>
+      <button class="btn ghost" id="scanReset">↻ reset</button>
+    </div>
+    <div class="privacy">🔒 everything runs in your browser — nothing is uploaded anywhere</div>
+  </div>
+
+  <div id="scanTeach"></div>
+
+  <div id="scanRouterIntel" class="router-intel hide"></div>
+
+  <div class="card hide" id="scanScoreCard">
+    <div class="label">Discovery snapshot</div>
+    <p style="font-size:12.5px;color:var(--dim);margin-bottom:14px;line-height:1.55">
+      <b style="color:var(--ink)">Completeness is unmeasurable on a live network</b> — you cannot know what you didn't find.
+      That limitation IS the lesson. (In <i>Learn</i> mode, ground truth is known, so completeness becomes measurable there.)
+    </p>
+    <div class="metrics" id="scanMetrics"></div>
+  </div>
+
+  <div class="card hide" id="scanDiagramCard">
+    <div class="label">Network diagram (your network)</div>
+    <p class="note" style="margin-top:0;margin-bottom:12px;color:var(--dim)">
+      Same engine as the simulated mode — but on your real network the <b style="color:var(--ink)">discovery gap is undefined</b>. You can't measure what didn't answer; the label below the diagram names that limit.
+    </p>
+    <div class="diagram-wrap" id="scanDiagramWrap">
+      <div id="scanDiagram"></div>
+      <div class="popup" id="scanPopup"></div>
+      <div class="legend">
+        <div class="li"><div class="sw" style="background:#2d5e3a"></div>ARP (active L2)</div>
+        <div class="li"><div class="sw" style="background:#5b3d8a"></div>mDNS (passive)</div>
+        <div class="li"><div class="sw" style="background:#8a6321"></div>SSDP (passive)</div>
+        <div class="li"><div class="sw" style="background:#2c5e6a"></div>TCP probe (active)</div>
+        <div class="li" style="margin-left:auto"><span style="display:inline-block;width:12px;height:12px;border:1.5px dashed #909090;border-radius:50%"></span>dashed = identity inferred / hidden</div>
+      </div>
+    </div>
+    <div style="margin-top:12px">
+      <button class="btn ghost" data-dl="png" data-svg="scanDiagram">⬇ download PNG</button>
+      <button class="btn ghost" data-dl="svg" data-svg="scanDiagram">⬇ download SVG</button>
+    </div>
+  </div>
+
+  <div class="card hide" id="scanAnalyticsCard">
+    <div class="label">Analytics</div>
+    <div id="scanAnalytics"></div>
+  </div>
+
+  <div class="card hide" id="scanRecordsCard">
+    <div class="label">Host records</div>
+    <div class="tbl" id="scanRecords"></div>
+  </div>
+</div>
+
+<!-- ===================== KEY TERMS / GLOSSARY ===================== -->
+<div id="terms" class="pane">
+  <div class="card">
+    <div class="label">Lab 1 vocabulary · concepts you'll see used throughout the tool</div>
+    <p class="glossary-intro">
+      These are the terms the Lab 1 lectures use, mapped to what the tool actually shows. Every label, callout, and metric in <i>Learn</i> and <i>Scan Mine</i> comes from this vocabulary — knowing the words is half the discipline.
+    </p>
+
+    <div class="glossary-group">
+      <div class="glossary-group-title">Foundational concepts</div>
+
+      <div class="term">
+        <div>
+          <div class="t-name">Vantage point</div>
+          <div class="t-sym">where you observe from</div>
+        </div>
+        <div class="t-def">
+          The position from which you observe the network. ARP from your laptop sees a different reality than ARP from the gateway, or <code>nmap</code> from a remote server. <b>Discovery results are always relative to the vantage point.</b> In the diagram, the center node is your vantage point — the rest of the network is what's reachable from there.
+          <div class="t-tag">in tool · center of the diagram</div>
+        </div>
+      </div>
+
+      <div class="term">
+        <div>
+          <div class="t-name">Existence vs. identity</div>
+          <div class="t-sym">two different claims</div>
+        </div>
+        <div class="t-def">
+          <b>Existence:</b> the device is there. It answered at L2. This is <i>proven</i>.<br>
+          <b>Identity:</b> what <i>kind</i> of device it is. This is <i>inferred</i> — from MAC vendor (OUI), hostname, or behavioral fingerprinting. Never authenticated, just narrowed down. The Chapter 1 motto: <b>existence ≠ identity.</b>
+          <div class="t-tag">in tool · "existence" + "type (inferred)" rows in popups</div>
+        </div>
+      </div>
+
+      <div class="term">
+        <div>
+          <div class="t-name">Host record</div>
+          <div class="t-sym">unified per-device record</div>
+        </div>
+        <div class="t-def">
+          The single record per device that builds up as evidence streams in. ARP fills in MAC; mDNS fills in hostname; TCP fills in open ports. Each method <i>merges</i> into the record rather than creating a new one. Records are provisional until enough corroborating signals make you confident.
+          <div class="t-tag">in tool · the Host Records table</div>
+        </div>
+      </div>
+
+      <div class="term">
+        <div>
+          <div class="t-name">Ground truth</div>
+          <div class="t-sym">the actual answer</div>
+        </div>
+        <div class="t-def">
+          The complete, known-correct list of devices on a network. Available only in simulations (<i>Learn</i> mode), test environments, or networks where you have total visibility. <b>You almost never have ground truth on a real network.</b> That's the whole reason you can't measure completeness in production.
+          <div class="t-tag">in tool · Learn mode tells you "12 real devices"</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="glossary-group">
+      <div class="glossary-group-title">Measurement (completeness, soundness, gap)</div>
+
+      <div class="term">
+        <div>
+          <div class="t-name">Completeness</div>
+          <div class="t-sym">found ÷ real</div>
+        </div>
+        <div class="t-def">
+          What fraction of the <i>real</i> devices did your discovery find? Requires ground truth to compute. In <i>Learn</i> mode you can compute it (we provide the denominator); on a real network you cannot — you don't know what you missed.
+          <div class="t-tag">in tool · Learn scorecard, first metric</div>
+        </div>
+      </div>
+
+      <div class="term">
+        <div>
+          <div class="t-name">Soundness</div>
+          <div class="t-sym">real ÷ discovered</div>
+        </div>
+        <div class="t-def">
+          Of what you <i>discovered</i>, how much is actually real? Phantoms (stale ARP entries, ghosts) drop soundness below 100%. A discovered inventory full of phantoms = <b>poisoned inventory</b> — you're not just incomplete, you're confidently wrong.
+          <div class="t-tag">in tool · Learn scorecard, second metric</div>
+        </div>
+      </div>
+
+      <div class="term">
+        <div>
+          <div class="t-name">Discovery gap (D − D̂)</div>
+          <div class="t-sym">what exists but you missed</div>
+        </div>
+        <div class="t-def">
+          The set of devices that <i>exist</i> (D) but were <i>not</i> in your discovered set (D̂). The gap is invisible by definition on a real network: if you knew what you missed, you would've found it. The Chapter 1 lesson: <b>the discovery gap is what an attacker hunts.</b>
+          <div class="t-tag">in tool · Learn scorecard third metric + outer dashed ring</div>
+        </div>
+      </div>
+
+      <div class="term">
+        <div>
+          <div class="t-name">TTFT — time to first truth</div>
+          <div class="t-sym">how fast you get usable inventory</div>
+        </div>
+        <div class="t-def">
+          How quickly your discovery converges to a useful inventory. ARP alone is fast but incomplete; layering mDNS, SSDP, TCP brings TTFT down. <b>Longer TTFT = more time an attacker has the network before you do.</b>
+          <div class="t-tag">concept · runs underneath the method-by-method merge in Learn</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="glossary-group">
+      <div class="glossary-group-title">Discovery methods</div>
+
+      <div class="term">
+        <div>
+          <div class="t-name">ARP</div>
+          <div class="t-sym">Address Resolution Protocol · L2 · active</div>
+        </div>
+        <div class="t-def">
+          Resolves IP → MAC on the local broadcast domain. Your machine's <i>ARP cache</i> lists devices it has recently communicated with. Fast and quiet (your machine ARPs anyway), but only sees devices you've actually talked to. Pinging the subnet first <i>forces</i> ARP entries for sleeping devices.
+          <div class="t-tag">in tool · green edges · "Run ARP" button</div>
+        </div>
+      </div>
+
+      <div class="term">
+        <div>
+          <div class="t-name">mDNS</div>
+          <div class="t-sym">Multicast DNS · L7 · passive</div>
+        </div>
+        <div class="t-def">
+          Devices advertise themselves with <code>.local</code> hostnames over UDP 5353. Apple Bonjour, Linux Avahi, printers, IoT — all common mDNS announcers. <b>Best source of hostnames</b>, which are usually the strongest identity signal.
+          <div class="t-tag">in tool · violet edges · hostnames in popups</div>
+        </div>
+      </div>
+
+      <div class="term">
+        <div>
+          <div class="t-name">SSDP</div>
+          <div class="t-sym">Simple Service Discovery Protocol · L7 · passive</div>
+        </div>
+        <div class="t-def">
+          UPnP-style passive announcements on UDP 1900. Smart TVs, Roku, Sonos, IoT all use it. Passive means you only listen — you don't generate probe traffic.
+          <div class="t-tag">in tool · amber edges</div>
+        </div>
+      </div>
+
+      <div class="term">
+        <div>
+          <div class="t-name">TCP probe</div>
+          <div class="t-sym">L4 · active</div>
+        </div>
+        <div class="t-def">
+          Actively send connection attempts to common ports (22, 80, 443, 8080, etc.). Reveals devices that ARP/mDNS missed, but is <b>noisy</b> — generates traffic that defenders and IDS systems can see. Use with care on operational systems (see Oldsmar).
+          <div class="t-tag">in tool · teal edges</div>
+        </div>
+      </div>
+
+      <div class="term">
+        <div>
+          <div class="t-name">Active vs. passive</div>
+          <div class="t-sym">do you send packets, or only listen?</div>
+        </div>
+        <div class="t-def">
+          <b>Active:</b> you send probes and watch for responses (ARP request, TCP SYN, ICMP echo). Generates traffic. Defenders can see you.<br>
+          <b>Passive:</b> you only listen for announcements (mDNS, SSDP, DHCP traffic). Silent on the wire — defenders may never notice. <b>Passive misses devices that don't broadcast; active misses devices that don't answer.</b> Real discovery uses both, passive-first.
+          <div class="t-tag">concept · informs method ordering in Learn mode</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="glossary-group">
+      <div class="glossary-group-title">Identity signals</div>
+
+      <div class="term">
+        <div>
+          <div class="t-name">OUI</div>
+          <div class="t-sym">Organizationally Unique Identifier</div>
+        </div>
+        <div class="t-def">
+          The first 3 bytes (24 bits) of a MAC address. IEEE assigns these to manufacturers. <code>00:17:88</code> → Signify (Philips Hue). Tells you the vendor of the network <i>interface chip</i>, not necessarily the device's actual brand — a Roku has its own OUI, but a Raspberry Pi running Roku software would show the Pi OUI.
+          <div class="t-tag">in tool · "Vendor (inferred)" column · ~250 entries in lookup table</div>
+        </div>
+      </div>
+
+      <div class="term">
+        <div>
+          <div class="t-name">Randomized MAC (LAA)</div>
+          <div class="t-sym">locally-administered address</div>
+        </div>
+        <div class="t-def">
+          Modern phones (and increasingly all client devices) generate a fresh random MAC per network to defeat tracking. Detectable: <b>bit 1 of the first MAC octet is set.</b> 2nd hex digit ∈ {2, 3, 6, 7, A, B, E, F}. Example: <code>6a:11:9f:…</code> — the <code>6a</code> means binary <code>01101010</code>, bit 1 = 1 → locally administered → randomized. When randomized, OUI lookup yields nothing useful — <b>identity is hidden.</b>
+          <div class="t-tag">in tool · "(randomized MAC)" in vendor column · dashed nodes</div>
+        </div>
+      </div>
+
+      <div class="term">
+        <div>
+          <div class="t-name">Hostname (mDNS-resolved)</div>
+          <div class="t-sym">strongest identity signal</div>
+        </div>
+        <div class="t-def">
+          The <code>.local</code> name a device announces via mDNS. Often very revealing — <code>iPhone-of-Bob.local</code>, <code>roku-livingroom.local</code>, <code>hue-bridge.local</code>. Trumps OUI for identity inference because users name their devices according to function. <b>Can be spoofed</b> — a device can claim any hostname — so still inference, not authenticated.
+          <div class="t-tag">in tool · hostname column + node labels when available</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="glossary-group">
+      <div class="glossary-group-title">Failure modes & pitfalls</div>
+
+      <div class="term">
+        <div>
+          <div class="t-name">Phantom / stale ARP entry</div>
+          <div class="t-sym">inventory pollution</div>
+        </div>
+        <div class="t-def">
+          An entry in your ARP cache pointing to a device that's no longer present — or never was (misconfiguration, ARP spoofing, decommissioned device). <b>Phantoms inflate your discovered count without adding real devices.</b> They drop soundness below 100%. The cleanup discipline is hard: how do you know which entries are stale without ground truth?
+          <div class="t-tag">in tool · the rose-colored "PHANTOM" node in Learn mode</div>
+        </div>
+      </div>
+
+      <div class="term">
+        <div>
+          <div class="t-name">Inventory poisoning</div>
+          <div class="t-sym">the cost of bad data</div>
+        </div>
+        <div class="t-def">
+          When your inventory contains incorrect or stale records, every downstream decision is wrong. You exclude an attacker's foothold from your "known" list. You allocate IPs to phantoms. You alarm on changes that aren't real. A poisoned inventory is sometimes <b>worse than no inventory</b> because it inspires false confidence.
+          <div class="t-tag">callout · soundness drop in Learn mode</div>
+        </div>
+      </div>
+
+      <div class="term">
+        <div>
+          <div class="t-name">The Oldsmar lesson</div>
+          <div class="t-sym">active probing can hurt</div>
+        </div>
+        <div class="t-def">
+          In 2021, an attacker accessed the Oldsmar (FL) water treatment plant's HMI. Defenders had no current inventory of what was on the network — partly because previous active scans had <i>crashed</i> operational systems, so scanning had been avoided. <b>The lesson:</b> active discovery on operational tech requires care. Passive-first lets you build inventory without disturbing the environment.
+          <div class="t-tag">concept · why passive comes before active in the method order</div>
+        </div>
+      </div>
+
+      <div class="term">
+        <div>
+          <div class="t-name">Inferred — not proven</div>
+          <div class="t-sym">always a hypothesis</div>
+        </div>
+        <div class="t-def">
+          Everything in the "type" and "vendor" columns is <i>inference</i>, not authenticated truth. A device claiming <code>iPhone-of-Bob</code> via mDNS could be lying. A MAC with Apple OUI could be spoofed. <b>Always treat identity as a hypothesis, not a fact.</b> Multiple independent signals raise confidence; one signal is just one signal.
+          <div class="t-tag">in tool · "guess via" reasoning shown in every popup</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="glossary-group">
+      <div class="glossary-group-title">Operational discipline</div>
+
+      <div class="term">
+        <div>
+          <div class="t-name">Baseline</div>
+          <div class="t-sym">your "known good" snapshot</div>
+        </div>
+        <div class="t-def">
+          A captured discovery result you trust enough to compare future scans against. The point isn't that the baseline is "right" — it's that it's <i>stable</i>. The diff against subsequent scans (new devices, missing devices, changed identity) is where the operational value lives.
+          <div class="t-tag">future feature · diff against saved scans</div>
+        </div>
+      </div>
+
+      <div class="term">
+        <div>
+          <div class="t-name">Change detection</div>
+          <div class="t-sym">what's different now</div>
+        </div>
+        <div class="t-def">
+          Re-run discovery; compare to baseline; investigate the diff. <b>New device</b> = an unexpected join (could be benign, could be hostile). <b>Missing device</b> = something went offline (or was removed; figure out which). <b>Changed identity</b> = OUI changed for a stable IP — possible MAC spoof or device replacement.
+          <div class="t-tag">future feature · scheduled re-scans</div>
+        </div>
+      </div>
+
+      <div class="term">
+        <div>
+          <div class="t-name">Structured report output</div>
+          <div class="t-sym">discovery → operations handoff</div>
+        </div>
+        <div class="t-def">
+          The end product of a discovery cycle: not a pretty diagram, but a structured artifact (CSV, JSON) that another system can consume. The Host Records table here is the early-stage version. In production: feeds into asset DBs, vulnerability scanners, network access control.
+          <div class="t-tag">in tool · Host Records table</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>RayveNet · a <a href="/">RayveLabs</a> project · © Rayve Malhotra</footer>
+
+</div>
+
+<script>
+"use strict";
+
+/* ============================================================
+   CONSTANTS, LOOKUPS, HELPERS
+   ============================================================ */
+
+const COLORS = {
+  ARP:  "#2d5e3a",
+  mDNS: "#5b3d8a",
+  SSDP: "#8a6321",
+  TCP:  "#2c5e6a",
+};
+
+const TYPE_ICON = {
+  router:"📡", camera:"📹", iot:"💡", mobile:"📱", tablet:"📲", computer:"💻",
+  printer:"🖨️", nas:"💾", speaker:"🔊", tv:"📺", gaming:"🎮", voice:"🗣️",
+  wearable:"⌚", vehicle:"🚗", ereader:"📖", device:"🔌", unknown:"❓",
+};
+const TYPE_COLOR = {
+  router:"#1a1a1a",
+  camera:"#8a3a3a",
+  iot:"#8a6321",
+  mobile:"#5b3d8a",
+  tablet:"#5b3d8a",
+  computer:"#2d5e3a",
+  printer:"#525252",
+  nas:"#2c5e6a",
+  speaker:"#8a6321",
+  tv:"#5b3d8a",
+  gaming:"#8a3a3a",
+  voice:"#8a6321",
+  wearable:"#5b3d8a",
+  vehicle:"#2d5e3a",
+  ereader:"#525252",
+  device:"#909090",
+  unknown:"#909090",
+};
+
+/* OUI lookup — first 3 MAC octets → vendor (~250 common entries; teaching tool, not authoritative) */
+const OUI = {
+  // ===== Apple =====
+  "00:17:f2":"Apple","00:1e:c2":"Apple","00:23:32":"Apple","00:25:00":"Apple","00:26:08":"Apple","00:26:b0":"Apple",
+  "04:0c:ce":"Apple","04:15:52":"Apple","04:1e:64":"Apple","04:48:9a":"Apple","04:4b:ed":"Apple","04:db:56":"Apple",
+  "0c:30:21":"Apple","0c:3e:9f":"Apple","0c:4d:e9":"Apple","0c:51:01":"Apple","0c:74:c2":"Apple","0c:77:1a":"Apple",
+  "28:cf:da":"Apple","28:cf:e9":"Apple","28:e0:2c":"Apple","28:e1:4c":"Apple","28:e7:cf":"Apple","28:ed:6a":"Apple",
+  "2c:1f:23":"Apple","2c:33:7a":"Apple","2c:b4:3a":"Apple",
+  "3c:07:54":"Apple","3c:15:c2":"Apple","3c:2e:f9":"Apple","3c:ab:8e":"Apple",
+  "40:30:04":"Apple","40:33:1a":"Apple","40:6c:8f":"Apple","40:a6:d9":"Apple","40:b3:95":"Apple",
+  "48:43:7c":"Apple","48:60:bc":"Apple","48:74:6e":"Apple","48:bf:6b":"Apple","48:d7:05":"Apple",
+  "4c:32:75":"Apple","4c:57:ca":"Apple","4c:74:bf":"Apple","4c:7c:5f":"Apple","4c:8d:79":"Apple",
+  "5c:0a:5b":"Apple","5c:59:48":"Apple","5c:8d:4e":"Apple","5c:96:9d":"Apple","5c:97:f3":"Apple",
+  "60:33:4b":"Apple","60:69:44":"Apple","60:8c:4a":"Apple","60:c5:47":"Apple","60:fa:cd":"Apple","60:fb:42":"Apple",
+  "64:20:0c":"Apple","64:b0:a6":"Apple","64:e6:82":"Apple",
+  "68:5b:35":"Apple","68:96:7b":"Apple","68:9c:70":"Apple","68:a8:6d":"Apple","68:ab:1e":"Apple",
+  "6c:4d:73":"Apple","6c:70:9f":"Apple","6c:72:e7":"Apple","6c:8d:c1":"Apple","6c:94:f8":"Apple","6c:c2:6b":"Apple",
+  "70:11:24":"Apple","70:3e:ac":"Apple","70:48:0f":"Apple","70:56:81":"Apple","70:73:cb":"Apple","70:81:eb":"Apple",
+  "70:cd:60":"Apple","70:de:e2":"Apple","70:ec:e4":"Apple","70:f0:87":"Apple",
+  "74:81:14":"Apple","74:e1:b6":"Apple","74:e2:f5":"Apple",
+  "78:31:c1":"Apple","78:3a:84":"Apple","78:4f:43":"Apple","78:6c:1c":"Apple","78:7e:61":"Apple","78:88:6d":"Apple",
+  "78:a3:e4":"Apple","78:ca:39":"Apple","78:fd:94":"Apple",
+  "84:38:35":"Apple","84:78:8b":"Apple","84:85:06":"Apple","84:89:ad":"Apple","84:a1:34":"Apple","84:b1:53":"Apple",
+  "88:1f:a1":"Apple","88:53:95":"Apple","88:63:df":"Apple","88:64:40":"Apple","88:c6:63":"Apple","88:cb:87":"Apple",
+  "8c:00:6d":"Apple","8c:29:37":"Apple","8c:7b:9d":"Apple","8c:7c:92":"Apple","8c:fa:ba":"Apple",
+  "90:27:e4":"Apple","90:60:f1":"Apple","90:72:40":"Apple","90:84:0d":"Apple","90:b9:31":"Apple",
+  "94:e9:6a":"Apple","98:01:a7":"Apple","98:03:d8":"Apple","98:5a:eb":"Apple","98:d6:bb":"Apple","98:e0:d9":"Apple",
+  "98:f0:ab":"Apple","98:fe:94":"Apple",
+  "9c:04:eb":"Apple","9c:20:7b":"Apple","9c:35:eb":"Apple","9c:f3:87":"Apple","9c:f4:8e":"Apple","9c:fc:01":"Apple",
+  "a4:5e:60":"Apple","a4:67:06":"Apple","a4:b1:97":"Apple","a4:c3:61":"Apple","a4:d1:8c":"Apple","a4:f1:e8":"Apple",
+  "a8:20:66":"Apple","a8:5b:78":"Apple","a8:88:08":"Apple","a8:bb:cf":"Apple",
+  "ac:1f:74":"Apple","ac:3c:0b":"Apple","ac:61:ea":"Apple","ac:7f:3e":"Apple","ac:87:a3":"Apple","ac:bc:32":"Apple",
+  "ac:cf:5c":"Apple","ac:fd:ec":"Apple",
+  "b0:34:95":"Apple","b0:48:1a":"Apple","b0:65:bd":"Apple","b0:9f:ba":"Apple","b0:ca:68":"Apple",
+  "b4:18:d1":"Apple","b4:8b:19":"Apple","b4:f0:ab":"Apple",
+  "b8:09:8a":"Apple","b8:17:c2":"Apple","b8:44:d9":"Apple","b8:53:ac":"Apple","b8:5d:0a":"Apple","b8:78:2e":"Apple",
+  "b8:e8:56":"Apple","b8:f6:b1":"Apple","b8:ff:6b":"Apple",
+  "bc:3b:af":"Apple","bc:4c:c4":"Apple","bc:52:b7":"Apple","bc:54:36":"Apple","bc:6c:21":"Apple","bc:92:6b":"Apple",
+  "bc:9f:ef":"Apple","bc:ec:5d":"Apple",
+  "c0:63:94":"Apple","c0:84:7a":"Apple","c0:9a:d0":"Apple","c0:ce:cd":"Apple","c0:f2:fb":"Apple",
+  "c8:1e:e7":"Apple","c8:2a:14":"Apple","c8:69:cd":"Apple","c8:6f:1d":"Apple","c8:85:50":"Apple","c8:b5:b7":"Apple",
+  "c8:bc:c8":"Apple","c8:e0:eb":"Apple","c8:f6:50":"Apple",
+  "cc:08:8d":"Apple","cc:25:ef":"Apple","cc:29:f5":"Apple","cc:78:5f":"Apple","cc:8e:71":"Apple",
+  "d0:23:db":"Apple","d0:25:98":"Apple","d0:4f:7e":"Apple","d0:81:7a":"Apple","d0:a6:37":"Apple","d0:c5:f3":"Apple",
+  "d0:d2:b0":"Apple","d0:e1:40":"Apple",
+  "d4:61:9d":"Apple","d4:9a:20":"Apple","d4:f4:6f":"Apple",
+  "d8:00:4d":"Apple","d8:1d:72":"Apple","d8:30:62":"Apple","d8:96:95":"Apple","d8:9e:3f":"Apple","d8:a2:5e":"Apple",
+  "d8:bb:2c":"Apple","d8:cf:9c":"Apple","d8:d1:cb":"Apple",
+  "dc:0c:5c":"Apple","dc:2b:2a":"Apple","dc:2b:61":"Apple","dc:37:14":"Apple","dc:41:5f":"Apple","dc:56:e7":"Apple",
+  "dc:86:d8":"Apple","dc:9b:9c":"Apple","dc:a4:ca":"Apple","dc:a9:04":"Apple",
+  "e0:33:8e":"Apple","e0:5f:45":"Apple","e0:66:78":"Apple","e0:ac:cb":"Apple","e0:b5:2d":"Apple","e0:b9:ba":"Apple",
+  "e0:c7:67":"Apple","e0:c9:7a":"Apple","e0:f5:c6":"Apple","e0:f8:47":"Apple",
+  "e4:25:e7":"Apple","e4:50:eb":"Apple","e4:8b:7f":"Apple","e4:9a:dc":"Apple","e4:c6:3d":"Apple","e4:ce:8f":"Apple",
+  "e4:e0:a6":"Apple",
+  "e8:04:0b":"Apple","e8:06:88":"Apple","e8:80:2e":"Apple","e8:8d:28":"Apple","e8:b2:ac":"Apple",
+  "ec:35:86":"Apple","ec:85:2f":"Apple","ec:ad:b8":"Apple","ec:fa:bc":"Apple",
+  "f0:18:98":"Apple","f0:24:75":"Apple","f0:99:bf":"Apple","f0:b0:e7":"Apple","f0:b4:79":"Apple","f0:c1:f1":"Apple",
+  "f0:cb:a1":"Apple","f0:d1:a9":"Apple","f0:db:e2":"Apple","f0:db:f8":"Apple","f0:dc:e2":"Apple","f0:f6:1c":"Apple",
+  "f4:1b:a1":"Apple","f4:37:b7":"Apple","f4:5c:89":"Apple","f4:5f:24":"Apple","f4:f1:5a":"Apple","f4:f9:51":"Apple",
+  "f8:1e:df":"Apple","f8:27:93":"Apple","f8:2d:7c":"Apple","f8:38:80":"Apple","f8:6f:c1":"Apple","f8:8f:ca":"Apple",
+  "fc:25:3f":"Apple","fc:64:ba":"Apple","fc:d8:48":"Apple","fc:fc:48":"Apple",
+  // ===== Samsung =====
+  "f8:e6:1a":"Samsung","b8:d4:50":"Samsung","f0:25:b7":"Samsung","04:5d:4b":"Samsung","08:08:c2":"Samsung",
+  "10:1d:c0":"Samsung","18:46:17":"Samsung","18:af:8f":"Samsung","20:13:e0":"Samsung","24:da:9b":"Samsung",
+  "30:07:4d":"Samsung","30:8c:fb":"Samsung","30:cd:a7":"Samsung","34:23:ba":"Samsung","38:d4:0b":"Samsung",
+  "40:f3:08":"Samsung","48:13:7e":"Samsung","50:01:bb":"Samsung","50:ff:99":"Samsung","58:c3:8b":"Samsung",
+  "60:6b:bd":"Samsung","68:48:98":"Samsung","68:eb:c5":"Samsung","78:25:ad":"Samsung","78:bd:bc":"Samsung",
+  "84:25:db":"Samsung","8c:71:f8":"Samsung","94:35:0a":"Samsung","94:b1:0a":"Samsung",
+  "a0:0b:ba":"Samsung","a0:cb:fd":"Samsung","b4:79:a7":"Samsung","b8:bb:af":"Samsung",
+  "c4:73:1e":"Samsung","cc:f9:e8":"Samsung","d0:17:c2":"Samsung","d4:e8:b2":"Samsung","ec:1f:72":"Samsung",
+  // ===== Google / Chromecast / Nest =====
+  "1c:f2:9a":"Google (Nest)","f4:f5:d8":"Google (Nest)","20:df:b9":"Google (Nest)","6c:ad:f8":"Google (Chromecast)",
+  "54:60:09":"Google","f4:6d:04":"Google","fa:8f:ca":"Google","00:1a:11":"Google",
+  // ===== Amazon =====
+  "fc:65:de":"Amazon (Echo/Ring)","00:fc:8b":"Amazon (Echo/Ring)","ac:63:be":"Amazon",
+  "f0:27:2d":"Amazon","f0:81:73":"Amazon","68:54:fd":"Amazon","74:c2:46":"Amazon","78:e1:03":"Amazon",
+  "44:65:0d":"Amazon","b0:fc:0d":"Amazon","cc:f7:35":"Amazon","f0:d2:f1":"Amazon",
+  // ===== Microsoft (Xbox, Surface) =====
+  "00:50:f2":"Microsoft","7c:1e:52":"Microsoft (Xbox)","98:5f:d3":"Microsoft (Xbox)","00:15:5d":"Microsoft (Hyper-V)",
+  "9c:aa:1b":"Microsoft (Xbox)","48:f1:7f":"Microsoft (Surface)","94:9a:a9":"Microsoft",
+  // ===== Sony (PlayStation) =====
+  "00:13:a9":"Sony (PlayStation)","00:19:c5":"Sony","00:1a:80":"Sony","00:24:be":"Sony","00:eb:2d":"Sony",
+  "78:c8:81":"Sony","ac:9b:84":"Sony","fc:0f:e6":"Sony (PlayStation)",
+  // ===== Nintendo =====
+  "00:09:bf":"Nintendo","00:16:56":"Nintendo","00:17:ab":"Nintendo","00:19:1d":"Nintendo","00:1a:e9":"Nintendo",
+  "00:1b:7a":"Nintendo","00:1b:ea":"Nintendo","00:1c:be":"Nintendo","00:1e:35":"Nintendo","00:1f:32":"Nintendo",
+  "00:21:bd":"Nintendo","00:22:aa":"Nintendo","00:23:31":"Nintendo","00:24:1e":"Nintendo","00:24:44":"Nintendo",
+  "00:24:f3":"Nintendo","00:25:a0":"Nintendo","00:26:59":"Nintendo","00:27:09":"Nintendo",
+  "04:09:73":"Nintendo","18:2a:7b":"Nintendo","2c:10:c1":"Nintendo","34:af:2c":"Nintendo","58:bd:a3":"Nintendo",
+  "60:6b:ff":"Nintendo","78:a2:a0":"Nintendo","98:b6:e9":"Nintendo","b8:78:26":"Nintendo","cc:9e:00":"Nintendo",
+  "e0:0c:7f":"Nintendo","e8:4e:ce":"Nintendo",
+  // ===== Roku =====
+  "00:0d:4b":"Roku","08:05:81":"Roku","0c:30:bd":"Roku","20:ee:28":"Roku","40:5b:d8":"Roku",
+  "48:b2:c4":"Roku","ac:3a:7a":"Roku","b0:a7:37":"Roku","b0:ee:7b":"Roku","b8:3e:59":"Roku","b8:a1:75":"Roku",
+  "c8:3a:6b":"Roku","cc:6d:a0":"Roku","d4:62:ea":"Roku","d8:31:34":"Roku","dc:3a:5e":"Roku",
+  // ===== Philips Hue / Signify =====
+  "00:17:88":"Signify (Philips Hue)","ec:b5:fa":"Signify (Philips Hue)",
+  // ===== Sonos =====
+  "00:0e:58":"Sonos","00:1d:c1":"Sonos","5c:aa:fd":"Sonos","78:28:ca":"Sonos","94:9f:3e":"Sonos","b8:e9:37":"Sonos",
+  // ===== Bose =====
+  "00:1c:b0":"Bose","00:25:5d":"Bose","04:88:e2":"Bose","2c:cc:44":"Bose","4c:87:5d":"Bose","9c:8d:7c":"Bose",
+  // ===== Ring / Wyze / Arlo / Eufy =====
+  "5c:41:5a":"Ring","2c:aa:8e":"Wyze","78:8c:b5":"Wyze","08:cc:27":"Arlo","f4:c8:8a":"Arlo",
+  "00:e7:0e":"Anker (Eufy)","f0:5c:77":"Anker (Eufy)",
+  // ===== Hikvision / Dahua / Axis =====
+  "8c:ea:48":"Hikvision","44:19:b6":"Hikvision","4c:bd:8f":"Hikvision","28:57:be":"Hikvision","bc:ad:28":"Hikvision",
+  "c4:2f:90":"Hikvision",
+  "00:00:5b":"Dahua","08:ed:ed":"Dahua","14:a7:8b":"Dahua","3c:ef:8c":"Dahua","4c:11:bf":"Dahua","9c:14:63":"Dahua",
+  "00:40:8c":"Axis","ac:cc:8e":"Axis","b8:a4:4f":"Axis",
+  // ===== Routers / Networking =====
+  "f0:9f:c2":"Ubiquiti","74:ac:b9":"Ubiquiti","24:5a:4c":"Ubiquiti","68:d7:9a":"Ubiquiti","78:8a:20":"Ubiquiti",
+  "80:2a:a8":"Ubiquiti","b4:fb:e4":"Ubiquiti","dc:9f:db":"Ubiquiti","fc:ec:da":"Ubiquiti","94:2a:6f":"Ubiquiti",
+  "50:c7:bf":"TP-Link","98:da:c4":"TP-Link","18:d6:c7":"TP-Link","20:1c:1d":"TP-Link","30:b5:c2":"TP-Link",
+  "54:af:97":"TP-Link","60:32:b1":"TP-Link","60:e3:27":"TP-Link","64:6e:97":"TP-Link","6c:5a:b0":"TP-Link",
+  "94:d9:b3":"TP-Link","a4:2b:b0":"TP-Link","ac:84:c6":"TP-Link","c0:25:e9":"TP-Link","ec:08:6b":"TP-Link",
+  "ac:9b:0a":"Netgear","04:a1:51":"Netgear","08:36:c9":"Netgear","20:e5:2a":"Netgear","28:c6:8e":"Netgear",
+  "2c:30:33":"Netgear","30:46:9a":"Netgear","44:94:fc":"Netgear","4c:60:de":"Netgear","6c:b0:ce":"Netgear",
+  "9c:3d:cf":"Netgear","a0:04:60":"Netgear","b0:39:56":"Netgear","b0:b9:8a":"Netgear","c0:3f:0e":"Netgear",
+  "00:25:9c":"Cisco-Linksys","00:1d:7e":"Cisco-Linksys","00:21:29":"Cisco-Linksys","00:23:69":"Cisco-Linksys",
+  "48:f8:b3":"Cisco-Linksys","58:6d:8f":"Cisco-Linksys","68:7f:74":"Cisco-Linksys","98:fc:11":"Cisco-Linksys",
+  "c0:56:27":"Cisco-Linksys",
+  "20:cf:30":"Asus","2c:fd:a1":"Asus","30:5a:3a":"Asus","38:d5:47":"Asus","40:b0:76":"Asus",
+  "ac:9e:17":"Asus","ac:22:0b":"Asus","b0:6e:bf":"Asus","b8:ee:65":"Asus",
+  "b8:8a:60":"Eero","18:7c:81":"Eero","18:e8:29":"Eero",
+  "00:0a:8a":"Cisco","00:0d:65":"Cisco","00:1b:0c":"Cisco","00:21:55":"Cisco","00:23:33":"Cisco","00:25:b4":"Cisco",
+  "20:bb:c6":"Cisco","30:f7:0d":"Cisco","60:73:5c":"Cisco","6c:99:89":"Cisco","cc:46:d6":"Cisco",
+  // ===== NAS =====
+  "00:11:32":"Synology","00:50:b6":"Synology","00:08:9b":"Synology",
+  "24:5e:be":"QNAP","00:08:9b":"QNAP",
+  // ===== Printers =====
+  "9c:8e:cd":"HP","00:11:0a":"HP","3c:52:82":"HP","00:08:02":"HP","00:0d:9d":"HP","00:14:38":"HP","00:14:c2":"HP",
+  "00:17:08":"HP","00:18:71":"HP","00:18:fe":"HP","00:19:bb":"HP","00:1a:4b":"HP","00:1b:78":"HP","00:1c:c4":"HP",
+  "00:1e:0b":"HP","00:1f:29":"HP","00:21:5a":"HP","00:22:64":"HP","00:23:7d":"HP","00:24:81":"HP","00:25:b3":"HP",
+  "00:26:55":"HP","00:30:6e":"HP","00:50:8b":"HP","00:60:b0":"HP","00:80:a1":"HP","08:00:09":"HP","10:1f:74":"HP",
+  "10:60:4b":"HP","18:a9:05":"HP","1c:c1:de":"HP","2c:23:3a":"HP","2c:27:d7":"HP","38:63:bb":"HP","3c:4a:92":"HP",
+  "3c:d9:2b":"HP","48:0f:cf":"HP","5c:8a:38":"HP","6c:3b:e5":"HP","78:e3:b5":"HP","78:e7:d1":"HP","80:c1:6e":"HP",
+  "84:34:97":"HP","94:18:82":"HP","94:57:a5":"HP","98:e7:f4":"HP","9c:b6:54":"HP","a0:48:1c":"HP","a0:b3:cc":"HP",
+  "a0:d3:c1":"HP","a4:5d:36":"HP","ac:16:2d":"HP","b0:5a:da":"HP","b4:99:ba":"HP","b4:b5:2f":"HP","c4:34:6b":"HP",
+  "c8:cb:b8":"HP","d0:7e:28":"HP","d4:c9:ef":"HP","d8:9d:67":"HP",
+  "00:00:85":"Canon","00:1e:8f":"Canon","2c:9e:fc":"Canon","6c:0c:d6":"Canon","68:fe:f7":"Canon","68:9e:0b":"Canon",
+  "70:79:b3":"Canon","94:74:a7":"Canon","a4:f0:5e":"Canon",
+  "00:00:48":"Epson","00:26:ab":"Epson","9c:ae:d3":"Epson","ac:18:26":"Epson","c4:c6:9b":"Epson",
+  "00:80:77":"Brother","30:05:5c":"Brother","08:00:46":"Brother","00:1b:a9":"Brother","30:c9:ab":"Brother",
+  // ===== Tesla =====
+  "4c:fc:aa":"Tesla","98:ed:5c":"Tesla","cc:88:26":"Tesla","98:78:f5":"Tesla",
+  // ===== Raspberry Pi =====
+  "b8:27:eb":"Raspberry Pi","dc:a6:32":"Raspberry Pi","e4:5f:01":"Raspberry Pi","2c:cf:67":"Raspberry Pi",
+  "d8:3a:dd":"Raspberry Pi",
+  // ===== Intel =====
+  "00:15:17":"Intel","00:1b:21":"Intel","00:21:6a":"Intel","00:22:fa":"Intel","00:24:d6":"Intel","00:26:c6":"Intel",
+  "00:27:10":"Intel","04:d3:b0":"Intel","08:11:96":"Intel","08:d4:0c":"Intel","0c:8b:fd":"Intel","10:0b:a9":"Intel",
+  "18:3d:a2":"Intel","1c:69:7a":"Intel","24:77:03":"Intel","24:fd:52":"Intel","28:b2:bd":"Intel","2c:f0:a2":"Intel",
+  "34:13:e8":"Intel","34:e6:d7":"Intel","3c:a9:f4":"Intel","3c:fd:fe":"Intel","48:51:b7":"Intel","4c:34:88":"Intel",
+  "50:eb:71":"Intel","58:91:cf":"Intel","60:f2:62":"Intel","6c:88:14":"Intel","70:1c:e7":"Intel","7c:5c:f8":"Intel",
+  "7c:7a:91":"Intel","80:1f:02":"Intel","80:9b:20":"Intel","84:fd:d1":"Intel","88:53:2e":"Intel","8c:a9:82":"Intel",
+  "94:65:9c":"Intel","9c:b6:d0":"Intel","a0:36:9f":"Intel","a4:34:d9":"Intel","ac:7b:a1":"Intel","b0:35:9f":"Intel",
+  "c4:8e:8f":"Intel","c8:f7:50":"Intel","cc:3d:82":"Intel","d4:25:8b":"Intel","d8:f2:ca":"Intel","f0:1f:af":"Intel",
+  "f8:34:41":"Intel",
+  // ===== Espressif (ESP8266/ESP32 → smart plugs, IoT) =====
+  "24:0a:c4":"Espressif (IoT chip)","24:6f:28":"Espressif (IoT chip)","30:ae:a4":"Espressif (IoT chip)",
+  "3c:71:bf":"Espressif (IoT chip)","60:01:94":"Espressif (IoT chip)","68:c6:3a":"Espressif (IoT chip)",
+  "84:0d:8e":"Espressif (IoT chip)","94:b9:7e":"Espressif (IoT chip)","ac:0b:fb":"Espressif (IoT chip)",
+  "b4:e6:2d":"Espressif (IoT chip)","bc:dd:c2":"Espressif (IoT chip)","cc:50:e3":"Espressif (IoT chip)",
+  "d8:bf:c0":"Espressif (IoT chip)","ec:64:c9":"Espressif (IoT chip)","f4:cf:a2":"Espressif (IoT chip)",
+  // ===== Tuya (generic IoT) =====
+  "84:e3:42":"Tuya (IoT)","cc:9c:eb":"Tuya (IoT)","68:57:2d":"Tuya (IoT)",
+  // ===== Xiaomi / Mi =====
+  "10:2a:b3":"Xiaomi","18:59:36":"Xiaomi","20:82:c0":"Xiaomi","28:6c:07":"Xiaomi","34:80:b3":"Xiaomi","3c:bd:d8":"Xiaomi",
+  "4c:49:e3":"Xiaomi","50:8f:4c":"Xiaomi","58:44:98":"Xiaomi","64:b4:73":"Xiaomi","68:df:dd":"Xiaomi","78:11:dc":"Xiaomi",
+  "8c:bf:a6":"Xiaomi","9c:99:a0":"Xiaomi","b0:e2:35":"Xiaomi","f4:f5:db":"Xiaomi","f8:a4:5f":"Xiaomi",
+  // ===== LG =====
+  "94:db:c9":"LG","00:1f:6b":"LG","00:e0:91":"LG","ac:0d:1b":"LG","cc:fa:00":"LG","f8:0c:f3":"LG",
+  // ===== Virtual machines =====
+  "00:05:69":"VMware","00:0c:29":"VMware","00:1c:14":"VMware","00:50:56":"VMware",
+  "52:54:00":"QEMU/KVM (virtual)",
+};
+
+/* ============================================================
+   PARSER
+   CRITICAL FIX: macOS arp -a omits leading zeros (e.g. "0:17:88:a:b:c").
+   The MAC regex MUST accept 1-or-2 hex digits per octet.
+   ============================================================ */
+const MAC_COLON_RE = /([0-9a-fA-F]{1,2}(?::[0-9a-fA-F]{1,2}){5})/;
+const MAC_DASH_RE  = /([0-9a-fA-F]{1,2}(?:-[0-9a-fA-F]{1,2}){5})/;
+const IP_RE        = /(\d{1,3}(?:\.\d{1,3}){3})/;
+
+function normalizeMAC(mac){
+  return mac.toLowerCase().split(/[:\-]/).map(o => o.length === 1 ? "0"+o : o).join(":");
+}
+function isRandomized(mac){
+  // Locally-administered bit: 2nd hex of first octet ∈ {2,3,6,7,a,b,e,f}
+  // The prompt's 2/6/A/E set is unicast-LAA; we accept the broader bit check.
+  const first = parseInt(mac.split(":")[0], 16);
+  return (first & 0x02) === 0x02;
+}
+function isBroadcastOrMulticast(ip, mac){
+  if (!ip || !mac) return false;
+  if (ip.endsWith(".255")) return true;
+  // IPv4 multicast 224.0.0.0/4
+  const first = parseInt(ip.split(".")[0], 10);
+  if (first >= 224 && first <= 239) return true;
+  if (mac === "ff:ff:ff:ff:ff:ff") return true;
+  if (mac.startsWith("01:00:5e")) return true;   // IPv4 multicast MAC
+  if (mac.startsWith("33:33:")) return true;     // IPv6 multicast MAC
+  return false;
+}
+function ouiOf(mac){ return mac.split(":").slice(0,3).join(":"); }
+
+/* Hostname-based inference — strongest signal because users name devices */
+function typeFromHostname(h){
+  if (!h) return null;
+  if (/router|gateway|access[\-\s]?point|^wifi$|airport|^wlan/i.test(h))                    return "router";
+  if (/iphone|galaxy[\-\s]?(s|note|a|z)|pixel[\-\s]?\d|oneplus|huawei|^phone[\-\s]/i.test(h)) return "mobile";
+  if (/^android|moto[\-\s]?[g|e|x]|nokia/i.test(h))                                         return "mobile";
+  if (/ipad|tab(let)?[\-_]/i.test(h))                                                       return "tablet";
+  if (/apple[\-\s]?watch|gear[\-\s]?(s|sport)|fitbit|garmin/i.test(h))                      return "wearable";
+  if (/macbook|imac|mac[\-_\s]?(mini|pro|studio)|laptop|desktop|windows|surface|dell|lenovo|thinkpad|hp[\-\s]?(pavilion|spectre|envy)|acer|msi|alienware/i.test(h)) return "computer";
+  if (/raspberry|^rpi|^pi[\-_\d]|ubuntu|debian|fedora|arch|linux/i.test(h))                 return "computer";
+  if (/roku|apple[\-\s]?tv|^appletv|chromecast|fire[\-\s]?(tv|stick|cube)|nvidia[\-\s]?shield|samsungtv|lgtv|smart[\-\s]?tv|^tv[\-_]/i.test(h)) return "tv";
+  if (/echo|alexa|home[\-\s]?(mini|max|hub|pod)|nest[\-\s]?(mini|hub|audio|wifi)|homepod/i.test(h)) return "voice";
+  if (/hue|lifx|smartlife|tuya|tp[\-\s]?link[\-\s]?(plug|bulb)|kasa|wemo|smartthings|switchbot|tplink|^plug|^bulb|^light/i.test(h)) return "iot";
+  if (/ring|nest[\-\s]?(cam|doorbell)|wyze|arlo|amcrest|reolink|blink|eufy|hikvision|dahua|axis|cam[\-_]/i.test(h)) return "camera";
+  if (/printer|^hp[\-_]|^canon[\-_]|^epson[\-_]|brother|laserjet|officejet|deskjet|envy|pixma|^mfp/i.test(h)) return "printer";
+  if (/sonos|^bose|jbl|^denon|yamaha[\-\s]?(speaker|av)|marantz|sound[\-\s]?(bar|touch)/i.test(h)) return "speaker";
+  if (/synology|qnap|^nas|truenas|freenas|diskstation|terramaster/i.test(h))                return "nas";
+  if (/xbox|playstation|ps[345]|nintendo|switch|steam[\-\s]?deck/i.test(h))                 return "gaming";
+  if (/tesla|model[\-_\s]?[s3xy]/i.test(h))                                                  return "vehicle";
+  if (/kindle/i.test(h))                                                                     return "ereader";
+  if (/eero/i.test(h))                                                                       return "router";
+  return null;
+}
+
+/* Vendor-based fallback */
+function typeFromVendor(v){
+  if (!v) return null;
+  if (/ubiquiti|netgear|tp[\-\s]?link|asus|eero|linksys|cisco/i.test(v))           return "router";
+  if (/hikvision|dahua|axis|amcrest|arlo|wyze|reolink|eufy|ring/i.test(v))         return "camera";
+  if (/signify|philips hue|lifx|smartthings|espressif|tuya/i.test(v))              return "iot";
+  if (/synology|qnap/i.test(v))                                                     return "nas";
+  if (/sonos|bose/i.test(v))                                                        return "speaker";
+  if (/^hp$|^hp\b|hewlett|canon|epson|brother/i.test(v))                            return "printer";
+  if (/roku/i.test(v))                                                              return "tv";
+  if (/lg|samsung/i.test(v))                                                        return "tv"; /* often TV on consumer LANs; phones now mostly randomized */
+  if (/amazon \(echo\/ring\)/i.test(v))                                             return "iot";
+  if (/google \(chromecast\)/i.test(v))                                             return "tv";
+  if (/google \(nest\)|nest/i.test(v))                                              return "iot";
+  if (/nintendo|playstation|xbox/i.test(v))                                          return "gaming";
+  if (/tesla/i.test(v))                                                              return "vehicle";
+  if (/raspberry/i.test(v))                                                          return "computer";
+  if (/apple/i.test(v))                                                              return "computer"; /* iPhones generally use randomized MAC; non-randomized Apple → Mac/AppleTV */
+  if (/microsoft \(xbox\)/i.test(v))                                                 return "gaming";
+  if (/microsoft \(surface\)/i.test(v))                                              return "computer";
+  if (/microsoft \(hyper-v\)|vmware|qemu/i.test(v))                                  return "computer";
+  if (/intel|realtek/i.test(v))                                                      return "computer";
+  if (/xiaomi/i.test(v))                                                             return "mobile";
+  return null;
+}
+
+/* Return both the inferred type and the reason — for transparency */
+function inferTypeWithReason(opts){
+  const h = (opts && opts.hostname) ? opts.hostname.toLowerCase() : null;
+  const v = opts && opts.vendor;
+  const ip = opts && opts.ip;
+  const randomized = opts && opts.randomized;
+  const hasOui = opts && opts.hasOui;
+
+  // 1. Hostname patterns — strongest signal
+  let t = typeFromHostname(h);
+  if (t) return { type: t, reason: "hostname keyword", confidence: "high" };
+
+  // 2. Vendor (OUI) patterns
+  t = typeFromVendor(v);
+  if (t) return { type: t, reason: "vendor (OUI)", confidence: "medium" };
+
+  // 3. IP-position heuristic: .1 or .254 = router
+  if (ip && /\.(1|254)$/.test(ip)){
+    return { type: "router", reason: "IP position", confidence: "medium" };
+  }
+
+  // 4. Randomized MAC fallback — modern phones almost always do this
+  if (randomized){
+    return { type: "mobile", reason: "randomized MAC (most common cause)", confidence: "low" };
+  }
+
+  // 5. IP range heuristics on unknown OUIs — at least make a confident guess
+  if (ip){
+    const lastOctet = parseInt(ip.split(".").pop(), 10);
+    if (!isNaN(lastOctet)){
+      // Static-assigned range (.2 - .50) — often IoT, servers
+      if (lastOctet >= 2 && lastOctet <= 50){
+        return { type: "iot", reason: "low IP (often static-assigned IoT)", confidence: "low" };
+      }
+      // DHCP client range (.100+) — typically end-user devices
+      if (lastOctet >= 100){
+        return { type: "computer", reason: "DHCP range (typical client)", confidence: "low" };
+      }
+      // Mid-range (.51-.99) — mixed bag
+      return { type: "device", reason: "mid-range IP, no signals", confidence: "low" };
+    }
+  }
+
+  return { type: "device", reason: "no identification signals", confidence: "low" };
+}
+
+/* Back-compat wrapper that returns just the type */
+function inferType(opts){
+  return inferTypeWithReason(opts).type;
+}
+
+function parseArp(text){
+  const hosts = {};
+  const lines = (text || "").split(/\r?\n/);
+  for (let raw of lines){
+    const line = raw.trim();
+    if (!line) continue;
+    if (/\(incomplete\)/i.test(line)) continue;
+
+    const ipM = line.match(IP_RE);
+    if (!ipM) continue;
+    const ip = ipM[1];
+
+    // Hostname: macOS arp -a writes "hostname (ip) at mac" — "?" if unresolved
+    let hostname = null;
+    const ipMarker = "(" + ip + ")";
+    const beforeIdx = line.indexOf(ipMarker);
+    if (beforeIdx > 0){
+      const prefix = line.substring(0, beforeIdx).trim();
+      if (prefix && prefix !== "?"){
+        hostname = prefix.replace(/\.local$/i, "");
+      }
+    }
+
+    let macM = line.match(MAC_COLON_RE);
+    let mac = macM ? normalizeMAC(macM[1]) : null;
+    if (!mac){
+      macM = line.match(MAC_DASH_RE);
+      if (macM) mac = normalizeMAC(macM[1]);
+    }
+    if (!mac) continue;
+    if (isBroadcastOrMulticast(ip, mac)) continue;
+
+    const randomized = isRandomized(mac);
+    const oui = ouiOf(mac);
+    const ouiVendor = randomized ? null : (OUI[oui] || null);
+    const vendor = randomized ? "(randomized MAC)" : ouiVendor;
+
+    const inf = inferTypeWithReason({ hostname, vendor: ouiVendor, ip, mac, randomized, hasOui: !!ouiVendor });
+
+    hosts[ip] = {
+      ip, mac, vendor, type: inf.type, randomized, hostname,
+      ouiPrefix: oui,
+      typeReason: inf.reason,
+      confidence: inf.confidence,
+      methods: ["ARP"],
+      real: true, phantom: false,
+    };
+  }
+  // Force-tag the gateway if not already routed
+  const all = Object.values(hosts);
+  const gw = all.find(h => /\.(1|254)$/.test(h.ip));
+  if (gw && gw.type !== "router"){
+    gw.type = "router";
+    gw.typeReason = "IP position (gateway)";
+    gw.confidence = "high";
+  }
+  return all;
+}
+
+/* ============================================================
+   SIMULATED NETWORK (ground truth = 12 real devices + 1 phantom + 1 sleeping)
+   ============================================================ */
+const SIM_NETWORK = [
+  {ip:"10.0.0.1",  mac:"f0:9f:c2:01:02:03", vendor:"Ubiquiti",               type:"router",   methods:["ARP","mDNS"],        randomized:false, real:true},
+  {ip:"10.0.0.10", mac:"78:4f:43:11:22:33", vendor:"Apple",                  type:"computer", methods:["ARP","mDNS","TCP"],  randomized:false, real:true},
+  {ip:"10.0.0.14", mac:"6a:11:9f:ab:cd:ef", vendor:"(randomized MAC)",       type:"mobile",   methods:["ARP","mDNS"],        randomized:true,  real:true},
+  {ip:"10.0.0.22", mac:"00:17:88:a1:b2:c3", vendor:"Signify (Philips Hue)",  type:"iot",      methods:["mDNS","SSDP"],       randomized:false, real:true},
+  {ip:"10.0.0.30", mac:"8c:ea:48:de:ad:be", vendor:"Hikvision",              type:"camera",   methods:["ARP","TCP"],         randomized:false, real:true},
+  {ip:"10.0.0.50", mac:"00:1d:c1:01:02:03", vendor:"Sonos",                  type:"speaker",  methods:["SSDP"],              randomized:false, real:true},
+  {ip:"10.0.0.60", mac:"00:11:32:99:88:77", vendor:"Synology",               type:"nas",      methods:["ARP","mDNS","TCP"],  randomized:false, real:true},
+  {ip:"10.0.0.70", mac:"9c:8e:cd:12:34:56", vendor:"HP",                     type:"printer",  methods:["mDNS","SSDP","TCP"], randomized:false, real:true},
+  {ip:"10.0.0.80", mac:"ae:25:00:aa:bb:cc", vendor:"(randomized MAC)",       type:"mobile",   methods:["ARP","mDNS"],        randomized:true,  real:true},
+  {ip:"10.0.0.90", mac:"04:5d:4b:11:22:33", vendor:"Samsung",                type:"tv",       methods:["mDNS","SSDP"],       randomized:false, real:true},
+  {ip:"10.0.0.95", mac:"00:fc:8b:11:22:33", vendor:"Amazon (Ring/Echo)",     type:"iot",      methods:["SSDP"],              randomized:false, real:true},
+  // sleeping device — exists in ground truth but no method finds it
+  {ip:"10.0.0.45", mac:"00:00:00:00:00:01", vendor:"Apple iPad (sleeping)",  type:"mobile",   methods:[],                    randomized:false, real:true, sleeping:true},
+  // phantom — only ARP "sees" it, but it's not a real device
+  {ip:"10.0.0.99", mac:"00:00:00:de:ad:01", vendor:"(stale ARP entry)",      type:"unknown",  methods:["ARP"],               randomized:false, real:false, phantom:true},
+];
+const GROUND_TRUTH = SIM_NETWORK.filter(d => d.real).length; // 12
+
+/* ============================================================
+   SAMPLE for Scan Mine (macOS format — single-digit octets that broke the old parser)
+   ============================================================ */
+const SAMPLE_DATA = `unifi-gateway.local (192.168.1.1) at f0:9f:c2:1:22:33 on en0 ifscope [ethernet]
+macbook-pro.local (192.168.1.10) at ac:bc:32:4:55:66 on en0 ifscope [ethernet]
+? (192.168.1.14) at 6a:11:9f:ab:cd:ef on en0 ifscope [ethernet]
+philips-hue-bridge.local (192.168.1.22) at 0:17:88:a:bb:cc on en0 ifscope [ethernet]
+hikvision-frontdoor.local (192.168.1.50) at 8c:ea:48:de:ad:be on en0 ifscope [ethernet]
+sonos-living-room.local (192.168.1.60) at 0:1d:c1:1:2:3 on en0 ifscope [ethernet]
+synology-nas.local (192.168.1.80) at 0:11:32:99:88:77 on en0 ifscope [ethernet]
+hp-officejet.local (192.168.1.40) at 9c:8e:cd:12:34:56 on en0 ifscope [ethernet]
+? (192.168.1.92) at 30:ae:a4:11:22:33 on en0 ifscope [ethernet]
+ipad-of-rayve.local (192.168.1.15) at fe:11:22:33:44:55 on en0 ifscope [ethernet]
+? (224.0.0.251) at 1:0:5e:0:0:fb on en0 ifscope permanent [ethernet]
+? (192.168.1.255) at ff:ff:ff:ff:ff:ff on en0 ifscope [ethernet]`;
+
+/* ============================================================
+   ROUTER INTEL — vendor-specific facts shown when a gateway is detected.
+   Not exhaustive; meant to give the operator the right starting points.
+   ============================================================ */
+const ROUTER_INTEL = {
+  Ubiquiti: {
+    brand: "Ubiquiti (UniFi)",
+    icon: "📡",
+    admin_url: "https://unifi.ui.com or http://&lt;gateway-ip&gt;",
+    default_creds: 'Original setup: <span class="pill">ubnt</span> / <span class="pill">ubnt</span> (older devices). Newer UniFi flows force an account-setup wizard — change away from any defaults if unchanged.',
+    firmware: 'UniFi Network Controller → <span class="pill">Settings → System → Maintenance</span>. Devices update when you click "Upgrade" after a controller release.',
+    backup: "Built-in auto-backup to UI Cloud (if enabled). Manually export from Settings → Backups before any major change.",
+    notes: "Solid hardware, but the Network Controller has had multiple CVEs over the years — keep it patched. Many homes leave the default <b>UniFi</b> SSID broadcasting which advertises the brand to attackers.",
+    hardening: [
+      "Disable UPnP unless a specific device needs it",
+      "Set a strong admin password and enable 2FA on your UI account",
+      "Turn on HTTPS for the controller UI; disable HTTP redirect",
+      "Restrict SSH to specific source IPs or disable it",
+      "Use VLANs to segment IoT and guest traffic from your main devices",
+      "Rename the default SSID so 'UniFi' isn't broadcast as the vendor",
+    ],
+    risk_note: "If exposed to the internet (port forward to controller UI), patch immediately. Several remote-code-execution CVEs have hit older controllers.",
+  },
+  Eero: {
+    brand: "eero (Amazon)",
+    icon: "📡",
+    admin_url: "eero mobile app (iOS/Android) — no web UI",
+    default_creds: "Account-based via the eero app — no fixed default password.",
+    firmware: "Auto-updates by default; check the app under <span class=\"pill\">Settings → Software updates</span>.",
+    backup: "Account-tied; no local config to back up.",
+    notes: "Amazon-owned. Requires an Amazon account and cloud telemetry to operate — this is a privacy tradeoff. eero Plus subscription adds threat scanning, ad blocking, and content filtering.",
+    hardening: [
+      "Enable 'Secure DNS' (DNS-over-HTTPS) in eero Labs",
+      "If you have eero Plus, turn on Threat Scan + Ad Block",
+      "Disable UPnP unless required",
+      "Set guest network to use a different password and isolate guests",
+      "Enable 2FA on your Amazon account (eero login)",
+      "Use eero's family profiles to segment kids' devices",
+    ],
+    risk_note: "Amazon collects connection metadata. If that's a concern, eero may not be the right choice — consider Ubiquiti or Asus with local-only admin.",
+  },
+  Netgear: {
+    brand: "Netgear",
+    icon: "📡",
+    admin_url: "http://192.168.1.1 or http://routerlogin.net",
+    default_creds: '<span class="pill">admin</span> / <span class="pill">password</span> (most models). Change immediately — this is the #1 attack vector.',
+    firmware: 'Web UI → <span class="pill">Advanced → Administration → Router Update</span>. Some models support auto-update; many do not — check monthly.',
+    backup: "Web UI → Administration → Backup Settings → save the config file securely.",
+    notes: "Netgear has had numerous CVEs in 2023-24 — admin auth bypasses, WPS issues, ReadyShare flaws. Keep firmware current and disable features you don't use.",
+    hardening: [
+      "Disable WPS (Wi-Fi Protected Setup) — has known brute-force attacks",
+      "Disable remote management from the WAN side",
+      "Enable WPA3 (or WPA2-AES if WPA3 isn't supported)",
+      "Disable Telnet if exposed (most older Netgears expose it)",
+      "Turn off ReadyShare USB/cloud sharing if you don't need it",
+      "Set DNS to a trusted resolver (Cloudflare 1.1.1.1, Quad9 9.9.9.9)",
+    ],
+    risk_note: "If your model is >5 years old and no longer receives firmware updates, replace it. Unpatched routers are a common foothold.",
+  },
+  "TP-Link": {
+    brand: "TP-Link",
+    icon: "📡",
+    admin_url: "http://192.168.0.1 or http://tplinkwifi.net (or .1 on newer models)",
+    default_creds: '<span class="pill">admin</span> / <span class="pill">admin</span> on most models. Change immediately.',
+    firmware: 'Web UI → <span class="pill">System Tools → Firmware Upgrade</span>. Some Archer/Deco models auto-update via the Tether/Deco app.',
+    backup: "System Tools → Backup &amp; Restore — save your config file.",
+    notes: "Cheap and ubiquitous, but firmware update cadence varies wildly by model. Some budget models receive zero updates after release.",
+    hardening: [
+      "Disable WPS",
+      "Disable Remote Management (WAN-side admin)",
+      "Use WPA3 or WPA2-Personal AES (never WEP or WPA-TKIP)",
+      "Disable HiLink / cloud account features if you don't use them",
+      "Restrict admin UI access to a specific MAC if the model supports it",
+      "Check 'TP-Link end-of-support' lists before buying replacements",
+    ],
+    risk_note: "Several CVEs in 2024 targeting older Archer models. If yours hasn't received an update in 2+ years, it's likely unpatched and should be replaced.",
+  },
+  Asus: {
+    brand: "ASUS",
+    icon: "📡",
+    admin_url: "http://192.168.1.1 or http://router.asus.com",
+    default_creds: '<span class="pill">admin</span> / <span class="pill">admin</span> on most models — change immediately.',
+    firmware: 'Web UI → <span class="pill">Administration → Firmware Upgrade</span>. ASUS routers also support auto-update under <span class="pill">Administration → System</span>.',
+    backup: "Administration → Restore/Save/Upload Setting — export config to a file.",
+    notes: "Strong feature set (VLANs, VPN client, AiProtection). AiCloud and AiProtection have had multiple CVEs — keep firmware current. Free Trend Micro-powered threat protection (AiProtection) is genuinely useful.",
+    hardening: [
+      "Disable AiCloud unless you actively use it (history of CVEs)",
+      "Enable AiProtection (built-in malicious-domain blocking)",
+      "Disable WPS",
+      "Disable remote/WAN access to the admin UI",
+      "Enable WPA3 or WPA2-AES",
+      "Set up a guest network with isolation enabled",
+    ],
+    risk_note: "ASUS routers have had widespread botnet activity (Cyclops Blink, etc.) — keep firmware current and reset routinely if you suspect compromise.",
+  },
+  "Cisco-Linksys": {
+    brand: "Linksys (Cisco)",
+    icon: "📡",
+    admin_url: "http://192.168.1.1",
+    default_creds: '<span class="pill">admin</span> / <span class="pill">admin</span> (newer) or blank user / <span class="pill">admin</span> (older).',
+    firmware: 'Web UI → <span class="pill">Connectivity → Manual Firmware Update</span>. Cloud Account models update via the Linksys app.',
+    backup: "Connectivity → Administration → Save/Backup Configuration.",
+    notes: "Most consumer Linksys models are now Belkin/Foxconn — firmware quality varies. Older WRT/E-series routers were a frequent CVE target.",
+    hardening: [
+      "Disable Remote Access (WAN admin)",
+      "Disable WPS",
+      "Use WPA3 or WPA2-AES",
+      "Disable UPnP",
+      "If running open-source firmware (OpenWrt, DD-WRT) — keep that current too",
+      "Reset SmartWiFi cloud account password if used",
+    ],
+    risk_note: "Many Linksys models are EOL. If yours no longer gets updates, replace it.",
+  },
+  "Google (Nest)": {
+    brand: "Google Nest WiFi",
+    icon: "📡",
+    admin_url: "Google Home app (no web UI)",
+    default_creds: "Account-based via Google Home — no fixed default.",
+    firmware: "Auto-updates by default; you have no control over the schedule.",
+    backup: "Account-tied; no local config.",
+    notes: "Cloud-managed by Google. Limited advanced features (no static routes, no VLANs, no port-forward granularity). Privacy: Google sees connection metadata.",
+    hardening: [
+      "Enable 2FA on your Google account",
+      "Use Family Wi-Fi controls to segment kids' devices",
+      "Set guest network with isolation",
+      "Be aware: limited firewall control compared to ASUS/Ubiquiti",
+      "Consider whether Google having your network metadata is acceptable",
+    ],
+    risk_note: "Strong baseline security via auto-updates, but minimal advanced configurability. Good for non-technical homes, frustrating for power users.",
+  },
+  Apple: {
+    brand: "Apple AirPort (Discontinued)",
+    icon: "📡",
+    admin_url: "AirPort Utility (macOS/iOS)",
+    default_creds: "Account / device-setup based.",
+    firmware: "Discontinued — Apple stopped AirPort firmware updates in 2018.",
+    backup: "AirPort Utility → File → Save a copy.",
+    notes: "<b>Strongly recommend replacement.</b> AirPort routers no longer receive security updates and increasingly miss modern Wi-Fi features (WPA3, Wi-Fi 6).",
+    hardening: [
+      "<b>Replace with a supported router</b> — this is the only real hardening for EOL hardware",
+      "If you must keep using it, disable remote access and guest network",
+      "Use WPA2-AES (the strongest it supports)",
+      "Segment any IoT off this router to a separate VLAN/router",
+    ],
+    risk_note: "Discontinued since 2018. Increasingly vulnerable to disclosed-but-unpatched CVEs. Replace.",
+  },
+  generic: {
+    brand: "Generic / Unknown router",
+    icon: "📡",
+    admin_url: "Usually http://192.168.1.1 or http://192.168.0.1 — check the sticker on the device.",
+    default_creds: 'Common defaults: <span class="pill">admin/admin</span>, <span class="pill">admin/password</span>, blank/blank. Change immediately if not already.',
+    firmware: "Check the manufacturer's website with your exact model number for firmware updates.",
+    backup: "Look for a 'Backup Settings' or 'Save Configuration' option in the admin UI.",
+    notes: "We couldn't identify the vendor from the MAC OUI. Open the admin URL and check the brand/model from there.",
+    hardening: [
+      "Change the default admin password",
+      "Disable WPS (universally weak)",
+      "Disable remote/WAN-side management",
+      "Use WPA3 or WPA2-AES; never WEP or WPA-TKIP",
+      "Disable UPnP unless you need it for a specific application",
+      "Set DNS to a trusted resolver (1.1.1.1 / 9.9.9.9)",
+      "Check the manufacturer's firmware page monthly",
+    ],
+    risk_note: "Routers older than 5 years rarely receive security updates. If you can't find recent firmware, plan a replacement.",
+  },
+};
+
+/* Pick an intel record from a vendor string (best-effort match) */
+function routerIntelFor(vendor){
+  if (!vendor) return ROUTER_INTEL.generic;
+  const v = vendor.toLowerCase();
+  if (/ubiquiti/.test(v)) return ROUTER_INTEL.Ubiquiti;
+  if (/eero/.test(v))     return ROUTER_INTEL.Eero;
+  if (/netgear/.test(v))  return ROUTER_INTEL.Netgear;
+  if (/tp[\-\s]?link/.test(v)) return ROUTER_INTEL["TP-Link"];
+  if (/asus/.test(v))     return ROUTER_INTEL.Asus;
+  if (/cisco|linksys/.test(v)) return ROUTER_INTEL["Cisco-Linksys"];
+  if (/google|nest/.test(v))   return ROUTER_INTEL["Google (Nest)"];
+  if (/apple|airport/.test(v)) return ROUTER_INTEL.Apple;
+  return ROUTER_INTEL.generic;
+}
+
+function renderRouterIntel(containerId, gatewayHost){
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  if (!gatewayHost){ container.innerHTML = ""; container.classList.add("hide"); return; }
+  container.classList.remove("hide");
+
+  const intel = routerIntelFor(gatewayHost.vendor || gatewayHost.hostname);
+  const adminUrl = (gatewayHost.ip) ? intel.admin_url.replace(/&lt;gateway-ip&gt;/, gatewayHost.ip) : intel.admin_url;
+
+  let html = '';
+  html += '<div class="ri-head">';
+  html += '  <div class="ri-icon">'+intel.icon+'</div>';
+  html += '  <div>';
+  html += '    <div class="ri-title">About your router — '+intel.brand+'</div>';
+  html += '    <div class="ri-meta">gateway · '+escapeHtml(gatewayHost.ip)+(gatewayHost.hostname?' · '+escapeHtml(gatewayHost.hostname):'')+'</div>';
+  html += '  </div>';
+  html += '</div>';
+
+  html += '<div class="ri-grid">';
+  html += '  <div class="ri-row"><div class="ri-key">Admin URL</div><div class="ri-val">'+adminUrl+'</div></div>';
+  html += '  <div class="ri-row"><div class="ri-key">Default credentials</div><div class="ri-val">'+intel.default_creds+'</div></div>';
+  html += '  <div class="ri-row"><div class="ri-key">Firmware update path</div><div class="ri-val">'+intel.firmware+'</div></div>';
+  html += '  <div class="ri-row"><div class="ri-key">Config backup</div><div class="ri-val">'+intel.backup+'</div></div>';
+  html += '</div>';
+
+  if (intel.notes){
+    html += '<div class="ri-row" style="margin-top:6px"><div class="ri-key">What to know</div><div class="ri-val">'+intel.notes+'</div></div>';
+  }
+
+  html += '<div class="ri-subhead">Hardening checklist</div>';
+  html += '<ul class="ri-tips">';
+  intel.hardening.forEach(t => { html += '<li>'+t+'</li>'; });
+  html += '</ul>';
+
+  if (intel.risk_note){
+    html += '<div class="ri-warn"><b>HEADS UP</b> — '+intel.risk_note+'</div>';
+  }
+
+  container.innerHTML = html;
+}
+
+/* ============================================================
+   HELPERS
+   ============================================================ */
+const $  = s => document.querySelector(s);
+const $$ = s => document.querySelectorAll(s);
+function show(id){ const e=$("#"+id); if(e) e.classList.remove("hide"); }
+function hide(id){ const e=$("#"+id); if(e) e.classList.add("hide"); }
+function ipToInt(ip){ return ip.split(".").reduce((a,o)=>a*256+parseInt(o,10),0); }
+function maskMac(mac){
+  if(!mac) return "—";
+  const p = mac.split(":");
+  if (p.length !== 6) return mac;
+  return p.slice(0,3).join(":")+":xx:xx:xx";
+}
+function shortIp(ip){ const p = ip.split("."); return p.slice(-2).join("."); }
+function sortHosts(hosts){
+  return [...hosts].sort((a,b)=>{
+    if (a.type==="router" && b.type!=="router") return -1;
+    if (a.type!=="router" && b.type==="router") return 1;
+    if (a.phantom && !b.phantom) return 1;
+    if (!a.phantom && b.phantom) return -1;
+    return ipToInt(a.ip) - ipToInt(b.ip);
+  });
+}
+
+/* ============================================================
+   DIAGRAM RENDERER — hierarchical topology layout
+   Internet (top) → Gateway → Device clusters grouped by type
+   Inspired by homelab architecture diagrams: cluster boxes with
+   dashed borders, color-coded by category, trunk lines from gateway.
+   ============================================================ */
+
+const CLUSTER_DEFS = [
+  { id:"computers", title:"COMPUTERS",          color:"#2d5e3a", types:["computer"] },
+  { id:"mobile",    title:"MOBILE & WEARABLE",  color:"#5b3d8a", types:["mobile","tablet","wearable"] },
+  { id:"iot",       title:"IoT / SMART HOME",   color:"#8a6321", types:["iot","voice"] },
+  { id:"cameras",   title:"CAMERAS",            color:"#8a3a3a", types:["camera"] },
+  { id:"media",     title:"MEDIA",              color:"#2c5e6a", types:["speaker","tv"] },
+  { id:"storage",   title:"STORAGE / PRINT",    color:"#1a1a1a", types:["nas","printer"] },
+  { id:"gaming",    title:"GAMING",             color:"#8a3a3a", types:["gaming","vehicle"] },
+  { id:"other",     title:"UNCLASSIFIED",       color:"#888",    types:["device","unknown","ereader"] },
+];
+
+function renderDiagram(svgContainerId, popupId, hosts, opts){
+  opts = opts || {};
+  const container = document.getElementById(svgContainerId);
+  const popup = document.getElementById(popupId);
+  if (!container) return;
+
+  const gateway = hosts.find(h => h.type === "router");
+  const others = hosts.filter(h => h !== gateway);
+
+  // Empty state
+  if (others.length === 0 && !gateway){
+    container.innerHTML = '<div style="text-align:center;color:var(--faint);padding:80px 0;font-family:\'JetBrains Mono\',monospace;font-size:12px;font-weight:500">no devices yet — run a method or paste a scan</div>';
+    return;
+  }
+
+  // Group devices into clusters; preserve insertion order
+  const clusters = CLUSTER_DEFS
+    .map(def => ({ ...def, members: others.filter(h => def.types.indexOf(h.type) >= 0) }))
+    .filter(c => c.members.length > 0);
+
+  // Layout parameters
+  const W = 1180;
+  const PAD = 30;
+  const CLOUD_Y = 50;
+  const GW_Y = 170;
+  const GW_W = 280, GW_H = 84;
+  const TRUNK_Y = 290;
+  const CLUSTER_W = 270;
+  const CLUSTER_GAP_X = 22;
+  const CLUSTER_GAP_Y = 24;
+  const HEADER_H = 38;
+  const CLUSTER_PAD = 14;
+  const DEVICE_H = 56;
+  const COLS_MAX = 4;
+  const COLS = Math.min(COLS_MAX, Math.max(1, clusters.length));
+  const TOTAL_CL_W = COLS * CLUSTER_W + (COLS - 1) * CLUSTER_GAP_X;
+  const CL_X_START = (W - TOTAL_CL_W) / 2;
+
+  // Calculate per-cluster height (2-column device grid inside)
+  function clusterHeight(c){
+    const rows = Math.ceil(c.members.length / 2);
+    return HEADER_H + CLUSTER_PAD * 2 + Math.max(rows, 1) * DEVICE_H;
+  }
+
+  // Place clusters into rows
+  const placed = [];
+  let curX = CL_X_START, curY = TRUNK_Y + 30;
+  let rowMaxH = 0;
+  let colIdx = 0;
+  for (const c of clusters){
+    const h = clusterHeight(c);
+    placed.push({ x:curX, y:curY, w:CLUSTER_W, h, cluster:c });
+    rowMaxH = Math.max(rowMaxH, h);
+    colIdx++;
+    if (colIdx >= COLS){
+      colIdx = 0;
+      curX = CL_X_START;
+      curY += rowMaxH + CLUSTER_GAP_Y;
+      rowMaxH = 0;
+    } else {
+      curX += CLUSTER_W + CLUSTER_GAP_X;
+    }
+  }
+  const lastRowH = colIdx === 0 ? 0 : rowMaxH;
+  const totalH = (colIdx === 0 ? curY : curY + lastRowH) + 60;
+
+  const cx = W / 2;
+
+  let svg = '<svg viewBox="0 0 '+W+' '+totalH+'" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" style="background:transparent">';
+
+  // Defs: subtle shadow for gateway + clouds
+  svg += '<defs>';
+  svg += '<filter id="gwShadow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur in="SourceAlpha" stdDeviation="4"/><feOffset dx="0" dy="2"/><feComponentTransfer><feFuncA type="linear" slope="0.18"/></feComponentTransfer><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>';
+  svg += '<filter id="cardShadow" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur in="SourceAlpha" stdDeviation="2"/><feOffset dx="0" dy="1"/><feComponentTransfer><feFuncA type="linear" slope="0.06"/></feComponentTransfer><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>';
+  svg += '</defs>';
+
+  // ==== Internet cloud at top ====
+  svg += '<g class="cloud">';
+  svg += '<text x="'+cx+'" y="'+(CLOUD_Y+6)+'" text-anchor="middle" font-size="44" fill="#1a1a1a">☁</text>';
+  svg += '<text x="'+cx+'" y="'+(CLOUD_Y+34)+'" text-anchor="middle" font-size="10" font-family="\'JetBrains Mono\',monospace" font-weight="700" fill="#1a1a1a" letter-spacing="2.5">INTERNET</text>';
+  svg += '</g>';
+
+  // Line from cloud to gateway
+  svg += '<line x1="'+cx+'" y1="'+(CLOUD_Y+44)+'" x2="'+cx+'" y2="'+(GW_Y-GW_H/2)+'" stroke="#1a1a1a" stroke-width="1.5"/>';
+
+  // ==== Gateway block ====
+  const gwX = cx - GW_W/2;
+  svg += '<g class="dnode" data-ip="'+escapeXml(gateway?gateway.ip:"__gateway__")+'" style="cursor:'+(gateway?"pointer":"default")+'">';
+  svg += '<rect x="'+gwX+'" y="'+(GW_Y-GW_H/2)+'" width="'+GW_W+'" height="'+GW_H+'" rx="10" fill="#ffffff" stroke="#1a1a1a" stroke-width="2" filter="url(#gwShadow)"/>';
+  svg += '<text x="'+(gwX+22)+'" y="'+(GW_Y-4)+'" font-size="28">📡</text>';
+  svg += '<text x="'+(gwX+60)+'" y="'+(GW_Y-14)+'" font-size="10" fill="#1a1a1a" font-family="\'JetBrains Mono\',monospace" font-weight="700" letter-spacing="2.5">GATEWAY</text>';
+  svg += '<text x="'+(gwX+60)+'" y="'+(GW_Y+5)+'" font-size="14" fill="#1a1a1a" font-family="\'JetBrains Mono\',monospace" font-weight="700">'+escapeXml(gateway?gateway.ip:"unknown")+'</text>';
+  const gwVendor = gateway?(gateway.vendor || gateway.hostname || "unknown vendor"):"";
+  if (gwVendor) svg += '<text x="'+(gwX+60)+'" y="'+(GW_Y+22)+'" font-size="10" fill="#525252" font-family="\'JetBrains Mono\',monospace">'+escapeXml(gwVendor.length>28?gwVendor.substring(0,26)+"…":gwVendor)+'</text>';
+  svg += '</g>';
+
+  // VLAN-style annotation under the gateway listing the routes
+  svg += '<text x="'+cx+'" y="'+(GW_Y+GW_H/2+22)+'" text-anchor="middle" font-size="9" fill="#1a1a1a" font-family="\'JetBrains Mono\',monospace" font-weight="700" letter-spacing="2">YOUR VANTAGE POINT · ' + clusters.length + ' DEVICE CLASSES · ' + others.length + ' ENDPOINTS</text>';
+
+  // ==== Trunk: vertical line from gateway down to horizontal bus ====
+  svg += '<line x1="'+cx+'" y1="'+(GW_Y+GW_H/2)+'" x2="'+cx+'" y2="'+TRUNK_Y+'" stroke="#1a1a1a" stroke-width="1.5"/>';
+
+  // Horizontal bus across the cluster row
+  if (placed.length > 1){
+    const firstCl = placed[0];
+    const lastCl = placed[Math.min(COLS, placed.length) - 1];
+    const busX1 = firstCl.x + firstCl.w/2;
+    const busX2 = lastCl.x + lastCl.w/2;
+    svg += '<line x1="'+busX1+'" y1="'+TRUNK_Y+'" x2="'+busX2+'" y2="'+TRUNK_Y+'" stroke="#1a1a1a" stroke-width="1.5"/>';
+  }
+
+  // ==== Clusters ====
+  placed.forEach((p, idx) => {
+    const { x, y, w, h, cluster } = p;
+    const allRandomized = cluster.members.every(m => m.randomized);
+    const colorStr = cluster.color;
+
+    // Connection from trunk row (top of first row) down to this cluster
+    // For first row: horizontal bus already drawn — draw vertical drop to cluster top
+    const rowOfThis = Math.floor(idx / COLS);
+    const clusterTopX = x + w/2;
+    const clusterTopY = y;
+    if (rowOfThis === 0){
+      svg += '<line x1="'+clusterTopX+'" y1="'+TRUNK_Y+'" x2="'+clusterTopX+'" y2="'+(clusterTopY - 6)+'" stroke="'+colorStr+'" stroke-width="1.5"'+(allRandomized?' stroke-dasharray="4 3"':'')+'/>';
+    } else {
+      // Subsequent rows: simple short connector from previous row's bottom area
+      // Draw small connector down from above placeholder for cleaner look
+      svg += '<line x1="'+clusterTopX+'" y1="'+(clusterTopY - CLUSTER_GAP_Y + 4)+'" x2="'+clusterTopX+'" y2="'+(clusterTopY - 6)+'" stroke="'+colorStr+'" stroke-width="1.5"'+(allRandomized?' stroke-dasharray="4 3"':'')+'/>';
+    }
+
+    // Cluster box
+    svg += '<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" rx="10" fill="#ffffff" stroke="'+colorStr+'" stroke-width="1.5" stroke-dasharray="6 4" filter="url(#cardShadow)" opacity="0.95"/>';
+
+    // Cluster header background fill (subtle tint)
+    svg += '<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+HEADER_H+'" rx="10" fill="'+colorStr+'" opacity="0.12"/>';
+    svg += '<rect x="'+x+'" y="'+(y+HEADER_H-1)+'" width="'+w+'" height="1" fill="'+colorStr+'" opacity="0.5"/>';
+
+    // Title + count
+    svg += '<text x="'+(x+14)+'" y="'+(y+24)+'" font-size="11" font-family="\'JetBrains Mono\',monospace" font-weight="700" fill="'+colorStr+'" letter-spacing="1.6">'+escapeXml(cluster.title)+'</text>';
+    svg += '<text x="'+(x+w-14)+'" y="'+(y+24)+'" text-anchor="end" font-size="10" font-family="\'JetBrains Mono\',monospace" font-weight="700" fill="'+colorStr+'" opacity="0.7">×'+cluster.members.length+'</text>';
+
+    // Devices (2-column grid inside cluster)
+    const cellW = (w - CLUSTER_PAD * 2) / 2;
+    cluster.members.forEach((d, i) => {
+      const col = i % 2;
+      const row = Math.floor(i / 2);
+      const dx = x + CLUSTER_PAD + col * cellW;
+      const dy = y + HEADER_H + CLUSTER_PAD + row * DEVICE_H;
+      const iconColor = TYPE_COLOR[d.type] || "#a89c87";
+      const dashed = d.randomized || d.type === "unknown" || d.phantom;
+
+      svg += '<g class="dnode" data-ip="'+escapeXml(d.ip)+'" style="cursor:pointer">';
+
+      // Icon disc
+      svg += '<circle cx="'+(dx+18)+'" cy="'+(dy+22)+'" r="16" fill="#ffffff" stroke="'+iconColor+'" stroke-width="1.5"'+(dashed?' stroke-dasharray="3 2"':'')+'/>';
+      svg += '<text x="'+(dx+18)+'" y="'+(dy+27)+'" text-anchor="middle" font-size="14" pointer-events="none">'+(TYPE_ICON[d.type]||"❓")+'</text>';
+
+      // Labels
+      const labelText = d.hostname || shortIp(d.ip);
+      const labelDisplay = labelText.length > 16 ? labelText.substring(0,14)+"…" : labelText;
+      svg += '<text x="'+(dx+42)+'" y="'+(dy+15)+'" font-size="11" font-family="\'Inter\',sans-serif" font-weight="600" fill="#1a1a1a" pointer-events="none">'+escapeXml(labelDisplay)+'</text>';
+
+      // Second line: IP + short vendor
+      let metaLine = d.ip;
+      if (d.vendor && !d.randomized){
+        const cleanVendor = d.vendor.replace(/\s*\([^)]*\)\s*/g," ").trim();
+        const vendorShort = cleanVendor.length > 12 ? cleanVendor.substring(0,10)+"…" : cleanVendor;
+        metaLine = shortIp(d.ip) + " · " + vendorShort;
+      } else if (d.randomized){
+        metaLine = shortIp(d.ip) + " · randomized";
+      }
+      svg += '<text x="'+(dx+42)+'" y="'+(dy+30)+'" font-size="9.5" font-family="\'JetBrains Mono\',monospace" fill="#525252" pointer-events="none">'+escapeXml(metaLine.length>22?metaLine.substring(0,20)+"…":metaLine)+'</text>';
+
+      // Method chips below (small colored squares)
+      const chipY = dy + 41;
+      (d.methods || []).forEach((m, mi) => {
+        svg += '<rect x="'+(dx+42 + mi*7)+'" y="'+chipY+'" width="5" height="5" rx="1" fill="'+(COLORS[m]||"#a89c87")+'"/>';
+      });
+
+      // Phantom badge
+      if (d.phantom){
+        svg += '<text x="'+(dx+cellW-6)+'" y="'+(dy+15)+'" text-anchor="end" font-size="8" font-family="\'JetBrains Mono\',monospace" font-weight="700" fill="#8a3a3a" pointer-events="none">PHANTOM</text>';
+      }
+
+      svg += '</g>';
+    });
+  });
+
+  // Optional gap label at the bottom
+  if (opts.gapLabel){
+    svg += '<text x="'+cx+'" y="'+(totalH - 24)+'" text-anchor="middle" font-size="10" fill="#909090" font-family="\'JetBrains Mono\',monospace" font-weight="500" letter-spacing="1.5">'+escapeXml(opts.gapLabel)+'</text>';
+  }
+
+  // Legend (small wired/wireless line markers — bottom-left)
+  svg += '<g transform="translate(40, '+(totalH-50)+')">';
+  svg += '<text x="0" y="0" font-size="9" fill="#1a1a1a" font-family="\'JetBrains Mono\',monospace" font-weight="700" letter-spacing="1.6">CONNECTION</text>';
+  svg += '<line x1="0" y1="14" x2="34" y2="14" stroke="#1a1a1a" stroke-width="1.5"/>';
+  svg += '<text x="40" y="17" font-size="9" fill="#525252" font-family="\'JetBrains Mono\',monospace">solid · identified</text>';
+  svg += '<line x1="0" y1="28" x2="34" y2="28" stroke="#1a1a1a" stroke-width="1.5" stroke-dasharray="4 3"/>';
+  svg += '<text x="40" y="31" font-size="9" fill="#525252" font-family="\'JetBrains Mono\',monospace">dashed · randomized MAC</text>';
+  svg += '</g>';
+
+  svg += '</svg>';
+  container.innerHTML = svg;
+
+  // ===== Hover popups =====
+  const wrap = popup ? popup.parentElement : null;
+  container.querySelectorAll(".dnode").forEach(g => {
+    const ip = g.dataset.ip;
+    g.addEventListener("mouseenter", () => {
+      let h;
+      if (ip === "__gateway__") h = { ip:"unknown", type:"router", vendor:"(no gateway detected)", mac:null, methods:[], phantom:false, randomized:false };
+      else h = hosts.find(x => x.ip === ip);
+      if (!h) return;
+      if (popup) popup.innerHTML = buildPopupHtml(h);
+    });
+    g.addEventListener("mousemove", (e) => {
+      if (!popup || !wrap) return;
+      const r = wrap.getBoundingClientRect();
+      const px = e.clientX - r.left + 14;
+      const py = e.clientY - r.top + 14;
+      popup.style.left = Math.min(px, wrap.clientWidth - 300) + "px";
+      popup.style.top = Math.min(py, wrap.clientHeight - 160) + "px";
+      popup.style.display = "block";
+    });
+    g.addEventListener("mouseleave", () => { if (popup) popup.style.display = "none"; });
+  });
+}
+
+function buildPopupHtml(h){
+  let html = '<div class="ip">'+escapeHtml(h.ip)+'</div>';
+  if (h.hostname){
+    html += '<div class="row"><span>hostname</span><span style="color:var(--green)">'+escapeHtml(h.hostname)+'</span></div>';
+  }
+  const confColor = h.confidence==="high"?"var(--green)":(h.confidence==="medium"?"var(--amber)":"var(--faint)");
+  html += '<div class="row"><span>type</span><span>'+(TYPE_ICON[h.type]||"")+' '+escapeHtml(h.type)+' <span style="color:'+confColor+'">·</span></span></div>';
+  if (h.typeReason){
+    html += '<div class="row"><span>guess via</span><span style="color:var(--faint)">'+escapeHtml(h.typeReason)+'</span></div>';
+  }
+  if (h.vendor){
+    html += '<div class="row"><span>vendor</span><span>'+escapeHtml(h.vendor)+'</span></div>';
+  } else if (h.ouiPrefix){
+    html += '<div class="row"><span>OUI</span><span style="color:var(--faint)">'+escapeHtml(h.ouiPrefix)+' (not in lookup table)</span></div>';
+  } else {
+    html += '<div class="row"><span>vendor</span><span style="color:var(--faint)">unknown</span></div>';
+  }
+  if (h.mac) html += '<div class="row"><span>mac</span><span>'+escapeHtml(maskMac(h.mac))+'</span></div>';
+  const methods = (h.methods && h.methods.length) ? h.methods.join(", ") : "(none — inferred only)";
+  html += '<div class="row"><span>methods</span><span>'+escapeHtml(methods)+'</span></div>';
+  html += '<div class="row"><span>existence</span><span style="color:var(--green)">proven</span></div>';
+  // Confidence reasoning
+  let identityNote;
+  if (h.hostname) identityNote = '<span style="color:var(--green)">strong (hostname)</span>';
+  else if (h.randomized) identityNote = '<span style="color:var(--rose)">hidden (randomized MAC)</span>';
+  else if (h.vendor) identityNote = '<span style="color:var(--amber)">inferred (OUI vendor)</span>';
+  else identityNote = '<span style="color:var(--faint)">unknown (no signals)</span>';
+  html += '<div class="row"><span>identity</span><span>'+identityNote+'</span></div>';
+  if (h.phantom){
+    html += '<div class="ghost">⚠ phantom — stale ARP entry, not a real device</div>';
+  }
+  return html;
+}
+
+function escapeXml(s){ return String(s).replace(/[<>&"']/g, c => ({"<":"&lt;",">":"&gt;","&":"&amp;",'"':"&quot;","'":"&apos;"}[c])); }
+function escapeHtml(s){ return String(s).replace(/[<>&"]/g, c => ({"<":"&lt;",">":"&gt;","&":"&amp;",'"':"&quot;"}[c])); }
+
+/* ============================================================
+   ANALYTICS RENDERER
+   ============================================================ */
+function renderAnalytics(containerId, hosts, mode){
+  const real = hosts.filter(h => !h.phantom);
+  const total = real.length;
+  const container = document.getElementById(containerId);
+  if (!container) return;
+
+  if (total === 0){ container.innerHTML = '<div style="color:var(--faint);font-family:\'Space Mono\',monospace;font-size:12px">no devices to analyze</div>'; return; }
+
+  const byType = {};
+  real.forEach(h => { byType[h.type] = (byType[h.type]||0) + 1; });
+  const randomized = real.filter(h => h.randomized).length;
+  // identified = any device with hostname OR known vendor (even if randomized MAC, hostname is strong signal)
+  const identified = real.filter(h => h.hostname || (!h.randomized && h.vendor && !/unknown/i.test(h.vendor))).length;
+  const named      = real.filter(h => h.hostname).length;
+  const unknownIdent = total - identified;
+
+  const byMethod = { ARP:0, mDNS:0, SSDP:0, TCP:0 };
+  real.forEach(h => (h.methods||[]).forEach(m => { if (byMethod[m]!==undefined) byMethod[m]++; }));
+  const totalContrib = Object.values(byMethod).reduce((a,b)=>a+b,0) || 1;
+
+  const summary = buildSummary(real, byType, identified, randomized, mode);
+
+  let html = '<div class="summary">'+summary+'</div>';
+
+  // Metric cards
+  html += '<div class="metrics">';
+  html += '<div class="metric"><div class="mk">Total</div><div class="mv">'+total+'</div><div class="mn">device'+(total!==1?"s":"")+' found</div></div>';
+  html += '<div class="metric"><div class="mk">Identified</div><div class="mv" style="color:var(--green)">'+identified+'</div><div class="mn">hostname or vendor</div></div>';
+  html += '<div class="metric"><div class="mk">Named</div><div class="mv" style="color:var(--cyan)">'+named+'</div><div class="mn">resolved hostname</div></div>';
+  html += '<div class="metric"><div class="mk">Randomized</div><div class="mv" style="color:var(--violet)">'+randomized+'</div><div class="mn">MAC identity hidden</div></div>';
+  html += '</div>';
+
+  // By type
+  html += '<div class="subhead">By inferred device type</div>';
+  html += '<div class="typebar">';
+  const typeEntries = Object.entries(byType).sort((a,b)=>b[1]-a[1]);
+  typeEntries.forEach(([t,n]) => {
+    const pct = (n/total*100);
+    html += '<div style="background:'+(TYPE_COLOR[t]||"#7c8aa3")+';width:'+pct.toFixed(1)+'%" title="'+t+': '+n+'">'+(pct>=10?(t+" "+n):"")+'</div>';
+  });
+  html += '</div>';
+  html += '<div class="typelegend">';
+  typeEntries.forEach(([t,n]) => {
+    html += '<div class="ti"><div class="sw" style="background:'+(TYPE_COLOR[t]||"#7c8aa3")+'"></div>'+(TYPE_ICON[t]||"")+' '+t+': '+n+'</div>';
+  });
+  html += '</div>';
+
+  // Method contribution
+  html += '<div class="subhead">Discovery method contribution</div>';
+  html += '<div class="typebar">';
+  ["ARP","mDNS","SSDP","TCP"].forEach(m => {
+    const n = byMethod[m] || 0;
+    if (n === 0) return;
+    const pct = (n/totalContrib*100);
+    html += '<div style="background:'+COLORS[m]+';width:'+pct.toFixed(1)+'%">'+(pct>=10?(m+" "+n):"")+'</div>';
+  });
+  html += '</div>';
+  html += '<div class="typelegend">';
+  ["ARP","mDNS","SSDP","TCP"].forEach(m => {
+    html += '<div class="ti"><div class="sw" style="background:'+COLORS[m]+'"></div>'+m+': '+(byMethod[m]||0)+' device'+((byMethod[m]||0)!==1?"s":"")+'</div>';
+  });
+  html += '</div>';
+
+  container.innerHTML = html;
+}
+
+function buildSummary(real, byType, identified, randomized, mode){
+  const total = real.length;
+  const topType = Object.entries(byType).sort((a,b)=>b[1]-a[1])[0];
+  const cameras = real.filter(h => h.type === "camera").length;
+  const iots    = real.filter(h => h.type === "iot").length;
+
+  let s = '<b>'+total+' device'+(total!==1?"s":"")+'</b> reachable from your vantage point';
+  if (topType) s += '; the largest class is <b>'+topType[0]+'</b> ('+topType[1]+')';
+  if (randomized > 0) s += '; <b>'+randomized+'</b> use'+(randomized===1?"s":"")+' randomized MAC'+(randomized===1?"":"s")+' (identity hidden — modern phones do this by default)';
+  s += '.';
+
+  // Most notable thing
+  const notes = [];
+  if (cameras > 0) notes.push('<b>'+cameras+' camera'+(cameras!==1?"s":"")+' detected</b> — cameras are common default-credential and CVE targets; confirm passwords aren\'t admin/admin and firmware is current');
+  else if (iots >= 3) notes.push('<b>'+iots+' IoT devices</b> dominate — these often ship with weak update hygiene; consider segmenting them onto a guest VLAN');
+  else if (randomized === total && total > 0) notes.push('<b>every device uses a randomized MAC</b> — your ARP cache cannot identify any of them by vendor');
+  else if (identified === 0) notes.push('<b>nothing identified by OUI</b> — either you\'re on an unusual network or the vendor lookup table didn\'t match');
+  else if (real.find(h=>h.type==="nas")) notes.push('a <b>NAS</b> is present — these often expose admin web UIs; verify it isn\'t reachable from the internet');
+
+  if (notes.length) s += ' Most notable: ' + notes[0] + '.';
+  return s;
+}
+
+/* ============================================================
+   RECORDS TABLE
+   ============================================================ */
+function renderRecords(containerId, hosts){
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  const anyHostname = hosts.some(h => h.hostname);
+  let html = '<table><thead><tr>'
+    +'<th>IP</th>';
+  if (anyHostname) html += '<th>Hostname</th>';
+  html += '<th>MAC (masked)</th><th>Vendor (inferred)</th><th>Type</th><th>Methods</th><th>Status</th>'
+    +'</tr></thead><tbody>';
+  hosts.forEach(h => {
+    const methodChips = (h.methods||[]).map(m => '<span class="chip '+m.toLowerCase()+'">'+m+'</span>').join("");
+    const status = h.phantom ? '<span class="chip phantom">phantom</span>' : '<span class="chip exists">exists</span>';
+    let vendorCell;
+    if (h.randomized) vendorCell = '<span style="color:var(--violet)">(randomized MAC)</span>';
+    else if (h.phantom) vendorCell = '<span style="color:var(--rose)">(stale ARP)</span>';
+    else if (h.vendor) vendorCell = escapeHtml(h.vendor);
+    else if (h.ouiPrefix) vendorCell = '<span style="color:var(--faint)" title="OUI prefix not in lookup table">OUI '+escapeHtml(h.ouiPrefix)+'</span>';
+    else vendorCell = '<span style="color:var(--faint)">unknown</span>';
+    const hostnameCell = h.hostname ? '<span style="color:var(--green)">'+escapeHtml(h.hostname)+'</span>' : '<span style="color:var(--faint)">—</span>';
+    html += '<tr>'
+      +'<td style="color:var(--ink)">'+escapeHtml(h.ip)+'</td>';
+    if (anyHostname) html += '<td>'+hostnameCell+'</td>';
+    html += '<td>'+escapeHtml(maskMac(h.mac))+'</td>'
+      +'<td>'+vendorCell+'</td>'
+      +'<td>'+(TYPE_ICON[h.type]||"")+' '+escapeHtml(h.type)+'</td>'
+      +'<td>'+methodChips+'</td>'
+      +'<td>'+status+'</td>'
+      +'</tr>';
+  });
+  html += '</tbody></table>';
+  container.innerHTML = html;
+}
+
+/* ============================================================
+   LEARN MODE
+   ============================================================ */
+const learnState = {
+  found: [],
+  methodsRun: new Set(),
+  callouts: new Set(),
+};
+
+function runLearnMethod(method){
+  if (learnState.methodsRun.has(method)) return;
+  learnState.methodsRun.add(method);
+
+  const btn = document.querySelector('.method-btn[data-method="'+method+'"]');
+  btn.classList.add("done");
+
+  const newFound = SIM_NETWORK.filter(d =>
+    (d.methods||[]).indexOf(method) >= 0 &&
+    !learnState.found.some(f => f.ip === d.ip)
+  );
+  newFound.forEach(d => learnState.found.push(d));
+
+  const badge = btn.querySelector(".badge");
+  badge.classList.remove("hide");
+  badge.textContent = "+" + newFound.length;
+
+  updateLearnUI();
+  emitLearnCallouts(method, newFound);
+}
+
+function updateLearnUI(){
+  show("learnScoreCard"); show("learnDiagramCard"); show("learnAnalyticsCard"); show("learnRecordsCard");
+
+  const sorted = sortHosts(learnState.found);
+  const real = sorted.filter(h => !h.phantom);
+  const realCount = real.length;
+  const totalDisc = sorted.length;
+  const completeness = realCount / GROUND_TRUTH;
+  const soundness    = totalDisc === 0 ? 0 : realCount / totalDisc;
+  const gap          = 1 - completeness;
+
+  $("#cmpVal").textContent = Math.round(completeness*100) + "%";
+  $("#cmpDetail").textContent = realCount + " of " + GROUND_TRUTH + " real devices found";
+  $("#cmpBar").style.width = (completeness*100) + "%";
+
+  $("#sndVal").textContent = Math.round(soundness*100) + "%";
+  $("#sndDetail").textContent = realCount + " real / " + totalDisc + " discovered";
+  $("#sndBar").style.width = (soundness*100) + "%";
+
+  $("#gapVal").textContent = Math.round(gap*100) + "%";
+  $("#gapDetail").textContent = (GROUND_TRUTH - realCount) + " still missing from ground truth";
+  $("#gapBar").style.width = (gap*100) + "%";
+
+  const missing = GROUND_TRUTH - realCount;
+  const gapLabel = missing > 0 ? (missing + " device" + (missing!==1?"s":"") + " in ground truth still undiscovered") : "ground truth fully covered";
+  renderDiagram("learnDiagram", "learnPopup", sorted, { gapLabel });
+  renderAnalytics("learnAnalytics", sorted, "learn");
+  renderRecords("learnRecords", sorted);
+}
+
+function emitLearnCallouts(method, newFound){
+  const teach = $("#learnTeach");
+
+  const firstRand = newFound.find(d => d.randomized);
+  if (firstRand && !learnState.callouts.has("randomized")){
+    learnState.callouts.add("randomized");
+    teach.innerHTML += '<div class="teach"><span class="hl">existence ≠ identity</span><br>'+method+' proved <b>'+firstRand.ip+'</b> exists, but its MAC is randomized — so the vendor lookup yields nothing. You know it\'s there. You don\'t know what it is. This is the central distinction in discovery.</div>';
+  }
+
+  const phantom = newFound.find(d => d.phantom);
+  if (phantom && !learnState.callouts.has("phantom")){
+    learnState.callouts.add("phantom");
+    teach.innerHTML += '<div class="teach amber"><span class="hl">soundness just dropped</span><br>ARP admitted <b>'+phantom.ip+'</b> — a <b>stale ARP entry</b>, not a real device. Bad data poisons the inventory. Soundness measures "do you trust what you found?" — it just stopped being 100%.</div>';
+  }
+
+  if (method === "TCP" && !learnState.callouts.has("cloud")){
+    const passiveOnly = learnState.found.filter(d => !d.methods.includes("TCP") && !d.methods.includes("ARP"));
+    if (passiveOnly.length > 0){
+      learnState.callouts.add("cloud");
+      teach.innerHTML += '<div class="teach rose"><span class="hl">passive out-covered active</span><br><b>'+passiveOnly.length+'</b> device'+(passiveOnly.length===1?"":"s")+' (' + passiveOnly.map(s=>s.ip).join(", ") + ') never showed up in TCP — they only announced themselves passively. Cloud-style devices often go quiet to active probes. This is why <b>passive-first</b> matters.</div>';
+    }
+  }
+
+  if (learnState.methodsRun.size === 4 && !learnState.callouts.has("all")){
+    learnState.callouts.add("all");
+    const realFound = learnState.found.filter(d => !d.phantom).length;
+    const missing = GROUND_TRUTH - realFound;
+    if (missing > 0){
+      teach.innerHTML += '<div class="teach green"><span class="hl">all four methods done — and you\'re still not at 100%</span><br><b>'+missing+'</b> real device'+(missing===1?"":"s")+' in ground truth never answered any method (probably sleeping). On a real network you would never know this device existed. <b>The Chapter 1 point:</b> discovery gives existence with honest uncertainty.</div>';
+    }
+  }
+}
+
+function resetLearn(){
+  learnState.found = [];
+  learnState.methodsRun.clear();
+  learnState.callouts.clear();
+  $$(".method-btn").forEach(b => {
+    b.classList.remove("done");
+    const badge = b.querySelector(".badge");
+    if (badge){ badge.classList.add("hide"); badge.textContent = ""; }
+  });
+  $("#learnTeach").innerHTML = "";
+  hide("learnScoreCard"); hide("learnDiagramCard"); hide("learnAnalyticsCard"); hide("learnRecordsCard");
+}
+
+/* ============================================================
+   SCAN MINE MODE
+   ============================================================ */
+const OS_CMDS = {
+  mac: {
+    cmd:"for i in $(seq 1 254); do ping -c1 -t1 192.168.1.$i >/dev/null 2>&1 & done; sleep 3; arp -a",
+    hint:'Replace <span class="mono" style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:3px">192.168.1</span> with your subnet if different. Find it: <span class="mono" style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:3px">ifconfig | grep "inet "</span>'
+  },
+  win: {
+    cmd:"1..254 | ForEach-Object { Start-Job -ScriptBlock { ping -n 1 -w 100 \"192.168.1.$using:_\" } | Out-Null }; Start-Sleep 4; arp -a",
+    hint:'Run in <b>PowerShell</b>. Replace <span class="mono" style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:3px">192.168.1</span> with your subnet. Find it: <span class="mono" style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:3px">ipconfig</span>'
+  },
+  lin: {
+    cmd:"for i in $(seq 1 254); do ping -c1 -W1 192.168.1.$i >/dev/null 2>&1 & done; sleep 3; ip neigh",
+    hint:'Replace <span class="mono" style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:3px">192.168.1</span> with your subnet. Find it: <span class="mono" style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:3px">ip addr | grep "inet "</span>'
+  },
+};
+
+function analyzeScan(text){
+  if (!text || !text.trim()){
+    alert("Paste your command output first, or click 'try sample'.");
+    return;
+  }
+  const hosts = parseArp(text);
+  if (hosts.length === 0){
+    alert("No devices parsed. Check the format — see the 'what should it look like?' example.");
+    return;
+  }
+  const sorted = sortHosts(hosts);
+
+  show("scanScoreCard"); show("scanDiagramCard"); show("scanAnalyticsCard"); show("scanRecordsCard");
+
+  const total = sorted.length;
+  const named = sorted.filter(h => h.hostname).length;
+  const identified = sorted.filter(h => h.hostname || (!h.randomized && h.vendor && !/unknown/i.test(h.vendor))).length;
+  const randomized = sorted.filter(h => h.randomized).length;
+  const cameras = sorted.filter(h => h.type === "camera").length;
+
+  $("#scanMetrics").innerHTML =
+    '<div class="metric"><div class="mk">Total</div><div class="mv">'+total+'</div><div class="mn">devices reachable</div></div>'+
+    '<div class="metric"><div class="mk">Identified</div><div class="mv" style="color:var(--green)">'+identified+'</div><div class="mn">hostname or vendor</div></div>'+
+    '<div class="metric"><div class="mk">Randomized</div><div class="mv" style="color:var(--violet)">'+randomized+'</div><div class="mn">MAC identity hidden</div></div>'+
+    '<div class="metric"><div class="mk">Cameras</div><div class="mv" style="color:'+(cameras>0?"var(--rose)":"var(--faint)")+'">'+cameras+'</div><div class="mn">credential-risk class</div></div>';
+
+  // Router intel — find gateway and render the dedicated card
+  const gateway = sorted.find(h => h.type === "router");
+  renderRouterIntel("scanRouterIntel", gateway);
+
+  renderDiagram("scanDiagram", "scanPopup", sorted, { gapLabel:"unknown — undiscoverable from this vantage" });
+  renderAnalytics("scanAnalytics", sorted, "scan");
+  renderRecords("scanRecords", sorted);
+  emitScanCallouts(sorted);
+}
+
+function emitScanCallouts(hosts){
+  const teach = $("#scanTeach");
+  teach.innerHTML = "";
+
+  const randomized = hosts.filter(h => h.randomized);
+  if (randomized.length > 0){
+    teach.innerHTML += '<div class="teach"><span class="hl">existence ≠ identity</span><br>ARP proved <b>'+randomized.length+'</b> device'+(randomized.length===1?"":"s")+' exist, but '+(randomized.length===1?"it uses":"they use")+' randomized MAC'+(randomized.length===1?"":"s")+' — we can\'t identify '+(randomized.length===1?"it":"them")+' by vendor. This is normal for modern phones (iOS/Android default).</div>';
+  }
+  const cameras = hosts.filter(h => h.type === "camera");
+  if (cameras.length > 0){
+    teach.innerHTML += '<div class="teach amber"><span class="hl">camera detected</span><br><b>'+cameras.length+'</b> camera-class device'+(cameras.length===1?"":"s")+' found ('+cameras.map(c=>c.ip).join(", ")+'). Cameras are a common default-credential target — verify the password isn\'t admin/admin and the firmware is current.</div>';
+  }
+  teach.innerHTML += '<div class="teach rose"><span class="hl">limit of this snapshot</span><br>ARP only shows devices your computer recently talked to. Sleeping or distant devices are invisible — and you have no way to know how many you missed. <b>Completeness is unmeasurable on a live network.</b> That\'s why the Learn tab exists: ground truth is known there, so you can measure what real networks won\'t let you.</div>';
+}
+
+function resetScan(){
+  $("#pasteBox").value = "";
+  $("#scanTeach").innerHTML = "";
+  const ri = document.getElementById("scanRouterIntel");
+  if (ri){ ri.innerHTML = ""; ri.classList.add("hide"); }
+  hide("scanScoreCard"); hide("scanDiagramCard"); hide("scanAnalyticsCard"); hide("scanRecordsCard");
+}
+
+/* ============================================================
+   DOWNLOAD DIAGRAM
+   ============================================================ */
+function downloadDiagram(svgContainerId, format){
+  const wrap = document.getElementById(svgContainerId);
+  if (!wrap) return;
+  const svg = wrap.querySelector("svg");
+  if (!svg) return;
+  const xml = new XMLSerializer().serializeToString(svg);
+  const stamped = '<?xml version="1.0" standalone="no"?>\n' + xml;
+  if (format === "svg"){
+    const blob = new Blob([stamped], { type:"image/svg+xml;charset=utf-8" });
+    triggerDl(URL.createObjectURL(blob), "rayvenet-diagram.svg");
+    return;
+  }
+  // PNG via canvas
+  const img = new Image();
+  const blob = new Blob([stamped], { type:"image/svg+xml;charset=utf-8" });
+  const url  = URL.createObjectURL(blob);
+  img.onload = () => {
+    const vb = svg.viewBox.baseVal;
+    const W = (vb && vb.width)  ? vb.width  : svg.clientWidth  || 760;
+    const H = (vb && vb.height) ? vb.height : svg.clientHeight || 520;
+    const scale = 2;
+    const canvas = document.createElement("canvas");
+    canvas.width = W*scale; canvas.height = H*scale;
+    const ctx = canvas.getContext("2d");
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+    canvas.toBlob(b => {
+      triggerDl(URL.createObjectURL(b), "rayvenet-diagram.png");
+      URL.revokeObjectURL(url);
+    }, "image/png");
+  };
+  img.onerror = () => { alert("PNG export failed — try SVG."); URL.revokeObjectURL(url); };
+  img.src = url;
+}
+function triggerDl(href, name){
+  const a = document.createElement("a");
+  a.href = href; a.download = name;
+  document.body.appendChild(a); a.click(); a.remove();
+}
+
+/* ============================================================
+   WIREUP
+   ============================================================ */
+document.addEventListener("DOMContentLoaded", () => {
+  // tabs
+  $$(".tab").forEach(t => t.addEventListener("click", () => {
+    $$(".tab").forEach(x => x.classList.remove("on"));
+    $$(".pane").forEach(x => x.classList.remove("on"));
+    t.classList.add("on");
+    document.getElementById(t.dataset.pane).classList.add("on");
+  }));
+
+  // Learn
+  $$('.method-btn[data-method]').forEach(b => b.addEventListener("click", () => runLearnMethod(b.dataset.method)));
+  $("#learnReset").addEventListener("click", resetLearn);
+
+  // Scan — OS picker
+  $$(".ostab").forEach(t => t.addEventListener("click", () => {
+    $$(".ostab").forEach(x => x.classList.remove("on"));
+    t.classList.add("on");
+    const c = OS_CMDS[t.dataset.os];
+    $("#cmdText").textContent = c.cmd;
+    $("#cmdHint").innerHTML = c.hint;
+  }));
+  // copy buttons
+  $$("[data-copy]").forEach(b => b.addEventListener("click", () => {
+    const text = $("#"+b.dataset.copy).textContent;
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(() => {
+        const orig = b.textContent; b.textContent = "copied"; setTimeout(()=>{ b.textContent = orig; }, 900);
+      });
+    }
+  }));
+  $("#sampleBtn").addEventListener("click", () => { $("#pasteBox").value = SAMPLE_DATA; });
+  $("#analyzeBtn").addEventListener("click", () => analyzeScan($("#pasteBox").value));
+  $("#scanReset").addEventListener("click", resetScan);
+
+  // download buttons (dynamic data attr)
+  $$('[data-dl]').forEach(b => b.addEventListener("click", () => downloadDiagram(b.dataset.svg, b.dataset.dl)));
+});
+</script>
+</body>
+</html>
