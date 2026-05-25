@@ -400,6 +400,7 @@ footer a:hover{color:var(--ink);text-decoration-color:var(--ink)}
 <div class="tabs">
   <button class="tab on" data-pane="scan">Scan your network lab</button>
   <button class="tab" data-pane="sim2">Cascade Lab</button>
+  <button class="tab" data-pane="weblog">Web Log Lab</button>
   <button class="tab" data-pane="terms">Key terms</button>
 </div>
 
@@ -1245,6 +1246,366 @@ X-Frame-Options: SAMEORIGIN</pre>
   </div>
 
 </div>
+
+
+<!-- ===================== WEB LOG LAB ===================== -->
+<div id="weblog" class="pane">
+<style>
+/* Web Log Lab scoped styles */
+
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+:root{
+  --bg:#fbfbf9; --paper:#ffffff; --paper2:#f3f3f0;
+  --line:#d4d4d4; --ink:#1a1a1a; --dim:#525252; --faint:#909090; --rule:#d4d4d4;
+  --green:#2d5e3a; --amber:#8a6321; --violet:#5b3d8a; --rose:#8a3a3a; --gold:#9d8552;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:'Source Serif Pro',Georgia,serif;font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+a{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;text-decoration-color:var(--rule);transition:text-decoration-color .15s}
+a:hover{text-decoration-color:var(--ink)}
+.wrap{max-width:1200px;margin:0 auto;padding:48px 48px 96px}
+@media(max-width:720px){.wrap{padding:32px 20px 64px}}
+.mono{font-family:'JetBrains Mono',ui-monospace,Menlo,monospace}
+
+header{display:flex;justify-content:space-between;align-items:baseline;padding-bottom:20px;border-bottom:1px solid var(--ink);margin-bottom:36px;flex-wrap:wrap;gap:16px}
+.brand-row{display:flex;align-items:baseline;gap:0;font-family:'Source Serif Pro',Georgia,serif;font-size:20px;font-weight:600;letter-spacing:-.3px}
+.brand-row a{color:var(--dim);text-decoration:none;font-weight:500}
+.brand-row a:hover{color:var(--ink)}
+.brand-row .sep{color:var(--faint);margin:0 10px;font-weight:400}
+.brand-row .cur{color:var(--ink);font-weight:600}
+header .meta{font-family:'Inter',system-ui,sans-serif;font-size:12.5px;color:var(--dim);font-weight:500}
+
+.lede{max-width:760px;margin-bottom:28px}
+.lede h2{font-family:'Source Serif Pro',Georgia,serif;font-size:30px;font-weight:600;letter-spacing:-.5px;line-height:1.2;margin-bottom:10px;color:var(--ink)}
+.lede h2 em{font-style:italic}
+.lede p{font-size:16.5px;color:var(--dim);line-height:1.6;max-width:680px}
+
+.instructor-credit{margin:0 0 28px;padding:14px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.instructor-credit .ic-label{font-family:'Source Serif Pro',Georgia,serif;font-style:italic;font-weight:400;color:var(--dim);font-size:14.5px}
+.instructor-credit .ic-name{font-family:'Source Serif Pro',Georgia,serif;font-weight:600;color:var(--ink);font-size:15.5px}
+.instructor-credit .ic-sep{color:var(--faint);font-size:13px}
+.instructor-credit .ic-meta{font-family:'Inter',system-ui,sans-serif;font-size:11.5px;color:var(--dim);letter-spacing:.6px;font-weight:500}
+
+.privacy-notice{border:1px solid var(--ink);background:var(--paper);padding:18px 22px;margin-bottom:32px;font-family:'Source Serif Pro',Georgia,serif;font-size:14.5px;line-height:1.55;color:var(--ink);border-radius:4px}
+.privacy-notice .pn-label{font-family:'Inter',system-ui,sans-serif;font-size:10.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink);margin-bottom:6px}
+.privacy-notice b{font-weight:600;color:var(--ink)}
+
+.card{background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:28px;margin-bottom:20px}
+.label{font-family:'Inter',system-ui,sans-serif;font-size:11px;letter-spacing:1.4px;text-transform:uppercase;color:var(--faint);margin-bottom:18px;font-weight:600}
+.note{font-size:14.5px;color:var(--dim);margin-top:10px;line-height:1.65}
+.note b{color:var(--ink);font-weight:600}
+.note code{background:var(--paper2);border:1px solid var(--line);padding:1px 6px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)}
+
+.btn{background:var(--paper);border:1px solid var(--line);color:var(--ink);padding:9px 18px;border-radius:4px;cursor:pointer;font-family:'Inter',system-ui,sans-serif;font-size:13px;font-weight:500;margin:6px 6px 0 0;transition:all .15s}
+.btn:hover:not(:disabled){border-color:var(--ink);background:var(--paper2)}
+.btn.ghost{color:var(--dim)}
+.btn.ghost:hover{color:var(--ink)}
+.btn.primary{background:var(--ink);color:var(--paper);border-color:var(--ink);font-weight:600}
+.btn.primary:hover:not(:disabled){background:#333}
+
+textarea{width:100%;height:180px;background:var(--paper2);color:var(--ink);border:1px solid var(--line);border-radius:4px;padding:14px;font-family:'JetBrains Mono',monospace;font-size:12.5px;line-height:1.55}
+textarea:focus{outline:none;border-color:var(--ink)}
+textarea::placeholder{color:var(--faint)}
+
+input[type=file]{font-family:'Inter',system-ui,sans-serif;font-size:13px;color:var(--dim)}
+
+/* Pipeline visual */
+.pipeline{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:18px 0 6px}
+@media(max-width:720px){.pipeline{grid-template-columns:1fr;gap:14px}}
+.pstep{background:var(--paper2);border:1px solid var(--line);border-radius:4px;padding:14px 12px;text-align:center;position:relative}
+.pstep .pn{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--faint);letter-spacing:1.3px;text-transform:uppercase;font-weight:600;margin-bottom:6px}
+.pstep .pt{font-family:'Source Serif Pro',Georgia,serif;font-size:14.5px;font-weight:600;color:var(--ink);margin-bottom:4px}
+.pstep .pd{font-family:'Inter',system-ui,sans-serif;font-size:11.5px;color:var(--dim);line-height:1.5}
+.pstep::after{content:"→";position:absolute;right:-12px;top:50%;transform:translateY(-50%);color:var(--faint);font-size:18px}
+.pstep:last-child::after{display:none}
+@media(max-width:720px){.pstep::after{content:"↓";right:auto;left:50%;top:auto;bottom:-18px;transform:translateX(-50%)}}
+
+/* Before/after */
+.ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+@media(max-width:720px){.ba-grid{grid-template-columns:1fr}}
+.ba{border:1px solid var(--line);border-radius:4px;padding:18px 20px;background:var(--paper2)}
+.ba.before{border-left:3px solid var(--rose)}
+.ba.after{border-left:3px solid var(--green)}
+.ba .ba-h{font-family:'Inter',system-ui,sans-serif;font-size:11px;letter-spacing:1.3px;text-transform:uppercase;font-weight:600;margin-bottom:10px}
+.ba.before .ba-h{color:var(--rose)}
+.ba.after .ba-h{color:var(--green)}
+.ba ul{list-style:none;padding:0;margin:0}
+.ba li{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink);padding:5px 0;border-bottom:1px dashed var(--line);line-height:1.5}
+.ba li:last-child{border-bottom:none}
+.ba li b{color:var(--dim);font-family:'Inter',system-ui,sans-serif;font-weight:600;font-size:11px;letter-spacing:.8px;text-transform:uppercase;margin-right:8px}
+
+/* Row table */
+.rows{margin-top:14px}
+.wl-row{border:1px solid var(--line);border-radius:4px;padding:18px 22px;margin-bottom:14px;background:var(--paper)}
+.wl-row.selected{border-color:var(--ink);box-shadow:0 0 0 1px var(--ink)}
+.wl-row.invalid{border-color:var(--rose);background:#faf2f2}
+.row-head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:10px;margin-bottom:10px}
+.row-num{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--faint);letter-spacing:1.3px;text-transform:uppercase;font-weight:600}
+.row-risk{font-family:'JetBrains Mono',monospace;font-size:10.5px;padding:3px 8px;border-radius:3px;letter-spacing:.4px;font-weight:700;text-transform:uppercase}
+.row-risk.low{background:#e8eee8;color:var(--green)}
+.row-risk.med{background:#f0ebe2;color:var(--amber)}
+.row-risk.high{background:#f0e8e8;color:var(--rose)}
+.row-risk.muted{background:var(--paper2);color:var(--faint)}
+
+.row-raw{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--dim);background:var(--paper2);border:1px solid var(--line);border-radius:3px;padding:8px 10px;margin-bottom:10px;word-break:break-all;line-height:1.5}
+
+.row-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+@media(max-width:720px){.row-grid{grid-template-columns:1fr}}
+.row-card{background:var(--paper2);border:1px solid var(--line);border-radius:3px;padding:11px 13px}
+.row-card .rc-h{font-family:'Inter',system-ui,sans-serif;font-size:10.5px;color:var(--faint);letter-spacing:1.2px;text-transform:uppercase;font-weight:600;margin-bottom:6px}
+.row-card .rc-table{font-family:'JetBrains Mono',monospace;font-size:11.5px;line-height:1.65}
+.row-card .rc-table .k{color:var(--faint);display:inline-block;min-width:130px}
+.row-card .rc-table .v{color:var(--ink)}
+.row-card .rc-table .v.removed{color:var(--rose);text-decoration:line-through}
+
+.row-pattern{background:var(--ink);color:var(--paper);font-family:'JetBrains Mono',monospace;font-size:12px;padding:10px 14px;border-radius:3px;margin-bottom:8px;word-break:break-all;line-height:1.55}
+.row-hash{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--dim);background:var(--paper2);border:1px solid var(--line);border-radius:3px;padding:8px 12px;word-break:break-all;line-height:1.5}
+.row-hash b{color:var(--ink);font-family:'Inter',system-ui,sans-serif;font-size:10.5px;letter-spacing:1.2px;text-transform:uppercase;font-weight:700;margin-right:8px}
+
+/* Feature toggles */
+.toggles{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;padding-top:10px;border-top:1px dashed var(--line)}
+.tgl{font-family:'Inter',system-ui,sans-serif;font-size:11.5px;padding:5px 11px;background:var(--paper2);border:1px solid var(--line);border-radius:3px;cursor:pointer;color:var(--dim);font-weight:500;transition:all .15s;user-select:none}
+.tgl:hover{border-color:var(--ink);color:var(--ink)}
+.tgl.on{background:var(--ink);color:var(--paper);border-color:var(--ink);font-weight:600}
+
+.row-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.row-actions .sel{font-family:'Inter',system-ui,sans-serif;font-size:11.5px;padding:5px 12px;border:1px solid var(--line);background:var(--paper);color:var(--dim);border-radius:3px;cursor:pointer;font-weight:500}
+.row-actions .sel:hover{color:var(--ink);border-color:var(--ink)}
+.row-actions .sel.on{background:var(--paper2);color:var(--ink);border-color:var(--ink);font-weight:600}
+
+/* Slider */
+.slider-wrap{display:flex;align-items:center;gap:18px;margin-top:14px;flex-wrap:wrap}
+.slider-wrap input[type=range]{flex:1;min-width:200px;height:4px;-webkit-appearance:none;appearance:none;background:var(--paper2);border:1px solid var(--line);border-radius:2px;outline:none}
+.slider-wrap input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:18px;height:18px;border-radius:50%;background:var(--ink);cursor:pointer}
+.slider-wrap input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--ink);cursor:pointer;border:none}
+.slider-val{font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:700;color:var(--ink);min-width:60px;text-align:right}
+.slider-label{font-family:'Inter',system-ui,sans-serif;font-size:11px;color:var(--faint);letter-spacing:1.2px;text-transform:uppercase;font-weight:600}
+
+/* Comparison result */
+.comp-result{margin-top:14px;padding:14px 18px;border-radius:4px;border-left:3px solid var(--ink);background:var(--paper2);font-family:'Source Serif Pro',Georgia,serif;font-size:14.5px;line-height:1.65}
+.comp-result.similar{background:#eaf1ec;border-color:var(--green)}
+.comp-result.partial{background:#fbf6e8;border-color:var(--amber)}
+.comp-result.different{background:#f1e3e3;border-color:var(--rose)}
+.comp-result.empty{background:var(--paper2);border-color:var(--line);color:var(--faint);font-style:italic}
+.comp-result b{font-weight:700;color:var(--ink)}
+.comp-result .pct{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700}
+
+/* Challenges */
+.chall{border:1px solid var(--line);border-radius:4px;padding:16px 20px;margin-bottom:12px;background:var(--paper)}
+.chall-q{font-family:'Source Serif Pro',Georgia,serif;font-size:15.5px;color:var(--ink);font-weight:600;margin-bottom:8px}
+.chall-actions{display:flex;gap:6px;margin-bottom:10px}
+.chall-actions .btn{font-size:11.5px;padding:5px 11px;margin:0}
+.chall-hint, .chall-ans{display:none;font-family:'Source Serif Pro',Georgia,serif;font-size:14px;color:var(--dim);line-height:1.65;padding:10px 14px;border-radius:3px;margin-top:6px}
+.chall-hint{background:var(--paper2);border-left:3px solid var(--violet)}
+.chall-ans{background:#eaf1ec;border-left:3px solid var(--green)}
+.chall-hint b, .chall-ans b{color:var(--ink);font-weight:600}
+.chall-hint.show, .chall-ans.show{display:block}
+
+/* Glossary */
+.gloss{display:grid;grid-template-columns:200px 1fr;gap:24px;padding:14px 0;border-bottom:1px solid var(--line)}
+.gloss:last-child{border-bottom:none}
+@media(max-width:680px){.gloss{grid-template-columns:1fr;gap:6px}}
+.gloss .g-name{font-family:'Source Serif Pro',Georgia,serif;font-size:16px;color:var(--ink);font-weight:600}
+.gloss .g-def{font-family:'Source Serif Pro',Georgia,serif;font-size:14px;color:var(--dim);line-height:1.65}
+
+.summary{background:var(--paper);border:1px solid var(--line);border-left:3px solid var(--ink);padding:20px 24px;font-family:'Source Serif Pro',Georgia,serif;font-size:15.5px;line-height:1.7;margin-bottom:18px;color:var(--ink)}
+.summary b{font-weight:700}
+.summary ul{margin:10px 0 0 22px}
+.summary li{margin-bottom:6px}
+
+.analyst{background:#fbf6e8;border:1px solid var(--amber);border-left-width:4px;padding:18px 22px;border-radius:0 4px 4px 0;font-family:'Source Serif Pro',Georgia,serif;font-size:14.5px;color:var(--ink);line-height:1.7;margin-bottom:18px}
+.analyst .a-label{font-family:'Inter',system-ui,sans-serif;font-size:10.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--amber);margin-bottom:6px}
+
+footer{margin-top:64px;padding-top:24px;border-top:1px solid var(--line);font-family:'Inter',system-ui,sans-serif;font-size:12px;color:var(--faint);text-align:left}
+footer a{color:var(--dim);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;text-decoration-color:var(--line)}
+footer a:hover{color:var(--ink);text-decoration-color:var(--ink)}
+
+</style>
+
+<div class="lede" style="margin-bottom:18px">
+  <h2 style="font-size:26px">Web Log Lab · Web Request Fingerprinting</h2>
+  <p>Paste or upload web access logs and learn how raw requests become privacy-preserving fingerprints for safe comparison. The goal is not to identify who made a request — it is to compare behavior without exposing sensitive details.</p>
+</div>
+
+<!-- =========================== 1. WHAT IS A FINGERPRINT? =========================== -->
+<div class="card">
+  <div class="label">1 · What is a fingerprint?</div>
+  <p class="note" style="margin-top:0">A fingerprint is <b>not the raw event</b>. It is a compact, normalized representation of selected features. It removes sensitive details and keeps useful behavioral patterns so two events can be safely compared.</p>
+
+  <div class="pipeline">
+    <div class="pstep"><div class="pn">Step 1</div><div class="pt">Raw event</div><div class="pd">Everything observed in the log.</div></div>
+    <div class="pstep"><div class="pn">Step 2</div><div class="pt">Selected features</div><div class="pd">Only the parts useful for analysis.</div></div>
+    <div class="pstep"><div class="pn">Step 3</div><div class="pt">Normalized pattern</div><div class="pd">Sensitive details removed, values generalized.</div></div>
+    <div class="pstep"><div class="pn">Step 4</div><div class="pt">Hash</div><div class="pd">SHA-256 of the normalized pattern.</div></div>
+    <div class="pstep"><div class="pn">Step 5</div><div class="pt">Comparison</div><div class="pd">Two events checked for similar behavior.</div></div>
+  </div>
+
+  <p class="note"><b>The core takeaway.</b> A good fingerprint preserves <i>behavior</i> while discarding <i>identity</i>. The hash protects the normalized pattern from direct exposure, but the feature design matters more than the hash. Two events with the same fingerprint behave the same; they may or may not come from the same actor.</p>
+</div>
+
+<!-- =========================== 2. PASTE OR UPLOAD =========================== -->
+<div class="card">
+  <div class="label">2 · Paste or upload logs</div>
+  <p class="note" style="margin-top:0;margin-bottom:14px">Apache/Nginx-style combined log format. Sample IPs are from documentation-safe ranges (<code>127.0.0.1</code>, <code>192.0.2.0/24</code>, <code>198.51.100.0/24</code>, <code>203.0.113.0/24</code>). One request per line.</p>
+  <textarea id="logInput" placeholder='127.0.0.1 - - [25/May/2026:10:01:14 -0400] "GET /login HTTP/1.1" 200 1543 "-" "Mozilla/5.0"'></textarea>
+  <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+    <button class="btn primary" id="parseBtn">Parse logs</button>
+    <input type="file" id="fileInput" accept=".txt,.log,.csv" />
+    <button class="btn ghost" id="clearBtn">↻ Clear</button>
+  </div>
+  <div style="margin-top:14px;padding-top:14px;border-top:1px dashed var(--line)">
+    <div style="font-family:'Inter',system-ui,sans-serif;font-size:11px;color:var(--faint);letter-spacing:1.3px;text-transform:uppercase;font-weight:600;margin-bottom:10px">Bundled sample datasets · click any to load</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="btn wl-sample-btn on" data-sample="quickstart">Quick start · 8 lines</button>
+      <button class="btn wl-sample-btn" data-sample="bruteforce">Brute force login · 25 lines</button>
+      <button class="btn wl-sample-btn" data-sample="recon">Recon / path probing · 30 lines</button>
+      <button class="btn wl-sample-btn" data-sample="mixed">Mixed real-world traffic · 40 lines</button>
+    </div>
+    <p class="note" style="margin-top:10px;font-size:13px">All bundled samples use documentation-safe IPs only (<code>127.0.0.1</code>, <code>192.0.2.0/24</code>, <code>198.51.100.0/24</code>, <code>203.0.113.0/24</code>). Loaded directly into your browser — no fetches.</p
+  </div>
+</div>
+
+
+
+<!-- =========================== EXTERNAL LOG SOURCES =========================== -->
+<div class="card">
+  <div class="label">Where to find real log files from the internet</div>
+  <p class="note" style="margin-top:0;margin-bottom:14px">When you want to test on data beyond the bundled samples, these are real, public, well-known sources for web access logs and security data. All free. Pick one, download a file, paste it into the textarea above.</p>
+
+  <div style="border-left:3px solid var(--ink);padding:14px 18px;background:var(--paper2);margin-bottom:12px;border-radius:0 4px 4px 0">
+    <div style="font-family:'Source Serif Pro',Georgia,serif;font-size:16px;font-weight:600;color:var(--ink);margin-bottom:4px">SecRepo · public security data samples</div>
+    <p class="note" style="margin:0 0 6px"><a href="https://www.secrepo.com/" target="_blank"><code>https://www.secrepo.com/</code></a> · maintained by Mike Sconzo. Curated collection of public security datasets including HTTP access logs, malware traffic captures, and Squid proxy logs. Browse the index, pick a dataset under "HTTP," download, paste into the textarea.</p>
+  </div>
+
+  <div style="border-left:3px solid var(--ink);padding:14px 18px;background:var(--paper2);margin-bottom:12px;border-radius:0 4px 4px 0">
+    <div style="font-family:'Source Serif Pro',Georgia,serif;font-size:16px;font-weight:600;color:var(--ink);margin-bottom:4px">Loghub · academic log archive on GitHub</div>
+    <p class="note" style="margin:0 0 6px"><a href="https://github.com/logpai/loghub" target="_blank"><code>github.com/logpai/loghub</code></a> · maintained by the LogPAI research group (Hong Kong). Apache, OpenSSH, BGL, HDFS, and other log datasets used in academic papers on log parsing and anomaly detection. The Apache dataset (<code>Apache/Apache_2k.log</code>) is the easiest to start with — small, real, Apache combined format.</p>
+  </div>
+
+  <div style="border-left:3px solid var(--ink);padding:14px 18px;background:var(--paper2);margin-bottom:12px;border-radius:0 4px 4px 0">
+    <div style="font-family:'Source Serif Pro',Georgia,serif;font-size:16px;font-weight:600;color:var(--ink);margin-bottom:4px">The Honeynet Project · forensic challenges</div>
+    <p class="note" style="margin:0 0 6px"><a href="https://www.honeynet.org/challenges/" target="_blank"><code>honeynet.org/challenges/</code></a> · long-running public CTF-style challenges. Many include web access logs as forensic evidence. Useful when you want logs with a real attack story attached.</p>
+  </div>
+
+  <div style="border-left:3px solid var(--ink);padding:14px 18px;background:var(--paper2);margin-bottom:12px;border-radius:0 4px 4px 0">
+    <div style="font-family:'Source Serif Pro',Georgia,serif;font-size:16px;font-weight:600;color:var(--ink);margin-bottom:4px">Your own server</div>
+    <p class="note" style="margin:0 0 6px">If you run an Apache or Nginx web server, your real access logs are usually at <code>/var/log/apache2/access.log</code> or <code>/var/log/nginx/access.log</code>. Tail a sample of recent lines (<code>tail -n 100 /var/log/nginx/access.log</code>), copy them, paste them above. <b style="color:var(--ink)">Reminder:</b> if these are production logs, only paste them here on your own machine. This page runs in your browser only, but treat real user data with respect.</p>
+  </div>
+
+  <p class="note" style="margin-top:14px;font-style:italic"><b>How to verify the format works.</b> Apache/Nginx "combined log format" is the standard. A valid line looks like: <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 6px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12px">IP - user [timestamp] "METHOD path PROTO" status size "referer" "user-agent"</code>. If a line is in a different format (Squid, IIS, CDN logs), this lab's parser won't match it. The parser marks unparseable lines so you can see which ones to drop.</p>
+</div>
+
+<!-- =========================== 3. PARSED ROWS =========================== -->
+<div class="card" id="rowsCard" style="display:none">
+  <div class="label">3 · Parsed rows · build your fingerprint</div>
+  <p class="note" style="margin-top:0;margin-bottom:6px">Each row below shows the raw line, the parsed fields, what got removed by the privacy filter, the normalized pattern, and the SHA-256 fingerprint. Click any toggle to include or exclude a feature — the pattern and hash regenerate live.</p>
+  <p class="note" style="margin-top:6px;margin-bottom:14px;font-style:italic">Use the <b>Compare</b> button on two rows to see if they describe similar behavior.</p>
+  <div id="rows" class="rows"></div>
+</div>
+
+<!-- =========================== 4. BEFORE / AFTER PRIVACY =========================== -->
+<div class="card" id="baCard" style="display:none">
+  <div class="label">4 · Before and after the privacy filter</div>
+  <p class="note" style="margin-top:0">Side-by-side view of one parsed row. The fields removed are sensitive enough to deanonymize the requester. The fields preserved still describe the behavior.</p>
+  <div id="baContent"></div>
+</div>
+
+<!-- =========================== 5. SENSITIVITY SLIDER =========================== -->
+<div class="card" id="sliderCard" style="display:none">
+  <div class="label">5 · Sensitivity slider</div>
+  <p class="note" style="margin-top:0">Adjust the similarity threshold the comparison engine uses. Move it and the two-row comparison result below re-evaluates live.</p>
+  <div class="slider-wrap">
+    <span class="slider-label">Loose 40%</span>
+    <input type="range" id="threshSlider" min="40" max="80" value="60" step="1" />
+    <span class="slider-label">Strict 80%</span>
+    <span class="slider-val" id="threshVal">60%</span>
+  </div>
+  <p class="note" style="margin-top:14px"><b>Tradeoff.</b> Strict matching reduces false matches but may miss related activity. Loose matching finds more related patterns but creates false positives. Balanced (around 60%) is usually the right starting point for learning.</p>
+</div>
+
+<!-- =========================== 6. COMPARISON =========================== -->
+<div class="card" id="compCard" style="display:none">
+  <div class="label">6 · Compare two requests</div>
+  <p class="note" style="margin-top:0">Click <b>Select for compare</b> on two rows above. The overlap below is computed token-by-token from the normalized patterns. Adjust the slider in section 5 to change the threshold.</p>
+  <div id="compResult" class="comp-result empty">Pick two rows to compare.</div>
+</div>
+
+<!-- =========================== 7. WHAT CHANGED? =========================== -->
+<div class="card" id="changedCard" style="display:none">
+  <div class="label">7 · What changed?</div>
+  <p class="note" style="margin-top:0;margin-bottom:8px">When you toggle features on a row, the lab reports what changed and why the fingerprint hash changed with it.</p>
+  <div id="changedFeed" style="font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.6;background:var(--paper2);border:1px solid var(--line);border-radius:4px;padding:14px;min-height:80px;color:var(--dim)">No changes yet. Toggle a feature on a row above.</div>
+</div>
+
+<!-- =========================== 8. WHAT TO NOTICE =========================== -->
+<div class="card">
+  <div class="label">8 · What students should notice</div>
+  <p class="note" style="margin-top:0">When you parse the sample data and try the toggles, look for these patterns:</p>
+  <ul style="margin:14px 0 0 22px;font-family:'Source Serif Pro',Georgia,serif;font-size:15px;color:var(--ink);line-height:1.8">
+    <li>Two failed-login rows produce the <b>same fingerprint</b> even though their timestamps and response sizes differ. The fingerprint dropped the noise and kept the behavior.</li>
+    <li>The three probing rows from <code>203.0.113.44</code> share a fingerprint. They look like reconnaissance, not normal browsing.</li>
+    <li>The two product-page rows share a fingerprint even though the query string changed. Query <i>presence</i> matters; query <i>values</i> don't.</li>
+    <li>Toggling off <code>path_category</code> collapses very different behaviors into the same pattern — a weak fingerprint.</li>
+    <li>Toggling on every possible feature can make even similar requests look different — an overly-specific fingerprint.</li>
+  </ul>
+</div>
+
+<!-- =========================== 9. TRY THIS =========================== -->
+<div class="card">
+  <div class="label">9 · Try this · student challenges</div>
+  <p class="note" style="margin-top:0;margin-bottom:14px">Load the sample data first. Then work through these in order.</p>
+  <div id="challenges"></div>
+</div>
+
+<!-- =========================== 10. ANALYST NOTE =========================== -->
+<div class="analyst">
+  <div class="a-label">Analyst note</div>
+  Fingerprinting is powerful because it converts messy evidence into structured comparison logic. But it is only useful when the selected features represent <b>meaningful behavior</b>. A weak fingerprint may hide important differences. An overly specific fingerprint may fail to match related activity. The work isn't in the hash — it's in deciding which features to include and how to generalize them.
+</div>
+
+<!-- =========================== 11. TAKEAWAYS =========================== -->
+<div class="summary">
+  <b>Key takeaways.</b>
+  <ul>
+    <li>Fingerprints reduce raw events into safer comparison patterns.</li>
+    <li>Good fingerprints remove sensitive values (IPs, timestamps, full URLs, full user agents).</li>
+    <li>Hashing protects the normalized pattern from direct exposure, but feature design matters more than the hash.</li>
+    <li>Similar fingerprints suggest similar behavior, not guaranteed same attacker.</li>
+    <li>Fingerprinting is useful for grouping, comparison, detection logic, and privacy-aware analysis.</li>
+    <li>Context still matters. A fingerprint is evidence, not a final conclusion.</li>
+  </ul>
+</div>
+
+<!-- =========================== 12. LIMITATIONS =========================== -->
+<div class="card">
+  <div class="label">12 · Limitations</div>
+  <ul style="margin:0 0 0 22px;font-family:'Source Serif Pro',Georgia,serif;font-size:14.5px;color:var(--dim);line-height:1.75">
+    <li>This lab uses a simple parser. Real-world logs include malformed lines, custom formats, multi-line entries, and unicode edge cases — handle them carefully in production.</li>
+    <li>The token-overlap similarity metric is intentionally simple for teaching. Real systems use locality-sensitive hashing, MinHash, or learned embeddings.</li>
+    <li>The five behavior patterns here are illustrative. A real detection pipeline has dozens, with continuous review and tuning.</li>
+    <li>Fingerprint stability across deployments depends on the normalization rules. If two pipelines categorize <code>/wp-admin</code> differently, their fingerprints won't match.</li>
+    <li>This lab does not perform attribution. It compares behavior, not identity. Drawing conclusions about specific actors requires additional independent evidence.</li>
+  </ul>
+</div>
+
+<!-- =========================== 13. MINI GLOSSARY =========================== -->
+<div class="card">
+  <div class="label">13 · Mini glossary</div>
+  <div style="margin-top:6px">
+    <div class="gloss"><div class="g-name">Raw event</div><div class="g-def">A single observation as it appears in the source — for web logs, one full request line including IP, timestamp, path, status, agent.</div></div>
+    <div class="gloss"><div class="g-name">Feature</div><div class="g-def">A specific extracted attribute of an event — method, path category, status class, etc. Features are inputs to the fingerprint.</div></div>
+    <div class="gloss"><div class="g-name">Normalization</div><div class="g-def">Replacing specific values with generalized categories. <code>10:01:14</code> becomes <code>business_hours</code>; <code>/products?id=4839</code> becomes <code>product_page · query_present</code>.</div></div>
+    <div class="gloss"><div class="g-name">Sensitive field</div><div class="g-def">Any value that could deanonymize the requester or leak operational detail — IPs, exact timestamps, usernames, session tokens, query string contents.</div></div>
+    <div class="gloss"><div class="g-name">Hash</div><div class="g-def">A deterministic, fixed-length transformation of the normalized pattern (SHA-256 here). Same input always produces same hash. Inputs cannot be reversed from the hash.</div></div>
+    <div class="gloss"><div class="g-name">Similarity threshold</div><div class="g-def">The percentage of token overlap required before the comparison engine calls two fingerprints "similar."</div></div>
+    <div class="gloss"><div class="g-name">False positive</div><div class="g-def">The fingerprint says two events match but they don't actually describe the same kind of behavior.</div></div>
+    <div class="gloss"><div class="g-name">False negative</div><div class="g-def">The fingerprint says two events differ but they actually do describe the same behavior. The fingerprint was too specific.</div></div>
+  </div>
+</div>
+
+</div>
+
 
 <footer>RayveNet · a <a href="/">RayveLabs</a> project · © Rayve Malhotra</footer>
 
@@ -3311,6 +3672,633 @@ function initS2Tools() {
     document.getElementById('catResetBtn').addEventListener('click', () => { document.getElementById('catInput').value = ''; document.getElementById('catResult').style.display = 'none'; });
   }
 }
+
+
+/* === WEB LOG LAB JS === */
+
+"use strict";
+
+/* =========================================================================
+   SAMPLE DATA
+   ========================================================================= */
+const SAMPLE_LOGS = [
+  '127.0.0.1 - - [25/May/2026:10:01:14 -0400] "GET /login HTTP/1.1" 200 1543 "-" "Mozilla/5.0"',
+  '198.51.100.23 - - [25/May/2026:10:01:18 -0400] "POST /login HTTP/1.1" 401 932 "https://example.test/login" "Mozilla/5.0"',
+  '198.51.100.23 - - [25/May/2026:10:01:21 -0400] "POST /login HTTP/1.1" 401 928 "https://example.test/login" "Mozilla/5.0"',
+  '203.0.113.44 - - [25/May/2026:10:03:08 -0400] "GET /admin HTTP/1.1" 403 710 "-" "curl/8.1.2"',
+  '203.0.113.44 - - [25/May/2026:10:03:11 -0400] "GET /.env HTTP/1.1" 404 512 "-" "curl/8.1.2"',
+  '203.0.113.44 - - [25/May/2026:10:03:15 -0400] "GET /wp-admin HTTP/1.1" 404 533 "-" "curl/8.1.2"',
+  '192.0.2.88 - - [25/May/2026:10:05:31 -0400] "GET /products?id=4839 HTTP/1.1" 200 4210 "https://example.test" "Mozilla/5.0"',
+  '192.0.2.88 - - [25/May/2026:10:05:34 -0400] "GET /products?id=4840 HTTP/1.1" 200 4192 "https://example.test" "Mozilla/5.0"'
+].join('\n');
+
+/* === Additional sample datasets === */
+const SAMPLE_DATASETS = {
+  quickstart: {
+    title: 'Quick start',
+    desc: '8 lines: one login, two failed logins, three probes, two product-page hits.',
+    data: SAMPLE_LOGS
+  },
+  bruteforce: {
+    title: 'Brute force login',
+    desc: '25 lines: one attacker repeatedly POSTing /login with 401 responses, alongside one legitimate user logging in successfully.',
+    data: [
+      '127.0.0.1 - - [25/May/2026:11:14:02 -0400] "GET /login HTTP/1.1" 200 1543 "-" "Mozilla/5.0"',
+      '127.0.0.1 - - [25/May/2026:11:14:08 -0400] "POST /login HTTP/1.1" 302 218 "https://example.test/login" "Mozilla/5.0"',
+      '198.51.100.77 - - [25/May/2026:11:14:21 -0400] "POST /login HTTP/1.1" 401 932 "-" "Mozilla/5.0"',
+      '198.51.100.77 - - [25/May/2026:11:14:24 -0400] "POST /login HTTP/1.1" 401 928 "-" "Mozilla/5.0"',
+      '198.51.100.77 - - [25/May/2026:11:14:27 -0400] "POST /login HTTP/1.1" 401 930 "-" "Mozilla/5.0"',
+      '198.51.100.77 - - [25/May/2026:11:14:30 -0400] "POST /login HTTP/1.1" 401 925 "-" "Mozilla/5.0"',
+      '198.51.100.77 - - [25/May/2026:11:14:33 -0400] "POST /login HTTP/1.1" 401 931 "-" "Mozilla/5.0"',
+      '198.51.100.77 - - [25/May/2026:11:14:36 -0400] "POST /login HTTP/1.1" 401 929 "-" "Mozilla/5.0"',
+      '198.51.100.77 - - [25/May/2026:11:14:39 -0400] "POST /login HTTP/1.1" 401 927 "-" "Mozilla/5.0"',
+      '198.51.100.77 - - [25/May/2026:11:14:42 -0400] "POST /login HTTP/1.1" 401 933 "-" "Mozilla/5.0"',
+      '198.51.100.77 - - [25/May/2026:11:14:45 -0400] "POST /login HTTP/1.1" 401 926 "-" "Mozilla/5.0"',
+      '198.51.100.77 - - [25/May/2026:11:14:48 -0400] "POST /login HTTP/1.1" 401 930 "-" "Mozilla/5.0"',
+      '198.51.100.77 - - [25/May/2026:11:14:51 -0400] "POST /login HTTP/1.1" 401 928 "-" "Mozilla/5.0"',
+      '192.0.2.55 - - [25/May/2026:11:15:14 -0400] "GET /login HTTP/1.1" 200 1543 "-" "Mozilla/5.0"',
+      '192.0.2.55 - - [25/May/2026:11:15:21 -0400] "POST /login HTTP/1.1" 302 218 "https://example.test/login" "Mozilla/5.0"',
+      '198.51.100.77 - - [25/May/2026:11:15:30 -0400] "POST /login HTTP/1.1" 401 932 "-" "Mozilla/5.0"',
+      '198.51.100.77 - - [25/May/2026:11:15:33 -0400] "POST /login HTTP/1.1" 401 929 "-" "Mozilla/5.0"',
+      '198.51.100.77 - - [25/May/2026:11:15:36 -0400] "POST /login HTTP/1.1" 401 931 "-" "Mozilla/5.0"',
+      '198.51.100.77 - - [25/May/2026:11:15:39 -0400] "POST /login HTTP/1.1" 401 928 "-" "Mozilla/5.0"',
+      '198.51.100.77 - - [25/May/2026:11:15:42 -0400] "POST /login HTTP/1.1" 401 933 "-" "Mozilla/5.0"',
+      '192.0.2.55 - - [25/May/2026:11:15:54 -0400] "GET /products HTTP/1.1" 200 4210 "https://example.test/login" "Mozilla/5.0"',
+      '198.51.100.77 - - [25/May/2026:11:16:00 -0400] "POST /login HTTP/1.1" 401 930 "-" "Mozilla/5.0"',
+      '198.51.100.77 - - [25/May/2026:11:16:03 -0400] "POST /login HTTP/1.1" 401 925 "-" "Mozilla/5.0"',
+      '198.51.100.77 - - [25/May/2026:11:16:06 -0400] "POST /login HTTP/1.1" 401 932 "-" "Mozilla/5.0"',
+      '198.51.100.77 - - [25/May/2026:11:16:09 -0400] "POST /login HTTP/1.1" 401 929 "-" "Mozilla/5.0"'
+    ].join('\n')
+  },
+  recon: {
+    title: 'Recon / path probing',
+    desc: '30 lines: a curl-based scanner walking common attack paths (/.env, /wp-admin, /.git, /admin, /phpmyadmin), interleaved with a handful of legitimate browser visits for contrast.',
+    data: [
+      '192.0.2.10 - - [25/May/2026:09:01:02 -0400] "GET / HTTP/1.1" 200 5210 "-" "Mozilla/5.0"',
+      '203.0.113.99 - - [25/May/2026:09:02:11 -0400] "GET /.env HTTP/1.1" 404 512 "-" "curl/8.1.2"',
+      '203.0.113.99 - - [25/May/2026:09:02:14 -0400] "GET /.git/config HTTP/1.1" 404 511 "-" "curl/8.1.2"',
+      '203.0.113.99 - - [25/May/2026:09:02:17 -0400] "GET /admin HTTP/1.1" 403 710 "-" "curl/8.1.2"',
+      '203.0.113.99 - - [25/May/2026:09:02:20 -0400] "GET /admin/login HTTP/1.1" 404 528 "-" "curl/8.1.2"',
+      '203.0.113.99 - - [25/May/2026:09:02:23 -0400] "GET /wp-admin HTTP/1.1" 404 533 "-" "curl/8.1.2"',
+      '203.0.113.99 - - [25/May/2026:09:02:26 -0400] "GET /wp-login.php HTTP/1.1" 404 540 "-" "curl/8.1.2"',
+      '203.0.113.99 - - [25/May/2026:09:02:29 -0400] "GET /xmlrpc.php HTTP/1.1" 404 510 "-" "curl/8.1.2"',
+      '203.0.113.99 - - [25/May/2026:09:02:32 -0400] "GET /phpmyadmin HTTP/1.1" 404 521 "-" "curl/8.1.2"',
+      '203.0.113.99 - - [25/May/2026:09:02:35 -0400] "GET /config.php HTTP/1.1" 404 514 "-" "curl/8.1.2"',
+      '203.0.113.99 - - [25/May/2026:09:02:38 -0400] "GET /backup.zip HTTP/1.1" 404 502 "-" "curl/8.1.2"',
+      '203.0.113.99 - - [25/May/2026:09:02:41 -0400] "GET /server-status HTTP/1.1" 403 700 "-" "curl/8.1.2"',
+      '192.0.2.10 - - [25/May/2026:09:02:50 -0400] "GET /products HTTP/1.1" 200 4210 "https://example.test" "Mozilla/5.0"',
+      '203.0.113.99 - - [25/May/2026:09:03:01 -0400] "GET /.env.local HTTP/1.1" 404 513 "-" "curl/8.1.2"',
+      '203.0.113.99 - - [25/May/2026:09:03:04 -0400] "GET /.env.production HTTP/1.1" 404 519 "-" "curl/8.1.2"',
+      '203.0.113.99 - - [25/May/2026:09:03:07 -0400] "GET /.htaccess HTTP/1.1" 404 511 "-" "curl/8.1.2"',
+      '203.0.113.99 - - [25/May/2026:09:03:10 -0400] "GET /.DS_Store HTTP/1.1" 404 509 "-" "curl/8.1.2"',
+      '203.0.113.99 - - [25/May/2026:09:03:13 -0400] "GET /robots.txt HTTP/1.1" 200 230 "-" "curl/8.1.2"',
+      '203.0.113.99 - - [25/May/2026:09:03:16 -0400] "GET /sitemap.xml HTTP/1.1" 200 1442 "-" "curl/8.1.2"',
+      '203.0.113.99 - - [25/May/2026:09:03:19 -0400] "GET /admin/config HTTP/1.1" 404 530 "-" "curl/8.1.2"',
+      '192.0.2.10 - - [25/May/2026:09:03:30 -0400] "GET /products/abc-123 HTTP/1.1" 200 4180 "https://example.test/products" "Mozilla/5.0"',
+      '203.0.113.99 - - [25/May/2026:09:03:42 -0400] "GET /wp-content/uploads/ HTTP/1.1" 403 712 "-" "curl/8.1.2"',
+      '203.0.113.99 - - [25/May/2026:09:03:45 -0400] "GET /wp-includes HTTP/1.1" 403 711 "-" "curl/8.1.2"',
+      '203.0.113.99 - - [25/May/2026:09:03:48 -0400] "GET /admin.php HTTP/1.1" 404 522 "-" "curl/8.1.2"',
+      '203.0.113.99 - - [25/May/2026:09:03:51 -0400] "GET /administrator HTTP/1.1" 404 532 "-" "curl/8.1.2"',
+      '203.0.113.99 - - [25/May/2026:09:03:54 -0400] "GET /manager/html HTTP/1.1" 404 526 "-" "curl/8.1.2"',
+      '203.0.113.99 - - [25/May/2026:09:03:57 -0400] "GET /jenkins HTTP/1.1" 404 518 "-" "curl/8.1.2"',
+      '203.0.113.99 - - [25/May/2026:09:04:00 -0400] "GET /grafana HTTP/1.1" 404 519 "-" "curl/8.1.2"',
+      '203.0.113.99 - - [25/May/2026:09:04:03 -0400] "GET /kibana HTTP/1.1" 404 514 "-" "curl/8.1.2"',
+      '203.0.113.99 - - [25/May/2026:09:04:06 -0400] "GET /metrics HTTP/1.1" 404 510 "-" "curl/8.1.2"'
+    ].join('\n')
+  },
+  mixed: {
+    title: 'Mixed real-world traffic',
+    desc: '40 lines: normal browsing, a few failed logins, scattered probing, after-hours bot activity. The most realistic dataset — try the toggles and slider here to see how patterns separate.',
+    data: [
+      '192.0.2.10 - - [25/May/2026:09:01:02 -0400] "GET / HTTP/1.1" 200 5210 "-" "Mozilla/5.0"',
+      '192.0.2.10 - - [25/May/2026:09:01:08 -0400] "GET /products HTTP/1.1" 200 4210 "https://example.test/" "Mozilla/5.0"',
+      '192.0.2.10 - - [25/May/2026:09:01:14 -0400] "GET /products?id=4839 HTTP/1.1" 200 4192 "https://example.test/products" "Mozilla/5.0"',
+      '192.0.2.10 - - [25/May/2026:09:01:21 -0400] "GET /products?id=4840 HTTP/1.1" 200 4180 "https://example.test/products" "Mozilla/5.0"',
+      '127.0.0.1 - - [25/May/2026:09:02:14 -0400] "GET /login HTTP/1.1" 200 1543 "-" "Mozilla/5.0"',
+      '127.0.0.1 - - [25/May/2026:09:02:21 -0400] "POST /login HTTP/1.1" 302 218 "https://example.test/login" "Mozilla/5.0"',
+      '198.51.100.23 - - [25/May/2026:09:03:18 -0400] "POST /login HTTP/1.1" 401 932 "https://example.test/login" "Mozilla/5.0"',
+      '198.51.100.23 - - [25/May/2026:09:03:21 -0400] "POST /login HTTP/1.1" 401 928 "https://example.test/login" "Mozilla/5.0"',
+      '198.51.100.23 - - [25/May/2026:09:03:24 -0400] "POST /login HTTP/1.1" 401 930 "https://example.test/login" "Mozilla/5.0"',
+      '203.0.113.44 - - [25/May/2026:09:04:08 -0400] "GET /admin HTTP/1.1" 403 710 "-" "curl/8.1.2"',
+      '203.0.113.44 - - [25/May/2026:09:04:11 -0400] "GET /.env HTTP/1.1" 404 512 "-" "curl/8.1.2"',
+      '203.0.113.44 - - [25/May/2026:09:04:14 -0400] "GET /wp-admin HTTP/1.1" 404 533 "-" "curl/8.1.2"',
+      '192.0.2.88 - - [25/May/2026:09:05:31 -0400] "GET /products HTTP/1.1" 200 4210 "-" "Mozilla/5.0"',
+      '192.0.2.88 - - [25/May/2026:09:05:34 -0400] "GET /products?id=1001 HTTP/1.1" 200 4192 "https://example.test/products" "Mozilla/5.0"',
+      '192.0.2.88 - - [25/May/2026:09:05:42 -0400] "GET /products?id=1002 HTTP/1.1" 200 4180 "https://example.test/products" "Mozilla/5.0"',
+      '192.0.2.55 - - [25/May/2026:10:12:05 -0400] "GET /login HTTP/1.1" 200 1543 "-" "Mozilla/5.0"',
+      '192.0.2.55 - - [25/May/2026:10:12:18 -0400] "POST /login HTTP/1.1" 302 218 "https://example.test/login" "Mozilla/5.0"',
+      '192.0.2.55 - - [25/May/2026:10:12:31 -0400] "GET /products HTTP/1.1" 200 4210 "https://example.test/" "Mozilla/5.0"',
+      '203.0.113.44 - - [25/May/2026:10:14:21 -0400] "GET /.git/config HTTP/1.1" 404 511 "-" "curl/8.1.2"',
+      '203.0.113.44 - - [25/May/2026:10:14:24 -0400] "GET /xmlrpc.php HTTP/1.1" 404 510 "-" "curl/8.1.2"',
+      '203.0.113.44 - - [25/May/2026:10:14:27 -0400] "GET /phpmyadmin HTTP/1.1" 404 521 "-" "curl/8.1.2"',
+      '192.0.2.10 - - [25/May/2026:11:08:14 -0400] "GET /products HTTP/1.1" 200 4210 "-" "Mozilla/5.0"',
+      '192.0.2.10 - - [25/May/2026:11:08:21 -0400] "GET /products?id=4839 HTTP/1.1" 200 4192 "https://example.test/products" "Mozilla/5.0"',
+      '198.51.100.41 - - [25/May/2026:13:22:08 -0400] "POST /login HTTP/1.1" 401 932 "-" "Mozilla/5.0"',
+      '198.51.100.41 - - [25/May/2026:13:22:11 -0400] "POST /login HTTP/1.1" 401 928 "-" "Mozilla/5.0"',
+      '198.51.100.41 - - [25/May/2026:13:22:14 -0400] "POST /login HTTP/1.1" 401 930 "-" "Mozilla/5.0"',
+      '203.0.113.78 - - [25/May/2026:14:45:02 -0400] "GET /robots.txt HTTP/1.1" 200 230 "-" "curl/8.1.2"',
+      '203.0.113.78 - - [25/May/2026:14:45:05 -0400] "GET /sitemap.xml HTTP/1.1" 200 1442 "-" "curl/8.1.2"',
+      '203.0.113.78 - - [25/May/2026:14:45:08 -0400] "GET /.env HTTP/1.1" 404 512 "-" "curl/8.1.2"',
+      '203.0.113.78 - - [25/May/2026:14:45:11 -0400] "GET /admin HTTP/1.1" 403 710 "-" "curl/8.1.2"',
+      '192.0.2.10 - - [25/May/2026:15:30:15 -0400] "GET / HTTP/1.1" 200 5210 "-" "Mozilla/5.0"',
+      '192.0.2.10 - - [25/May/2026:15:30:22 -0400] "GET /products HTTP/1.1" 200 4210 "https://example.test/" "Mozilla/5.0"',
+      '203.0.113.21 - - [25/May/2026:23:08:14 -0400] "GET /.env HTTP/1.1" 404 512 "-" "curl/8.1.2"',
+      '203.0.113.21 - - [25/May/2026:23:08:17 -0400] "GET /admin HTTP/1.1" 403 710 "-" "curl/8.1.2"',
+      '203.0.113.21 - - [25/May/2026:23:08:20 -0400] "GET /wp-login.php HTTP/1.1" 404 540 "-" "curl/8.1.2"',
+      '203.0.113.21 - - [25/May/2026:23:08:23 -0400] "GET /server-status HTTP/1.1" 403 700 "-" "curl/8.1.2"',
+      '203.0.113.21 - - [25/May/2026:23:08:26 -0400] "GET /phpmyadmin HTTP/1.1" 404 521 "-" "curl/8.1.2"',
+      '198.51.100.66 - - [25/May/2026:02:14:08 -0400] "POST /login HTTP/1.1" 401 932 "-" "Mozilla/5.0"',
+      '198.51.100.66 - - [25/May/2026:02:14:11 -0400] "POST /login HTTP/1.1" 401 928 "-" "Mozilla/5.0"',
+      '198.51.100.66 - - [25/May/2026:02:14:14 -0400] "POST /login HTTP/1.1" 401 930 "-" "Mozilla/5.0"'
+    ].join('\n')
+  }
+};
+
+
+/* =========================================================================
+   PARSE
+   ========================================================================= */
+function parseLogLine(line) {
+  // Apache/Nginx combined: IP - user [ts] "METHOD path PROTO" status size "referer" "ua"
+  const re = /^(\S+) \S+ \S+ \[([^\]]+)\] "(\S+) (\S+)\s*(\S*)" (\d+) (\d+|-) "([^"]*)" "([^"]*)"/;
+  const m = line.match(re);
+  if (!m) return { raw: line, valid: false };
+  const path = m[4] || '';
+  const queryIdx = path.indexOf('?');
+  return {
+    raw: line,
+    valid: true,
+    source_ip: m[1],
+    timestamp: m[2],
+    method: m[3].toUpperCase(),
+    path: queryIdx >= 0 ? path.substring(0, queryIdx) : path,
+    query: queryIdx >= 0 ? path.substring(queryIdx + 1) : '',
+    query_present: queryIdx >= 0,
+    status_code: parseInt(m[6], 10),
+    response_size: m[7] === '-' ? 0 : parseInt(m[7], 10),
+    referrer: m[8] === '-' ? '' : m[8],
+    referrer_present: m[8] && m[8] !== '-',
+    user_agent: m[9]
+  };
+}
+
+/* =========================================================================
+   NORMALIZE
+   ========================================================================= */
+function timeBucket(ts) {
+  // ts: 25/May/2026:10:01:14 -0400
+  const m = ts.match(/:(\d{2}):\d{2}:\d{2}/);
+  if (!m) return 'unknown_time';
+  const hour = parseInt(m[1], 10);
+  if (hour >= 9 && hour < 17) return 'business_hours';
+  if (hour >= 17 && hour < 23) return 'after_hours';
+  return 'night';
+}
+
+function pathCategory(path) {
+  const p = path.toLowerCase();
+  if (p === '/login' || p.startsWith('/login/') || p.includes('signin')) return 'login';
+  if (p === '/admin' || p.startsWith('/admin/')) return 'admin_probe';
+  if (p.includes('/.env') || p.includes('/config') || p.includes('/.git')) return 'config_probe';
+  if (p.includes('/wp-') || p.includes('wp-admin') || p.includes('wp-login')) return 'wordpress_probe';
+  if (p.startsWith('/products') || p.startsWith('/product/')) return 'product_page';
+  return 'unknown';
+}
+
+function statusClass(code) {
+  if (code >= 500) return '5xx';
+  if (code >= 400) return '4xx';
+  if (code >= 300) return '3xx';
+  if (code >= 200) return '2xx';
+  return 'unknown';
+}
+
+function userAgentFamily(ua) {
+  const u = (ua || '').toLowerCase();
+  if (u.startsWith('curl') || u.includes('curl/')) return 'curl';
+  if (u.startsWith('wget') || u.includes('python-requests') || u.includes('go-http')) return 'curl';
+  if (u.includes('bot') || u.includes('crawler') || u.includes('spider')) return 'bot_like';
+  if (u.includes('mozilla') || u.includes('chrome') || u.includes('safari') || u.includes('firefox')) return 'browser';
+  return 'unknown';
+}
+
+function behaviorPattern(parts) {
+  // parts: { method, path_category, status_class, ua_family }
+  if (parts.method === 'POST' && parts.path_category === 'login' && parts.status_class === '4xx') return 'failed_login_pattern';
+  if (parts.ua_family === 'curl' && (parts.path_category === 'admin_probe' || parts.path_category === 'config_probe' || parts.path_category === 'wordpress_probe')) return 'probing_pattern';
+  if (parts.path_category === 'admin_probe' && parts.status_class === '4xx') return 'probing_pattern';
+  if (parts.path_category === 'config_probe' && parts.status_class === '4xx') return 'probing_pattern';
+  if (parts.path_category === 'wordpress_probe' && parts.status_class === '4xx') return 'probing_pattern';
+  if (parts.path_category === 'product_page' && parts.status_class === '2xx' && parts.ua_family === 'browser') return 'normal_browsing_pattern';
+  if (parts.path_category === 'login' && parts.status_class === '2xx' && parts.ua_family === 'browser') return 'normal_browsing_pattern';
+  return 'unknown_pattern';
+}
+
+function normalize(parsed) {
+  if (!parsed.valid) return null;
+  const path_category = pathCategory(parsed.path);
+  const status_class = statusClass(parsed.status_code);
+  const ua_family = userAgentFamily(parsed.user_agent);
+  return {
+    method: parsed.method.toLowerCase(),
+    path_category: path_category,
+    status_class: status_class,
+    ua_family: ua_family,
+    time_bucket: timeBucket(parsed.timestamp),
+    query_present: parsed.query_present ? 'query_present' : 'query_absent',
+    referrer_present: parsed.referrer_present ? 'referrer_present' : 'referrer_absent',
+    behavior_pattern: behaviorPattern({
+      method: parsed.method,
+      path_category: path_category,
+      status_class: status_class,
+      ua_family: ua_family
+    })
+  };
+}
+
+const ALL_FEATURES = ['method','path_category','status_class','ua_family','query_present','time_bucket','behavior_pattern'];
+const DEFAULT_FEATURES = ['method','path_category','status_class','ua_family','query_present','time_bucket','behavior_pattern'];
+
+function patternString(norm, enabled) {
+  if (!norm) return '';
+  const parts = ['request'];
+  enabled.forEach(k => { if (norm[k] != null) parts.push(norm[k]); });
+  return parts.join('.');
+}
+
+/* =========================================================================
+   HASH (Web Crypto API)
+   ========================================================================= */
+async function sha256(text) {
+  const buf = new TextEncoder().encode(text);
+  const digest = await crypto.subtle.digest('SHA-256', buf);
+  return Array.from(new Uint8Array(digest)).map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+/* =========================================================================
+   RISK LABEL
+   ========================================================================= */
+function riskLabel(norm) {
+  if (!norm) return { cls: 'muted', text: 'invalid' };
+  if (norm.behavior_pattern === 'probing_pattern') return { cls: 'high', text: 'probing · investigate' };
+  if (norm.behavior_pattern === 'failed_login_pattern') return { cls: 'med', text: 'failed login · monitor' };
+  if (norm.behavior_pattern === 'normal_browsing_pattern') return { cls: 'low', text: 'normal · benign' };
+  return { cls: 'muted', text: 'unknown · review' };
+}
+
+/* =========================================================================
+   STATE
+   ========================================================================= */
+const state = {
+  rows: [],          // [{ parsed, norm, features, pattern, hash }]
+  selected: [],      // up to 2 row indexes
+  threshold: 0.60,
+  changeFeed: []
+};
+
+/* =========================================================================
+   RENDER
+   ========================================================================= */
+function escape(s) { return String(s).replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c])); }
+
+async function rebuildRow(idx) {
+  const row = state.rows[idx];
+  row.pattern = patternString(row.norm, row.features);
+  row.hash = row.pattern ? await sha256(row.pattern) : '';
+  return row;
+}
+
+async function renderRows() {
+  const host = document.getElementById('rows');
+  host.innerHTML = '';
+
+  for (let i = 0; i < state.rows.length; i++) {
+    const r = state.rows[i];
+    const isSelected = state.selected.includes(i);
+    const risk = r.norm ? riskLabel(r.norm) : { cls: 'muted', text: 'unparseable' };
+
+    let parsedHtml;
+    if (r.parsed.valid) {
+      parsedHtml = `
+        <div class="rc-h">Parsed fields</div>
+        <div class="rc-table">
+          <div><span class="k">method</span><span class="v">${escape(r.parsed.method)}</span></div>
+          <div><span class="k">path</span><span class="v">${escape(r.parsed.path)}</span></div>
+          <div><span class="k">query_present</span><span class="v">${r.parsed.query_present}</span></div>
+          <div><span class="k">status_code</span><span class="v">${r.parsed.status_code}</span></div>
+          <div><span class="k">response_size</span><span class="v">${r.parsed.response_size}</span></div>
+          <div><span class="k">referrer_present</span><span class="v">${r.parsed.referrer_present}</span></div>
+          <div><span class="k">user_agent_family</span><span class="v">${r.norm ? r.norm.ua_family : '—'}</span></div>
+          <div><span class="k">raw_line_valid</span><span class="v">true</span></div>
+        </div>`;
+    } else {
+      parsedHtml = `<div class="rc-h">Parser</div><div class="rc-table"><div><span class="v" style="color:var(--rose)">Could not parse this line.</span></div></div>`;
+    }
+
+    const removedHtml = r.parsed.valid ? `
+      <div class="rc-h">Fields removed by privacy filter</div>
+      <div class="rc-table">
+        <div><span class="k">source_ip</span><span class="v removed">${escape(r.parsed.source_ip)}</span></div>
+        <div><span class="k">timestamp</span><span class="v removed">${escape(r.parsed.timestamp)}</span></div>
+        <div><span class="k">query_value</span><span class="v removed">${r.parsed.query ? escape(r.parsed.query) : '(none)'}</span></div>
+        <div><span class="k">referrer</span><span class="v removed">${r.parsed.referrer ? escape(r.parsed.referrer) : '(none)'}</span></div>
+        <div><span class="k">user_agent (full)</span><span class="v removed">${escape(r.parsed.user_agent)}</span></div>
+        <div><span class="k">response_size</span><span class="v removed">${r.parsed.response_size}</span></div>
+      </div>` : '';
+
+    const togglesHtml = r.parsed.valid ? ALL_FEATURES.map(f => {
+      const on = r.features.includes(f);
+      return `<button class="tgl ${on ? 'on' : ''}" data-row="${i}" data-feat="${f}">${f}</button>`;
+    }).join('') : '';
+
+    host.insertAdjacentHTML('beforeend', `
+      <div class="row ${isSelected ? 'selected' : ''} ${!r.parsed.valid ? 'invalid' : ''}">
+        <div class="row-head">
+          <div class="row-num">Row ${i + 1}${isSelected ? ' · selected for compare' : ''}</div>
+          <div class="row-risk ${risk.cls}">${escape(risk.text)}</div>
+        </div>
+        <div class="row-raw">${escape(r.parsed.raw)}</div>
+        ${r.parsed.valid ? `
+          <div class="row-grid">
+            <div class="row-card">${parsedHtml}</div>
+            <div class="row-card">${removedHtml}</div>
+          </div>
+          <div class="row-pattern">${escape(r.pattern || '(no features selected)')}</div>
+          <div class="row-hash"><b>SHA-256</b>${escape(r.hash || '—')}</div>
+          <div class="toggles">${togglesHtml}</div>
+          <div class="row-actions">
+            <button class="sel ${isSelected ? 'on' : ''}" data-sel="${i}">${isSelected ? '✓ Selected' : 'Select for compare'}</button>
+          </div>
+        ` : ''}
+      </div>
+    `);
+  }
+
+  // Wire toggles
+  host.querySelectorAll('.tgl').forEach(b => {
+    b.addEventListener('click', async () => {
+      const idx = parseInt(b.dataset.row, 10);
+      const feat = b.dataset.feat;
+      const row = state.rows[idx];
+      const had = row.features.includes(feat);
+      if (had) row.features = row.features.filter(f => f !== feat);
+      else row.features = [...row.features, feat].sort((a,b)=>ALL_FEATURES.indexOf(a)-ALL_FEATURES.indexOf(b));
+      const oldHash = row.hash;
+      await rebuildRow(idx);
+      pushChange(idx, feat, had ? 'removed' : 'added', oldHash, row.hash, row);
+      renderRows();
+      renderBA();
+      runComparison();
+    });
+  });
+
+  // Wire selectors
+  host.querySelectorAll('.sel').forEach(b => {
+    b.addEventListener('click', () => {
+      const idx = parseInt(b.dataset.sel, 10);
+      if (state.selected.includes(idx)) {
+        state.selected = state.selected.filter(x => x !== idx);
+      } else {
+        state.selected = [...state.selected, idx].slice(-2);
+      }
+      renderRows();
+      runComparison();
+    });
+  });
+}
+
+function renderBA() {
+  if (state.rows.length === 0) return;
+  const idx = state.selected[0] !== undefined ? state.selected[0] : 0;
+  const r = state.rows[idx];
+  if (!r || !r.parsed.valid) return;
+  const el = document.getElementById('baContent');
+  el.innerHTML = `
+    <p class="note" style="margin-top:6px"><b>Showing row ${idx + 1}</b> (select a different row above to swap views).</p>
+    <div class="ba-grid">
+      <div class="ba before">
+        <div class="ba-h">Before · raw event (sensitive)</div>
+        <ul>
+          <li><b>IP</b> ${escape(r.parsed.source_ip)}</li>
+          <li><b>Timestamp</b> ${escape(r.parsed.timestamp)}</li>
+          <li><b>Path</b> ${escape(r.parsed.path)}</li>
+          <li><b>Query</b> ${escape(r.parsed.query || '(none)')}</li>
+          <li><b>User-Agent</b> ${escape(r.parsed.user_agent)}</li>
+          <li><b>Referrer</b> ${escape(r.parsed.referrer || '(none)')}</li>
+          <li><b>Response size</b> ${r.parsed.response_size}</li>
+        </ul>
+      </div>
+      <div class="ba after">
+        <div class="ba-h">After · normalized pattern (safe)</div>
+        <ul>
+          <li><b>IP</b> removed</li>
+          <li><b>Time bucket</b> ${r.norm.time_bucket}</li>
+          <li><b>Path category</b> ${r.norm.path_category}</li>
+          <li><b>Query</b> ${r.norm.query_present}</li>
+          <li><b>UA family</b> ${r.norm.ua_family}</li>
+          <li><b>Referrer</b> ${r.norm.referrer_present}</li>
+          <li><b>Behavior</b> ${r.norm.behavior_pattern}</li>
+        </ul>
+      </div>
+    </div>
+  `;
+}
+
+function pushChange(rowIdx, feat, action, oldHash, newHash, row) {
+  const meanings = {
+    method: 'HTTP verb (GET / POST / etc).',
+    path_category: 'whether the request is login, admin probe, config probe, WordPress probe, product page, or unknown.',
+    status_class: 'whether the server returned 2xx, 3xx, 4xx, or 5xx.',
+    ua_family: 'browser vs curl vs bot vs unknown.',
+    query_present: 'whether a query string was attached.',
+    time_bucket: 'business hours, after hours, or night.',
+    behavior_pattern: 'the combined behavior label (failed login, probing, normal browsing).'
+  };
+  const txt = `Row ${rowIdx + 1}: ${action} feature "${feat}" (${meanings[feat] || ''}). Hash ${oldHash ? oldHash.substring(0,12) : '—'}… → ${newHash ? newHash.substring(0,12) : '—'}…`;
+  state.changeFeed = [txt, ...state.changeFeed].slice(0, 6);
+  const feed = document.getElementById('changedFeed');
+  feed.innerHTML = state.changeFeed.map(l => '<div style="padding:4px 0;border-bottom:1px solid var(--line)">' + escape(l) + '</div>').join('');
+  document.getElementById('changedCard').style.display = 'block';
+}
+
+/* =========================================================================
+   COMPARISON
+   ========================================================================= */
+function tokenOverlap(p1, p2) {
+  if (!p1 || !p2) return 0;
+  const a = new Set(p1.split('.'));
+  const b = new Set(p2.split('.'));
+  let inter = 0;
+  a.forEach(t => { if (b.has(t)) inter++; });
+  const union = new Set([...a, ...b]).size;
+  return union === 0 ? 0 : inter / union;
+}
+
+function runComparison() {
+  const el = document.getElementById('compResult');
+  if (state.selected.length < 2) {
+    el.className = 'comp-result empty';
+    el.innerHTML = state.selected.length === 0
+      ? 'Pick two rows to compare.'
+      : 'One row selected. Pick a second row to compare.';
+    return;
+  }
+  const [aIdx, bIdx] = state.selected;
+  const a = state.rows[aIdx], b = state.rows[bIdx];
+  if (!a || !b || !a.parsed.valid || !b.parsed.valid) {
+    el.className = 'comp-result empty';
+    el.innerHTML = 'Selected rows include unparseable lines.';
+    return;
+  }
+  const overlap = tokenOverlap(a.pattern, b.pattern);
+  const pct = Math.round(overlap * 100);
+  const thresh = state.threshold * 100;
+  let cls, headline;
+  if (pct >= thresh) { cls = 'similar'; headline = '<b>Similar pattern.</b>'; }
+  else if (pct >= 35) { cls = 'partial'; headline = '<b>Partially similar pattern.</b>'; }
+  else { cls = 'different'; headline = '<b>Different pattern.</b>'; }
+
+  el.className = 'comp-result ' + cls;
+  const sameHash = a.hash && a.hash === b.hash;
+  el.innerHTML = `
+    ${headline}
+    <div style="margin-top:8px"><span class="pct">${pct}%</span> token overlap at the <b>${Math.round(thresh)}%</b> threshold (slider above).</div>
+    <div style="margin-top:8px"><b>Row ${aIdx + 1}:</b> <span class="mono" style="font-size:12px">${escape(a.pattern)}</span></div>
+    <div style="margin-top:4px"><b>Row ${bIdx + 1}:</b> <span class="mono" style="font-size:12px">${escape(b.pattern)}</span></div>
+    <div style="margin-top:10px;font-size:13.5px;color:var(--dim);font-style:italic">${
+      sameHash
+        ? 'The SHA-256 hashes are identical — the two events normalize to the exact same fingerprint.'
+        : 'The SHA-256 hashes differ — at least one token in the normalized pattern is different.'
+    }</div>
+  `;
+}
+
+/* =========================================================================
+   CHALLENGES
+   ========================================================================= */
+const CHALLENGES = [
+  {
+    q: 'Challenge 1 — Find the two failed login requests.',
+    hint: 'Look for rows with method <code>POST</code>, path category <code>login</code>, and status class <code>4xx</code>.',
+    a: 'Rows 2 and 3 (both <code>198.51.100.23</code> POSTing to /login with 401 responses). Their normalized patterns should be identical, so their SHA-256 hashes should match exactly.'
+  },
+  {
+    q: 'Challenge 2 — Find the probing behavior.',
+    hint: 'Probing tends to use <code>curl</code>, hit admin / config / wordpress paths, and get <code>4xx</code> responses.',
+    a: 'Rows 4, 5, and 6 (the three <code>203.0.113.44</code> rows). All three normalize to <code>probing_pattern</code> and share the same fingerprint even though they hit different paths — because the path_category is the same class of probe.'
+  },
+  {
+    q: 'Challenge 3 — Adjust the feature toggles until two related events match.',
+    hint: 'Turn off <code>query_present</code> on the two product-page rows (Rows 7 and 8).',
+    a: 'With <code>query_present</code> excluded, the two product-page rows have identical fingerprints. With it included, they still match because both queries are present. The lesson: query <i>presence</i> matters; query <i>values</i> don\'t.'
+  },
+  {
+    q: 'Challenge 4 — Make the threshold too loose and observe a false match.',
+    hint: 'Slide the sensitivity slider down to 40% and compare a probing row with a failed-login row.',
+    a: 'At 40%, even fingerprints that share only method/status/UA family might be flagged "similar." A failed login (POST/login/4xx/browser) and a probing request (GET/admin/4xx/curl) share <code>4xx</code> and <code>request</code> tokens. At a loose threshold the comparison engine will misleadingly say they\'re similar — that\'s a false positive.'
+  },
+  {
+    q: 'Challenge 5 — Explain why a hash changed after one feature changed.',
+    hint: 'SHA-256 is deterministic. Changing any single input byte changes the entire output.',
+    a: 'The fingerprint hash is computed over the full normalized pattern string. Adding or removing one feature changes that string by inserting or removing one token. SHA-256 has the avalanche property: any single-bit change in the input produces a completely different output hash. The hash didn\'t change because the meaning changed — it changed because the input string changed.'
+  }
+];
+
+function renderChallenges() {
+  const host = document.getElementById('challenges');
+  host.innerHTML = CHALLENGES.map((c, i) => `
+    <div class="chall">
+      <div class="chall-q">${c.q}</div>
+      <div class="chall-actions">
+        <button class="btn" data-c-hint="${i}">Show hint</button>
+        <button class="btn" data-c-ans="${i}">Reveal answer</button>
+      </div>
+      <div class="chall-hint" id="hint${i}"><b>Hint.</b> ${c.hint}</div>
+      <div class="chall-ans" id="ans${i}"><b>Answer.</b> ${c.a}</div>
+    </div>
+  `).join('');
+  host.querySelectorAll('[data-c-hint]').forEach(b => {
+    b.addEventListener('click', () => document.getElementById('hint' + b.dataset.cHint).classList.toggle('show'));
+  });
+  host.querySelectorAll('[data-c-ans]').forEach(b => {
+    b.addEventListener('click', () => document.getElementById('ans' + b.dataset.cAns).classList.toggle('show'));
+  });
+}
+
+/* =========================================================================
+   PARSE FLOW
+   ========================================================================= */
+async function parseAll() {
+  const raw = document.getElementById('logInput').value.trim();
+  if (!raw) { alert('Paste some logs or click "Try sample data" first.'); return; }
+  const lines = raw.split(/\r?\n/).filter(l => l.trim());
+  state.rows = [];
+  state.selected = [];
+  state.changeFeed = [];
+  for (const line of lines) {
+    const parsed = parseLogLine(line);
+    const norm = parsed.valid ? normalize(parsed) : null;
+    const row = { parsed, norm, features: [...DEFAULT_FEATURES], pattern: '', hash: '' };
+    row.pattern = patternString(norm, row.features);
+    row.hash = row.pattern ? await sha256(row.pattern) : '';
+    state.rows.push(row);
+  }
+  document.getElementById('rowsCard').style.display = 'block';
+  document.getElementById('baCard').style.display = 'block';
+  document.getElementById('sliderCard').style.display = 'block';
+  document.getElementById('compCard').style.display = 'block';
+  renderRows();
+  renderBA();
+  runComparison();
+  // Default-select first two valid rows
+  const validIdxs = state.rows.map((r, i) => r.parsed.valid ? i : -1).filter(i => i >= 0);
+  if (validIdxs.length >= 2) {
+    state.selected = [validIdxs[0], validIdxs[1]];
+    renderRows();
+    runComparison();
+  }
+}
+
+/* =========================================================================
+   WIREUP
+   ========================================================================= */
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.wl-sample-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const key = btn.dataset.sample;
+      const ds = SAMPLE_DATASETS[key];
+      if (!ds) return;
+      document.getElementById('logInput').value = ds.data;
+      document.querySelectorAll('.wl-sample-btn').forEach(b => b.classList.remove('on'));
+      btn.classList.add('on');
+    });
+  });
+  document.getElementById('parseBtn').addEventListener('click', parseAll);
+  document.getElementById('clearBtn').addEventListener('click', () => {
+    document.getElementById('logInput').value = '';
+    state.rows = []; state.selected = []; state.changeFeed = [];
+    document.getElementById('rowsCard').style.display = 'none';
+    document.getElementById('baCard').style.display = 'none';
+    document.getElementById('sliderCard').style.display = 'none';
+    document.getElementById('compCard').style.display = 'none';
+    document.getElementById('changedCard').style.display = 'none';
+  });
+  document.getElementById('fileInput').addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = ev => { document.getElementById('logInput').value = ev.target.result; };
+    reader.readAsText(file);
+  });
+  document.getElementById('threshSlider').addEventListener('input', (e) => {
+    state.threshold = parseInt(e.target.value, 10) / 100;
+    document.getElementById('threshVal').textContent = Math.round(state.threshold * 100) + '%';
+    runComparison();
+  });
+
+  renderChallenges();
+});
+
 </script>
 </body>
 </html>
