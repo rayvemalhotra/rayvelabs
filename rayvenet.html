@@ -398,97 +398,12 @@ footer a:hover{color:var(--ink);text-decoration-color:var(--ink)}
 </div>
 
 <div class="tabs">
-  <button class="tab on" data-pane="scan">Scan your network</button>
-  <button class="tab" data-pane="learn">Simulation 1</button>
+  <button class="tab on" data-pane="scan">Scan your network lab</button>
   <button class="tab" data-pane="sim2">Cascade Lab</button>
   <button class="tab" data-pane="terms">Key terms</button>
 </div>
 
 <!-- ===================== LEARN MODE ===================== -->
-<div id="learn" class="pane">
-
-  <div class="practice-notice">
-    <div class="pn-label">Practice mode</div>
-    <b>Nothing on this page touches your real network.</b> Simulation 1 runs against a fake, built-in network of 12 known devices. The four buttons below reveal which simulated devices each discovery method would have found — they're a teaching exercise, not a scanner. To actually scan your own network, switch to the <b>"Scan your network"</b> tab.
-  </div>
-
-  <div class="card">
-    <div class="label">Step 1 — Simulate the discovery methods</div>
-    <p style="font-family:'Source Serif Pro',Georgia,serif;font-size:15px;color:var(--dim);line-height:1.65">
-      A simulated network with <b style="color:var(--ink)">12 real devices</b> in ground truth. Each button below runs that method against the fake network; results merge into the same host records. Try passive (mDNS, SSDP) before active (TCP) — the order matters. Watch the diagram build.
-    </p>
-    <div class="methods">
-      <button class="method-btn arp" data-method="ARP"><span class="dot"></span> 1. Simulate ARP <span class="badge hide"></span></button>
-      <button class="method-btn mdns" data-method="mDNS"><span class="dot"></span> 2. Simulate mDNS <span class="badge hide"></span></button>
-      <button class="method-btn ssdp" data-method="SSDP"><span class="dot"></span> 3. Simulate SSDP <span class="badge hide"></span></button>
-      <button class="method-btn tcp" data-method="TCP"><span class="dot"></span> 4. Simulate TCP probe <span class="badge hide"></span></button>
-      <button class="btn ghost" id="learnReset" style="margin-left:auto;align-self:center">↻ Reset</button>
-    </div>
-  </div>
-
-  <div id="learnTeach"></div>
-
-  <div class="card hide" id="learnScoreCard">
-    <div class="label">Measure (ground truth is known here)</div>
-    <p style="font-size:12.5px;color:var(--dim);margin-bottom:14px;line-height:1.55">
-      Because this is simulated, we know there are <b style="color:var(--ink)">12 real devices</b>. Real networks
-      never give you that ground truth — so this is the only place you can <i>measure</i> what you missed.
-    </p>
-    <div class="scorecard">
-      <div class="score">
-        <div class="sk">Completeness</div>
-        <div class="sv" id="cmpVal" style="color:var(--cyan)">—</div>
-        <div class="sn" id="cmpDetail">found ÷ real</div>
-        <div class="bar cyan"><i id="cmpBar"></i></div>
-      </div>
-      <div class="score">
-        <div class="sk">Soundness</div>
-        <div class="sv" id="sndVal" style="color:var(--amber)">—</div>
-        <div class="sn" id="sndDetail">real ÷ discovered</div>
-        <div class="bar amber"><i id="sndBar"></i></div>
-      </div>
-      <div class="score">
-        <div class="sk">Discovery Gap</div>
-        <div class="sv" id="gapVal" style="color:var(--rose)">—</div>
-        <div class="sn" id="gapDetail">1 − completeness</div>
-        <div class="bar rose"><i id="gapBar"></i></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="card hide" id="learnDiagramCard">
-    <div class="label">Network diagram</div>
-    <p class="note" style="margin-top:0;margin-bottom:12px;color:var(--dim)">
-      Topology view, top-down. <b style="color:var(--ink)">Internet</b> → <b style="color:var(--ink)">Gateway</b> (your vantage point) → device <b style="color:var(--ink)">clusters</b> grouped by inferred type. Each cluster box shows the devices in that class; the colored border encodes the cluster category. Dashed borders / dashed connection lines = randomized MAC (identity hidden).
-    </p>
-    <div class="diagram-wrap" id="learnDiagramWrap">
-      <div id="learnDiagram"></div>
-      <div class="popup" id="learnPopup"></div>
-      <div class="legend">
-        <div class="li"><div class="sw" style="background:#2d5e3a"></div>ARP (active L2)</div>
-        <div class="li"><div class="sw" style="background:#5b3d8a"></div>mDNS (passive)</div>
-        <div class="li"><div class="sw" style="background:#8a6321"></div>SSDP (passive)</div>
-        <div class="li"><div class="sw" style="background:#2c5e6a"></div>TCP probe (active)</div>
-        <div class="li" style="margin-left:auto"><span style="display:inline-block;width:12px;height:12px;border:1.5px dashed #909090;border-radius:50%"></span>dashed = identity inferred / hidden</div>
-      </div>
-    </div>
-    <div style="margin-top:12px">
-      <button class="btn ghost" data-dl="png" data-svg="learnDiagram">⬇ download PNG</button>
-      <button class="btn ghost" data-dl="svg" data-svg="learnDiagram">⬇ download SVG</button>
-    </div>
-  </div>
-
-  <div class="card hide" id="learnAnalyticsCard">
-    <div class="label">Analytics</div>
-    <div id="learnAnalytics"></div>
-  </div>
-
-  <div class="card hide" id="learnRecordsCard">
-    <div class="label">Host records</div>
-    <div class="tbl" id="learnRecords"></div>
-  </div>
-</div>
-
 <!-- ===================== SCAN MY NETWORK ===================== -->
 <div id="scan" class="pane on">
 
@@ -571,6 +486,94 @@ footer a:hover{color:var(--ink);text-decoration-color:var(--ink)}
   <div class="card hide" id="scanRecordsCard">
     <div class="label">Host records</div>
     <div class="tbl" id="scanRecords"></div>
+  </div>
+
+  <hr style="border:none;border-top:1px solid var(--ink);margin:48px 0 32px">
+
+  <div class="lede" style="margin-bottom:18px">
+    <h2 style="font-size:24px">Simulation 1 · Practice on a simulated network</h2>
+    <p style="font-size:15.5px">Want to learn how discovery actually works before you trust it on your own network? Run the four discovery methods against a fake network with <b>12 known devices</b>. Because we know the ground truth here, you can measure exactly what you found and what you missed — something a real network will never let you do.</p>
+  </div>
+
+  <div class="practice-notice">
+    <div class="pn-label">Practice mode</div>
+    <b>Nothing on this page touches your real network.</b> Simulation 1 runs against a fake, built-in network of 12 known devices. The four buttons below reveal which simulated devices each discovery method would have found — they're a teaching exercise, not a scanner. To actually scan your own network, scroll back up to the steps above.
+  </div>
+
+  <div class="card">
+    <div class="label">Step 1 — Simulate the discovery methods</div>
+    <p style="font-family:'Source Serif Pro',Georgia,serif;font-size:15px;color:var(--dim);line-height:1.65">
+      A simulated network with <b style="color:var(--ink)">12 real devices</b> in ground truth. Each button below runs that method against the fake network; results merge into the same host records. Try passive (mDNS, SSDP) before active (TCP) — the order matters. Watch the diagram build.
+    </p>
+    <div class="methods">
+      <button class="method-btn arp" data-method="ARP"><span class="dot"></span> 1. Simulate ARP <span class="badge hide"></span></button>
+      <button class="method-btn mdns" data-method="mDNS"><span class="dot"></span> 2. Simulate mDNS <span class="badge hide"></span></button>
+      <button class="method-btn ssdp" data-method="SSDP"><span class="dot"></span> 3. Simulate SSDP <span class="badge hide"></span></button>
+      <button class="method-btn tcp" data-method="TCP"><span class="dot"></span> 4. Simulate TCP probe <span class="badge hide"></span></button>
+      <button class="btn ghost" id="learnReset" style="margin-left:auto;align-self:center">↻ Reset</button>
+    </div>
+  </div>
+
+  <div id="learnTeach"></div>
+
+  <div class="card hide" id="learnScoreCard">
+    <div class="label">Measure (ground truth is known here)</div>
+    <p style="font-size:12.5px;color:var(--dim);margin-bottom:14px;line-height:1.55">
+      Because this is simulated, we know there are <b style="color:var(--ink)">12 real devices</b>. Real networks
+      never give you that ground truth — so this is the only place you can <i>measure</i> what you missed.
+    </p>
+    <div class="scorecard">
+      <div class="score">
+        <div class="sk">Completeness</div>
+        <div class="sv" id="cmpVal" style="color:var(--cyan)">—</div>
+        <div class="sn" id="cmpDetail">found ÷ real</div>
+        <div class="bar cyan"><i id="cmpBar"></i></div>
+      </div>
+      <div class="score">
+        <div class="sk">Soundness</div>
+        <div class="sv" id="sndVal" style="color:var(--amber)">—</div>
+        <div class="sn" id="sndDetail">real ÷ discovered</div>
+        <div class="bar amber"><i id="sndBar"></i></div>
+      </div>
+      <div class="score">
+        <div class="sk">Discovery Gap</div>
+        <div class="sv" id="gapVal" style="color:var(--rose)">—</div>
+        <div class="sn" id="gapDetail">1 − completeness</div>
+        <div class="bar rose"><i id="gapBar"></i></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card hide" id="learnDiagramCard">
+    <div class="label">Network diagram</div>
+    <p class="note" style="margin-top:0;margin-bottom:12px;color:var(--dim)">
+      Topology view, top-down. <b style="color:var(--ink)">Internet</b> → <b style="color:var(--ink)">Gateway</b> (your vantage point) → device <b style="color:var(--ink)">clusters</b> grouped by inferred type. Each cluster box shows the devices in that class; the colored border encodes the cluster category. Dashed borders / dashed connection lines = randomized MAC (identity hidden).
+    </p>
+    <div class="diagram-wrap" id="learnDiagramWrap">
+      <div id="learnDiagram"></div>
+      <div class="popup" id="learnPopup"></div>
+      <div class="legend">
+        <div class="li"><div class="sw" style="background:#2d5e3a"></div>ARP (active L2)</div>
+        <div class="li"><div class="sw" style="background:#5b3d8a"></div>mDNS (passive)</div>
+        <div class="li"><div class="sw" style="background:#8a6321"></div>SSDP (passive)</div>
+        <div class="li"><div class="sw" style="background:#2c5e6a"></div>TCP probe (active)</div>
+        <div class="li" style="margin-left:auto"><span style="display:inline-block;width:12px;height:12px;border:1.5px dashed #909090;border-radius:50%"></span>dashed = identity inferred / hidden</div>
+      </div>
+    </div>
+    <div style="margin-top:12px">
+      <button class="btn ghost" data-dl="png" data-svg="learnDiagram">⬇ download PNG</button>
+      <button class="btn ghost" data-dl="svg" data-svg="learnDiagram">⬇ download SVG</button>
+    </div>
+  </div>
+
+  <div class="card hide" id="learnAnalyticsCard">
+    <div class="label">Analytics</div>
+    <div id="learnAnalytics"></div>
+  </div>
+
+  <div class="card hide" id="learnRecordsCard">
+    <div class="label">Host records</div>
+    <div class="tbl" id="learnRecords"></div>
   </div>
 </div>
 
