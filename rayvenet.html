@@ -1654,6 +1654,18 @@ footer a:hover{color:var(--ink);text-decoration-color:var(--ink)}
   <div id="rows" class="rows"></div>
 </div>
 
+<!-- =========================== 3B. EXPORT FINGERPRINTS =========================== -->
+<div class="card" id="wlExportCard" style="display:none">
+  <div class="label">Export · download your fingerprints</div>
+  <p class="note" style="margin-top:0;margin-bottom:14px">Save the parsed fingerprints as a file. Use the JSON for downstream tools or scripts; use the CSV for spreadsheets. Both formats contain only the normalized fingerprint and metadata — the original IPs, timestamps, query values, and full user-agent strings are <b>not</b> included. Safe to share.</p>
+  <div style="display:flex;gap:10px;flex-wrap:wrap">
+    <button class="btn primary" id="wlExportJson">↓ Download JSON</button>
+    <button class="btn" id="wlExportCsv">↓ Download CSV</button>
+    <button class="btn" id="wlCopyClipboard">⧉ Copy JSON to clipboard</button>
+  </div>
+  <p class="hint" style="margin-top:10px">The export is generated in your browser and never leaves your machine. No upload, no server, no telemetry.</p>
+</div>
+
 <!-- =========================== 4. BEFORE / AFTER PRIVACY =========================== -->
 <div class="card" id="baCard" style="display:none">
   <div class="label">4 · Before and after the privacy filter</div>
@@ -4438,22 +4450,21 @@ async function parseAll() {
     row.hash = row.pattern ? await sha256(row.pattern) : '';
     state.rows.push(row);
   }
+  // Default-select first two valid rows BEFORE rendering so they show as selected immediately
+  const validIdxs = [];
+  state.rows.forEach((r, i) => { if (r.parsed.valid) validIdxs.push(i); });
+  if (validIdxs.length >= 2) state.selected = [validIdxs[0], validIdxs[1]];
+
   document.getElementById('wlStatsCard').style.display = 'block';
   document.getElementById('rowsCard').style.display = 'block';
+  document.getElementById('wlExportCard').style.display = 'block';
   document.getElementById('baCard').style.display = 'block';
   document.getElementById('sliderCard').style.display = 'block';
   document.getElementById('compCard').style.display = 'block';
-  renderStats();
+  try { renderStats(); } catch (e) { console.warn('renderStats failed:', e); }
   renderRows();
   renderBA();
   runComparison();
-  // Default-select first two valid rows
-  const validIdxs = state.rows.map((r, i) => r.parsed.valid ? i : -1).filter(i => i >= 0);
-  if (validIdxs.length >= 2) {
-    state.selected = [validIdxs[0], validIdxs[1]];
-    renderRows();
-    runComparison();
-  }
 }
 
 /* =========================================================================
@@ -4476,10 +4487,80 @@ document.addEventListener('DOMContentLoaded', () => {
     state.rows = []; state.selected = []; state.changeFeed = [];
     document.getElementById('wlStatsCard').style.display = 'none';
     document.getElementById('rowsCard').style.display = 'none';
+    document.getElementById('wlExportCard').style.display = 'none';
     document.getElementById('baCard').style.display = 'none';
     document.getElementById('sliderCard').style.display = 'none';
     document.getElementById('compCard').style.display = 'none';
     document.getElementById('changedCard').style.display = 'none';
+  });
+
+  // === EXPORT FINGERPRINTS ===
+  function wlBuildExportRecords() {
+    return state.rows.filter(r => r.parsed.valid).map((r, i) => ({
+      row: i + 1,
+      normalized_pattern: r.pattern,
+      sha256: r.hash,
+      vendor_method: r.norm && r.norm.method,
+      path_category: r.norm && r.norm.path_category,
+      status_class: r.norm && r.norm.status_class,
+      ua_family: r.norm && r.norm.ua_family,
+      query_present: r.norm && r.norm.query_present,
+      time_bucket: r.norm && r.norm.time_bucket,
+      behavior_pattern: r.norm && r.norm.behavior_pattern,
+      features_used: r.features
+    }));
+  }
+  function wlDownload(filename, mime, content) {
+    const blob = new Blob([content], { type: mime });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = filename;
+    document.body.appendChild(a); a.click();
+    document.body.removeChild(a);
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }
+  function wlToCSV(records) {
+    if (records.length === 0) return '';
+    const headers = ['row','normalized_pattern','sha256','method','path_category','status_class','ua_family','query_present','time_bucket','behavior_pattern','features_used'];
+    const esc = v => {
+      const s = String(v == null ? '' : v);
+      return /[",\n]/.test(s) ? '"' + s.replace(/"/g,'""') + '"' : s;
+    };
+    const lines = [headers.join(',')];
+    records.forEach(r => {
+      lines.push([
+        r.row, esc(r.normalized_pattern), esc(r.sha256), esc(r.vendor_method),
+        esc(r.path_category), esc(r.status_class), esc(r.ua_family),
+        esc(r.query_present), esc(r.time_bucket), esc(r.behavior_pattern),
+        esc((r.features_used || []).join('|'))
+      ].join(','));
+    });
+    return lines.join('\n');
+  }
+  function wlExportFilename(ext) {
+    const ts = new Date().toISOString().replace(/[:.]/g, '-').replace('T','_').split('.')[0];
+    return 'fingerprints_' + ts + '.' + ext;
+  }
+  document.getElementById('wlExportJson').addEventListener('click', () => {
+    const recs = wlBuildExportRecords();
+    if (recs.length === 0) { alert('No parsed fingerprints to export yet.'); return; }
+    wlDownload(wlExportFilename('json'), 'application/json', JSON.stringify(recs, null, 2));
+  });
+  document.getElementById('wlExportCsv').addEventListener('click', () => {
+    const recs = wlBuildExportRecords();
+    if (recs.length === 0) { alert('No parsed fingerprints to export yet.'); return; }
+    wlDownload(wlExportFilename('csv'), 'text/csv', wlToCSV(recs));
+  });
+  document.getElementById('wlCopyClipboard').addEventListener('click', () => {
+    const recs = wlBuildExportRecords();
+    if (recs.length === 0) { alert('No parsed fingerprints to copy yet.'); return; }
+    const txt = JSON.stringify(recs, null, 2);
+    navigator.clipboard.writeText(txt).then(() => {
+      const b = document.getElementById('wlCopyClipboard');
+      const orig = b.textContent;
+      b.textContent = '✓ Copied';
+      setTimeout(() => { b.textContent = orig; }, 1500);
+    }).catch(() => alert('Clipboard copy failed. Use Download JSON instead.'));
   });
   document.getElementById('fileInput').addEventListener('change', (e) => {
     const file = e.target.files[0];
