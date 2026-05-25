@@ -1423,9 +1423,50 @@ footer a:hover{color:var(--ink);text-decoration-color:var(--ink)}
 
 </style>
 
-<div class="lede" style="margin-bottom:18px">
-  <h2 style="font-size:26px">Fingerprinting · web request analysis</h2>
-  <p>Paste or upload web access logs and learn how raw requests become privacy-preserving fingerprints for safe comparison. The goal is not to identify who made a request — it is to compare behavior without exposing sensitive details.</p>
+<style>
+  .wl-hero{margin-bottom:32px;padding-bottom:24px;border-bottom:1px solid var(--rule)}
+  .wl-hero h2{font-family:'Source Serif Pro',Georgia,serif;font-size:38px;font-weight:600;letter-spacing:-.8px;line-height:1.1;margin-bottom:14px;color:var(--ink);max-width:780px}
+  @media(max-width:680px){.wl-hero h2{font-size:28px;letter-spacing:-.4px;line-height:1.18}}
+  .wl-hero h2 em{font-style:italic;color:var(--gold)}
+  .wl-hero .wl-sub{font-family:'Source Serif Pro',Georgia,serif;font-size:17px;color:var(--dim);line-height:1.55;max-width:680px;margin-bottom:24px}
+  .wl-hero .wl-badges{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+  .wl-hero .wl-badge{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.4px;padding:5px 11px;background:var(--paper2);border:1px solid var(--line);border-radius:3px;color:var(--ink);font-weight:500;display:inline-flex;align-items:center;gap:6px}
+  .wl-hero .wl-badge::before{content:"●";color:var(--green);font-size:10px}
+  .wl-hero .wl-props{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:8px}
+  @media(max-width:720px){.wl-hero .wl-props{grid-template-columns:1fr;gap:14px}}
+  .wl-hero .wl-prop{padding:18px 22px;background:var(--paper);border:1px solid var(--line);border-radius:6px;border-left:3px solid var(--gold)}
+  .wl-hero .wl-prop .wl-prop-n{font-family:'Inter',system-ui,sans-serif;font-size:10.5px;color:var(--gold);letter-spacing:1.4px;text-transform:uppercase;font-weight:700;margin-bottom:6px}
+  .wl-hero .wl-prop .wl-prop-t{font-family:'Source Serif Pro',Georgia,serif;font-size:17px;font-weight:600;color:var(--ink);margin-bottom:6px;letter-spacing:-.2px}
+  .wl-hero .wl-prop .wl-prop-d{font-family:'Source Serif Pro',Georgia,serif;font-size:13.5px;color:var(--dim);line-height:1.6}
+</style>
+
+<div class="wl-hero">
+  <h2>Turn raw web logs into <em>privacy-preserving</em> fingerprints.</h2>
+  <p class="wl-sub">A real analyst tool. Paste an Apache or Nginx access log, and every request becomes a fingerprint you can group, compare, and publish — without ever exposing the original IPs, timestamps, query values, or user-agent strings.</p>
+  <div class="wl-badges">
+    <span class="wl-badge">100% in your browser</span>
+    <span class="wl-badge">No uploads</span>
+    <span class="wl-badge">No accounts</span>
+    <span class="wl-badge">SHA-256 via Web Crypto API</span>
+    <span class="wl-badge">Apache &amp; Nginx combined format</span>
+  </div>
+  <div class="wl-props">
+    <div class="wl-prop">
+      <div class="wl-prop-n">01 · Group</div>
+      <div class="wl-prop-t">Find similar behavior</div>
+      <div class="wl-prop-d">Requests with the same fingerprint behaved the same way — different IPs, different timestamps, identical pattern.</div>
+    </div>
+    <div class="wl-prop">
+      <div class="wl-prop-n">02 · Compare</div>
+      <div class="wl-prop-t">Match new against old</div>
+      <div class="wl-prop-d">Drop in a recent request, check whether it matches a known-bad pattern from before. Token-overlap measured live.</div>
+    </div>
+    <div class="wl-prop">
+      <div class="wl-prop-n">03 · Publish</div>
+      <div class="wl-prop-t">Share findings safely</div>
+      <div class="wl-prop-d">The normalized pattern strips identifying detail. Copy a fingerprint to a colleague, a ticket, a report — no PII goes with it.</div>
+    </div>
+  </div>
 </div>
 
 <!-- =========================== 1. WHAT IS A FINGERPRINT? =========================== -->
@@ -1581,6 +1622,28 @@ footer a:hover{color:var(--ink);text-decoration-color:var(--ink)}
   </div>
 
   <p class="note" style="margin-top:14px;font-style:italic"><b>How to verify the format works.</b> Apache/Nginx "combined log format" is the standard. A valid line looks like: <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 6px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12px">IP - user [timestamp] "METHOD path PROTO" status size "referer" "user-agent"</code>. If a line is in a different format (Squid, IIS, CDN logs), this lab's parser won't match it. The parser marks unparseable lines so you can see which ones to drop.</p>
+</div>
+
+<!-- =========================== 2B. STATS DASHBOARD =========================== -->
+<div class="card" id="wlStatsCard" style="display:none;background:var(--paper);border-left:3px solid var(--ink)">
+  <div class="label">Snapshot · what your data looks like</div>
+  <style>
+    .wl-stats{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+    @media(max-width:880px){.wl-stats{grid-template-columns:repeat(2,1fr)}}
+    .wl-stat{padding:16px 18px;background:var(--paper2);border:1px solid var(--line);border-radius:4px}
+    .wl-stat .wl-stat-k{font-family:'Inter',system-ui,sans-serif;font-size:10.5px;color:var(--faint);letter-spacing:1.3px;text-transform:uppercase;font-weight:700;margin-bottom:6px}
+    .wl-stat .wl-stat-v{font-family:'Source Serif Pro',Georgia,serif;font-size:32px;font-weight:600;color:var(--ink);letter-spacing:-.6px;line-height:1}
+    .wl-stat .wl-stat-n{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--dim);margin-top:6px}
+    .wl-behaviors{margin-top:18px;padding-top:14px;border-top:1px solid var(--line);display:flex;gap:8px;flex-wrap:wrap}
+    .wl-behavior-chip{font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:3px;font-weight:600;letter-spacing:.2px}
+    .wl-behavior-chip.failed_login_pattern{background:#fbf1de;color:var(--amber);border:1px solid var(--amber)}
+    .wl-behavior-chip.probing_pattern{background:#f1e3e3;color:var(--rose);border:1px solid var(--rose)}
+    .wl-behavior-chip.normal_browsing_pattern{background:#eaf1ec;color:var(--green);border:1px solid var(--green)}
+    .wl-behavior-chip.unknown_pattern{background:var(--paper2);color:var(--dim);border:1px solid var(--line)}
+    .wl-behavior-chip .ct{margin-left:6px;opacity:.7}
+  </style>
+  <div class="wl-stats" id="wlStatsGrid"></div>
+  <div class="wl-behaviors" id="wlBehaviors"></div>
 </div>
 
 <!-- =========================== 3. PARSED ROWS =========================== -->
@@ -4224,6 +4287,48 @@ function tokenOverlap(p1, p2) {
   return union === 0 ? 0 : inter / union;
 }
 
+function renderStats() {
+  const grid = document.getElementById('wlStatsGrid');
+  const beh  = document.getElementById('wlBehaviors');
+  if (!grid || !beh) return;
+  const valid = state.rows.filter(r => r.parsed.valid);
+  const total = state.rows.length;
+  const invalid = total - valid.length;
+  // Unique fingerprints (hashes)
+  const hashes = new Set(valid.map(r => r.hash).filter(Boolean));
+  // Unique IPs that were masked
+  const ips = new Set(valid.map(r => r.parsed.source_ip));
+  // Behavior breakdown
+  const behaviorCounts = {};
+  valid.forEach(r => {
+    const b = r.norm && r.norm.behavior_pattern || 'unknown_pattern';
+    behaviorCounts[b] = (behaviorCounts[b] || 0) + 1;
+  });
+  // Time range (rough)
+  let timeRange = '—';
+  const buckets = {};
+  valid.forEach(r => {
+    const tb = r.norm && r.norm.time_bucket;
+    if (tb) buckets[tb] = (buckets[tb] || 0) + 1;
+  });
+  const bucketList = Object.entries(buckets).sort((a,b)=>b[1]-a[1]).map(([k,v])=>k.replace('_',' ')).slice(0,2).join(' + ');
+  if (bucketList) timeRange = bucketList;
+
+  grid.innerHTML = `
+    <div class="wl-stat"><div class="wl-stat-k">Rows parsed</div><div class="wl-stat-v">${total}</div><div class="wl-stat-n">${invalid > 0 ? invalid + ' unparseable' : 'all valid'}</div></div>
+    <div class="wl-stat"><div class="wl-stat-k">Unique fingerprints</div><div class="wl-stat-v">${hashes.size}</div><div class="wl-stat-n">${valid.length > 0 ? Math.round(hashes.size/valid.length*100) + '% distinct' : '—'}</div></div>
+    <div class="wl-stat"><div class="wl-stat-k">IPs masked</div><div class="wl-stat-v">${ips.size}</div><div class="wl-stat-n">stripped from output</div></div>
+    <div class="wl-stat"><div class="wl-stat-k">Behaviors detected</div><div class="wl-stat-v">${Object.keys(behaviorCounts).length}</div><div class="wl-stat-n">across all rows</div></div>
+    <div class="wl-stat"><div class="wl-stat-k">Time profile</div><div class="wl-stat-v" style="font-size:18px;letter-spacing:0;line-height:1.2">${timeRange}</div><div class="wl-stat-n">when requests landed</div></div>
+  `;
+
+  // Behavior chips
+  const order = ['probing_pattern','failed_login_pattern','normal_browsing_pattern','unknown_pattern'];
+  const sorted = order.filter(k => behaviorCounts[k] > 0);
+  beh.innerHTML = '<span style="font-family:Inter,system-ui,sans-serif;font-size:10.5px;color:var(--faint);letter-spacing:1.3px;text-transform:uppercase;font-weight:700;margin-right:6px;align-self:center">Behavior mix:</span>' +
+    sorted.map(k => `<span class="wl-behavior-chip ${k}">${k.replace(/_/g,' ')}<span class="ct">${behaviorCounts[k]}</span></span>`).join('');
+}
+
 function runComparison() {
   const el = document.getElementById('compResult');
   if (state.selected.length < 2) {
@@ -4333,10 +4438,12 @@ async function parseAll() {
     row.hash = row.pattern ? await sha256(row.pattern) : '';
     state.rows.push(row);
   }
+  document.getElementById('wlStatsCard').style.display = 'block';
   document.getElementById('rowsCard').style.display = 'block';
   document.getElementById('baCard').style.display = 'block';
   document.getElementById('sliderCard').style.display = 'block';
   document.getElementById('compCard').style.display = 'block';
+  renderStats();
   renderRows();
   renderBA();
   runComparison();
@@ -4367,6 +4474,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('clearBtn').addEventListener('click', () => {
     document.getElementById('logInput').value = '';
     state.rows = []; state.selected = []; state.changeFeed = [];
+    document.getElementById('wlStatsCard').style.display = 'none';
     document.getElementById('rowsCard').style.display = 'none';
     document.getElementById('baCard').style.display = 'none';
     document.getElementById('sliderCard').style.display = 'none';
