@@ -1034,6 +1034,51 @@ footer a:hover{color:var(--ink);text-decoration-color:var(--ink)}
       <button class="btn ghost" id="bannerResetBtn">↻ Clear</button>
     </div>
     <div id="bannerResult" style="display:none;margin-top:12px;padding:14px 18px;background:var(--paper);border:1px solid var(--line);border-radius:4px"></div>
+
+    <details style="margin-top:16px">
+      <summary style="cursor:pointer;font-family:'Inter',system-ui,sans-serif;font-size:13px;color:var(--ink);padding:6px 0;font-weight:500">How do I capture a banner from my terminal?</summary>
+      <div style="margin-top:10px">
+        <p class="note" style="margin-top:0;margin-bottom:14px">Two kinds of banners are most useful: <b>HTTP</b> (web admin pages on port 80 or 443) and <b>RTSP</b> (video stream banners on port 554, used by IP cameras). Run the command, copy the output, paste it into the textarea above, click <b>Analyze</b>.</p>
+
+        <div style="margin-bottom:22px">
+          <div style="font-family:'Inter',system-ui,sans-serif;font-size:11px;color:var(--faint);letter-spacing:1.4px;text-transform:uppercase;font-weight:600;margin-bottom:6px">HTTP banner · macOS / Linux</div>
+          <div class="cmdbox"><span id="banHttpMac">curl -sI http://192.168.1.50/</span><button class="copy" data-copy="banHttpMac">copy</button></div>
+          <p class="hint" style="margin:6px 0 8px">Replace <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">192.168.1.50</code> with your device's IP. The <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">-I</code> flag asks for headers only — most cameras and admin pages return <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">401 Unauthorized</code> with vendor banners in the headers, which is exactly what we want.</p>
+          <p class="hint" style="margin:0">For HTTPS, swap <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">http</code> for <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">https</code> and add <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">-k</code> to skip self-signed-cert verification: <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">curl -skI https://192.168.1.50/</code></p>
+        </div>
+
+        <div style="margin-bottom:22px">
+          <div style="font-family:'Inter',system-ui,sans-serif;font-size:11px;color:var(--faint);letter-spacing:1.4px;text-transform:uppercase;font-weight:600;margin-bottom:6px">HTTP banner · Windows (PowerShell)</div>
+          <div class="cmdbox"><span id="banHttpWin">curl.exe -sI http://192.168.1.50/</span><button class="copy" data-copy="banHttpWin">copy</button></div>
+          <p class="hint" style="margin:6px 0 0">Windows 10+ ships with <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">curl.exe</code> built in. (Note the <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">.exe</code> — without it, PowerShell uses its own alias for <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">Invoke-WebRequest</code> which formats output differently.)</p>
+        </div>
+
+        <div style="margin-bottom:22px">
+          <div style="font-family:'Inter',system-ui,sans-serif;font-size:11px;color:var(--faint);letter-spacing:1.4px;text-transform:uppercase;font-weight:600;margin-bottom:6px">RTSP banner · macOS / Linux (IP cameras)</div>
+          <div class="cmdbox"><span id="banRtsp1">printf 'OPTIONS rtsp://%s/ RTSP/1.0\r\nCSeq: 1\r\n\r\n' "192.168.1.50" | nc -w 2 192.168.1.50 554</span><button class="copy" data-copy="banRtsp1">copy</button></div>
+          <p class="hint" style="margin:6px 0 0">Sends an RTSP <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">OPTIONS</code> request to port 554. The camera responds with a 401 Unauthorized whose <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">Server:</code> header names the vendor. No credentials needed. Requires <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">nc</code> (netcat) — usually preinstalled on Mac and Linux.</p>
+        </div>
+
+        <div style="margin-bottom:22px">
+          <div style="font-family:'Inter',system-ui,sans-serif;font-size:11px;color:var(--faint);letter-spacing:1.4px;text-transform:uppercase;font-weight:600;margin-bottom:6px">RTSP banner · cross-platform (Python, works everywhere)</div>
+          <div class="cmdbox"><span id="banRtsp2">python3 -c "import socket;s=socket.create_connection(('192.168.1.50',554),2);s.send(b'OPTIONS rtsp://192.168.1.50/ RTSP/1.0\r\nCSeq:1\r\n\r\n');print(s.recv(2048).decode(errors='ignore'))"</span><button class="copy" data-copy="banRtsp2">copy</button></div>
+          <p class="hint" style="margin:6px 0 0">If <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">nc</code> isn't available (Windows out of the box, hardened Linux), this Python one-liner does the same thing. Replace both IPs with your target.</p>
+        </div>
+
+        <div style="background:var(--paper2);border:1px solid var(--line);border-left:3px solid var(--ink);border-radius:0 3px 3px 0;padding:14px 18px;margin-bottom:8px">
+          <div style="font-family:'Inter',system-ui,sans-serif;font-size:11px;color:var(--faint);letter-spacing:1.4px;text-transform:uppercase;font-weight:600;margin-bottom:8px">What the output should look like</div>
+          <pre style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink);line-height:1.6;white-space:pre-wrap;margin:0">HTTP/1.1 401 Unauthorized
+Server: DNVRS-Webs
+Date: Sun, 24 May 2026 15:56:02 GMT
+Content-Type: text/html; charset=UTF-8
+WWW-Authenticate: Basic realm="Hikvision Digital Technology"
+X-Frame-Options: SAMEORIGIN</pre>
+          <p class="hint" style="margin:10px 0 0">Copy everything from <code style="background:var(--paper);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">HTTP/1.1</code> onward (or for RTSP, from <code style="background:var(--paper);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">RTSP/1.0</code> onward). Paste into the textarea above. Hit <b>Analyze</b>. The tool will mark each line as <span style="color:var(--green)">vendor-bearing</span>, <span style="color:var(--amber)">generic transport</span>, or noise, and tell you how many independent classes corroborate the vendor.</p>
+        </div>
+
+        <p class="note" style="margin-top:14px"><b>Don't have a device IP yet?</b> Open Tool 1 above and use its terminal how-to first to discover IPs and MACs on your subnet. Or grab IPs from your router's admin page under "DHCP clients" / "Connected devices."</p>
+      </div>
+    </details>
   </div>
 
   <!-- TOOL 4 — Category Error Spotter -->
@@ -1047,6 +1092,44 @@ footer a:hover{color:var(--ink);text-decoration-color:var(--ink)}
       <button class="btn ghost" id="catResetBtn">↻ Clear</button>
     </div>
     <div id="catResult" style="display:none;margin-top:12px;padding:14px 18px;background:var(--paper);border:1px solid var(--line);border-radius:4px"></div>
+
+    <details style="margin-top:16px">
+      <summary style="cursor:pointer;font-family:'Inter',system-ui,sans-serif;font-size:13px;color:var(--ink);padding:6px 0;font-weight:500">Where do I get raw scanner data?</summary>
+      <div style="margin-top:10px">
+        <p class="note" style="margin-top:0;margin-bottom:14px">This tool takes a single device's host record as JSON. There are four common ways to get one. Pick whichever matches what you already use.</p>
+
+        <div style="margin-bottom:22px">
+          <div style="font-family:'Inter',system-ui,sans-serif;font-size:11px;color:var(--faint);letter-spacing:1.4px;text-transform:uppercase;font-weight:600;margin-bottom:6px">Option 1 · Nmap (free, every OS)</div>
+          <p class="note" style="margin:0 0 10px">Scan a device, export to XML, convert the XML to JSON. Two commands.</p>
+          <div class="cmdbox" style="margin-bottom:6px"><span id="cat1a">nmap -sV -Pn -p 80,443,554,8000 192.168.1.50 -oX scan.xml</span><button class="copy" data-copy="cat1a">copy</button></div>
+          <div class="cmdbox"><span id="cat1b">python3 -c "import xmltodict,json,sys;print(json.dumps(xmltodict.parse(open('scan.xml').read()),indent=2))" &gt; scan.json</span><button class="copy" data-copy="cat1b">copy</button></div>
+          <p class="hint" style="margin:8px 0 0">Open <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">scan.json</code>, find the host block, paste it into the textarea above. Need to install <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">xmltodict</code>? <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">pip install xmltodict</code>.</p>
+        </div>
+
+        <div style="margin-bottom:22px">
+          <div style="font-family:'Inter',system-ui,sans-serif;font-size:11px;color:var(--faint);letter-spacing:1.4px;text-transform:uppercase;font-weight:600;margin-bottom:6px">Option 2 · Shodan (free tier, public-internet hosts only)</div>
+          <p class="note" style="margin:0 0 10px">Shodan publishes host records as JSON natively. Free account, free CLI.</p>
+          <div class="cmdbox" style="margin-bottom:6px"><span id="cat2a">pip install shodan &amp;&amp; shodan init YOUR_API_KEY</span><button class="copy" data-copy="cat2a">copy</button></div>
+          <div class="cmdbox"><span id="cat2b">shodan host 8.8.8.8 --format json &gt; host.json</span><button class="copy" data-copy="cat2b">copy</button></div>
+          <p class="hint" style="margin:8px 0 0">Replace the IP with any internet-facing device. Get an API key at <a href="https://account.shodan.io/" target="_blank">account.shodan.io</a> (free for low-volume use). Paste the resulting JSON. Shodan's records are particularly rich — they often expose the category errors that other scanners hide.</p>
+        </div>
+
+        <div style="margin-bottom:22px">
+          <div style="font-family:'Inter',system-ui,sans-serif;font-size:11px;color:var(--faint);letter-spacing:1.4px;text-transform:uppercase;font-weight:600;margin-bottom:6px">Option 3 · Your own scanner / asset DB</div>
+          <p class="note" style="margin:0 0 10px">If you run Tenable, Rapid7 Nexpose, Qualys, Armis, Claroty, Forescout, ServiceNow CMDB, Snipe-IT — every one of them exports per-asset JSON. Export a single device, paste it here. Generic fields the tool watches for: <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">vendor</code>, <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">model</code>, <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">firmware_version</code>, <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">firmware_source</code>, <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">services</code>, <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">confidence</code>. Most scanners ship them under these names or close variants.</p>
+        </div>
+
+        <div style="margin-bottom:22px">
+          <div style="font-family:'Inter',system-ui,sans-serif;font-size:11px;color:var(--faint);letter-spacing:1.4px;text-transform:uppercase;font-weight:600;margin-bottom:6px">Option 4 · Just use the sample</div>
+          <p class="note" style="margin:0">Click <b>Try sample</b> above. It loads a realistic Hikvision host record with the <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">firmware_version</code> category error baked in, so you can see what a finding looks like before you bring your own data.</p>
+        </div>
+
+        <div style="background:var(--paper2);border:1px solid var(--line);border-left:3px solid var(--ink);border-radius:0 3px 3px 0;padding:14px 18px">
+          <div style="font-family:'Inter',system-ui,sans-serif;font-size:11px;color:var(--faint);letter-spacing:1.4px;text-transform:uppercase;font-weight:600;margin-bottom:8px">Privacy reminder</div>
+          <p class="note" style="margin:0">Everything you paste stays in your browser. No network call when you click <b>Scan for category errors</b>. Reload the page and the data disappears. If you're pasting a sensitive scanner record from a production network, this is the safe place to do it.</p>
+        </div>
+      </div>
+    </details>
   </div>
 
   <div class="summary" style="margin-top:18px">
