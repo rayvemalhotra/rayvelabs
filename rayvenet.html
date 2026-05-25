@@ -1448,7 +1448,7 @@ footer a:hover{color:var(--ink);text-decoration-color:var(--ink)}
     <span class="wl-badge">No uploads</span>
     <span class="wl-badge">No accounts</span>
     <span class="wl-badge">SHA-256 via Web Crypto API</span>
-    <span class="wl-badge">Apache &amp; Nginx combined format</span>
+    <span class="wl-badge">Apache · Nginx · Bro/Zeek http.log</span>
   </div>
   <div class="wl-props">
     <div class="wl-prop">
@@ -4093,6 +4093,77 @@ function parseLogLine(line) {
   };
 }
 
+/* === Bro/Zeek http.log parser ===
+   TAB-separated values. Column positions defined by a #fields header.
+   Bro http.log includes: ts, uid, id.orig_h, id.orig_p, id.resp_h, id.resp_p,
+   trans_depth, method, host, uri, referrer, version, user_agent,
+   request_body_len, response_body_len, status_code, ...
+   We treat id.orig_h as source_ip and convert ts to Apache-style timestamp.
+*/
+const BRO_MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+function broUnixToApacheTs(unixSeconds) {
+  const d = new Date(unixSeconds * 1000);
+  if (isNaN(d.getTime())) return '';
+  const pad = n => String(n).padStart(2,'0');
+  return pad(d.getUTCDate()) + '/' + BRO_MONTHS[d.getUTCMonth()] + '/' + d.getUTCFullYear()
+       + ':' + pad(d.getUTCHours()) + ':' + pad(d.getUTCMinutes()) + ':' + pad(d.getUTCSeconds()) + ' +0000';
+}
+function parseBroHttpLine(line, fieldMap) {
+  const cols = line.split('\t');
+  const get = name => {
+    const idx = fieldMap[name];
+    return (idx !== undefined && idx < cols.length) ? cols[idx] : '';
+  };
+  const ts = parseFloat(get('ts'));
+  const ip = get('id.orig_h') || '-';
+  const method = (get('method') || '').toUpperCase();
+  const uri = get('uri') || '/';
+  const statusRaw = get('status_code');
+  const status = parseInt(statusRaw, 10);
+  if (!method || !statusRaw || isNaN(status)) return { raw: line, valid: false };
+  const userAgent = get('user_agent');
+  const referrer = get('referrer');
+  const responseSize = parseInt(get('response_body_len'), 10) || 0;
+  const queryIdx = uri.indexOf('?');
+  return {
+    raw: line,
+    valid: true,
+    source_ip: ip,
+    timestamp: broUnixToApacheTs(ts) || 'unknown',
+    method: method,
+    path: queryIdx >= 0 ? uri.substring(0, queryIdx) : uri,
+    query: queryIdx >= 0 ? uri.substring(queryIdx + 1) : '',
+    query_present: queryIdx >= 0,
+    status_code: status,
+    response_size: responseSize,
+    referrer: (!referrer || referrer === '-') ? '' : referrer,
+    referrer_present: !!(referrer && referrer !== '-'),
+    user_agent: (!userAgent || userAgent === '-') ? '' : userAgent
+  };
+}
+
+function detectInputFormat(lines) {
+  // Scan headers first — Bro/Zeek emits #fields metadata
+  const fieldsLine = lines.find(l => l.startsWith('#fields'));
+  if (fieldsLine) {
+    const fields = fieldsLine.replace(/^#fields\s*/, '').split('\t').filter(f => f);
+    const fieldMap = {};
+    fields.forEach((f, i) => { fieldMap[f] = i; });
+    if (fieldMap['method'] !== undefined && fieldMap['uri'] !== undefined && fieldMap['status_code'] !== undefined) {
+      return { format: 'bro_http', fieldMap };
+    }
+    if (fieldMap['proto'] !== undefined && fieldMap['service'] !== undefined) {
+      return { format: 'bro_conn', fieldMap };
+    }
+    return { format: 'bro_unknown', fieldMap };
+  }
+  const firstReal = lines.find(l => l.trim() && !l.startsWith('#'));
+  if (!firstReal) return { format: 'empty' };
+  if (/^\S+\s+\S+\s+\S+\s+\[/.test(firstReal)) return { format: 'apache' };
+  if (/^\d{10}\.\d{3,}\s/.test(firstReal)) return { format: 'bro_no_header' };
+  return { format: 'unknown' };
+}
+
 /* =========================================================================
    NORMALIZE
    ========================================================================= */
@@ -4404,34 +4475,57 @@ function renderFormatHelp() {
   const help = document.getElementById('wlFormatHelp');
   if (!help) return;
   const valid = state.rows.filter(r => r.parsed.valid);
-  if (state.rows.length > 0 && valid.length === 0) {
-    // ALL rows unparseable — show a loud helper
-    const firstLine = state.rows[0] && state.rows[0].parsed.raw;
-    const detected = detectLogFormat(firstLine || '');
-    help.style.display = 'block';
-    help.innerHTML = `
-      <div style="font-family:'Source Serif Pro',Georgia,serif;font-size:17px;font-weight:600;color:var(--rose);margin-bottom:8px">⚠ Format mismatch · zero rows parsed</div>
-      <p style="font-family:'Source Serif Pro',Georgia,serif;font-size:14.5px;color:var(--ink);line-height:1.65;margin-bottom:10px">
-        ${detected
-          ? 'Your input looks like <b>' + detected + '</b>. This lab\'s parser only reads <b>Apache/Nginx combined log format</b> for HTTP access logs — it can\'t process ' + detected.toLowerCase() + ' yet.'
-          : 'None of your lines match the Apache/Nginx combined log format that this parser expects.'}
-      </p>
-      <div style="background:var(--paper);border:1px solid var(--line);border-radius:3px;padding:10px 14px;margin-bottom:10px">
-        <div style="font-family:'Inter',system-ui,sans-serif;font-size:10.5px;color:var(--faint);letter-spacing:1.3px;text-transform:uppercase;font-weight:700;margin-bottom:5px">Expected format · one line per request</div>
-        <code style="font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--ink);word-break:break-all">IP - user [DD/Mon/YYYY:HH:MM:SS ±ZZZZ] "METHOD /path HTTP/1.1" STATUS SIZE "referer" "user-agent"</code>
-      </div>
-      <p style="font-family:'Source Serif Pro',Georgia,serif;font-size:14.5px;color:var(--ink);line-height:1.65;margin-bottom:8px">
-        <b>What to do:</b>
-      </p>
-      <ul style="font-family:'Source Serif Pro',Georgia,serif;font-size:14px;color:var(--dim);line-height:1.7;margin:0 0 10px 22px">
-        <li>Click one of the <b>bundled sample buttons</b> above to load a known-good dataset.</li>
-        <li>For real data: use <code style="background:var(--paper);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12px">tail /var/log/nginx/access.log</code> from your own Nginx server, or use Loghub's <code style="background:var(--paper);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12px">Apache/Apache_2k.log</code> specifically (other Loghub datasets are different formats).</li>
-        <li>For SecRepo: pick a file from the <b>HTTP</b> section, not the <b>Bro/Zeek</b> or <b>IDS</b> sections.</li>
-      </ul>
-    `;
-  } else {
+  const fmt = state.inputFormat || 'unknown';
+
+  // If everything parsed, hide the banner
+  if (state.rows.length > 0 && valid.length === state.rows.length) {
     help.style.display = 'none';
+    return;
   }
+  // If some parsed and some didn't, no banner needed (per-row 'unparseable' chips already shown)
+  if (valid.length > 0) {
+    help.style.display = 'none';
+    return;
+  }
+  // All-unparseable case — show targeted help by format
+  if (state.rows.length === 0) { help.style.display = 'none'; return; }
+
+  help.style.display = 'block';
+
+  // Bro/Zeek conn.log — explicitly tell them to use http.log instead
+  if (fmt === 'bro_conn') {
+    help.innerHTML = `
+      <div style="font-family:'Source Serif Pro',Georgia,serif;font-size:17px;font-weight:600;color:var(--rose);margin-bottom:8px">⚠ Bro/Zeek connection log detected · not an HTTP log</div>
+      <p style="font-family:'Source Serif Pro',Georgia,serif;font-size:14.5px;color:var(--ink);line-height:1.65;margin-bottom:10px">
+        This is a Bro/Zeek <code style="background:var(--paper);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12px">conn.log</code> (network connection records — proto, service, ports, byte counts). It contains no HTTP method, path, or status code, so it can't be turned into a request fingerprint.
+      </p>
+      <p style="font-family:'Source Serif Pro',Georgia,serif;font-size:14.5px;color:var(--ink);line-height:1.65"><b>If your capture has HTTP traffic, Bro/Zeek also emits a separate <code style="background:var(--paper);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12px">http.log</code> file.</b> Paste that one instead — this lab parses it natively (TAB-separated, <code style="background:var(--paper);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12px">#fields</code> header, full method/uri/status_code columns).</p>
+    `;
+    return;
+  }
+
+  // Generic unknown / no-header case
+  const detected = detectLogFormat(state.rows[0] && state.rows[0].parsed.raw || '');
+  help.innerHTML = `
+    <div style="font-family:'Source Serif Pro',Georgia,serif;font-size:17px;font-weight:600;color:var(--rose);margin-bottom:8px">⚠ Format mismatch · zero rows parsed</div>
+    <p style="font-family:'Source Serif Pro',Georgia,serif;font-size:14.5px;color:var(--ink);line-height:1.65;margin-bottom:10px">
+      ${detected
+        ? 'Your input looks like <b>' + detected + '</b>. This lab supports <b>Apache/Nginx combined log format</b> and <b>Bro/Zeek http.log</b> (with the <code style="background:var(--paper);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:JetBrains Mono,monospace;font-size:12px">#fields</code> header).'
+        : 'None of your lines match the formats this lab supports (Apache/Nginx combined or Bro/Zeek http.log).'}
+    </p>
+    <div style="background:var(--paper);border:1px solid var(--line);border-radius:3px;padding:10px 14px;margin-bottom:10px">
+      <div style="font-family:'Inter',system-ui,sans-serif;font-size:10.5px;color:var(--faint);letter-spacing:1.3px;text-transform:uppercase;font-weight:700;margin-bottom:5px">Supported formats</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--ink);line-height:1.6">
+        <b>Apache / Nginx combined:</b><br><span style="color:var(--dim)">IP - user [DD/Mon/YYYY:HH:MM:SS ±ZZZZ] "METHOD /path HTTP/1.1" STATUS SIZE "referer" "user-agent"</span><br><br>
+        <b>Bro/Zeek http.log:</b><br><span style="color:var(--dim)">Tab-separated, starts with <code>#fields ts uid id.orig_h ... method ... uri ... status_code ...</code></span>
+      </div>
+    </div>
+    <ul style="font-family:'Source Serif Pro',Georgia,serif;font-size:14px;color:var(--dim);line-height:1.7;margin:0 0 0 22px">
+      <li>Click one of the <b>bundled sample buttons</b> above to load a known-good dataset.</li>
+      <li>For real Apache data: <code style="background:var(--paper);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12px">tail /var/log/nginx/access.log</code> or Loghub's <code style="background:var(--paper);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12px">Apache/Apache_2k.log</code>.</li>
+      <li>For real Bro/Zeek data: use <code style="background:var(--paper);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12px">http.log</code>, not <code style="background:var(--paper);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12px">conn.log</code>. The <code style="background:var(--paper);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12px">#fields</code> header line at the top is required.</li>
+    </ul>
+  `;
 }
 
 function renderStats() {
@@ -4573,12 +4667,22 @@ function renderChallenges() {
 async function parseAll() {
   const raw = document.getElementById('logInput').value.trim();
   if (!raw) { alert('Paste some logs or click "Try sample data" first.'); return; }
-  const lines = raw.split(/\r?\n/).filter(l => l.trim());
+  const allLines = raw.split(/\r?\n/);
+  const detection = detectInputFormat(allLines);
+  state.inputFormat = detection.format;
+  const fieldMap = detection.fieldMap || null;
+  // Data lines are non-empty, non-comment (# is Bro metadata)
+  const dataLines = allLines.filter(l => l.trim() && !l.startsWith('#'));
   state.rows = [];
   state.selected = [];
   state.changeFeed = [];
-  for (const line of lines) {
-    const parsed = parseLogLine(line);
+  for (const line of dataLines) {
+    let parsed;
+    if (detection.format === 'bro_http' && fieldMap) {
+      parsed = parseBroHttpLine(line, fieldMap);
+    } else {
+      parsed = parseLogLine(line);
+    }
     const norm = parsed.valid ? normalize(parsed) : null;
     const row = { parsed, norm, features: [...DEFAULT_FEATURES], pattern: '', hash: '' };
     row.pattern = patternString(norm, row.features);
