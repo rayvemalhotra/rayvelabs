@@ -1083,6 +1083,49 @@ footer a:hover{color:var(--ink);text-decoration-color:var(--ink)}
       <button class="btn primary" id="realmBtn">Decode</button>
     </div>
     <div id="realmResult" style="display:none;margin-top:12px;padding:14px 18px;background:var(--paper);border:1px solid var(--line);border-radius:4px"></div>
+
+    <details style="margin-top:16px">
+      <summary style="cursor:pointer;font-family:'Inter',system-ui,sans-serif;font-size:13px;color:var(--ink);padding:6px 0;font-weight:500">Where do I get a realm string from?</summary>
+      <div style="margin-top:10px">
+        <p class="note" style="margin-top:0;margin-bottom:14px"><b>What it is.</b> When a device's web server requires a login, it responds with <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">401 Unauthorized</code> and a header that names its authentication "realm." The realm is firmware-baked — the device <i>has</i> to send it for login to work. That makes it a very strong identity signal.</p>
+
+        <div style="margin-bottom:22px">
+          <div style="font-family:'Inter',system-ui,sans-serif;font-size:11px;color:var(--faint);letter-spacing:1.4px;text-transform:uppercase;font-weight:600;margin-bottom:6px">Step 1 — Capture the headers · macOS / Linux</div>
+          <div class="cmdbox"><span id="realmCmdMac">curl -sI http://192.168.1.50/</span><button class="copy" data-copy="realmCmdMac">copy</button></div>
+          <p class="hint" style="margin:6px 0 0">Replace the IP with your device. For HTTPS (admin consoles, some cameras): <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">curl -skI https://192.168.1.50/</code></p>
+        </div>
+
+        <div style="margin-bottom:22px">
+          <div style="font-family:'Inter',system-ui,sans-serif;font-size:11px;color:var(--faint);letter-spacing:1.4px;text-transform:uppercase;font-weight:600;margin-bottom:6px">Step 1 — Capture the headers · Windows (PowerShell)</div>
+          <div class="cmdbox"><span id="realmCmdWin">curl.exe -sI http://192.168.1.50/</span><button class="copy" data-copy="realmCmdWin">copy</button></div>
+          <p class="hint" style="margin:6px 0 0">Note the <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">.exe</code> — without it, PowerShell uses its own alias that formats output differently.</p>
+        </div>
+
+        <div style="background:var(--paper2);border:1px solid var(--line);border-left:3px solid var(--ink);border-radius:0 3px 3px 0;padding:14px 18px;margin-bottom:18px">
+          <div style="font-family:'Inter',system-ui,sans-serif;font-size:11px;color:var(--faint);letter-spacing:1.4px;text-transform:uppercase;font-weight:600;margin-bottom:8px">Step 2 — Find the realm in the output</div>
+          <p class="note" style="margin:0 0 10px"><b>Look for the <code style="background:var(--paper);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">WWW-Authenticate:</code> line.</b> The realm is the text inside the quotes after <code style="background:var(--paper);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">realm=</code>:</p>
+          <pre style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink);line-height:1.6;margin:0;white-space:pre-wrap">HTTP/1.1 401 Unauthorized
+Server: DNVRS-Webs
+<b style="color:var(--gold)">WWW-Authenticate: Basic realm="Hikvision Digital Technology"</b></pre>
+          <p class="note" style="margin:10px 0 0">The realm in this example is <code style="background:var(--paper);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">Hikvision Digital Technology</code>.</p>
+        </div>
+
+        <div style="margin-bottom:18px">
+          <div style="font-family:'Inter',system-ui,sans-serif;font-size:11px;color:var(--faint);letter-spacing:1.4px;text-transform:uppercase;font-weight:600;margin-bottom:8px">Step 3 — Paste it into the box above</div>
+          <p class="note" style="margin:0">Any of these formats work — the tool auto-extracts the realm:</p>
+          <ul style="font-family:'Source Serif Pro',Georgia,serif;font-size:14px;color:var(--dim);line-height:1.8;margin:8px 0 0;padding-left:22px">
+            <li>Just the realm value: <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">Hikvision Digital Technology</code></li>
+            <li>The <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">realm="..."</code> fragment: <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">realm="AXIS_00408C12345"</code></li>
+            <li>The full header line: <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">WWW-Authenticate: Basic realm="Login to Dahua"</code></li>
+          </ul>
+        </div>
+
+        <div style="background:#fbf6e8;border:1px solid var(--amber);border-left-width:4px;border-radius:0 3px 3px 0;padding:14px 18px">
+          <div style="font-family:'Inter',system-ui,sans-serif;font-size:11px;color:var(--amber);letter-spacing:1.4px;text-transform:uppercase;font-weight:700;margin-bottom:6px">Why this is the strongest single signal</div>
+          <p class="note" style="margin:0">Some realms hide a real OUI inside the suffix — for example <code style="background:var(--paper);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">AXIS_00408C12345</code> contains <code style="background:var(--paper);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">00:40:8C</code>, Axis's real IEEE OUI. This tool extracts it automatically. So even when the device's actual MAC is virtualized/anonymized, the realm can still tell you who built it.</p>
+        </div>
+      </div>
+    </details>
   </div>
 
   <!-- TOOL 3 — Banner Analyzer -->
