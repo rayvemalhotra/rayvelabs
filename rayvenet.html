@@ -1492,13 +1492,13 @@ footer a:hover{color:var(--ink);text-decoration-color:var(--ink)}
   <div class="wl-flow">
     <div class="wl-stage">
       <div class="wl-h"><span class="wl-num">Stage 1 · raw event</span><span class="wl-t">Everything observed</span></div>
-      <div class="wl-d">The Apache/Nginx access log line as written by the web server. Contains the requester's <span class="wl-rm">IP</span>, <span class="wl-rm">exact timestamp</span>, <span class="wl-rm">full URL with query</span>, <span class="wl-rm">full user-agent string</span>, <span class="wl-rm">referrer</span> — all sensitive.</div>
+      <div class="wl-d">The Apache/Nginx access log line as written by the web server. Contains the requester's IP, exact timestamp, full URL with query, full user-agent string, and referrer — all sensitive. The strikethrough below shows what's about to be removed.</div>
       <div class="wl-data"><span class="wl-rm">198.51.100.23</span> - - [<span class="wl-rm">25/May/2026:10:01:18 -0400</span>] "POST /login HTTP/1.1" 401 <span class="wl-rm">932</span> "<span class="wl-rm">https://example.test/login</span>" "<span class="wl-rm">Mozilla/5.0</span>"</div>
     </div>
 
     <div class="wl-stage">
       <div class="wl-h"><span class="wl-num">Stage 2 · selected features</span><span class="wl-t">Only what's useful for analysis</span></div>
-      <div class="wl-d">Pick the structural attributes of the request. <span class="wl-kp">Keep</span>: HTTP method, the path, the status code, whether a query was present, the user-agent family. <span class="wl-rm">Drop</span>: IP, exact time, query value, response size, referrer URL, full UA string.</div>
+      <div class="wl-d">Pick the structural attributes of the request. Keep: HTTP method, the path, the status code, whether a query was present, the user-agent family. Drop: IP, exact time, query value, response size, referrer URL, full UA string.</div>
       <div class="wl-data">method = <span class="wl-kp">POST</span><br>path = <span class="wl-kp">/login</span><br>status_code = <span class="wl-kp">401</span><br>query_present = <span class="wl-kp">false</span><br>user_agent_family = <span class="wl-kp">browser</span></div>
     </div>
 
