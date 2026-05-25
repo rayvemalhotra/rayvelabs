@@ -4015,7 +4015,7 @@ async function renderRows() {
     }).join('') : '';
 
     host.insertAdjacentHTML('beforeend', `
-      <div class="row ${isSelected ? 'selected' : ''} ${!r.parsed.valid ? 'invalid' : ''}">
+      <div class="wl-row ${isSelected ? 'selected' : ''} ${!r.parsed.valid ? 'invalid' : ''}">
         <div class="row-head">
           <div class="row-num">Row ${i + 1}${isSelected ? ' · selected for compare' : ''}</div>
           <div class="row-risk ${risk.cls}">${escape(risk.text)}</div>
