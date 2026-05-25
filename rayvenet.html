@@ -400,7 +400,7 @@ footer a:hover{color:var(--ink);text-decoration-color:var(--ink)}
 <div class="tabs">
   <button class="tab on" data-pane="scan">Scan your network</button>
   <button class="tab" data-pane="learn">Simulation 1</button>
-  <button class="tab" data-pane="sim2">Simulation 2</button>
+  <button class="tab" data-pane="sim2">Cascade Lab</button>
   <button class="tab" data-pane="terms">Key terms</button>
 </div>
 
@@ -926,9 +926,71 @@ footer a:hover{color:var(--ink);text-decoration-color:var(--ink)}
   .s2-diff.on:hover{background:#333}
   </style>
 
+  <div class="lede" style="margin-bottom:18px">
+    <h2 style="font-size:26px">Cascade Lab</h2>
+    <p>Identify devices on a network with confidence you can defend. Play the game on simulated devices to learn the cascade method, then use the four tools below to run the same analysis on your own data — pasted from your terminal, with zero setup.</p>
+  </div>
+
+  <div class="card" style="margin-bottom:18px;background:#fbf6e8;border-color:var(--amber)">
+    <div class="label" style="color:var(--amber)">Quick start · identify a real device on your own network in 5 minutes</div>
+    <p class="note" style="margin-top:0;margin-bottom:18px"><b>Every step has two paths:</b> a <b style="color:var(--ink)">website</b> path (click here, paste there) and a <b style="color:var(--ink)">terminal</b> path (copy this command, paste the output). Pick whichever you prefer at each step.</p>
+
+    <div style="display:grid;grid-template-columns:36px 1fr;gap:14px;padding:12px 0;border-bottom:1px solid var(--line)">
+      <div style="font-family:'Source Serif Pro',Georgia,serif;font-size:22px;font-weight:600;color:var(--gold);text-align:center">1</div>
+      <div>
+        <div style="font-family:'Source Serif Pro',Georgia,serif;font-size:16px;font-weight:600;color:var(--ink);margin-bottom:4px">Find a device's IP address on your network.</div>
+        <div style="font-family:'Source Serif Pro',Georgia,serif;font-size:14px;color:var(--dim);line-height:1.65;margin-bottom:8px"><b style="color:var(--ink)">Website path:</b> open the <a href="#" onclick="document.querySelector('.tab[data-pane=&quot;scan&quot;]').click();return false;">Scan your network</a> tab and follow Steps 1-2. It'll list every device's IP on your subnet.</div>
+        <div style="font-family:'Source Serif Pro',Georgia,serif;font-size:14px;color:var(--dim);line-height:1.65"><b style="color:var(--ink)">Terminal path:</b> run <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 6px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--ink)">arp -a</code> (works on macOS, Linux, and Windows). Output shows lines like <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 6px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">? (192.168.1.50) at c0:56:e3:00:11:22</code>.</div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:36px 1fr;gap:14px;padding:12px 0;border-bottom:1px solid var(--line)">
+      <div style="font-family:'Source Serif Pro',Georgia,serif;font-size:22px;font-weight:600;color:var(--gold);text-align:center">2</div>
+      <div>
+        <div style="font-family:'Source Serif Pro',Georgia,serif;font-size:16px;font-weight:600;color:var(--ink);margin-bottom:4px">Find the device's manufacturer from its MAC.</div>
+        <div style="font-family:'Source Serif Pro',Georgia,serif;font-size:14px;color:var(--dim);line-height:1.65;margin-bottom:8px"><b style="color:var(--ink)">Website path:</b> take the first three octets of the MAC (e.g. <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 6px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">c0:56:e3</code>), scroll down to <b style="color:var(--ink)">Tool 1 · OUI lookup</b>, paste, click <b>Look up</b>. Done.</div>
+        <div style="font-family:'Source Serif Pro',Georgia,serif;font-size:14px;color:var(--dim);line-height:1.65"><b style="color:var(--ink)">Terminal path:</b> the MAC came from Step 1's <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 6px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--ink)">arp -a</code>. No additional command needed.</div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:36px 1fr;gap:14px;padding:12px 0;border-bottom:1px solid var(--line)">
+      <div style="font-family:'Source Serif Pro',Georgia,serif;font-size:22px;font-weight:600;color:var(--gold);text-align:center">3</div>
+      <div>
+        <div style="font-family:'Source Serif Pro',Georgia,serif;font-size:16px;font-weight:600;color:var(--ink);margin-bottom:4px">Grab the device's HTTP banner.</div>
+        <div style="font-family:'Source Serif Pro',Georgia,serif;font-size:14px;color:var(--dim);line-height:1.65;margin-bottom:8px"><b style="color:var(--ink)">Terminal path:</b> run <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 6px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--ink)">curl -sI http://192.168.1.50/</code> (replace IP with yours). Copy everything from <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 6px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">HTTP/1.1</code> down.</div>
+        <div style="font-family:'Source Serif Pro',Georgia,serif;font-size:14px;color:var(--dim);line-height:1.65"><b style="color:var(--ink)">Website path:</b> for cameras specifically, the RTSP banner is even stronger — see Tool 3's "How do I capture a banner?" walkthrough for a copy-paste command.</div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:36px 1fr;gap:14px;padding:12px 0;border-bottom:1px solid var(--line)">
+      <div style="font-family:'Source Serif Pro',Georgia,serif;font-size:22px;font-weight:600;color:var(--gold);text-align:center">4</div>
+      <div>
+        <div style="font-family:'Source Serif Pro',Georgia,serif;font-size:16px;font-weight:600;color:var(--ink);margin-bottom:4px">Analyze the banner.</div>
+        <div style="font-family:'Source Serif Pro',Georgia,serif;font-size:14px;color:var(--dim);line-height:1.65"><b style="color:var(--ink)">Website path:</b> scroll to <b style="color:var(--ink)">Tool 3 · banner analyzer</b>, paste what you copied in Step 3, click <b>Analyze</b>. It'll mark each line as vendor-bearing, generic, or noise, and tell you how many independent classes corroborate the vendor.</div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:36px 1fr;gap:14px;padding:12px 0;border-bottom:1px solid var(--line)">
+      <div style="font-family:'Source Serif Pro',Georgia,serif;font-size:22px;font-weight:600;color:var(--gold);text-align:center">5</div>
+      <div>
+        <div style="font-family:'Source Serif Pro',Georgia,serif;font-size:16px;font-weight:600;color:var(--ink);margin-bottom:4px">If you have a scanner record, check it for category errors.</div>
+        <div style="font-family:'Source Serif Pro',Georgia,serif;font-size:14px;color:var(--dim);line-height:1.65;margin-bottom:8px"><b style="color:var(--ink)">Website path:</b> scroll to <b style="color:var(--ink)">Tool 4 · category-error spotter</b>, paste the JSON, click <b>Scan for category errors</b>.</div>
+        <div style="font-family:'Source Serif Pro',Georgia,serif;font-size:14px;color:var(--dim);line-height:1.65"><b style="color:var(--ink)">Terminal path:</b> see Tool 4's "Where do I get raw scanner data?" walkthrough for Nmap and Shodan one-liners.</div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:36px 1fr;gap:14px;padding:14px 0 4px">
+      <div style="font-family:'Source Serif Pro',Georgia,serif;font-size:22px;font-weight:600;color:var(--gold);text-align:center">→</div>
+      <div>
+        <div style="font-family:'Source Serif Pro',Georgia,serif;font-size:16px;font-weight:600;color:var(--ink);margin-bottom:4px">Want to practice on fake devices first?</div>
+        <div style="font-family:'Source Serif Pro',Georgia,serif;font-size:14px;color:var(--dim);line-height:1.65"><b style="color:var(--ink)">Play the Cascade Game below.</b> 2/4/6 unknown devices, no risk, full ground-truth scoring. Same rules as the real-world analysis you just walked through.</div>
+      </div>
+    </div>
+  </div>
+
   <div class="practice-notice">
     <div class="pn-label">Practice mode · the cascade game</div>
-    <b>Nothing on this page touches your real network.</b> Simulation 2 hands you <b>4 unknown camera devices</b> on a fake subnet. Your job: figure out what each one is. Pick your probes — every probe costs you a click, so spend them wisely. Make a verdict when you think you have enough evidence. We know the ground truth, so we score you on accuracy <i>and</i> efficiency.
+    <b>Nothing on this page touches your real network.</b> The Cascade Game hands you unknown camera devices on a fake subnet (2 in Easy, 4 in Medium, 6 in Hard). Your job: figure out what each one is. Pick your probes — every probe costs you a click, so spend them wisely. Make a verdict when you think you have enough evidence. We know the ground truth, so we score you on accuracy <i>and</i> efficiency.
   </div>
 
   <div class="card">
