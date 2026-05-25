@@ -400,6 +400,7 @@ footer a:hover{color:var(--ink);text-decoration-color:var(--ink)}
 <div class="tabs">
   <button class="tab on" data-pane="scan">Scan your network</button>
   <button class="tab" data-pane="learn">Simulation 1</button>
+  <button class="tab" data-pane="sim2">Simulation 2</button>
   <button class="tab" data-pane="terms">Key terms</button>
 </div>
 
@@ -860,6 +861,92 @@ footer a:hover{color:var(--ink);text-decoration-color:var(--ink)}
       </div>
     </div>
   </div>
+</div>
+
+<!-- ===================== SIMULATION 2 — IDENTIFY THE DEVICES ===================== -->
+<div id="sim2" class="pane">
+
+  <style>
+  /* Simulation 2 specific — game UI */
+  .s2-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:18px}
+  @media(max-width:720px){.s2-grid{grid-template-columns:1fr}}
+  .s2-dev{background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:18px;transition:all .15s}
+  .s2-dev.active{border-color:var(--ink);box-shadow:0 0 0 1px var(--ink)}
+  .s2-dev.done{border-color:var(--green);background:#f4f8f4}
+  .s2-dev .s2-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
+  .s2-dev .s2-ip{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--ink);font-weight:700}
+  .s2-dev .s2-label{font-family:'Source Serif Pro',Georgia,serif;font-size:14px;color:var(--dim);font-style:italic}
+  .s2-dev .s2-label.solved{color:var(--green);font-style:normal;font-weight:600}
+  .s2-dev .s2-probes{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin-top:10px}
+  .s2-probe{background:var(--paper2);border:1px solid var(--line);color:var(--ink);padding:8px 10px;border-radius:3px;cursor:pointer;font-family:'Inter',system-ui,sans-serif;font-size:11.5px;font-weight:500;text-align:left;transition:all .15s;display:flex;align-items:center;gap:6px}
+  .s2-probe:hover:not(.done):not(:disabled){border-color:var(--ink)}
+  .s2-probe.done{background:#f4f8f4;border-color:var(--green);color:var(--green);cursor:default}
+  .s2-probe.silent{background:var(--paper2);border-color:var(--line);color:var(--faint);cursor:default}
+  .s2-probe.busy{opacity:.55;cursor:wait}
+  .s2-probe .dot{width:7px;height:7px;border-radius:50%;background:var(--faint);flex:none}
+  .s2-probe.done .dot{background:var(--green)}
+  .s2-probe.silent .dot{background:var(--faint)}
+  .s2-evidence{margin-top:12px;padding:10px 12px;background:var(--paper2);border:1px solid var(--line);border-radius:3px;font-family:'JetBrains Mono',monospace;font-size:11.5px;line-height:1.55;color:var(--dim);min-height:32px}
+  .s2-evidence .row{margin-bottom:4px}
+  .s2-evidence .row:last-child{margin-bottom:0}
+  .s2-evidence .row b{color:var(--ink);font-weight:700}
+  .s2-evidence .row.silent{color:var(--faint);font-style:italic}
+  .s2-evidence .empty{color:var(--faint);font-style:italic;font-family:'Source Serif Pro',Georgia,serif;font-size:13px}
+
+  .s2-verdict{margin-top:12px;padding-top:12px;border-top:1px dashed var(--line)}
+  .s2-verdict-label{font-family:'Inter',system-ui,sans-serif;font-size:10.5px;color:var(--faint);text-transform:uppercase;letter-spacing:1.2px;font-weight:600;margin-bottom:8px}
+  .s2-verdict-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+  .s2-verdict-row select{flex:1;min-width:120px;padding:7px 10px;background:var(--paper);border:1px solid var(--line);border-radius:3px;font-family:'Inter',system-ui,sans-serif;font-size:12.5px;color:var(--ink)}
+  .s2-verdict-row select:focus{outline:none;border-color:var(--ink)}
+  .s2-submit{background:var(--ink);color:var(--paper);border:1px solid var(--ink);padding:8px 14px;border-radius:3px;font-family:'Inter',system-ui,sans-serif;font-size:12px;font-weight:600;cursor:pointer}
+  .s2-submit:hover:not(:disabled){background:#333}
+  .s2-submit:disabled{opacity:.4;cursor:not-allowed}
+
+  .s2-result{margin-top:12px;padding:11px 14px;border-radius:3px;font-family:'Source Serif Pro',Georgia,serif;font-size:13.5px;line-height:1.6}
+  .s2-result.win{background:#f4f8f4;border-left:3px solid var(--green);color:var(--ink)}
+  .s2-result.partial{background:#fbf6e8;border-left:3px solid var(--amber);color:var(--ink)}
+  .s2-result.miss{background:#f8f0f0;border-left:3px solid var(--rose);color:var(--ink)}
+  .s2-result b{font-weight:700}
+  .s2-result .pts{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:13px}
+  .s2-result .truth{margin-top:6px;font-size:13px;color:var(--dim)}
+  .s2-result .truth b{color:var(--ink)}
+
+  .s2-final{background:var(--paper);border:1px solid var(--ink);border-radius:4px;padding:24px 28px;margin-top:18px}
+  .s2-final h3{font-family:'Source Serif Pro',Georgia,serif;font-size:22px;font-weight:600;margin-bottom:14px;color:var(--ink)}
+  .s2-final-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:14px}
+  @media(max-width:680px){.s2-final-stats{grid-template-columns:1fr}}
+  .s2-final-stats .stat{padding:14px 16px;background:var(--paper2);border:1px solid var(--line);border-radius:3px}
+  .s2-final-stats .stat .k{font-family:'Inter',system-ui,sans-serif;font-size:10.5px;color:var(--faint);text-transform:uppercase;letter-spacing:1.2px;font-weight:600}
+  .s2-final-stats .stat .v{font-family:'Source Serif Pro',Georgia,serif;font-size:32px;font-weight:600;margin-top:4px;color:var(--ink);letter-spacing:-.6px}
+  .s2-final-stats .stat .n{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--dim);margin-top:2px}
+  </style>
+
+  <div class="practice-notice">
+    <div class="pn-label">Practice mode · the cascade game</div>
+    <b>Nothing on this page touches your real network.</b> Simulation 2 hands you <b>4 unknown camera devices</b> on a fake subnet. Your job: figure out what each one is. Pick your probes — every probe costs you a click, so spend them wisely. Make a verdict when you think you have enough evidence. We know the ground truth, so we score you on accuracy <i>and</i> efficiency.
+  </div>
+
+  <div class="card">
+    <div class="label">How to play</div>
+    <ol style="padding-left:22px;font-family:'Source Serif Pro',Georgia,serif;font-size:15.5px;line-height:1.8;color:var(--ink)">
+      <li>For each device card below, click probe buttons to gather evidence — <b>HTTP</b>, <b>RTSP</b>, <b>SSDP</b>, <b>OUI</b>. Each probe reveals a banner string, or comes back silent.</li>
+      <li>When you have enough evidence, pick a <b>vendor</b> and an <b>admissibility level</b> in the dropdowns, then click <b>Submit verdict</b>.</li>
+      <li>You'll see whether you got it right and how many points you earned or lost.</li>
+      <li>Identify all 4 devices. The final scorecard shows your total points, probe efficiency, and any category errors you made.</li>
+    </ol>
+    <div class="teach" style="margin-top:14px">
+      <span class="hl">Scoring</span> Correct vendor <b>+2</b>. Correct admissibility level <b>+1</b>. Wrong vendor <b>−2</b>. Calling something <i>admissible</i> when fewer than 3 independent classes corroborate <b>−2</b> (category error). Skipping a device that genuinely has insufficient evidence <b>+1</b>.
+    </div>
+    <div style="margin-top:14px"><button class="btn ghost" id="s2Reset">↻ Reset game</button></div>
+  </div>
+
+  <div class="card">
+    <div class="label">Step 1 — Interrogate the devices</div>
+    <div id="s2Grid" class="s2-grid"></div>
+  </div>
+
+  <div id="s2Final"></div>
+
 </div>
 
 <footer>RayveNet · a <a href="/">RayveLabs</a> project · © Rayve Malhotra</footer>
@@ -2237,7 +2324,269 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // download buttons (dynamic data attr)
   $$('[data-dl]').forEach(b => b.addEventListener("click", () => downloadDiagram(b.dataset.svg, b.dataset.dl)));
+
+  // Simulation 2 — Identify the devices (cascade game)
+  if (document.getElementById('s2Grid')) initSim2();
+
+  // Deep-link to a specific tab via URL hash (e.g., #sim2)
+  const hash = (window.location.hash || '').replace('#','');
+  if (hash) {
+    const target = document.querySelector('.tab[data-pane="' + hash + '"]');
+    if (target) target.click();
+  }
 });
+
+/* ============================================================
+   SIMULATION 2 — IDENTIFY THE DEVICES
+   ============================================================ */
+const S2_DEVICES = [
+  {
+    id: 'A', ip: '172.30.0.10',
+    truth: { vendor: 'Hikvision', admissibility: 'admissible', classes: 4, model: 'DS-2CD2143G2-I' },
+    probes: {
+      http: { vendor: 'Hikvision', class: 'http',  lines: ['Server: DNVRS-Webs', 'WWW-Authenticate: Basic realm="Hikvision Digital Technology"'] },
+      rtsp: { vendor: 'Hikvision', class: 'rtsp', lines: ['RTSP/1.0 401 Unauthorized', 'Server: Hikvision Streaming Server 1.0'] },
+      ssdp: { vendor: 'Hikvision', class: 'ssdp', lines: ['device.xml found', 'manufacturer="Hikvision Digital Technology"', 'modelName="DS-2CD2143G2-I"'] },
+      oui:  { vendor: 'Hikvision', class: 'oui',  lines: ['MAC: c0:56:e3:00:00:01', 'OUI c0:56:e3 → Hikvision (real IEEE)'] }
+    }
+  },
+  {
+    id: 'B', ip: '172.30.0.11',
+    truth: { vendor: 'Dahua', admissibility: 'admissible', classes: 3, model: null },
+    probes: {
+      http: { vendor: 'Dahua', class: 'http',  lines: ['Server: Webs (generic)', 'WWW-Authenticate: Basic realm="Login to Dahua"'] },
+      rtsp: { vendor: 'Dahua', class: 'rtsp', lines: ['RTSP/1.0 401 Unauthorized', 'Server: Dahua rtsp server, realm="Dahua"'] },
+      ssdp: { silent: true, lines: ['No SSDP/UPnP response.'] },
+      oui:  { vendor: 'Dahua', class: 'oui',  lines: ['MAC: a0:bd:1d:00:00:01', 'OUI a0:bd:1d → Dahua Technology (real IEEE)'] }
+    }
+  },
+  {
+    id: 'C', ip: '172.30.0.12',
+    truth: { vendor: 'Axis', admissibility: 'conditional', classes: 2, model: null },
+    probes: {
+      http: { vendor: 'Axis', class: 'http',  lines: ['Server: Apache (generic)', 'WWW-Authenticate: Digest realm="AXIS_00408C12345"'] },
+      rtsp: { vendor: 'Axis', class: 'rtsp', lines: ['RTSP/1.0 401 Unauthorized', 'Server: AXIS Media Control'] },
+      ssdp: { silent: true, lines: ['No SSDP/UPnP response.'] },
+      oui:  { silent: true, lines: ['MAC: fa:4d:0e:e3:67:58', 'Locally administered (LAA) — OUI silent.'] }
+    }
+  },
+  {
+    id: 'D', ip: '172.30.0.13',
+    truth: { vendor: 'unknown', admissibility: 'skip', classes: 1, model: null, note: 'Only HTTP names a vendor; every other source is silent. One class is not enough to admit.' },
+    probes: {
+      http: { vendor: 'Hikvision', class: 'http', lines: ['Server: nginx/1.18.0', 'WWW-Authenticate: Basic realm="Hikvision IP Camera"'], suspicious: true },
+      rtsp: { silent: true, lines: ['Port 554 closed. No RTSP banner.'] },
+      ssdp: { silent: true, lines: ['No SSDP/UPnP response.'] },
+      oui:  { silent: true, lines: ['MAC: 02:42:ac:11:00:0d', 'Docker locally-administered range — OUI silent.'] }
+    }
+  }
+];
+
+let s2State = {};
+
+function s2Reset() {
+  s2State = {};
+  S2_DEVICES.forEach(d => {
+    s2State[d.id] = { probesRun: {}, verdict: null, pts: 0, result: null };
+  });
+  s2Render();
+}
+
+function s2Probe(devId, probeKey) {
+  const d = S2_DEVICES.find(x => x.id === devId);
+  if (!d) return;
+  const st = s2State[devId];
+  if (st.probesRun[probeKey] || st.verdict) return;
+  // Animate
+  st.probesRun[probeKey] = 'busy';
+  s2Render();
+  setTimeout(() => {
+    st.probesRun[probeKey] = d.probes[probeKey].silent ? 'silent' : 'done';
+    s2Render();
+  }, 600);
+}
+
+function s2Submit(devId) {
+  const d = S2_DEVICES.find(x => x.id === devId);
+  if (!d) return;
+  const st = s2State[devId];
+  const vendorSel = document.getElementById('s2-v-' + devId);
+  const admSel    = document.getElementById('s2-a-' + devId);
+  if (!vendorSel || !admSel) return;
+  const userVendor = vendorSel.value;
+  const userAdm    = admSel.value;
+  if (!userVendor || !userAdm) return;
+
+  // Count truly corroborating classes from the probes the user actually ran
+  const ranKeys = Object.keys(st.probesRun).filter(k => st.probesRun[k] === 'done');
+  const agreeingClasses = new Set();
+  ranKeys.forEach(k => {
+    const p = d.probes[k];
+    if (p && !p.silent && p.vendor === d.truth.vendor) agreeingClasses.add(p.class);
+  });
+  const userClasses = agreeingClasses.size;
+
+  let pts = 0;
+  let messages = [];
+  let kind = 'partial';
+
+  // Vendor scoring
+  if (userVendor === 'skip' || userVendor === 'unknown') {
+    if (d.truth.vendor === 'unknown') {
+      pts += 2;
+      messages.push('Correctly held back — there is not enough evidence to identify a vendor. <span class="pts">+2</span>');
+      kind = 'win';
+    } else {
+      pts += 0;
+      messages.push('You skipped. That is safe but you missed the points for a correct identification.');
+      kind = 'partial';
+    }
+  } else if (userVendor === d.truth.vendor) {
+    pts += 2;
+    messages.push('Correct vendor: <b>' + d.truth.vendor + '</b>. <span class="pts">+2</span>');
+    kind = 'win';
+  } else {
+    pts -= 2;
+    messages.push('Wrong vendor. Actual: <b>' + (d.truth.vendor === 'unknown' ? 'no admissible identity (trap device)' : d.truth.vendor) + '</b>. <span class="pts">−2</span>');
+    kind = 'miss';
+  }
+
+  // Admissibility scoring (only when user actually identified a vendor)
+  if (userVendor !== 'skip' && userVendor !== 'unknown' && userVendor === d.truth.vendor) {
+    if (userAdm === d.truth.admissibility) {
+      pts += 1;
+      messages.push('Correct admissibility level (<b>' + d.truth.admissibility + '</b>). <span class="pts">+1</span>');
+    } else if (userAdm === 'admissible' && userClasses < 3) {
+      pts -= 2;
+      messages.push('Category error: called it admissible with only <b>' + userClasses + '</b> independent classes corroborating. Admissibility requires ≥3. <span class="pts">−2</span>');
+      if (kind === 'win') kind = 'partial';
+    } else {
+      pts -= 1;
+      messages.push('Admissibility level off. Truth: <b>' + d.truth.admissibility + '</b>. <span class="pts">−1</span>');
+      if (kind === 'win') kind = 'partial';
+    }
+  } else if ((userVendor === 'skip' || userVendor === 'unknown') && d.truth.vendor === 'unknown') {
+    // Already scored above
+  } else if (userVendor && userVendor !== d.truth.vendor && d.truth.vendor === 'unknown') {
+    // The trap device — already penalized
+    messages.push('This was the trap device: only the HTTP realm named a vendor, every other probe was silent. One class is not enough.');
+  }
+
+  st.verdict = { vendor: userVendor, admissibility: userAdm };
+  st.pts = pts;
+  st.result = { kind: kind, messages: messages, classes: userClasses };
+  s2Render();
+  s2MaybeFinal();
+}
+
+function s2MaybeFinal() {
+  const allDone = S2_DEVICES.every(d => s2State[d.id].verdict);
+  const finalEl = document.getElementById('s2Final');
+  if (!allDone) { finalEl.innerHTML = ''; return; }
+  let total = 0, probes = 0, catErrors = 0, correct = 0;
+  S2_DEVICES.forEach(d => {
+    const st = s2State[d.id];
+    total += st.pts;
+    probes += Object.values(st.probesRun).filter(v => v === 'done' || v === 'silent').length;
+    if (st.result && st.result.kind === 'win') correct++;
+    if (st.result && st.result.messages.some(m => m.includes('Category error'))) catErrors++;
+  });
+  finalEl.innerHTML = '<div class="s2-final">'
+    + '<h3>Game complete.</h3>'
+    + '<div class="s2-final-stats">'
+    + '<div class="stat"><div class="k">Total score</div><div class="v">' + total + '</div><div class="n">points earned</div></div>'
+    + '<div class="stat"><div class="k">Correct verdicts</div><div class="v">' + correct + ' <span style="color:var(--faint);font-size:18px">/ 4</span></div><div class="n">vendor identified correctly</div></div>'
+    + '<div class="stat"><div class="k">Probes used</div><div class="v">' + probes + ' <span style="color:var(--faint);font-size:18px">/ 16</span></div><div class="n">' + Math.round(probes/16*100) + '% of available</div></div>'
+    + '</div>'
+    + '<div class="teach' + (catErrors ? ' rose' : ' green') + '" style="margin-top:14px"><span class="hl">' + (catErrors ? 'Category errors: ' + catErrors : 'No category errors') + '</span> '
+    + (catErrors
+        ? 'You called at least one device <i>admissible</i> with fewer than 3 independent classes corroborating. In a real pipeline this would propagate fabricated vulnerability matches downstream.'
+        : 'You never called a device <i>admissible</i> without proper corroboration. This is the discipline the chapter trains.')
+    + '</div>'
+    + '<div style="margin-top:14px"><button class="btn" id="s2ResetBtm">↻ Play again</button></div>'
+    + '</div>';
+  document.getElementById('s2ResetBtm').addEventListener('click', s2Reset);
+}
+
+function s2Render() {
+  const grid = document.getElementById('s2Grid');
+  if (!grid) return;
+  grid.innerHTML = '';
+  S2_DEVICES.forEach(d => {
+    const st = s2State[d.id];
+    const ranKeys = Object.keys(st.probesRun);
+    const probeCount = ranKeys.filter(k => st.probesRun[k] === 'done' || st.probesRun[k] === 'silent').length;
+    const evHtml = ranKeys.length === 0
+      ? '<div class="empty">No probes run yet. Click a probe button above to gather evidence.</div>'
+      : ranKeys.map(k => {
+          const p = d.probes[k];
+          const state = st.probesRun[k];
+          if (state === 'busy') return '<div class="row" style="color:var(--faint)"><b>' + k.toUpperCase() + '</b> · probing…</div>';
+          if (state === 'silent') return '<div class="row silent"><b>' + k.toUpperCase() + '</b> · ' + p.lines.join(' · ') + '</div>';
+          return '<div class="row"><b>' + k.toUpperCase() + '</b> · ' + p.lines.join(' · ') + '</div>';
+        }).join('');
+
+    const probesHtml = ['http','rtsp','ssdp','oui'].map(k => {
+      const st2 = st.probesRun[k];
+      const isDone = st2 === 'done' || st2 === 'silent';
+      const isBusy = st2 === 'busy';
+      const cls = 's2-probe' + (st2 === 'done' ? ' done' : '') + (st2 === 'silent' ? ' silent' : '') + (isBusy ? ' busy' : '');
+      const label = ({http:'Probe HTTP', rtsp:'Probe RTSP', ssdp:'Probe SSDP', oui:'Look up MAC OUI'})[k];
+      const disabled = isDone || isBusy || st.verdict ? 'disabled' : '';
+      return '<button class="' + cls + '" data-dev="' + d.id + '" data-probe="' + k + '" ' + disabled + '><span class="dot"></span>' + label + '</button>';
+    }).join('');
+
+    const verdictHtml = st.verdict
+      ? renderResult(d, st)
+      : '<div class="s2-verdict">'
+        + '<div class="s2-verdict-label">Step 2 — Make your verdict</div>'
+        + '<div class="s2-verdict-row">'
+        + '<select id="s2-v-' + d.id + '"><option value="">vendor…</option><option value="Hikvision">Hikvision</option><option value="Dahua">Dahua</option><option value="Axis">Axis</option><option value="unknown">unknown / not enough evidence</option><option value="skip">skip device</option></select>'
+        + '<select id="s2-a-' + d.id + '"><option value="">admissibility…</option><option value="admissible">admissible · family</option><option value="conditional">conditional</option><option value="not_admissible">not admissible</option><option value="skip">skip</option></select>'
+        + '<button class="s2-submit" data-submit="' + d.id + '">Submit verdict</button>'
+        + '</div></div>';
+
+    const cardCls = 's2-dev' + (st.verdict ? ' done' : '');
+    const label = st.verdict ? (st.verdict.vendor === d.truth.vendor || (st.verdict.vendor === 'unknown' && d.truth.vendor === 'unknown') ? '<span class="s2-label solved">identified · ' + (d.truth.vendor === 'unknown' ? 'trap device' : d.truth.vendor) + '</span>' : '<span class="s2-label" style="color:var(--rose)">misidentified</span>') : '<span class="s2-label">unknown camera (probes: ' + probeCount + '/4)</span>';
+
+    const html = '<div class="' + cardCls + '" data-dev="' + d.id + '">'
+      + '<div class="s2-head"><div class="s2-ip">' + d.ip + '</div>' + label + '</div>'
+      + '<div class="s2-probes">' + probesHtml + '</div>'
+      + '<div class="s2-evidence">' + evHtml + '</div>'
+      + verdictHtml
+      + '</div>';
+    grid.insertAdjacentHTML('beforeend', html);
+  });
+
+  // wire up buttons after render
+  grid.querySelectorAll('.s2-probe').forEach(b => {
+    b.addEventListener('click', () => s2Probe(b.dataset.dev, b.dataset.probe));
+  });
+  grid.querySelectorAll('[data-submit]').forEach(b => {
+    b.addEventListener('click', () => s2Submit(b.dataset.submit));
+  });
+
+  s2MaybeFinal();
+}
+
+function renderResult(d, st) {
+  const r = st.result;
+  if (!r) return '';
+  let html = '<div class="s2-result ' + r.kind + '">';
+  html += r.messages.map(m => '<div>' + m + '</div>').join('');
+  if (d.truth.vendor !== 'unknown') {
+    html += '<div class="truth"><b>Ground truth:</b> ' + d.truth.vendor + (d.truth.model ? ' · model ' + d.truth.model : '') + ' · admissibility ' + d.truth.admissibility + ' · ' + d.truth.classes + ' independent classes available.</div>';
+  } else if (d.truth.note) {
+    html += '<div class="truth"><b>Ground truth:</b> ' + d.truth.note + '</div>';
+  }
+  html += '</div>';
+  return html;
+}
+
+function initSim2() {
+  s2Reset();
+  document.getElementById('s2Reset').addEventListener('click', s2Reset);
+}
 </script>
 </body>
 </html>
