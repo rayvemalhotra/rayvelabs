@@ -1601,14 +1601,21 @@ footer a:hover{color:var(--ink);text-decoration-color:var(--ink)}
   <div class="label">Where to find real log files from the internet</div>
   <p class="note" style="margin-top:0;margin-bottom:14px">When you want to test on data beyond the bundled samples, these are real, public, well-known sources for web access logs and security data. All free. Pick one, download a file, paste it into the textarea above.</p>
 
+  <div style="background:#fbf6e8;border:1px solid var(--amber);border-left-width:4px;padding:12px 18px;margin-bottom:14px;border-radius:0 4px 4px 0">
+    <div style="font-family:'Inter',system-ui,sans-serif;font-size:10.5px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;color:var(--amber);margin-bottom:5px">Format requirement</div>
+    <p class="note" style="margin:0">This lab only reads <b>Apache/Nginx combined log format</b> — one HTTP request per line with the shape <code style="background:var(--paper);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12px">IP - - [timestamp] "METHOD path PROTO" status size "referer" "ua"</code>. <b>It does not read</b> Bro/Zeek connection logs, Squid native logs, IIS W3C logs, JSON event streams, or PCAP/IDS captures. Pick files from the sources below carefully — the format matters.</p>
+  </div>
+
   <div style="border-left:3px solid var(--ink);padding:14px 18px;background:var(--paper2);margin-bottom:12px;border-radius:0 4px 4px 0">
     <div style="font-family:'Source Serif Pro',Georgia,serif;font-size:16px;font-weight:600;color:var(--ink);margin-bottom:4px">SecRepo · public security data samples</div>
-    <p class="note" style="margin:0 0 6px"><a href="https://www.secrepo.com/" target="_blank"><code>https://www.secrepo.com/</code></a> · maintained by Mike Sconzo. Curated collection of public security datasets including HTTP access logs, malware traffic captures, and Squid proxy logs. Browse the index, pick a dataset under "HTTP," download, paste into the textarea.</p>
+    <p class="note" style="margin:0 0 8px"><a href="https://www.secrepo.com/" target="_blank"><code>https://www.secrepo.com/</code></a> · maintained by Mike Sconzo.</p>
+    <p class="note" style="margin:0"><b>Look for files described as Apache or web-server access logs.</b> Avoid the Bro/Zeek conn/SMTP/HTTP-bro files (their format is tab-separated columns starting with a Unix timestamp like <code style="background:var(--paper);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12px">1331902024.07</code>) — that's Bro, not Apache.</p>
   </div>
 
   <div style="border-left:3px solid var(--ink);padding:14px 18px;background:var(--paper2);margin-bottom:12px;border-radius:0 4px 4px 0">
     <div style="font-family:'Source Serif Pro',Georgia,serif;font-size:16px;font-weight:600;color:var(--ink);margin-bottom:4px">Loghub · academic log archive on GitHub</div>
-    <p class="note" style="margin:0 0 6px"><a href="https://github.com/logpai/loghub" target="_blank"><code>github.com/logpai/loghub</code></a> · maintained by the LogPAI research group (Hong Kong). Apache, OpenSSH, BGL, HDFS, and other log datasets used in academic papers on log parsing and anomaly detection. The Apache dataset (<code>Apache/Apache_2k.log</code>) is the easiest to start with — small, real, Apache combined format.</p>
+    <p class="note" style="margin:0 0 8px"><a href="https://github.com/logpai/loghub" target="_blank"><code>github.com/logpai/loghub</code></a> · maintained by the LogPAI research group.</p>
+    <p class="note" style="margin:0"><b>Use the specific file</b> <code style="background:var(--paper);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12px">Apache/Apache_2k.log</code> — that one is real Apache access log format and parses cleanly here. The other Loghub datasets (BGL, OpenSSH, HDFS, OpenStack, Spark, etc.) are different formats and will not parse.</p>
   </div>
 
   <div style="border-left:3px solid var(--ink);padding:14px 18px;background:var(--paper2);margin-bottom:12px;border-radius:0 4px 4px 0">
@@ -1623,6 +1630,9 @@ footer a:hover{color:var(--ink);text-decoration-color:var(--ink)}
 
   <p class="note" style="margin-top:14px;font-style:italic"><b>How to verify the format works.</b> Apache/Nginx "combined log format" is the standard. A valid line looks like: <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 6px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12px">IP - user [timestamp] "METHOD path PROTO" status size "referer" "user-agent"</code>. If a line is in a different format (Squid, IIS, CDN logs), this lab's parser won't match it. The parser marks unparseable lines so you can see which ones to drop.</p>
 </div>
+
+<!-- =========================== 2A. FORMAT HELP (shown when 0 rows parse) =========================== -->
+<div class="card" id="wlFormatHelp" style="display:none;background:#f8f0f0;border:1px solid var(--rose);border-left-width:4px;border-left-color:var(--rose)"></div>
 
 <!-- =========================== 2B. STATS DASHBOARD =========================== -->
 <div class="card" id="wlStatsCard" style="display:none;background:var(--paper);border-left:3px solid var(--ink)">
@@ -4299,6 +4309,55 @@ function tokenOverlap(p1, p2) {
   return union === 0 ? 0 : inter / union;
 }
 
+function detectLogFormat(line) {
+  if (!line) return null;
+  // Bro/Zeek conn logs start with a Unix timestamp (10-digit . 6-digit)
+  if (/^\d{10}\.\d{3,6}\s/.test(line)) return 'Bro/Zeek connection log';
+  // IIS logs often start with a comment header
+  if (line.startsWith('#Software:') || line.startsWith('#Fields:') || line.startsWith('#Version:')) return 'IIS / W3C extended log';
+  // Squid native log (timestamp + duration + IP + result code...)
+  if (/^\d{10}\.\d{3}\s+\d+\s+\d+\.\d+\.\d+\.\d+/.test(line)) return 'Squid native log';
+  // JSON-lines
+  if (line.trim().startsWith('{')) return 'JSON-lines format';
+  // CSV with header
+  if (/^[a-z_]+,[a-z_]+,[a-z_]+/i.test(line) && !line.includes('"')) return 'CSV with header';
+  return null;
+}
+
+function renderFormatHelp() {
+  const help = document.getElementById('wlFormatHelp');
+  if (!help) return;
+  const valid = state.rows.filter(r => r.parsed.valid);
+  if (state.rows.length > 0 && valid.length === 0) {
+    // ALL rows unparseable — show a loud helper
+    const firstLine = state.rows[0] && state.rows[0].parsed.raw;
+    const detected = detectLogFormat(firstLine || '');
+    help.style.display = 'block';
+    help.innerHTML = `
+      <div style="font-family:'Source Serif Pro',Georgia,serif;font-size:17px;font-weight:600;color:var(--rose);margin-bottom:8px">⚠ Format mismatch · zero rows parsed</div>
+      <p style="font-family:'Source Serif Pro',Georgia,serif;font-size:14.5px;color:var(--ink);line-height:1.65;margin-bottom:10px">
+        ${detected
+          ? 'Your input looks like <b>' + detected + '</b>. This lab\'s parser only reads <b>Apache/Nginx combined log format</b> for HTTP access logs — it can\'t process ' + detected.toLowerCase() + ' yet.'
+          : 'None of your lines match the Apache/Nginx combined log format that this parser expects.'}
+      </p>
+      <div style="background:var(--paper);border:1px solid var(--line);border-radius:3px;padding:10px 14px;margin-bottom:10px">
+        <div style="font-family:'Inter',system-ui,sans-serif;font-size:10.5px;color:var(--faint);letter-spacing:1.3px;text-transform:uppercase;font-weight:700;margin-bottom:5px">Expected format · one line per request</div>
+        <code style="font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--ink);word-break:break-all">IP - user [DD/Mon/YYYY:HH:MM:SS ±ZZZZ] "METHOD /path HTTP/1.1" STATUS SIZE "referer" "user-agent"</code>
+      </div>
+      <p style="font-family:'Source Serif Pro',Georgia,serif;font-size:14.5px;color:var(--ink);line-height:1.65;margin-bottom:8px">
+        <b>What to do:</b>
+      </p>
+      <ul style="font-family:'Source Serif Pro',Georgia,serif;font-size:14px;color:var(--dim);line-height:1.7;margin:0 0 10px 22px">
+        <li>Click one of the <b>bundled sample buttons</b> above to load a known-good dataset.</li>
+        <li>For real data: use <code style="background:var(--paper);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12px">tail /var/log/nginx/access.log</code> from your own Nginx server, or use Loghub's <code style="background:var(--paper);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12px">Apache/Apache_2k.log</code> specifically (other Loghub datasets are different formats).</li>
+        <li>For SecRepo: pick a file from the <b>HTTP</b> section, not the <b>Bro/Zeek</b> or <b>IDS</b> sections.</li>
+      </ul>
+    `;
+  } else {
+    help.style.display = 'none';
+  }
+}
+
 function renderStats() {
   const grid = document.getElementById('wlStatsGrid');
   const beh  = document.getElementById('wlBehaviors');
@@ -4461,6 +4520,7 @@ async function parseAll() {
   document.getElementById('baCard').style.display = 'block';
   document.getElementById('sliderCard').style.display = 'block';
   document.getElementById('compCard').style.display = 'block';
+  try { renderFormatHelp(); } catch (e) { console.warn('renderFormatHelp failed:', e); }
   try { renderStats(); } catch (e) { console.warn('renderStats failed:', e); }
   renderRows();
   renderBA();
@@ -4485,6 +4545,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('clearBtn').addEventListener('click', () => {
     document.getElementById('logInput').value = '';
     state.rows = []; state.selected = []; state.changeFeed = [];
+    document.getElementById('wlFormatHelp').style.display = 'none';
     document.getElementById('wlStatsCard').style.display = 'none';
     document.getElementById('rowsCard').style.display = 'none';
     document.getElementById('wlExportCard').style.display = 'none';
