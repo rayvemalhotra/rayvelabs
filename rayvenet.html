@@ -919,6 +919,11 @@ footer a:hover{color:var(--ink);text-decoration-color:var(--ink)}
   .s2-final-stats .stat .k{font-family:'Inter',system-ui,sans-serif;font-size:10.5px;color:var(--faint);text-transform:uppercase;letter-spacing:1.2px;font-weight:600}
   .s2-final-stats .stat .v{font-family:'Source Serif Pro',Georgia,serif;font-size:32px;font-weight:600;margin-top:4px;color:var(--ink);letter-spacing:-.6px}
   .s2-final-stats .stat .n{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--dim);margin-top:2px}
+
+  /* difficulty selector */
+  .s2-diff{font-family:'Inter',system-ui,sans-serif;font-size:12px;font-weight:500}
+  .s2-diff.on{background:var(--ink);color:var(--paper);border-color:var(--ink);font-weight:600}
+  .s2-diff.on:hover{background:#333}
   </style>
 
   <div class="practice-notice">
@@ -927,17 +932,23 @@ footer a:hover{color:var(--ink);text-decoration-color:var(--ink)}
   </div>
 
   <div class="card">
-    <div class="label">How to play</div>
+    <div class="label">How to play · the cascade game</div>
     <ol style="padding-left:22px;font-family:'Source Serif Pro',Georgia,serif;font-size:15.5px;line-height:1.8;color:var(--ink)">
       <li>For each device card below, click probe buttons to gather evidence — <b>HTTP</b>, <b>RTSP</b>, <b>SSDP</b>, <b>OUI</b>. Each probe reveals a banner string, or comes back silent.</li>
       <li>When you have enough evidence, pick a <b>vendor</b> and an <b>admissibility level</b> in the dropdowns, then click <b>Submit verdict</b>.</li>
       <li>You'll see whether you got it right and how many points you earned or lost.</li>
-      <li>Identify all 4 devices. The final scorecard shows your total points, probe efficiency, and any category errors you made.</li>
+      <li>Identify every device. The final scorecard shows your total points, probe efficiency, and any category errors you made.</li>
     </ol>
     <div class="teach" style="margin-top:14px">
       <span class="hl">Scoring</span> Correct vendor <b>+2</b>. Correct admissibility level <b>+1</b>. Wrong vendor <b>−2</b>. Calling something <i>admissible</i> when fewer than 3 independent classes corroborate <b>−2</b> (category error). Skipping a device that genuinely has insufficient evidence <b>+1</b>.
     </div>
-    <div style="margin-top:14px"><button class="btn ghost" id="s2Reset">↻ Reset game</button></div>
+    <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+      <span style="font-family:'Inter',system-ui,sans-serif;font-size:11px;color:var(--faint);text-transform:uppercase;letter-spacing:1.3px;font-weight:600;margin-right:8px">Difficulty:</span>
+      <button class="btn s2-diff" data-diff="easy">Easy · 2 devices</button>
+      <button class="btn s2-diff on" data-diff="medium">Medium · 4 devices</button>
+      <button class="btn s2-diff" data-diff="hard">Hard · 6 devices</button>
+      <button class="btn ghost" id="s2Reset" style="margin-left:auto">↻ Reset</button>
+    </div>
   </div>
 
   <div class="card">
@@ -946,6 +957,65 @@ footer a:hover{color:var(--ink);text-decoration-color:var(--ink)}
   </div>
 
   <div id="s2Final"></div>
+
+  <!-- ============ SELF-SERVICE TOOLKIT ============ -->
+  <div class="card" style="margin-top:32px">
+    <div class="label">Self-service toolkit · run these on your own data</div>
+    <p class="note" style="margin-top:0">Four small tools that take real input from your own network or scanner output and apply the cascade rules to it. All run 100% in your browser — no network calls, nothing transmitted.</p>
+  </div>
+
+  <!-- TOOL 1 — OUI Lookup -->
+  <div class="card">
+    <div class="label">Tool 1 · OUI lookup</div>
+    <p class="note" style="margin-top:0;margin-bottom:12px">Paste a MAC address or just the first three octets. We detect locally-administered MACs and look up real IEEE-registered manufacturers from a bundled database of ~250 common IoT, networking, camera, and consumer-electronics vendors.</p>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <input type="text" id="ouiInput2" placeholder="c0:56:e3:00:00:01  ·  c0-56-e3  ·  C056E3" style="flex:1;min-width:280px;background:var(--paper2);border:1px solid var(--line);border-radius:4px;padding:11px 14px;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--ink)" />
+      <button class="btn primary" id="ouiBtn2">Look up</button>
+    </div>
+    <div id="ouiResult2" style="display:none;margin-top:12px;padding:14px 18px;background:var(--paper);border:1px solid var(--line);border-radius:4px"></div>
+    <p class="hint" style="margin-top:10px">Not in our local database? Try the full IEEE registry at <a href="https://www.wireshark.org/tools/oui-lookup.html" target="_blank">wireshark.org/tools/oui-lookup.html</a>.</p>
+  </div>
+
+  <!-- TOOL 2 — Realm Decoder -->
+  <div class="card">
+    <div class="label">Tool 2 · realm decoder</div>
+    <p class="note" style="margin-top:0;margin-bottom:12px">Paste a <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 6px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">WWW-Authenticate</code> realm string and we'll extract the vendor name, detect any OUI embedded in the suffix (Axis convention), and tell you the cascade ceiling.</p>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <input type="text" id="realmInput" placeholder='AXIS_00408C12345  ·  Hikvision Digital Technology  ·  Login to Dahua' style="flex:1;min-width:280px;background:var(--paper2);border:1px solid var(--line);border-radius:4px;padding:11px 14px;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--ink)" />
+      <button class="btn primary" id="realmBtn">Decode</button>
+    </div>
+    <div id="realmResult" style="display:none;margin-top:12px;padding:14px 18px;background:var(--paper);border:1px solid var(--line);border-radius:4px"></div>
+  </div>
+
+  <!-- TOOL 3 — Banner Analyzer -->
+  <div class="card">
+    <div class="label">Tool 3 · banner analyzer</div>
+    <p class="note" style="margin-top:0;margin-bottom:12px">Paste raw <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 6px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">curl -sI</code> output, an RTSP <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 6px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">OPTIONS</code> response, or any HTTP-style header block. We'll classify each line as vendor-bearing identity evidence, generic transport, or noise, and report independent-class count + ceiling.</p>
+    <textarea id="bannerInput" placeholder="HTTP/1.1 401 Unauthorized&#10;Server: DNVRS-Webs&#10;WWW-Authenticate: Basic realm=&quot;Hikvision Digital Technology&quot;" style="height:130px"></textarea>
+    <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap">
+      <button class="btn primary" id="bannerBtn">Analyze</button>
+      <button class="btn" id="bannerSampleBtn">Try sample</button>
+      <button class="btn ghost" id="bannerResetBtn">↻ Clear</button>
+    </div>
+    <div id="bannerResult" style="display:none;margin-top:12px;padding:14px 18px;background:var(--paper);border:1px solid var(--line);border-radius:4px"></div>
+  </div>
+
+  <!-- TOOL 4 — Category Error Spotter -->
+  <div class="card">
+    <div class="label">Tool 4 · category-error spotter</div>
+    <p class="note" style="margin-top:0;margin-bottom:12px">Paste a scanner's JSON host record (e.g. from <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 6px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">nmap -oX</code> exported as JSON, a Shodan record, or an internal scanner's output). We scan for fields where the value's likely provenance doesn't match the field's name — e.g., a <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 6px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">firmware_version</code> that holds a Python library version.</p>
+    <textarea id="catInput" placeholder='{&#10;  "ip": "172.30.0.10",&#10;  "vendor": "Hikvision Digital Technology",&#10;  "firmware_version": "3.13.5",&#10;  "firmware_source": "nmap",&#10;  "services": [{ "port": 80, "product": "aiohttp", "version": "3.13.5" }]&#10;}' style="height:160px"></textarea>
+    <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap">
+      <button class="btn primary" id="catBtn">Scan for category errors</button>
+      <button class="btn" id="catSampleBtn">Try sample</button>
+      <button class="btn ghost" id="catResetBtn">↻ Clear</button>
+    </div>
+    <div id="catResult" style="display:none;margin-top:12px;padding:14px 18px;background:var(--paper);border:1px solid var(--line);border-radius:4px"></div>
+  </div>
+
+  <div class="summary" style="margin-top:18px">
+    <b>What you can do with these tools.</b> Pull a MAC from your router's DHCP page → drop it into Tool 1 → know the manufacturer. Capture an HTTP banner from a camera with <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 6px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:13px">curl -sI</code> → paste into Tool 3 → see how many corroborating classes you have and whether the cascade would admit the vendor. Have a scanner report you don't trust → paste the JSON into Tool 4 → it surfaces fields that look precise but are likely misattributed. None of this requires installing software, learning Python, or sending your data anywhere.
+  </div>
 
 </div>
 
@@ -2339,8 +2409,9 @@ document.addEventListener("DOMContentLoaded", () => {
 /* ============================================================
    SIMULATION 2 — IDENTIFY THE DEVICES
    ============================================================ */
-const S2_DEVICES = [
-  {
+const S2_ALL = {
+  // === clean devices (Easy + Medium + Hard) ===
+  hik: {
     id: 'A', ip: '172.30.0.10',
     truth: { vendor: 'Hikvision', admissibility: 'admissible', classes: 4, model: 'DS-2CD2143G2-I' },
     probes: {
@@ -2350,7 +2421,7 @@ const S2_DEVICES = [
       oui:  { vendor: 'Hikvision', class: 'oui',  lines: ['MAC: c0:56:e3:00:00:01', 'OUI c0:56:e3 → Hikvision (real IEEE)'] }
     }
   },
-  {
+  dah: {
     id: 'B', ip: '172.30.0.11',
     truth: { vendor: 'Dahua', admissibility: 'admissible', classes: 3, model: null },
     probes: {
@@ -2360,7 +2431,7 @@ const S2_DEVICES = [
       oui:  { vendor: 'Dahua', class: 'oui',  lines: ['MAC: a0:bd:1d:00:00:01', 'OUI a0:bd:1d → Dahua Technology (real IEEE)'] }
     }
   },
-  {
+  axi: {
     id: 'C', ip: '172.30.0.12',
     truth: { vendor: 'Axis', admissibility: 'conditional', classes: 2, model: null },
     probes: {
@@ -2370,19 +2441,57 @@ const S2_DEVICES = [
       oui:  { silent: true, lines: ['MAC: fa:4d:0e:e3:67:58', 'Locally administered (LAA) — OUI silent.'] }
     }
   },
-  {
+  trap1: {
     id: 'D', ip: '172.30.0.13',
     truth: { vendor: 'unknown', admissibility: 'skip', classes: 1, model: null, note: 'Only HTTP names a vendor; every other source is silent. One class is not enough to admit.' },
     probes: {
-      http: { vendor: 'Hikvision', class: 'http', lines: ['Server: nginx/1.18.0', 'WWW-Authenticate: Basic realm="Hikvision IP Camera"'], suspicious: true },
+      http: { vendor: 'Hikvision', class: 'http', lines: ['Server: nginx/1.18.0', 'WWW-Authenticate: Basic realm="Hikvision IP Camera"'] },
       rtsp: { silent: true, lines: ['Port 554 closed. No RTSP banner.'] },
       ssdp: { silent: true, lines: ['No SSDP/UPnP response.'] },
       oui:  { silent: true, lines: ['MAC: 02:42:ac:11:00:0d', 'Docker locally-administered range — OUI silent.'] }
     }
+  },
+  trap2: {
+    id: 'E', ip: '172.30.0.14',
+    truth: { vendor: 'Reolink', admissibility: 'admissible', classes: 3, model: null, note: 'Real Reolink camera — three classes corroborate cleanly. Watch out: the aiohttp banner is transport, not firmware.' },
+    probes: {
+      http: { vendor: 'Reolink', class: 'http', lines: ['Server: aiohttp 3.13.5 (transport, NOT firmware)', 'WWW-Authenticate: Basic realm="Reolink"'] },
+      rtsp: { vendor: 'Reolink', class: 'rtsp', lines: ['RTSP/1.0 401 Unauthorized', 'Server: Reolink RTSP Server 1.0'] },
+      ssdp: { silent: true, lines: ['No SSDP/UPnP response.'] },
+      oui:  { vendor: 'Reolink', class: 'oui',  lines: ['MAC: ec:71:db:88:00:01', 'OUI ec:71:db → Reolink (real IEEE)'] }
+    }
+  },
+  trap3: {
+    id: 'F', ip: '172.30.0.15',
+    truth: { vendor: 'HP', admissibility: 'admissible', classes: 3, model: null, note: 'HP printer, not a camera. Open ports 80 + 9100 (jetdirect). OUI confirms HP.' },
+    probes: {
+      http: { vendor: 'HP', class: 'http', lines: ['Server: HP-ChaiSOE/1.0', 'WWW-Authenticate: Basic realm="HP LaserJet"'] },
+      rtsp: { silent: true, lines: ['Port 554 closed. (Not a camera — this is a printer.)'] },
+      ssdp: { vendor: 'HP', class: 'ssdp', lines: ['device.xml found', 'manufacturer="HP Inc."', 'modelName="HP LaserJet Pro M404"'] },
+      oui:  { vendor: 'HP', class: 'oui',  lines: ['MAC: 9c:b6:54:00:11:22', 'OUI 9c:b6:54 → HP Inc. (real IEEE)'] }
+    }
   }
-];
+};
 
+const S2_DIFF_SETS = {
+  easy:   ['hik', 'dah'],
+  medium: ['hik', 'dah', 'axi', 'trap1'],
+  hard:   ['hik', 'dah', 'axi', 'trap1', 'trap2', 'trap3']
+};
+
+let S2_DEVICES = S2_DIFF_SETS.medium.map(k => S2_ALL[k]);
 let s2State = {};
+let s2Difficulty = 'medium';
+
+function s2SetDifficulty(d) {
+  if (!S2_DIFF_SETS[d]) return;
+  s2Difficulty = d;
+  S2_DEVICES = S2_DIFF_SETS[d].map(k => S2_ALL[k]);
+  s2Reset();
+  document.querySelectorAll('.s2-diff').forEach(b => {
+    b.classList.toggle('on', b.dataset.diff === d);
+  });
+}
 
 function s2Reset() {
   s2State = {};
@@ -2495,8 +2604,8 @@ function s2MaybeFinal() {
     + '<h3>Game complete.</h3>'
     + '<div class="s2-final-stats">'
     + '<div class="stat"><div class="k">Total score</div><div class="v">' + total + '</div><div class="n">points earned</div></div>'
-    + '<div class="stat"><div class="k">Correct verdicts</div><div class="v">' + correct + ' <span style="color:var(--faint);font-size:18px">/ 4</span></div><div class="n">vendor identified correctly</div></div>'
-    + '<div class="stat"><div class="k">Probes used</div><div class="v">' + probes + ' <span style="color:var(--faint);font-size:18px">/ 16</span></div><div class="n">' + Math.round(probes/16*100) + '% of available</div></div>'
+    + '<div class="stat"><div class="k">Correct verdicts</div><div class="v">' + correct + ' <span style="color:var(--faint);font-size:18px">/ ' + S2_DEVICES.length + '</span></div><div class="n">vendor identified correctly</div></div>'
+    + '<div class="stat"><div class="k">Probes used</div><div class="v">' + probes + ' <span style="color:var(--faint);font-size:18px">/ ' + (S2_DEVICES.length*4) + '</span></div><div class="n">' + Math.round(probes/(S2_DEVICES.length*4)*100) + '% of available</div></div>'
     + '</div>'
     + '<div class="teach' + (catErrors ? ' rose' : ' green') + '" style="margin-top:14px"><span class="hl">' + (catErrors ? 'Category errors: ' + catErrors : 'No category errors') + '</span> '
     + (catErrors
@@ -2586,6 +2695,394 @@ function renderResult(d, st) {
 function initSim2() {
   s2Reset();
   document.getElementById('s2Reset').addEventListener('click', s2Reset);
+  document.querySelectorAll('.s2-diff').forEach(b => {
+    b.addEventListener('click', () => s2SetDifficulty(b.dataset.diff));
+  });
+  initS2Tools();
+}
+
+/* ============================================================
+   SIMULATION 2 — SELF-SERVICE TOOLKIT
+   ============================================================ */
+
+/* Bundled OUI database — ~250 common manufacturers (IEEE). */
+const S2_OUI_DB = {
+  'C056E3':'Hikvision Digital Technology','44A642':'Hikvision Digital Technology','BCAD28':'Hikvision Digital Technology','0040A6':'Hikvision Digital Technology',
+  'A0BD1D':'Dahua Technology','3CEF8C':'Dahua Technology','4CBD8F':'Dahua Technology','90020A':'Dahua Technology','3CE36B':'Dahua Technology',
+  '00408C':'Axis Communications','ACCC8E':'Axis Communications','00408E':'Axis Communications','B8A44F':'Axis Communications',
+  'EC71DB':'Reolink','94E36D':'Reolink','EC2280':'Reolink',
+  '9C8ECD':'Amcrest (Dahua)','000D4B':'Bosch Security','002241':'Pelco','001E8A':'Pelco','3C6A9D':'Wyze','2CAA8E':'Wyze',
+  '041BBA':'Ring (Amazon)','840D8E':'Ring (Amazon)','64DBA0':'Ring (Amazon)',
+  '74C246':'Arlo (Netgear)','9098CF':'Arlo (Netgear)',
+  '64166D':'Nest Labs (Google)','188B45':'Nest Labs (Google)','18B430':'Nest Labs (Google)',
+  '00000C':'Cisco','000142':'Cisco','000163':'Cisco','002569':'Cisco','7C0976':'Cisco','F8C001':'Cisco Meraki','E0CB1D':'Cisco Meraki','00184D':'Cisco Meraki',
+  '24A43C':'Ubiquiti','802AA8':'Ubiquiti','78D294':'Ubiquiti','687251':'Ubiquiti','B4FBE4':'Ubiquiti','F09FC2':'Ubiquiti','FCECDA':'Ubiquiti',
+  '50C7BF':'TP-Link','C46E1F':'TP-Link','98DAC4':'TP-Link','60E327':'TP-Link','EC086B':'TP-Link','F0F249':'TP-Link','A42BB0':'TP-Link','98DED0':'TP-Link',
+  '108CCF':'Netgear','3498B5':'Netgear','08BD43':'Netgear','002624':'Netgear','9C3DCF':'Netgear','100D7F':'Netgear','9C5CF9':'Netgear','C03F0E':'Netgear',
+  '14914B':'Linksys','C0C1C0':'Linksys','C8D719':'Linksys','58EF68':'Belkin (Linksys)','9C0FE7':'Linksys',
+  '009C02':'HP / Aruba','3CA82A':'HP / Aruba','D8C7C8':'Aruba Networks','F40F1B':'Aruba Networks','F4DBE6':'Aruba Networks',
+  '441AFA':'Juniper Networks','002283':'Juniper Networks','3C610F':'Juniper Networks',
+  '70724F':'Fortinet','08123E':'Fortinet','D0D94F':'Fortinet','90F705':'Fortinet',
+  'A464F3':'Palo Alto Networks','000148':'Palo Alto Networks',
+  '001124':'Apple','3408BC':'Apple','3CD0F8':'Apple','7831C1':'Apple','BCEC5D':'Apple','5C95AE':'Apple','A8667F':'Apple','8C8590':'Apple','E0F5C6':'Apple','FCE9D8':'Apple','9803D8':'Apple','D8BB2C':'Apple','F018C5':'Apple','58E28F':'Apple','048D38':'Apple','F0DBE2':'Apple','D89695':'Apple','A45E60':'Apple','A4B197':'Apple','047977':'Apple',
+  '000266':'Samsung Electronics','08FC88':'Samsung Electronics','D487D8':'Samsung Electronics','E8508B':'Samsung Electronics','BC448B':'Samsung Electronics','78F882':'Samsung Electronics','C8147F':'Samsung Electronics','3CA1F0':'Samsung Electronics','C82197':'Samsung Electronics',
+  '94EB2C':'Google','F4F5D8':'Google (Chromecast/Nest)','F4F5E8':'Google','3C5AB4':'Google','1C49D5':'Google','30FD38':'Google',
+  '009027':'Intel','3CD92B':'Intel','7C7635':'Intel','D8FBC8':'Intel','D8FB5E':'Intel','346F90':'Intel','3411DF':'Intel','C016F2':'Intel',
+  '0030AB':'Microsoft','78328E':'Microsoft','7C1E52':'Microsoft','A0B3CC':'Microsoft','94DEB8':'Microsoft','60D9C7':'Microsoft','C81E9E':'Microsoft',
+  '001C23':'Dell','005056':'VMware (Dell)','008005':'Dell','00065B':'Dell','3417EB':'Dell','246E96':'Dell','782BCB':'Dell','509A4C':'Dell','D481D7':'Dell',
+  '0023AE':'Lenovo','00215C':'Lenovo','886B6E':'Lenovo','5CE0C5':'Lenovo','BCD074':'Lenovo','708EDE':'Lenovo','E0DBD1':'Lenovo','848505':'Lenovo','485F08':'Lenovo','8C16D2':'Lenovo',
+  '001321':'HP Inc.','002655':'HP Inc.','3464A9':'HP Inc.','9457A5':'HP Inc.','3C2C30':'HP Inc.','D89E62':'HP Inc.','8851FB':'HP Inc.','3C52A1':'HP Inc.','38EAA7':'HP Inc.','9CB654':'HP Inc.','1062E5':'HP Inc.','EC9A74':'HP Inc.','F4CE46':'HP Inc.','94E6F7':'HP Inc.','7838EA':'HP Inc.',
+  '78D6F0':'ASUSTeK','8C10D4':'ASUSTeK','382C4A':'ASUSTeK','1C872C':'ASUSTeK','A04E04':'ASUSTeK','485B39':'ASUSTeK',
+  '78282A':'Sonos','5CAAFD':'Sonos','000E58':'Sonos','B8E937':'Sonos',
+  '001788':'Signify (Philips Hue)','EC1BBD':'Signify (Philips Hue)','0017D3':'Signify (Philips Hue)','D8138B':'Signify (Philips Hue)',
+  '180373':'Ecobee','44617E':'Ecobee',
+  '688A45':'Roku','BCDDC2':'Roku','D8316E':'Roku','1849C4':'Roku','D4341F':'Roku','C8DB26':'Roku','08054F':'Roku','D0D2B0':'Roku','149182':'Roku','8CE7B3':'Roku','AC3A7A':'Roku','B0EE7B':'Roku','BCA920':'Roku','CC6DA0':'Roku','D83134':'Roku',
+  '848F69':'Amazon (Echo/Fire)','FCA667':'Amazon','F0D2F1':'Amazon','40B4CD':'Amazon','40A47B':'Amazon','7C61E7':'Amazon','3429EA':'Amazon','680545':'Amazon','882386':'Amazon','A002DC':'Amazon','A4D1D2':'Amazon','AC63BE':'Amazon','B47C9C':'Amazon','C40BCB':'Amazon','C8D5FE':'Amazon','D8975A':'Amazon','D0CFC4':'Amazon','DC54D7':'Amazon','E848B8':'Amazon','EC2BEB':'Amazon','F08173':'Amazon',
+  '24B2DE':'Espressif (ESP32/ESP8266)','246F28':'Espressif (ESP32/ESP8266)','3C6105':'Espressif (ESP32/ESP8266)','7C9EBD':'Espressif','94B97E':'Espressif','C4DD57':'Espressif','C45BBE':'Espressif',
+  'DCA632':'Raspberry Pi Foundation','B827EB':'Raspberry Pi Foundation','E45F01':'Raspberry Pi Foundation','D83ADD':'Raspberry Pi Foundation','28CDC1':'Raspberry Pi Foundation','D8BFC0':'Raspberry Pi Foundation',
+  '001740':'Siemens','000E8C':'Siemens','002023':'Siemens','08000E':'Siemens','088E90':'Siemens',
+  '00B0F4':'Schneider Electric','000BAB':'Schneider Electric','002022':'Schneider Electric','0080F4':'Schneider Electric',
+  '0000BC':'Rockwell Automation','001D9C':'Rockwell Automation','00045A':'Rockwell Automation',
+  '0040A7':'Honeywell','D85DFB':'Honeywell','002608':'Honeywell',
+  '001132':'Synology','002439':'Synology',
+  '0008CD':'QNAP','7C5A1C':'QNAP','244BFE':'QNAP','98C696':'QNAP',
+  '001DE2':'Western Digital','5C99E3':'Western Digital','00145C':'Western Digital','C46E7B':'Seagate Technology',
+  '001FF3':'Foxconn','00179A':'Foxconn','00FFFD':'Realtek','5254A4':'Realtek',
+  '0023D7':'Brother Industries','30055C':'Brother','008092':'Brother',
+  '0011A3':'Canon','000048':'Canon','088E14':'Canon',
+  '0080A3':'Lantronix',
+  '000C29':'VMware','001C42':'Parallels'
+};
+
+function s2NormOUI(input) {
+  if (!input) return null;
+  const c = input.replace(/[^0-9A-Fa-f]/g, '').toUpperCase();
+  if (c.length < 6) return null;
+  return c.substring(0, 6);
+}
+function s2IsLAA(oui) {
+  if (!oui || oui.length < 2) return false;
+  const fb = parseInt(oui.substring(0, 2), 16);
+  return (fb & 0x02) === 0x02;
+}
+
+/* TOOL 1 — OUI lookup */
+function s2OuiLookup() {
+  const oui = s2NormOUI(document.getElementById('ouiInput2').value);
+  const out = document.getElementById('ouiResult2');
+  out.style.display = 'block';
+  if (!oui) {
+    out.innerHTML = '<div style="color:var(--rose);font-family:Source Serif Pro,Georgia,serif;font-size:14px">Need at least 6 hex characters. Try <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:JetBrains Mono,monospace">c0:56:e3</code>.</div>';
+    return;
+  }
+  const formatted = oui.match(/.{2}/g).join(':');
+  const laa = s2IsLAA(oui);
+  const vendor = S2_OUI_DB[oui];
+  let html = '<div style="font-family:JetBrains Mono,monospace;font-size:11px;color:var(--faint);letter-spacing:1.4px;text-transform:uppercase;margin-bottom:6px">OUI · ' + formatted + '</div>';
+  if (laa) {
+    html += '<div style="font-family:Source Serif Pro,Georgia,serif;font-size:18px;font-weight:600;color:var(--amber);margin-bottom:8px">Locally administered — silent witness</div>';
+    html += '<div style="font-family:Source Serif Pro,Georgia,serif;font-size:14px;color:var(--dim);line-height:1.65">Assigned locally (Docker, virtualization, randomized Wi-Fi, operator override). Not tied to any IEEE-registered manufacturer. Treat as silent — lean on HTTP realm, RTSP, or SSDP for identity.</div>';
+  } else if (vendor) {
+    html += '<div style="font-family:Source Serif Pro,Georgia,serif;font-size:20px;font-weight:600;color:var(--green);margin-bottom:8px">' + vendor + '</div>';
+    html += '<div style="font-family:Source Serif Pro,Georgia,serif;font-size:14px;color:var(--dim);line-height:1.65">Registered to <b style="color:var(--ink)">' + vendor + '</b> in the IEEE registry. OUI confidence ceiling: <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:JetBrains Mono,monospace">0.40</code>. Corroborate with at least two other independent sources before treating the whole device as this vendor.</div>';
+  } else {
+    html += '<div style="font-family:Source Serif Pro,Georgia,serif;font-size:18px;font-weight:600;color:var(--dim);margin-bottom:8px">Not in our local database</div>';
+    html += '<div style="font-family:Source Serif Pro,Georgia,serif;font-size:14px;color:var(--dim);line-height:1.65">Universally administered (real IEEE registration) but not one of the ~250 we bundle. Look it up at <a href="https://standards-oui.ieee.org/oui/oui.txt" target="_blank">standards-oui.ieee.org</a>.</div>';
+  }
+  out.innerHTML = html;
+}
+
+/* TOOL 2 — realm decoder */
+function s2RealmDecode() {
+  const raw = (document.getElementById('realmInput').value || '').trim();
+  const out = document.getElementById('realmResult');
+  out.style.display = 'block';
+  if (!raw) { out.innerHTML = '<div style="color:var(--rose);font-family:Source Serif Pro,Georgia,serif;font-size:14px">Paste a realm string — for example <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:JetBrains Mono,monospace">AXIS_00408C12345</code></div>'; return; }
+
+  // Extract the inner realm value if wrapped (e.g. 'Basic realm="Foo"')
+  let realm = raw;
+  const m = raw.match(/realm\s*=\s*"([^"]+)"/i);
+  if (m) realm = m[1];
+
+  // Detect vendor
+  const vendorMatches = {
+    'AXIS_': 'Axis Communications',
+    'Axis': 'Axis Communications',
+    'Hikvision': 'Hikvision Digital Technology',
+    'DNVRS': 'Hikvision Digital Technology',
+    'Dahua': 'Dahua Technology',
+    'DahuaLogin': 'Dahua Technology',
+    'Login to Dahua': 'Dahua Technology',
+    'Reolink': 'Reolink',
+    'Amcrest': 'Amcrest (Dahua)',
+    'Bosch': 'Bosch Security',
+    'PHILIPS': 'Signify (Philips Hue)',
+    'Pelco': 'Pelco',
+    'HP': 'HP Inc.',
+    'Canon': 'Canon',
+    'Synology': 'Synology',
+    'QNAP': 'QNAP'
+  };
+  let vendor = null;
+  for (const k in vendorMatches) {
+    if (realm.toLowerCase().includes(k.toLowerCase())) { vendor = vendorMatches[k]; break; }
+  }
+
+  // Detect embedded OUI (6 hex chars in a row, possibly after a prefix like AXIS_)
+  let embeddedOui = null;
+  const ouiMatch = realm.match(/([0-9A-Fa-f]{6,12})/);
+  if (ouiMatch && ouiMatch[1].length >= 6) {
+    const candidate = ouiMatch[1].substring(0, 6).toUpperCase();
+    if (S2_OUI_DB[candidate]) embeddedOui = { oui: candidate, vendor: S2_OUI_DB[candidate] };
+  }
+
+  let html = '<div style="font-family:JetBrains Mono,monospace;font-size:11px;color:var(--faint);letter-spacing:1.4px;text-transform:uppercase;margin-bottom:6px">Realm</div>';
+  html += '<div style="font-family:JetBrains Mono,monospace;font-size:14px;color:var(--ink);margin-bottom:14px;background:var(--paper2);border:1px solid var(--line);padding:8px 12px;border-radius:3px">' + realm.replace(/</g,'&lt;') + '</div>';
+
+  if (vendor) {
+    html += '<div style="font-family:Source Serif Pro,Georgia,serif;font-size:18px;font-weight:600;color:var(--green);margin-bottom:6px">Vendor: ' + vendor + '</div>';
+    html += '<div style="font-family:Source Serif Pro,Georgia,serif;font-size:14px;color:var(--dim);line-height:1.65;margin-bottom:10px">Vendor name appears in the realm string. HTTP realm confidence ceiling: <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:JetBrains Mono,monospace">0.70</code> — application-layer self-report, firmware-baked.</div>';
+  } else {
+    html += '<div style="font-family:Source Serif Pro,Georgia,serif;font-size:16px;font-weight:600;color:var(--dim);margin-bottom:10px">No vendor name detected in this realm.</div>';
+  }
+
+  if (embeddedOui) {
+    html += '<div style="border-top:1px dashed var(--line);padding-top:10px;margin-top:10px"><div style="font-family:Inter,system-ui,sans-serif;font-size:11px;color:var(--faint);letter-spacing:1.2px;text-transform:uppercase;font-weight:600;margin-bottom:4px">Embedded OUI detected</div><div style="font-family:Source Serif Pro,Georgia,serif;font-size:14.5px;color:var(--ink);line-height:1.65"><code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:JetBrains Mono,monospace">' + embeddedOui.oui.match(/.{2}/g).join(':') + '</code> → ' + embeddedOui.vendor + '. Some vendors (Axis especially) embed a real OUI inside the realm suffix. This is the realm <i>doing the work of the OUI</i> when the link-layer adapter is silent.</div></div>';
+  }
+  out.innerHTML = html;
+}
+
+/* TOOL 3 — banner analyzer */
+function s2BannerAnalyze() {
+  const raw = document.getElementById('bannerInput').value || '';
+  const out = document.getElementById('bannerResult');
+  out.style.display = 'block';
+  if (!raw.trim()) { out.innerHTML = '<div style="color:var(--rose);font-family:Source Serif Pro,Georgia,serif;font-size:14px">Paste an HTTP or RTSP response block to analyze.</div>'; return; }
+
+  const lines = raw.split(/\r?\n/);
+  const findings = [];
+  const classes = new Set();
+  let highestCeiling = 0;
+  let detectedVendor = null;
+
+  const vendorKeywords = ['Hikvision','Dahua','Axis','AXIS','Reolink','Amcrest','Bosch','Pelco','HP','Canon','Synology','QNAP','Apple','Sonos'];
+  const genericServers = ['nginx','Apache','aiohttp','lighttpd','Webs','IIS','Werkzeug','gunicorn','Tornado','GoAhead','Boa','mini_httpd','thttpd'];
+
+  lines.forEach(line => {
+    const t = line.trim();
+    if (!t) return;
+
+    // RTSP / HTTP status line
+    if (/^(HTTP|RTSP)\/\d/.test(t)) {
+      findings.push({ kind: 'meta', text: t, note: 'Status line — protocol + response code. Not identity evidence.' });
+      return;
+    }
+
+    // Server: header
+    let m = t.match(/^Server:\s*(.+)$/i);
+    if (m) {
+      const v = m[1].trim();
+      let vendor = null;
+      for (const k of vendorKeywords) {
+        if (v.toLowerCase().includes(k.toLowerCase())) { vendor = k; break; }
+      }
+      let generic = null;
+      for (const g of genericServers) {
+        if (v.toLowerCase().includes(g.toLowerCase())) { generic = g; break; }
+      }
+      if (vendor) {
+        findings.push({ kind: 'vendor', text: t, note: 'Vendor-bearing Server token: ' + vendor + '. Application-class, ceiling 0.70.' });
+        classes.add('http_server'); highestCeiling = Math.max(highestCeiling, 0.70); detectedVendor = detectedVendor || vendor;
+      } else if (generic) {
+        findings.push({ kind: 'generic', text: t, note: 'Generic web-server token (' + generic + '). Bounds the software stack, but says nothing about the device.' });
+      } else {
+        findings.push({ kind: 'unknown', text: t, note: 'Unrecognized Server token. Treat as low-confidence vendor evidence at best.' });
+      }
+      return;
+    }
+
+    // WWW-Authenticate
+    m = t.match(/^WWW-Authenticate:\s*(.+)$/i);
+    if (m) {
+      const realmMatch = m[1].match(/realm\s*=\s*"([^"]+)"/i);
+      let vendor = null;
+      if (realmMatch) {
+        for (const k of vendorKeywords) {
+          if (realmMatch[1].toLowerCase().includes(k.toLowerCase())) { vendor = k; break; }
+        }
+      }
+      if (vendor) {
+        findings.push({ kind: 'vendor', text: t, note: 'Vendor-bearing realm (' + vendor + '). Firmware-baked, ceiling 0.70.' });
+        classes.add('http_realm'); highestCeiling = Math.max(highestCeiling, 0.70); detectedVendor = detectedVendor || vendor;
+      } else {
+        findings.push({ kind: 'unknown', text: t, note: 'Realm did not match a known vendor. Could still be vendor-specific — inspect manually.' });
+      }
+      return;
+    }
+
+    // X-* / random headers
+    findings.push({ kind: 'other', text: t, note: 'Header recorded; not identity-bearing.' });
+  });
+
+  const kindColor = { vendor:'var(--green)', generic:'var(--amber)', unknown:'var(--rose)', meta:'var(--faint)', other:'var(--faint)' };
+
+  let html = '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:14px">';
+  html += '<div style="background:var(--paper2);border:1px solid var(--line);padding:10px 14px;border-radius:3px"><div style="font-family:Inter,system-ui,sans-serif;font-size:10.5px;color:var(--faint);letter-spacing:1.2px;text-transform:uppercase;font-weight:600">Vendor detected</div><div style="font-family:Source Serif Pro,Georgia,serif;font-size:20px;font-weight:600;margin-top:2px;color:' + (detectedVendor ? 'var(--green)' : 'var(--dim)') + '">' + (detectedVendor || '—') + '</div></div>';
+  html += '<div style="background:var(--paper2);border:1px solid var(--line);padding:10px 14px;border-radius:3px"><div style="font-family:Inter,system-ui,sans-serif;font-size:10.5px;color:var(--faint);letter-spacing:1.2px;text-transform:uppercase;font-weight:600">Independent classes</div><div style="font-family:Source Serif Pro,Georgia,serif;font-size:24px;font-weight:600;margin-top:2px;color:var(--ink)">' + classes.size + '</div></div>';
+  html += '<div style="background:var(--paper2);border:1px solid var(--line);padding:10px 14px;border-radius:3px"><div style="font-family:Inter,system-ui,sans-serif;font-size:10.5px;color:var(--faint);letter-spacing:1.2px;text-transform:uppercase;font-weight:600">Confidence ceiling</div><div style="font-family:Source Serif Pro,Georgia,serif;font-size:24px;font-weight:600;margin-top:2px;color:var(--ink)">' + (highestCeiling === 0 ? '—' : highestCeiling.toFixed(2)) + '</div></div>';
+  html += '</div>';
+
+  html += '<div style="font-family:Inter,system-ui,sans-serif;font-size:10.5px;color:var(--faint);letter-spacing:1.2px;text-transform:uppercase;font-weight:600;margin-bottom:8px">Line-by-line breakdown</div>';
+  findings.forEach(f => {
+    html += '<div style="display:grid;grid-template-columns:18px 1fr;gap:10px;padding:8px 0;border-bottom:1px solid var(--line)"><div style="width:8px;height:8px;border-radius:50%;background:' + (kindColor[f.kind] || 'var(--faint)') + ';margin-top:6px"></div><div><div style="font-family:JetBrains Mono,monospace;font-size:12px;color:var(--ink);word-break:break-all">' + f.text.replace(/</g,'&lt;') + '</div><div style="font-family:Source Serif Pro,Georgia,serif;font-size:13px;color:var(--dim);line-height:1.55;margin-top:3px">' + f.note + '</div></div></div>';
+  });
+
+  out.innerHTML = html;
+}
+
+const S2_BANNER_SAMPLE = 'HTTP/1.1 401 Unauthorized\nServer: DNVRS-Webs\nDate: Sun, 24 May 2026 15:56:02 GMT\nContent-Type: text/html; charset=UTF-8\nWWW-Authenticate: Basic realm="Hikvision Digital Technology"\nX-Frame-Options: SAMEORIGIN';
+
+/* TOOL 4 — category error spotter */
+function s2CatScan() {
+  const raw = document.getElementById('catInput').value || '';
+  const out = document.getElementById('catResult');
+  out.style.display = 'block';
+  let obj;
+  try { obj = JSON.parse(raw); }
+  catch (e) {
+    out.innerHTML = '<div style="color:var(--rose);font-family:Source Serif Pro,Georgia,serif;font-size:14px">JSON parse error: ' + e.message + '. Paste a valid JSON object.</div>';
+    return;
+  }
+
+  const flags = [];
+
+  // Rule 1 — firmware_version that equals a service product version
+  const fwv = obj.firmware_version;
+  if (fwv && typeof fwv === 'string') {
+    const services = obj.services || [];
+    services.forEach(s => {
+      if (s.version && s.version === fwv) {
+        flags.push({
+          severity: 'high',
+          field: 'firmware_version',
+          why: 'Value "' + fwv + '" matches service.product=' + (s.product || '?') + ' on port ' + (s.port || '?') + '. firmware_version is being populated from a service banner, which is a category error — that string identifies the software stack, not the device firmware.'
+        });
+      }
+    });
+    // Generic Python/web library names
+    const stackKeywords = ['aiohttp','python','nginx','apache','nodejs','express','werkzeug','gunicorn','tornado','flask','lighttpd'];
+    stackKeywords.forEach(k => {
+      const fws = String(obj.firmware_source || '').toLowerCase();
+      if (fws.includes('nmap') || fws.includes('banner')) {
+        flags.push({
+          severity: 'high',
+          field: 'firmware_source',
+          why: 'firmware_source = "' + obj.firmware_source + '". A firmware version sourced from a network banner is almost always the web-server software, not the device firmware. Reject this field for CVE matching.'
+        });
+      }
+    });
+  }
+
+  // Rule 2 — vendor field equals a generic webserver name
+  const genericVendor = ['apache','nginx','aiohttp','iis','lighttpd','tornado','gunicorn'];
+  if (obj.vendor && genericVendor.includes(String(obj.vendor).toLowerCase())) {
+    flags.push({
+      severity: 'high',
+      field: 'vendor',
+      why: 'vendor = "' + obj.vendor + '". That is a web-server software name, not a device manufacturer. The cascade picked up the Server: header and put it in the vendor field.'
+    });
+  }
+
+  // Rule 3 — model field that looks like a generic webserver
+  if (obj.model && genericVendor.includes(String(obj.model).toLowerCase())) {
+    flags.push({
+      severity: 'high',
+      field: 'model',
+      why: 'model = "' + obj.model + '". That is web-server software, not a device model.'
+    });
+  }
+
+  // Rule 4 — firmware_version with a version number that looks software-shaped (semver) when there's no firmware-bearing source
+  if (fwv && /^\d+\.\d+\.\d+$/.test(fwv) && (!obj.firmware_source || ['nmap','banner','aiohttp','python','http'].some(k => String(obj.firmware_source).toLowerCase().includes(k)))) {
+    if (!flags.some(f => f.field === 'firmware_version')) {
+      flags.push({
+        severity: 'med',
+        field: 'firmware_version',
+        why: 'firmware_version = "' + fwv + '" looks semver-shaped. Without an ONVIF, SSDP serialNumber, or vendor-signed firmware source, treat this as suspect.'
+      });
+    }
+  }
+
+  // Rule 5 — high confidence with no SSDP / ONVIF
+  if (obj.confidence && Number(obj.confidence) >= 0.85) {
+    const hasStructured = obj.enrichment && (obj.enrichment.ssdp_model || obj.enrichment.onvif_model);
+    if (!hasStructured) {
+      flags.push({
+        severity: 'med',
+        field: 'confidence',
+        why: 'confidence = ' + obj.confidence + ' (≥0.85) but no SSDP/ONVIF structured self-report observed. Without a structured source, the chapter ceilings cap at 0.75.'
+      });
+    }
+  }
+
+  let html = '';
+  if (flags.length === 0) {
+    html += '<div style="font-family:Source Serif Pro,Georgia,serif;font-size:16px;font-weight:600;color:var(--green);margin-bottom:6px">No obvious category errors found.</div>';
+    html += '<div style="font-family:Source Serif Pro,Georgia,serif;font-size:14px;color:var(--dim);line-height:1.65">We checked for: firmware_version matching a service banner, vendor/model fields containing generic web-server names, suspiciously-semver firmware values without a structured source, and over-confident verdicts without SSDP/ONVIF. None tripped. Still review by hand — this tool only catches the common patterns.</div>';
+  } else {
+    html += '<div style="font-family:Source Serif Pro,Georgia,serif;font-size:18px;font-weight:600;color:var(--rose);margin-bottom:12px">' + flags.length + ' likely category error' + (flags.length===1?'':'s') + ' detected</div>';
+    flags.forEach(f => {
+      const sevColor = f.severity === 'high' ? 'var(--rose)' : 'var(--amber)';
+      html += '<div style="border-left:3px solid ' + sevColor + ';background:var(--paper2);padding:12px 16px;margin-bottom:10px;border-radius:0 3px 3px 0">';
+      html += '<div style="font-family:Inter,system-ui,sans-serif;font-size:10.5px;color:' + sevColor + ';letter-spacing:1.2px;text-transform:uppercase;font-weight:700;margin-bottom:4px">' + f.severity + ' · field: ' + f.field + '</div>';
+      html += '<div style="font-family:Source Serif Pro,Georgia,serif;font-size:14px;color:var(--ink);line-height:1.65">' + f.why + '</div>';
+      html += '</div>';
+    });
+  }
+  out.innerHTML = html;
+}
+
+const S2_CAT_SAMPLE = JSON.stringify({
+  ip: '172.30.0.10',
+  vendor: 'Hikvision Digital Technology',
+  device_type: 'camera',
+  confidence: 0.85,
+  firmware_version: '3.13.5',
+  firmware_source: 'nmap',
+  services: [
+    { port: 80, service: 'http', product: 'aiohttp', version: '3.13.5' },
+    { port: 554, service: 'rtsp', product: 'Hikvision Streaming Server', version: '1.0' }
+  ],
+  enrichment: { http_server: 'DNVRS-Webs', rtsp_server: 'Hikvision Streaming Server 1.0' }
+}, null, 2);
+
+function initS2Tools() {
+  // Tool 1
+  const ouiBtn = document.getElementById('ouiBtn2');
+  if (ouiBtn) {
+    ouiBtn.addEventListener('click', s2OuiLookup);
+    document.getElementById('ouiInput2').addEventListener('keypress', e => { if (e.key === 'Enter') s2OuiLookup(); });
+  }
+  // Tool 2
+  const realmBtn = document.getElementById('realmBtn');
+  if (realmBtn) {
+    realmBtn.addEventListener('click', s2RealmDecode);
+    document.getElementById('realmInput').addEventListener('keypress', e => { if (e.key === 'Enter') s2RealmDecode(); });
+  }
+  // Tool 3
+  const bannerBtn = document.getElementById('bannerBtn');
+  if (bannerBtn) {
+    bannerBtn.addEventListener('click', s2BannerAnalyze);
+    document.getElementById('bannerSampleBtn').addEventListener('click', () => { document.getElementById('bannerInput').value = S2_BANNER_SAMPLE; });
+    document.getElementById('bannerResetBtn').addEventListener('click', () => { document.getElementById('bannerInput').value = ''; document.getElementById('bannerResult').style.display = 'none'; });
+  }
+  // Tool 4
+  const catBtn = document.getElementById('catBtn');
+  if (catBtn) {
+    catBtn.addEventListener('click', s2CatScan);
+    document.getElementById('catSampleBtn').addEventListener('click', () => { document.getElementById('catInput').value = S2_CAT_SAMPLE; });
+    document.getElementById('catResetBtn').addEventListener('click', () => { document.getElementById('catInput').value = ''; document.getElementById('catResult').style.display = 'none'; });
+  }
 }
 </script>
 </body>
