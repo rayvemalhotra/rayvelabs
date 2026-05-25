@@ -973,6 +973,42 @@ footer a:hover{color:var(--ink);text-decoration-color:var(--ink)}
       <button class="btn primary" id="ouiBtn2">Look up</button>
     </div>
     <div id="ouiResult2" style="display:none;margin-top:12px;padding:14px 18px;background:var(--paper);border:1px solid var(--line);border-radius:4px"></div>
+
+    <details style="margin-top:16px">
+      <summary style="cursor:pointer;font-family:'Inter',system-ui,sans-serif;font-size:13px;color:var(--ink);padding:6px 0;font-weight:500">How do I get a MAC address from my terminal?</summary>
+      <div style="margin-top:10px">
+        <p class="note" style="margin-top:0;margin-bottom:14px">Pick your operating system. Each block has two commands: the first lists every device your machine has talked to recently, the second pulls the MAC for a single IP. Run them in <b>Terminal</b> (macOS / Linux) or <b>PowerShell</b> (Windows).</p>
+
+        <div style="margin-bottom:18px">
+          <div style="font-family:'Inter',system-ui,sans-serif;font-size:11px;color:var(--faint);letter-spacing:1.4px;text-transform:uppercase;font-weight:600;margin-bottom:6px">macOS</div>
+          <div class="cmdbox"><span id="macCmd1">arp -a</span><button class="copy" data-copy="macCmd1">copy</button></div>
+          <p class="hint" style="margin:6px 0 10px">Lists every IP→MAC pair currently in the cache. Output looks like <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">? (192.168.1.50) at c0:56:e3:00:11:22 on en0 ifscope [ethernet]</code>. The first three octets — <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">c0:56:e3</code> — go in the box above.</p>
+          <div class="cmdbox"><span id="macCmd2">ping -c1 192.168.1.50 &gt;/dev/null 2&gt;&amp;1; arp -n 192.168.1.50</span><button class="copy" data-copy="macCmd2">copy</button></div>
+          <p class="hint" style="margin:6px 0 0">Replace the IP with the device you care about. The ping forces the device into the cache; the arp command then returns just its MAC.</p>
+        </div>
+
+        <div style="margin-bottom:18px">
+          <div style="font-family:'Inter',system-ui,sans-serif;font-size:11px;color:var(--faint);letter-spacing:1.4px;text-transform:uppercase;font-weight:600;margin-bottom:6px">Linux</div>
+          <div class="cmdbox"><span id="linCmd1">ip neigh show</span><button class="copy" data-copy="linCmd1">copy</button></div>
+          <p class="hint" style="margin:6px 0 10px">Modern Linux. Older systems: use <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">arp -a</code> instead.</p>
+          <div class="cmdbox"><span id="linCmd2">ping -c1 192.168.1.50 &gt;/dev/null 2&gt;&amp;1; ip neigh show 192.168.1.50</span><button class="copy" data-copy="linCmd2">copy</button></div>
+          <p class="hint" style="margin:6px 0 0">Replace <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">192.168.1.50</code> with your device's IP.</p>
+        </div>
+
+        <div style="margin-bottom:8px">
+          <div style="font-family:'Inter',system-ui,sans-serif;font-size:11px;color:var(--faint);letter-spacing:1.4px;text-transform:uppercase;font-weight:600;margin-bottom:6px">Windows (PowerShell or CMD)</div>
+          <div class="cmdbox"><span id="winCmd1">arp -a</span><button class="copy" data-copy="winCmd1">copy</button></div>
+          <p class="hint" style="margin:6px 0 10px">Output uses dashes: <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">c0-56-e3-00-11-22</code>. Either form works in the lookup box.</p>
+          <div class="cmdbox"><span id="winCmd2">ping -n 1 192.168.1.50 &gt; nul &amp; arp -a 192.168.1.50</span><button class="copy" data-copy="winCmd2">copy</button></div>
+          <p class="hint" style="margin:6px 0 0">Replace the IP with the device you want to identify.</p>
+        </div>
+
+        <p class="note" style="margin-top:14px;background:var(--paper2);border-left:3px solid var(--ink);padding:10px 14px;border-radius:0 3px 3px 0;font-size:13.5px"><b>Where to find a device's IP first.</b> Your router's admin page (usually <code style="background:var(--paper);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">192.168.1.1</code> or <code style="background:var(--paper);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">192.168.0.1</code>) lists every device's IP under "DHCP clients" or "Connected devices." Or sweep your subnet first with the Scan your network tab.</p>
+
+        <p class="note" style="margin-top:10px"><b>Privacy:</b> these commands run entirely on your own machine. Nothing leaves your computer. The OUI lookup itself runs in your browser against a bundled database — no network call when you click <b>Look up</b>.</p>
+      </div>
+    </details>
+
     <p class="hint" style="margin-top:10px">Not in our local database? Try the full IEEE registry at <a href="https://www.wireshark.org/tools/oui-lookup.html" target="_blank">wireshark.org/tools/oui-lookup.html</a>.</p>
   </div>
 
