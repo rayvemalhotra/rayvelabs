@@ -1430,18 +1430,105 @@ footer a:hover{color:var(--ink);text-decoration-color:var(--ink)}
 
 <!-- =========================== 1. WHAT IS A FINGERPRINT? =========================== -->
 <div class="card">
-  <div class="label">1 · What is a fingerprint?</div>
-  <p class="note" style="margin-top:0">A fingerprint is <b>not the raw event</b>. It is a compact, normalized representation of selected features. It removes sensitive details and keeps useful behavioral patterns so two events can be safely compared.</p>
+  <div class="label">1 · What is a fingerprint? · follow one log line through the pipeline</div>
+  <p class="note" style="margin-top:0">A fingerprint is <b>not the raw event</b>. It is a compact, normalized representation of selected features that removes sensitive details and keeps useful behavioral patterns. Below: one real log line, transformed at every stage. Watch what gets dropped and what survives.</p>
 
-  <div class="pipeline">
-    <div class="pstep"><div class="pn">Step 1</div><div class="pt">Raw event</div><div class="pd">Everything observed in the log.</div></div>
-    <div class="pstep"><div class="pn">Step 2</div><div class="pt">Selected features</div><div class="pd">Only the parts useful for analysis.</div></div>
-    <div class="pstep"><div class="pn">Step 3</div><div class="pt">Normalized pattern</div><div class="pd">Sensitive details removed, values generalized.</div></div>
-    <div class="pstep"><div class="pn">Step 4</div><div class="pt">Hash</div><div class="pd">SHA-256 of the normalized pattern.</div></div>
-    <div class="pstep"><div class="pn">Step 5</div><div class="pt">Comparison</div><div class="pd">Two events checked for similar behavior.</div></div>
+  <style>
+    .wl-flow{display:grid;grid-template-columns:1fr;gap:14px;margin-top:18px}
+    .wl-flow .wl-stage{background:var(--paper2);border:1px solid var(--line);border-radius:4px;padding:14px 18px;position:relative}
+    .wl-flow .wl-stage::after{content:"↓";display:block;text-align:center;color:var(--faint);font-size:18px;position:absolute;left:50%;bottom:-22px;transform:translateX(-50%);font-family:'JetBrains Mono',monospace}
+    .wl-flow .wl-stage:last-child::after{display:none}
+    .wl-flow .wl-stage .wl-h{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;flex-wrap:wrap;gap:6px}
+    .wl-flow .wl-stage .wl-num{font-family:'Inter',system-ui,sans-serif;font-size:10.5px;color:var(--faint);letter-spacing:1.4px;text-transform:uppercase;font-weight:700}
+    .wl-flow .wl-stage .wl-t{font-family:'Source Serif Pro',Georgia,serif;font-size:16px;font-weight:600;color:var(--ink)}
+    .wl-flow .wl-stage .wl-d{font-family:'Source Serif Pro',Georgia,serif;font-size:13.5px;color:var(--dim);margin-bottom:10px;line-height:1.55}
+    .wl-flow .wl-stage .wl-data{font-family:'JetBrains Mono',monospace;font-size:12px;background:var(--paper);border:1px solid var(--line);border-radius:3px;padding:10px 12px;line-height:1.65;word-break:break-all;color:var(--ink)}
+    .wl-flow .wl-stage .wl-rm{color:var(--rose);text-decoration:line-through;text-decoration-thickness:1px;text-decoration-color:rgba(138,58,58,.5)}
+    .wl-flow .wl-stage .wl-kp{color:var(--green);font-weight:600}
+    .wl-flow .wl-stage .wl-hl{background:#fff5d1;padding:0 2px;border-radius:2px}
+  </style>
+
+  <div class="wl-flow">
+    <div class="wl-stage">
+      <div class="wl-h"><span class="wl-num">Stage 1 · raw event</span><span class="wl-t">Everything observed</span></div>
+      <div class="wl-d">The Apache/Nginx access log line as written by the web server. Contains the requester's <span class="wl-rm">IP</span>, <span class="wl-rm">exact timestamp</span>, <span class="wl-rm">full URL with query</span>, <span class="wl-rm">full user-agent string</span>, <span class="wl-rm">referrer</span> — all sensitive.</div>
+      <div class="wl-data"><span class="wl-rm">198.51.100.23</span> - - [<span class="wl-rm">25/May/2026:10:01:18 -0400</span>] "POST /login HTTP/1.1" 401 <span class="wl-rm">932</span> "<span class="wl-rm">https://example.test/login</span>" "<span class="wl-rm">Mozilla/5.0</span>"</div>
+    </div>
+
+    <div class="wl-stage">
+      <div class="wl-h"><span class="wl-num">Stage 2 · selected features</span><span class="wl-t">Only what's useful for analysis</span></div>
+      <div class="wl-d">Pick the structural attributes of the request. <span class="wl-kp">Keep</span>: HTTP method, the path, the status code, whether a query was present, the user-agent family. <span class="wl-rm">Drop</span>: IP, exact time, query value, response size, referrer URL, full UA string.</div>
+      <div class="wl-data">method = <span class="wl-kp">POST</span><br>path = <span class="wl-kp">/login</span><br>status_code = <span class="wl-kp">401</span><br>query_present = <span class="wl-kp">false</span><br>user_agent_family = <span class="wl-kp">browser</span></div>
+    </div>
+
+    <div class="wl-stage">
+      <div class="wl-h"><span class="wl-num">Stage 3 · normalized pattern</span><span class="wl-t">Sensitive removed · values generalized</span></div>
+      <div class="wl-d">Each selected feature collapses into a generalized category. Timestamp becomes a <code>time_bucket</code>. Path becomes a <code>path_category</code>. Status becomes a <code>status_class</code>. The behavior pattern emerges from the combination.</div>
+      <div class="wl-data"><span class="wl-hl">request.post.login.4xx.browser.query_absent.business_hours.failed_login_pattern</span></div>
+    </div>
+
+    <div class="wl-stage">
+      <div class="wl-h"><span class="wl-num">Stage 4 · SHA-256 hash</span><span class="wl-t">Deterministic · irreversible · fixed-length</span></div>
+      <div class="wl-d">A cryptographic hash of the normalized pattern. Same pattern always produces the same hash. Different patterns produce different hashes — even a single token change cascades through the entire output (avalanche property).</div>
+      <div class="wl-data" style="font-size:11.5px;letter-spacing:.3px">8c91a1d2 4f7e3b6a 5c8d2e9f 1b4a7c0d e2f5a8c3 1d6b9f2e 4a7c1d8e 3b6a5c9f</div>
+    </div>
+
+    <div class="wl-stage">
+      <div class="wl-h"><span class="wl-num">Stage 5 · comparison</span><span class="wl-t">Same fingerprint → similar behavior</span></div>
+      <div class="wl-d">Two events with the <b>same fingerprint hash</b> describe the same behavior. They may or may not be the same actor. Two events with <b>partial token overlap</b> describe related behavior — useful for clustering and detection rules.</div>
+      <div class="wl-data">Row A: request.post.login.4xx.browser.query_absent.business_hours.<span class="wl-hl">failed_login_pattern</span><br>Row B: request.post.login.4xx.browser.query_absent.business_hours.<span class="wl-hl">failed_login_pattern</span><br><br><span class="wl-kp">→ Same hash. Same behavior. Different requests at different times, from a different IP, can still match.</span></div>
+    </div>
   </div>
 
-  <p class="note"><b>The core takeaway.</b> A good fingerprint preserves <i>behavior</i> while discarding <i>identity</i>. The hash protects the normalized pattern from direct exposure, but the feature design matters more than the hash. Two events with the same fingerprint behave the same; they may or may not come from the same actor.</p>
+  <p class="note" style="margin-top:24px"><b>The core takeaway.</b> A good fingerprint preserves <i>behavior</i> while discarding <i>identity</i>. The hash protects the normalized pattern from direct exposure, but the feature design (stage 2) matters more than the hash (stage 4). Two events with the same fingerprint behave the same; they may or may not come from the same actor. That distinction is the difference between an analyst tool and an accusation.</p>
+</div>
+
+<!-- =========================== 1B. AVALANCHE PROPERTY =========================== -->
+<div class="card">
+  <div class="label">1b · The avalanche property · why a tiny change rewrites the hash</div>
+  <p class="note" style="margin-top:0">SHA-256 is designed so that any single-bit change in the input produces a completely different output. This is critical for fingerprints: it means the hash is sensitive to even the smallest meaningful difference in the normalized pattern.</p>
+
+  <style>
+    .wl-aval{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
+    @media(max-width:680px){.wl-aval{grid-template-columns:1fr}}
+    .wl-aval .wl-av{background:var(--paper2);border:1px solid var(--line);border-radius:4px;padding:14px 18px}
+    .wl-aval .wl-av .wl-av-h{font-family:'Inter',system-ui,sans-serif;font-size:10.5px;color:var(--faint);letter-spacing:1.4px;text-transform:uppercase;font-weight:700;margin-bottom:6px}
+    .wl-aval .wl-av .wl-av-d{font-family:'JetBrains Mono',monospace;font-size:11.5px;line-height:1.65;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:3px;padding:9px 11px;word-break:break-all;margin-bottom:6px}
+    .wl-aval .wl-av .wl-av-d.changed{background:#fbf6e8;border-color:var(--amber)}
+    .wl-aval .wl-av .wl-av-c{font-family:'Source Serif Pro',Georgia,serif;font-size:13px;color:var(--dim);line-height:1.55}
+  </style>
+  <div class="wl-aval">
+    <div class="wl-av">
+      <div class="wl-av-h">Pattern A</div>
+      <div class="wl-av-d">request.post.login.4xx.browser.query_absent.business_hours.failed_login_pattern</div>
+      <div class="wl-av-h" style="margin-top:8px">SHA-256</div>
+      <div class="wl-av-d" style="letter-spacing:.3px">8c91a1d2…3b6a5c9f</div>
+      <div class="wl-av-c">A failed login.</div>
+    </div>
+    <div class="wl-av">
+      <div class="wl-av-h">Pattern B (one token different)</div>
+      <div class="wl-av-d changed">request.<span style="background:#ffd97a;padding:0 2px;border-radius:2px">get</span>.login.4xx.browser.query_absent.business_hours.failed_login_pattern</div>
+      <div class="wl-av-h" style="margin-top:8px">SHA-256</div>
+      <div class="wl-av-d changed" style="letter-spacing:.3px">f3c2b8a7…1d4e6f9c</div>
+      <div class="wl-av-c">Method flipped from <code>post</code> to <code>get</code>. The hash is entirely different.</div>
+    </div>
+  </div>
+  <p class="note" style="margin-top:18px"><b>Why this matters.</b> If two fingerprints match, the underlying behavior was truly the same. If they don't match, the behavior differed in at least one meaningful way. Hashes can't tell you <i>which</i> token changed — the visible normalized pattern above the hash does that. The hash is the comparison key; the pattern is the audit trail.</p>
+</div>
+
+<!-- =========================== 1C. USE THIS WITH YOUR OWN DATA =========================== -->
+<div class="card" style="background:#fbf6e8;border-color:var(--amber);border-left-width:4px;border-left-color:var(--amber)">
+  <div class="label" style="color:var(--amber)">Use this with your own data</div>
+  <p class="note" style="margin-top:0;margin-bottom:14px"><b>This page is a real tool.</b> If you operate a web server, you can paste your own access logs into Section 2 below and the lab will convert each request into a fingerprint you can: <b>group</b> (which requests behaved similarly?), <b>compare</b> (does this new request match an old one?), <b>publish</b> (share patterns without exposing the original log).</p>
+
+  <ol style="margin:0 0 14px 22px;font-family:'Source Serif Pro',Georgia,serif;font-size:15px;color:var(--ink);line-height:1.8">
+    <li>Tail or copy a slice of your access log (e.g. <code style="background:var(--paper);border:1px solid var(--line);padding:1px 6px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:13px">tail -n 200 /var/log/nginx/access.log</code>).</li>
+    <li>Paste it into the textarea in Section 2. Click <b>Parse logs</b>.</li>
+    <li>You'll get a fingerprint per request. Use <b>Select for compare</b> on any two rows to measure behavioral overlap.</li>
+    <li>To share findings without exposing the original logs: copy just the normalized pattern strings or hashes — IPs, timestamps, and query values are already stripped.</li>
+  </ol>
+
+  <p class="note" style="margin:0"><b>Privacy.</b> Everything runs in your browser. No fetch, no upload, no telemetry. If your logs include sensitive production data, this is the safe place to paste them. Reload the page and every trace disappears.</p>
 </div>
 
 <!-- =========================== 2. PASTE OR UPLOAD =========================== -->
