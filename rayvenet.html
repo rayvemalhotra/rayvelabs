@@ -1482,8 +1482,10 @@ footer a:hover{color:var(--ink);text-decoration-color:var(--ink)}
     .wl-flow .wl-stage .wl-h{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;flex-wrap:wrap;gap:6px}
     .wl-flow .wl-stage .wl-num{font-family:'Inter',system-ui,sans-serif;font-size:10.5px;color:var(--faint);letter-spacing:1.4px;text-transform:uppercase;font-weight:700}
     .wl-flow .wl-stage .wl-t{font-family:'Source Serif Pro',Georgia,serif;font-size:18px;font-weight:600;color:var(--ink);letter-spacing:-.2px}
-    .wl-flow .wl-stage .wl-action{display:grid;grid-template-columns:80px 1fr;gap:8px 12px;margin:10px 0 12px;padding:10px 14px;background:var(--paper);border:1px solid var(--line);border-radius:3px;font-family:'Source Serif Pro',Georgia,serif;font-size:13px;line-height:1.55}
-    .wl-flow .wl-stage .wl-action .wl-lbl{font-family:'Inter',system-ui,sans-serif;font-size:10px;color:var(--faint);letter-spacing:1.2px;text-transform:uppercase;font-weight:700;padding-top:1px}
+    .wl-flow .wl-stage .wl-action{margin:10px 0 12px;padding:12px 16px;background:var(--paper);border:1px solid var(--line);border-radius:3px;font-family:'Source Serif Pro',Georgia,serif;font-size:13px;line-height:1.55}
+    .wl-flow .wl-stage .wl-action > div{display:grid;grid-template-columns:70px 1fr;gap:10px;align-items:baseline;padding:5px 0}
+    .wl-flow .wl-stage .wl-action > div:not(:last-child){border-bottom:1px dashed var(--line)}
+    .wl-flow .wl-stage .wl-action .wl-lbl{font-family:'Inter',system-ui,sans-serif;font-size:10px;color:var(--faint);letter-spacing:1.2px;text-transform:uppercase;font-weight:700}
     .wl-flow .wl-stage .wl-action .wl-val{color:var(--ink)}
     .wl-flow .wl-stage .wl-d{font-family:'Source Serif Pro',Georgia,serif;font-size:13.5px;color:var(--dim);margin-bottom:10px;line-height:1.55}
     .wl-flow .wl-stage .wl-data{font-family:'JetBrains Mono',monospace;font-size:12px;background:var(--paper);border:1px solid var(--line);border-radius:3px;padding:10px 12px;line-height:1.65;word-break:break-all;color:var(--ink)}
@@ -1544,9 +1546,9 @@ footer a:hover{color:var(--ink);text-decoration-color:var(--ink)}
     <div class="wl-stage">
       <div class="wl-h"><span class="wl-num">Stage 1 of 5</span><span class="wl-t">Capture the raw event</span></div>
       <div class="wl-action">
-        <span class="wl-lbl">Action</span><span class="wl-val">Read one log line from the web server, no processing.</span>
-        <span class="wl-lbl">Input</span><span class="wl-val">A line in Apache/Nginx combined format.</span>
-        <span class="wl-lbl">Output</span><span class="wl-val">The same line, captured as-is.</span>
+        <div><span class="wl-lbl">Action</span><span class="wl-val">Read one log line from the web server, no processing.</span></div>
+        <div><span class="wl-lbl">Input</span><span class="wl-val">A line in Apache/Nginx combined format.</span></div>
+        <div><span class="wl-lbl">Output</span><span class="wl-val">The same line, captured as-is.</span></div>
       </div>
       <div class="wl-d">The strikethrough below previews which parts will get stripped in step 2 — IP, exact timestamp, query value, full user-agent, referrer. Nothing is removed yet; we're just marking what's sensitive.</div>
       <div class="wl-data"><span class="wl-rm">198.51.100.23</span> - - [<span class="wl-rm">25/May/2026:10:01:18 -0400</span>] "POST /login HTTP/1.1" 401 <span class="wl-rm">932</span> "<span class="wl-rm">https://example.test/login</span>" "<span class="wl-rm">Mozilla/5.0</span>"</div>
@@ -1555,9 +1557,9 @@ footer a:hover{color:var(--ink);text-decoration-color:var(--ink)}
     <div class="wl-stage">
       <div class="wl-h"><span class="wl-num">Stage 2 of 5</span><span class="wl-t">Extract useful features</span></div>
       <div class="wl-action">
-        <span class="wl-lbl">Action</span><span class="wl-val">Pull the structural fields that describe behavior. Drop the sensitive ones.</span>
-        <span class="wl-lbl">Input</span><span class="wl-val">The raw log line from Stage 1.</span>
-        <span class="wl-lbl">Output</span><span class="wl-val">A small set of field=value pairs — no IP, no timestamp, no query value.</span>
+        <div><span class="wl-lbl">Action</span><span class="wl-val">Pull the structural fields that describe behavior. Drop the sensitive ones.</span></div>
+        <div><span class="wl-lbl">Input</span><span class="wl-val">The raw log line from Stage 1.</span></div>
+        <div><span class="wl-lbl">Output</span><span class="wl-val">A small set of field=value pairs — no IP, no timestamp, no query value.</span></div>
       </div>
       <div class="wl-d">The privacy filter runs here. Sensitive fields are not just hidden — they are <b>never written</b> to the downstream pattern. Only the structural shape of the request survives.</div>
       <div class="wl-data">method = <span class="wl-kp">POST</span><br>path = <span class="wl-kp">/login</span><br>status_code = <span class="wl-kp">401</span><br>query_present = <span class="wl-kp">false</span><br>user_agent_family = <span class="wl-kp">browser</span></div>
@@ -1566,9 +1568,9 @@ footer a:hover{color:var(--ink);text-decoration-color:var(--ink)}
     <div class="wl-stage">
       <div class="wl-h"><span class="wl-num">Stage 3 of 5</span><span class="wl-t">Normalize into categories</span></div>
       <div class="wl-action">
-        <span class="wl-lbl">Action</span><span class="wl-val">Replace specific values with broad categories, then join them into a dot-separated pattern.</span>
-        <span class="wl-lbl">Input</span><span class="wl-val">The selected features from Stage 2.</span>
-        <span class="wl-lbl">Output</span><span class="wl-val">A single pattern string of generalized tokens.</span>
+        <div><span class="wl-lbl">Action</span><span class="wl-val">Replace specific values with broad categories, then join them into a dot-separated pattern.</span></div>
+        <div><span class="wl-lbl">Input</span><span class="wl-val">The selected features from Stage 2.</span></div>
+        <div><span class="wl-lbl">Output</span><span class="wl-val">A single pattern string of generalized tokens.</span></div>
       </div>
       <div class="wl-d">Status <code>401</code> → <code>4xx</code>. Timestamp <code>10:01</code> → <code>business_hours</code>. Path <code>/login</code> → category <code>login</code>. The behavior label (<code>failed_login_pattern</code>) is derived from the combination of method + path + status + UA family.</div>
       <div class="wl-data"><span class="wl-hl">request.post.login.4xx.browser.query_absent.business_hours.failed_login_pattern</span></div>
@@ -1577,9 +1579,9 @@ footer a:hover{color:var(--ink);text-decoration-color:var(--ink)}
     <div class="wl-stage">
       <div class="wl-h"><span class="wl-num">Stage 4 of 5</span><span class="wl-t">Hash the pattern</span></div>
       <div class="wl-action">
-        <span class="wl-lbl">Action</span><span class="wl-val">Compute the SHA-256 of the normalized pattern string.</span>
-        <span class="wl-lbl">Input</span><span class="wl-val">The pattern from Stage 3.</span>
-        <span class="wl-lbl">Output</span><span class="wl-val">A 64-character hexadecimal hash. Fixed length. Deterministic. Irreversible.</span>
+        <div><span class="wl-lbl">Action</span><span class="wl-val">Compute the SHA-256 of the normalized pattern string.</span></div>
+        <div><span class="wl-lbl">Input</span><span class="wl-val">The pattern from Stage 3.</span></div>
+        <div><span class="wl-lbl">Output</span><span class="wl-val">A 64-character hexadecimal hash. Fixed length. Deterministic. Irreversible.</span></div>
       </div>
       <div class="wl-d">Same pattern → same hash. Any single-token change → a completely different hash (the avalanche property — see Section 1b). The hash is the comparison key; the pattern is the audit trail.</div>
       <div class="wl-data" style="font-size:11.5px;letter-spacing:.3px">8c91a1d2 4f7e3b6a 5c8d2e9f 1b4a7c0d e2f5a8c3 1d6b9f2e 4a7c1d8e 3b6a5c9f</div>
@@ -1588,9 +1590,9 @@ footer a:hover{color:var(--ink);text-decoration-color:var(--ink)}
     <div class="wl-stage">
       <div class="wl-h"><span class="wl-num">Stage 5 of 5</span><span class="wl-t">Compare two fingerprints</span></div>
       <div class="wl-action">
-        <span class="wl-lbl">Action</span><span class="wl-val">Compute Jaccard token overlap (intersection ÷ union) between two pattern strings.</span>
-        <span class="wl-lbl">Input</span><span class="wl-val">Two normalized patterns + a similarity threshold (40–95%).</span>
-        <span class="wl-lbl">Output</span><span class="wl-val">A percentage overlap and a verdict: Similar / Partial / Different.</span>
+        <div><span class="wl-lbl">Action</span><span class="wl-val">Compute Jaccard token overlap (intersection ÷ union) between two pattern strings.</span></div>
+        <div><span class="wl-lbl">Input</span><span class="wl-val">Two normalized patterns + a similarity threshold (40–95%).</span></div>
+        <div><span class="wl-lbl">Output</span><span class="wl-val">A percentage overlap and a verdict: Similar / Partial / Different.</span></div>
       </div>
       <div class="wl-d">Same hash means same normalized behavior — even if the underlying requests came from different IPs, at different times, with different query values. That's the whole point of fingerprinting.</div>
       <div class="wl-data">Row A: request.post.login.4xx.browser.query_absent.business_hours.<span class="wl-hl">failed_login_pattern</span><br>Row B: request.post.login.4xx.browser.query_absent.business_hours.<span class="wl-hl">failed_login_pattern</span><br><br><span class="wl-kp">→ Same hash. Same behavior. Different requests at different times, from a different IP, still match.</span></div>
