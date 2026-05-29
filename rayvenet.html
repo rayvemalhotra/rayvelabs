@@ -625,184 +625,1953 @@ body.rl-scrolled .tabs{
 </div>
 
 <div class="tabs">
-  <button class="tab on" data-pane="scan">Scan your network lab</button>
+  <button class="tab on" data-pane="discovery">Network Discovery</button>
   <button class="tab" data-pane="sim2">Cascade Lab</button>
   <button class="tab" data-pane="weblog">Fingerprinting</button>
   <button class="tab" data-pane="terms">Key terms</button>
 </div>
 
-<!-- ===================== LEARN MODE ===================== -->
-<!-- ===================== SCAN MY NETWORK ===================== -->
-<div id="scan" class="pane on">
+<!-- ===================== NETWORK DISCOVERY · CHAPTER 1 ===================== -->
+<div id="discovery" class="pane on">
 
-  <div class="privacy-notice">
-    <div class="pn-label">Your data is yours</div>
-    Everything runs locally in your browser. The command you copy runs on <b>your</b> machine. The output you paste is parsed <b>in this tab</b> and never uploaded, logged, or transmitted to RayveLabs or anyone else. Reload the page and every trace disappears. I don't keep anything.
-  </div>
+  <style>
+    /* ==================== NETWORK DISCOVERY CHAPTER ==================== */
+    .nd-chapter-header{padding:32px 0 24px;border-bottom:1px solid var(--rule);margin-bottom:32px}
+    .nd-chapter-kicker{font-family:'Inter',system-ui,sans-serif;font-size:11px;color:var(--gold);text-transform:uppercase;letter-spacing:2.4px;font-weight:600;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+    .nd-chapter-kicker::before{content:'';width:28px;height:1px;background:var(--gold)}
+    .nd-chapter-title{font-family:'Source Serif Pro',Georgia,serif;font-size:36px;font-weight:500;letter-spacing:-.5px;line-height:1.15;color:var(--ink);margin-bottom:16px;max-width:780px}
+    .nd-chapter-title em{font-style:italic;color:var(--gold)}
+    .nd-chapter-blessing{font-family:'Source Serif Pro',Georgia,serif;font-style:italic;font-size:14.5px;color:var(--dim);line-height:1.6;max-width:680px;margin-bottom:24px;padding-left:14px;border-left:2px solid var(--gold)}
+    .nd-chapter-lede{font-size:16.5px;color:var(--dim);line-height:1.65;max-width:720px;margin-bottom:22px}
+    .nd-chapter-questions{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;max-width:920px}
+    .nd-chapter-questions > div{font-family:'Source Serif Pro',Georgia,serif;font-size:14.5px;color:var(--ink);padding:14px 16px;background:var(--paper2);border-left:2px solid var(--gold);line-height:1.45}
 
-  <div class="card">
-    <div class="label">Step 1 — Pick your system & copy the command</div>
-    <p class="note" style="margin-top:0;margin-bottom:16px">
-      This pings every IP on your subnet, then reads the ARP cache. It forces sleeping devices to respond — a much fuller picture than reading the cache alone. Runs locally on your machine in about 4 seconds; nothing leaves your computer.
-    </p>
-    <div class="ostabs">
-      <div class="ostab on" data-os="mac">macOS</div>
-      <div class="ostab" data-os="win">Windows</div>
-      <div class="ostab" data-os="lin">Linux</div>
+    /* sub-nav */
+    .nd-subnav{position:sticky;top:0;z-index:30;background:rgba(251,251,249,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--rule-faint);margin:-8px -8px 32px;padding:10px 8px;display:flex;gap:4px;overflow-x:auto;white-space:nowrap;scrollbar-width:thin}
+    body.rl-scrolled .nd-subnav{top:60px}
+    .nd-subnav::-webkit-scrollbar{height:4px}
+    .nd-subnav::-webkit-scrollbar-thumb{background:var(--rule);border-radius:99px}
+    .nd-sn{font-family:'Inter',system-ui,sans-serif;font-size:11.5px;color:var(--dim);text-decoration:none;padding:6px 10px;border-radius:999px;transition:background .15s,color .15s;letter-spacing:.2px;flex:0 0 auto}
+    .nd-sn:hover{background:var(--paper2);color:var(--ink);text-decoration:none}
+    .nd-sn.on{background:var(--ink);color:var(--paper)}
+
+    /* section shell */
+    .nd-section{padding:48px 0;border-bottom:1px solid var(--rule-faint);scroll-margin-top:96px}
+    .nd-section:last-of-type{border-bottom:none}
+    .nd-sec-num{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;color:var(--gold);letter-spacing:1.5px;margin-bottom:8px}
+    .nd-sec-title{font-family:'Source Serif Pro',Georgia,serif;font-size:28px;font-weight:500;letter-spacing:-.3px;color:var(--ink);margin-bottom:6px;line-height:1.2;max-width:780px}
+    .nd-sec-sub{font-family:'Source Serif Pro',Georgia,serif;font-style:italic;font-size:16px;color:var(--gold);margin-bottom:24px;max-width:720px}
+    .nd-prose{font-size:15.5px;color:var(--dim);line-height:1.7;max-width:720px;margin-bottom:18px}
+    .nd-prose b{color:var(--ink);font-weight:600}
+    .nd-prose em{color:var(--gold);font-style:italic;font-weight:500}
+
+    /* sticky running case card */
+    .nd-runcase{position:fixed;right:20px;top:120px;width:260px;background:var(--paper);border:1px solid var(--rule);border-radius:12px;padding:16px 18px;box-shadow:0 8px 24px rgba(40,30,10,.08);z-index:20;font-family:'Inter',system-ui,sans-serif;opacity:0;transform:translateX(20px);transition:opacity .4s ease,transform .4s ease;pointer-events:none}
+    .nd-runcase.on{opacity:1;transform:translateX(0)}
+    @media(max-width:1240px){.nd-runcase{display:none}}
+    .nd-rc-tag{font-size:9.5px;color:var(--gold);text-transform:uppercase;letter-spacing:2px;font-weight:600;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+    .nd-rc-tag::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold);animation:pulse 2.6s ease-in-out infinite}
+    .nd-rc-ip{font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--ink);font-weight:500;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--rule-faint)}
+    .nd-rc-fields{display:flex;flex-direction:column;gap:6px;font-size:11.5px}
+    .nd-rc-fields > div{display:flex;justify-content:space-between;color:var(--dim)}
+    .nd-rc-fields > div span{font-family:'JetBrains Mono',monospace;color:var(--ink);max-width:60%;text-align:right;font-size:10.5px;line-height:1.4}
+    .nd-rc-fields > div span.g{color:var(--gold)}
+    .nd-rc-fields > div span.q{color:var(--faint)}
+    .nd-rc-conf{margin-top:12px;padding-top:10px;border-top:1px solid var(--rule-faint);font-size:11px;color:var(--dim);font-family:'JetBrains Mono',monospace}
+    .nd-rc-conf .lvl{font-weight:600}
+    .nd-rc-conf .lvl.low{color:#a86b2e}
+    .nd-rc-conf .lvl.mod{color:#8a6321}
+    .nd-rc-conf .lvl.strong{color:#2d5e3a}
+    .nd-rc-conf .lvl.vstrong{color:var(--gold)}
+
+    /* generic interactive helpers */
+    .nd-card{background:var(--paper);border:1px solid var(--rule);border-radius:12px;padding:22px 24px;margin-bottom:18px}
+    .nd-card-label{font-family:'Inter',system-ui,sans-serif;font-size:10.5px;color:var(--gold);text-transform:uppercase;letter-spacing:1.8px;font-weight:600;margin-bottom:12px}
+    .nd-btn{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;font-family:'Inter',system-ui,sans-serif;font-size:13px;font-weight:600;border:1px solid var(--ink);background:var(--paper);color:var(--ink);border-radius:999px;cursor:pointer;transition:all .15s;text-decoration:none}
+    .nd-btn:hover{background:var(--ink);color:var(--paper);text-decoration:none}
+    .nd-btn.primary{background:var(--ink);color:var(--paper)}
+    .nd-btn.primary:hover{background:#000}
+    .nd-btn.ghost{border-color:var(--rule);color:var(--dim)}
+    .nd-btn.ghost:hover{border-color:var(--ink);color:var(--ink);background:transparent}
+    .nd-pill{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;font-family:'Inter',system-ui,sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.4px;background:var(--paper2);color:var(--dim);border-radius:999px}
+    .nd-pill.gold{background:rgba(157,133,82,.12);color:var(--gold)}
+    .nd-pill.green{background:rgba(45,94,58,.12);color:#2d5e3a}
+    .nd-pill.amber{background:rgba(138,99,33,.12);color:#8a6321}
+    .nd-pill.rose{background:rgba(138,58,58,.12);color:#8a3a3a}
+
+    /* SECTION 1 — Fish Tank */
+    .nd-incidents{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:900px;margin-top:18px}
+    @media(max-width:720px){.nd-incidents{grid-template-columns:1fr}}
+    .nd-inc{background:var(--paper);border:1px solid var(--rule);border-radius:12px;padding:18px;cursor:pointer;transition:all .2s;position:relative}
+    .nd-inc:hover{border-color:var(--ink);transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,.05)}
+    .nd-inc.matched{border-color:var(--gold);background:rgba(157,133,82,.04)}
+    .nd-inc.matched::after{content:'✓';position:absolute;top:14px;right:18px;color:var(--gold);font-weight:600}
+    .nd-inc-name{font-family:'Source Serif Pro',Georgia,serif;font-size:18px;font-weight:600;color:var(--ink);margin-bottom:4px}
+    .nd-inc-sector{font-family:'Inter',system-ui,sans-serif;font-size:10.5px;color:var(--gold);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px;font-weight:600}
+    .nd-inc-q{font-size:13.5px;color:var(--dim);font-style:italic}
+    .nd-inc-options{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+    .nd-inc-opt{padding:5px 10px;font-family:'Inter',system-ui,sans-serif;font-size:11.5px;background:var(--paper2);border:1px solid var(--rule);border-radius:999px;cursor:pointer;color:var(--dim);transition:all .15s}
+    .nd-inc-opt:hover{background:var(--paper);border-color:var(--ink);color:var(--ink)}
+    .nd-inc-opt.right{background:var(--gold);border-color:var(--gold);color:var(--paper);cursor:default}
+    .nd-inc-opt.wrong{background:rgba(138,58,58,.15);border-color:#8a3a3a;color:#8a3a3a}
+    .nd-inc-reveal{display:none;font-size:13px;color:var(--dim);margin-top:10px;padding-top:10px;border-top:1px solid var(--rule-faint);line-height:1.55}
+    .nd-inc.matched .nd-inc-reveal{display:block}
+    .nd-inc-reveal b{color:var(--ink)}
+
+    /* SECTION 3 — Analytics ladder */
+    .nd-ladder{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;max-width:900px;margin-top:18px}
+    @media(max-width:720px){.nd-ladder{grid-template-columns:1fr}}
+    .nd-rung{padding:18px 14px;background:var(--paper);border:1px solid var(--rule);border-radius:10px;cursor:pointer;transition:all .2s;position:relative}
+    .nd-rung:hover{border-color:var(--ink);transform:translateY(-2px)}
+    .nd-rung.on{border-color:var(--gold);background:rgba(157,133,82,.05);box-shadow:0 4px 14px rgba(157,133,82,.12)}
+    .nd-rung-num{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--gold);font-weight:600;margin-bottom:6px;letter-spacing:1.2px}
+    .nd-rung-label{font-family:'Source Serif Pro',Georgia,serif;font-size:15px;font-weight:600;color:var(--ink);margin-bottom:4px}
+    .nd-rung-q{font-size:12px;color:var(--dim);line-height:1.4;font-style:italic}
+    .nd-rung-ch{margin-top:8px;font-family:'Inter',system-ui,sans-serif;font-size:10px;color:var(--gold);text-transform:uppercase;letter-spacing:1.2px;font-weight:600;opacity:0;transition:opacity .2s}
+    .nd-rung.on .nd-rung-ch{opacity:1}
+
+    /* SECTION 4 — Environment picker */
+    .nd-envrow{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+    .nd-env{padding:10px 16px;font-family:'Inter',system-ui,sans-serif;font-size:13px;font-weight:500;border:1px solid var(--rule);background:var(--paper);color:var(--dim);border-radius:999px;cursor:pointer;transition:all .15s}
+    .nd-env:hover{border-color:var(--ink);color:var(--ink)}
+    .nd-env.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+    .nd-env-result{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
+    @media(max-width:720px){.nd-env-result{grid-template-columns:1fr}}
+    .nd-env-col{padding:18px;background:var(--paper);border:1px solid var(--rule);border-radius:10px}
+    .nd-env-col-title{font-family:'Inter',system-ui,sans-serif;font-size:11px;text-transform:uppercase;letter-spacing:1.6px;font-weight:600;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+    .nd-env-col.holds .nd-env-col-title{color:#2d5e3a}
+    .nd-env-col.breaks .nd-env-col-title{color:#8a3a3a}
+    .nd-env-col-title::before{content:'';width:8px;height:8px;border-radius:50%}
+    .nd-env-col.holds .nd-env-col-title::before{background:#2d5e3a}
+    .nd-env-col.breaks .nd-env-col-title::before{background:#8a3a3a}
+    .nd-env-col ul{list-style:none;padding:0;margin:0}
+    .nd-env-col li{font-size:13.5px;color:var(--dim);line-height:1.5;padding:6px 0;border-bottom:1px solid var(--rule-faint)}
+    .nd-env-col li:last-child{border-bottom:none}
+
+    /* SECTION 5 — D vs D-hat */
+    .nd-venn{position:relative;width:100%;max-width:520px;height:280px;margin:18px 0 8px}
+    .nd-venn svg{width:100%;height:100%}
+    .nd-venn-lbl{font-family:'JetBrains Mono',monospace;font-size:13px}
+    .nd-venn-ctrls{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-top:8px}
+    .nd-venn-slider{display:flex;align-items:center;gap:10px;font-family:'Inter',system-ui,sans-serif;font-size:12.5px;color:var(--dim)}
+    .nd-venn-slider input[type=range]{width:140px}
+    .nd-venn-slider b{color:var(--ink);font-family:'JetBrains Mono',monospace;min-width:24px;text-align:right}
+
+    /* SECTION 6 — vantage matrix */
+    .nd-topo{position:relative;width:100%;max-width:780px;background:var(--paper);border:1px solid var(--rule);border-radius:12px;padding:16px;margin-bottom:18px;min-height:340px}
+    .nd-topo svg{width:100%;height:auto;display:block}
+    .nd-vantage-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+    .nd-vantage{padding:9px 14px;font-family:'Inter',system-ui,sans-serif;font-size:12.5px;border:1px solid var(--rule);background:var(--paper);color:var(--dim);border-radius:999px;cursor:pointer;transition:all .15s;font-weight:500}
+    .nd-vantage:hover{border-color:var(--ink);color:var(--ink)}
+    .nd-vantage.on{background:var(--gold);color:var(--paper);border-color:var(--gold)}
+    .nd-vantage-detail{padding:14px 16px;background:var(--paper2);border-left:2px solid var(--gold);font-size:13.5px;color:var(--dim);line-height:1.55;max-width:720px}
+    .nd-vantage-detail b{color:var(--ink)}
+
+    /* SECTION 7 — passive-first ordering */
+    .nd-ord-pool,.nd-ord-tray{display:flex;flex-direction:column;gap:6px;min-height:60px}
+    .nd-ord-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:880px;margin-bottom:14px}
+    @media(max-width:720px){.nd-ord-grid{grid-template-columns:1fr}}
+    .nd-ord-col-title{font-family:'Inter',system-ui,sans-serif;font-size:10.5px;text-transform:uppercase;letter-spacing:1.4px;font-weight:600;color:var(--gold);margin-bottom:10px}
+    .nd-ord-item{padding:11px 14px;background:var(--paper);border:1px solid var(--rule);border-radius:8px;cursor:grab;font-family:'Inter',system-ui,sans-serif;font-size:13.5px;color:var(--ink);display:flex;align-items:center;gap:12px;transition:all .15s;font-weight:500;user-select:none}
+    .nd-ord-item:hover{border-color:var(--ink)}
+    .nd-ord-item.dragging{opacity:.4}
+    .nd-ord-item .grip{color:var(--faint);font-size:14px;line-height:1}
+    .nd-ord-tray{background:var(--paper2);padding:14px;border-radius:10px;border:1px dashed var(--rule)}
+    .nd-ord-tray .nd-ord-item{background:var(--paper)}
+    .nd-ord-rank{font-family:'JetBrains Mono',monospace;color:var(--gold);font-size:11px;margin-right:8px;font-weight:600;min-width:18px}
+    .nd-ord-feedback{margin-top:14px;padding:12px 14px;border-radius:8px;font-size:13px;line-height:1.55;display:none}
+    .nd-ord-feedback.right{display:block;background:rgba(45,94,58,.08);border-left:3px solid #2d5e3a;color:#2d5e3a}
+    .nd-ord-feedback.wrong{display:block;background:rgba(138,58,58,.08);border-left:3px solid #8a3a3a;color:#8a3a3a}
+
+    /* SECTION 8 — silence quiz */
+    .nd-quiz{max-width:760px}
+    .nd-q-scenario{font-family:'Source Serif Pro',Georgia,serif;font-size:16.5px;color:var(--ink);font-style:italic;margin-bottom:18px;padding:14px 18px;background:var(--paper2);border-left:3px solid var(--gold);line-height:1.55}
+    .nd-q-opts{display:flex;flex-direction:column;gap:8px}
+    .nd-q-opt{padding:14px 18px;background:var(--paper);border:1px solid var(--rule);border-radius:10px;cursor:pointer;font-size:14px;color:var(--ink);transition:all .15s;text-align:left;font-family:'Source Serif Pro',Georgia,serif}
+    .nd-q-opt:hover{border-color:var(--ink);background:var(--paper2)}
+    .nd-q-opt.right{border-color:#2d5e3a;background:rgba(45,94,58,.05)}
+    .nd-q-opt.wrong{border-color:#8a3a3a;background:rgba(138,58,58,.05)}
+    .nd-q-opt .why{display:none;font-family:'Inter',system-ui,sans-serif;font-size:12.5px;color:var(--dim);font-style:normal;margin-top:8px;padding-top:8px;border-top:1px solid var(--rule-faint);line-height:1.5}
+    .nd-q-opt.right .why,.nd-q-opt.wrong .why{display:block}
+
+    /* SECTION 9 — tools */
+    .nd-tools-nav{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid var(--rule)}
+    .nd-tool-tab{padding:8px 14px;font-family:'Inter',system-ui,sans-serif;font-size:12.5px;font-weight:500;border:1px solid var(--rule);background:var(--paper);color:var(--dim);border-radius:999px;cursor:pointer;transition:all .15s}
+    .nd-tool-tab:hover{border-color:var(--ink);color:var(--ink)}
+    .nd-tool-tab.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+    .nd-tool-pane{display:none}
+    .nd-tool-pane.on{display:block}
+    .nd-tool-head{margin-bottom:14px}
+    .nd-tool-h{font-family:'Source Serif Pro',Georgia,serif;font-size:20px;font-weight:600;color:var(--ink);margin-bottom:4px}
+    .nd-tool-sub{font-family:'Source Serif Pro',Georgia,serif;font-style:italic;font-size:14px;color:var(--gold);margin-bottom:8px}
+    .nd-tool-desc{font-size:14px;color:var(--dim);line-height:1.6;margin-bottom:14px;max-width:680px}
+    .nd-io{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+    @media(max-width:900px){.nd-io{grid-template-columns:1fr}}
+    .nd-io-col{background:var(--paper);border:1px solid var(--rule);border-radius:10px;padding:14px 16px;min-height:140px}
+    .nd-io-lbl{font-family:'Inter',system-ui,sans-serif;font-size:10.5px;text-transform:uppercase;letter-spacing:1.6px;color:var(--gold);font-weight:600;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between}
+    .nd-io textarea{width:100%;min-height:130px;padding:10px 12px;font-family:'JetBrains Mono',monospace;font-size:11.5px;border:1px solid var(--rule);border-radius:6px;color:var(--ink);background:var(--paper);resize:vertical;line-height:1.55;outline:none}
+    .nd-io textarea:focus{border-color:var(--ink)}
+    .nd-row-list{display:flex;flex-direction:column;gap:6px;max-height:280px;overflow-y:auto}
+    .nd-row-list::-webkit-scrollbar{width:5px}
+    .nd-row-list::-webkit-scrollbar-thumb{background:var(--rule);border-radius:99px}
+    .nd-rowln{display:grid;grid-template-columns:96px 140px 1fr 60px;gap:8px;align-items:center;padding:7px 10px;font-family:'JetBrains Mono',monospace;font-size:11px;background:var(--paper2);border-radius:6px;border-left:2px solid var(--gold)}
+    .nd-rowln.bad{border-left-color:#8a3a3a;opacity:.55}
+    .nd-rowln .ip{color:var(--ink);font-weight:500}
+    .nd-rowln .mac{color:var(--gold)}
+    .nd-rowln .vendor{color:var(--dim);font-family:'Inter',system-ui,sans-serif;font-size:11px}
+    .nd-rowln .flag{font-size:9px;color:var(--faint);text-align:right;text-transform:uppercase;letter-spacing:.5px}
+    .nd-tool-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+
+    /* router viewport */
+    .nd-routerview{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+    @media(max-width:760px){.nd-routerview{grid-template-columns:1fr}}
+    .nd-rv-col{background:var(--paper);border:1px solid var(--rule);border-radius:10px;padding:14px 16px;min-height:180px;position:relative}
+    .nd-rv-col.dim{opacity:.45}
+    .nd-rv-col-h{font-family:'Inter',system-ui,sans-serif;font-size:11px;color:var(--gold);text-transform:uppercase;letter-spacing:1.5px;font-weight:600;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+    .nd-rv-host{font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:6px 10px;background:var(--paper2);border-radius:6px;margin-bottom:5px;display:flex;justify-content:space-between;align-items:center;border-left:2px solid var(--rule)}
+    .nd-rv-host.only{border-left-color:var(--gold);background:rgba(157,133,82,.06)}
+    .nd-rv-host .scope{font-size:9.5px;color:var(--faint);text-transform:uppercase;letter-spacing:.5px}
+
+    /* mDNS browser */
+    .nd-mdns-svcs{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px}
+    .nd-mdns-svc{padding:11px 14px;background:var(--paper);border:1px solid var(--rule);border-radius:8px;cursor:pointer;transition:all .15s}
+    .nd-mdns-svc:hover{border-color:var(--ink)}
+    .nd-mdns-svc.on{border-color:var(--gold);background:rgba(157,133,82,.05)}
+    .nd-mdns-svc-name{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--gold);font-weight:500}
+    .nd-mdns-svc-fam{font-family:'Source Serif Pro',Georgia,serif;font-size:13px;color:var(--ink);margin-top:4px}
+    .nd-mdns-impl{margin-top:14px;padding:14px 16px;background:var(--paper2);border-left:3px solid var(--gold);font-size:13.5px;color:var(--dim);line-height:1.55;display:none}
+    .nd-mdns-impl.on{display:block}
+    .nd-mdns-impl b{color:var(--ink)}
+    .nd-mdns-impl .imp,.nd-mdns-impl .nim{display:block;margin-top:6px;font-size:13px}
+    .nd-mdns-impl .imp::before{content:'implies: ';font-family:'Inter',sans-serif;color:#2d5e3a;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:1px}
+    .nd-mdns-impl .nim::before{content:'does NOT imply: ';font-family:'Inter',sans-serif;color:#8a3a3a;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:1px}
+
+    /* SSDP simulator */
+    .nd-ssdp-flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin:14px 0}
+    .nd-ssdp-step{background:var(--paper);border:1px solid var(--rule);border-radius:10px;padding:14px;font-family:'Inter',system-ui,sans-serif;position:relative}
+    .nd-ssdp-step.done{border-color:var(--gold)}
+    .nd-ssdp-step-n{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--gold);font-weight:600;letter-spacing:1.2px;margin-bottom:6px}
+    .nd-ssdp-step-h{font-family:'Source Serif Pro',Georgia,serif;font-size:14px;font-weight:600;color:var(--ink);margin-bottom:6px}
+    .nd-ssdp-step-d{font-size:12px;color:var(--dim);line-height:1.5;min-height:48px}
+    .nd-ssdp-out{font-family:'JetBrains Mono',monospace;font-size:10.5px;background:var(--paper2);padding:10px 12px;border-radius:6px;color:var(--ink);min-height:140px;line-height:1.6;white-space:pre-wrap;overflow:auto;max-height:220px}
+
+    /* TCP pilot */
+    .nd-port-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(70px,1fr));gap:6px;margin-bottom:14px;max-width:680px}
+    .nd-port{padding:7px 4px;background:var(--paper);border:1px solid var(--rule);border-radius:6px;font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--dim);cursor:pointer;text-align:center;transition:all .12s;user-select:none}
+    .nd-port:hover{border-color:var(--ink);color:var(--ink)}
+    .nd-port.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+    .nd-port-purpose{font-family:'Inter',sans-serif;font-size:9px;color:var(--faint);text-transform:uppercase;letter-spacing:.4px;display:block;margin-top:2px}
+    .nd-port.on .nd-port-purpose{color:rgba(255,255,255,.65)}
+    .nd-tcp-table{display:flex;flex-direction:column;gap:4px;max-height:240px;overflow-y:auto;margin-top:14px}
+    .nd-tcp-row{display:grid;grid-template-columns:90px 1fr 80px;gap:10px;padding:8px 12px;background:var(--paper2);border-radius:6px;font-family:'JetBrains Mono',monospace;font-size:11.5px;align-items:center}
+    .nd-tcp-row.open{border-left:2px solid #2d5e3a}
+    .nd-tcp-row.closed{border-left:2px solid var(--rule);opacity:.5}
+    .nd-tcp-row.filt{border-left:2px solid #8a6321;opacity:.7}
+    .nd-tcp-row .status{font-family:'Inter',sans-serif;font-size:10px;text-align:right;text-transform:uppercase;letter-spacing:.5px;font-weight:600}
+    .nd-tcp-row.open .status{color:#2d5e3a}
+    .nd-tcp-row.closed .status{color:var(--faint)}
+    .nd-tcp-row.filt .status{color:#8a6321}
+
+    /* SECTION 10 — pipeline animation */
+    .nd-pipe{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin:18px 0}
+    @media(max-width:760px){.nd-pipe{grid-template-columns:1fr}}
+    .nd-pipe-col{background:var(--paper);border:1px solid var(--rule);border-radius:10px;padding:14px;min-height:240px;display:flex;flex-direction:column}
+    .nd-pipe-h{font-family:'Inter',sans-serif;font-size:10.5px;color:var(--gold);text-transform:uppercase;letter-spacing:1.5px;font-weight:600;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center}
+    .nd-pipe-h .ct{font-family:'JetBrains Mono',monospace;color:var(--ink);font-size:13px;font-weight:500}
+    .nd-pipe-q{flex:1;display:flex;flex-direction:column;gap:4px;overflow:auto;padding-right:4px;max-height:220px}
+    .nd-pipe-item{padding:6px 10px;background:var(--paper2);border-radius:5px;font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--ink);border-left:2px solid var(--gold);display:flex;justify-content:space-between;animation:nd-flow .35s ease}
+    @keyframes nd-flow{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:translateX(0)}}
+    .nd-pipe-item .src{color:var(--faint);font-size:9.5px;text-transform:uppercase;letter-spacing:.4px}
+    .nd-pipe-ctl{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+    .nd-time-bar{height:6px;background:var(--paper2);border-radius:99px;overflow:hidden;margin-top:14px;max-width:520px;position:relative}
+    .nd-time-bar > div{height:100%;background:var(--gold);width:0%;transition:width .2s linear}
+    .nd-time-mark{position:absolute;top:-4px;font-size:9px;color:var(--gold);font-family:'JetBrains Mono',monospace;transform:translateX(-50%)}
+    .nd-time-readout{display:flex;gap:18px;font-size:12px;color:var(--dim);margin-top:8px;font-family:'JetBrains Mono',monospace}
+    .nd-time-readout b{color:var(--ink)}
+
+    /* SECTION 11 — host record contract */
+    .nd-flip-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:880px;margin-bottom:24px}
+    @media(max-width:720px){.nd-flip-grid{grid-template-columns:1fr}}
+    .nd-flip{padding:18px;border-radius:10px;border:1px solid var(--rule);background:var(--paper);min-height:200px}
+    .nd-flip.bad{border-color:#8a3a3a;background:rgba(138,58,58,.03)}
+    .nd-flip.good{border-color:#2d5e3a;background:rgba(45,94,58,.03)}
+    .nd-flip-h{font-family:'Inter',sans-serif;font-size:10.5px;text-transform:uppercase;letter-spacing:1.6px;font-weight:600;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+    .nd-flip.bad .nd-flip-h{color:#8a3a3a}
+    .nd-flip.good .nd-flip-h{color:#2d5e3a}
+    .nd-flip-h::before{content:'';width:8px;height:8px;border-radius:50%}
+    .nd-flip.bad .nd-flip-h::before{background:#8a3a3a}
+    .nd-flip.good .nd-flip-h::before{background:#2d5e3a}
+    .nd-flip pre{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink);line-height:1.65;white-space:pre-wrap;margin:0}
+    .nd-flip pre .k{color:var(--gold)}
+    .nd-flip pre .v{color:var(--ink)}
+    .nd-flip pre .c{color:var(--faint);font-style:italic}
+
+    .nd-cal-row{display:flex;flex-direction:column;gap:8px;margin:14px 0;max-width:760px}
+    .nd-cal-obs{padding:11px 14px;background:var(--paper);border:1px solid var(--rule);border-radius:8px;cursor:pointer;font-size:13.5px;font-family:'Source Serif Pro',Georgia,serif;color:var(--ink);display:flex;align-items:center;justify-content:space-between;gap:14px;transition:all .15s}
+    .nd-cal-obs:hover{border-color:var(--ink)}
+    .nd-cal-obs.matched{border-color:var(--gold);background:rgba(157,133,82,.04)}
+    .nd-cal-pick{display:flex;gap:5px;flex-wrap:wrap}
+    .nd-cal-lvl{padding:5px 11px;font-family:'Inter',sans-serif;font-size:10.5px;font-weight:600;background:var(--paper2);border:1px solid var(--rule);border-radius:99px;color:var(--dim);cursor:pointer;text-transform:uppercase;letter-spacing:.5px}
+    .nd-cal-lvl:hover{border-color:var(--ink);color:var(--ink)}
+    .nd-cal-lvl.picked{color:var(--paper);border-color:var(--ink);background:var(--ink)}
+    .nd-cal-lvl.picked.right{background:#2d5e3a;border-color:#2d5e3a}
+    .nd-cal-lvl.picked.wrong{background:#8a3a3a;border-color:#8a3a3a}
+
+    /* SECTION 12 — capstone */
+    .nd-cap-methods{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin:14px 0 18px}
+    .nd-cap-method{background:var(--paper);border:1px solid var(--rule);border-radius:10px;padding:14px;cursor:pointer;transition:all .15s;position:relative}
+    .nd-cap-method:hover{border-color:var(--ink)}
+    .nd-cap-method.on{border-color:var(--gold);background:rgba(157,133,82,.04)}
+    .nd-cap-method.on::after{content:'✓';position:absolute;top:10px;right:14px;color:var(--gold);font-weight:600}
+    .nd-cap-mh{font-family:'Source Serif Pro',Georgia,serif;font-size:15px;font-weight:600;color:var(--ink);margin-bottom:4px;padding-right:24px}
+    .nd-cap-md{font-size:11.5px;color:var(--dim);line-height:1.45;font-family:'Inter',sans-serif}
+    .nd-cap-status{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--ink);background:var(--paper2);padding:10px 14px;border-radius:6px;margin-bottom:14px;min-height:18px;line-height:1.5;border-left:2px solid var(--gold);display:none}
+    .nd-cap-status.on{display:block}
+    .nd-cap-stream{display:flex;flex-direction:column;gap:4px;max-height:340px;overflow-y:auto;background:var(--paper);border:1px solid var(--rule);border-radius:8px;padding:10px;margin-bottom:18px;display:none}
+    .nd-cap-stream.on{display:flex}
+    .nd-cap-row{display:grid;grid-template-columns:140px 110px 1fr 80px;gap:10px;padding:7px 12px;font-family:'JetBrains Mono',monospace;font-size:11px;background:var(--paper2);border-radius:5px;align-items:center;animation:nd-flow .3s ease}
+    .nd-cap-row .src{color:var(--faint);font-size:9.5px;text-transform:uppercase;letter-spacing:.4px}
+    .nd-cap-row .type{font-family:'Inter',sans-serif;color:var(--gold);font-size:10.5px;text-transform:uppercase;letter-spacing:.6px}
+    .nd-cap-scorecard{display:none;background:var(--paper);border:1px solid var(--rule);border-radius:12px;padding:22px 26px;margin-top:18px}
+    .nd-cap-scorecard.on{display:block}
+    .nd-cap-sc-h{font-family:'Inter',sans-serif;font-size:11px;text-transform:uppercase;letter-spacing:1.6px;color:var(--gold);font-weight:600;margin-bottom:14px}
+    .nd-metric-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;margin-bottom:18px}
+    .nd-metric{padding:14px;background:var(--paper2);border-radius:8px;border-left:3px solid var(--gold)}
+    .nd-metric-lbl{font-family:'Inter',sans-serif;font-size:10.5px;text-transform:uppercase;letter-spacing:1.4px;color:var(--gold);font-weight:600;margin-bottom:4px}
+    .nd-metric-val{font-family:'Source Serif Pro',Georgia,serif;font-size:32px;font-weight:500;color:var(--ink);letter-spacing:-.5px;line-height:1}
+    .nd-metric-sub{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--dim);margin-top:4px}
+    .nd-cap-contrib{margin-top:8px}
+    .nd-contrib-row{display:flex;align-items:center;gap:12px;padding:6px 0}
+    .nd-contrib-lbl{font-family:'Inter',sans-serif;font-size:12.5px;color:var(--ink);min-width:140px;font-weight:500}
+    .nd-contrib-bar{flex:1;height:18px;background:var(--paper2);border-radius:6px;position:relative;overflow:hidden}
+    .nd-contrib-bar > div{height:100%;background:var(--gold);transition:width .8s cubic-bezier(.2,.7,.2,1)}
+    .nd-contrib-val{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--dim);min-width:60px;text-align:right}
+    .nd-cap-reflect{margin-top:18px;padding:16px 18px;background:rgba(157,133,82,.05);border-left:3px solid var(--gold);border-radius:6px;font-size:13.5px;color:var(--dim);line-height:1.65;font-family:'Source Serif Pro',Georgia,serif}
+    .nd-cap-reflect b{color:var(--ink);font-weight:600}
+    .nd-cap-handoff{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap}
+  </style>
+
+  <!-- ========== Chapter header ========== -->
+  <header class="nd-chapter-header">
+    <div class="nd-chapter-kicker">Chapter 1 · RayveNet</div>
+    <h1 class="nd-chapter-title">Network Discovery &amp; <em>Asset Inventory</em></h1>
+    <div class="nd-chapter-blessing">
+      Drawn from the Chapter 1 lectures of <b>Dr. Ravinder Mallarapu</b> — Analytical Tools for Cyber · SEAS-8414 · DC9 · The George Washington University. Approved and blessed by Dr. Mallarapu. Built as an interactive lab by Rayve Malhotra, a student of the course.
     </div>
-    <div class="cmdbox"><span id="cmdText">for i in $(seq 1 254); do ping -c1 -t1 192.168.1.$i &gt;/dev/null 2&gt;&amp;1 &amp; done; sleep 3; arp -a</span><button class="copy" data-copy="cmdText">copy</button></div>
-    <div class="hint" id="cmdHint">Replace <span class="mono" style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:3px">192.168.1</span> with your actual subnet if different. Find it: <span class="mono" style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:3px">ifconfig | grep "inet "</span></div>
-  </div>
-
-  <div class="card">
-    <div class="label">Step 2 — Paste the output</div>
-    <details>
-      <summary>what should it look like? (example)</summary>
-      <pre>? (192.168.1.1) at f0:9f:c2:1:22:33 on en0 ifscope [ethernet]
-? (192.168.1.10) at ac:bc:32:4:55:66 on en0 ifscope [ethernet]
-? (192.168.1.50) at 8c:ea:48:de:ad:be on en0 ifscope [ethernet]</pre>
-    </details>
-    <textarea id="pasteBox" placeholder="paste your command output…  (or click 'try sample')"></textarea>
-    <div style="margin-top:8px">
-      <button class="btn primary" id="analyzeBtn">▶ analyze</button>
-      <button class="btn" id="sampleBtn">try sample</button>
-      <button class="btn ghost" id="scanReset">↻ reset</button>
+    <p class="nd-chapter-lede">
+      Discovery is the first substantive act of network defense. Before vulnerability matching, before attack-path reasoning, before remediation, defenders must answer four foundational questions — questions that look simple in enterprise IT and become hard in IoT and OT.
+    </p>
+    <div class="nd-chapter-questions">
+      <div>What devices appear to exist on the network?</div>
+      <div>What evidence supports each host's claim?</div>
+      <div>Which blind spots remain?</div>
+      <div>How much uncertainty attaches to the inventory?</div>
     </div>
-    <div class="privacy">🔒 everything runs in your browser — nothing is uploaded anywhere</div>
-  </div>
+  </header>
 
-  <div id="scanTeach"></div>
+  <!-- ========== Sub-nav ========== -->
+  <nav class="nd-subnav" id="ndSubnav">
+    <a href="#nd-1" class="nd-sn">1 · Fish Tank</a>
+    <a href="#nd-2" class="nd-sn">2 · Four Questions</a>
+    <a href="#nd-3" class="nd-sn">3 · Analytics Ladder</a>
+    <a href="#nd-4" class="nd-sn">4 · Scanners Fail</a>
+    <a href="#nd-5" class="nd-sn">5 · Measurement</a>
+    <a href="#nd-6" class="nd-sn">6 · Vantage Point</a>
+    <a href="#nd-7" class="nd-sn">7 · Passive-First</a>
+    <a href="#nd-8" class="nd-sn">8 · Silence ≠ Absence</a>
+    <a href="#nd-9" class="nd-sn">9 · Five Methods</a>
+    <a href="#nd-10" class="nd-sn">10 · Streaming</a>
+    <a href="#nd-11" class="nd-sn">11 · Host Record</a>
+    <a href="#nd-12" class="nd-sn">12 · Capstone Lab</a>
+  </nav>
 
-  <div id="scanRouterIntel" class="router-intel hide"></div>
+  <!-- ========== Sticky running case (appears in §5-11) ========== -->
+  <aside class="nd-runcase" id="ndRuncase" aria-hidden="true">
+    <div class="nd-rc-tag">Running case</div>
+    <div class="nd-rc-ip">192.168.86.42</div>
+    <div class="nd-rc-fields" id="ndRcFields">
+      <div>MAC <span class="q" data-k="mac">?</span></div>
+      <div>Vendor <span class="q" data-k="vendor">?</span></div>
+      <div>Open ports <span class="q" data-k="ports">?</span></div>
+      <div>Sources <span class="g" data-k="sources">arp_cache</span></div>
+      <div>ICMP <span class="q" data-k="icmp">?</span></div>
+      <div>Multicast <span class="q" data-k="mdns">?</span></div>
+      <div>Identity <span data-k="identity">unresolved</span></div>
+    </div>
+    <div class="nd-rc-conf" id="ndRcConf">confidence: <span class="lvl low">low</span></div>
+  </aside>
 
-  <div class="card hide" id="scanScoreCard">
-    <div class="label">Discovery snapshot</div>
-    <p style="font-size:12.5px;color:var(--dim);margin-bottom:14px;line-height:1.55">
-      <b style="color:var(--ink)">Completeness is unmeasurable on a live network</b> — you cannot know what you didn't find.
-      That limitation IS the lesson. (In <i>Learn</i> mode, ground truth is known, so completeness becomes measurable there.)
+  <!-- ========== §1 Fish Tank ========== -->
+  <section id="nd-1" class="nd-section">
+    <div class="nd-sec-num">SECTION 01</div>
+    <h2 class="nd-sec-title">The Fish-Tank Problem</h2>
+    <div class="nd-sec-sub">Why the most boring device is often the entry point.</div>
+
+    <p class="nd-prose">
+      <b>At 2:13 a.m., a casino's security team did not recognize the fish-tank thermometer as a network asset.</b> Cameras, payment terminals, guest records — those were classified critical. The thermometer was overlooked. The breach did not begin with a missed patch; it began with a lapse in attention. An ordinary device became the critical access point.
     </p>
-    <div class="metrics" id="scanMetrics"></div>
-  </div>
-
-  <div class="card hide" id="scanDiagramCard">
-    <div class="label">Network diagram (your network)</div>
-    <p class="note" style="margin-top:0;margin-bottom:12px;color:var(--dim)">
-      Same engine as the simulated mode — but on your real network the <b style="color:var(--ink)">discovery gap is undefined</b>. You can't measure what didn't answer; the label below the diagram names that limit.
+    <p class="nd-prose">
+      This pattern recurs. Mirai exploited a vast supply of embedded systems with default credentials. Verkada showed that cameras governed as devices, not as a fleet, could become a globally reachable surveillance substrate. Oldsmar and Target showed the same structural weakness outside consumer IoT — building systems and vendor links become strategically central the moment segmentation and asset awareness fail.
     </p>
-    <div class="diagram-wrap" id="scanDiagramWrap">
-      <div id="scanDiagram"></div>
-      <div class="popup" id="scanPopup"></div>
-      <div class="legend">
-        <div class="li"><div class="sw" style="background:#2d5e3a"></div>ARP (active L2)</div>
-        <div class="li"><div class="sw" style="background:#5b3d8a"></div>mDNS (passive)</div>
-        <div class="li"><div class="sw" style="background:#8a6321"></div>SSDP (passive)</div>
-        <div class="li"><div class="sw" style="background:#2c5e6a"></div>TCP probe (active)</div>
-        <div class="li" style="margin-left:auto"><span style="display:inline-block;width:12px;height:12px;border:1.5px dashed #909090;border-radius:50%"></span>dashed = identity inferred / hidden</div>
+    <p class="nd-prose">
+      <b>Match each incident to the weakly-governed device that enabled it.</b> Click an option for each. The reveal explains what discovery would and would not have addressed.
+    </p>
+
+    <div class="nd-incidents" id="ndIncidents">
+      <div class="nd-inc" data-correct="thermometer">
+        <div class="nd-inc-sector">2017 · Casino · North America</div>
+        <div class="nd-inc-name">The Casino Breach</div>
+        <div class="nd-inc-q">Which device became the foothold into the high-roller database?</div>
+        <div class="nd-inc-options">
+          <span class="nd-inc-opt" data-v="camera">CCTV camera</span>
+          <span class="nd-inc-opt" data-v="thermometer">Fish-tank thermometer</span>
+          <span class="nd-inc-opt" data-v="badge">Badge reader</span>
+          <span class="nd-inc-opt" data-v="vpn">VPN gateway</span>
+        </div>
+        <div class="nd-inc-reveal">
+          <b>Discovery would have made the thermometer visible</b> as an inventoried device with a known vendor and protocol surface. It would not have prevented the breach by itself — segmentation, credential governance, and monitoring still had to follow. The lesson: <em>discovery is the precondition</em>, not the control.
+        </div>
+      </div>
+
+      <div class="nd-inc" data-correct="iot-cam">
+        <div class="nd-inc-sector">2016 · Botnet · Global</div>
+        <div class="nd-inc-name">Mirai</div>
+        <div class="nd-inc-q">What device class was hijacked at massive scale?</div>
+        <div class="nd-inc-options">
+          <span class="nd-inc-opt" data-v="iot-cam">IoT cameras &amp; DVRs (Telnet + default creds)</span>
+          <span class="nd-inc-opt" data-v="router">Home routers</span>
+          <span class="nd-inc-opt" data-v="pos">POS terminals</span>
+          <span class="nd-inc-opt" data-v="phone">VOIP phones</span>
+        </div>
+        <div class="nd-inc-reveal">
+          Mirai's strength came from <b>scale</b>, not technical novelty. Inventory and exposure mapping would have made the population visible before abuse at scale. <em>Vendor firmware hardening</em> remained the controlling fix — discovery sets the conditions for it.
+        </div>
+      </div>
+
+      <div class="nd-inc" data-correct="cam-fleet">
+        <div class="nd-inc-sector">2021 · Camera platform · Global</div>
+        <div class="nd-inc-name">Verkada</div>
+        <div class="nd-inc-q">What turned ordinary cameras into a global surveillance substrate?</div>
+        <div class="nd-inc-options">
+          <span class="nd-inc-opt" data-v="cam-fleet">Centralized fleet with shared privileged credentials</span>
+          <span class="nd-inc-opt" data-v="malware">Firmware malware</span>
+          <span class="nd-inc-opt" data-v="phys">Physical access</span>
+          <span class="nd-inc-opt" data-v="zero">Zero-day exploit</span>
+        </div>
+        <div class="nd-inc-reveal">
+          Verkada cameras were known locally but not governed as a <b>fleet with blast-radius visibility</b>. Discovery would have surfaced scope and exposure; <em>credential governance</em> remained the controlling failure.
+        </div>
+      </div>
+
+      <div class="nd-inc" data-correct="hmi">
+        <div class="nd-inc-sector">2021 · Water plant · Oldsmar FL</div>
+        <div class="nd-inc-name">Oldsmar SCADA</div>
+        <div class="nd-inc-q">What was the exposed device class?</div>
+        <div class="nd-inc-options">
+          <span class="nd-inc-opt" data-v="hmi">SCADA / HMI with remote management &amp; weak access</span>
+          <span class="nd-inc-opt" data-v="iot">Smart meter</span>
+          <span class="nd-inc-opt" data-v="pdf">PDF reader</span>
+          <span class="nd-inc-opt" data-v="email">Email server</span>
+        </div>
+        <div class="nd-inc-reveal">
+          Discovery could have surfaced the exposed interface and its cross-zone placement. <em>Segmentation and multifactor authentication</em> were the controlling fixes — discovery alone would not have prevented the intrusion attempt.
+        </div>
+      </div>
+
+      <div class="nd-inc" data-correct="hvac">
+        <div class="nd-inc-sector">2013 · Retail · United States</div>
+        <div class="nd-inc-name">Target</div>
+        <div class="nd-inc-q">What device class hosted the initial vendor foothold?</div>
+        <div class="nd-inc-options">
+          <span class="nd-inc-opt" data-v="hvac">HVAC vendor access (a heating &amp; cooling system)</span>
+          <span class="nd-inc-opt" data-v="cam">Store cameras</span>
+          <span class="nd-inc-opt" data-v="pos">POS terminals (initial vector)</span>
+          <span class="nd-inc-opt" data-v="wifi">Customer Wi-Fi</span>
+        </div>
+        <div class="nd-inc-reveal">
+          The vendor link was not "important" by executive ranking. It was important because <b>it sat on a path</b>. Discovery and cross-zone mapping would have surfaced the dependency; <em>segmentation and least privilege</em> were the controlling fixes.
+        </div>
       </div>
     </div>
-    <div style="margin-top:12px">
-      <button class="btn ghost" data-dl="png" data-svg="scanDiagram">⬇ download PNG</button>
-      <button class="btn ghost" data-dl="svg" data-svg="scanDiagram">⬇ download SVG</button>
-    </div>
-  </div>
+  </section>
 
-  <div class="card hide" id="scanAnalyticsCard">
-    <div class="label">Analytics</div>
-    <div id="scanAnalytics"></div>
-  </div>
+  <!-- ========== §2 Four Questions ========== -->
+  <section id="nd-2" class="nd-section">
+    <div class="nd-sec-num">SECTION 02</div>
+    <h2 class="nd-sec-title">The Four Foundational Questions</h2>
+    <div class="nd-sec-sub">Look easy in enterprise IT. Become hard in IoT and OT.</div>
 
-  <div class="card hide" id="scanRecordsCard">
-    <div class="label">Host records</div>
-    <div class="tbl" id="scanRecords"></div>
-  </div>
-
-  <hr style="border:none;border-top:1px solid var(--ink);margin:48px 0 32px">
-
-  <div class="lede" style="margin-bottom:18px">
-    <h2 style="font-size:24px">Simulation 1 · Practice on a simulated network</h2>
-    <p style="font-size:15.5px">Want to learn how discovery actually works before you trust it on your own network? Run the four discovery methods against a fake network with <b>12 known devices</b>. Because we know the ground truth here, you can measure exactly what you found and what you missed — something a real network will never let you do.</p>
-  </div>
-
-  <div class="practice-notice">
-    <div class="pn-label">Practice mode</div>
-    <b>Nothing on this page touches your real network.</b> Simulation 1 runs against a fake, built-in network of 12 known devices. The four buttons below reveal which simulated devices each discovery method would have found — they're a teaching exercise, not a scanner. To actually scan your own network, scroll back up to the steps above.
-  </div>
-
-  <div class="card">
-    <div class="label">Step 1 — Simulate the discovery methods</div>
-    <p style="font-family:'Source Serif Pro',Georgia,serif;font-size:15px;color:var(--dim);line-height:1.65">
-      A simulated network with <b style="color:var(--ink)">12 real devices</b> in ground truth. Each button below runs that method against the fake network; results merge into the same host records. Try passive (mDNS, SSDP) before active (TCP) — the order matters. Watch the diagram build.
+    <p class="nd-prose">
+      In enterprise IT, asset lists, agents, and directories make these questions easy. Embedded environments break those assumptions. Devices arrive through facilities, contractors, clinical engineering, building management, vendor drop-ins, and stale projects that never reached formal intake.
     </p>
-    <div class="methods">
-      <button class="method-btn arp" data-method="ARP"><span class="dot"></span> 1. Simulate ARP <span class="badge hide"></span></button>
-      <button class="method-btn mdns" data-method="mDNS"><span class="dot"></span> 2. Simulate mDNS <span class="badge hide"></span></button>
-      <button class="method-btn ssdp" data-method="SSDP"><span class="dot"></span> 3. Simulate SSDP <span class="badge hide"></span></button>
-      <button class="method-btn tcp" data-method="TCP"><span class="dot"></span> 4. Simulate TCP probe <span class="badge hide"></span></button>
-      <button class="btn ghost" id="learnReset" style="margin-left:auto;align-self:center">↻ Reset</button>
+    <p class="nd-prose">Click each question to see why it gets hard.</p>
+
+    <div class="nd-incidents" style="grid-template-columns:1fr 1fr 1fr 1fr" id="ndFourQ">
+      <div class="nd-inc" data-q="exist">
+        <div class="nd-inc-sector">Question 01</div>
+        <div class="nd-inc-name">What devices exist?</div>
+        <div class="nd-inc-q">Sounds obvious — until you can't agent-install.</div>
+        <div class="nd-inc-reveal">
+          A cabling closet pump, a clinical infusion device, a contractor-supplied display, a Wi-Fi badge reader. None speak agent. None appear in your CMDB. <b>Existence is inferred from network behavior</b>, not looked up.
+        </div>
+      </div>
+      <div class="nd-inc" data-q="evidence">
+        <div class="nd-inc-sector">Question 02</div>
+        <div class="nd-inc-name">What evidence supports each claim?</div>
+        <div class="nd-inc-q">Provenance is the difference between a defensible inventory and a wishful one.</div>
+        <div class="nd-inc-reveal">
+          A stale ARP entry, a router observation, a TCP connect success, and a service banner each provide <b>different qualities of evidence</b>. They are not interchangeable. The host record must preserve which method found the host, when, and from where.
+        </div>
+      </div>
+      <div class="nd-inc" data-q="blind">
+        <div class="nd-inc-sector">Question 03</div>
+        <div class="nd-inc-name">Which blind spots remain?</div>
+        <div class="nd-inc-q">A clean scan is not the same as a complete one.</div>
+        <div class="nd-inc-reveal">
+          Devices may exist behind routers, behind filters, on different multicast scopes, or simply not have responded during the observation window. <b>Discovery measures what was visible</b> — not what is there.
+        </div>
+      </div>
+      <div class="nd-inc" data-q="uncertainty">
+        <div class="nd-inc-sector">Question 04</div>
+        <div class="nd-inc-name">How much uncertainty?</div>
+        <div class="nd-inc-q">A host found by one stale cache is not the same as one corroborated five ways.</div>
+        <div class="nd-inc-reveal">
+          Every later chapter — vulnerability matching, attack-path reasoning, remediation — inherits the inventory's confidence. <b>Discovery must record uncertainty</b>, not launder it into apparent certainty.
+        </div>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <div id="learnTeach"></div>
+  <!-- ========== §3 Analytics Ladder ========== -->
+  <section id="nd-3" class="nd-section">
+    <div class="nd-sec-num">SECTION 03</div>
+    <h2 class="nd-sec-title">The Analytics Ladder</h2>
+    <div class="nd-sec-sub">Discovery is the <em>descriptive</em> base. Every higher rung depends on it.</div>
 
-  <div class="card hide" id="learnScoreCard">
-    <div class="label">Measure (ground truth is known here)</div>
-    <p style="font-size:12.5px;color:var(--dim);margin-bottom:14px;line-height:1.55">
-      Because this is simulated, we know there are <b style="color:var(--ink)">12 real devices</b>. Real networks
-      never give you that ground truth — so this is the only place you can <i>measure</i> what you missed.
+    <p class="nd-prose">A vulnerability inventory can only reason over devices first counted. An attack graph can only model paths through devices first counted. A remediation plan can only govern assets first made visible. When Chapter 1 undercounts the environment, every later chapter inherits the error.</p>
+    <p class="nd-prose">Click each rung to see what it asks and which chapter answers it.</p>
+
+    <div class="nd-ladder" id="ndLadder">
+      <div class="nd-rung" data-rung="0">
+        <div class="nd-rung-num">DESCRIPTIVE</div>
+        <div class="nd-rung-label">What exists?</div>
+        <div class="nd-rung-q">The device population.</div>
+        <div class="nd-rung-ch">Chapter 1 · You are here</div>
+      </div>
+      <div class="nd-rung" data-rung="1">
+        <div class="nd-rung-num">DIAGNOSTIC</div>
+        <div class="nd-rung-label">What is it?</div>
+        <div class="nd-rung-q">Identity, vendor, model, role.</div>
+        <div class="nd-rung-ch">Chapter 2 · Cascade Lab</div>
+      </div>
+      <div class="nd-rung" data-rung="2">
+        <div class="nd-rung-num">DETECTIVE</div>
+        <div class="nd-rung-label">What's wrong with it?</div>
+        <div class="nd-rung-q">CVEs, defaults, credential risk.</div>
+        <div class="nd-rung-ch">Chapter 3 · TBD</div>
+      </div>
+      <div class="nd-rung" data-rung="3">
+        <div class="nd-rung-num">PREDICTIVE</div>
+        <div class="nd-rung-label">What paths exist?</div>
+        <div class="nd-rung-q">Attack-graph reasoning.</div>
+        <div class="nd-rung-ch">Chapter 4 · TBD</div>
+      </div>
+      <div class="nd-rung" data-rung="4">
+        <div class="nd-rung-num">PRESCRIPTIVE</div>
+        <div class="nd-rung-label">What to do?</div>
+        <div class="nd-rung-q">Offensive testing, remediation, simulation.</div>
+        <div class="nd-rung-ch">Chapter 5+ · TBD</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== §4 Why Scanners Fail ========== -->
+  <section id="nd-4" class="nd-section">
+    <div class="nd-sec-num">SECTION 04</div>
+    <h2 class="nd-sec-title">Why Traditional Scanners Fail in IoT &amp; OT</h2>
+    <div class="nd-sec-sub">The closed-world assumption is the problem.</div>
+
+    <p class="nd-prose">
+      Conventional enterprise scanners assume a closed world: assets are already known, agent-capable, directory-linked, and recorded in a current management system. <b>Pick an environment</b> and watch which assumptions hold and which break.
     </p>
-    <div class="scorecard">
-      <div class="score">
-        <div class="sk">Completeness</div>
-        <div class="sv" id="cmpVal" style="color:var(--cyan)">—</div>
-        <div class="sn" id="cmpDetail">found ÷ real</div>
-        <div class="bar cyan"><i id="cmpBar"></i></div>
-      </div>
-      <div class="score">
-        <div class="sk">Soundness</div>
-        <div class="sv" id="sndVal" style="color:var(--amber)">—</div>
-        <div class="sn" id="sndDetail">real ÷ discovered</div>
-        <div class="bar amber"><i id="sndBar"></i></div>
-      </div>
-      <div class="score">
-        <div class="sk">Discovery Gap</div>
-        <div class="sv" id="gapVal" style="color:var(--rose)">—</div>
-        <div class="sn" id="gapDetail">1 − completeness</div>
-        <div class="bar rose"><i id="gapBar"></i></div>
-      </div>
-    </div>
-  </div>
 
-  <div class="card hide" id="learnDiagramCard">
-    <div class="label">Network diagram</div>
-    <p class="note" style="margin-top:0;margin-bottom:12px;color:var(--dim)">
-      Topology view, top-down. <b style="color:var(--ink)">Internet</b> → <b style="color:var(--ink)">Gateway</b> (your vantage point) → device <b style="color:var(--ink)">clusters</b> grouped by inferred type. Each cluster box shows the devices in that class; the colored border encodes the cluster category. Dashed borders / dashed connection lines = randomized MAC (identity hidden).
+    <div class="nd-envrow" id="ndEnvRow">
+      <button class="nd-env on" data-env="corp">Enterprise office</button>
+      <button class="nd-env" data-env="hospital">Hospital</button>
+      <button class="nd-env" data-env="casino">Casino / hospitality</button>
+      <button class="nd-env" data-env="home">Home / small lab</button>
+    </div>
+
+    <div class="nd-env-result" id="ndEnvResult"></div>
+
+    <p class="nd-prose" style="margin-top:18px;font-style:italic">
+      The environment should guide the sensible choice of tools — not the other way around. In IoT and OT settings, a mix of passive observation, infrastructure queries, and targeted active probes is necessary.
     </p>
-    <div class="diagram-wrap" id="learnDiagramWrap">
-      <div id="learnDiagram"></div>
-      <div class="popup" id="learnPopup"></div>
-      <div class="legend">
-        <div class="li"><div class="sw" style="background:#2d5e3a"></div>ARP (active L2)</div>
-        <div class="li"><div class="sw" style="background:#5b3d8a"></div>mDNS (passive)</div>
-        <div class="li"><div class="sw" style="background:#8a6321"></div>SSDP (passive)</div>
-        <div class="li"><div class="sw" style="background:#2c5e6a"></div>TCP probe (active)</div>
-        <div class="li" style="margin-left:auto"><span style="display:inline-block;width:12px;height:12px;border:1.5px dashed #909090;border-radius:50%"></span>dashed = identity inferred / hidden</div>
+  </section>
+
+  <!-- ========== §5 Measurement ========== -->
+  <section id="nd-5" class="nd-section">
+    <div class="nd-sec-num">SECTION 05</div>
+    <h2 class="nd-sec-title">Discovery as a Measurement Problem</h2>
+    <div class="nd-sec-sub">Existence ≠ identity. A scanner does not return truth. It returns partial views.</div>
+
+    <p class="nd-prose">
+      Defenders gather partial evidence, combine multiple perspectives, estimate what is visible, and consider what may remain hidden. The true device population is <b>D</b>. The defender never directly observes <b>D</b>. Instead, the defender sees method-specific subsets <code>M1, M2, ..., Mk</code>. The discovered population is the union: <code>D̂ = M1 ∪ M2 ∪ ... ∪ Mk</code>. What remains is the <em>discovery gap</em>: <code>D \ D̂</code>.
+    </p>
+
+    <p class="nd-prose">
+      <b>Meet 192.168.86.42.</b> Right now this is a single ARP line:<br>
+      <code style="display:inline-block;margin-top:6px;font-family:'JetBrains Mono',monospace;font-size:12.5px;background:var(--paper2);padding:8px 12px;border-radius:6px">? (192.168.86.42) at d4:f5:47:xx:xx:xx on en0 ifscope [ethernet]</code><br>
+      Something exists on the local subnet. We have no idea what. The card on the right of your screen will grow as we accumulate evidence through the chapter.
+    </p>
+
+    <div class="nd-card">
+      <div class="nd-card-label">D vs D̂ · interactive</div>
+      <p style="font-size:13.5px;color:var(--dim);margin-bottom:14px;line-height:1.55">Adjust how many devices are out there and how many your methods catch. The <em>gap</em> is what an attacker hunts.</p>
+      <div class="nd-venn" id="ndVenn">
+        <svg viewBox="0 0 520 280" preserveAspectRatio="xMidYMid meet">
+          <circle id="ndVennD"    cx="200" cy="140" r="100" fill="rgba(157,133,82,.18)" stroke="#9d8552" stroke-width="1.2"/>
+          <circle id="ndVennDhat" cx="320" cy="140" r="80"  fill="rgba(45,94,58,.18)"  stroke="#2d5e3a" stroke-width="1.2"/>
+          <text x="120" y="80"  text-anchor="middle" class="nd-venn-lbl" fill="#8a6321">D · real</text>
+          <text x="400" y="80"  text-anchor="middle" class="nd-venn-lbl" fill="#2d5e3a">D̂ · found</text>
+          <text x="155" y="155" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#8a6321"><tspan id="ndVennMissed">8</tspan> missed</text>
+          <text x="260" y="155" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#1a1a1a"><tspan id="ndVennHit">18</tspan> caught</text>
+          <text x="355" y="155" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#8a3a3a"><tspan id="ndVennFp">2</tspan> phantom</text>
+        </svg>
+      </div>
+      <div class="nd-venn-ctrls">
+        <label class="nd-venn-slider">D (real devices) <input type="range" min="10" max="50" value="26" id="ndVennReal"> <b id="ndVennRealV">26</b></label>
+        <label class="nd-venn-slider">Methods catch <input type="range" min="0" max="100" value="69" id="ndVennCatch"> <b id="ndVennCatchV">69</b>%</label>
+        <label class="nd-venn-slider">Phantom rate <input type="range" min="0" max="20" value="8" id="ndVennNoise"> <b id="ndVennNoiseV">8</b>%</label>
+      </div>
+      <div class="nd-time-readout" id="ndVennMath">C = 0.69 · S = 0.90 · gap = 0.31</div>
+    </div>
+  </section>
+
+  <!-- ========== §6 Vantage Point ========== -->
+  <section id="nd-6" class="nd-section">
+    <div class="nd-sec-num">SECTION 06</div>
+    <h2 class="nd-sec-title">Vantage Point — Same Network, Different Worlds</h2>
+    <div class="nd-sec-sub">Methods do not just differ in speed. They differ in what kinds of worlds they can see.</div>
+
+    <p class="nd-prose">
+      A laptop on Wi-Fi, a scanner on a switch port, a host with gateway access, a central VPN collector, and a distributed sensor inside a remote segment will return very different inventories from the <b>same network</b>. The shape of the inventory carries the shape of the vantage point that produced it.
+    </p>
+
+    <div class="nd-vantage-row" id="ndVantageRow">
+      <button class="nd-vantage on" data-v="laptop">Analyst laptop on Wi-Fi</button>
+      <button class="nd-vantage" data-v="switch">Switch port in target segment</button>
+      <button class="nd-vantage" data-v="gateway">Gateway / router (mgmt access)</button>
+      <button class="nd-vantage" data-v="central">Central scanner over VPN</button>
+      <button class="nd-vantage" data-v="collector">Distributed collector in segment</button>
+    </div>
+
+    <div class="nd-topo">
+      <svg viewBox="0 0 740 320" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <marker id="ndarr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#9d8552"/></marker>
+        </defs>
+        <!-- segments -->
+        <rect x="20"  y="40"  width="220" height="80" rx="6" fill="rgba(157,133,82,.05)" stroke="#d4d4d4" stroke-dasharray="3 3"/>
+        <text x="30"  y="58" font-family="Inter" font-size="10" fill="#909090">SEGMENT A · 192.168.1.0/24</text>
+        <rect x="260" y="40"  width="220" height="80" rx="6" fill="rgba(157,133,82,.05)" stroke="#d4d4d4" stroke-dasharray="3 3"/>
+        <text x="270" y="58" font-family="Inter" font-size="10" fill="#909090">SEGMENT B · 10.0.10.0/24</text>
+        <rect x="500" y="40"  width="220" height="80" rx="6" fill="rgba(157,133,82,.05)" stroke="#d4d4d4" stroke-dasharray="3 3"/>
+        <text x="510" y="58" font-family="Inter" font-size="10" fill="#909090">SEGMENT C · 10.0.20.0/24</text>
+        <!-- gateway -->
+        <rect x="320" y="160" width="100" height="36" rx="6" fill="#1a1a1a"/>
+        <text x="370" y="183" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#fff">gateway</text>
+        <!-- devices -->
+        <g id="ndDev-A1"><circle cx="60"  cy="90" r="7" fill="#9d8552"/><text x="60" y="115" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#525252">laptop</text></g>
+        <g id="ndDev-A2"><circle cx="110" cy="90" r="7" fill="#9d8552"/><text x="110" y="115" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#525252">printer</text></g>
+        <g id="ndDev-A3"><circle cx="160" cy="90" r="7" fill="#9d8552"/><text x="160" y="115" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#525252">cam</text></g>
+        <g id="ndDev-A4"><circle cx="210" cy="90" r="7" fill="#9d8552"/><text x="210" y="115" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#525252">phone</text></g>
+        <g id="ndDev-B1"><circle cx="295" cy="90" r="7" fill="#9d8552"/><text x="295" y="115" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#525252">HVAC</text></g>
+        <g id="ndDev-B2"><circle cx="345" cy="90" r="7" fill="#9d8552"/><text x="345" y="115" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#525252">badge</text></g>
+        <g id="ndDev-B3"><circle cx="395" cy="90" r="7" fill="#9d8552"/><text x="395" y="115" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#525252">NVR</text></g>
+        <g id="ndDev-B4"><circle cx="445" cy="90" r="7" fill="#9d8552"/><text x="445" y="115" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#525252">pump</text></g>
+        <g id="ndDev-C1"><circle cx="530" cy="90" r="7" fill="#9d8552"/><text x="530" y="115" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#525252">PLC</text></g>
+        <g id="ndDev-C2"><circle cx="580" cy="90" r="7" fill="#9d8552"/><text x="580" y="115" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#525252">HMI</text></g>
+        <g id="ndDev-C3"><circle cx="630" cy="90" r="7" fill="#9d8552"/><text x="630" y="115" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#525252">sensor</text></g>
+        <g id="ndDev-C4"><circle cx="680" cy="90" r="7" fill="#9d8552"/><text x="680" y="115" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#525252">switch</text></g>
+        <!-- scanner positions -->
+        <g id="ndVPos-laptop" opacity="0">
+          <circle cx="80"  cy="240" r="16" fill="rgba(157,133,82,.18)" stroke="#9d8552"/>
+          <text x="80" y="245" text-anchor="middle" font-size="14" fill="#9d8552">◉</text>
+          <text x="80" y="275" text-anchor="middle" font-family="Inter" font-size="10" fill="#9d8552" font-weight="600">YOU</text>
+        </g>
+        <g id="ndVPos-switch" opacity="0">
+          <circle cx="280" cy="240" r="16" fill="rgba(157,133,82,.18)" stroke="#9d8552"/>
+          <text x="280" y="245" text-anchor="middle" font-size="14" fill="#9d8552">◉</text>
+          <text x="280" y="275" text-anchor="middle" font-family="Inter" font-size="10" fill="#9d8552" font-weight="600">YOU</text>
+        </g>
+        <g id="ndVPos-gateway" opacity="0">
+          <circle cx="370" cy="178" r="22" fill="none" stroke="#9d8552" stroke-width="2" stroke-dasharray="4 3"/>
+          <text x="370" y="220" text-anchor="middle" font-family="Inter" font-size="10" fill="#9d8552" font-weight="600">YOU</text>
+        </g>
+        <g id="ndVPos-central" opacity="0">
+          <circle cx="370" cy="270" r="16" fill="rgba(157,133,82,.18)" stroke="#9d8552"/>
+          <text x="370" y="275" text-anchor="middle" font-size="14" fill="#9d8552">◉</text>
+          <text x="370" y="305" text-anchor="middle" font-family="Inter" font-size="10" fill="#9d8552" font-weight="600">YOU · over VPN</text>
+        </g>
+        <g id="ndVPos-collector" opacity="0">
+          <circle cx="620" cy="240" r="16" fill="rgba(157,133,82,.18)" stroke="#9d8552"/>
+          <text x="620" y="245" text-anchor="middle" font-size="14" fill="#9d8552">◉</text>
+          <text x="620" y="275" text-anchor="middle" font-family="Inter" font-size="10" fill="#9d8552" font-weight="600">collector</text>
+        </g>
+      </svg>
+    </div>
+
+    <div class="nd-vantage-detail" id="ndVantageDetail"></div>
+  </section>
+
+  <!-- ========== §7 Passive-First ========== -->
+  <section id="nd-7" class="nd-section">
+    <div class="nd-sec-num">SECTION 07</div>
+    <h2 class="nd-sec-title">The Passive-First Discipline</h2>
+    <div class="nd-sec-sub">Start with the safest evidence. Escalate only when cheaper methods leave uncertainty.</div>
+
+    <p class="nd-prose">
+      In sensitive environments — hospitals, factories, water treatment — unexpected network traffic can cause real problems. Even in benign environments, starting with passive evidence improves <b>interpretive quality</b>: a host appearing in cached state versus only after active probing tells you something different about its presence pattern.
+    </p>
+    <p class="nd-prose"><b>Drag the methods into the correct order</b>, from least disturbing (top) to most disturbing (bottom). Hit <em>Check</em> when you're done.</p>
+
+    <div class="nd-ord-grid">
+      <div>
+        <div class="nd-ord-col-title">Pool · drag from here</div>
+        <div class="nd-ord-pool" id="ndOrdPool"></div>
+      </div>
+      <div>
+        <div class="nd-ord-col-title">Your ordering · drop here</div>
+        <div class="nd-ord-tray" id="ndOrdTray"></div>
       </div>
     </div>
-    <div style="margin-top:12px">
-      <button class="btn ghost" data-dl="png" data-svg="learnDiagram">⬇ download PNG</button>
-      <button class="btn ghost" data-dl="svg" data-svg="learnDiagram">⬇ download SVG</button>
+    <div style="display:flex;gap:8px">
+      <button class="nd-btn primary" id="ndOrdCheck">Check ordering</button>
+      <button class="nd-btn ghost" id="ndOrdReset">Reset</button>
     </div>
-  </div>
+    <div class="nd-ord-feedback" id="ndOrdFeedback"></div>
+  </section>
 
-  <div class="card hide" id="learnAnalyticsCard">
-    <div class="label">Analytics</div>
-    <div id="learnAnalytics"></div>
-  </div>
+  <!-- ========== §8 Silence ========== -->
+  <section id="nd-8" class="nd-section">
+    <div class="nd-sec-num">SECTION 08</div>
+    <h2 class="nd-sec-title">Silence ≠ Absence</h2>
+    <div class="nd-sec-sub">"No response" is one of the easiest signals to misread.</div>
 
-  <div class="card hide" id="learnRecordsCard">
-    <div class="label">Host records</div>
-    <div class="tbl" id="learnRecords"></div>
-  </div>
+    <p class="nd-prose">Negative evidence is useful only when the method <em>could</em> have seen the device, assuming it existed and behaved normally. That condition breaks often. ARP cannot cross routers. mDNS cannot cross multicast boundaries. ICMP can be blocked. TCP probes test only the ports you picked.</p>
+
+    <div class="nd-quiz">
+      <div class="nd-q-scenario">
+        Your ICMP sweep across <code>192.168.1.0/24</code> returned <b>no responses</b> from <code>.42</code>. The other 14 hosts answered. What's the most defensible interpretation?
+      </div>
+      <div class="nd-q-opts" id="ndQuiz">
+        <button class="nd-q-opt" data-q="a">
+          The device at .42 does not exist on this subnet.
+          <div class="why">Wrong. Non-response to ICMP narrows neither existence nor identity by much. Many IoT devices deliberately drop echo requests while remaining reachable on HTTP, RTSP, or vendor-specific ports.</div>
+        </button>
+        <button class="nd-q-opt" data-q="b">
+          The device's firewall is blocking your IP.
+          <div class="why">Possible but speculative. You have no evidence about the device's firewall configuration. A reasonable hypothesis to investigate — not a defensible conclusion.</div>
+        </button>
+        <button class="nd-q-opt" data-q="c" data-correct="1">
+          The methods used from this position did not produce evidence during this time.
+          <div class="why">Correct. This is the disciplined statement: it preserves both the limits of the method and the position from which it ran. Active probes on other ports, local-link discovery, or gateway evidence may still find the device.</div>
+        </button>
+        <button class="nd-q-opt" data-q="d">
+          The subnet is clean.
+          <div class="why">Wrong — and dangerous. "Clean" implies certainty. ICMP failure is method failure, not population proof. This phrasing is exactly what the chapter warns against.</div>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== §9 Five Methods · Tools ========== -->
+  <section id="nd-9" class="nd-section">
+    <div class="nd-sec-num">SECTION 09</div>
+    <h2 class="nd-sec-title">Five Methods, Hands-On</h2>
+    <div class="nd-sec-sub">Each tool runs in your browser. Paste real data if you have it.</div>
+
+    <p class="nd-prose">
+      No method is sufficient alone. Each one carries the shape of its vantage point. Switch between tools below to see how the running case at <code>192.168.86.42</code> gains evidence — or stays silent — under each.
+    </p>
+
+    <div class="nd-tools-nav" id="ndToolNav">
+      <button class="nd-tool-tab on" data-tool="arp">1 · ARP Harvester</button>
+      <button class="nd-tool-tab" data-tool="router">2 · Router / SNMP</button>
+      <button class="nd-tool-tab" data-tool="mdns">3 · mDNS Browser</button>
+      <button class="nd-tool-tab" data-tool="ssdp">4 · SSDP / UPnP</button>
+      <button class="nd-tool-tab" data-tool="tcp">5 · TCP Pilot</button>
+    </div>
+
+    <!-- TOOL 1: ARP Harvester -->
+    <div class="nd-tool-pane on" data-tool-pane="arp">
+      <div class="nd-tool-head">
+        <div class="nd-tool-h">ARP Cache Harvester</div>
+        <div class="nd-tool-sub">read existing local state · no new packets</div>
+        <div class="nd-tool-desc">
+          Reading the ARP cache is the best initial step on a local IPv4 subnet — it uses information the operating system <em>already maintains</em>. Paste the output of <code>arp -an</code> from your Mac, <code>arp -a</code> from Windows, or <code>ip neigh</code> from Linux. The tool will parse it, normalize MAC formatting, run an OUI lookup, and filter broadcast/multicast artifacts.
+        </div>
+      </div>
+      <div class="nd-io">
+        <div class="nd-io-col">
+          <div class="nd-io-lbl">Paste your ARP output <button class="nd-btn ghost" id="ndArpSample" style="font-size:10.5px;padding:4px 10px">Use sample</button></div>
+          <textarea id="ndArpIn" placeholder="? (192.168.1.1) at b8:27:eb:01:02:03 on en0 ifscope [ethernet]
+? (192.168.1.42) at d4:f5:47:aa:bb:cc on en0 ifscope [ethernet]
+? (192.168.1.255) at ff:ff:ff:ff:ff:ff on en0 ifscope [ethernet]"></textarea>
+        </div>
+        <div class="nd-io-col">
+          <div class="nd-io-lbl">Parsed hosts <span style="color:var(--dim);font-size:10.5px" id="ndArpCt"></span></div>
+          <div class="nd-row-list" id="ndArpOut"><div style="color:var(--faint);font-size:12px;text-align:center;padding:30px 0">Output will appear here</div></div>
+        </div>
+      </div>
+      <div class="nd-tool-actions">
+        <button class="nd-btn primary" id="ndArpRun">Parse + normalize + lookup OUI</button>
+        <button class="nd-btn ghost" id="ndArpClear">Clear</button>
+      </div>
+      <p class="nd-prose" style="font-size:13.5px;margin-top:14px;max-width:780px">
+        <b>Why normalize?</b> Operating systems format MACs differently: <code>c:ae:7d:1:2:3</code> vs <code>0C:AE:7D:01:02:03</code>. The same device shows up as two records if you don't zero-pad and uppercase before merging. Vendor lookups also fail on short-form prefixes.
+      </p>
+    </div>
+
+    <!-- TOOL 2: Router / SNMP Viewport -->
+    <div class="nd-tool-pane" data-tool-pane="router">
+      <div class="nd-tool-head">
+        <div class="nd-tool-h">Router / SNMP Viewport</div>
+        <div class="nd-tool-sub">when local ARP can't see beyond the broadcast domain, the gateway becomes the witness</div>
+        <div class="nd-tool-desc">
+          A router's ARP table or SNMP <code>ipNetToMediaPhysAddress</code> can expose devices on adjacent segments with far less traffic than broad sweeps. Toggle between <em>local laptop view</em> and <em>gateway view</em> of the same network. Some devices appear only from the gateway.
+        </div>
+      </div>
+      <div class="nd-vantage-row" style="margin-bottom:14px">
+        <button class="nd-vantage on" id="ndRvLocal">Local laptop ARP</button>
+        <button class="nd-vantage" id="ndRvGw">Gateway / SNMP view</button>
+      </div>
+      <div class="nd-routerview" id="ndRouterView">
+        <div class="nd-rv-col" id="ndRvLocalCol">
+          <div class="nd-rv-col-h">Local cache · 192.168.86.0/24</div>
+          <div id="ndRvLocalHosts"></div>
+        </div>
+        <div class="nd-rv-col dim" id="ndRvGwCol">
+          <div class="nd-rv-col-h">Gateway ARP · cross-segment</div>
+          <div id="ndRvGwHosts"></div>
+        </div>
+      </div>
+      <p class="nd-prose" style="font-size:13.5px;margin-top:6px;max-width:760px">
+        Three devices visible only from the gateway. On a flat residential network, local ARP would be enough. On a segmented hospital VLAN — building management, lab instruments, wireless bridges — the gateway is often the only witness.
+      </p>
+    </div>
+
+    <!-- TOOL 3: mDNS Browser -->
+    <div class="nd-tool-pane" data-tool-pane="mdns">
+      <div class="nd-tool-head">
+        <div class="nd-tool-h">mDNS Service Browser</div>
+        <div class="nd-tool-sub">UDP/5353 multicast · devices voluntarily announce themselves</div>
+        <div class="nd-tool-desc">
+          mDNS surfaces hostnames, service types, and local-link identity for devices that participate in zero-configuration ecosystems. A response advertising <code>_googlecast._tcp</code> is not a full device identity — it's a capability hint. Click each observed service to see what it implies <em>and what it does not</em>.
+        </div>
+      </div>
+      <div class="nd-mdns-svcs" id="ndMdnsSvcs"></div>
+      <div class="nd-mdns-impl" id="ndMdnsImpl"></div>
+      <p class="nd-prose" style="font-size:13.5px;margin-top:14px;max-width:780px">
+        <b>The Chapter 1 discipline:</b> admit the host, preserve the service evidence, refuse to overstate. Chapter 2 (Cascade Lab) decides what identity claim, if any, follows from these strings.
+      </p>
+    </div>
+
+    <!-- TOOL 4: SSDP -->
+    <div class="nd-tool-pane" data-tool-pane="ssdp">
+      <div class="nd-tool-head">
+        <div class="nd-tool-h">SSDP / UPnP Parser</div>
+        <div class="nd-tool-sub">UDP/1900 M-SEARCH · device descriptions in XML</div>
+        <div class="nd-tool-desc">
+          SSDP can expose device class and service descriptions. The flow: send M-SEARCH, get a <code>LOCATION</code> header back pointing to a device description URL, fetch the XML, parse it <em>safely</em> (using a hardened XML parser — production code uses <code>defusedxml</code>). Click <em>Run M-SEARCH</em> to walk the flow.
+        </div>
+      </div>
+      <div class="nd-ssdp-flow" id="ndSsdpFlow">
+        <div class="nd-ssdp-step" data-step="1">
+          <div class="nd-ssdp-step-n">STEP 01</div>
+          <div class="nd-ssdp-step-h">Send M-SEARCH</div>
+          <div class="nd-ssdp-step-d">Bounded unicast to 192.168.86.42:1900</div>
+        </div>
+        <div class="nd-ssdp-step" data-step="2">
+          <div class="nd-ssdp-step-n">STEP 02</div>
+          <div class="nd-ssdp-step-h">Extract LOCATION</div>
+          <div class="nd-ssdp-step-d">Parse HTTP-over-UDP response for device description URL</div>
+        </div>
+        <div class="nd-ssdp-step" data-step="3">
+          <div class="nd-ssdp-step-n">STEP 03</div>
+          <div class="nd-ssdp-step-h">Fetch XML</div>
+          <div class="nd-ssdp-step-d">GET the location, treat response as untrusted input</div>
+        </div>
+        <div class="nd-ssdp-step" data-step="4">
+          <div class="nd-ssdp-step-n">STEP 04</div>
+          <div class="nd-ssdp-step-h">Parse safely</div>
+          <div class="nd-ssdp-step-d">Use a hardened XML parser; record device class</div>
+        </div>
+      </div>
+      <div class="nd-ssdp-out" id="ndSsdpOut">(click Run M-SEARCH to walk the flow)</div>
+      <div class="nd-tool-actions">
+        <button class="nd-btn primary" id="ndSsdpRun">Run M-SEARCH</button>
+        <button class="nd-btn ghost" id="ndSsdpReset">Reset</button>
+      </div>
+      <p class="nd-prose" style="font-size:13.5px;margin-top:14px;max-width:780px">
+        <b>Why <code>defusedxml</code>?</b> UPnP device descriptions are fetched from devices that may be poorly maintained or hostile. A naive XML parser exposes the scanner to XXE and entity-expansion attacks. The Chapter 1 discipline: treat all third-party XML as untrusted.
+      </p>
+    </div>
+
+    <!-- TOOL 5: TCP Pilot -->
+    <div class="nd-tool-pane" data-tool-pane="tcp">
+      <div class="nd-tool-head">
+        <div class="nd-tool-h">TCP Connect Pilot</div>
+        <div class="nd-tool-sub">durable fallback when passive methods leave uncertainty</div>
+        <div class="nd-tool-desc">
+          A successful TCP connect ties the host to a reachable service endpoint — stronger than generic liveness. Pick from the Breakwater port list. The simulation runs against 192.168.86.42 and reports which respond, refuse, or filter. Breadth tradeoff: narrow pilot = cheap, may miss sparse subnets; broad pilot = more visibility, more traffic.
+        </div>
+      </div>
+      <div style="font-family:'Inter',sans-serif;font-size:11.5px;color:var(--gold);text-transform:uppercase;letter-spacing:1.4px;font-weight:600;margin-bottom:10px">Pick ports to probe · click to toggle</div>
+      <div class="nd-port-grid" id="ndPortGrid"></div>
+      <div class="nd-tool-actions">
+        <button class="nd-btn primary" id="ndTcpRun">Run pilot probe</button>
+        <button class="nd-btn ghost" id="ndTcpPreset">Preset: Breakwater default (22, 80, 443, 554, 8080)</button>
+        <button class="nd-btn ghost" id="ndTcpClear">Clear</button>
+      </div>
+      <div class="nd-tcp-table" id="ndTcpOut" style="display:none"></div>
+      <p class="nd-prose" style="font-size:13.5px;margin-top:14px;max-width:780px">
+        An open port is <b>still not a device identity</b>. It is stronger evidence than ICMP echo, but a camera-like port set (80, 443, 554) could be a camera, an NVR, a media bridge, a test container, or a vendor appliance. The Chapter 1 contract: admit the host with port evidence; hand identity claim off to Chapter 2.
+      </p>
+    </div>
+  </section>
+
+  <!-- ========== §10 Streaming Pipeline ========== -->
+  <section id="nd-10" class="nd-section">
+    <div class="nd-sec-num">SECTION 10</div>
+    <h2 class="nd-sec-title">The Streaming Pipeline</h2>
+    <div class="nd-sec-sub">Time-to-first-truth · producer-consumer · hosts appear while discovery is still running.</div>
+
+    <p class="nd-prose">
+      Discovery should not force the analyst to wait for a monolithic batch result if useful evidence is already present. As soon as hosts appear, the pipeline normalizes MAC formats, filters artifacts, merges observations, and persists provisional host records. The Breakwater pipeline runs three async queues — <code>discovery → enrichment → identification</code> — each operating concurrently.
+    </p>
+
+    <div class="nd-pipe-ctl">
+      <button class="nd-btn primary" id="ndPipeRun">▶ Run pipeline</button>
+      <button class="nd-btn ghost" id="ndPipeMode" data-mode="streaming">Mode: streaming (toggle)</button>
+      <button class="nd-btn ghost" id="ndPipeReset">Reset</button>
+    </div>
+
+    <div class="nd-pipe">
+      <div class="nd-pipe-col">
+        <div class="nd-pipe-h">Discovery queue <span class="ct" id="ndPipeQ1ct">0</span></div>
+        <div class="nd-pipe-q" id="ndPipeQ1"></div>
+      </div>
+      <div class="nd-pipe-col">
+        <div class="nd-pipe-h">Enrichment queue <span class="ct" id="ndPipeQ2ct">0</span></div>
+        <div class="nd-pipe-q" id="ndPipeQ2"></div>
+      </div>
+      <div class="nd-pipe-col">
+        <div class="nd-pipe-h">Identification queue <span class="ct" id="ndPipeQ3ct">0</span></div>
+        <div class="nd-pipe-q" id="ndPipeQ3"></div>
+      </div>
+    </div>
+
+    <div class="nd-time-bar"><div id="ndPipeBar"></div></div>
+    <div class="nd-time-readout">
+      <div>Time to first host: <b id="ndPipeTtft">—</b></div>
+      <div>Stable count at: <b id="ndPipeTstable">—</b></div>
+      <div>Total runtime: <b id="ndPipeTtotal">—</b></div>
+    </div>
+
+    <p class="nd-prose" style="margin-top:18px;max-width:760px">
+      <b>Why early partial truth matters.</b> A streaming pipeline delivers <em>provisional</em> rows with explicit incompleteness. That is preferable to long silence followed by output that looks final because it arrived at the end. Operators cancel, resume, and inspect scans while they're still in motion. Toggle to <em>batch mode</em> above to feel the difference.
+    </p>
+  </section>
+
+  <!-- ========== §11 Host Record Contract ========== -->
+  <section id="nd-11" class="nd-section">
+    <div class="nd-sec-num">SECTION 11</div>
+    <h2 class="nd-sec-title">The Host Record as Analytic Contract</h2>
+    <div class="nd-sec-sub">Evidence + provenance + confidence. The output of Chapter 1 is not "a device label" — it is a defensible claim.</div>
+
+    <p class="nd-prose">
+      The Chapter 1 contract is narrower than the answer Chapter 2 will give. A camera-like port set can belong to a camera, an NVR, a media bridge, a test container, or a vendor appliance. A Google OUI can belong to a Chromecast, a Nest device, a Wi-Fi product, or a virtualized interface. The inventory becomes stronger when it refuses to overstate.
+    </p>
+
+    <div class="nd-flip-grid">
+      <div class="nd-flip bad">
+        <div class="nd-flip-h">Premature conclusion</div>
+<pre><span class="k">ip:      </span><span class="v">192.168.86.42</span>
+<span class="k">device:  </span><span class="v">Chromecast</span>
+<span class="k">model:   </span><span class="v">2nd gen</span>
+<span class="k">status:  </span><span class="v">confirmed</span>
+<span class="c"># identity locked in too early</span>
+<span class="c"># vendor hint + port set ≠ proof</span></pre>
+      </div>
+      <div class="nd-flip good">
+        <div class="nd-flip-h">Defensible Chapter 1 handoff</div>
+<pre><span class="k">ip:           </span><span class="v">192.168.86.42</span>
+<span class="k">mac:          </span><span class="v">d4:f5:47:xx:xx:xx</span>
+<span class="k">vendor_hint:  </span><span class="v">Google Inc.</span>
+<span class="k">hostname:     </span><span class="v">unknown</span>
+<span class="k">open_ports:   </span><span class="v">[80, 443]</span>
+<span class="k">sources:      </span><span class="v">[arp_cache, router_arp, tcp_connect]</span>
+<span class="k">icmp:         </span><span class="v">no response observed</span>
+<span class="k">multicast:    </span><span class="v">no useful response observed</span>
+<span class="k">confidence:   </span><span class="v">existence well-supported</span>
+<span class="k">identity:     </span><span class="v">unresolved · hand off to Ch.2</span></pre>
+      </div>
+    </div>
+
+    <p class="nd-prose">
+      <b>The calibration ladder.</b> Not every host claim is equally trustworthy. Drag each observation to the confidence level it should carry. <em>Stale ARP alone</em> is not the same kind of evidence as <em>ARP + router corroboration + TCP connect</em>.
+    </p>
+
+    <div class="nd-cal-row" id="ndCalRow">
+      <div class="nd-cal-obs" data-correct="vstrong">
+        ARP + router ARP + TCP connect on 80/443
+        <div class="nd-cal-pick">
+          <button class="nd-cal-lvl" data-lvl="low">Low</button>
+          <button class="nd-cal-lvl" data-lvl="mod">Moderate</button>
+          <button class="nd-cal-lvl" data-lvl="strong">Strong</button>
+          <button class="nd-cal-lvl" data-lvl="vstrong">Very strong</button>
+          <button class="nd-cal-lvl" data-lvl="durable">Durable</button>
+        </div>
+      </div>
+      <div class="nd-cal-obs" data-correct="strong">
+        ARP + mDNS advertisement of <code>_googlecast._tcp</code>
+        <div class="nd-cal-pick">
+          <button class="nd-cal-lvl" data-lvl="low">Low</button>
+          <button class="nd-cal-lvl" data-lvl="mod">Moderate</button>
+          <button class="nd-cal-lvl" data-lvl="strong">Strong</button>
+          <button class="nd-cal-lvl" data-lvl="vstrong">Very strong</button>
+          <button class="nd-cal-lvl" data-lvl="durable">Durable</button>
+        </div>
+      </div>
+      <div class="nd-cal-obs" data-correct="mod">
+        ARP + router ARP only
+        <div class="nd-cal-pick">
+          <button class="nd-cal-lvl" data-lvl="low">Low</button>
+          <button class="nd-cal-lvl" data-lvl="mod">Moderate</button>
+          <button class="nd-cal-lvl" data-lvl="strong">Strong</button>
+          <button class="nd-cal-lvl" data-lvl="vstrong">Very strong</button>
+          <button class="nd-cal-lvl" data-lvl="durable">Durable</button>
+        </div>
+      </div>
+      <div class="nd-cal-obs" data-correct="low">
+        Stale ARP entry, no other evidence
+        <div class="nd-cal-pick">
+          <button class="nd-cal-lvl" data-lvl="low">Low</button>
+          <button class="nd-cal-lvl" data-lvl="mod">Moderate</button>
+          <button class="nd-cal-lvl" data-lvl="strong">Strong</button>
+          <button class="nd-cal-lvl" data-lvl="vstrong">Very strong</button>
+          <button class="nd-cal-lvl" data-lvl="durable">Durable</button>
+        </div>
+      </div>
+      <div class="nd-cal-obs" data-correct="durable">
+        Multi-source agreement across repeated weekly observations
+        <div class="nd-cal-pick">
+          <button class="nd-cal-lvl" data-lvl="low">Low</button>
+          <button class="nd-cal-lvl" data-lvl="mod">Moderate</button>
+          <button class="nd-cal-lvl" data-lvl="strong">Strong</button>
+          <button class="nd-cal-lvl" data-lvl="vstrong">Very strong</button>
+          <button class="nd-cal-lvl" data-lvl="durable">Durable</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== §12 Capstone Lab ========== -->
+  <section id="nd-12" class="nd-section">
+    <div class="nd-sec-num">SECTION 12 · CAPSTONE</div>
+    <h2 class="nd-sec-title">The 26-Device Lab</h2>
+    <div class="nd-sec-sub">172.30.0.0/24 · known ground truth · score your discovery against reality.</div>
+
+    <p class="nd-prose">
+      The lab network has 26 simulated devices: cameras (HTTP + RTSP), media players (mDNS + nonstandard web), NAS (SMB + web), printers (IPP + JetDirect), IoT gateways (narrow service surfaces), and a handful of cloud-only devices with no open ports — discoverable only through lower-level evidence. Pick your methods. The pipeline streams results. You score completeness, soundness, and the discovery gap at the end.
+    </p>
+
+    <div class="nd-card">
+      <div class="nd-card-label">Step 1 · Pick your methods</div>
+      <div class="nd-cap-methods" id="ndCapMethods">
+        <div class="nd-cap-method on" data-m="arp">
+          <div class="nd-cap-mh">Local ARP</div>
+          <div class="nd-cap-md">Read existing local state. No new packets.</div>
+        </div>
+        <div class="nd-cap-method on" data-m="router">
+          <div class="nd-cap-mh">Router / SNMP</div>
+          <div class="nd-cap-md">Cross-subnet visibility from the gateway.</div>
+        </div>
+        <div class="nd-cap-method on" data-m="mdns">
+          <div class="nd-cap-mh">mDNS browse</div>
+          <div class="nd-cap-md">UDP/5353 local-link self-description.</div>
+        </div>
+        <div class="nd-cap-method" data-m="ssdp">
+          <div class="nd-cap-mh">SSDP / UPnP</div>
+          <div class="nd-cap-md">UDP/1900 device descriptions.</div>
+        </div>
+        <div class="nd-cap-method on" data-m="icmp">
+          <div class="nd-cap-mh">fping ICMP sweep</div>
+          <div class="nd-cap-md">Cheap broad liveness. Many devices drop.</div>
+        </div>
+        <div class="nd-cap-method" data-m="tcp">
+          <div class="nd-cap-mh">TCP connect pilot</div>
+          <div class="nd-cap-md">22, 80, 443, 554, 8080 — service evidence.</div>
+        </div>
+      </div>
+      <div class="nd-tool-actions" style="margin-top:14px">
+        <button class="nd-btn primary" id="ndCapRun">▶ Run discovery against 172.30.0.0/24</button>
+        <button class="nd-btn ghost" id="ndCapSkip">Skip to results</button>
+        <button class="nd-btn ghost" id="ndCapReset">Reset</button>
+      </div>
+    </div>
+
+    <div class="nd-cap-status" id="ndCapStatus"></div>
+    <div class="nd-cap-stream" id="ndCapStream"></div>
+
+    <div class="nd-cap-scorecard" id="ndCapScore">
+      <div class="nd-cap-sc-h">Scorecard · evaluated against ground truth</div>
+      <div class="nd-metric-grid">
+        <div class="nd-metric">
+          <div class="nd-metric-lbl">Completeness · C</div>
+          <div class="nd-metric-val" id="ndScC">—</div>
+          <div class="nd-metric-sub" id="ndScCsub">found / 26</div>
+        </div>
+        <div class="nd-metric">
+          <div class="nd-metric-lbl">Soundness · S</div>
+          <div class="nd-metric-val" id="ndScS">—</div>
+          <div class="nd-metric-sub" id="ndScSsub">real / admitted</div>
+        </div>
+        <div class="nd-metric">
+          <div class="nd-metric-lbl">Discovery gap · G = 1 − C</div>
+          <div class="nd-metric-val" id="ndScG">—</div>
+          <div class="nd-metric-sub" id="ndScGsub">% of fleet unseen</div>
+        </div>
+        <div class="nd-metric">
+          <div class="nd-metric-lbl">Phantom hosts</div>
+          <div class="nd-metric-val" id="ndScPh">—</div>
+          <div class="nd-metric-sub">stale / broadcast / artifact</div>
+        </div>
+      </div>
+      <div class="nd-cap-sc-h" style="margin-top:6px">Method contribution · which method admitted which hosts uniquely</div>
+      <div class="nd-cap-contrib" id="ndCapContrib"></div>
+      <div class="nd-cap-reflect" id="ndCapReflect"></div>
+      <div class="nd-cap-handoff">
+        <button class="nd-btn primary" id="ndCapHandoff">Hand running case to Cascade Lab →</button>
+        <button class="nd-btn ghost" id="ndCapRerun">↺ Re-run with different methods</button>
+      </div>
+    </div>
+  </section>
+
+  <script>
+  (function(){
+    /* ============================================================
+       NETWORK DISCOVERY CHAPTER · CHAPTER 1 INTERACTIVITY
+       © 2026 Rayve Malhotra · RayveLabs
+       ============================================================ */
+    var pane = document.getElementById('discovery');
+    if(!pane) return;
+
+    /* === sub-nav active highlight via IntersectionObserver === */
+    var sections = pane.querySelectorAll('.nd-section');
+    var subnavLinks = pane.querySelectorAll('.nd-sn');
+    function setActiveSec(id){
+      subnavLinks.forEach(function(a){
+        if(a.getAttribute('href') === '#' + id) a.classList.add('on');
+        else a.classList.remove('on');
+      });
+    }
+    var secIO = new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(e.isIntersecting && e.intersectionRatio > 0.18) setActiveSec(e.target.id);
+      });
+    }, {threshold:[0.18,0.5], rootMargin:'-80px 0px -50% 0px'});
+    sections.forEach(function(s){ secIO.observe(s); });
+
+    /* === running case card show/hide based on which section is in view === */
+    var runcase = document.getElementById('ndRuncase');
+    var showRcSecs = ['nd-5','nd-6','nd-7','nd-8','nd-9','nd-10','nd-11'];
+    var rcIO = new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(showRcSecs.indexOf(e.target.id) !== -1 && e.isIntersecting && e.intersectionRatio > 0.1){
+          runcase.classList.add('on');
+        }
+      });
+    }, {threshold:0.1});
+    sections.forEach(function(s){ if(showRcSecs.indexOf(s.id) !== -1) rcIO.observe(s); });
+
+    /* helper: update running case card */
+    function rcSet(k, v, cls){
+      var el = runcase.querySelector('[data-k="' + k + '"]');
+      if(!el) return;
+      el.textContent = v;
+      el.className = cls || '';
+    }
+    function rcSetConf(level){
+      var labels = {low:'low', mod:'moderate', strong:'strong', vstrong:'very strong'};
+      var el = document.getElementById('ndRcConf');
+      el.innerHTML = 'confidence: <span class="lvl ' + level + '">' + labels[level] + '</span>';
+    }
+
+    /* === §1 + §2: matching games (click options) === */
+    pane.querySelectorAll('#ndIncidents .nd-inc-opt').forEach(function(opt){
+      opt.addEventListener('click', function(){
+        var card = opt.closest('.nd-inc');
+        if(card.classList.contains('matched')) return;
+        var correct = card.getAttribute('data-correct');
+        if(opt.getAttribute('data-v') === correct){
+          opt.classList.add('right');
+          card.classList.add('matched');
+          card.querySelectorAll('.nd-inc-opt').forEach(function(o){ if(o !== opt) o.style.opacity = '0.35'; });
+        } else {
+          opt.classList.add('wrong');
+        }
+      });
+    });
+    pane.querySelectorAll('#ndFourQ .nd-inc').forEach(function(card){
+      card.addEventListener('click', function(){ card.classList.toggle('matched'); });
+    });
+
+    /* === §3 Analytics ladder === */
+    pane.querySelectorAll('#ndLadder .nd-rung').forEach(function(r){
+      r.addEventListener('click', function(){
+        pane.querySelectorAll('#ndLadder .nd-rung').forEach(function(x){ x.classList.remove('on'); });
+        r.classList.add('on');
+      });
+    });
+    pane.querySelector('#ndLadder .nd-rung[data-rung="0"]').classList.add('on');
+
+    /* === §4 Environment picker === */
+    var envData = {
+      corp: {
+        holds: ['Endpoint agents work on most systems','Active Directory / CMDB is mostly current','Devices have IPs that look like other devices','SNMP available on managed switches'],
+        breaks: ['Contractor-supplied displays in conference rooms','Building HVAC and badge readers','VOIP phones with vendor-only protocols','Personal devices on guest VLANs'],
+        note: 'Mostly OK with agent-based scans — but the breaks are exactly where attackers find space.'
+      },
+      hospital: {
+        holds: ['Some segmentation exists for medical VLANs','Vendor inventories exist (sometimes)'],
+        breaks: ['Infusion pumps cannot host agents','Imaging systems run vendor-locked OS','Patient monitors speak proprietary protocols','Biomed equipment arrives outside IT intake','Scanning can disrupt patient care'],
+        note: 'Passive-first is not optional here — it is a patient-safety requirement.'
+      },
+      casino: {
+        holds: ['Cameras and POS are inventoried','PCI scope is defined'],
+        breaks: ['Slot machines speak vendor protocols','HVAC, building automation, smart minibars','Fish tank thermometers (literally)','Hospitality IoT bought by F&B, not IT','Flat networks across operational zones'],
+        note: 'The casino-thermometer story lives here. The "boring" device is the entry point.'
+      },
+      home: {
+        holds: ['You probably know roughly what you own'],
+        breaks: ['No SNMP, no enterprise scanner','Many devices on /24 with no inventory','Chromecasts, Nests, smart bulbs, Sonos, printers','Devices come and go (guests, contractors)','MAC randomization on phones'],
+        note: 'A great place to learn: discovery here is honest about what tools work without enterprise infrastructure.'
+      }
+    };
+    function renderEnv(key){
+      var d = envData[key];
+      var el = document.getElementById('ndEnvResult');
+      el.innerHTML = '<div class="nd-env-col holds"><div class="nd-env-col-title">Assumptions that hold</div><ul>' +
+        d.holds.map(function(x){ return '<li>' + x + '</li>'; }).join('') + '</ul></div>' +
+        '<div class="nd-env-col breaks"><div class="nd-env-col-title">Assumptions that break</div><ul>' +
+        d.breaks.map(function(x){ return '<li>' + x + '</li>'; }).join('') + '</ul></div>' +
+        '<div style="grid-column:1/-1;padding:14px 18px;background:rgba(157,133,82,.06);border-left:2px solid var(--gold);font-size:13.5px;color:var(--dim);font-style:italic;line-height:1.55">' + d.note + '</div>';
+    }
+    pane.querySelectorAll('#ndEnvRow .nd-env').forEach(function(b){
+      b.addEventListener('click', function(){
+        pane.querySelectorAll('#ndEnvRow .nd-env').forEach(function(x){ x.classList.remove('on'); });
+        b.classList.add('on');
+        renderEnv(b.getAttribute('data-env'));
+      });
+    });
+    renderEnv('corp');
+
+    /* === §5 D vs D-hat sliders === */
+    var vReal = document.getElementById('ndVennReal'),
+        vCatch = document.getElementById('ndVennCatch'),
+        vNoise = document.getElementById('ndVennNoise');
+    function renderVenn(){
+      var D = parseInt(vReal.value),
+          catchPct = parseInt(vCatch.value) / 100,
+          noisePct = parseInt(vNoise.value) / 100;
+      var hit = Math.round(D * catchPct);
+      var missed = D - hit;
+      var phantom = Math.round(hit * noisePct);
+      var admitted = hit + phantom;
+      var C = D > 0 ? hit / D : 0;
+      var S = admitted > 0 ? hit / admitted : 0;
+      var G = 1 - C;
+      document.getElementById('ndVennHit').textContent = hit;
+      document.getElementById('ndVennMissed').textContent = missed;
+      document.getElementById('ndVennFp').textContent = phantom;
+      document.getElementById('ndVennRealV').textContent = D;
+      document.getElementById('ndVennCatchV').textContent = parseInt(vCatch.value);
+      document.getElementById('ndVennNoiseV').textContent = parseInt(vNoise.value);
+      document.getElementById('ndVennMath').innerHTML =
+        'C = <b>' + C.toFixed(2) + '</b> · S = <b>' + S.toFixed(2) + '</b> · gap = <b>' + G.toFixed(2) + '</b>';
+    }
+    [vReal, vCatch, vNoise].forEach(function(s){ s.addEventListener('input', renderVenn); });
+    renderVenn();
+
+    /* === §6 Vantage points === */
+    var vantageData = {
+      laptop: {
+        sees: ['Local ARP on the segment you joined','mDNS advertisements from local-link devices','TCP responses from reachable peers'],
+        misses: ['Devices behind routers','Isolated wired devices','Anything the gateway sees that your subnet does not'],
+        msg: 'Most teaching examples in this chapter start from this view. It is the most common and most limited.'
+      },
+      switch: {
+        sees: ['Local ARP, mDNS, all local-link evidence','Active probe responses from anyone on the segment','MAC observations as packets pass'],
+        misses: ['Devices behind other routers / ACLs','Cross-segment context'],
+        msg: 'Switched-port view is what a SOC analyst gets when they plug in a tap or use a SPAN port.'
+      },
+      gateway: {
+        sees: ['ARP and neighbor tables across served segments','SNMP observations','Forwarding state'],
+        misses: ['Application identity unless service probes are also run','Endpoint-only artifacts'],
+        msg: 'Often the highest-value vantage — but requires management access that is not always available.'
+      },
+      central: {
+        sees: ['Routed TCP and ICMP responses','Reverse DNS','SNMP if configured per-router'],
+        misses: ['Local-link evidence (ARP, mDNS) from any remote segment','MAC visibility','Multicast behavior'],
+        msg: 'Industrial central scanners look thorough but blind to exactly the IoT/OT evidence that matters most.'
+      },
+      collector: {
+        sees: ['Local-link evidence from the remote segment','Full ARP, mDNS, SSDP for that segment'],
+        misses: ['Other segments (without more collectors)','Requires deployment, registration, trust'],
+        msg: 'Distributed collectors restore local-link visibility without moving the central scanner.'
+      }
+    };
+    function setVantage(v){
+      pane.querySelectorAll('#ndVantageRow .nd-vantage').forEach(function(b){
+        b.classList.toggle('on', b.getAttribute('data-v') === v);
+      });
+      ['laptop','switch','gateway','central','collector'].forEach(function(x){
+        var el = document.getElementById('ndVPos-' + x);
+        if(el) el.setAttribute('opacity', x === v ? '1' : '0');
+      });
+      var d = vantageData[v];
+      document.getElementById('ndVantageDetail').innerHTML =
+        '<b>Sees:</b> ' + d.sees.join('; ') + '. <br><b>Misses:</b> ' + d.misses.join('; ') + '. <br><em>' + d.msg + '</em>';
+    }
+    pane.querySelectorAll('#ndVantageRow .nd-vantage').forEach(function(b){
+      b.addEventListener('click', function(){ setVantage(b.getAttribute('data-v')); });
+    });
+    setVantage('laptop');
+
+    /* === §7 Passive-first ordering puzzle === */
+    var ordMethods = [
+      {id:'arp',     label:'1. Read existing ARP cache',        rank:1, why:'No new packets. Reads OS-maintained state.'},
+      {id:'router',  label:'2. Query gateway / SNMP',           rank:2, why:'Management-plane query, low-disturbance.'},
+      {id:'mdns',    label:'3. Listen to mDNS / SSDP',          rank:3, why:'Low-disturbance multicast / local-link observation.'},
+      {id:'icmp',    label:'4. ICMP / fping sweep',             rank:4, why:'Active, host-directed traffic.'},
+      {id:'tcp',     label:'5. TCP connect probe',              rank:5, why:'Active, narrow service surface probing.'},
+      {id:'service', label:'6. Full service / banner scan',     rank:6, why:'Most active. Chapter 2 boundary.'}
+    ];
+    function shuffle(a){ a = a.slice(); for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i]; a[i]=a[j]; a[j]=t; } return a; }
+    function buildOrder(){
+      var pool = document.getElementById('ndOrdPool');
+      var tray = document.getElementById('ndOrdTray');
+      pool.innerHTML = ''; tray.innerHTML = '';
+      shuffle(ordMethods).forEach(function(m){
+        var d = document.createElement('div');
+        d.className = 'nd-ord-item';
+        d.draggable = true;
+        d.dataset.id = m.id;
+        d.innerHTML = '<span class="grip">⋮⋮</span> ' + m.label;
+        d.addEventListener('dragstart', function(e){
+          d.classList.add('dragging');
+          e.dataTransfer.setData('text/plain', m.id);
+        });
+        d.addEventListener('dragend', function(){ d.classList.remove('dragging'); });
+        pool.appendChild(d);
+      });
+      document.getElementById('ndOrdFeedback').className = 'nd-ord-feedback';
+      document.getElementById('ndOrdFeedback').textContent = '';
+    }
+    function addDropHandlers(el){
+      el.addEventListener('dragover', function(e){ e.preventDefault(); });
+      el.addEventListener('drop', function(e){
+        e.preventDefault();
+        var id = e.dataTransfer.getData('text/plain');
+        var item = document.querySelector('.nd-ord-item[data-id="' + id + '"]');
+        if(item) el.appendChild(item);
+      });
+    }
+    addDropHandlers(document.getElementById('ndOrdPool'));
+    addDropHandlers(document.getElementById('ndOrdTray'));
+    document.getElementById('ndOrdCheck').addEventListener('click', function(){
+      var tray = document.getElementById('ndOrdTray');
+      var ids = Array.from(tray.children).map(function(c){ return c.dataset.id; });
+      if(ids.length !== ordMethods.length){
+        var fb = document.getElementById('ndOrdFeedback');
+        fb.className = 'nd-ord-feedback wrong';
+        fb.textContent = 'Drop all 6 methods into the tray before checking.';
+        return;
+      }
+      var byId = {}; ordMethods.forEach(function(m){ byId[m.id] = m; });
+      var correct = true;
+      ids.forEach(function(id, i){ if(byId[id].rank !== i + 1) correct = false; });
+      var fb = document.getElementById('ndOrdFeedback');
+      if(correct){
+        fb.className = 'nd-ord-feedback right';
+        fb.innerHTML = '<b>Correct.</b> Reading existing state → infrastructure query → local-link observation → active sweep → service scan. Each step strengthens evidence about what came before. Active scanning the wrong order in a hospital is a patient-safety incident.';
+      } else {
+        fb.className = 'nd-ord-feedback wrong';
+        fb.innerHTML = '<b>Not quite.</b> Re-order from least disturbing (ARP cache reading produces zero new packets) to most disturbing (a full service scan generates the most active traffic). Reset and try again.';
+      }
+    });
+    document.getElementById('ndOrdReset').addEventListener('click', buildOrder);
+    buildOrder();
+
+    /* === §8 Silence quiz === */
+    pane.querySelectorAll('#ndQuiz .nd-q-opt').forEach(function(b){
+      b.addEventListener('click', function(){
+        pane.querySelectorAll('#ndQuiz .nd-q-opt').forEach(function(x){ x.classList.remove('right'); x.classList.remove('wrong'); });
+        if(b.getAttribute('data-correct')) b.classList.add('right');
+        else b.classList.add('wrong');
+      });
+    });
+
+    /* === §9 Tool tabs === */
+    pane.querySelectorAll('#ndToolNav .nd-tool-tab').forEach(function(t){
+      t.addEventListener('click', function(){
+        pane.querySelectorAll('#ndToolNav .nd-tool-tab').forEach(function(x){ x.classList.remove('on'); });
+        pane.querySelectorAll('.nd-tool-pane').forEach(function(x){ x.classList.remove('on'); });
+        t.classList.add('on');
+        var which = t.getAttribute('data-tool');
+        document.querySelector('.nd-tool-pane[data-tool-pane="' + which + '"]').classList.add('on');
+      });
+    });
+
+    /* === §9 Tool 1 · ARP Harvester === */
+    /* tiny OUI table — vendor hint only */
+    var ouiTable = {
+      'B82719':'Apple','B827EB':'Raspberry Pi','D4F547':'Google Inc.','002435':'Cisco',
+      '0024E8':'Dell','001A11':'Google Inc.','5C5181':'Sonos','000C29':'VMware',
+      '001E58':'WIST','3CD92B':'HP','9C2A70':'Hon Hai','0CAE7D':'Texas Instruments',
+      '00112233':'Cisco','F47B09':'Apple','A4C361':'Hon Hai','3CDFA9':'Brother',
+      '003065':'Hewlett-Packard','002745':'Texas Instruments','FCFC48':'Apple','00163E':'Xensource'
+    };
+    function ouiLookup(mac){
+      if(!mac) return '';
+      var key = mac.replace(/[:.-]/g, '').toUpperCase().substring(0,6);
+      return ouiTable[key] || '';
+    }
+    function normMac(raw){
+      if(!raw) return '';
+      var p = raw.toLowerCase().replace(/-/g, ':').split(':');
+      if(p.length !== 6) return '';
+      return p.map(function(o){ return (o.length === 1 ? '0' + o : o).toUpperCase(); }).join(':');
+    }
+    var arpSample = '? (192.168.86.1) at b8:27:eb:a1:b2:c3 on en0 ifscope [ethernet]\n' +
+                    '? (192.168.86.42) at d4:f5:47:11:22:33 on en0 ifscope [ethernet]\n' +
+                    '? (192.168.86.55) at 5c:51:81:aa:bb:cc on en0 ifscope [ethernet]\n' +
+                    '? (192.168.86.91) at fc:fc:48:de:ef:00 on en0 ifscope [ethernet]\n' +
+                    '? (192.168.86.103) at 3c:df:a9:99:88:77 on en0 ifscope [ethernet]\n' +
+                    '? (192.168.86.255) at ff:ff:ff:ff:ff:ff on en0 ifscope [ethernet]';
+    document.getElementById('ndArpSample').addEventListener('click', function(){
+      document.getElementById('ndArpIn').value = arpSample;
+    });
+    function arpParse(){
+      var raw = document.getElementById('ndArpIn').value;
+      var out = document.getElementById('ndArpOut');
+      var ct = document.getElementById('ndArpCt');
+      var lines = raw.split('\n');
+      var rows = [];
+      lines.forEach(function(ln){
+        var m = ln.match(/\(([\d.]+)\)\s+at\s+([0-9a-f:.\-]+)/i) ||
+                ln.match(/^([\d.]+)\s+\S+\s+([0-9a-f:.\-]{17})/i) ||
+                ln.match(/^([\d.]+)\s+dev\s+\S+\s+lladdr\s+([0-9a-f:.\-]+)/i);
+        if(m){
+          var ip = m[1], rawMac = m[2];
+          var mac = normMac(rawMac);
+          if(!mac) return;
+          var bad = (mac === 'FF:FF:FF:FF:FF:FF') || ip.endsWith('.255') || ip.endsWith('.0');
+          rows.push({ip:ip, mac:mac, vendor: ouiLookup(mac), bad:bad});
+        }
+      });
+      if(!rows.length){
+        out.innerHTML = '<div style="color:var(--faint);font-size:12px;text-align:center;padding:30px 0">No ARP entries detected. Paste typical output from <code>arp -an</code>, <code>arp -a</code>, or <code>ip neigh</code>.</div>';
+        ct.textContent = '';
+        return;
+      }
+      var kept = rows.filter(function(r){ return !r.bad; });
+      out.innerHTML = rows.map(function(r){
+        return '<div class="nd-rowln' + (r.bad ? ' bad' : '') + '">' +
+          '<span class="ip">' + r.ip + '</span>' +
+          '<span class="mac">' + r.mac + '</span>' +
+          '<span class="vendor">' + (r.vendor || '<span style="color:var(--faint)">no OUI match</span>') + '</span>' +
+          '<span class="flag">' + (r.bad ? 'filtered' : '') + '</span>' +
+        '</div>';
+      }).join('');
+      ct.textContent = kept.length + ' kept · ' + (rows.length - kept.length) + ' filtered';
+      // update running case if .42 appears
+      var rc = rows.find(function(r){ return r.ip === '192.168.86.42'; });
+      if(rc && !rc.bad){
+        rcSet('mac', rc.mac, 'g');
+        rcSet('vendor', rc.vendor || 'unknown', '');
+        rcSetConf('low');
+      }
+    }
+    document.getElementById('ndArpRun').addEventListener('click', arpParse);
+    document.getElementById('ndArpClear').addEventListener('click', function(){
+      document.getElementById('ndArpIn').value = '';
+      document.getElementById('ndArpOut').innerHTML = '<div style="color:var(--faint);font-size:12px;text-align:center;padding:30px 0">Output will appear here</div>';
+      document.getElementById('ndArpCt').textContent = '';
+    });
+
+    /* === §9 Tool 2 · Router viewport === */
+    var rvLocal = [
+      {ip:'192.168.86.1',  mac:'B8:27:EB:A1:B2:C3', label:'gateway'},
+      {ip:'192.168.86.42', mac:'D4:F5:47:11:22:33', label:'(unknown)'},
+      {ip:'192.168.86.55', mac:'5C:51:81:AA:BB:CC', label:'Sonos'},
+      {ip:'192.168.86.91', mac:'FC:FC:48:DE:EF:00', label:'Apple'}
+    ];
+    var rvGw = [
+      {ip:'10.0.10.5',  mac:'00:80:A3:11:22:33', label:'building HVAC',         only:true},
+      {ip:'10.0.10.12', mac:'00:1F:CC:44:55:66', label:'lab instrument',        only:true},
+      {ip:'10.0.20.18', mac:'00:50:C2:77:88:99', label:'vendor wireless bridge', only:true}
+    ];
+    function renderRv(){
+      var localShown = document.getElementById('ndRvLocal').classList.contains('on');
+      var gwShown = document.getElementById('ndRvGw').classList.contains('on');
+      document.getElementById('ndRvLocalCol').classList.toggle('dim', !localShown);
+      document.getElementById('ndRvGwCol').classList.toggle('dim', !gwShown);
+      document.getElementById('ndRvLocalHosts').innerHTML = rvLocal.map(function(h){
+        return '<div class="nd-rv-host"><span><b>' + h.ip + '</b> ' + h.mac + '</span><span class="scope">' + h.label + '</span></div>';
+      }).join('');
+      document.getElementById('ndRvGwHosts').innerHTML = rvGw.map(function(h){
+        return '<div class="nd-rv-host only"><span><b>' + h.ip + '</b> ' + h.mac + '</span><span class="scope">' + h.label + '</span></div>';
+      }).join('');
+    }
+    document.getElementById('ndRvLocal').addEventListener('click', function(){
+      this.classList.toggle('on'); renderRv();
+    });
+    document.getElementById('ndRvGw').addEventListener('click', function(){
+      this.classList.toggle('on'); renderRv();
+    });
+    renderRv();
+
+    /* === §9 Tool 3 · mDNS === */
+    var mdnsServices = [
+      {svc:'_googlecast._tcp',  fam:'Google Cast',    imp:'A device willing to receive cast streams (TV, Chromecast, smart speaker).', nim:'Specific model or firmware.'},
+      {svc:'_airplay._tcp',     fam:'AirPlay',        imp:'An Apple-ecosystem device or compatible peer.', nim:'Whether the device is currently in use or owned by an Apple user.'},
+      {svc:'_ipp._tcp',         fam:'IPP printing',   imp:'A printer or print-capable device (some all-in-ones include this).', nim:'Manufacturer, model, or firmware.'},
+      {svc:'_printer._tcp',     fam:'Generic printer',imp:'A printer family device with PostScript or PCL.', nim:'Vendor or driver compatibility.'},
+      {svc:'_raop._tcp',        fam:'Remote Audio Output Protocol', imp:'AirPlay audio receiver.', nim:'Whether audio is being streamed now.'},
+      {svc:'_sonos._tcp',       fam:'Sonos device',   imp:'A Sonos speaker or amp.', nim:'Model or group membership.'},
+      {svc:'_spotify-connect._tcp', fam:'Spotify Connect', imp:'A Spotify Connect-capable receiver.', nim:'User identity or current playback.'},
+      {svc:'_ssh._tcp',         fam:'SSH server',     imp:'A device exposing SSH on the LAN.', nim:'OS, user accounts, or auth methods.'},
+      {svc:'_smb._tcp',         fam:'SMB file share', imp:'A device offering SMB file sharing.', nim:'Whether shares are open or what credentials are required.'}
+    ];
+    var mdnsGrid = document.getElementById('ndMdnsSvcs');
+    mdnsGrid.innerHTML = mdnsServices.map(function(s, i){
+      return '<div class="nd-mdns-svc" data-i="' + i + '">' +
+        '<div class="nd-mdns-svc-name">' + s.svc + '</div>' +
+        '<div class="nd-mdns-svc-fam">' + s.fam + '</div></div>';
+    }).join('');
+    mdnsGrid.querySelectorAll('.nd-mdns-svc').forEach(function(el){
+      el.addEventListener('click', function(){
+        mdnsGrid.querySelectorAll('.nd-mdns-svc').forEach(function(x){ x.classList.remove('on'); });
+        el.classList.add('on');
+        var s = mdnsServices[parseInt(el.dataset.i)];
+        var imp = document.getElementById('ndMdnsImpl');
+        imp.classList.add('on');
+        imp.innerHTML = '<b>' + s.svc + ' — ' + s.fam + '</b><span class="imp">' + s.imp + '</span><span class="nim">' + s.nim + '</span>';
+      });
+    });
+
+    /* === §9 Tool 4 · SSDP simulator === */
+    var ssdpRunning = false;
+    document.getElementById('ndSsdpRun').addEventListener('click', function(){
+      if(ssdpRunning) return;
+      ssdpRunning = true;
+      var steps = pane.querySelectorAll('#ndSsdpFlow .nd-ssdp-step');
+      steps.forEach(function(s){ s.classList.remove('done'); });
+      var out = document.getElementById('ndSsdpOut');
+      out.textContent = '';
+      var seq = [
+        {dly:400, html:'> M-SEARCH * HTTP/1.1\n  HOST: 192.168.86.42:1900\n  MAN: "ssdp:discover"\n  ST: upnp:rootdevice'},
+        {dly:600, step:1},
+        {dly:800, html:'\n\n< HTTP/1.1 200 OK\n  CACHE-CONTROL: max-age=1800\n  EXT:\n  LOCATION: http://192.168.86.42:8008/ssdp/device-desc.xml\n  SERVER: Linux/3.10 UPnP/1.0\n  ST: upnp:rootdevice'},
+        {dly:1100, step:2},
+        {dly:600, html:'\n\n> GET /ssdp/device-desc.xml HTTP/1.1\n  Host: 192.168.86.42:8008'},
+        {dly:1500, step:3},
+        {dly:900, html:'\n\n< HTTP/1.1 200 OK\n  Content-Type: text/xml\n\n  <?xml version="1.0"?>\n  <root>\n    <device>\n      <deviceType>urn:dial-multiscreen-org:device:dial:1</deviceType>\n      <friendlyName>Living Room</friendlyName>\n      <manufacturer>Google Inc.</manufacturer>\n      <modelName>(redacted)</modelName>\n    </device>\n  </root>'},
+        {dly:1700, step:4},
+        {dly:500, html:'\n\n# device admitted with structured self-description\n# vendor + family hint recorded; identity NOT confirmed'},
+        {dly:200, fn:function(){
+          rcSet('vendor','Google Inc.','');
+          rcSetConf('mod');
+        }}
+      ];
+      var t = 0;
+      seq.forEach(function(s){
+        t += s.dly;
+        setTimeout(function(){
+          if(s.html) out.textContent += s.html;
+          if(s.step) steps[s.step - 1].classList.add('done');
+          if(s.fn) s.fn();
+          out.scrollTop = out.scrollHeight;
+        }, t);
+      });
+      setTimeout(function(){ ssdpRunning = false; }, t + 200);
+    });
+    document.getElementById('ndSsdpReset').addEventListener('click', function(){
+      document.getElementById('ndSsdpOut').textContent = '(click Run M-SEARCH to walk the flow)';
+      pane.querySelectorAll('#ndSsdpFlow .nd-ssdp-step').forEach(function(s){ s.classList.remove('done'); });
+    });
+
+    /* === §9 Tool 5 · TCP pilot === */
+    var tcpPorts = [
+      {p:22, n:'SSH'}, {p:80, n:'HTTP'}, {p:443, n:'HTTPS'}, {p:445, n:'SMB'},
+      {p:554, n:'RTSP'}, {p:631, n:'IPP'}, {p:1400, n:'Sonos'}, {p:1883, n:'MQTT'},
+      {p:3000, n:'TV'}, {p:5000, n:'NAS'}, {p:8001, n:'TV'}, {p:8008, n:'Cast'},
+      {p:8080, n:'HTTP-alt'}, {p:8443, n:'Nest'}, {p:8883, n:'MQTT-S'}, {p:9100, n:'JetDirect'},
+      {p:10001, n:'IoT'}, {p:37777, n:'cam'}
+    ];
+    var tcpResp = {
+      22:'filt', 80:'open', 443:'open', 445:'closed', 554:'closed', 631:'closed',
+      1400:'closed', 1883:'closed', 3000:'closed', 5000:'closed', 8001:'closed',
+      8008:'open', 8080:'closed', 8443:'open', 8883:'closed', 9100:'closed',
+      10001:'closed', 37777:'closed'
+    };
+    var pickedPorts = new Set();
+    var portGrid = document.getElementById('ndPortGrid');
+    portGrid.innerHTML = tcpPorts.map(function(p){
+      return '<div class="nd-port" data-p="' + p.p + '">' + p.p + '<span class="nd-port-purpose">' + p.n + '</span></div>';
+    }).join('');
+    portGrid.querySelectorAll('.nd-port').forEach(function(el){
+      el.addEventListener('click', function(){
+        var p = parseInt(el.getAttribute('data-p'));
+        if(pickedPorts.has(p)){ pickedPorts.delete(p); el.classList.remove('on'); }
+        else { pickedPorts.add(p); el.classList.add('on'); }
+      });
+    });
+    document.getElementById('ndTcpPreset').addEventListener('click', function(){
+      pickedPorts.clear();
+      [22,80,443,554,8080].forEach(function(p){ pickedPorts.add(p); });
+      portGrid.querySelectorAll('.nd-port').forEach(function(el){
+        el.classList.toggle('on', pickedPorts.has(parseInt(el.getAttribute('data-p'))));
+      });
+    });
+    document.getElementById('ndTcpClear').addEventListener('click', function(){
+      pickedPorts.clear();
+      portGrid.querySelectorAll('.nd-port').forEach(function(el){ el.classList.remove('on'); });
+      document.getElementById('ndTcpOut').style.display = 'none';
+    });
+    document.getElementById('ndTcpRun').addEventListener('click', function(){
+      if(!pickedPorts.size){
+        alert('Pick at least one port to probe. Use the preset for the Breakwater default set.');
+        return;
+      }
+      var out = document.getElementById('ndTcpOut');
+      out.style.display = 'flex';
+      out.innerHTML = '<div style="font-family:Inter,sans-serif;font-size:11px;color:var(--gold);text-transform:uppercase;letter-spacing:1.4px;font-weight:600;padding:4px">probing 192.168.86.42 ·</div>';
+      var openPorts = [];
+      var ports = Array.from(pickedPorts).sort(function(a,b){ return a - b; });
+      ports.forEach(function(p, i){
+        setTimeout(function(){
+          var resp = tcpResp[p] || 'closed';
+          var label = resp === 'open' ? 'OPEN' : resp === 'filt' ? 'FILTERED' : 'CLOSED';
+          var row = document.createElement('div');
+          row.className = 'nd-tcp-row ' + resp;
+          row.innerHTML = '<span>' + p + '/tcp</span><span class="src">' + (tcpPorts.find(function(x){return x.p===p;}) || {n:'?'}).n + '</span><span class="status">' + label + '</span>';
+          out.appendChild(row);
+          if(resp === 'open') openPorts.push(p);
+          if(i === ports.length - 1){
+            // update running case
+            if(openPorts.length){
+              rcSet('ports', '[' + openPorts.join(', ') + ']', 'g');
+              rcSet('sources', 'arp + tcp_connect', 'g');
+              rcSet('icmp', 'no response', '');
+              rcSetConf('strong');
+            }
+          }
+        }, 150 + i * 220);
+      });
+    });
+
+    /* === §10 Pipeline animation === */
+    var pipeMode = 'streaming';
+    document.getElementById('ndPipeMode').addEventListener('click', function(){
+      pipeMode = pipeMode === 'streaming' ? 'batch' : 'streaming';
+      this.textContent = 'Mode: ' + pipeMode + ' (toggle)';
+    });
+    var pipeHosts = [
+      {ip:'172.30.0.4',  mac:'D4:F5:47:00:01:02', src:'arp'},
+      {ip:'172.30.0.11', mac:'5C:51:81:00:03:04', src:'mdns'},
+      {ip:'172.30.0.13', mac:'B8:27:EB:00:05:06', src:'arp'},
+      {ip:'172.30.0.20', mac:'00:1F:CC:00:07:08', src:'router'},
+      {ip:'172.30.0.22', mac:'3C:DF:A9:00:09:0A', src:'mdns'},
+      {ip:'172.30.0.31', mac:'00:80:A3:00:0B:0C', src:'router'},
+      {ip:'172.30.0.42', mac:'FC:FC:48:00:0D:0E', src:'arp'},
+      {ip:'172.30.0.55', mac:'A4:C3:61:00:0F:10', src:'mdns'},
+      {ip:'172.30.0.60', mac:'00:50:C2:00:11:12', src:'tcp'},
+      {ip:'172.30.0.77', mac:'D8:5D:E2:00:13:14', src:'tcp'},
+      {ip:'172.30.0.88', mac:'00:24:E8:00:15:16', src:'router'},
+      {ip:'172.30.0.92', mac:'3C:D9:2B:00:17:18', src:'arp'}
+    ];
+    function resetPipe(){
+      ['ndPipeQ1','ndPipeQ2','ndPipeQ3'].forEach(function(id){
+        document.getElementById(id).innerHTML = '';
+        document.getElementById(id + 'ct').textContent = '0';
+      });
+      document.getElementById('ndPipeBar').style.width = '0%';
+      document.getElementById('ndPipeTtft').textContent = '—';
+      document.getElementById('ndPipeTstable').textContent = '—';
+      document.getElementById('ndPipeTtotal').textContent = '—';
+    }
+    function runPipe(){
+      resetPipe();
+      var start = performance.now();
+      var ttft = null;
+      var total = pipeHosts.length * 350 + 800;
+      var barInt = setInterval(function(){
+        var elapsed = performance.now() - start;
+        document.getElementById('ndPipeBar').style.width = Math.min(100, (elapsed / total) * 100) + '%';
+        if(elapsed > total + 200) clearInterval(barInt);
+      }, 50);
+      if(pipeMode === 'streaming'){
+        pipeHosts.forEach(function(h, i){
+          setTimeout(function(){
+            var el = document.createElement('div');
+            el.className = 'nd-pipe-item';
+            el.innerHTML = '<span>' + h.ip + '</span><span class="src">' + h.src + '</span>';
+            document.getElementById('ndPipeQ1').appendChild(el);
+            document.getElementById('ndPipeQ1ct').textContent = i + 1;
+            if(ttft === null){ ttft = performance.now() - start; document.getElementById('ndPipeTtft').textContent = (ttft / 1000).toFixed(2) + 's'; }
+            setTimeout(function(){
+              var e2 = el.cloneNode(true);
+              document.getElementById('ndPipeQ2').appendChild(e2);
+              document.getElementById('ndPipeQ2ct').textContent = parseInt(document.getElementById('ndPipeQ2ct').textContent) + 1;
+            }, 250);
+            setTimeout(function(){
+              var e3 = el.cloneNode(true);
+              document.getElementById('ndPipeQ3').appendChild(e3);
+              document.getElementById('ndPipeQ3ct').textContent = parseInt(document.getElementById('ndPipeQ3ct').textContent) + 1;
+            }, 500);
+          }, i * 280);
+        });
+        setTimeout(function(){
+          var ts = performance.now() - start;
+          document.getElementById('ndPipeTstable').textContent = (ts / 1000).toFixed(2) + 's';
+          document.getElementById('ndPipeTtotal').textContent = ((ts + 500) / 1000).toFixed(2) + 's';
+        }, pipeHosts.length * 280 + 600);
+      } else {
+        // batch mode — long silence then all at once
+        setTimeout(function(){
+          pipeHosts.forEach(function(h, i){
+            var el = document.createElement('div');
+            el.className = 'nd-pipe-item';
+            el.innerHTML = '<span>' + h.ip + '</span><span class="src">' + h.src + '</span>';
+            document.getElementById('ndPipeQ1').appendChild(el);
+          });
+          document.getElementById('ndPipeQ1ct').textContent = pipeHosts.length;
+          var ts = performance.now() - start;
+          document.getElementById('ndPipeTtft').textContent = (ts / 1000).toFixed(2) + 's';
+          setTimeout(function(){
+            pipeHosts.forEach(function(h){
+              var el = document.createElement('div');
+              el.className = 'nd-pipe-item';
+              el.innerHTML = '<span>' + h.ip + '</span><span class="src">' + h.src + '</span>';
+              document.getElementById('ndPipeQ2').appendChild(el);
+            });
+            document.getElementById('ndPipeQ2ct').textContent = pipeHosts.length;
+          }, 400);
+          setTimeout(function(){
+            pipeHosts.forEach(function(h){
+              var el = document.createElement('div');
+              el.className = 'nd-pipe-item';
+              el.innerHTML = '<span>' + h.ip + '</span><span class="src">' + h.src + '</span>';
+              document.getElementById('ndPipeQ3').appendChild(el);
+            });
+            document.getElementById('ndPipeQ3ct').textContent = pipeHosts.length;
+            var ts2 = performance.now() - start;
+            document.getElementById('ndPipeTstable').textContent = (ts2 / 1000).toFixed(2) + 's';
+            document.getElementById('ndPipeTtotal').textContent = (ts2 / 1000).toFixed(2) + 's';
+          }, 900);
+        }, 3600);
+      }
+    }
+    document.getElementById('ndPipeRun').addEventListener('click', runPipe);
+    document.getElementById('ndPipeReset').addEventListener('click', resetPipe);
+
+    /* === §11 Calibration ladder === */
+    pane.querySelectorAll('#ndCalRow .nd-cal-obs').forEach(function(row){
+      row.querySelectorAll('.nd-cal-lvl').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          row.querySelectorAll('.nd-cal-lvl').forEach(function(x){ x.classList.remove('picked','right','wrong'); });
+          btn.classList.add('picked');
+          if(btn.getAttribute('data-lvl') === row.getAttribute('data-correct')){
+            btn.classList.add('right');
+            row.classList.add('matched');
+          } else {
+            btn.classList.add('wrong');
+          }
+        });
+      });
+    });
+
+    /* === §12 Capstone === */
+    /* the 26-device truth — each entry has methods that can detect it */
+    var truth = [
+      {id:1,  ip:'172.30.0.4',  type:'cam',    detect:['arp','router','tcp','icmp']},
+      {id:2,  ip:'172.30.0.5',  type:'cam',    detect:['arp','router','tcp','ssdp']},
+      {id:3,  ip:'172.30.0.6',  type:'cam',    detect:['arp','tcp']},
+      {id:4,  ip:'172.30.0.10', type:'media',  detect:['arp','mdns','ssdp','tcp']},
+      {id:5,  ip:'172.30.0.11', type:'media',  detect:['arp','mdns','tcp']},
+      {id:6,  ip:'172.30.0.12', type:'speaker',detect:['arp','mdns','ssdp']},
+      {id:7,  ip:'172.30.0.13', type:'speaker',detect:['arp','mdns']},
+      {id:8,  ip:'172.30.0.15', type:'hub',    detect:['arp','router','mdns','tcp']},
+      {id:9,  ip:'172.30.0.20', type:'nas',    detect:['arp','router','tcp']},
+      {id:10, ip:'172.30.0.21', type:'nas',    detect:['arp','router','tcp','icmp']},
+      {id:11, ip:'172.30.0.25', type:'printer',detect:['arp','mdns','tcp']},
+      {id:12, ip:'172.30.0.26', type:'printer',detect:['arp','mdns','tcp','icmp']},
+      {id:13, ip:'172.30.0.30', type:'iot',    detect:['arp','router']},
+      {id:14, ip:'172.30.0.31', type:'iot',    detect:['arp','router','icmp']},
+      {id:15, ip:'172.30.0.32', type:'iot',    detect:['arp','router','tcp']},
+      {id:16, ip:'172.30.0.40', type:'gw',     detect:['arp','router','tcp','icmp']},
+      {id:17, ip:'172.30.0.42', type:'unknown',detect:['arp','router','tcp']},
+      {id:18, ip:'172.30.0.50', type:'cloud',  detect:['arp']},
+      {id:19, ip:'172.30.0.51', type:'cloud',  detect:['arp']},
+      {id:20, ip:'172.30.0.55', type:'media',  detect:['arp','mdns','tcp']},
+      {id:21, ip:'172.30.0.60', type:'cam',    detect:['arp','tcp']},
+      {id:22, ip:'172.30.0.65', type:'iot',    detect:['arp','router']},
+      {id:23, ip:'172.30.0.70', type:'nas',    detect:['arp','tcp','icmp']},
+      {id:24, ip:'172.30.0.77', type:'printer',detect:['arp','tcp','icmp']},
+      {id:25, ip:'172.30.0.88', type:'iot',    detect:['arp','router']},
+      {id:26, ip:'172.30.0.92', type:'speaker',detect:['arp','mdns']}
+    ];
+    var phantomCandidates = [
+      {ip:'172.30.0.255', method:'arp', reason:'broadcast'},
+      {ip:'172.30.0.0',   method:'arp', reason:'network address'},
+      {ip:'172.30.0.99',  method:'arp', reason:'stale cache · device left segment 3 weeks ago'}
+    ];
+    var methodLabels = {arp:'Local ARP', router:'Router/SNMP', mdns:'mDNS', ssdp:'SSDP', icmp:'ICMP', tcp:'TCP pilot'};
+    var typeLabels = {cam:'camera',media:'media player',speaker:'speaker',hub:'smart hub',nas:'NAS',printer:'printer',iot:'IoT gateway',gw:'gateway',cloud:'cloud-only device',unknown:'(running case)'};
+    var capSelected = new Set(['arp','router','mdns','icmp']);
+    pane.querySelectorAll('#ndCapMethods .nd-cap-method').forEach(function(m){
+      m.addEventListener('click', function(){
+        var k = m.getAttribute('data-m');
+        if(capSelected.has(k)){ capSelected.delete(k); m.classList.remove('on'); }
+        else { capSelected.add(k); m.classList.add('on'); }
+      });
+    });
+    function runCapstone(instant){
+      if(!capSelected.size){ alert('Pick at least one method.'); return; }
+      var status = document.getElementById('ndCapStatus');
+      var stream = document.getElementById('ndCapStream');
+      var scoreEl = document.getElementById('ndCapScore');
+      status.classList.add('on');
+      stream.classList.add('on');
+      stream.innerHTML = '';
+      scoreEl.classList.remove('on');
+      // who got detected, by which method (first to hit)
+      var found = {};
+      var rowsToShow = [];
+      truth.forEach(function(d){
+        var mu = d.detect.filter(function(m){ return capSelected.has(m); });
+        if(mu.length){
+          var src = mu[0];
+          found[d.id] = src;
+          rowsToShow.push({ip:d.ip, type:d.type, src:src, real:true});
+        }
+      });
+      // phantoms — only if arp is enabled
+      if(capSelected.has('arp')){
+        phantomCandidates.forEach(function(p){ rowsToShow.push({ip:p.ip, type:p.reason, src:p.method, real:false}); });
+      }
+      // shuffle a little for realism (don't fully randomize)
+      for(var i=rowsToShow.length-1;i>0;i--){ var j=Math.max(0, i - Math.floor(Math.random()*4)); var t=rowsToShow[i]; rowsToShow[i]=rowsToShow[j]; rowsToShow[j]=t; }
+      var perRow = instant ? 5 : Math.max(80, Math.floor(6000 / Math.max(rowsToShow.length, 1)));
+      var statusMsgs = ['booting pipeline', 'reading existing ARP cache', 'querying gateway', 'browsing mDNS', 'ICMP sweep', 'TCP pilot probe', 'merging observations', 'filtering broadcast artifacts', 'admission ready'];
+      var smI = 0;
+      var smInt = !instant ? setInterval(function(){
+        status.textContent = '▸ ' + statusMsgs[smI % statusMsgs.length];
+        smI++;
+      }, 700) : null;
+      rowsToShow.forEach(function(r, i){
+        setTimeout(function(){
+          var row = document.createElement('div');
+          row.className = 'nd-cap-row';
+          if(!r.real) row.style.opacity = '0.55';
+          row.innerHTML = '<span>' + r.ip + '</span><span class="type">' + (typeLabels[r.type] || r.type) + '</span><span style="color:var(--dim);font-size:10.5px">' + (r.real ? '· admitted' : '· will be filtered as phantom') + '</span><span class="src">' + methodLabels[r.src] + '</span>';
+          stream.appendChild(row);
+          stream.scrollTop = stream.scrollHeight;
+        }, i * perRow);
+      });
+      setTimeout(function(){
+        if(smInt) clearInterval(smInt);
+        status.textContent = '✓ scan complete · scoring against ground truth';
+        // compute scores
+        var foundCount = Object.keys(found).length;
+        var phantomCount = capSelected.has('arp') ? phantomCandidates.length : 0;
+        var admitted = foundCount + phantomCount;
+        var C = foundCount / truth.length;
+        var S = admitted > 0 ? foundCount / admitted : 0;
+        var G = 1 - C;
+        document.getElementById('ndScC').textContent = C.toFixed(2);
+        document.getElementById('ndScCsub').textContent = foundCount + ' found / ' + truth.length;
+        document.getElementById('ndScS').textContent = S.toFixed(2);
+        document.getElementById('ndScSsub').textContent = foundCount + ' real / ' + admitted + ' admitted';
+        document.getElementById('ndScG').textContent = G.toFixed(2);
+        document.getElementById('ndScGsub').textContent = (truth.length - foundCount) + ' devices unseen';
+        document.getElementById('ndScPh').textContent = phantomCount;
+        // method contribution (unique admissions)
+        var unique = {};
+        capSelected.forEach(function(m){ unique[m] = 0; });
+        truth.forEach(function(d){
+          var contribs = d.detect.filter(function(m){ return capSelected.has(m); });
+          if(contribs.length === 1) unique[contribs[0]]++;
+        });
+        var maxU = Math.max.apply(null, Object.values(unique).concat([1]));
+        document.getElementById('ndCapContrib').innerHTML = Object.keys(unique).map(function(m){
+          var pct = (unique[m] / maxU) * 100;
+          return '<div class="nd-contrib-row"><div class="nd-contrib-lbl">' + methodLabels[m] + '</div><div class="nd-contrib-bar"><div style="width:' + pct + '%"></div></div><div class="nd-contrib-val">' + unique[m] + ' unique</div></div>';
+        }).join('');
+        // reflection — what would have caught misses
+        var missedDevs = truth.filter(function(d){ return !(d.id in found); });
+        var byMethod = {};
+        missedDevs.forEach(function(d){
+          d.detect.forEach(function(m){
+            if(!capSelected.has(m)){ byMethod[m] = (byMethod[m] || 0) + 1; }
+          });
+        });
+        var bestSugg = Object.keys(byMethod).sort(function(a, b){ return byMethod[b] - byMethod[a]; }).slice(0, 2);
+        var reflectMsg;
+        if(!missedDevs.length){
+          reflectMsg = '<b>Full coverage.</b> Every device in the ground truth was admitted. Note: 100% coverage in a 26-device lab does not generalize to real networks — D in production is rarely known.';
+        } else {
+          reflectMsg = '<b>Missed ' + missedDevs.length + ' devices.</b> ';
+          if(bestSugg.length){
+            reflectMsg += 'Adding <em>' + bestSugg.map(function(m){ return methodLabels[m]; }).join(' or ') + '</em> would catch ';
+            reflectMsg += bestSugg.map(function(m){ return byMethod[m] + ' more via ' + methodLabels[m]; }).join(', ') + '. ';
+          }
+          if(phantomCount){
+            reflectMsg += 'Soundness is hurt by ' + phantomCount + ' phantom hosts from broadcast/stale ARP — production pipelines filter these explicitly.';
+          }
+        }
+        document.getElementById('ndCapReflect').innerHTML = reflectMsg;
+        scoreEl.classList.add('on');
+        scoreEl.scrollIntoView({behavior:'smooth', block:'start'});
+      }, instant ? 200 : rowsToShow.length * perRow + 600);
+    }
+    document.getElementById('ndCapRun').addEventListener('click', function(){ runCapstone(false); });
+    document.getElementById('ndCapSkip').addEventListener('click', function(){ runCapstone(true); });
+    document.getElementById('ndCapReset').addEventListener('click', function(){
+      capSelected = new Set();
+      pane.querySelectorAll('#ndCapMethods .nd-cap-method').forEach(function(m){ m.classList.remove('on'); });
+      document.getElementById('ndCapStatus').classList.remove('on');
+      document.getElementById('ndCapStream').classList.remove('on');
+      document.getElementById('ndCapScore').classList.remove('on');
+    });
+    document.getElementById('ndCapRerun').addEventListener('click', function(){
+      document.getElementById('ndCapScore').classList.remove('on');
+      document.getElementById('ndCap-12') || document.getElementById('nd-12').scrollIntoView({behavior:'smooth'});
+    });
+    document.getElementById('ndCapHandoff').addEventListener('click', function(){
+      // switch to Cascade Lab tab
+      var sim2tab = document.querySelector('.tab[data-pane="sim2"]');
+      if(sim2tab){ sim2tab.click(); window.scrollTo({top:0, behavior:'smooth'}); }
+    });
+
+  })();
+  </script>
+
 </div>
 
 <!-- ===================== KEY TERMS / GLOSSARY ===================== -->
@@ -1170,7 +2939,7 @@ body.rl-scrolled .tabs{
       <div style="font-family:'Source Serif Pro',Georgia,serif;font-size:22px;font-weight:600;color:var(--gold);text-align:center">1</div>
       <div>
         <div style="font-family:'Source Serif Pro',Georgia,serif;font-size:16px;font-weight:600;color:var(--ink);margin-bottom:4px">Find a device's IP address on your network.</div>
-        <div style="font-family:'Source Serif Pro',Georgia,serif;font-size:14px;color:var(--dim);line-height:1.65;margin-bottom:8px"><b style="color:var(--ink)">Website path:</b> open the <a href="#" onclick="document.querySelector('.tab[data-pane=&quot;scan&quot;]').click();return false;">Scan your network</a> tab and follow Steps 1-2. It'll list every device's IP on your subnet.</div>
+        <div style="font-family:'Source Serif Pro',Georgia,serif;font-size:14px;color:var(--dim);line-height:1.65;margin-bottom:8px"><b style="color:var(--ink)">Website path:</b> open the <a href="#" onclick="document.querySelector('.tab[data-pane=&quot;discovery&quot;]').click();return false;">Network Discovery</a> chapter and use the ARP Harvester tool in Section 9. It'll list every device's IP on your subnet.</div>
         <div style="font-family:'Source Serif Pro',Georgia,serif;font-size:14px;color:var(--dim);line-height:1.65"><b style="color:var(--ink)">Terminal path:</b> run <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 6px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--ink)">arp -a</code> (works on macOS, Linux, and Windows). Output shows lines like <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 6px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">? (192.168.1.50) at c0:56:e3:00:11:22</code>.</div>
       </div>
     </div>
