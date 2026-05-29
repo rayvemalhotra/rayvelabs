@@ -2575,16 +2575,22 @@ nmap -sT --open -p 22,80,443,445,554,631,1400,1883,3000,5000,8001,8008,8080,8443
       d.addEventListener('click', function(){ scrollToSection('nd-2'); });
     });
 
-    /* === running case card show/hide based on which section is in view === */
+    /* === running case card show/hide based on which sections are in view === */
+    /* The card stays visible ONLY while at least one of §5-11 is currently intersecting.
+       Previously, the .on class was added on intersect but never removed, so once you scrolled
+       into §5 the card camped over the chapter header forever. */
     var runcase = document.getElementById('ndRuncase');
     var showRcSecs = ['nd-5','nd-6','nd-7','nd-8','nd-9','nd-10','nd-11'];
+    var rcVisible = {};
     var rcIO = new IntersectionObserver(function(es){
       es.forEach(function(e){
-        if(showRcSecs.indexOf(e.target.id) !== -1 && e.isIntersecting && e.intersectionRatio > 0.1){
-          runcase.classList.add('on');
-        }
+        if(showRcSecs.indexOf(e.target.id) === -1) return;
+        if(e.isIntersecting) rcVisible[e.target.id] = true;
+        else delete rcVisible[e.target.id];
       });
-    }, {threshold:0.1});
+      if(Object.keys(rcVisible).length > 0) runcase.classList.add('on');
+      else runcase.classList.remove('on');
+    }, {threshold:0.05, rootMargin:'-80px 0px -100px 0px'});
     sections.forEach(function(s){ if(showRcSecs.indexOf(s.id) !== -1) rcIO.observe(s); });
 
     /* helper: update running case card */
@@ -3727,387 +3733,1419 @@ nmap -sT --open -p 22,80,443,445,554,631,1400,1883,3000,5000,8001,8008,8080,8443
 </div>
 
 <!-- ===================== SIMULATION 2 — IDENTIFY THE DEVICES ===================== -->
+<!-- ===================== CASCADE LAB · CHAPTER 2 ===================== -->
 <div id="sim2" class="pane">
 
   <style>
-  /* Simulation 2 specific — game UI */
-  .s2-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:18px}
-  @media(max-width:720px){.s2-grid{grid-template-columns:1fr}}
-  .s2-dev{background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:18px;transition:all .15s}
-  .s2-dev.active{border-color:var(--ink);box-shadow:0 0 0 1px var(--ink)}
-  .s2-dev.done{border-color:var(--green);background:#f4f8f4}
-  .s2-dev .s2-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
-  .s2-dev .s2-ip{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--ink);font-weight:700}
-  .s2-dev .s2-label{font-family:'Source Serif Pro',Georgia,serif;font-size:14px;color:var(--dim);font-style:italic}
-  .s2-dev .s2-label.solved{color:var(--green);font-style:normal;font-weight:600}
-  .s2-dev .s2-probes{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin-top:10px}
-  .s2-probe{background:var(--paper2);border:1px solid var(--line);color:var(--ink);padding:8px 10px;border-radius:3px;cursor:pointer;font-family:'Inter',system-ui,sans-serif;font-size:11.5px;font-weight:500;text-align:left;transition:all .15s;display:flex;align-items:center;gap:6px}
-  .s2-probe:hover:not(.done):not(:disabled){border-color:var(--ink)}
-  .s2-probe.done{background:#f4f8f4;border-color:var(--green);color:var(--green);cursor:default}
-  .s2-probe.silent{background:var(--paper2);border-color:var(--line);color:var(--faint);cursor:default}
-  .s2-probe.busy{opacity:.55;cursor:wait}
-  .s2-probe .dot{width:7px;height:7px;border-radius:50%;background:var(--faint);flex:none}
-  .s2-probe.done .dot{background:var(--green)}
-  .s2-probe.silent .dot{background:var(--faint)}
-  .s2-evidence{margin-top:12px;padding:10px 12px;background:var(--paper2);border:1px solid var(--line);border-radius:3px;font-family:'JetBrains Mono',monospace;font-size:11.5px;line-height:1.55;color:var(--dim);min-height:32px}
-  .s2-evidence .row{margin-bottom:4px}
-  .s2-evidence .row:last-child{margin-bottom:0}
-  .s2-evidence .row b{color:var(--ink);font-weight:700}
-  .s2-evidence .row.silent{color:var(--faint);font-style:italic}
-  .s2-evidence .empty{color:var(--faint);font-style:italic;font-family:'Source Serif Pro',Georgia,serif;font-size:13px}
+    /* ===== Chapter 2 specific =====
+       Reuses .nd-* base classes from the Discovery chapter for the
+       chapter header, sub-nav, sections, running case card, helpers.
+       Below are only the C2-specific additions. */
 
-  .s2-verdict{margin-top:12px;padding-top:12px;border-top:1px dashed var(--line)}
-  .s2-verdict-label{font-family:'Inter',system-ui,sans-serif;font-size:10.5px;color:var(--faint);text-transform:uppercase;letter-spacing:1.2px;font-weight:600;margin-bottom:8px}
-  .s2-verdict-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
-  .s2-verdict-row select{flex:1;min-width:120px;padding:7px 10px;background:var(--paper);border:1px solid var(--line);border-radius:3px;font-family:'Inter',system-ui,sans-serif;font-size:12.5px;color:var(--ink)}
-  .s2-verdict-row select:focus{outline:none;border-color:var(--ink)}
-  .s2-submit{background:var(--ink);color:var(--paper);border:1px solid var(--ink);padding:8px 14px;border-radius:3px;font-family:'Inter',system-ui,sans-serif;font-size:12px;font-weight:600;cursor:pointer}
-  .s2-submit:hover:not(:disabled){background:#333}
-  .s2-submit:disabled{opacity:.4;cursor:not-allowed}
+    /* evidence-source grid (§2) */
+    .c2-ev-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin:14px 0;max-width:1080px}
+    .c2-ev{background:var(--paper);border:1px solid var(--rule);border-radius:10px;padding:14px 16px;cursor:pointer;transition:all .15s;border-left:3px solid var(--gold);position:relative}
+    .c2-ev:hover{border-color:var(--ink);transform:translateY(-1px)}
+    .c2-ev.open{box-shadow:0 6px 18px rgba(40,30,10,.08);background:rgba(157,133,82,.04)}
+    .c2-ev-h{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--gold);font-weight:600;margin-bottom:5px;letter-spacing:.4px}
+    .c2-ev-t{font-family:'Source Serif Pro',Georgia,serif;font-size:14px;font-weight:600;color:var(--ink);margin-bottom:6px;line-height:1.3}
+    .c2-ev-d{font-size:12.5px;color:var(--dim);line-height:1.5}
+    .c2-ev-x{display:none;margin-top:10px;padding-top:10px;border-top:1px solid var(--rule-faint);font-size:12.5px;line-height:1.55}
+    .c2-ev.open .c2-ev-x{display:block}
+    .c2-ev-x .strong{color:#2d5e3a;font-weight:600}
+    .c2-ev-x .weak{color:#8a3a3a;font-weight:600}
+    .c2-ev-x .mistake{color:#8a6321;font-weight:600}
+    .c2-ev-x .strong::before{content:'strength: ';font-family:'Inter',sans-serif;font-size:9.5px;text-transform:uppercase;letter-spacing:1px;display:block;margin-top:6px}
+    .c2-ev-x .weak::before{content:'limit: ';font-family:'Inter',sans-serif;font-size:9.5px;text-transform:uppercase;letter-spacing:1px;display:block;margin-top:6px}
+    .c2-ev-x .mistake::before{content:'common mistake: ';font-family:'Inter',sans-serif;font-size:9.5px;text-transform:uppercase;letter-spacing:1px;display:block;margin-top:6px}
 
-  .s2-result{margin-top:12px;padding:11px 14px;border-radius:3px;font-family:'Source Serif Pro',Georgia,serif;font-size:13.5px;line-height:1.6}
-  .s2-result.win{background:#f4f8f4;border-left:3px solid var(--green);color:var(--ink)}
-  .s2-result.partial{background:#fbf6e8;border-left:3px solid var(--amber);color:var(--ink)}
-  .s2-result.miss{background:#f8f0f0;border-left:3px solid var(--rose);color:var(--ink)}
-  .s2-result b{font-weight:700}
-  .s2-result .pts{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:13px}
-  .s2-result .truth{margin-top:6px;font-size:13px;color:var(--dim)}
-  .s2-result .truth b{color:var(--ink)}
+    /* structural independence claim builder (§3) */
+    .c2-claim{background:var(--paper);border:1px solid var(--rule);border-radius:12px;padding:20px 24px;max-width:920px;margin-top:14px}
+    .c2-claim-pool{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+    .c2-cp{padding:8px 14px;font-family:'Inter',sans-serif;font-size:12px;border:1px solid var(--rule);background:var(--paper);color:var(--dim);border-radius:99px;cursor:pointer;transition:all .15s;font-weight:500;white-space:nowrap}
+    .c2-cp:hover{border-color:var(--ink);color:var(--ink)}
+    .c2-cp.on{background:var(--gold);color:var(--paper);border-color:var(--gold)}
+    .c2-claim-meter{margin-top:14px;padding-top:14px;border-top:1px solid var(--rule-faint)}
+    .c2-claim-readout{display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--dim);margin-bottom:8px}
+    .c2-claim-readout b{color:var(--ink);font-family:'Source Serif Pro',Georgia,serif;font-size:18px;font-weight:600}
+    .c2-claim-bar{height:8px;background:var(--paper2);border-radius:99px;overflow:hidden}
+    .c2-claim-bar > div{height:100%;background:linear-gradient(to right, #8a6321, var(--gold), #c4a565);transition:width .5s cubic-bezier(.2,.7,.2,1);border-radius:99px}
+    .c2-claim-note{font-size:13px;color:var(--dim);font-style:italic;line-height:1.55;margin-top:10px}
+    .c2-claim-note b{color:var(--ink)}
 
-  .s2-final{background:var(--paper);border:1px solid var(--ink);border-radius:4px;padding:24px 28px;margin-top:18px}
-  .s2-final h3{font-family:'Source Serif Pro',Georgia,serif;font-size:22px;font-weight:600;margin-bottom:14px;color:var(--ink)}
-  .s2-final-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:14px}
-  @media(max-width:680px){.s2-final-stats{grid-template-columns:1fr}}
-  .s2-final-stats .stat{padding:14px 16px;background:var(--paper2);border:1px solid var(--line);border-radius:3px}
-  .s2-final-stats .stat .k{font-family:'Inter',system-ui,sans-serif;font-size:10.5px;color:var(--faint);text-transform:uppercase;letter-spacing:1.2px;font-weight:600}
-  .s2-final-stats .stat .v{font-family:'Source Serif Pro',Georgia,serif;font-size:32px;font-weight:600;margin-top:4px;color:var(--ink);letter-spacing:-.6px}
-  .s2-final-stats .stat .n{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--dim);margin-top:2px}
+    /* adapter fan-out (§4) */
+    .c2-fanout{background:var(--paper);border:1px solid var(--rule);border-radius:12px;padding:18px;margin-top:14px;max-width:980px;position:relative}
+    .c2-fan-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:14px}
+    .c2-fan-a{padding:12px 14px;background:var(--paper2);border:1px solid var(--rule);border-radius:8px;text-align:center;font-family:'Inter',sans-serif;font-size:12.5px;color:var(--ink);transition:all .25s;cursor:pointer;position:relative;font-weight:500}
+    .c2-fan-a:hover{border-color:var(--ink)}
+    .c2-fan-a.on{background:rgba(45,94,58,.08);border-color:#2d5e3a;color:#2d5e3a}
+    .c2-fan-a.off{background:var(--paper2);border-color:var(--rule);color:var(--faint);text-decoration:line-through;opacity:.55}
+    .c2-fan-a .conf{display:block;font-family:'JetBrains Mono',monospace;font-size:10px;margin-top:2px;letter-spacing:.4px}
+    .c2-fan-a.on .conf{color:#2d5e3a}
+    .c2-fan-a.off .conf{color:var(--faint)}
+    .c2-fan-stat{display:flex;gap:18px;flex-wrap:wrap;margin-top:14px;padding-top:14px;border-top:1px solid var(--rule-faint);font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--dim)}
+    .c2-fan-stat b{color:var(--ink);font-size:14px;font-family:'Source Serif Pro',serif}
 
-  /* difficulty selector */
-  .s2-diff{font-family:'Inter',system-ui,sans-serif;font-size:12px;font-weight:500}
-  .s2-diff.on{background:var(--ink);color:var(--paper);border-color:var(--ink);font-weight:600}
-  .s2-diff.on:hover{background:#333}
+    /* port-driven selection (§6) */
+    .c2-portsel{background:var(--paper);border:1px solid var(--rule);border-radius:12px;padding:18px 22px;max-width:920px;margin-top:14px}
+    .c2-port-input{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:14px}
+    .c2-port-input input{padding:8px 14px;font-family:'JetBrains Mono',monospace;font-size:12.5px;border:1px solid var(--rule);border-radius:99px;width:300px;outline:none;color:var(--ink);background:var(--paper)}
+    .c2-port-input input:focus{border-color:var(--ink)}
+    .c2-port-presets{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+    .c2-port-preset{padding:5px 10px;font-family:'Inter',sans-serif;font-size:10.5px;background:var(--paper2);border:1px solid var(--rule);border-radius:99px;cursor:pointer;color:var(--dim);font-weight:500}
+    .c2-port-preset:hover{border-color:var(--ink);color:var(--ink)}
+    .c2-port-out{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px}
+    .c2-port-result{padding:10px 14px;border-radius:8px;font-family:'Inter',sans-serif;font-size:12.5px;display:flex;align-items:center;justify-content:space-between}
+    .c2-port-result.fire{background:rgba(45,94,58,.06);border:1px solid #2d5e3a;color:#2d5e3a}
+    .c2-port-result.skip{background:var(--paper2);border:1px solid var(--rule);color:var(--faint)}
+    .c2-port-result .reason{font-size:10.5px;letter-spacing:.4px;text-transform:uppercase;font-weight:600}
+
+    /* worked trace (§7/§8) */
+    .c2-trace{background:var(--paper);border:1px solid var(--rule);border-radius:12px;padding:0;max-width:1000px;margin-top:14px;overflow:hidden}
+    .c2-trace-head{padding:18px 24px;background:var(--paper2);border-bottom:1px solid var(--rule);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+    .c2-trace-head h4{font-family:'Source Serif Pro',Georgia,serif;font-size:18px;font-weight:600;color:var(--ink);margin:0}
+    .c2-trace-meta{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--dim)}
+    .c2-trace-body{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0}
+    @media(max-width:900px){.c2-trace-body{grid-template-columns:1fr}}
+    .c2-trace-col{padding:18px 22px;border-right:1px solid var(--rule-faint);min-height:280px}
+    .c2-trace-col:last-child{border-right:none}
+    @media(max-width:900px){.c2-trace-col{border-right:none;border-bottom:1px solid var(--rule-faint)}}
+    .c2-trace-col-h{font-family:'Inter',sans-serif;font-size:10px;text-transform:uppercase;letter-spacing:1.6px;font-weight:600;margin-bottom:12px;color:var(--gold)}
+    .c2-trace-col.truth .c2-trace-col-h{color:#2d5e3a}
+    .c2-trace-col.bad .c2-trace-col-h{color:#8a3a3a}
+    .c2-trace-col.good .c2-trace-col-h{color:#2d5e3a}
+    .c2-trace-col pre{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--ink);line-height:1.65;white-space:pre-wrap;margin:0}
+    .c2-trace-col pre .k{color:var(--gold)}
+    .c2-trace-col pre .c{color:var(--faint);font-style:italic}
+    .c2-trace-col pre .warn{color:#8a3a3a}
+    .c2-trace-col pre .good{color:#2d5e3a}
+
+    /* fingerprint cascade rungs (§9) */
+    .c2-rungs{display:flex;flex-direction:column;gap:8px;margin-top:14px;max-width:920px}
+    .c2-rung{padding:14px 18px;background:var(--paper);border:1px solid var(--rule);border-radius:10px;border-left:4px solid var(--gold);display:grid;grid-template-columns:60px 1fr 100px;gap:14px;align-items:center;cursor:pointer;transition:all .15s}
+    .c2-rung:hover{border-color:var(--ink)}
+    .c2-rung.on{background:rgba(157,133,82,.05);box-shadow:0 4px 12px rgba(157,133,82,.12)}
+    .c2-rung-n{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold);font-weight:600;letter-spacing:1.2px}
+    .c2-rung-h{font-family:'Source Serif Pro',Georgia,serif;font-size:15px;font-weight:600;color:var(--ink);margin-bottom:3px}
+    .c2-rung-d{font-size:12px;color:var(--dim);line-height:1.4}
+    .c2-rung-conf{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold);font-weight:600;text-align:right}
+    .c2-rung-x{display:none;grid-column:2 / -1;margin-top:10px;padding-top:10px;border-top:1px solid var(--rule-faint);font-size:13px;color:var(--dim);line-height:1.6}
+    .c2-rung.on .c2-rung-x{display:block}
+    .c2-rung-x code{font-family:'JetBrains Mono',monospace;font-size:11px;background:var(--paper2);padding:1px 5px;border-radius:3px;color:var(--ink)}
+    .c2-ssh-guard{background:#1a1a1a;color:#e9e2cf;border-radius:10px;padding:18px 22px;margin-top:14px;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.7;max-width:760px}
+    .c2-ssh-guard .gh{font-family:'Inter',sans-serif;font-size:10px;text-transform:uppercase;letter-spacing:1.6px;color:var(--gold-bright);font-weight:600;margin-bottom:10px}
+    .c2-ssh-guard .cmt{color:rgba(233,226,207,.5);font-style:italic}
+    .c2-ssh-guard .k{color:var(--gold-bright)}
+
+    /* confidence ceilings table (§10) */
+    .c2-ceil{background:var(--paper);border:1px solid var(--rule);border-radius:12px;overflow:hidden;max-width:980px;margin-top:14px}
+    .c2-ceil-h{display:grid;grid-template-columns:1fr 90px 1fr;padding:11px 18px;background:var(--paper2);font-family:'Inter',sans-serif;font-size:10.5px;text-transform:uppercase;letter-spacing:1.4px;color:var(--gold);font-weight:600;border-bottom:1px solid var(--rule)}
+    .c2-ceil-r{display:grid;grid-template-columns:1fr 90px 1fr;padding:9px 18px;font-size:12.5px;color:var(--dim);border-bottom:1px solid var(--rule-faint);align-items:center}
+    .c2-ceil-r:last-child{border-bottom:none}
+    .c2-ceil-r:hover{background:var(--paper2)}
+    .c2-ceil-r .src{color:var(--ink);font-weight:500;font-family:'Inter',sans-serif}
+    .c2-ceil-r .cap{font-family:'JetBrains Mono',monospace;font-weight:600;color:var(--gold);font-size:13.5px;text-align:center}
+    .c2-ceil-r .why{font-family:'Source Serif Pro',Georgia,serif;font-size:12.5px;font-style:italic}
+    .c2-ceil-r.tier-h .cap{color:#2d5e3a}
+    .c2-ceil-r.tier-m .cap{color:var(--gold)}
+    .c2-ceil-r.tier-l .cap{color:#8a6321}
+
+    /* CPE builder (§11) */
+    .c2-cpe{background:var(--paper);border:1px solid var(--rule);border-radius:12px;padding:18px 22px;max-width:920px;margin-top:14px}
+    .c2-cpe-inputs{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-bottom:14px}
+    .c2-cpe-inputs label{font-family:'Inter',sans-serif;font-size:10.5px;color:var(--dim);text-transform:uppercase;letter-spacing:1.2px;font-weight:600;display:flex;flex-direction:column;gap:5px}
+    .c2-cpe-inputs input,.c2-cpe-inputs select{padding:8px 12px;font-family:'JetBrains Mono',monospace;font-size:12.5px;border:1px solid var(--rule);border-radius:6px;outline:none;color:var(--ink);background:var(--paper)}
+    .c2-cpe-inputs input:focus,.c2-cpe-inputs select:focus{border-color:var(--ink)}
+    .c2-cpe-out{background:#1a1a1a;border-radius:8px;padding:14px 18px;color:#e9e2cf;font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.3px;word-break:break-all;margin-top:14px}
+    .c2-cpe-out .lbl{display:block;font-family:'Inter',sans-serif;font-size:9.5px;text-transform:uppercase;letter-spacing:1.6px;color:var(--gold-bright);font-weight:600;margin-bottom:6px}
+    .c2-cpe-class{margin-top:12px;display:flex;gap:14px;flex-wrap:wrap;font-size:11.5px;color:var(--dim)}
+    .c2-cpe-class b{color:var(--ink);font-weight:600}
+
+    /* adversarial scenarios (§12) */
+    .c2-adv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px;max-width:1000px;margin-top:14px}
+    .c2-adv{background:var(--paper);border:1px solid var(--rule);border-radius:10px;padding:16px 18px;border-left:3px solid #8a3a3a;cursor:pointer;transition:all .15s}
+    .c2-adv:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(138,58,58,.08)}
+    .c2-adv.flip .threat{display:none}
+    .c2-adv.flip .defense{display:block}
+    .c2-adv-h{font-family:'Inter',sans-serif;font-size:10px;text-transform:uppercase;letter-spacing:1.4px;color:#8a3a3a;font-weight:600;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center}
+    .c2-adv-h .flip-btn{font-size:9.5px;color:var(--faint);font-weight:500;letter-spacing:.5px}
+    .c2-adv-t{font-family:'Source Serif Pro',Georgia,serif;font-size:14.5px;font-weight:600;color:var(--ink);margin-bottom:8px;line-height:1.3}
+    .c2-adv .threat,.c2-adv .defense{font-size:12.5px;color:var(--dim);line-height:1.55}
+    .c2-adv .defense{display:none;color:#2d5e3a}
+    .c2-adv.flip{border-left-color:#2d5e3a}
+    .c2-adv.flip .c2-adv-h{color:#2d5e3a}
+    .c2-adv.flip .c2-adv-h::before{content:'defense · '}
+    .c2-adv:not(.flip) .c2-adv-h::before{content:'threat · '}
+
+    /* tool tabs (similar to §9 of Ch.1) — fingerprinting toolkit */
+    .c2-tools-nav{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--rule)}
+    .c2-tool-tab{padding:7px 12px;font-family:'Inter',sans-serif;font-size:12px;font-weight:500;border:1px solid var(--rule);background:var(--paper);color:var(--dim);border-radius:99px;cursor:pointer;transition:all .15s}
+    .c2-tool-tab:hover{border-color:var(--ink);color:var(--ink)}
+    .c2-tool-tab.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+    .c2-tool-pane{display:none}
+    .c2-tool-pane.on{display:block}
+
+    /* identity card on right (running case continuation from Ch.1) */
+    /* reuses .nd-runcase, but with C2-specific fields shown via JS */
+
+    /* capstone scorecard for §14 — reuses Ch.1 .nd-cap-* */
   </style>
 
-  <div class="lede" style="margin-bottom:18px">
-    <h2 style="font-size:26px">Cascade Lab</h2>
-    <p>Identify devices on a network with confidence you can defend. Play the game on simulated devices to learn the cascade method, then use the four tools below to run the same analysis on your own data — pasted from your terminal, with zero setup.</p>
-  </div>
+  <!-- ============== Chapter header ============== -->
+  <header class="nd-chapter-header">
+    <div class="nd-chapter-meta">
+      <span class="nd-chapter-kicker">Chapter 2 · Cascade Lab</span>
+      <span class="nd-chapter-credit">Lectures of <b>Dr. Ravinder Mallarapu</b> · SEAS-8414 · GW · interactive lab by Rayve Malhotra, student of the course · approved by Dr. Mallarapu</span>
+    </div>
+    <h1 class="nd-chapter-title">Service Enrichment &amp; <em>Device Fingerprinting</em></h1>
+    <p class="nd-chapter-lede">
+      Identity begins where discovery left off. Chapter 1 told you <em>something is there</em>. Chapter 2 asks <em>what is it</em> — and how much confidence each piece of evidence deserves before that identity becomes Chapter 3's input for vulnerability work.
+    </p>
+    <div class="nd-chapter-questions">
+      <div>What is this device?</div>
+      <div>How sure can we be?</div>
+      <div>Which evidence is independent?</div>
+      <div>Where does Chapter 2 stop?</div>
+    </div>
+  </header>
 
-  <div class="card" style="margin-bottom:18px;background:#fbf6e8;border-color:var(--amber)">
-    <div class="label" style="color:var(--amber)">Quick start · identify a real device on your own network in 5 minutes</div>
-    <p class="note" style="margin-top:0;margin-bottom:18px"><b>Every step has two paths:</b> a <b style="color:var(--ink)">website</b> path (click here, paste there) and a <b style="color:var(--ink)">terminal</b> path (copy this command, paste the output). Pick whichever you prefer at each step.</p>
+  <!-- ============== Sub-nav ============== -->
+  <nav class="nd-subnav" id="c2Subnav">
+    <a href="#c2-1" class="nd-sn">1 · Identity ≠ Existence</a>
+    <a href="#c2-2" class="nd-sn">2 · 13 Evidence Sources</a>
+    <a href="#c2-3" class="nd-sn">3 · Structural Independence</a>
+    <a href="#c2-4" class="nd-sn">4 · Adapter Fan-Out</a>
+    <a href="#c2-5" class="nd-sn">5 · Adapter Contract</a>
+    <a href="#c2-6" class="nd-sn">6 · Port-Driven Selection</a>
+    <a href="#c2-7" class="nd-sn">7 · Hikvision Trace</a>
+    <a href="#c2-8" class="nd-sn">8 · Chromecast Trace</a>
+    <a href="#c2-9" class="nd-sn">9 · The Cascade</a>
+    <a href="#c2-10" class="nd-sn">10 · Confidence Ceilings</a>
+    <a href="#c2-11" class="nd-sn">11 · CPE Construction</a>
+    <a href="#c2-12" class="nd-sn">12 · Adversarial</a>
+    <a href="#c2-13" class="nd-sn">13 · Output Contract</a>
+    <a href="#c2-14" class="nd-sn">14 · Capstone</a>
+    <a href="#c2-disc" class="nd-sn">Discipline</a>
+  </nav>
 
-    <div style="display:grid;grid-template-columns:36px 1fr;gap:14px;padding:12px 0;border-bottom:1px solid var(--line)">
-      <div style="font-family:'Source Serif Pro',Georgia,serif;font-size:22px;font-weight:600;color:var(--gold);text-align:center">1</div>
-      <div>
-        <div style="font-family:'Source Serif Pro',Georgia,serif;font-size:16px;font-weight:600;color:var(--ink);margin-bottom:4px">Find a device's IP address on your network.</div>
-        <div style="font-family:'Source Serif Pro',Georgia,serif;font-size:14px;color:var(--dim);line-height:1.65;margin-bottom:8px"><b style="color:var(--ink)">Website path:</b> open the <a href="#" onclick="document.querySelector('.tab[data-pane=&quot;discovery&quot;]').click();return false;">Network Discovery</a> chapter and use the ARP Harvester tool in Section 9. It'll list every device's IP on your subnet.</div>
-        <div style="font-family:'Source Serif Pro',Georgia,serif;font-size:14px;color:var(--dim);line-height:1.65"><b style="color:var(--ink)">Terminal path:</b> run <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 6px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--ink)">arp -a</code> (works on macOS, Linux, and Windows). Output shows lines like <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 6px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">? (192.168.1.50) at c0:56:e3:00:11:22</code>.</div>
+  <!-- ============== Sticky identity card on right ============== -->
+  <aside class="nd-runcase" id="c2Identity" aria-hidden="true">
+    <div class="nd-rc-tag">Identity artifact · evolving</div>
+    <div class="nd-rc-ip">192.168.86.42</div>
+    <div class="nd-rc-fields" id="c2IdFields">
+      <div>Vendor <span class="g" data-k="vendor">Google Inc.</span></div>
+      <div>Device type <span class="q" data-k="dtype">?</span></div>
+      <div>Model / family <span class="q" data-k="model">?</span></div>
+      <div>Confidence <span class="q" data-k="conf">0.25</span></div>
+      <div>Match method <span class="q" data-k="method">oui_vendor</span></div>
+      <div>Evidence sources <span class="q" data-k="src">1</span></div>
+      <div>CPE candidates <span class="q" data-k="cpe">0</span></div>
+    </div>
+    <div class="nd-rc-conf" id="c2IdConf">tier: <span class="lvl low">low</span></div>
+  </aside>
+
+  <!-- ============== §1 Identity ≠ Existence ============== -->
+  <section id="c2-1" class="nd-section">
+    <div class="nd-sec-num">SECTION 01</div>
+    <h2 class="nd-sec-title">Identity is not Existence.</h2>
+    <div class="nd-sec-sub">Chapter 2 receives a structured handoff. Its job is to turn presence into a defensible identity claim.</div>
+
+    <p class="nd-prose">
+      The running case from Chapter 1 walks in carrying this record. It is well-supported on <em>existence</em> and intentionally weak on <em>identity</em>:
+    </p>
+
+    <pre style="font-family:'JetBrains Mono',monospace;font-size:12px;background:var(--paper2);padding:16px 20px;border-radius:8px;border-left:3px solid var(--gold);color:var(--ink);line-height:1.65;max-width:680px;margin-bottom:18px">ip:            <span style="color:var(--ink)">192.168.86.42</span>
+mac:           <span style="color:var(--ink)">d4:f5:47:xx:xx:xx</span>
+vendor_hint:   <span style="color:var(--gold)">Google Inc.</span>   <span style="color:var(--faint)">// OUI · hint only</span>
+open_ports:    <span style="color:var(--ink)">[80, 443]</span>
+discovery:     <span style="color:var(--ink)">[arp_cache, router_arp, tcp_connect]</span>
+confidence:    <span style="color:#2d5e3a">existence well-supported</span>
+identity:      <span style="color:#8a6321">unresolved · hand off to Ch.2</span></pre>
+
+    <p class="nd-prose">
+      <b>Chapter 2 is diagnostic analytics.</b> It sits between Chapter 1's measured presence and Chapter 3's vulnerability reasoning. Many tools blur that boundary — spitting out IPs, vendors, service strings, and CVEs in a single confident-looking line. The cost of that blur is real: an inaccurate CPE creates phantom CVEs; a missing one lets real vulnerabilities slip past; a wildcard CPE drowns the report in noise.
+    </p>
+
+    <div style="display:grid;grid-template-columns:160px 1fr 1fr;gap:1px;background:var(--rule);border-radius:10px;overflow:hidden;border:1px solid var(--rule);max-width:980px;margin-top:14px">
+      <div style="background:var(--paper2);padding:12px 16px;font-family:'Inter',sans-serif;font-size:10.5px;text-transform:uppercase;letter-spacing:1.4px;color:var(--gold);font-weight:600">Chapter</div>
+      <div style="background:var(--paper2);padding:12px 16px;font-family:'Inter',sans-serif;font-size:10.5px;text-transform:uppercase;letter-spacing:1.4px;color:var(--gold);font-weight:600">Question it answers</div>
+      <div style="background:var(--paper2);padding:12px 16px;font-family:'Inter',sans-serif;font-size:10.5px;text-transform:uppercase;letter-spacing:1.4px;color:var(--gold);font-weight:600">Output shape</div>
+
+      <div style="background:var(--paper2);padding:12px 16px;font-family:'Source Serif Pro',serif;font-weight:600;color:var(--ink)">Ch.1 Discovery</div>
+      <div style="background:var(--paper);padding:12px 16px;font-family:'Inter',sans-serif;font-size:13px;color:var(--dim);line-height:1.5">What devices appear to exist?</div>
+      <div style="background:var(--paper);padding:12px 16px;font-family:'Inter',sans-serif;font-size:13px;color:var(--dim);line-height:1.5">Host record with evidence provenance</div>
+
+      <div style="background:var(--paper2);padding:12px 16px;font-family:'Source Serif Pro',serif;font-weight:600;color:var(--ink);border-left:3px solid var(--gold)">Ch.2 Enrichment <span style="font-style:italic;font-weight:400;color:var(--gold);font-size:11px"> · you are here</span></div>
+      <div style="background:var(--paper);padding:12px 16px;font-family:'Inter',sans-serif;font-size:13px;color:var(--dim);line-height:1.5">What are those devices? How sure?</div>
+      <div style="background:var(--paper);padding:12px 16px;font-family:'Inter',sans-serif;font-size:13px;color:var(--dim);line-height:1.5">Identity artifact with confidence and CPE candidates</div>
+
+      <div style="background:var(--paper2);padding:12px 16px;font-family:'Source Serif Pro',serif;font-weight:600;color:var(--ink)">Ch.3 Assessment</div>
+      <div style="background:var(--paper);padding:12px 16px;font-family:'Inter',sans-serif;font-size:13px;color:var(--dim);line-height:1.5">What weaknesses apply?</div>
+      <div style="background:var(--paper);padding:12px 16px;font-family:'Inter',sans-serif;font-size:13px;color:var(--dim);line-height:1.5">Candidate or confirmed vulnerability findings</div>
+    </div>
+
+    <p class="nd-prose" style="margin-top:18px;font-style:italic">
+      The artifact you produce here gets reasoned over by everything downstream. Overstate, and you launder weak evidence into apparent certainty. Understate, and you hand the next analyst a vague row they cannot act on. <b>Calibration is the whole job.</b>
+    </p>
+  </section>
+
+  <!-- ============== §2 The 13 Evidence Sources ============== -->
+  <section id="c2-2" class="nd-section">
+    <div class="nd-sec-num">SECTION 02</div>
+    <h2 class="nd-sec-title">Thirteen Evidence Sources</h2>
+    <div class="nd-sec-sub">Each contributes something. Each can mislead in its own way.</div>
+
+    <p class="nd-prose">
+      Enrichment is detective work under uncertainty. Open ports, service banners, certificates, multicast names, protocol responses, even the absence of replies — every source has a profile. Click each card to see what it tells you, what it cannot, and how it goes wrong.
+    </p>
+
+    <div class="c2-ev-grid" id="c2EvGrid">
+      <div class="c2-ev" data-i="0">
+        <div class="c2-ev-h">MAC OUI</div>
+        <div class="c2-ev-t">Manufacturer prefix lookup</div>
+        <div class="c2-ev-d">IEEE-registered first three octets identify the vendor that registered the MAC range.</div>
+        <div class="c2-ev-x"><span class="strong">Cheap, near-universal, no probe needed.</span><span class="weak">Broad. Randomized addresses, locally-administered MACs, and recycled modules all defeat it.</span><span class="mistake">Treating "Google OUI" as "Chromecast." OUI is the company, not the product.</span></div>
+      </div>
+      <div class="c2-ev" data-i="1">
+        <div class="c2-ev-h">Hostname</div>
+        <div class="c2-ev-t">Reverse DNS or self-advertised name</div>
+        <div class="c2-ev-d">A name attached to the device — by DHCP, mDNS, NetBIOS, or its owner.</div>
+        <div class="c2-ev-x"><span class="strong">Human-readable hints when present.</span><span class="weak">User-set, stale, absent on IoT, or deliberately misleading.</span><span class="mistake">Trusting "MyCamera" as device identity when it is just a friendly name.</span></div>
+      </div>
+      <div class="c2-ev" data-i="2">
+        <div class="c2-ev-h">Open ports</div>
+        <div class="c2-ev-t">Service surface</div>
+        <div class="c2-ev-d">Which TCP/UDP services accept connections. Routes which adapters to even try.</div>
+        <div class="c2-ev-x"><span class="strong">Tells you which expensive probes are worth running.</span><span class="weak">Ports do not prove product identity. Many devices share port sets.</span><span class="mistake">"Has 554, must be a camera" — could also be an NVR, a media bridge, or a vendor appliance.</span></div>
+      </div>
+      <div class="c2-ev" data-i="3">
+        <div class="c2-ev-h">nmap -sV</div>
+        <div class="c2-ev-t">Service / product version detection</div>
+        <div class="c2-ev-d">Probes open ports against nmap's signature database, returns product + version hypothesis.</div>
+        <div class="c2-ev-x"><span class="strong">Excellent for managed services (OpenSSH, nginx, MySQL).</span><span class="weak">Generic for IoT devices behind custom or templated web stacks.</span><span class="mistake">Trusting "Neato Botvac Connected" — a notorious false positive for embedded HTTPS servers (Google Nest).</span></div>
+      </div>
+      <div class="c2-ev" data-i="4">
+        <div class="c2-ev-h">HTTP</div>
+        <div class="c2-ev-t">Title, server header, auth realm</div>
+        <div class="c2-ev-d">Quick HTTP probes pull title tags, server headers, and authentication realms.</div>
+        <div class="c2-ev-x"><span class="strong">Fast, often a clear vendor hint when devices brand their interfaces.</span><span class="weak">Easy to spoof. Often names the framework, not the device.</span><span class="mistake">"Server: lighttpd" or "Server: nginx" assumed as device identity.</span></div>
+      </div>
+      <div class="c2-ev" data-i="5">
+        <div class="c2-ev-h">TLS certificate</div>
+        <div class="c2-ev-t">Subject, issuer, SAN, self-signed pattern</div>
+        <div class="c2-ev-d">Pulled from the handshake. Vendors often stamp factory certificates with characteristic names.</div>
+        <div class="c2-ev-x"><span class="strong">Self-signed factory certs are a fingerprint when the issuer is vendor-specific.</span><span class="weak">May identify the vendor's TLS stack, not the device class.</span><span class="mistake">Treating a wildcard TLS issuer as device identity.</span></div>
+      </div>
+      <div class="c2-ev" data-i="6">
+        <div class="c2-ev-h">JARM</div>
+        <div class="c2-ev-t">TLS handshake behavior hash</div>
+        <div class="c2-ev-d">Sends 10 ClientHello variants, hashes the responses. Groups devices by TLS stack behavior.</div>
+        <div class="c2-ev-x"><span class="strong">Groups hosts by stack — useful for finding peers of a well-identified device.</span><span class="weak">JARM collisions across products sharing a library or platform.</span><span class="mistake">"Same JARM = same product" — could be the same SDK on different products.</span></div>
+      </div>
+      <div class="c2-ev" data-i="7">
+        <div class="c2-ev-h">RTSP</div>
+        <div class="c2-ev-t">Camera / media server banner</div>
+        <div class="c2-ev-d">Lightweight OPTIONS request often reveals Server header or auth realm naming vendor / firmware.</div>
+        <div class="c2-ev-x"><span class="strong">Auth realms frequently leak vendor names ("Hikvision," "IP Camera").</span><span class="weak">Often incomplete; many cameras require auth before useful info.</span><span class="mistake">Assuming RTSP only means "camera" — could be an NVR or media server.</span></div>
+      </div>
+      <div class="c2-ev" data-i="8">
+        <div class="c2-ev-h">ONVIF</div>
+        <div class="c2-ev-t">Structured camera self-report (SOAP)</div>
+        <div class="c2-ev-d">GetDeviceInformation returns manufacturer, model, firmware, serial in structured XML.</div>
+        <div class="c2-ev-x"><span class="strong">Highest-confidence camera identity when device answers.</span><span class="weak">Still self-reported — device can lie, lag, or fill fields oddly.</span><span class="mistake">Treating ONVIF firmware as ground truth — newer firmware than reported is common.</span></div>
+      </div>
+      <div class="c2-ev" data-i="9">
+        <div class="c2-ev-h">SSDP / mDNS</div>
+        <div class="c2-ev-t">Local-link self-advertisement</div>
+        <div class="c2-ev-d">SSDP returns UPnP device description XML; mDNS broadcasts service types like _googlecast._tcp.</div>
+        <div class="c2-ev-x"><span class="strong">Strong ecosystem signal — _googlecast._tcp narrows to Cast-capable.</span><span class="weak">Link-local, unauthenticated, can be noisy or spoofed.</span><span class="mistake">Trusting service strings as model identity — _ipp._tcp says "prints," not "model X."</span></div>
+      </div>
+      <div class="c2-ev" data-i="10">
+        <div class="c2-ev-h">DHCP / router</div>
+        <div class="c2-ev-t">Lease name, vendor class</div>
+        <div class="c2-ev-d">Router-side queries return hostnames and DHCP vendor-class identifiers.</div>
+        <div class="c2-ev-x"><span class="strong">Authoritative for local-network knowledge — the router saw the device.</span><span class="weak">Router-specific access required. Vendor-class often blank or generic.</span><span class="mistake">Falling back to "unknown" when SNMP fails instead of trying lease file scrape.</span></div>
+      </div>
+      <div class="c2-ev" data-i="11">
+        <div class="c2-ev-h">Fingerbank</div>
+        <div class="c2-ev-t">Optional external classification</div>
+        <div class="c2-ev-d">Cloud API that classifies devices by MAC + DHCP fingerprint. Off by default.</div>
+        <div class="c2-ev-x"><span class="strong">Useful external corroboration when configured.</span><span class="weak">Requires trust in an external service; results may lag deployment reality.</span><span class="mistake">Letting an external score outvote local ONVIF or RTSP self-report.</span></div>
+      </div>
+      <div class="c2-ev" data-i="12">
+        <div class="c2-ev-h">TCP fingerprint</div>
+        <div class="c2-ev-t">Stack-behavior heuristic</div>
+        <div class="c2-ev-d">Raw probe checks TTL, window size, MSS, TCP options — guesses OS family.</div>
+        <div class="c2-ev-x"><span class="strong">Behavior is harder to fake than banners.</span><span class="weak">Permission-sensitive (raw sockets), low confidence ceiling, off by default.</span><span class="mistake">Treating OS-family hints as device-class identity.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== §3 Structural Independence ============== -->
+  <section id="c2-3" class="nd-section">
+    <div class="nd-sec-num">SECTION 03</div>
+    <h2 class="nd-sec-title">Structural Independence</h2>
+    <div class="nd-sec-sub">Three sources agreeing across protocols > ten sources agreeing on the same string.</div>
+
+    <p class="nd-prose">
+      A handful of HTTP strings from the same web stack is less persuasive than a few agreements from <em>different</em> protocols. When HTTP title, RTSP banner, and ONVIF response all point to the same camera family, that means independent parts of the device — implemented and configured separately — are telling the same story. <b>It is easy to fake one string. It is very hard to forge a collection.</b>
+    </p>
+    <p class="nd-prose">Toggle evidence sources on. Watch how confidence rises faster when the sources are structurally different vs. when they overlap.</p>
+
+    <div class="c2-claim">
+      <div class="c2-claim-pool" id="c2ClaimPool">
+        <span class="c2-cp" data-fam="port"   data-w="0.10">Open ports 80, 554, 8000</span>
+        <span class="c2-cp" data-fam="http"   data-w="0.20">HTTP title: "Network Camera"</span>
+        <span class="c2-cp" data-fam="http"   data-w="0.15">HTTP server: "App-webs/8.13"</span>
+        <span class="c2-cp" data-fam="http"   data-w="0.12">HTTP realm: "Hikvision"</span>
+        <span class="c2-cp" data-fam="rtsp"   data-w="0.25">RTSP server: "Hikvision-Webs/8.13"</span>
+        <span class="c2-cp" data-fam="onvif"  data-w="0.40">ONVIF GetDeviceInformation</span>
+        <span class="c2-cp" data-fam="tls"    data-w="0.18">TLS issuer: "HIK"</span>
+        <span class="c2-cp" data-fam="jarm"   data-w="0.15">JARM hash matches Hikvision peers</span>
+        <span class="c2-cp" data-fam="ssdp"   data-w="0.20">SSDP description: manufacturer Hikvision</span>
+      </div>
+      <div class="c2-claim-meter">
+        <div class="c2-claim-readout">
+          <span>Confidence in the claim "this is a Hikvision camera":</span>
+          <b id="c2ClaimVal">0.00</b>
+        </div>
+        <div class="c2-claim-bar"><div id="c2ClaimBar" style="width:0%"></div></div>
+        <div class="c2-claim-note" id="c2ClaimNote">Select evidence above. Watch what happens when you pick three pieces from the <em>same protocol family</em> (HTTP) vs. one piece each from three <em>different</em> families.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== §4 Adapter Fan-Out ============== -->
+  <section id="c2-4" class="nd-section">
+    <div class="nd-sec-num">SECTION 04</div>
+    <h2 class="nd-sec-title">The 12-Adapter Fan-Out</h2>
+    <div class="nd-sec-sub">Concurrent. Independent. Failure-isolated.</div>
+
+    <p class="nd-prose">
+      Breakwater's enrichment pipeline doesn't rely on a single probe. It fans out twelve specialized adapters in parallel via <code>asyncio.gather()</code>. A slow ONVIF response must not block HTTP titles from being collected. A malformed UPnP document must not erase TLS certificate evidence. A JARM timeout must not prevent a strong RTSP banner from reaching the fingerprint service. <b>Missing keys mean "no useful evidence from that adapter" — never "the host disappeared."</b>
+    </p>
+    <p class="nd-prose">Click any adapter to toggle it OFF and watch graceful degradation in action: evidence drops, but the host stays in play.</p>
+
+    <div class="c2-fanout">
+      <div style="font-family:'Inter',sans-serif;font-size:10.5px;color:var(--gold);text-transform:uppercase;letter-spacing:1.6px;font-weight:600;margin-bottom:8px">Running enrichment · 192.168.86.42</div>
+      <div class="c2-fan-grid" id="c2FanGrid">
+        <div class="c2-fan-a on" data-a="arp"><div>ARP</div><span class="conf">d4:f5:47:xx:xx:xx</span></div>
+        <div class="c2-fan-a on" data-a="mdns_u"><div>mDNS unicast</div><span class="conf">no reply on 5353</span></div>
+        <div class="c2-fan-a on" data-a="mdns_b"><div>mDNS browse</div><span class="conf">_googlecast._tcp</span></div>
+        <div class="c2-fan-a on" data-a="ssdp"><div>SSDP</div><span class="conf">device description fetched</span></div>
+        <div class="c2-fan-a on" data-a="tls"><div>TLS</div><span class="conf">cert subject extracted</span></div>
+        <div class="c2-fan-a on" data-a="http"><div>HTTP</div><span class="conf">title + server header</span></div>
+        <div class="c2-fan-a on" data-a="nmap"><div>nmap -sV</div><span class="conf">2 services on 80/443</span></div>
+        <div class="c2-fan-a off" data-a="fingerbank"><div>Fingerbank</div><span class="conf">disabled (no API key)</span></div>
+        <div class="c2-fan-a on" data-a="dhcp"><div>DHCP / router</div><span class="conf">lease confirms</span></div>
+        <div class="c2-fan-a on" data-a="rtsp"><div>RTSP</div><span class="conf">no 554 open · skipped</span></div>
+        <div class="c2-fan-a on" data-a="onvif"><div>ONVIF</div><span class="conf">no candidate ports</span></div>
+        <div class="c2-fan-a on" data-a="jarm"><div>JARM</div><span class="conf">hash 27d…</span></div>
+      </div>
+      <div class="c2-fan-stat">
+        <div>Active adapters: <b id="c2FanCt">11</b> / 12</div>
+        <div>Evidence sources contributing: <b id="c2FanSrc">7</b></div>
+        <div>Host status: <b style="color:#2d5e3a">in play</b></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== §5 Adapter Contract ============== -->
+  <section id="c2-5" class="nd-section">
+    <div class="nd-sec-num">SECTION 05</div>
+    <h2 class="nd-sec-title">The Adapter Contract</h2>
+    <div class="nd-sec-sub">Every adapter implements the same interface. That's why fan-out works.</div>
+
+    <p class="nd-prose">
+      Modularity needs a contract. Breakwater's enrichment adapters are predictable and replaceable precisely because they all promise the same shape. Any adapter that violates this contract — by raising uncaught exceptions, blocking the event loop, or returning malformed data — breaks failure isolation for every other adapter.
+    </p>
+
+    <div class="nd-handoff">
+      <div class="nd-handoff-h">interface EnrichmentAdapter · v1</div>
+
+      <div class="nd-handoff-sect">
+        <div class="nd-handoff-stitle">Input</div>
+        <div class="nd-handoff-line req"><span class="k">hosts</span><span class="ty">HostRecord[]</span><span class="nt">discovered hosts with open ports, vantage, topology</span></div>
+      </div>
+
+      <div class="nd-handoff-sect">
+        <div class="nd-handoff-stitle">Output</div>
+        <div class="nd-handoff-line req"><span class="k">return</span><span class="ty">Map&lt;ip,Evidence&gt;</span><span class="nt">missing key = no useful evidence (NOT "host gone")</span></div>
+      </div>
+
+      <div class="nd-handoff-sect">
+        <div class="nd-handoff-stitle">Error handling</div>
+        <div class="nd-handoff-line"><span class="k">internal exceptions</span><span class="ty">isolated</span><span class="nt">one adapter's failure must not crash the batch</span></div>
+        <div class="nd-handoff-line"><span class="k">timeouts</span><span class="ty">bounded</span><span class="nt">return what was collected before the timeout, don't hang</span></div>
+        <div class="nd-handoff-line"><span class="k">missing dependency</span><span class="ty">degrade</span><span class="nt">log + skip, don't crash (e.g. no scapy → no TCP fingerprint)</span></div>
+      </div>
+
+      <div class="nd-handoff-sect">
+        <div class="nd-handoff-stitle">Configurability</div>
+        <div class="nd-handoff-line"><span class="k">enabled</span><span class="ty">bool</span><span class="nt">on/off via BREAKWATER_&lt;ADAPTER&gt;_ENABLED env var</span></div>
+        <div class="nd-handoff-line"><span class="k">credentials</span><span class="ty">optional</span><span class="nt">e.g. ONVIF user/pass · empty by default</span></div>
+        <div class="nd-handoff-line"><span class="k">scope</span><span class="ty">local/remote</span><span class="nt">link-layer adapters skipped when subnet is remote</span></div>
       </div>
     </div>
 
-    <div style="display:grid;grid-template-columns:36px 1fr;gap:14px;padding:12px 0;border-bottom:1px solid var(--line)">
-      <div style="font-family:'Source Serif Pro',Georgia,serif;font-size:22px;font-weight:600;color:var(--gold);text-align:center">2</div>
-      <div>
-        <div style="font-family:'Source Serif Pro',Georgia,serif;font-size:16px;font-weight:600;color:var(--ink);margin-bottom:4px">Find the device's manufacturer from its MAC.</div>
-        <div style="font-family:'Source Serif Pro',Georgia,serif;font-size:14px;color:var(--dim);line-height:1.65;margin-bottom:8px"><b style="color:var(--ink)">Website path:</b> take the first three octets of the MAC (e.g. <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 6px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">c0:56:e3</code>), scroll down to <b style="color:var(--ink)">Tool 1 · OUI lookup</b>, paste, click <b>Look up</b>. Done.</div>
-        <div style="font-family:'Source Serif Pro',Georgia,serif;font-size:14px;color:var(--dim);line-height:1.65"><b style="color:var(--ink)">Terminal path:</b> the MAC came from Step 1's <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 6px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--ink)">arp -a</code>. No additional command needed.</div>
+    <p class="nd-prose" style="margin-top:14px;font-style:italic;font-size:13.5px">
+      The contract is what lets the router parallelize without fear. The router doesn't <em>know</em> what evidence ONVIF will return or whether RTSP will get past authentication — it knows it can <em>call</em> the adapter, wait at most N seconds, and merge whatever comes back.
+    </p>
+  </section>
+
+  <!-- ============== §6 Port-Driven Adapter Selection ============== -->
+  <section id="c2-6" class="nd-section">
+    <div class="nd-sec-num">SECTION 06</div>
+    <h2 class="nd-sec-title">Port-Driven Adapter Selection</h2>
+    <div class="nd-sec-sub">Open ports decide which expensive probes are even worth attempting.</div>
+
+    <p class="nd-prose">
+      Choosing probes based on open ports keeps the system nimble. No TLS port? JARM is skipped. No 554? RTSP doesn't fire. Remote subnet? Skip multicast — it never crosses routers. These choices keep performance high and measurements clean by avoiding pointless data. Type a port set (or use a preset) and see which adapters fire.
+    </p>
+
+    <div class="c2-portsel">
+      <div class="c2-port-presets">
+        <button class="c2-port-preset" data-ps="80,554,8000">Hikvision-like (80, 554, 8000)</button>
+        <button class="c2-port-preset" data-ps="8008,8009,8443">Chromecast-like (8008, 8009, 8443)</button>
+        <button class="c2-port-preset" data-ps="22,80,443">SSH + web (22, 80, 443)</button>
+        <button class="c2-port-preset" data-ps="445,5000,5001">NAS-like (445, 5000, 5001)</button>
+        <button class="c2-port-preset" data-ps="631,9100">Printer (631, 9100)</button>
+        <button class="c2-port-preset" data-ps="1883,8883">MQTT IoT (1883, 8883)</button>
+      </div>
+      <div class="c2-port-input">
+        <input type="text" id="c2PortIn" placeholder="comma-separated ports · e.g. 80,554,8000" value="80,554,8000">
+        <button class="nd-btn primary" id="c2PortRun">Show adapter selection</button>
+      </div>
+      <div class="c2-port-out" id="c2PortOut"></div>
+    </div>
+  </section>
+
+  <!-- ============== §7 Hikvision Trace ============== -->
+  <section id="c2-7" class="nd-section">
+    <div class="nd-sec-num">SECTION 07</div>
+    <h2 class="nd-sec-title">Worked Trace 1 · Hikvision Camera</h2>
+    <div class="nd-sec-sub">Local protocol surfaces · rich, but ONVIF might or might not answer.</div>
+
+    <p class="nd-prose">
+      The lab camera at <code>172.30.0.10</code> has a ground-truth identity (the answer key), an eligible-probe set (what could run), and an actually-observed evidence set (what came back). Real reports go wrong by collapsing these three into a single confident-looking row. Side-by-side comparison below.
+    </p>
+
+    <div class="c2-trace">
+      <div class="c2-trace-head">
+        <h4>172.30.0.10 · Hikvision DS-2CD2143G2-I</h4>
+        <div class="c2-trace-meta">c0:56:e3:00:00:01 · ports 80/554/8000 · ssdp</div>
+      </div>
+      <div class="c2-trace-body">
+        <div class="c2-trace-col truth">
+          <div class="c2-trace-col-h">Ground truth · answer key</div>
+<pre><span class="k">vendor:    </span>Hikvision
+<span class="k">model:     </span>DS-2CD2143G2-I
+<span class="k">firmware:  </span>V5.5.52 build 200915
+<span class="k">known_cves:</span>
+  CVE-2021-36260
+  CVE-2017-7921
+<span class="c"># the answer key.
+# the scanner has to EARN
+# this through evidence.</span></pre>
+        </div>
+        <div class="c2-trace-col bad">
+          <div class="c2-trace-col-h">Overconfident · sloppy</div>
+<pre><span class="k">vendor:    </span>Hikvision
+<span class="k">model:     </span><span class="warn">DS-2CD2143G2-I</span>
+<span class="k">firmware:  </span><span class="warn">V5.5.52</span>
+<span class="k">vulns:     </span><span class="warn">CVE-2021-36260
+              CVE-2017-7921</span>
+<span class="k">confidence:</span> <span class="warn">0.98</span>
+<span class="c"># ONVIF didn't actually
+# answer. Model + firmware
+# are fabricated. CVEs are
+# Chapter 3's job.</span></pre>
+        </div>
+        <div class="c2-trace-col good">
+          <div class="c2-trace-col-h">Defensible · evidence-based</div>
+<pre><span class="k">vendor:    </span>Hikvision
+<span class="k">device_type:</span> camera
+<span class="k">model:     </span>DS-2CD family
+<span class="k">confidence:</span> <span class="good">0.75</span>
+<span class="k">match_method:</span> port_combo
+                + rtsp_server
+<span class="k">evidence:</span>
+  oui: c0:56:e3
+  open_ports: [80,554,8000]
+  rtsp_port: 554
+  ssdp: present
+<span class="k">not_observed:</span>
+  onvif: <span class="warn">no GetDeviceInfo</span>
+<span class="k">version:   </span>family-only
+<span class="k">ch3_admit:</span> family CPE
+            with review</pre>
+        </div>
       </div>
     </div>
 
-    <div style="display:grid;grid-template-columns:36px 1fr;gap:14px;padding:12px 0;border-bottom:1px solid var(--line)">
-      <div style="font-family:'Source Serif Pro',Georgia,serif;font-size:22px;font-weight:600;color:var(--gold);text-align:center">3</div>
-      <div>
-        <div style="font-family:'Source Serif Pro',Georgia,serif;font-size:16px;font-weight:600;color:var(--ink);margin-bottom:4px">Grab the device's HTTP banner.</div>
-        <div style="font-family:'Source Serif Pro',Georgia,serif;font-size:14px;color:var(--dim);line-height:1.65;margin-bottom:8px"><b style="color:var(--ink)">Terminal path:</b> run <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 6px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--ink)">curl -sI http://192.168.1.50/</code> (replace IP with yours). Copy everything from <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 6px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">HTTP/1.1</code> down.</div>
-        <div style="font-family:'Source Serif Pro',Georgia,serif;font-size:14px;color:var(--dim);line-height:1.65"><b style="color:var(--ink)">Website path:</b> for cameras specifically, the RTSP banner is even stronger — see Tool 3's "How do I capture a banner?" walkthrough for a copy-paste command.</div>
+    <p class="nd-prose" style="margin-top:14px">
+      <b>If ONVIF had answered</b> with manufacturer, model, and firmware, the confidence could rise to 0.85 and the version-confidence class jumps to <code>exact_self_reported</code>. The artifact would record <code>match_method: onvif</code> alongside the existing port/RTSP evidence. The two artifacts have different downstream meanings — the first routes the host into camera-family CPE review; the second supports model-level CPE candidates while still flagging "self-reported." <em>Same device, different defensible claims.</em>
+    </p>
+  </section>
+
+  <!-- ============== §8 Chromecast Trace ============== -->
+  <section id="c2-8" class="nd-section">
+    <div class="nd-sec-num">SECTION 08</div>
+    <h2 class="nd-sec-title">Worked Trace 2 · Google Chromecast</h2>
+    <div class="nd-sec-sub">Ecosystem identity without a traditional management protocol.</div>
+
+    <p class="nd-prose">
+      The Chromecast at <code>172.30.0.20</code> shows that a device can be well-identified without ONVIF, without RTSP, without a vendor management interface. The Cast ecosystem itself — <code>_googlecast._tcp</code>, port 8008/8009, the Eureka metadata endpoint — carries the family claim. The same scanner running from a routed-only vantage produces a much weaker (but still honest) artifact.
+    </p>
+
+    <div class="c2-trace">
+      <div class="c2-trace-head">
+        <h4>172.30.0.20 · Google Chromecast</h4>
+        <div class="c2-trace-meta">54:60:09:00:00:01 · ports 8008/8009/8443 · _googlecast._tcp</div>
+      </div>
+      <div class="c2-trace-body">
+        <div class="c2-trace-col truth">
+          <div class="c2-trace-col-h">Ground truth · answer key</div>
+<pre><span class="k">vendor:    </span>Google
+<span class="k">model:     </span>Chromecast
+<span class="k">firmware:  </span>1.68.382489
+<span class="k">protocols:</span>
+  http/8008
+  tcp/8009
+  tls/8443
+  mdns _googlecast._tcp
+<span class="c"># Eureka endpoint exposes
+# device metadata when
+# HTTP probe succeeds.</span></pre>
+        </div>
+        <div class="c2-trace-col good">
+          <div class="c2-trace-col-h">Local · rich</div>
+<pre><span class="k">vendor:    </span>Google
+<span class="k">device_type:</span> media_player
+<span class="k">family:    </span>Chromecast /
+              Google Cast
+<span class="k">confidence:</span> <span class="good">0.75</span>
+<span class="k">match_method:</span> mdns_service_type
+<span class="k">supporting:</span>
+  oui: 54:60:09
+  mdns: _googlecast._tcp
+  http_8008: branded
+  tls_8443: cert + jarm
+<span class="k">limits:</span>
+  exact hw model depends
+  on Eureka metadata
+<span class="k">ch3_admit:</span> family CPE</pre>
+        </div>
+        <div class="c2-trace-col bad">
+          <div class="c2-trace-col-h">Routed scanner · degraded</div>
+<pre><span class="k">vendor:    </span>Google
+<span class="k">device_type:</span> <span class="warn">unknown_or_media</span>
+<span class="k">confidence:</span> 0.25
+<span class="k">match_method:</span> oui_vendor
+<span class="k">evidence:</span>
+  oui: 54:60:09
+  open_ports: [8008,8009,8443]
+<span class="k">missing:</span>
+  mdns: <span class="warn">not visible
+        (routed scanner)</span>
+  http_title: no branded
+  jarm_match: none
+<span class="k">ch3_admit:</span> no model CPE
+<span class="c"># LOWER score is correct.
+# Same device, less evidence.</span></pre>
+        </div>
       </div>
     </div>
 
-    <div style="display:grid;grid-template-columns:36px 1fr;gap:14px;padding:12px 0;border-bottom:1px solid var(--line)">
-      <div style="font-family:'Source Serif Pro',Georgia,serif;font-size:22px;font-weight:600;color:var(--gold);text-align:center">4</div>
-      <div>
-        <div style="font-family:'Source Serif Pro',Georgia,serif;font-size:16px;font-weight:600;color:var(--ink);margin-bottom:4px">Analyze the banner.</div>
-        <div style="font-family:'Source Serif Pro',Georgia,serif;font-size:14px;color:var(--dim);line-height:1.65"><b style="color:var(--ink)">Website path:</b> scroll to <b style="color:var(--ink)">Tool 3 · banner analyzer</b>, paste what you copied in Step 3, click <b>Analyze</b>. It'll mark each line as vendor-bearing, generic, or noise, and tell you how many independent classes corroborate the vendor.</div>
+    <p class="nd-prose" style="margin-top:14px">
+      <b>The system must not hide the difference.</b> The same physical device produces a confident family claim from a local vantage and an honest weak claim from a routed vantage. Conflating those by always reporting 0.75 — "we know it's a Chromecast" — would be analytically dishonest. Calibration <em>is</em> the message.
+    </p>
+  </section>
+
+  <!-- ============== §9 The Fingerprint Cascade ============== -->
+  <section id="c2-9" class="nd-section">
+    <div class="nd-sec-num">SECTION 09</div>
+    <h2 class="nd-sec-title">The Fingerprint Cascade · Four Rungs</h2>
+    <div class="nd-sec-sub">Generic hints first. Specific cross-protocol agreement shapes the final claim.</div>
+
+    <p class="nd-prose">
+      The fingerprint service is a ladder. Each rung is more specific than the last. A specific mix of signals always takes precedence over a misleading single clue. Click each rung to see what it does and where it caps.
+    </p>
+
+    <div class="c2-rungs">
+      <div class="c2-rung" data-r="1">
+        <div class="c2-rung-n">RUNG 01</div>
+        <div>
+          <div class="c2-rung-h">Vendor hinting</div>
+          <div class="c2-rung-d">MAC OUI · router lease · Fingerbank classification</div>
+          <div class="c2-rung-x">Useful for triage and grouping; rarely sufficient for a model-specific claim. Most affected by MAC randomization, locally-administered MACs, recycled modules, and devices that embed network capabilities from other products. A Google OUI is a hint, not an answer.</div>
+        </div>
+        <div class="c2-rung-conf">≤ 0.25</div>
+      </div>
+      <div class="c2-rung" data-r="2">
+        <div class="c2-rung-n">RUNG 02</div>
+        <div>
+          <div class="c2-rung-h">Service-class inference</div>
+          <div class="c2-rung-d">Port combinations · generic service products · stack behavior</div>
+          <div class="c2-rung-x">Many IoT devices reveal their <em>general type</em> by service pattern, even when their names remain hidden. The rule table includes camera-like port sets (<code>80 + 554 + 8000</code>) and Google Nest/Home control ports. Ports reveal services offered, not business function.</div>
+        </div>
+        <div class="c2-rung-conf">≤ 0.65</div>
+      </div>
+      <div class="c2-rung" data-r="3">
+        <div class="c2-rung-n">RUNG 03</div>
+        <div>
+          <div class="c2-rung-h">Protocol-stated identity</div>
+          <div class="c2-rung-d">HTTP title · auth realm · RTSP banner · mDNS type · SSDP description · TLS issuer · ONVIF info</div>
+          <div class="c2-rung-x">Strongest when several surfaces agree (HTTP title <em>and</em> RTSP realm <em>and</em> ONVIF model). Weakest when a single, easily-edited string carries the whole claim. ONVIF self-report on a camera is a different quality of evidence from an HTTP title with the same words.</div>
+        </div>
+        <div class="c2-rung-conf">≤ 0.85</div>
+      </div>
+      <div class="c2-rung" data-r="4">
+        <div class="c2-rung-n">RUNG 04</div>
+        <div>
+          <div class="c2-rung-h">Normalized output</div>
+          <div class="c2-rung-d">Stable artifact: vendor · device_type · model · confidence · match_method · evidence · conflicts · CPE candidates</div>
+          <div class="c2-rung-x">This is where a scanner row becomes an analytic statement. If the output loses the <code>match_method</code>, Chapter 3 can't tell where the CPE came from. If it drops the conflict note, Chapter 3 might mistake a disputed firmware version for a sure thing.</div>
+        </div>
+        <div class="c2-rung-conf">artifact</div>
       </div>
     </div>
 
-    <div style="display:grid;grid-template-columns:36px 1fr;gap:14px;padding:12px 0;border-bottom:1px solid var(--line)">
-      <div style="font-family:'Source Serif Pro',Georgia,serif;font-size:22px;font-weight:600;color:var(--gold);text-align:center">5</div>
-      <div>
-        <div style="font-family:'Source Serif Pro',Georgia,serif;font-size:16px;font-weight:600;color:var(--ink);margin-bottom:4px">If you have a scanner record, check it for category errors.</div>
-        <div style="font-family:'Source Serif Pro',Georgia,serif;font-size:14px;color:var(--dim);line-height:1.65;margin-bottom:8px"><b style="color:var(--ink)">Website path:</b> scroll to <b style="color:var(--ink)">Tool 4 · category-error spotter</b>, paste the JSON, click <b>Scan for category errors</b>.</div>
-        <div style="font-family:'Source Serif Pro',Georgia,serif;font-size:14px;color:var(--dim);line-height:1.65"><b style="color:var(--ink)">Terminal path:</b> see Tool 4's "Where do I get raw scanner data?" walkthrough for Nmap and Shodan one-liners.</div>
+    <h3 style="font-family:'Source Serif Pro',Georgia,serif;font-size:18px;font-weight:500;color:var(--ink);margin:28px 0 6px;max-width:780px">The Apple SSH guard · why rule precedence matters</h3>
+    <p class="nd-prose" style="font-size:13.5px;margin-bottom:10px">A worked example. macOS devices advertise BOTH <code>_airplay._tcp</code> (AirPlay) AND <code>_ssh._tcp</code>. Without rule precedence, the AirPlay evidence would mislabel a MacBook as a media player.</p>
+
+    <div class="c2-ssh-guard">
+<div class="gh">FingerprintService.identify_hosts() · Apple SSH guard</div>
+<span class="cmt">// for any host advertising mDNS _airplay._tcp OR _raop._tcp:</span>
+<span class="k">if</span> host.has_mdns(<span style="color:#c4a565">"_ssh._tcp"</span>):
+    <span class="cmt">// SSH dominates — likely a Mac, not a speaker</span>
+    skip_media_player_classification()
+    classify_as(<span style="color:#c4a565">"workstation_or_developer"</span>)
+
+<span class="k">else if</span> host.has_mdns(<span style="color:#c4a565">"_airplay._tcp"</span>):
+    classify_as(<span style="color:#c4a565">"media_player"</span>)
+
+<span class="cmt">// The specific mix wins. A single clue ("AirPlay")
+// is dominated by the presence of another, stronger signal
+// (SSH) that changes the device class entirely.</span>
+    </div>
+  </section>
+
+  <!-- ============== §10 Confidence Ceilings ============== -->
+  <section id="c2-10" class="nd-section">
+    <div class="nd-sec-num">SECTION 10</div>
+    <h2 class="nd-sec-title">Confidence Ceilings · Table 2.4</h2>
+    <div class="nd-sec-sub">A handshake on how the system behaves — not a calibrated probability.</div>
+
+    <p class="nd-prose">
+      These are the implemented ceilings from <code>FingerprintService.identify_hosts()</code>. They are <b>engineered ceilings, not statistical promises</b>. A 0.75 score is not a calibrated 75% probability of being right across a hand-checked fleet. True calibration would need labeled devices, repeatable scans, scoring scripts, and error analysis. Treat these as <em>handshakes</em>: "if this evidence type fires, the system will cap its claim here."
+    </p>
+
+    <div class="c2-ceil">
+      <div class="c2-ceil-h"><div>Evidence source</div><div>Ceiling</div><div>Why</div></div>
+      <div class="c2-ceil-r tier-h"><div class="src">Fingerprint DB MAC prefix</div><div class="cap">0.85</div><div class="why">Stored fingerprint match</div></div>
+      <div class="c2-ceil-r tier-h"><div class="src">ONVIF manufacturer / model</div><div class="cap">0.85</div><div class="why">Structured self-report from camera</div></div>
+      <div class="c2-ceil-r tier-h"><div class="src">SSDP manufacturer / model</div><div class="cap">0.75</div><div class="why">UPnP device description</div></div>
+      <div class="c2-ceil-r tier-h"><div class="src">mDNS service type</div><div class="cap">0.75</div><div class="why">Service-type rule match</div></div>
+      <div class="c2-ceil-r tier-h"><div class="src">Fingerbank score ≥ 70</div><div class="cap">0.75</div><div class="why">External classification, high confidence</div></div>
+      <div class="c2-ceil-r tier-m"><div class="src">Hostname rule</div><div class="cap">0.70</div><div class="why">Hostname, mDNS name, or SSDP friendly name</div></div>
+      <div class="c2-ceil-r tier-m"><div class="src">HTTP title rule</div><div class="cap">0.70</div><div class="why">HTTP title in flattened enrichment</div></div>
+      <div class="c2-ceil-r tier-m"><div class="src">JARM known hash</div><div class="cap">0.70</div><div class="why">Local known-hash table match</div></div>
+      <div class="c2-ceil-r tier-m"><div class="src">Exact port signature</div><div class="cap">0.65</div><div class="why">Stored port signature exact match</div></div>
+      <div class="c2-ceil-r tier-m"><div class="src">RTSP server header</div><div class="cap">0.65</div><div class="why">Camera / media-server header</div></div>
+      <div class="c2-ceil-r tier-m"><div class="src">TLS certificate upgrade</div><div class="cap">0.65</div><div class="why">Device-specific TLS issuer / CN over generic type</div></div>
+      <div class="c2-ceil-r tier-m"><div class="src">Service product string</div><div class="cap">0.60</div><div class="why">Nmap product or service text</div></div>
+      <div class="c2-ceil-r tier-m"><div class="src">RTSP authentication realm</div><div class="cap">0.60</div><div class="why">RTSP realm pattern</div></div>
+      <div class="c2-ceil-r tier-m"><div class="src">Fingerbank score 50–69</div><div class="cap">0.60</div><div class="why">External classification, medium confidence</div></div>
+      <div class="c2-ceil-r tier-m"><div class="src">JARM grouping</div><div class="cap">≤ 0.60</div><div class="why">Propagation from an identified peer · capped</div></div>
+      <div class="c2-ceil-r tier-l"><div class="src">Subset port signature</div><div class="cap">0.55</div><div class="why">Stored signature subset match</div></div>
+      <div class="c2-ceil-r tier-l"><div class="src">DHCP vendor class</div><div class="cap">0.50</div><div class="why">Router-side DHCP evidence</div></div>
+      <div class="c2-ceil-r tier-l"><div class="src">Fingerbank score 30–49</div><div class="cap">0.50</div><div class="why">External classification, low confidence</div></div>
+      <div class="c2-ceil-r tier-l"><div class="src">Fingerbank score &lt; 30</div><div class="cap">0.45</div><div class="why">External classification, very low</div></div>
+      <div class="c2-ceil-r tier-l"><div class="src">HTTP server header</div><div class="cap">0.40</div><div class="why">Generic server-header clue (nginx, lighttpd)</div></div>
+      <div class="c2-ceil-r tier-l"><div class="src">TCP fingerprint</div><div class="cap">0.35</div><div class="why">TTL, window, MSS heuristics</div></div>
+      <div class="c2-ceil-r tier-l"><div class="src">OUI vendor / device-type hint</div><div class="cap">0.25</div><div class="why">Vendor prefix + broad device-type map</div></div>
+    </div>
+
+    <p class="nd-prose" style="margin-top:14px;font-style:italic;font-size:13.5px">
+      Confidence climbs when evidence is <em>strong, specific, and from independent sources</em>. OUI + mDNS + HTTP beats OUI alone. ONVIF + RTSP + a matching port signature is a stronger case than three HTTP banners. Repeating weak signals doesn't help.
+    </p>
+  </section>
+
+  <!-- ============== §11 CPE Construction ============== -->
+  <section id="c2-11" class="nd-section">
+    <div class="nd-sec-num">SECTION 11</div>
+    <h2 class="nd-sec-title">CPE Construction</h2>
+    <div class="nd-sec-sub">Identity becomes vulnerability naming. The version-confidence class travels with it.</div>
+
+    <p class="nd-prose">
+      <b>CPE</b> (Common Platform Enumeration) is the naming scheme vulnerability databases speak. Chapter 2 builds CPE candidates from service products, HTTP headers, ONVIF details, SSDP fields, RTSP strings, TLS issuers, and fallback identity data. Output must always remember its roots — a CPE built from an ONVIF model + firmware is higher quality than a wildcard CPE based on vendor + device type alone. Both are admissible; Chapter 3 needs to know which is which.
+    </p>
+
+    <div class="c2-cpe">
+      <div style="font-family:'Inter',sans-serif;font-size:11px;color:var(--gold);text-transform:uppercase;letter-spacing:1.4px;font-weight:600;margin-bottom:12px">Build a CPE</div>
+      <div class="c2-cpe-inputs">
+        <label>Part
+          <select id="c2cpePart">
+            <option value="o">o · Operating system / firmware</option>
+            <option value="a">a · Application</option>
+            <option value="h">h · Hardware</option>
+          </select>
+        </label>
+        <label>Vendor
+          <input type="text" id="c2cpeVendor" value="hikvision">
+        </label>
+        <label>Product
+          <input type="text" id="c2cpeProduct" value="ds-2cd2143g2-i_firmware">
+        </label>
+        <label>Version
+          <input type="text" id="c2cpeVersion" value="*">
+        </label>
+        <label>Version-confidence class
+          <select id="c2cpeClass">
+            <option value="exact">exact_self_reported · 5</option>
+            <option value="norm">normalized · 4</option>
+            <option value="family" selected>family-only · 3</option>
+            <option value="wild">wildcard · 2</option>
+            <option value="conflict">conflicting · 1</option>
+          </select>
+        </label>
+      </div>
+      <div class="c2-cpe-out">
+        <span class="lbl">Built CPE</span>
+        <span id="c2cpeOut">cpe:2.3:o:hikvision:ds-2cd2143g2-i_firmware:*:*:*:*:*:*:*:*</span>
+      </div>
+      <div class="c2-cpe-class">
+        <div>Admissibility: <b id="c2cpeAdmit">family-level query · review required</b></div>
+        <div>Downstream weight: <b id="c2cpeWeight">moderate</b></div>
       </div>
     </div>
 
-    <div style="display:grid;grid-template-columns:36px 1fr;gap:14px;padding:14px 0 4px">
-      <div style="font-family:'Source Serif Pro',Georgia,serif;font-size:22px;font-weight:600;color:var(--gold);text-align:center">→</div>
-      <div>
-        <div style="font-family:'Source Serif Pro',Georgia,serif;font-size:16px;font-weight:600;color:var(--ink);margin-bottom:4px">Want to practice on fake devices first?</div>
-        <div style="font-family:'Source Serif Pro',Georgia,serif;font-size:14px;color:var(--dim);line-height:1.65"><b style="color:var(--ink)">Play the Cascade Game below.</b> 2/4/6 unknown devices, no risk, full ground-truth scoring. Same rules as the real-world analysis you just walked through.</div>
+    <p class="nd-prose" style="margin-top:14px">
+      <b>The golden rule: keep uncertainty in plain sight.</b> A wildcard CPE is fine for general awareness; not as proof of vulnerability. If CPEs conflict (HTTP says firmware A, SSDP says firmware B), the system does not just grab the newest or the simplest — it records the conflict and lets Chapter 3 decide.
+    </p>
+  </section>
+
+  <!-- ============== §12 Adversarial Manipulation ============== -->
+  <section id="c2-12" class="nd-section">
+    <div class="nd-sec-num">SECTION 12</div>
+    <h2 class="nd-sec-title">Adversarial Manipulation</h2>
+    <div class="nd-sec-sub">What an attacker can fake. What is harder to forge.</div>
+
+    <p class="nd-prose">
+      Banners, HTTP titles, TLS certificates, and multicast advertisements are cheap to spoof. A compromised device can lie through ONVIF. A bridge can advertise services on behalf of another host. A locally-administered MAC defeats OUI assumptions. <b>The practical defense is disagreement-aware evidence.</b> A claim supported by OUI + HTTP + TLS + RTSP + ONVIF + repeated observations is harder to fake than one supported by a single banner. Click each card to flip from threat to defense.
+    </p>
+
+    <div class="c2-adv-grid">
+      <div class="c2-adv">
+        <div class="c2-adv-h"><span></span><span class="flip-btn">↻ flip</span></div>
+        <div class="c2-adv-t">Banner spoofing</div>
+        <div class="threat">An attacker edits the HTTP title or Server header on a compromised host to impersonate a high-value device. Single-protocol evidence becomes evidence of a different device entirely.</div>
+        <div class="defense">Require structural independence. HTTP title alone caps confidence at 0.70. Cross-validate against RTSP, ONVIF, SSDP, or JARM. A spoofed banner that doesn't change behavior across protocols stands out.</div>
+      </div>
+      <div class="c2-adv">
+        <div class="c2-adv-h"><span></span><span class="flip-btn">↻ flip</span></div>
+        <div class="c2-adv-t">Hostname spoofing</div>
+        <div class="threat">DHCP-assigned hostnames or mDNS friendly names are user-controlled. An attacker sets <code>hostname: NAS-prod-01</code> on a workstation to evade host-class assumptions.</div>
+        <div class="defense">Hostname caps confidence at 0.70 and is one input among many. A hostname conflicting with port set, TLS issuer, or service evidence becomes a conflict note — not a silent decision.</div>
+      </div>
+      <div class="c2-adv">
+        <div class="c2-adv-h"><span></span><span class="flip-btn">↻ flip</span></div>
+        <div class="c2-adv-t">JARM collision</div>
+        <div class="threat">Two unrelated products built on the same TLS library (e.g. shared SDK or platform image) produce the same JARM hash. Grouping by JARM propagates an incorrect identity to peers.</div>
+        <div class="defense">JARM grouping is capped at 0.60 and is propagation, never primary identification. Each grouped host must still be corroborated by another source before Chapter 3 treats its CPE as model-level evidence.</div>
+      </div>
+      <div class="c2-adv">
+        <div class="c2-adv-h"><span></span><span class="flip-btn">↻ flip</span></div>
+        <div class="c2-adv-t">Locally-administered MAC</div>
+        <div class="threat">An attacker sets the second-lowest bit of the first octet of their MAC (e.g. <code>02:xx:xx:xx:xx:xx</code>). OUI lookup returns nothing — vendor-prefix-based grouping fails entirely.</div>
+        <div class="defense">No-OUI MACs are explicitly flagged. Identification falls back to behavioral signals (JARM, TCP fingerprint, service pattern, DHCP vendor class) — none of which trust a missing OUI as ground truth.</div>
+      </div>
+      <div class="c2-adv">
+        <div class="c2-adv-h"><span></span><span class="flip-btn">↻ flip</span></div>
+        <div class="c2-adv-t">Compromised ONVIF lies</div>
+        <div class="threat">A compromised camera reports outdated firmware or a different model via GetDeviceInformation. The 0.85 confidence ceiling becomes 0.85 confidence in a lie.</div>
+        <div class="defense">ONVIF self-report is preserved as <code>match_method: onvif</code> with the explicit caveat that the device is reporting itself. Repeated observations + cross-protocol corroboration (RTSP banner version vs. ONVIF firmware) detect drift.</div>
+      </div>
+      <div class="c2-adv">
+        <div class="c2-adv-h"><span></span><span class="flip-btn">↻ flip</span></div>
+        <div class="c2-adv-t">Service-advertising bridge</div>
+        <div class="threat">A device on the local link advertises mDNS services it doesn't actually run, on behalf of (or impersonating) another host. SSDP descriptions are similarly forgeable.</div>
+        <div class="defense">Multicast evidence is corroborated by direct probing. If a host advertises <code>_googlecast._tcp</code> but port 8008 is closed when probed, the advertisement is suspect — the conflict is preserved in the record.</div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <div class="practice-notice">
-    <div class="pn-label">Practice mode · the cascade game</div>
-    <b>Nothing on this page touches your real network.</b> The Cascade Game hands you unknown camera devices on a fake subnet (2 in Easy, 4 in Medium, 6 in Hard). Your job: figure out what each one is. Pick your probes — every probe costs you a click, so spend them wisely. Make a verdict when you think you have enough evidence. We know the ground truth, so we score you on accuracy <i>and</i> efficiency.
-  </div>
+  <!-- ============== §13 Chapter 2 Output Contract ============== -->
+  <section id="c2-13" class="nd-section">
+    <div class="nd-sec-num">SECTION 13</div>
+    <h2 class="nd-sec-title">The Chapter 2 → Chapter 3 Handoff</h2>
+    <div class="nd-sec-sub">A typed contract. Identity claim, evidence, CPE candidates, conflicts. No vulnerability assertions.</div>
 
-  <div class="card">
-    <div class="label">How to play · the cascade game</div>
-    <ol style="padding-left:22px;font-family:'Source Serif Pro',Georgia,serif;font-size:15.5px;line-height:1.8;color:var(--ink)">
-      <li>For each device card below, click probe buttons to gather evidence — <b>HTTP</b>, <b>RTSP</b>, <b>SSDP</b>, <b>OUI</b>. Each probe reveals a banner string, or comes back silent.</li>
-      <li>When you have enough evidence, pick a <b>vendor</b> and an <b>admissibility level</b> in the dropdowns, then click <b>Submit verdict</b>.</li>
-      <li>You'll see whether you got it right and how many points you earned or lost.</li>
-      <li>Identify every device. The final scorecard shows your total points, probe efficiency, and any category errors you made.</li>
-    </ol>
-    <div class="teach" style="margin-top:14px">
-      <span class="hl">Scoring</span> Correct vendor <b>+2</b>. Correct admissibility level <b>+1</b>. Wrong vendor <b>−2</b>. Calling something <i>admissible</i> when fewer than 3 independent classes corroborate <b>−2</b> (category error). Skipping a device that genuinely has insufficient evidence <b>+1</b>.
-    </div>
-    <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap;align-items:center">
-      <span style="font-family:'Inter',system-ui,sans-serif;font-size:11px;color:var(--faint);text-transform:uppercase;letter-spacing:1.3px;font-weight:600;margin-right:8px">Difficulty:</span>
-      <button class="btn s2-diff" data-diff="easy">Easy · 2 devices</button>
-      <button class="btn s2-diff on" data-diff="medium">Medium · 4 devices</button>
-      <button class="btn s2-diff" data-diff="hard">Hard · 6 devices</button>
-      <button class="btn ghost" id="s2Reset" style="margin-left:auto">↻ Reset</button>
-    </div>
-  </div>
+    <p class="nd-prose">
+      Chapter 3 (vulnerability assessment) consumes the artifact below. Required fields must be present. Optional fields are preserved when available. <b>Forbidden assertions cause Chapter 3 to reject the row</b> — because identity claims that include CVEs or business-criticality are not Chapter 2's claims to make.
+    </p>
 
-  <div class="card">
-    <div class="label">Step 1 — Interrogate the devices</div>
-    <div id="s2Grid" class="s2-grid"></div>
-  </div>
+    <div class="nd-handoff">
+      <div class="nd-handoff-h">interface ChapterTwoHandoff · v1</div>
 
-  <div id="s2Final"></div>
-
-  <!-- ============ SELF-SERVICE TOOLKIT ============ -->
-  <div class="card" style="margin-top:32px">
-    <div class="label">Self-service toolkit · run these on your own data</div>
-    <p class="note" style="margin-top:0">Four small tools that take real input from your own network or scanner output and apply the cascade rules to it. All run 100% in your browser — no network calls, nothing transmitted.</p>
-  </div>
-
-  <!-- TOOL 1 — OUI Lookup -->
-  <div class="card">
-    <div class="label">Tool 1 · OUI lookup</div>
-    <p class="note" style="margin-top:0;margin-bottom:12px">Paste a MAC address or just the first three octets. We detect locally-administered MACs and look up real IEEE-registered manufacturers from a bundled database of ~250 common IoT, networking, camera, and consumer-electronics vendors.</p>
-    <div style="display:flex;gap:8px;flex-wrap:wrap">
-      <input type="text" id="ouiInput2" placeholder="c0:56:e3:00:00:01  ·  c0-56-e3  ·  C056E3" style="flex:1;min-width:280px;background:var(--paper2);border:1px solid var(--line);border-radius:4px;padding:11px 14px;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--ink)" />
-      <button class="btn primary" id="ouiBtn2">Look up</button>
-    </div>
-    <div id="ouiResult2" style="display:none;margin-top:12px;padding:14px 18px;background:var(--paper);border:1px solid var(--line);border-radius:4px"></div>
-
-    <details style="margin-top:16px">
-      <summary style="cursor:pointer;font-family:'Inter',system-ui,sans-serif;font-size:13px;color:var(--ink);padding:6px 0;font-weight:500">How do I get a MAC address from my terminal?</summary>
-      <div style="margin-top:10px">
-        <p class="note" style="margin-top:0;margin-bottom:14px">Pick your operating system. Each block has two commands: the first lists every device your machine has talked to recently, the second pulls the MAC for a single IP. Run them in <b>Terminal</b> (macOS / Linux) or <b>PowerShell</b> (Windows).</p>
-
-        <div style="margin-bottom:18px">
-          <div style="font-family:'Inter',system-ui,sans-serif;font-size:11px;color:var(--faint);letter-spacing:1.4px;text-transform:uppercase;font-weight:600;margin-bottom:6px">macOS</div>
-          <div class="cmdbox"><span id="macCmd1">arp -a</span><button class="copy" data-copy="macCmd1">copy</button></div>
-          <p class="hint" style="margin:6px 0 10px">Lists every IP→MAC pair currently in the cache. Output looks like <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">? (192.168.1.50) at c0:56:e3:00:11:22 on en0 ifscope [ethernet]</code>. The first three octets — <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">c0:56:e3</code> — go in the box above.</p>
-          <div class="cmdbox"><span id="macCmd2">ping -c1 192.168.1.50 &gt;/dev/null 2&gt;&amp;1; arp -n 192.168.1.50</span><button class="copy" data-copy="macCmd2">copy</button></div>
-          <p class="hint" style="margin:6px 0 0">Replace the IP with the device you care about. The ping forces the device into the cache; the arp command then returns just its MAC.</p>
-        </div>
-
-        <div style="margin-bottom:18px">
-          <div style="font-family:'Inter',system-ui,sans-serif;font-size:11px;color:var(--faint);letter-spacing:1.4px;text-transform:uppercase;font-weight:600;margin-bottom:6px">Linux</div>
-          <div class="cmdbox"><span id="linCmd1">ip neigh show</span><button class="copy" data-copy="linCmd1">copy</button></div>
-          <p class="hint" style="margin:6px 0 10px">Modern Linux. Older systems: use <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">arp -a</code> instead.</p>
-          <div class="cmdbox"><span id="linCmd2">ping -c1 192.168.1.50 &gt;/dev/null 2&gt;&amp;1; ip neigh show 192.168.1.50</span><button class="copy" data-copy="linCmd2">copy</button></div>
-          <p class="hint" style="margin:6px 0 0">Replace <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">192.168.1.50</code> with your device's IP.</p>
-        </div>
-
-        <div style="margin-bottom:8px">
-          <div style="font-family:'Inter',system-ui,sans-serif;font-size:11px;color:var(--faint);letter-spacing:1.4px;text-transform:uppercase;font-weight:600;margin-bottom:6px">Windows (PowerShell or CMD)</div>
-          <div class="cmdbox"><span id="winCmd1">arp -a</span><button class="copy" data-copy="winCmd1">copy</button></div>
-          <p class="hint" style="margin:6px 0 10px">Output uses dashes: <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">c0-56-e3-00-11-22</code>. Either form works in the lookup box.</p>
-          <div class="cmdbox"><span id="winCmd2">ping -n 1 192.168.1.50 &gt; nul &amp; arp -a 192.168.1.50</span><button class="copy" data-copy="winCmd2">copy</button></div>
-          <p class="hint" style="margin:6px 0 0">Replace the IP with the device you want to identify.</p>
-        </div>
-
-        <p class="note" style="margin-top:14px;background:var(--paper2);border-left:3px solid var(--ink);padding:10px 14px;border-radius:0 3px 3px 0;font-size:13.5px"><b>Where to find a device's IP first.</b> Your router's admin page (usually <code style="background:var(--paper);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">192.168.1.1</code> or <code style="background:var(--paper);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">192.168.0.1</code>) lists every device's IP under "DHCP clients" or "Connected devices." Or sweep your subnet first with the Scan your network tab.</p>
-
-        <p class="note" style="margin-top:10px"><b>Privacy:</b> these commands run entirely on your own machine. Nothing leaves your computer. The OUI lookup itself runs in your browser against a bundled database — no network call when you click <b>Look up</b>.</p>
+      <div class="nd-handoff-sect">
+        <div class="nd-handoff-stitle">Required · contract violation if missing</div>
+        <div class="nd-handoff-line req"><span class="k">ip</span><span class="ty">string</span><span class="nt">inherited from Ch.1</span></div>
+        <div class="nd-handoff-line req"><span class="k">vendor</span><span class="ty">string</span><span class="nt">from OUI / SSDP / ONVIF / fingerbank — best available</span></div>
+        <div class="nd-handoff-line req"><span class="k">device_type</span><span class="ty">enum</span><span class="nt">camera · printer · nas · media_player · iot_gateway · workstation · unknown</span></div>
+        <div class="nd-handoff-line req"><span class="k">confidence</span><span class="ty">float</span><span class="nt">0.00 — 1.00 · respects ceiling table</span></div>
+        <div class="nd-handoff-line req"><span class="k">match_method</span><span class="ty">enum</span><span class="nt">onvif · ssdp · mdns · http_title · rtsp_server · oui · port_combo · …</span></div>
+        <div class="nd-handoff-line req"><span class="k">evidence</span><span class="ty">object</span><span class="nt">every contributing source, with raw value</span></div>
       </div>
-    </details>
 
-    <p class="hint" style="margin-top:10px">Not in our local database? Try the full IEEE registry at <a href="https://www.wireshark.org/tools/oui-lookup.html" target="_blank">wireshark.org/tools/oui-lookup.html</a>.</p>
-  </div>
-
-  <!-- TOOL 2 — Realm Decoder -->
-  <div class="card">
-    <div class="label">Tool 2 · realm decoder</div>
-    <p class="note" style="margin-top:0;margin-bottom:12px">Paste a <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 6px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">WWW-Authenticate</code> realm string and we'll extract the vendor name, detect any OUI embedded in the suffix (Axis convention), and tell you the cascade ceiling.</p>
-    <div style="display:flex;gap:8px;flex-wrap:wrap">
-      <input type="text" id="realmInput" placeholder='AXIS_00408C12345  ·  Hikvision Digital Technology  ·  Login to Dahua' style="flex:1;min-width:280px;background:var(--paper2);border:1px solid var(--line);border-radius:4px;padding:11px 14px;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--ink)" />
-      <button class="btn primary" id="realmBtn">Decode</button>
-    </div>
-    <div id="realmResult" style="display:none;margin-top:12px;padding:14px 18px;background:var(--paper);border:1px solid var(--line);border-radius:4px"></div>
-
-    <details style="margin-top:16px">
-      <summary style="cursor:pointer;font-family:'Inter',system-ui,sans-serif;font-size:13px;color:var(--ink);padding:6px 0;font-weight:500">Where do I get a realm string from?</summary>
-      <div style="margin-top:10px">
-        <p class="note" style="margin-top:0;margin-bottom:14px"><b>What it is.</b> When a device's web server requires a login, it responds with <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">401 Unauthorized</code> and a header that names its authentication "realm." The realm is firmware-baked — the device <i>has</i> to send it for login to work. That makes it a very strong identity signal.</p>
-
-        <div style="margin-bottom:22px">
-          <div style="font-family:'Inter',system-ui,sans-serif;font-size:11px;color:var(--faint);letter-spacing:1.4px;text-transform:uppercase;font-weight:600;margin-bottom:6px">Step 1 — Capture the headers · macOS / Linux</div>
-          <div class="cmdbox"><span id="realmCmdMac">curl -sI http://192.168.1.50/</span><button class="copy" data-copy="realmCmdMac">copy</button></div>
-          <p class="hint" style="margin:6px 0 0">Replace the IP with your device. For HTTPS (admin consoles, some cameras): <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">curl -skI https://192.168.1.50/</code></p>
-        </div>
-
-        <div style="margin-bottom:22px">
-          <div style="font-family:'Inter',system-ui,sans-serif;font-size:11px;color:var(--faint);letter-spacing:1.4px;text-transform:uppercase;font-weight:600;margin-bottom:6px">Step 1 — Capture the headers · Windows (PowerShell)</div>
-          <div class="cmdbox"><span id="realmCmdWin">curl.exe -sI http://192.168.1.50/</span><button class="copy" data-copy="realmCmdWin">copy</button></div>
-          <p class="hint" style="margin:6px 0 0">Note the <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">.exe</code> — without it, PowerShell uses its own alias that formats output differently.</p>
-        </div>
-
-        <div style="background:var(--paper2);border:1px solid var(--line);border-left:3px solid var(--ink);border-radius:0 3px 3px 0;padding:14px 18px;margin-bottom:18px">
-          <div style="font-family:'Inter',system-ui,sans-serif;font-size:11px;color:var(--faint);letter-spacing:1.4px;text-transform:uppercase;font-weight:600;margin-bottom:8px">Step 2 — Find the realm in the output</div>
-          <p class="note" style="margin:0 0 10px"><b>Look for the <code style="background:var(--paper);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">WWW-Authenticate:</code> line.</b> The realm is the text inside the quotes after <code style="background:var(--paper);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">realm=</code>:</p>
-          <pre style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink);line-height:1.6;margin:0;white-space:pre-wrap">HTTP/1.1 401 Unauthorized
-Server: DNVRS-Webs
-<b style="color:var(--gold)">WWW-Authenticate: Basic realm="Hikvision Digital Technology"</b></pre>
-          <p class="note" style="margin:10px 0 0">The realm in this example is <code style="background:var(--paper);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">Hikvision Digital Technology</code>.</p>
-        </div>
-
-        <div style="margin-bottom:18px">
-          <div style="font-family:'Inter',system-ui,sans-serif;font-size:11px;color:var(--faint);letter-spacing:1.4px;text-transform:uppercase;font-weight:600;margin-bottom:8px">Step 3 — Paste it into the box above</div>
-          <p class="note" style="margin:0">Any of these formats work — the tool auto-extracts the realm:</p>
-          <ul style="font-family:'Source Serif Pro',Georgia,serif;font-size:14px;color:var(--dim);line-height:1.8;margin:8px 0 0;padding-left:22px">
-            <li>Just the realm value: <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">Hikvision Digital Technology</code></li>
-            <li>The <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">realm="..."</code> fragment: <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">realm="AXIS_00408C12345"</code></li>
-            <li>The full header line: <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">WWW-Authenticate: Basic realm="Login to Dahua"</code></li>
-          </ul>
-        </div>
-
-        <div style="background:#fbf6e8;border:1px solid var(--amber);border-left-width:4px;border-radius:0 3px 3px 0;padding:14px 18px">
-          <div style="font-family:'Inter',system-ui,sans-serif;font-size:11px;color:var(--amber);letter-spacing:1.4px;text-transform:uppercase;font-weight:700;margin-bottom:6px">Why this is the strongest single signal</div>
-          <p class="note" style="margin:0">Some realms hide a real OUI inside the suffix — for example <code style="background:var(--paper);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">AXIS_00408C12345</code> contains <code style="background:var(--paper);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">00:40:8C</code>, Axis's real IEEE OUI. This tool extracts it automatically. So even when the device's actual MAC is virtualized/anonymized, the realm can still tell you who built it.</p>
-        </div>
+      <div class="nd-handoff-sect">
+        <div class="nd-handoff-stitle">Optional · preserve when present</div>
+        <div class="nd-handoff-line"><span class="k">model_or_family</span><span class="ty">string</span><span class="nt">"DS-2CD family" or "DS-2CD2143G2-I" — be explicit</span></div>
+        <div class="nd-handoff-line"><span class="k">firmware</span><span class="ty">string</span><span class="nt">self-reported · carry the caveat forward</span></div>
+        <div class="nd-handoff-line"><span class="k">cpe_candidates</span><span class="ty">CPE[]</span><span class="nt">each tagged with version_confidence_class + source</span></div>
+        <div class="nd-handoff-line"><span class="k">conflicts</span><span class="ty">string[]</span><span class="nt">e.g. "ONVIF firmware V5.5.52 vs RTSP banner V5.6.0"</span></div>
+        <div class="nd-handoff-line"><span class="k">version_confidence</span><span class="ty">enum</span><span class="nt">exact_self_reported · normalized · family_only · wildcard · conflicting</span></div>
+        <div class="nd-handoff-line"><span class="k">downstream_admissibility</span><span class="ty">enum</span><span class="nt">model_level · family_level · vendor_only · do_not_query</span></div>
       </div>
-    </details>
-  </div>
 
-  <!-- TOOL 3 — Banner Analyzer -->
-  <div class="card">
-    <div class="label">Tool 3 · banner analyzer</div>
-    <p class="note" style="margin-top:0;margin-bottom:12px">Paste raw <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 6px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">curl -sI</code> output, an RTSP <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 6px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">OPTIONS</code> response, or any HTTP-style header block. We'll classify each line as vendor-bearing identity evidence, generic transport, or noise, and report independent-class count + ceiling.</p>
-    <textarea id="bannerInput" placeholder="HTTP/1.1 401 Unauthorized&#10;Server: DNVRS-Webs&#10;WWW-Authenticate: Basic realm=&quot;Hikvision Digital Technology&quot;" style="height:130px"></textarea>
-    <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap">
-      <button class="btn primary" id="bannerBtn">Analyze</button>
-      <button class="btn" id="bannerSampleBtn">Try sample</button>
-      <button class="btn ghost" id="bannerResetBtn">↻ Clear</button>
-    </div>
-    <div id="bannerResult" style="display:none;margin-top:12px;padding:14px 18px;background:var(--paper);border:1px solid var(--line);border-radius:4px"></div>
-
-    <details style="margin-top:16px">
-      <summary style="cursor:pointer;font-family:'Inter',system-ui,sans-serif;font-size:13px;color:var(--ink);padding:6px 0;font-weight:500">How do I capture a banner from my terminal?</summary>
-      <div style="margin-top:10px">
-        <p class="note" style="margin-top:0;margin-bottom:14px">Two kinds of banners are most useful: <b>HTTP</b> (web admin pages on port 80 or 443) and <b>RTSP</b> (video stream banners on port 554, used by IP cameras). Run the command, copy the output, paste it into the textarea above, click <b>Analyze</b>.</p>
-
-        <div style="margin-bottom:22px">
-          <div style="font-family:'Inter',system-ui,sans-serif;font-size:11px;color:var(--faint);letter-spacing:1.4px;text-transform:uppercase;font-weight:600;margin-bottom:6px">HTTP banner · macOS / Linux</div>
-          <div class="cmdbox"><span id="banHttpMac">curl -sI http://192.168.1.50/</span><button class="copy" data-copy="banHttpMac">copy</button></div>
-          <p class="hint" style="margin:6px 0 8px">Replace <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">192.168.1.50</code> with your device's IP. The <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">-I</code> flag asks for headers only — most cameras and admin pages return <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">401 Unauthorized</code> with vendor banners in the headers, which is exactly what we want.</p>
-          <p class="hint" style="margin:0">For HTTPS, swap <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">http</code> for <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">https</code> and add <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">-k</code> to skip self-signed-cert verification: <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">curl -skI https://192.168.1.50/</code></p>
-        </div>
-
-        <div style="margin-bottom:22px">
-          <div style="font-family:'Inter',system-ui,sans-serif;font-size:11px;color:var(--faint);letter-spacing:1.4px;text-transform:uppercase;font-weight:600;margin-bottom:6px">HTTP banner · Windows (PowerShell)</div>
-          <div class="cmdbox"><span id="banHttpWin">curl.exe -sI http://192.168.1.50/</span><button class="copy" data-copy="banHttpWin">copy</button></div>
-          <p class="hint" style="margin:6px 0 0">Windows 10+ ships with <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">curl.exe</code> built in. (Note the <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">.exe</code> — without it, PowerShell uses its own alias for <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">Invoke-WebRequest</code> which formats output differently.)</p>
-        </div>
-
-        <div style="margin-bottom:22px">
-          <div style="font-family:'Inter',system-ui,sans-serif;font-size:11px;color:var(--faint);letter-spacing:1.4px;text-transform:uppercase;font-weight:600;margin-bottom:6px">RTSP banner · macOS / Linux (IP cameras)</div>
-          <div class="cmdbox"><span id="banRtsp1">printf 'OPTIONS rtsp://%s/ RTSP/1.0\r\nCSeq: 1\r\n\r\n' "192.168.1.50" | nc -w 2 192.168.1.50 554</span><button class="copy" data-copy="banRtsp1">copy</button></div>
-          <p class="hint" style="margin:6px 0 0">Sends an RTSP <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">OPTIONS</code> request to port 554. The camera responds with a 401 Unauthorized whose <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">Server:</code> header names the vendor. No credentials needed. Requires <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">nc</code> (netcat) — usually preinstalled on Mac and Linux.</p>
-        </div>
-
-        <div style="margin-bottom:22px">
-          <div style="font-family:'Inter',system-ui,sans-serif;font-size:11px;color:var(--faint);letter-spacing:1.4px;text-transform:uppercase;font-weight:600;margin-bottom:6px">RTSP banner · cross-platform (Python, works everywhere)</div>
-          <div class="cmdbox"><span id="banRtsp2">python3 -c "import socket;s=socket.create_connection(('192.168.1.50',554),2);s.send(b'OPTIONS rtsp://192.168.1.50/ RTSP/1.0\r\nCSeq:1\r\n\r\n');print(s.recv(2048).decode(errors='ignore'))"</span><button class="copy" data-copy="banRtsp2">copy</button></div>
-          <p class="hint" style="margin:6px 0 0">If <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">nc</code> isn't available (Windows out of the box, hardened Linux), this Python one-liner does the same thing. Replace both IPs with your target.</p>
-        </div>
-
-        <div style="background:var(--paper2);border:1px solid var(--line);border-left:3px solid var(--ink);border-radius:0 3px 3px 0;padding:14px 18px;margin-bottom:8px">
-          <div style="font-family:'Inter',system-ui,sans-serif;font-size:11px;color:var(--faint);letter-spacing:1.4px;text-transform:uppercase;font-weight:600;margin-bottom:8px">What the output should look like</div>
-          <pre style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink);line-height:1.6;white-space:pre-wrap;margin:0">HTTP/1.1 401 Unauthorized
-Server: DNVRS-Webs
-Date: Sun, 24 May 2026 15:56:02 GMT
-Content-Type: text/html; charset=UTF-8
-WWW-Authenticate: Basic realm="Hikvision Digital Technology"
-X-Frame-Options: SAMEORIGIN</pre>
-          <p class="hint" style="margin:10px 0 0">Copy everything from <code style="background:var(--paper);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">HTTP/1.1</code> onward (or for RTSP, from <code style="background:var(--paper);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">RTSP/1.0</code> onward). Paste into the textarea above. Hit <b>Analyze</b>. The tool will mark each line as <span style="color:var(--green)">vendor-bearing</span>, <span style="color:var(--amber)">generic transport</span>, or noise, and tell you how many independent classes corroborate the vendor.</p>
-        </div>
-
-        <p class="note" style="margin-top:14px"><b>Don't have a device IP yet?</b> Open Tool 1 above and use its terminal how-to first to discover IPs and MACs on your subnet. Or grab IPs from your router's admin page under "DHCP clients" / "Connected devices."</p>
+      <div class="nd-handoff-forbidden">
+        <div class="nd-handoff-stitle">Forbidden · Ch.3 refuses the row</div>
+        <div class="nd-handoff-line"><span class="k">vulnerabilities</span><span class="ty"></span><span class="nt">Ch.3's claim · CVE matching needs identity first</span></div>
+        <div class="nd-handoff-line"><span class="k">cves</span><span class="ty"></span><span class="nt">same · Ch.2 names devices, Ch.3 names weaknesses</span></div>
+        <div class="nd-handoff-line"><span class="k">exploit_path</span><span class="ty"></span><span class="nt">Ch.4 attack-graph reasoning</span></div>
+        <div class="nd-handoff-line"><span class="k">business_criticality</span><span class="ty"></span><span class="nt">governance attribute · not derivable from enrichment</span></div>
+        <div class="nd-handoff-line"><span class="k">remediation</span><span class="ty"></span><span class="nt">Ch.5+ prescriptive · not in scope</span></div>
       </div>
-    </details>
-  </div>
-
-  <!-- TOOL 4 — Category Error Spotter -->
-  <div class="card">
-    <div class="label">Tool 4 · category-error spotter</div>
-    <p class="note" style="margin-top:0;margin-bottom:12px">Paste a scanner's JSON host record (e.g. from <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 6px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">nmap -oX</code> exported as JSON, a Shodan record, or an internal scanner's output). We scan for fields where the value's likely provenance doesn't match the field's name — e.g., a <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 6px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">firmware_version</code> that holds a Python library version.</p>
-    <textarea id="catInput" placeholder='{&#10;  "ip": "172.30.0.10",&#10;  "vendor": "Hikvision Digital Technology",&#10;  "firmware_version": "3.13.5",&#10;  "firmware_source": "nmap",&#10;  "services": [{ "port": 80, "product": "aiohttp", "version": "3.13.5" }]&#10;}' style="height:160px"></textarea>
-    <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap">
-      <button class="btn primary" id="catBtn">Scan for category errors</button>
-      <button class="btn" id="catSampleBtn">Try sample</button>
-      <button class="btn ghost" id="catResetBtn">↻ Clear</button>
     </div>
-    <div id="catResult" style="display:none;margin-top:12px;padding:14px 18px;background:var(--paper);border:1px solid var(--line);border-radius:4px"></div>
+  </section>
 
-    <details style="margin-top:16px">
-      <summary style="cursor:pointer;font-family:'Inter',system-ui,sans-serif;font-size:13px;color:var(--ink);padding:6px 0;font-weight:500">Where do I get raw scanner data?</summary>
-      <div style="margin-top:10px">
-        <p class="note" style="margin-top:0;margin-bottom:14px">This tool takes a single device's host record as JSON. There are four common ways to get one. Pick whichever matches what you already use.</p>
+  <!-- ============== §14 Capstone ============== -->
+  <section id="c2-14" class="nd-section">
+    <div class="nd-sec-num">SECTION 14 · CAPSTONE</div>
+    <h2 class="nd-sec-title">Enrich the 26-Device Fleet</h2>
+    <div class="nd-sec-sub">Same lab subnet as Chapter 1. Pick your adapters. Score identity coverage + CPE admissibility.</div>
 
-        <div style="margin-bottom:22px">
-          <div style="font-family:'Inter',system-ui,sans-serif;font-size:11px;color:var(--faint);letter-spacing:1.4px;text-transform:uppercase;font-weight:600;margin-bottom:6px">Option 1 · Nmap (free, every OS)</div>
-          <p class="note" style="margin:0 0 10px">Scan a device, export to XML, convert the XML to JSON. Two commands.</p>
-          <div class="cmdbox" style="margin-bottom:6px"><span id="cat1a">nmap -sV -Pn -p 80,443,554,8000 192.168.1.50 -oX scan.xml</span><button class="copy" data-copy="cat1a">copy</button></div>
-          <div class="cmdbox"><span id="cat1b">python3 -c "import xmltodict,json,sys;print(json.dumps(xmltodict.parse(open('scan.xml').read()),indent=2))" &gt; scan.json</span><button class="copy" data-copy="cat1b">copy</button></div>
-          <p class="hint" style="margin:8px 0 0">Open <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">scan.json</code>, find the host block, paste it into the textarea above. Need to install <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">xmltodict</code>? <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">pip install xmltodict</code>.</p>
-        </div>
+    <p class="nd-prose">
+      The 26 simulated devices at <code>172.30.0.0/24</code> (cameras, media players, NAS, printers, IoT gateways, cloud-only hosts) need identity claims. Pick which adapters to enable. The pipeline runs enrichment and scores: how many got an identity above 0.50 confidence, how many CPE candidates were generated at each admissibility class, how many conflicts were preserved, how many hosts pass the §13 handoff contract.
+    </p>
 
-        <div style="margin-bottom:22px">
-          <div style="font-family:'Inter',system-ui,sans-serif;font-size:11px;color:var(--faint);letter-spacing:1.4px;text-transform:uppercase;font-weight:600;margin-bottom:6px">Option 2 · Shodan (free tier, public-internet hosts only)</div>
-          <p class="note" style="margin:0 0 10px">Shodan publishes host records as JSON natively. Free account, free CLI.</p>
-          <div class="cmdbox" style="margin-bottom:6px"><span id="cat2a">pip install shodan &amp;&amp; shodan init YOUR_API_KEY</span><button class="copy" data-copy="cat2a">copy</button></div>
-          <div class="cmdbox"><span id="cat2b">shodan host 8.8.8.8 --format json &gt; host.json</span><button class="copy" data-copy="cat2b">copy</button></div>
-          <p class="hint" style="margin:8px 0 0">Replace the IP with any internet-facing device. Get an API key at <a href="https://account.shodan.io/" target="_blank">account.shodan.io</a> (free for low-volume use). Paste the resulting JSON. Shodan's records are particularly rich — they often expose the category errors that other scanners hide.</p>
-        </div>
-
-        <div style="margin-bottom:22px">
-          <div style="font-family:'Inter',system-ui,sans-serif;font-size:11px;color:var(--faint);letter-spacing:1.4px;text-transform:uppercase;font-weight:600;margin-bottom:6px">Option 3 · Your own scanner / asset DB</div>
-          <p class="note" style="margin:0 0 10px">If you run Tenable, Rapid7 Nexpose, Qualys, Armis, Claroty, Forescout, ServiceNow CMDB, Snipe-IT — every one of them exports per-asset JSON. Export a single device, paste it here. Generic fields the tool watches for: <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">vendor</code>, <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">model</code>, <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">firmware_version</code>, <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">firmware_source</code>, <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">services</code>, <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">confidence</code>. Most scanners ship them under these names or close variants.</p>
-        </div>
-
-        <div style="margin-bottom:22px">
-          <div style="font-family:'Inter',system-ui,sans-serif;font-size:11px;color:var(--faint);letter-spacing:1.4px;text-transform:uppercase;font-weight:600;margin-bottom:6px">Option 4 · Just use the sample</div>
-          <p class="note" style="margin:0">Click <b>Try sample</b> above. It loads a realistic Hikvision host record with the <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 5px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink)">firmware_version</code> category error baked in, so you can see what a finding looks like before you bring your own data.</p>
-        </div>
-
-        <div style="background:var(--paper2);border:1px solid var(--line);border-left:3px solid var(--ink);border-radius:0 3px 3px 0;padding:14px 18px">
-          <div style="font-family:'Inter',system-ui,sans-serif;font-size:11px;color:var(--faint);letter-spacing:1.4px;text-transform:uppercase;font-weight:600;margin-bottom:8px">Privacy reminder</div>
-          <p class="note" style="margin:0">Everything you paste stays in your browser. No network call when you click <b>Scan for category errors</b>. Reload the page and the data disappears. If you're pasting a sensitive scanner record from a production network, this is the safe place to do it.</p>
-        </div>
+    <div class="nd-card">
+      <div class="nd-card-label">Step 1 · Pick adapters</div>
+      <div class="nd-cap-methods" id="c2CapMethods">
+        <div class="nd-cap-method on" data-m="arp"><div class="nd-cap-mh">ARP · MAC corroborate</div><div class="nd-cap-md">OUI vendor hint · 0.25 ceiling</div></div>
+        <div class="nd-cap-method on" data-m="mdns"><div class="nd-cap-mh">mDNS browse + unicast</div><div class="nd-cap-md">Service-type rule · 0.75 ceiling</div></div>
+        <div class="nd-cap-method on" data-m="ssdp"><div class="nd-cap-mh">SSDP / UPnP</div><div class="nd-cap-md">Device description · 0.75</div></div>
+        <div class="nd-cap-method on" data-m="http"><div class="nd-cap-mh">HTTP probe</div><div class="nd-cap-md">Title / server / realm · 0.70</div></div>
+        <div class="nd-cap-method on" data-m="tls"><div class="nd-cap-mh">TLS certificate</div><div class="nd-cap-md">Issuer / SAN · 0.65 upgrade</div></div>
+        <div class="nd-cap-method" data-m="jarm"><div class="nd-cap-mh">JARM</div><div class="nd-cap-md">Known hash 0.70 · grouped ≤0.60</div></div>
+        <div class="nd-cap-method on" data-m="rtsp"><div class="nd-cap-mh">RTSP OPTIONS</div><div class="nd-cap-md">Server header · 0.65</div></div>
+        <div class="nd-cap-method" data-m="onvif"><div class="nd-cap-mh">ONVIF GetDeviceInfo</div><div class="nd-cap-md">Structured self-report · 0.85</div></div>
+        <div class="nd-cap-method on" data-m="nmap"><div class="nd-cap-mh">nmap -sV</div><div class="nd-cap-md">Service product · 0.60</div></div>
+        <div class="nd-cap-method" data-m="fingerbank"><div class="nd-cap-mh">Fingerbank</div><div class="nd-cap-md">External · 0.45–0.75</div></div>
+        <div class="nd-cap-method on" data-m="dhcp"><div class="nd-cap-mh">DHCP / router</div><div class="nd-cap-md">Lease + vendor class · 0.50</div></div>
+        <div class="nd-cap-method" data-m="tcpfp"><div class="nd-cap-mh">TCP fingerprint</div><div class="nd-cap-md">Behavioral · 0.35 · raw sockets</div></div>
       </div>
-    </details>
-  </div>
+      <div class="nd-tool-actions" style="margin-top:14px">
+        <button class="nd-btn primary" id="c2CapRun">▶ Run enrichment</button>
+        <button class="nd-btn ghost" id="c2CapSkip">Skip to results</button>
+        <button class="nd-btn ghost" id="c2CapReset">Reset</button>
+      </div>
+    </div>
 
-  <div class="summary" style="margin-top:18px">
-    <b>What you can do with these tools.</b> Pull a MAC from your router's DHCP page → drop it into Tool 1 → know the manufacturer. Capture an HTTP banner from a camera with <code style="background:var(--paper2);border:1px solid var(--line);padding:1px 6px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:13px">curl -sI</code> → paste into Tool 3 → see how many corroborating classes you have and whether the cascade would admit the vendor. Have a scanner report you don't trust → paste the JSON into Tool 4 → it surfaces fields that look precise but are likely misattributed. None of this requires installing software, learning Python, or sending your data anywhere.
-  </div>
+    <div class="nd-cap-status" id="c2CapStatus"></div>
+    <div class="nd-cap-stream" id="c2CapStream"></div>
+
+    <div class="nd-cap-scorecard" id="c2CapScore">
+      <div class="nd-cap-sc-h">Scorecard · enrichment evaluated against ground truth</div>
+      <div class="nd-metric-grid">
+        <div class="nd-metric"><div class="nd-metric-lbl">Identified (≥ 0.50)</div><div class="nd-metric-val" id="c2ScIdent">—</div><div class="nd-metric-sub" id="c2ScIdentSub">/ 26 hosts</div></div>
+        <div class="nd-metric"><div class="nd-metric-lbl">Mean confidence</div><div class="nd-metric-val" id="c2ScMeanC">—</div><div class="nd-metric-sub">across all admitted</div></div>
+        <div class="nd-metric"><div class="nd-metric-lbl">Conflicts noted</div><div class="nd-metric-val" id="c2ScConflict">—</div><div class="nd-metric-sub">preserved, not hidden</div></div>
+        <div class="nd-metric"><div class="nd-metric-lbl">Ch.3-admissible</div><div class="nd-metric-val" id="c2ScAdmit">—</div><div class="nd-metric-sub">pass the §13 contract</div></div>
+      </div>
+      <div class="nd-cap-sc-h" style="margin-top:6px">CPE candidate breakdown · by version-confidence class</div>
+      <div class="nd-cap-contrib" id="c2ScCpe"></div>
+      <div class="nd-cap-reflect" id="c2ScReflect"></div>
+      <div class="nd-cap-handoff">
+        <button class="nd-btn ghost" id="c2CapRerun">↺ Re-run with different adapters</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== Discipline checklist ============== -->
+  <section id="c2-disc" class="nd-section">
+    <div class="nd-sec-num">DISCIPLINE</div>
+    <h2 class="nd-sec-title">The Enrichment Discipline Checklist</h2>
+    <div class="nd-sec-sub">Twelve sign-off items. Each row should be defensible from evidence — not asserted from habit.</div>
+
+    <div class="nd-check-list" id="c2Checklist">
+      <div class="nd-check"><div class="nd-check-box"></div><div class="nd-check-text"><div class="nd-check-t">Every identity claim carries its match_method.</div><div class="nd-check-x">"oui" is not the same kind of claim as "onvif." Chapter 3 weights them differently — the method must travel.</div></div></div>
+      <div class="nd-check"><div class="nd-check-box"></div><div class="nd-check-text"><div class="nd-check-t">Confidence respects the ceiling table.</div><div class="nd-check-x">A claim built from HTTP title alone caps at 0.70. A pipeline that emits 0.95 from a single banner has broken its own contract.</div></div></div>
+      <div class="nd-check"><div class="nd-check-box"></div><div class="nd-check-text"><div class="nd-check-t">Independent sources required for confidence above 0.65.</div><div class="nd-check-x">Multiple HTTP banners are not independent. ONVIF + RTSP + port combo are. Structural independence is the gate.</div></div></div>
+      <div class="nd-check"><div class="nd-check-box"></div><div class="nd-check-text"><div class="nd-check-t">Conflicts are preserved, not silently resolved.</div><div class="nd-check-x">If ONVIF says firmware A and RTSP banner says firmware B, record both. Chapter 3 picks.</div></div></div>
+      <div class="nd-check"><div class="nd-check-box"></div><div class="nd-check-text"><div class="nd-check-t">ONVIF responses carry the self-report caveat.</div><div class="nd-check-x">A compromised camera lies. ONVIF confidence ceiling is 0.85, not 1.0, for a reason — the trust caveat lives in the record.</div></div></div>
+      <div class="nd-check"><div class="nd-check-box"></div><div class="nd-check-text"><div class="nd-check-t">Missing adapter results are recorded, not inferred.</div><div class="nd-check-x">"ONVIF did not respond" is data. "Therefore this is not a camera" is wrong. Absence ≠ negation.</div></div></div>
+      <div class="nd-check"><div class="nd-check-box"></div><div class="nd-check-text"><div class="nd-check-t">JARM groupings are propagation, not primary identification.</div><div class="nd-check-x">A peer with the same JARM as an identified Hikvision camera is a hypothesis at ≤0.60. It still needs its own corroboration before model-level CPE use.</div></div></div>
+      <div class="nd-check"><div class="nd-check-box"></div><div class="nd-check-text"><div class="nd-check-t">Locally-administered MACs trigger the no-OUI flag.</div><div class="nd-check-x">02:xx in the first octet means there is no IEEE OUI to look up. Fall back to behavioral evidence; do not invent a vendor.</div></div></div>
+      <div class="nd-check"><div class="nd-check-box"></div><div class="nd-check-text"><div class="nd-check-t">CPE candidates declare their version-confidence class.</div><div class="nd-check-x">exact_self_reported / normalized / family_only / wildcard / conflicting. A wildcard CPE without that tag becomes a phantom CVE in Chapter 3.</div></div></div>
+      <div class="nd-check"><div class="nd-check-box"></div><div class="nd-check-text"><div class="nd-check-t">Apple SSH guard (or equivalent) is honored.</div><div class="nd-check-x">A specific mix of signals (SSH + AirPlay) wins over a single ambiguous clue (AirPlay alone). Rule precedence is a feature, not a bug.</div></div></div>
+      <div class="nd-check"><div class="nd-check-box"></div><div class="nd-check-text"><div class="nd-check-t">No vulnerability assertions in the artifact.</div><div class="nd-check-x">"Hikvision DS-2CD" is Chapter 2's claim. "CVE-2021-36260 applies" is Chapter 3's claim. Crossing that line silently is the most common discipline failure.</div></div></div>
+      <div class="nd-check"><div class="nd-check-box"></div><div class="nd-check-text"><div class="nd-check-t">Downstream_admissibility is stated, not implied.</div><div class="nd-check-x">model_level vs family_level vs vendor_only vs do_not_query. Chapter 3 needs this to decide how broadly to search CVE catalogs.</div></div></div>
+    </div>
+
+    <div class="nd-check-prog" id="c2CheckProg">Ticked <b>0</b> / 12 · the artifact is defensible when every box can be supported.</div>
+  </section>
+
+  <script>
+  (function(){
+    /* ============================================================
+       CHAPTER 2 · CASCADE LAB · INTERACTIVITY
+       (c) 2026 Rayve Malhotra · RayveLabs
+       Lectures of Dr. Ravinder Mallarapu · SEAS-8414 · GW
+       ============================================================ */
+    var pane = document.getElementById('sim2');
+    if(!pane) return;
+
+    /* === sub-nav active highlight via IntersectionObserver === */
+    var sections = pane.querySelectorAll('.nd-section');
+    var subnavLinks = pane.querySelectorAll('.nd-sn');
+    function setActiveSec(id){
+      subnavLinks.forEach(function(a){
+        if(a.getAttribute('href') === '#' + id) a.classList.add('on');
+        else a.classList.remove('on');
+      });
+    }
+    var secIO = new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(e.isIntersecting && e.intersectionRatio > 0.18) setActiveSec(e.target.id);
+      });
+    }, {threshold:[0.18,0.5], rootMargin:'-160px 0px -50% 0px'});
+    sections.forEach(function(s){ secIO.observe(s); });
+
+    /* === sub-nav auto-hide on scroll-down (same as Ch.1) === */
+    (function(){
+      var subnavEl = pane.querySelector('.nd-subnav');
+      if(!subnavEl) return;
+      var lastY = window.scrollY, ticking = false;
+      window.addEventListener('scroll', function(){
+        if(ticking) return;
+        ticking = true;
+        requestAnimationFrame(function(){
+          var y = window.scrollY;
+          if(y > lastY + 6 && y > 320) subnavEl.classList.add('nd-hide');
+          else if(y < lastY - 4) subnavEl.classList.remove('nd-hide');
+          lastY = y;
+          ticking = false;
+        });
+      }, {passive:true});
+    })();
+
+    /* === smooth-scroll on sub-nav clicks === */
+    function c2ScrollTo(id){
+      var t = document.getElementById(id);
+      if(!t) return;
+      var y = t.getBoundingClientRect().top + window.scrollY - 165;
+      window.scrollTo({top:y, behavior:'smooth'});
+      setActiveSec(id);
+    }
+    subnavLinks.forEach(function(a){
+      a.addEventListener('click', function(e){
+        e.preventDefault();
+        c2ScrollTo(a.getAttribute('href').slice(1));
+      });
+    });
+    pane.querySelectorAll('.nd-chapter-questions > div').forEach(function(d){
+      d.addEventListener('click', function(){ c2ScrollTo('c2-2'); });
+    });
+
+    /* === identity card show/hide based on which sections are visible === */
+    var idCard = document.getElementById('c2Identity');
+    var idVisSecs = ['c2-2','c2-3','c2-4','c2-7','c2-8','c2-9','c2-10','c2-11','c2-13','c2-14'];
+    var idVis = {};
+    var idIO = new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(idVisSecs.indexOf(e.target.id) === -1) return;
+        if(e.isIntersecting) idVis[e.target.id] = true;
+        else delete idVis[e.target.id];
+      });
+      if(Object.keys(idVis).length > 0) idCard.classList.add('on');
+      else idCard.classList.remove('on');
+    }, {threshold:0.05, rootMargin:'-80px 0px -100px 0px'});
+    sections.forEach(function(s){ if(idVisSecs.indexOf(s.id) !== -1) idIO.observe(s); });
+
+    function idSet(k,v,cls){
+      var el = idCard.querySelector('[data-k="' + k + '"]');
+      if(!el) return;
+      el.textContent = v;
+      el.className = cls || '';
+    }
+    function idTier(t){
+      var lbl = {low:'low', mod:'moderate', strong:'strong', vstrong:'very strong'};
+      document.getElementById('c2IdConf').innerHTML = 'tier: <span class="lvl ' + t + '">' + lbl[t] + '</span>';
+    }
+
+    /* === §2 evidence cards === */
+    pane.querySelectorAll('#c2EvGrid .c2-ev').forEach(function(c){
+      c.addEventListener('click', function(){ c.classList.toggle('open'); });
+    });
+
+    /* === §3 claim builder === */
+    var claimPool = pane.querySelectorAll('#c2ClaimPool .c2-cp');
+    var picked = new Set();
+    function renderClaim(){
+      var fams = {};
+      var rawSum = 0;
+      picked.forEach(function(el){
+        var f = el.getAttribute('data-fam');
+        var w = parseFloat(el.getAttribute('data-w'));
+        fams[f] = (fams[f] || 0) + w;
+        rawSum += w;
+      });
+      /* diversity bonus: each unique family adds full weight; same-family overlaps decay */
+      var conf = 0;
+      Object.keys(fams).forEach(function(f, i){
+        var familyTotal = fams[f];
+        /* first piece of evidence in a family counts full; additional decays */
+        conf += familyTotal * (0.5 + 0.5 / Math.max(1, picked.size && Object.keys(fams).length === 1 ? 2 : 1));
+      });
+      /* properly: independent families multiply, same-family adds with decay */
+      /* simpler model: confidence = 1 - product(1 - p_fam) where p_fam = first weight of each family */
+      var familyFirst = {};
+      picked.forEach(function(el){
+        var f = el.getAttribute('data-fam');
+        var w = parseFloat(el.getAttribute('data-w'));
+        if(!(f in familyFirst) || w > familyFirst[f]) familyFirst[f] = w;
+      });
+      var product = 1;
+      Object.values(familyFirst).forEach(function(p){ product *= (1 - p); });
+      conf = 1 - product;
+      /* extra-same-family decay: each duplicate family piece adds tiny bonus */
+      var extras = 0;
+      Object.keys(fams).forEach(function(f){
+        var n = Array.from(picked).filter(function(el){ return el.getAttribute('data-fam') === f; }).length;
+        if(n > 1) extras += (n - 1) * 0.02;
+      });
+      conf = Math.min(0.95, conf + extras);
+      document.getElementById('c2ClaimVal').textContent = conf.toFixed(2);
+      document.getElementById('c2ClaimBar').style.width = (conf * 100).toFixed(0) + '%';
+      var familyCount = Object.keys(fams).length;
+      var note = document.getElementById('c2ClaimNote');
+      if(picked.size === 0){
+        note.innerHTML = 'Select evidence above. Watch what happens when you pick three pieces from the <em>same protocol family</em> (HTTP) vs. one piece each from three <em>different</em> families.';
+      } else if(picked.size >= 3 && familyCount === 1){
+        note.innerHTML = '<b>One family · ' + picked.size + ' pieces · confidence ' + conf.toFixed(2) + '.</b> Same family, easy to spoof. Three HTTP strings can be edited in one file.';
+      } else if(picked.size === familyCount && familyCount >= 3){
+        note.innerHTML = '<b>' + familyCount + ' independent families · confidence ' + conf.toFixed(2) + '.</b> Each piece comes from a different protocol surface. Forging all of them takes coordinated compromise of separate code paths.';
+      } else {
+        note.innerHTML = '<b>' + picked.size + ' pieces from ' + familyCount + ' families · confidence ' + conf.toFixed(2) + '.</b> Each <em>new family</em> contributes more than each additional piece of the same family.';
+      }
+    }
+    claimPool.forEach(function(el){
+      el.addEventListener('click', function(){
+        if(picked.has(el)){ picked.delete(el); el.classList.remove('on'); }
+        else { picked.add(el); el.classList.add('on'); }
+        renderClaim();
+      });
+    });
+
+    /* === §4 adapter fan-out toggle === */
+    var fanCells = pane.querySelectorAll('#c2FanGrid .c2-fan-a');
+    function renderFan(){
+      var on = 0;
+      fanCells.forEach(function(c){ if(c.classList.contains('on') && !c.classList.contains('off')) on++; });
+      var off = fanCells.length - on;
+      document.getElementById('c2FanCt').textContent = on;
+      var src = Math.max(0, on - 2); /* 2 typically return nothing useful */
+      document.getElementById('c2FanSrc').textContent = src;
+    }
+    fanCells.forEach(function(c){
+      c.addEventListener('click', function(){
+        if(c.classList.contains('off')){ c.classList.remove('off'); c.classList.add('on'); }
+        else { c.classList.remove('on'); c.classList.add('off'); }
+        renderFan();
+      });
+    });
+
+    /* === §6 port-driven adapter selection === */
+    function adapterSelection(ports){
+      var rules = [];
+      var has = function(p){ return ports.indexOf(p) !== -1; };
+      var hasAny = function(arr){ return arr.some(function(p){ return ports.indexOf(p) !== -1; }); };
+      rules.push({a:'ARP cache',  fire:true, reason:'always · no port required'});
+      rules.push({a:'mDNS browse', fire:true, reason:'local-link · runs regardless of port'});
+      rules.push({a:'SSDP',        fire:true, reason:'multicast · runs on local subnet'});
+      rules.push({a:'TLS / cert',  fire:hasAny([443,5001,8443,8883,9443]), reason:hasAny([443,5001,8443,8883,9443]) ? 'TLS port observed' : 'no TLS port'});
+      rules.push({a:'JARM',        fire:hasAny([443,5001,8443,8883,9443]), reason:hasAny([443,5001,8443,8883,9443]) ? 'TLS port — handshake probe runs' : 'requires TLS port'});
+      rules.push({a:'HTTP',        fire:hasAny([80,81,88,443,631,5000,5001,8008,8080,8081,8088,8181,8443,8880,8888,9000,9091]), reason:'HTTP-class ports observed'});
+      rules.push({a:'RTSP',        fire:hasAny([554,8554,10554]), reason:hasAny([554,8554,10554]) ? '554 or RTSP-alt port observed' : 'no RTSP port'});
+      rules.push({a:'ONVIF',       fire:hasAny([80,8080,8899,3702]), reason:hasAny([80,8080,8899,3702]) ? 'ONVIF candidate port' : 'no ONVIF candidate'});
+      rules.push({a:'nmap -sV',    fire:ports.length > 0, reason:'runs on every open port'});
+      rules.push({a:'DHCP/router', fire:true, reason:'router-side · runs regardless of ports'});
+      rules.push({a:'Fingerbank',  fire:false, reason:'requires API key + opt-in'});
+      rules.push({a:'TCP fingerprint', fire:false, reason:'off by default · needs raw sockets'});
+      return rules;
+    }
+    function renderPortSel(){
+      var raw = document.getElementById('c2PortIn').value;
+      var ports = raw.split(',').map(function(s){ return parseInt(s.trim()); }).filter(function(p){ return !isNaN(p); });
+      var sel = adapterSelection(ports);
+      document.getElementById('c2PortOut').innerHTML = sel.map(function(r){
+        return '<div class="c2-port-result ' + (r.fire ? 'fire' : 'skip') + '">' +
+          '<span><b>' + r.a + '</b></span>' +
+          '<span class="reason">' + (r.fire ? '▶ fire' : '○ skip') + '</span>' +
+        '</div>' + '<div style="font-size:11px;color:var(--faint);grid-column:1/-1;padding:0 0 8px 14px;font-style:italic">' + r.reason + '</div>';
+      }).join('');
+    }
+    document.getElementById('c2PortRun').addEventListener('click', renderPortSel);
+    pane.querySelectorAll('.c2-port-preset').forEach(function(b){
+      b.addEventListener('click', function(){
+        document.getElementById('c2PortIn').value = b.getAttribute('data-ps');
+        renderPortSel();
+      });
+    });
+    renderPortSel();
+
+    /* === §9 cascade rungs (clickable) === */
+    pane.querySelectorAll('.c2-rungs .c2-rung').forEach(function(r){
+      r.addEventListener('click', function(){
+        pane.querySelectorAll('.c2-rungs .c2-rung').forEach(function(x){ x.classList.remove('on'); });
+        r.classList.add('on');
+      });
+    });
+
+    /* === §11 CPE builder === */
+    function renderCpe(){
+      var part = document.getElementById('c2cpePart').value;
+      var vendor = document.getElementById('c2cpeVendor').value.trim() || '*';
+      var product = document.getElementById('c2cpeProduct').value.trim() || '*';
+      var version = document.getElementById('c2cpeVersion').value.trim() || '*';
+      var cls = document.getElementById('c2cpeClass').value;
+      var cpe = 'cpe:2.3:' + part + ':' + vendor + ':' + product + ':' + version + ':*:*:*:*:*:*:*';
+      document.getElementById('c2cpeOut').textContent = cpe;
+      var admit = {
+        exact: ['model-level query', 'high'],
+        norm: ['model-level query', 'high'],
+        family: ['family-level query · review required', 'moderate'],
+        wild: ['vendor-only query · note uncertainty', 'low'],
+        conflict: ['do not query without resolving conflict', 'do-not-query']
+      };
+      var a = admit[cls];
+      document.getElementById('c2cpeAdmit').textContent = a[0];
+      document.getElementById('c2cpeWeight').textContent = a[1];
+    }
+    ['c2cpePart','c2cpeVendor','c2cpeProduct','c2cpeVersion','c2cpeClass'].forEach(function(id){
+      document.getElementById(id).addEventListener('input', renderCpe);
+      document.getElementById(id).addEventListener('change', renderCpe);
+    });
+    renderCpe();
+
+    /* === §12 adversarial cards flip === */
+    pane.querySelectorAll('.c2-adv').forEach(function(c){
+      c.addEventListener('click', function(){ c.classList.toggle('flip'); });
+    });
+
+    /* === §14 Capstone === */
+    var c2Truth = [
+      {ip:'172.30.0.4',  type:'camera', vendor:'Hikvision', evidence:{onvif:true, rtsp:true, http:true, ssdp:true}},
+      {ip:'172.30.0.5',  type:'camera', vendor:'Axis',      evidence:{onvif:true, rtsp:true, http:true}},
+      {ip:'172.30.0.6',  type:'camera', vendor:'Reolink',   evidence:{rtsp:true, http:true}},
+      {ip:'172.30.0.10', type:'media_player', vendor:'Google', evidence:{mdns:true, http:true, tls:true, jarm:true, ssdp:true}},
+      {ip:'172.30.0.11', type:'media_player', vendor:'Apple',  evidence:{mdns:true, http:true, tls:true}},
+      {ip:'172.30.0.12', type:'speaker', vendor:'Sonos',    evidence:{mdns:true, ssdp:true, http:true}},
+      {ip:'172.30.0.13', type:'speaker', vendor:'Sonos',    evidence:{mdns:true, ssdp:true}},
+      {ip:'172.30.0.15', type:'iot_gateway', vendor:'Google', evidence:{mdns:true, http:true, dhcp:true}},
+      {ip:'172.30.0.20', type:'nas', vendor:'Synology',     evidence:{http:true, tls:true, nmap:true, jarm:true}},
+      {ip:'172.30.0.21', type:'nas', vendor:'QNAP',         evidence:{http:true, tls:true, nmap:true}},
+      {ip:'172.30.0.25', type:'printer', vendor:'HP',       evidence:{mdns:true, http:true, nmap:true}},
+      {ip:'172.30.0.26', type:'printer', vendor:'Brother',  evidence:{mdns:true, http:true}},
+      {ip:'172.30.0.30', type:'iot_gateway', vendor:'Nest', evidence:{tls:true, jarm:true, http:true}},
+      {ip:'172.30.0.31', type:'iot_gateway', vendor:'Hue',  evidence:{ssdp:true, http:true}},
+      {ip:'172.30.0.32', type:'iot_gateway', vendor:'Sonos',evidence:{mdns:true}},
+      {ip:'172.30.0.40', type:'gateway', vendor:'Cisco',    evidence:{nmap:true, http:true, dhcp:true}},
+      {ip:'172.30.0.42', type:'media_player', vendor:'Google', evidence:{http:true, tls:true}},  /* the running case · routed · weaker */
+      {ip:'172.30.0.50', type:'cloud_only', vendor:'Amazon', evidence:{}},
+      {ip:'172.30.0.51', type:'cloud_only', vendor:'Google', evidence:{}},
+      {ip:'172.30.0.55', type:'media_player', vendor:'Roku', evidence:{mdns:true, http:true, ssdp:true}},
+      {ip:'172.30.0.60', type:'camera', vendor:'Dahua',     evidence:{rtsp:true, onvif:true}},
+      {ip:'172.30.0.65', type:'iot_gateway', vendor:'SmartThings', evidence:{mdns:true}},
+      {ip:'172.30.0.70', type:'nas', vendor:'Synology',     evidence:{http:true, tls:true}},
+      {ip:'172.30.0.77', type:'printer', vendor:'Canon',    evidence:{http:true, mdns:true}},
+      {ip:'172.30.0.88', type:'iot_gateway', vendor:'Lutron', evidence:{}},
+      {ip:'172.30.0.92', type:'speaker', vendor:'Sonos',    evidence:{mdns:true}}
+    ];
+    var c2AdMeta = {
+      arp:{ceil:0.25, source:'oui'},
+      mdns:{ceil:0.75, source:'mdns'},
+      ssdp:{ceil:0.75, source:'ssdp'},
+      http:{ceil:0.70, source:'http_title'},
+      tls:{ceil:0.65, source:'tls_issuer'},
+      jarm:{ceil:0.70, source:'jarm'},
+      rtsp:{ceil:0.65, source:'rtsp_server'},
+      onvif:{ceil:0.85, source:'onvif'},
+      nmap:{ceil:0.60, source:'service_product'},
+      fingerbank:{ceil:0.75, source:'fingerbank'},
+      dhcp:{ceil:0.50, source:'dhcp_vendor_class'},
+      tcpfp:{ceil:0.35, source:'tcp_fingerprint'}
+    };
+    var c2Sel = new Set(['arp','mdns','ssdp','http','tls','rtsp','nmap','dhcp']);
+    pane.querySelectorAll('#c2CapMethods .nd-cap-method').forEach(function(m){
+      m.addEventListener('click', function(){
+        var k = m.getAttribute('data-m');
+        if(c2Sel.has(k)){ c2Sel.delete(k); m.classList.remove('on'); }
+        else { c2Sel.add(k); m.classList.add('on'); }
+      });
+    });
+
+    function runC2Capstone(instant){
+      if(!c2Sel.size){ alert('Pick at least one adapter.'); return; }
+      var status = document.getElementById('c2CapStatus');
+      var stream = document.getElementById('c2CapStream');
+      var score = document.getElementById('c2CapScore');
+      status.classList.add('on');
+      stream.classList.add('on');
+      stream.innerHTML = '';
+      score.classList.remove('on');
+
+      /* compute results — each host's best-evidence + confidence */
+      var results = c2Truth.map(function(h){
+        var contributing = [];
+        var bestSource = 'oui';
+        var bestCeil = c2AdMeta.arp.ceil;
+        Object.keys(h.evidence).forEach(function(ev){
+          /* map evidence name to adapter selector key */
+          var k = ev;
+          if(!c2AdMeta[k]) return;
+          if(!c2Sel.has(k)) return;
+          contributing.push(k);
+          if(c2AdMeta[k].ceil > bestCeil){
+            bestCeil = c2AdMeta[k].ceil;
+            bestSource = c2AdMeta[k].source;
+          }
+        });
+        /* ARP always contributes if selected */
+        if(c2Sel.has('arp') && contributing.indexOf('arp') === -1) contributing.unshift('arp');
+        /* compute confidence: best ceiling, raised by independent corroboration */
+        var conf = bestCeil;
+        if(contributing.length > 1){
+          var miss = 1 - bestCeil;
+          contributing.forEach(function(c){ if(c2AdMeta[c]) miss *= (1 - Math.max(0.05, c2AdMeta[c].ceil * 0.3)); });
+          conf = 1 - miss;
+        }
+        conf = Math.min(0.95, conf);
+        /* identify a small fraction of cloud-only / no-evidence hosts at low confidence */
+        if(Object.keys(h.evidence).length === 0){
+          conf = 0.25;
+          bestSource = 'oui';
+        }
+        /* version confidence class */
+        var vc = 'wildcard';
+        if(contributing.indexOf('onvif') !== -1 || contributing.indexOf('ssdp') !== -1) vc = 'exact_self_reported';
+        else if(contributing.indexOf('http') !== -1 && contributing.length >= 3) vc = 'normalized';
+        else if(contributing.length >= 2) vc = 'family_only';
+        /* simulate conflicts — random 8% chance among multi-source */
+        var conflict = contributing.length >= 3 && Math.random() < 0.08;
+        return {ip:h.ip, type:h.type, vendor:h.vendor, conf:conf, source:bestSource, sources:contributing, vc:vc, conflict:conflict};
+      });
+
+      var statusMsgs = ['fanning out adapters', 'parsing HTTP banners', 'JARM hash construction', 'ONVIF GetDeviceInfo (where eligible)', 'mDNS browse', 'merging evidence', 'fingerprint cascade', 'CPE candidate generation', 'enrichment complete'];
+      var smi = 0;
+      var smInt = !instant ? setInterval(function(){
+        status.textContent = '▸ ' + statusMsgs[smi % statusMsgs.length];
+        smi++;
+      }, 700) : null;
+
+      var perRow = instant ? 4 : Math.max(80, Math.floor(7000 / results.length));
+      results.forEach(function(r, i){
+        setTimeout(function(){
+          var row = document.createElement('div');
+          row.className = 'nd-cap-row';
+          if(r.conf < 0.40) row.style.opacity = '0.7';
+          var confColor = r.conf >= 0.70 ? '#2d5e3a' : r.conf >= 0.50 ? 'var(--gold)' : '#8a6321';
+          row.innerHTML = '<span>' + r.ip + '</span>' +
+                          '<span class="type">' + r.type + '</span>' +
+                          '<span style="color:var(--dim);font-size:10.5px">' + r.vendor + ' · ' + r.vc.replace(/_/g,' ') + (r.conflict ? ' <span style="color:#8a3a3a">· conflict</span>' : '') + '</span>' +
+                          '<span class="src" style="color:' + confColor + '">' + r.conf.toFixed(2) + '</span>';
+          stream.appendChild(row);
+          stream.scrollTop = stream.scrollHeight;
+        }, i * perRow);
+      });
+
+      setTimeout(function(){
+        if(smInt) clearInterval(smInt);
+        status.textContent = '✓ enrichment complete · scoring against ground truth';
+
+        var identified = results.filter(function(r){ return r.conf >= 0.50; }).length;
+        var meanC = results.reduce(function(a,r){ return a + r.conf; }, 0) / results.length;
+        var conflicts = results.filter(function(r){ return r.conflict; }).length;
+        var admissible = results.filter(function(r){ return r.conf >= 0.50 && r.vc !== 'wildcard'; }).length;
+
+        document.getElementById('c2ScIdent').textContent = identified;
+        document.getElementById('c2ScIdentSub').textContent = '/ ' + results.length + ' hosts';
+        document.getElementById('c2ScMeanC').textContent = meanC.toFixed(2);
+        document.getElementById('c2ScConflict').textContent = conflicts;
+        document.getElementById('c2ScAdmit').textContent = admissible;
+
+        var vcCounts = {exact_self_reported:0, normalized:0, family_only:0, wildcard:0};
+        results.forEach(function(r){ if(r.vc in vcCounts) vcCounts[r.vc]++; });
+        var maxVc = Math.max.apply(null, Object.values(vcCounts).concat([1]));
+        document.getElementById('c2ScCpe').innerHTML = Object.keys(vcCounts).map(function(k){
+          var pct = (vcCounts[k] / maxVc) * 100;
+          var label = k.replace(/_/g,' ');
+          return '<div class="nd-contrib-row"><div class="nd-contrib-lbl">' + label + '</div><div class="nd-contrib-bar"><div style="width:' + pct + '%"></div></div><div class="nd-contrib-val">' + vcCounts[k] + ' candidate' + (vcCounts[k]===1?'':'s') + '</div></div>';
+        }).join('');
+
+        var noOnvif = !c2Sel.has('onvif');
+        var noJarm  = !c2Sel.has('jarm');
+        var reflect = '<b>' + identified + ' / ' + results.length + ' hosts identified at confidence ≥ 0.50.</b> ';
+        if(noOnvif) reflect += 'Enabling <em>ONVIF</em> would have raised the camera-class hosts (172.30.0.4, .5, .60) toward 0.85 with model-level CPE candidates. ';
+        if(noJarm) reflect += 'Enabling <em>JARM</em> would have grouped the Synology / Apple / Google peer hosts and added corroboration. ';
+        if(conflicts > 0) reflect += conflicts + ' conflict' + (conflicts===1?'':'s') + ' preserved — Ch.3 handles those, not Ch.2. ';
+        reflect += 'Cloud-only hosts at 0.25 are correct: there is nothing more to learn from network evidence alone.';
+        document.getElementById('c2ScReflect').innerHTML = reflect;
+
+        score.classList.add('on');
+        score.scrollIntoView({behavior:'smooth', block:'start'});
+      }, instant ? 200 : results.length * perRow + 600);
+    }
+
+    document.getElementById('c2CapRun').addEventListener('click', function(){ runC2Capstone(false); });
+    document.getElementById('c2CapSkip').addEventListener('click', function(){ runC2Capstone(true); });
+    document.getElementById('c2CapReset').addEventListener('click', function(){
+      c2Sel = new Set();
+      pane.querySelectorAll('#c2CapMethods .nd-cap-method').forEach(function(m){ m.classList.remove('on'); });
+      document.getElementById('c2CapStatus').classList.remove('on');
+      document.getElementById('c2CapStream').classList.remove('on');
+      document.getElementById('c2CapScore').classList.remove('on');
+    });
+    document.getElementById('c2CapRerun').addEventListener('click', function(){
+      document.getElementById('c2CapScore').classList.remove('on');
+      document.getElementById('c2-14').scrollIntoView({behavior:'smooth'});
+    });
+
+    /* === Discipline checklist === */
+    var cpEl = document.getElementById('c2CheckProg');
+    function updateCp(){
+      var t = pane.querySelectorAll('#c2Checklist .nd-check.ticked').length;
+      cpEl.innerHTML = 'Ticked <b>' + t + '</b> / 12 · ' +
+        (t === 12 ? 'every row defensible. Ch.2 artifact is ready for handoff.' :
+         t >= 9 ? 'close — but partial discipline produces partial trust.' :
+         t >= 4 ? 'progress, but the unticked rows are where Ch.3 inherits problems.' :
+                  'sign off only when every box can be defended from evidence.');
+    }
+    pane.querySelectorAll('#c2Checklist .nd-check').forEach(function(c){
+      c.addEventListener('click', function(){
+        c.classList.toggle('ticked');
+        updateCp();
+      });
+    });
+    updateCp();
+
+  })();
+  </script>
 
 </div>
 
-
-<!-- ===================== WEB LOG LAB ===================== -->
 <div id="weblog" class="pane">
 <style>
 /* Web Log Lab scoped styles */
