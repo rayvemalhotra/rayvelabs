@@ -813,10 +813,14 @@ html.loading{overflow:hidden}
 .loader.lifted{transform:translateY(-101%); opacity:0}
 
 .ld-stage{
-  position:relative;
+  position:absolute;
+  top:50%; left:50%;
   width:360px; height:360px;
+  margin:-180px 0 0 -180px;
   display:flex; align-items:center; justify-content:center;
+  transition:opacity .7s ease;
 }
+.loader.phase-ready .ld-stage{opacity:0; pointer-events:none}
 .ld-svg{
   position:absolute; inset:0;
   width:100%; height:100%;
@@ -897,15 +901,20 @@ html.loading{overflow:hidden}
 @keyframes ld-status-show{to{opacity:1}}
 @keyframes ld-blink{50%{opacity:0}}
 
-/* brand resolves at the end */
+/* brand resolves at the end — same center spot, replaces stage */
 .ld-brand{
   position:absolute;
+  top:50%; left:50%;
   display:flex; flex-direction:column; align-items:center;
   opacity:0;
-  transform:translateY(8px);
-  animation:ld-brand-in .8s cubic-bezier(.2,.7,.2,1) forwards 4.7s;
+  transform:translate(-50%, calc(-50% + 12px));
+  transition:opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1);
+  pointer-events:none;
 }
-@keyframes ld-brand-in{to{opacity:1; transform:translateY(0)}}
+.loader.brand-on .ld-brand{
+  opacity:1;
+  transform:translate(-50%, -50%);
+}
 .ld-name{
   position:relative;
   font-family:'Source Serif Pro',Georgia,serif;
@@ -923,10 +932,10 @@ html.loading{overflow:hidden}
   height:1px;
   background:linear-gradient(to right, transparent, var(--gold) 30%, var(--gold) 70%, transparent);
   transform:scaleX(0);
-  animation:ld-line 1s cubic-bezier(.7,0,.2,1) forwards 5.2s;
   transform-origin:center;
+  transition:transform 1s cubic-bezier(.7,0,.2,1) .35s;
 }
-@keyframes ld-line{to{transform:scaleX(1)}}
+.loader.brand-on .ld-name::after{transform:scaleX(1)}
 .ld-name .lm-dot{
   display:inline-block;
   width:9px;height:9px;border-radius:50%;
@@ -941,9 +950,9 @@ html.loading{overflow:hidden}
   color:var(--faint);
   margin-top:14px;
   opacity:0;
-  animation:ld-fade .6s ease forwards 5.5s;
+  transition:opacity .6s ease .7s;
 }
-@keyframes ld-fade{to{opacity:1}}
+.loader.brand-on .ld-tag{opacity:1}
 
 /* when brand fades in, fade out the constellation */
 .loader.resolving .ld-stage{opacity:0; transition:opacity .8s ease}
@@ -1119,6 +1128,10 @@ html.loading{overflow:hidden}
 .loader.phase-fp .ld-svg,
 .loader.phase-crypto .ld-svg{opacity:.22; transition:opacity .5s ease}
 .loader.phase-ready .ld-svg{opacity:0; transition:opacity .7s ease}
+
+/* hide phase chip + status terminal as we transition to brand */
+.loader.phase-ready .ld-phase,
+.loader.phase-ready .ld-status{opacity:0; transition:opacity .5s ease}
 
 @media(max-width:520px){
   .ld-stage{width:280px; height:280px}
@@ -1453,47 +1466,51 @@ category-error spotter</pre>
   function runIntro(){
     if(!loader) return;
 
-    // PHASE 1 — Discovery (constellation is animating via CSS keyframes already)
+    // PHASE 1 — Discovery (constellation forms via CSS keyframes)
     setPhase('Discovery');
     setStatus('scanning 10.0.0.0/24');
-    setTimeout(function(){ setStatus('discovered 8 hosts'); }, 1100);
+    setTimeout(function(){ setStatus('discovered 8 hosts'); }, 1500);
 
-    // PHASE 2 — Fingerprint (cascade)
+    // PHASE 2 — Fingerprint cascade
     setTimeout(function(){
       loader.classList.add('phase-fp');
       setPhase('Fingerprint');
       setStatus('cascade ▸ OUI + realm + banner');
       activateFpRow(0);
-    }, 1700);
-    setTimeout(function(){ activateFpRow(1); setConfidence(0.40); }, 2000);
-    setTimeout(function(){ activateFpRow(2); setConfidence(0.70); }, 2400);
-    setTimeout(function(){ activateFpRow(3); setConfidence(0.80); }, 2800);
+    }, 2800);
+    setTimeout(function(){ activateFpRow(1); setConfidence(0.40); }, 3200);
+    setTimeout(function(){ activateFpRow(2); setConfidence(0.70); }, 3700);
+    setTimeout(function(){ activateFpRow(3); setConfidence(0.80); }, 4200);
 
-    // PHASE 3 — Cryptography (hash)
+    // PHASE 3 — Cryptography
     setTimeout(function(){
       loader.classList.remove('phase-fp');
       loader.classList.add('phase-crypto');
       setPhase('Cryptography');
       setStatus('sha-256 ▸ normalize ▸ hash');
-      scrambleHash(ldHashVal, '<span class="g">a3f9c2d8</span> e7b1a48f 9c2d8e7b 1a3f9c2d…', 900);
-    }, 3400);
+      scrambleHash(ldHashVal, '<span class="g">a3f9c2d8</span> e7b1a48f 9c2d8e7b 1a3f9c2d…', 1200);
+    }, 5400);
+    setTimeout(function(){ setStatus('hash committed · client-side only'); }, 7000);
 
-    // PHASE 4 — Ready / resolve
+    // PHASE 4 — Animation fades out completely (stage + chip + status)
     setTimeout(function(){
       loader.classList.remove('phase-crypto');
       loader.classList.add('phase-ready');
-      setPhase('Ready');
-      setStatus('open research · cybersecurity');
-    }, 4700);
+    }, 7800);
 
-    // lift the curtain
+    // PHASE 5 — Brand appears AFTER stage finishes fading
+    setTimeout(function(){
+      loader.classList.add('brand-on');
+    }, 8500);
+
+    // PHASE 6 — Lift
     setTimeout(function(){
       loader.classList.add('lifted');
       document.documentElement.classList.remove('loading');
-    }, 5900);
+    }, 10200);
     setTimeout(function(){
       if(loader && loader.parentNode) loader.parentNode.removeChild(loader);
-    }, 7100);
+    }, 11400);
   }
 
   if(reduce){
