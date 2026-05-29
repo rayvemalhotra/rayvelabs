@@ -1,0 +1,96 @@
+name: Build and deploy to Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install minifiers
+        run: |
+          npm install -g \
+            html-minifier-terser@7.2.0 \
+            terser@5.30.0
+
+      - name: Build minified site
+        run: |
+          set -euo pipefail
+          mkdir -p _site
+
+          # copy all deploy-eligible files, excluding source-control + workflows
+          rsync -av \
+            --exclude='.git' \
+            --exclude='.github' \
+            --exclude='_site' \
+            --exclude='node_modules' \
+            --exclude='.gitignore' \
+            --exclude='.claude' \
+            --exclude='OPERATIONS.md' \
+            ./ _site/
+
+          # minify each HTML file aggressively
+          for f in _site/*.html; do
+            echo "Minifying $f"
+            html-minifier-terser \
+              --collapse-whitespace \
+              --conservative-collapse \
+              --remove-comments \
+              --remove-redundant-attributes \
+              --remove-script-type-attributes \
+              --remove-style-link-type-attributes \
+              --use-short-doctype \
+              --minify-css true \
+              --minify-js '{"compress":{"drop_console":false,"passes":2},"mangle":true,"output":{"comments":false}}' \
+              -o "$f.min" "$f"
+            mv "$f.min" "$f"
+          done
+
+          # re-inject a minimal copyright notice at the very top so the
+          # ownership header survives minification
+          for f in _site/*.html; do
+            head -c 0 "$f" > /tmp/_head
+            { printf '<!-- (c) 2026 Rayve Malhotra | RayveLabs | rayvelabs.com | All rights reserved | Unauthorized copying prohibited | rayvemalhotra@gmail.com -->\n'; cat "$f"; } > "$f.new"
+            mv "$f.new" "$f"
+          done
+
+          echo "Build output:"
+          ls -la _site/
+          echo ""
+          echo "File sizes:"
+          du -h _site/*.html
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
