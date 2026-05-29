@@ -949,6 +949,89 @@ body.rl-scrolled .tabs{
     .nd-cap-reflect{margin-top:18px;padding:16px 18px;background:rgba(157,133,82,.05);border-left:3px solid var(--gold);border-radius:6px;font-size:13.5px;color:var(--dim);line-height:1.65;font-family:'Source Serif Pro',Georgia,serif}
     .nd-cap-reflect b{color:var(--ink);font-weight:600}
     .nd-cap-handoff{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap}
+
+    /* ===== ENRICHMENTS ===== */
+    /* 5 structural reasons (§4) */
+    .nd-reasons{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px;margin-top:24px;max-width:980px}
+    .nd-reason{background:var(--paper);border:1px solid var(--rule);border-radius:10px;padding:18px;cursor:pointer;transition:all .15s;position:relative}
+    .nd-reason:hover{border-color:var(--ink)}
+    .nd-reason.open{border-color:var(--gold);background:rgba(157,133,82,.03)}
+    .nd-reason-n{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:1.4px;font-weight:600;margin-bottom:6px}
+    .nd-reason-h{font-family:'Source Serif Pro',Georgia,serif;font-size:16px;font-weight:600;color:var(--ink);margin-bottom:6px;line-height:1.3}
+    .nd-reason-d{font-size:12.5px;color:var(--dim);line-height:1.5}
+    .nd-reason-x{display:none;margin-top:10px;padding-top:10px;border-top:1px solid var(--rule-faint);font-size:12.5px;color:var(--dim);line-height:1.6;font-family:'Source Serif Pro',Georgia,serif}
+    .nd-reason-x b{color:var(--ink)}
+    .nd-reason.open .nd-reason-x{display:block}
+    .nd-reason-x code{font-family:'JetBrains Mono',monospace;font-size:11px;background:var(--paper2);padding:1px 5px;border-radius:3px;color:var(--ink)}
+
+    /* evidence classes ref (§5) */
+    .nd-ev-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px;margin-top:14px;max-width:1000px}
+    .nd-ev{background:var(--paper);border:1px solid var(--rule);border-radius:10px;padding:14px 16px;border-left:3px solid var(--gold)}
+    .nd-ev-h{font-family:'Inter',sans-serif;font-size:10.5px;text-transform:uppercase;letter-spacing:1.4px;color:var(--gold);font-weight:600;margin-bottom:6px}
+    .nd-ev-t{font-family:'Source Serif Pro',Georgia,serif;font-size:14.5px;font-weight:600;color:var(--ink);margin-bottom:8px;line-height:1.3}
+    .nd-ev-says{font-size:12.5px;color:var(--dim);line-height:1.5;margin-bottom:6px}
+    .nd-ev-says::before{content:'tells you: ';font-family:'Inter',sans-serif;font-size:10px;text-transform:uppercase;letter-spacing:1px;color:#2d5e3a;font-weight:600;margin-right:4px}
+    .nd-ev-limit{font-size:12.5px;color:var(--dim);line-height:1.5;font-style:italic}
+    .nd-ev-limit::before{content:'limit: ';font-family:'Inter',sans-serif;font-size:10px;text-transform:uppercase;letter-spacing:1px;color:#8a3a3a;font-weight:600;font-style:normal;margin-right:4px}
+
+    /* recall formula interactive (§5) */
+    .nd-recall{background:var(--paper);border:1px solid var(--rule);border-radius:12px;padding:22px 24px;max-width:920px;margin-top:14px}
+    .nd-recall-formula{font-family:'JetBrains Mono',monospace;font-size:18px;color:var(--ink);text-align:center;padding:14px 18px;background:var(--paper2);border-radius:8px;margin-bottom:18px;letter-spacing:.5px;border-left:3px solid var(--gold)}
+    .nd-recall-formula .pm{color:var(--gold)}
+    .nd-recall-formula .res{color:var(--ink);font-weight:600;margin-left:6px}
+    .nd-recall-sliders{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-bottom:18px}
+    .nd-recall-s{display:flex;flex-direction:column;gap:4px;padding:10px 12px;background:var(--paper2);border-radius:8px}
+    .nd-recall-s label{font-family:'Inter',sans-serif;font-size:11.5px;color:var(--dim);font-weight:500;display:flex;justify-content:space-between}
+    .nd-recall-s label b{font-family:'JetBrains Mono',monospace;color:var(--ink);font-weight:600}
+    .nd-recall-s input{width:100%;margin-top:4px}
+    .nd-recall-s.off label{opacity:.4}
+    .nd-recall-s.off input{opacity:.4}
+    .nd-recall-tog{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--gold);font-weight:600;text-transform:uppercase;letter-spacing:1px;cursor:pointer;margin-bottom:4px}
+    .nd-recall-tog input[type=checkbox]{width:auto;margin:0}
+    .nd-recall-out{display:flex;gap:24px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--dim);padding-top:14px;border-top:1px solid var(--rule-faint)}
+    .nd-recall-out b{color:var(--ink);font-size:16px;font-family:'Source Serif Pro',Georgia,serif;font-weight:600}
+    .nd-recall-note{font-size:12.5px;color:var(--faint);font-style:italic;margin-top:10px;line-height:1.5;max-width:760px}
+
+    /* method posture ref (§7) */
+    .nd-posture{display:grid;grid-template-columns:160px 1fr 1fr 1fr;gap:1px;background:var(--rule);border-radius:10px;overflow:hidden;margin-top:24px;max-width:1000px;border:1px solid var(--rule)}
+    @media(max-width:760px){.nd-posture{grid-template-columns:1fr;font-size:11.5px}}
+    .nd-posture > div{background:var(--paper);padding:11px 14px;font-family:'Inter',sans-serif;font-size:12.5px;color:var(--dim);line-height:1.5}
+    .nd-posture > div.h{background:var(--paper2);font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:1.2px;font-size:10.5px}
+    .nd-posture > div.method{font-family:'JetBrains Mono',monospace;color:var(--ink);font-weight:500;font-size:12px;background:var(--paper2)}
+    .nd-posture b{color:var(--ink)}
+
+    /* silence reference (§8) */
+    .nd-sil-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px;margin-top:18px;max-width:1000px}
+    .nd-sil{background:var(--paper);border:1px solid var(--rule);border-radius:10px;padding:14px 16px}
+    .nd-sil-m{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--gold);font-weight:600;margin-bottom:10px}
+    .nd-sil-list{display:flex;flex-direction:column;gap:6px}
+    .nd-sil-list > div{font-size:12.5px;color:var(--dim);line-height:1.45;padding-left:14px;position:relative}
+    .nd-sil-list > div::before{content:'·';position:absolute;left:4px;color:var(--gold);font-weight:600}
+
+    /* "try on YOUR network" terminal block (§9 tools) */
+    .nd-try{background:#1a1a1a;border-radius:8px;padding:14px 16px;margin-top:14px;max-width:780px}
+    .nd-try-h{font-family:'Inter',sans-serif;font-size:10px;color:var(--gold-bright);text-transform:uppercase;letter-spacing:1.6px;font-weight:600;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+    .nd-try-h::before{content:'$';font-family:'JetBrains Mono',monospace;color:var(--gold-bright);font-size:13px}
+    .nd-try-os{display:flex;gap:4px;margin-bottom:8px;flex-wrap:wrap}
+    .nd-try-tab{padding:4px 11px;font-family:'Inter',sans-serif;font-size:10.5px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.5);border-radius:99px;cursor:pointer;border:none}
+    .nd-try-tab.on{background:var(--gold-bright);color:#1a1a1a;font-weight:600}
+    .nd-try-cmd{font-family:'JetBrains Mono',monospace;font-size:12px;color:#e9e2cf;line-height:1.7;background:rgba(255,255,255,.04);padding:10px 14px;border-radius:6px;white-space:pre-wrap;word-break:break-all;display:none}
+    .nd-try-cmd.on{display:block}
+    .nd-try-note{font-family:'Inter',sans-serif;font-size:11px;color:rgba(255,255,255,.45);margin-top:8px;line-height:1.5;font-style:italic}
+
+    /* §13 discipline checklist */
+    .nd-check-list{display:flex;flex-direction:column;gap:6px;max-width:880px;margin-top:14px}
+    .nd-check{display:flex;align-items:flex-start;gap:12px;padding:13px 16px;background:var(--paper);border:1px solid var(--rule);border-radius:10px;cursor:pointer;transition:all .15s}
+    .nd-check:hover{border-color:var(--ink)}
+    .nd-check.ticked{border-color:#2d5e3a;background:rgba(45,94,58,.04)}
+    .nd-check-box{width:18px;height:18px;border:1.5px solid var(--rule);border-radius:4px;flex:0 0 auto;margin-top:1px;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--paper);transition:all .15s}
+    .nd-check.ticked .nd-check-box{background:#2d5e3a;border-color:#2d5e3a}
+    .nd-check.ticked .nd-check-box::after{content:'✓';font-weight:700}
+    .nd-check-text{flex:1}
+    .nd-check-t{font-family:'Source Serif Pro',Georgia,serif;font-size:14.5px;color:var(--ink);font-weight:500;line-height:1.4;margin-bottom:4px}
+    .nd-check-x{font-family:'Inter',sans-serif;font-size:12px;color:var(--dim);line-height:1.5}
+    .nd-check-prog{margin-top:14px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--dim);padding:10px 14px;background:var(--paper2);border-radius:6px;border-left:2px solid var(--gold)}
+    .nd-check-prog b{color:var(--ink);font-weight:600}
   </style>
 
   <!-- ========== Chapter header ========== -->
@@ -983,6 +1066,7 @@ body.rl-scrolled .tabs{
     <a href="#nd-10" class="nd-sn">10 · Streaming</a>
     <a href="#nd-11" class="nd-sn">11 · Host Record</a>
     <a href="#nd-12" class="nd-sn">12 · Capstone Lab</a>
+    <a href="#nd-13" class="nd-sn">13 · Discipline</a>
   </nav>
 
   <!-- ========== Sticky running case (appears in §5-11) ========== -->
@@ -1207,6 +1291,52 @@ body.rl-scrolled .tabs{
     <p class="nd-prose" style="margin-top:18px;font-style:italic">
       The environment should guide the sensible choice of tools — not the other way around. In IoT and OT settings, a mix of passive observation, infrastructure queries, and targeted active probes is necessary.
     </p>
+
+    <h3 style="font-family:'Source Serif Pro',Georgia,serif;font-size:20px;font-weight:500;color:var(--ink);margin:32px 0 6px;max-width:780px">The five structural reasons enterprise scanners hit a wall</h3>
+    <p class="nd-prose" style="margin-bottom:0">Click each to see what it means in practice and what discipline it demands.</p>
+
+    <div class="nd-reasons" id="ndReasons">
+      <div class="nd-reason" data-r="1">
+        <div class="nd-reason-n">REASON 01</div>
+        <div class="nd-reason-h">No agent support</div>
+        <div class="nd-reason-d">Many embedded systems cannot host endpoint agents at all.</div>
+        <div class="nd-reason-x">
+          A camera, an infusion pump, a smart thermostat, a building controller — these run firmware, not Windows or Linux you can install software on. <b>The entire agent-based scanning model assumes a controllable, agent-capable endpoint.</b> When that assumption breaks, you fall back to network-side evidence: ARP, mDNS, SSDP, TCP probes. The scanner has to meet the device on the wire, not on the OS.
+        </div>
+      </div>
+      <div class="nd-reason" data-r="2">
+        <div class="nd-reason-n">REASON 02</div>
+        <div class="nd-reason-h">Protocol diversity</div>
+        <div class="nd-reason-d">Devices live on mDNS, SSDP/UPnP, RTSP, ONVIF, MQTT, CoAP — not the unicast TCP patterns scanners prefer.</div>
+        <div class="nd-reason-x">
+          A scanner that only probes <code>22/80/443/3389</code> walks past a fleet of cameras, badge readers, sensors, and pumps without seeing them. <b>Each protocol family has its own discovery surface.</b> mDNS uses multicast UDP/5353. SSDP uses UDP/1900 M-SEARCH. RTSP cameras live on TCP/554. MQTT brokers on TCP/1883 or 8883. CoAP on UDP/5683. Discovery in IoT means speaking the dialects of the device population.
+        </div>
+      </div>
+      <div class="nd-reason" data-r="3">
+        <div class="nd-reason-n">REASON 03</div>
+        <div class="nd-reason-h">Identity is inference, not lookup</div>
+        <div class="nd-reason-d">No authoritative inventory means identity is reconstructed from OUI prefixes, hostnames, banners, port signatures.</div>
+        <div class="nd-reason-x">
+          In a managed enterprise, you look up a host in the CMDB and get its model, owner, OS, criticality. <b>In unmanaged fleets, every identity claim has to be inferred from evidence the device emits.</b> An OUI of <code>D4:F5:47</code> says "this MAC was assigned to Google Inc." — not which Google product. A realm of <code>"Hik"</code> hints at Hikvision firmware — not which model. Identity becomes an evidence problem that Chapter 2 (Cascade Lab) solves with cascading corroboration.
+        </div>
+      </div>
+      <div class="nd-reason" data-r="4">
+        <div class="nd-reason-n">REASON 04</div>
+        <div class="nd-reason-h">Topology constrains visibility</div>
+        <div class="nd-reason-d">ARP doesn't cross routers. SNMP needs credentials. Multicast stays local. Every fallback alters evidence quality.</div>
+        <div class="nd-reason-x">
+          <b>Each method has a scope.</b> ARP sees only the local broadcast domain. mDNS sees only the local multicast scope. Reverse DNS depends on the resolver. SNMP requires community-string or v3 credentials. TCP connect probes only the ports you picked. When you fall back from one method to another, you don't just lose coverage — you change the <em>kind</em> of evidence you have. A row that says "discovered by TCP probe on 192.168.1.0/24 from the gateway" is a different claim from "discovered by local ARP on a laptop joined to Wi-Fi."
+        </div>
+      </div>
+      <div class="nd-reason" data-r="5">
+        <div class="nd-reason-n">REASON 05</div>
+        <div class="nd-reason-h">Downstream depends on prior discovery</div>
+        <div class="nd-reason-d">CPE matching, CVE lookup, attack-path reasoning — they all reason over the population Chapter 1 counted.</div>
+        <div class="nd-reason-x">
+          If a camera never makes it into the inventory, the vulnerability scanner cannot fail to match it — it never knows to look. <b>The cost of an undercounted Chapter 1 cascades through every later chapter.</b> A clean-looking vulnerability report on the wrong population is worse than a noisy report on the right one. This is why discovery is the descriptive foundation: every higher rung inherits its blind spots.
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- ========== §5 Measurement ========== -->
@@ -1245,6 +1375,93 @@ body.rl-scrolled .tabs{
         <label class="nd-venn-slider">Phantom rate <input type="range" min="0" max="20" value="8" id="ndVennNoise"> <b id="ndVennNoiseV">8</b>%</label>
       </div>
       <div class="nd-time-readout" id="ndVennMath">C = 0.69 · S = 0.90 · gap = 0.31</div>
+    </div>
+
+    <h3 style="font-family:'Source Serif Pro',Georgia,serif;font-size:20px;font-weight:500;color:var(--ink);margin:36px 0 4px;max-width:780px">Evidence classes · what counts as a host claim?</h3>
+    <p class="nd-prose" style="margin-bottom:6px">Not every network hint is sufficient to create an inventory entry. Each class of evidence has a different strength and a different way of going wrong.</p>
+
+    <div class="nd-ev-grid">
+      <div class="nd-ev">
+        <div class="nd-ev-h">CLASS 01 · LOCAL CACHED STATE</div>
+        <div class="nd-ev-t">ARP cache entry</div>
+        <div class="nd-ev-says">A recent local mapping between an IP and a MAC address. The OS saw this device on the local broadcast domain.</div>
+        <div class="nd-ev-limit">May be stale or local-only. Cache retention varies. Can't see across routers.</div>
+      </div>
+      <div class="nd-ev">
+        <div class="nd-ev-h">CLASS 02 · INFRASTRUCTURE STATE</div>
+        <div class="nd-ev-t">Router ARP, SNMP <code>ipNetToMediaPhysAddress</code></div>
+        <div class="nd-ev-says">A gateway or managed switch observed a device or binding. Crosses subnet boundaries.</div>
+        <div class="nd-ev-limit">Requires management access. May not cover all segments. Credentials must be governed.</div>
+      </div>
+      <div class="nd-ev">
+        <div class="nd-ev-h">CLASS 03 · LOCAL-LINK SELF-DESCRIPTION</div>
+        <div class="nd-ev-t">mDNS / SSDP advertisement</div>
+        <div class="nd-ev-says">A nearby device voluntarily advertised a name, service class, or device description.</div>
+        <div class="nd-ev-limit">Absence is weak — multicast can be filtered, misrouted by VPN tunnels, or suppressed by IGMP snooping.</div>
+      </div>
+      <div class="nd-ev">
+        <div class="nd-ev-h">CLASS 04 · ACTIVE LIVENESS</div>
+        <div class="nd-ev-t">ICMP echo, TCP connect success</div>
+        <div class="nd-ev-says">The host responded to a direct probe. Existence is corroborated.</div>
+        <div class="nd-ev-limit">Failure does not prove absence. Many devices deliberately drop ICMP while staying reachable on service ports.</div>
+      </div>
+      <div class="nd-ev">
+        <div class="nd-ev-h">CLASS 05 · SERVICE EVIDENCE</div>
+        <div class="nd-ev-t">Open port, banner, certificate, device description</div>
+        <div class="nd-ev-says">The host has a reachable service surface. Identity and vulnerability claims become possible.</div>
+        <div class="nd-ev-limit">Still no identity proof on its own. The Chapter 1 contract preserves the evidence; Chapter 2 interprets it.</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Source Serif Pro',Georgia,serif;font-size:20px;font-weight:500;color:var(--ink);margin:36px 0 4px;max-width:780px">The recall formula · why complementary methods matter</h3>
+    <p class="nd-prose" style="margin-bottom:6px">If method <code>m</code> detects any given device with probability <code>p_m</code>, and the methods are conditionally independent for a given device, the expected recall <code>R</code> satisfies:</p>
+
+    <div class="nd-recall">
+      <div class="nd-recall-formula">
+        R = 1 &minus; <span style="font-size:22px">∏</span><sub>m</sub> (1 &minus; <span class="pm">p_m</span>)
+        <span class="res" id="ndRecallVal">= 0.94</span>
+      </div>
+      <p style="font-size:13.5px;color:var(--dim);line-height:1.55;margin-bottom:14px">Toggle methods on, slide each one's per-device detection probability, and watch the expected recall update. Notice that each additional method <em>multiplicatively</em> reduces the miss probability — that's why combining cheap, partial methods beats any single tool.</p>
+      <div class="nd-recall-sliders" id="ndRecallSliders">
+        <div class="nd-recall-s" data-m="arp">
+          <div class="nd-recall-tog"><input type="checkbox" checked><span>Local ARP</span></div>
+          <label>p_m <b>0.85</b></label>
+          <input type="range" min="0" max="100" value="85">
+        </div>
+        <div class="nd-recall-s" data-m="router">
+          <div class="nd-recall-tog"><input type="checkbox" checked><span>Router / SNMP</span></div>
+          <label>p_m <b>0.55</b></label>
+          <input type="range" min="0" max="100" value="55">
+        </div>
+        <div class="nd-recall-s" data-m="mdns">
+          <div class="nd-recall-tog"><input type="checkbox" checked><span>mDNS</span></div>
+          <label>p_m <b>0.40</b></label>
+          <input type="range" min="0" max="100" value="40">
+        </div>
+        <div class="nd-recall-s off" data-m="ssdp">
+          <div class="nd-recall-tog"><input type="checkbox"><span>SSDP</span></div>
+          <label>p_m <b>0.25</b></label>
+          <input type="range" min="0" max="100" value="25">
+        </div>
+        <div class="nd-recall-s" data-m="icmp">
+          <div class="nd-recall-tog"><input type="checkbox" checked><span>fping ICMP</span></div>
+          <label>p_m <b>0.60</b></label>
+          <input type="range" min="0" max="100" value="60">
+        </div>
+        <div class="nd-recall-s off" data-m="tcp">
+          <div class="nd-recall-tog"><input type="checkbox"><span>TCP pilot</span></div>
+          <label>p_m <b>0.45</b></label>
+          <input type="range" min="0" max="100" value="45">
+        </div>
+      </div>
+      <div class="nd-recall-out">
+        <div>Per-method miss probabilities multiplied: <b id="ndRecallMiss">0.06</b></div>
+        <div>Expected recall: <b id="ndRecallRecall">0.94</b></div>
+        <div>Methods active: <b id="ndRecallCount">4</b></div>
+      </div>
+      <div class="nd-recall-note">
+        Reality check: methods are rarely truly independent. ARP and router ARP are differently scoped observations of the same network state, not independent views. The formula is an <em>upper bound</em> planning approximation — useful for reasoning about complementarity, not as a guarantee.
+      </div>
     </div>
   </section>
 
@@ -1351,6 +1568,46 @@ body.rl-scrolled .tabs{
       <button class="nd-btn ghost" id="ndOrdReset">Reset</button>
     </div>
     <div class="nd-ord-feedback" id="ndOrdFeedback"></div>
+
+    <h3 style="font-family:'Source Serif Pro',Georgia,serif;font-size:20px;font-weight:500;color:var(--ink);margin:36px 0 4px;max-width:780px">Method posture · how to read a positive or negative result</h3>
+    <p class="nd-prose" style="margin-bottom:14px">The same answer means different things depending on which method gave it. Print this and stick it to the wall before your next discovery run.</p>
+
+    <div class="nd-posture">
+      <div class="h">Method</div>
+      <div class="h">Question it asks</div>
+      <div class="h">Traffic posture</div>
+      <div class="h">When silence is uninformative</div>
+
+      <div class="method">arp -an</div>
+      <div>Has this host appeared in recent local mappings?</div>
+      <div><b>Passive</b> · no new packets. Reads OS-maintained state.</div>
+      <div>Cache may be empty or stale. Cannot cross routers. Recent rebuilds blank it.</div>
+
+      <div class="method">router ARP / SNMP</div>
+      <div>Did the infrastructure observe the host?</div>
+      <div><b>Low-disturbance</b> · single management-plane query.</div>
+      <div>Access or scope may be missing. SNMP needs credentials. Some segments may be out-of-view.</div>
+
+      <div class="method">mDNS · UDP/5353</div>
+      <div>Did the device announce itself on the local link?</div>
+      <div><b>Low-disturbance</b> · passive listen + bounded multicast.</div>
+      <div>Multicast filtered or misrouted. IGMP snooping on managed switches. Interface binding wrong.</div>
+
+      <div class="method">SSDP · UDP/1900</div>
+      <div>Did the device respond to an M-SEARCH?</div>
+      <div><b>Low-disturbance</b> · single multicast or bounded unicast.</div>
+      <div>SSDP disabled on device. Filtered at the segment edge. VPN tunnel hijack of the default route.</div>
+
+      <div class="method">ICMP / fping</div>
+      <div>Does a direct probe elicit a response?</div>
+      <div><b>Active</b> · host-directed traffic.</div>
+      <div>Filtering. Port choice. Many IoT devices deliberately drop ICMP. No-retry, short-timeout sweeps fail more often.</div>
+
+      <div class="method">TCP connect</div>
+      <div>What reachable service surfaces exist?</div>
+      <div><b>More active</b> · bounded port list, Chapter 2 boundary.</div>
+      <div>You only tested the ports you picked. Closed != absent. RST != alive on other services.</div>
+    </div>
   </section>
 
   <!-- ========== §8 Silence ========== -->
@@ -1382,6 +1639,52 @@ body.rl-scrolled .tabs{
           The subnet is clean.
           <div class="why">Wrong — and dangerous. "Clean" implies certainty. ICMP failure is method failure, not population proof. This phrasing is exactly what the chapter warns against.</div>
         </button>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Source Serif Pro',Georgia,serif;font-size:20px;font-weight:500;color:var(--ink);margin:36px 0 4px;max-width:780px">What does silence from each method actually mean?</h3>
+    <p class="nd-prose" style="margin-bottom:10px">Map the alternatives explicitly so you don't collapse them into "the host isn't there."</p>
+
+    <div class="nd-sil-grid">
+      <div class="nd-sil">
+        <div class="nd-sil-m">arp -an</div>
+        <div class="nd-sil-list">
+          <div>Device has not generated traffic recently (cache aged out)</div>
+          <div>Device is on a different subnet (ARP doesn't cross routers)</div>
+          <div>Cache was just cleared (reboot, interface restart)</div>
+          <div>Wrong interface — VPN or virtual adapter intercepted the route</div>
+          <div>Device uses MAC randomization and the prior entry is stale</div>
+        </div>
+      </div>
+      <div class="nd-sil">
+        <div class="nd-sil-m">mDNS / SSDP</div>
+        <div class="nd-sil-list">
+          <div>Device doesn't self-advertise (many OT devices don't)</div>
+          <div>Multicast filtered by managed switch (IGMP snooping)</div>
+          <div>Wrong interface bound — Zeroconf is going to a tunnel, not the LAN</div>
+          <div>VLAN boundary blocks multicast scope</div>
+          <div>Browse window too short for the device's advertisement interval</div>
+        </div>
+      </div>
+      <div class="nd-sil">
+        <div class="nd-sil-m">ICMP / fping</div>
+        <div class="nd-sil-list">
+          <div>Firewall on the host or network blocks ICMP</div>
+          <div>Device deliberately drops echo (very common in IoT)</div>
+          <div>Short timeout, no retries — packet loss caused a miss</div>
+          <div>Route asymmetry — reply was lost</div>
+          <div>Device is alive but only on application protocols</div>
+        </div>
+      </div>
+      <div class="nd-sil">
+        <div class="nd-sil-m">TCP connect</div>
+        <div class="nd-sil-list">
+          <div>You probed the wrong port set for this device family</div>
+          <div>Stateless scanner lost the response under packet loss</div>
+          <div>Firewall returns RST or drops silently</div>
+          <div>Service is up but bound to a different IP</div>
+          <div>Asymmetric routing or NAT artifact</div>
+        </div>
       </div>
     </div>
   </section>
@@ -1432,6 +1735,36 @@ body.rl-scrolled .tabs{
       <p class="nd-prose" style="font-size:13.5px;margin-top:14px;max-width:780px">
         <b>Why normalize?</b> Operating systems format MACs differently: <code>c:ae:7d:1:2:3</code> vs <code>0C:AE:7D:01:02:03</code>. The same device shows up as two records if you don't zero-pad and uppercase before merging. Vendor lookups also fail on short-form prefixes.
       </p>
+
+      <div class="nd-try">
+        <div class="nd-try-h">Try this on YOUR network</div>
+        <div class="nd-try-os" data-try="arp">
+          <button class="nd-try-tab on" data-os="mac">macOS</button>
+          <button class="nd-try-tab" data-os="lin">Linux</button>
+          <button class="nd-try-tab" data-os="win">Windows</button>
+        </div>
+        <div class="nd-try-cmd on" data-os="mac"># prime the cache (ping every host on your subnet) — about 4 sec
+for ip in $(seq 1 254); do ping -c 1 -W 50 -q 192.168.1.$ip &amp; done; wait 2&gt;/dev/null
+
+# read the populated cache
+arp -an
+
+# copy lines and paste them into the tool above</div>
+        <div class="nd-try-cmd" data-os="lin"># prime the cache
+for ip in $(seq 1 254); do ping -c 1 -W 1 -q 192.168.1.$ip &amp; done; wait 2&gt;/dev/null
+
+# read it (modern Linux)
+ip neigh
+
+# or
+arp -an</div>
+        <div class="nd-try-cmd" data-os="win"># prime the cache in PowerShell
+1..254 | ForEach-Object { Test-Connection 192.168.1.$_ -Count 1 -TimeoutSeconds 1 -Quiet } &gt; $null
+
+# read it
+arp -a</div>
+        <div class="nd-try-note">Replace 192.168.1 with your own subnet (look at <code>ifconfig</code> / <code>ip addr</code> / <code>ipconfig</code>). The ping pass forces sleeping devices to respond, then ARP shows you the cache. Nothing leaves your machine.</div>
+      </div>
     </div>
 
     <!-- TOOL 2: Router / SNMP Viewport -->
@@ -1460,6 +1793,38 @@ body.rl-scrolled .tabs{
       <p class="nd-prose" style="font-size:13.5px;margin-top:6px;max-width:760px">
         Three devices visible only from the gateway. On a flat residential network, local ARP would be enough. On a segmented hospital VLAN — building management, lab instruments, wireless bridges — the gateway is often the only witness.
       </p>
+
+      <div class="nd-try">
+        <div class="nd-try-h">Try this on YOUR network</div>
+        <div class="nd-try-os" data-try="router">
+          <button class="nd-try-tab on" data-os="snmp">SNMPv2c walk</button>
+          <button class="nd-try-tab" data-os="ssh">Router SSH (lease files)</button>
+          <button class="nd-try-tab" data-os="dhcp">DHCP lease scrape</button>
+        </div>
+        <div class="nd-try-cmd on" data-os="snmp"># walk ipNetToMediaPhysAddress on your gateway (needs SNMP enabled + community string)
+snmpwalk -v 2c -c public 192.168.1.1 1.3.6.1.2.1.4.22.1.2
+
+# example output:
+#   IP-MIB::ipNetToMediaPhysAddress.1.192.168.1.42 = STRING: d4:f5:47:11:22:33
+#   IP-MIB::ipNetToMediaPhysAddress.1.10.0.10.5   = STRING: 0:80:a3:11:22:33
+# the second row is on a DIFFERENT subnet — visible only from the gateway</div>
+        <div class="nd-try-cmd" data-os="ssh"># OpenWrt / dd-wrt / typical home router
+ssh root@192.168.1.1 'cat /tmp/dhcp.leases'
+
+# dnsmasq-based
+ssh root@192.168.1.1 'cat /var/lib/misc/dnsmasq.leases'
+
+# each line: timestamp MAC IP hostname client-id</div>
+        <div class="nd-try-cmd" data-os="dhcp"># if your DHCP server is dnsmasq on a Linux box
+cat /var/lib/misc/dnsmasq.leases
+
+# if it's ISC dhcpd
+cat /var/lib/dhcp/dhcpd.leases | grep -E 'lease|hardware ethernet|client-hostname'
+
+# Windows DHCP via PowerShell
+Get-DhcpServerv4Lease -ScopeId 192.168.1.0</div>
+        <div class="nd-try-note">SNMP is the highest-value method in managed environments and the least available in ad-hoc ones. If you don't have an SNMP community string, lease-file scraping over SSH or a DHCP query is the practical fallback.</div>
+      </div>
     </div>
 
     <!-- TOOL 3: mDNS Browser -->
@@ -1476,6 +1841,47 @@ body.rl-scrolled .tabs{
       <p class="nd-prose" style="font-size:13.5px;margin-top:14px;max-width:780px">
         <b>The Chapter 1 discipline:</b> admit the host, preserve the service evidence, refuse to overstate. Chapter 2 (Cascade Lab) decides what identity claim, if any, follows from these strings.
       </p>
+
+      <div class="nd-try">
+        <div class="nd-try-h">Try this on YOUR network</div>
+        <div class="nd-try-os" data-try="mdns">
+          <button class="nd-try-tab on" data-os="mac">macOS · dns-sd</button>
+          <button class="nd-try-tab" data-os="lin">Linux · avahi-browse</button>
+          <button class="nd-try-tab" data-os="pythonzc">Python · zeroconf</button>
+        </div>
+        <div class="nd-try-cmd on" data-os="mac"># browse a single service type for 4 seconds
+dns-sd -B _googlecast._tcp local.
+
+# browse everything (very chatty — Ctrl-C after a few seconds)
+dns-sd -B _services._dns-sd._udp local.
+
+# resolve a specific instance found above
+dns-sd -L "Living Room" _googlecast._tcp local.</div>
+        <div class="nd-try-cmd" data-os="lin">avahi-browse -a -t -r
+
+# breakdown:
+#   -a   all service types
+#   -t   terminate after the first complete browse cycle
+#   -r   resolve each instance (hostname, IP, port, TXT)</div>
+        <div class="nd-try-cmd" data-os="pythonzc"># pip install zeroconf
+python3 - &lt;&lt;'PY'
+from zeroconf import Zeroconf, ServiceBrowser
+import time
+
+class Listener:
+    def add_service(self, zc, type_, name):
+        info = zc.get_service_info(type_, name)
+        print(f"{type_:32s} {name}  {info.parsed_addresses() if info else ''}")
+
+zc = Zeroconf()
+for svc in ["_googlecast._tcp.local.", "_airplay._tcp.local.",
+            "_ipp._tcp.local.", "_printer._tcp.local.", "_smb._tcp.local."]:
+    ServiceBrowser(zc, svc, Listener())
+time.sleep(5)
+zc.close()
+PY</div>
+        <div class="nd-try-note">If you have a VPN active, mDNS browsing may bind to the tunnel interface instead of your LAN — you'll see nothing. Check with <code>route -n get default</code> (mac) or <code>ip route show</code> (linux) and rebind explicitly if needed.</div>
+      </div>
     </div>
 
     <!-- TOOL 4: SSDP -->
@@ -1517,6 +1923,54 @@ body.rl-scrolled .tabs{
       <p class="nd-prose" style="font-size:13.5px;margin-top:14px;max-width:780px">
         <b>Why <code>defusedxml</code>?</b> UPnP device descriptions are fetched from devices that may be poorly maintained or hostile. A naive XML parser exposes the scanner to XXE and entity-expansion attacks. The Chapter 1 discipline: treat all third-party XML as untrusted.
       </p>
+
+      <div class="nd-try">
+        <div class="nd-try-h">Try this on YOUR network</div>
+        <div class="nd-try-os" data-try="ssdp">
+          <button class="nd-try-tab on" data-os="bash">Bash · raw socket</button>
+          <button class="nd-try-tab" data-os="py">Python · safe XML</button>
+          <button class="nd-try-tab" data-os="nc">nc · one-shot</button>
+        </div>
+        <div class="nd-try-cmd on" data-os="bash"># multicast M-SEARCH (run as root or with raw socket cap)
+gtimeout 3 bash -c '
+echo -e "M-SEARCH * HTTP/1.1\r\nHOST: 239.255.255.250:1900\r\nMAN: \"ssdp:discover\"\r\nMX: 2\r\nST: ssdp:all\r\n\r\n" \
+  | nc -u -w 3 239.255.255.250 1900
+'</div>
+        <div class="nd-try-cmd" data-os="py"># pip install defusedxml requests
+python3 - &lt;&lt;'PY'
+import socket, re, requests
+from defusedxml import ElementTree as ET
+
+REQ = ('M-SEARCH * HTTP/1.1\r\n'
+       'HOST: 239.255.255.250:1900\r\n'
+       'MAN: "ssdp:discover"\r\nMX: 2\r\nST: ssdp:all\r\n\r\n')
+s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+s.settimeout(3)
+s.sendto(REQ.encode(), ('239.255.255.250', 1900))
+seen = set()
+try:
+  while True:
+    data, addr = s.recvfrom(2048)
+    m = re.search(r'LOCATION:\s*(\S+)', data.decode(errors='ignore'), re.I)
+    if m and m.group(1) not in seen:
+      seen.add(m.group(1))
+      try:
+        xml = requests.get(m.group(1), timeout=2).text
+        root = ET.fromstring(xml)            # &lt;-- defused
+        ns = {'u':'urn:schemas-upnp-org:device-1-0'}
+        dev = root.find('.//u:device', ns)
+        print(addr[0], dev.findtext('u:friendlyName', '', ns),
+                       dev.findtext('u:manufacturer', '', ns))
+      except Exception as e:
+        print(addr[0], 'parse-error', e)
+except socket.timeout:
+  pass
+PY</div>
+        <div class="nd-try-cmd" data-os="nc"># quick probe of one device only — no multicast needed
+echo -e 'M-SEARCH * HTTP/1.1\r\nHost:192.168.1.42:1900\r\nMan:"ssdp:discover"\r\nMX:1\r\nST:upnp:rootdevice\r\n\r\n' \
+  | nc -u -w 2 192.168.1.42 1900</div>
+        <div class="nd-try-note">The Python snippet uses <code>defusedxml</code> — the same protection production discovery pipelines apply. Don't use the stdlib <code>xml.etree.ElementTree</code> on responses from third-party devices.</div>
+      </div>
     </div>
 
     <!-- TOOL 5: TCP Pilot -->
@@ -1539,6 +1993,41 @@ body.rl-scrolled .tabs{
       <p class="nd-prose" style="font-size:13.5px;margin-top:14px;max-width:780px">
         An open port is <b>still not a device identity</b>. It is stronger evidence than ICMP echo, but a camera-like port set (80, 443, 554) could be a camera, an NVR, a media bridge, a test container, or a vendor appliance. The Chapter 1 contract: admit the host with port evidence; hand identity claim off to Chapter 2.
       </p>
+
+      <div class="nd-try">
+        <div class="nd-try-h">Try this on YOUR network</div>
+        <div class="nd-try-os" data-try="tcp">
+          <button class="nd-try-tab on" data-os="fping">fping · liveness sweep</button>
+          <button class="nd-try-tab" data-os="masscan">masscan · stateless</button>
+          <button class="nd-try-tab" data-os="nmap">nmap · TCP connect</button>
+        </div>
+        <div class="nd-try-cmd on" data-os="fping"># cheap broad liveness — about 4 seconds for a /24
+fping -a -g 192.168.1.0/24 -q -r 0 -t 50
+
+# breakdown:
+#   -a   only show alive hosts
+#   -g   generate IPs across the range
+#   -q   quiet (no per-host status)
+#   -r 0 no retries (single shot)
+#   -t 50 50ms timeout per probe</div>
+        <div class="nd-try-cmd" data-os="masscan"># stateless high-speed probe — narrow port set, capped rate
+sudo masscan 192.168.1.0/24 \
+  -p22,80,443,554,8080 \
+  --rate 500 --wait 1
+
+# search-space reducer:
+#   subnets that respond → run deeper discovery
+#   subnets silent → DON'T conclude empty; mark as "needs review"</div>
+        <div class="nd-try-cmd" data-os="nmap"># TCP connect probe across the Breakwater port set
+nmap -sT --open -p 22,80,443,445,554,631,1400,1883,3000,5000,8001,8008,8080,8443,8883,9100,10001,37777 \
+  192.168.1.0/24
+
+# breakdown:
+#   -sT      TCP connect (no raw socket needed)
+#   --open   only show open ports
+#   -p       the Breakwater IoT-leaning port list</div>
+        <div class="nd-try-note">In OT environments, never run masscan or aggressive nmap during business hours without stakeholder approval. fping is the safest broad sweep; nmap with <code>-sT</code> and a narrow port list is the safest active follow-up.</div>
+      </div>
     </div>
   </section>
 
@@ -1758,6 +2247,106 @@ body.rl-scrolled .tabs{
         <button class="nd-btn ghost" id="ndCapRerun">↺ Re-run with different methods</button>
       </div>
     </div>
+  </section>
+
+  <!-- ========== §13 Discipline Checklist ========== -->
+  <section id="nd-13" class="nd-section">
+    <div class="nd-sec-num">SECTION 13 · DISCIPLINE</div>
+    <h2 class="nd-sec-title">The Discovery Discipline Checklist</h2>
+    <div class="nd-sec-sub">Before you publish a discovery report — or hand off to Chapter 2 — every line below should be true.</div>
+
+    <p class="nd-prose">
+      A discovery run that quietly skips any of these produces a report that <em>looks</em> like an inventory and behaves like a guess. Tick each box only when you can answer the question it implies from your own evidence — not from habit, not from hope.
+    </p>
+
+    <div class="nd-check-list" id="ndChecklist">
+      <div class="nd-check" data-c="1">
+        <div class="nd-check-box"></div>
+        <div class="nd-check-text">
+          <div class="nd-check-t">The denominator is named.</div>
+          <div class="nd-check-x">You can state the target scope explicitly: <em>which subnet, which VLAN, which time window.</em> "The network" is not a denominator.</div>
+        </div>
+      </div>
+      <div class="nd-check" data-c="2">
+        <div class="nd-check-box"></div>
+        <div class="nd-check-text">
+          <div class="nd-check-t">The vantage point is recorded.</div>
+          <div class="nd-check-x">Whether the scanner ran on a laptop on Wi-Fi, a switch port, a gateway, a VPN, or a distributed collector — and on which interface — is part of every host record's provenance.</div>
+        </div>
+      </div>
+      <div class="nd-check" data-c="3">
+        <div class="nd-check-box"></div>
+        <div class="nd-check-text">
+          <div class="nd-check-t">Methods are listed with their traffic posture.</div>
+          <div class="nd-check-x">Passive vs. low-disturbance vs. active. Operational stakeholders need to know what the scan generated, not just what it found.</div>
+        </div>
+      </div>
+      <div class="nd-check" data-c="4">
+        <div class="nd-check-box"></div>
+        <div class="nd-check-text">
+          <div class="nd-check-t">Each host record carries its method provenance.</div>
+          <div class="nd-check-x">Not just a flat list — every row knows which methods admitted it and when. Conflicts between methods are preserved, not silently resolved.</div>
+        </div>
+      </div>
+      <div class="nd-check" data-c="5">
+        <div class="nd-check-box"></div>
+        <div class="nd-check-text">
+          <div class="nd-check-t">MAC addresses are normalized.</div>
+          <div class="nd-check-x">Zero-padded, uppercased, separator-consistent. <code>c:ae:7d:1:2:3</code> and <code>0C:AE:7D:01:02:03</code> must merge to one row, not two.</div>
+        </div>
+      </div>
+      <div class="nd-check" data-c="6">
+        <div class="nd-check-box"></div>
+        <div class="nd-check-text">
+          <div class="nd-check-t">Broadcast and multicast artifacts are filtered.</div>
+          <div class="nd-check-x"><code>.255</code>, <code>.0</code>, <code>FF:FF:FF:FF:FF:FF</code>, and other phantom-generators are explicitly excluded — not silently included as "extra hosts."</div>
+        </div>
+      </div>
+      <div class="nd-check" data-c="7">
+        <div class="nd-check-box"></div>
+        <div class="nd-check-text">
+          <div class="nd-check-t">Negative evidence is stated by method, not summarized.</div>
+          <div class="nd-check-x">No claim like "the subnet is clean." A defensible statement: "the methods used from this position did not produce evidence during this time."</div>
+        </div>
+      </div>
+      <div class="nd-check" data-c="8">
+        <div class="nd-check-box"></div>
+        <div class="nd-check-text">
+          <div class="nd-check-t">Identity claims are deferred to Chapter 2.</div>
+          <div class="nd-check-x">A vendor OUI is a hint. A port set is a hint. An mDNS service string is a hint. Chapter 1 admits hosts and preserves evidence — it does not label devices.</div>
+        </div>
+      </div>
+      <div class="nd-check" data-c="9">
+        <div class="nd-check-box"></div>
+        <div class="nd-check-text">
+          <div class="nd-check-t">Time fields are recorded.</div>
+          <div class="nd-check-x">First-seen and last-seen, in the timezone you intend to operate in. "When did we observe this?" is part of every claim's strength.</div>
+        </div>
+      </div>
+      <div class="nd-check" data-c="10">
+        <div class="nd-check-box"></div>
+        <div class="nd-check-text">
+          <div class="nd-check-t">Uncertainty is explicit.</div>
+          <div class="nd-check-x">Each host record carries a confidence level — low, moderate, strong, very strong, durable — and the reason for it. Chapter 2 inherits this; downstream analytics weight by it.</div>
+        </div>
+      </div>
+      <div class="nd-check" data-c="11">
+        <div class="nd-check-box"></div>
+        <div class="nd-check-text">
+          <div class="nd-check-t">Stakeholders were notified before active probing.</div>
+          <div class="nd-check-x">In OT, healthcare, hospitality, and any environment where unexpected traffic carries risk — discovery is a coordinated activity, not a unilateral one.</div>
+        </div>
+      </div>
+      <div class="nd-check" data-c="12">
+        <div class="nd-check-box"></div>
+        <div class="nd-check-text">
+          <div class="nd-check-t">The handoff to Chapter 2 carries questions, not answers.</div>
+          <div class="nd-check-x">What device model? Which firmware version? Which vulnerabilities? Is it business-critical? Is it present tomorrow? These remain <em>questions</em> in the Chapter 1 handoff — Chapter 2 begins by answering them, not by re-asking what Chapter 1 should have answered.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="nd-check-prog" id="ndCheckProg">Ticked <b>0</b> / 12 · sign off only when every box can be defended from your evidence.</div>
   </section>
 
   <script>
@@ -2568,6 +3157,79 @@ body.rl-scrolled .tabs{
       var sim2tab = document.querySelector('.tab[data-pane="sim2"]');
       if(sim2tab){ sim2tab.click(); window.scrollTo({top:0, behavior:'smooth'}); }
     });
+
+    /* === ENRICHMENT WIRE-UP === */
+
+    /* §4 5 structural reasons — click to toggle expansion */
+    pane.querySelectorAll('#ndReasons .nd-reason').forEach(function(r){
+      r.addEventListener('click', function(){ r.classList.toggle('open'); });
+    });
+
+    /* §5 recall formula interactive */
+    var recallEls = pane.querySelectorAll('#ndRecallSliders .nd-recall-s');
+    function renderRecall(){
+      var product = 1;
+      var count = 0;
+      recallEls.forEach(function(el){
+        var cb = el.querySelector('input[type=checkbox]');
+        var slider = el.querySelector('input[type=range]');
+        var b = el.querySelector('label b');
+        var pm = parseInt(slider.value) / 100;
+        b.textContent = pm.toFixed(2);
+        el.classList.toggle('off', !cb.checked);
+        if(cb.checked){
+          product *= (1 - pm);
+          count++;
+        }
+      });
+      var miss = product;
+      var recall = 1 - miss;
+      document.getElementById('ndRecallMiss').textContent = miss.toFixed(2);
+      document.getElementById('ndRecallRecall').textContent = recall.toFixed(2);
+      document.getElementById('ndRecallCount').textContent = count;
+      document.getElementById('ndRecallVal').textContent = '= ' + recall.toFixed(2);
+    }
+    recallEls.forEach(function(el){
+      var cb = el.querySelector('input[type=checkbox]');
+      var slider = el.querySelector('input[type=range]');
+      cb.addEventListener('change', renderRecall);
+      slider.addEventListener('input', renderRecall);
+    });
+    renderRecall();
+
+    /* §9 "Try this on YOUR network" terminal OS tabs */
+    pane.querySelectorAll('.nd-try').forEach(function(box){
+      var tabs = box.querySelectorAll('.nd-try-tab');
+      var cmds = box.querySelectorAll('.nd-try-cmd');
+      tabs.forEach(function(t){
+        t.addEventListener('click', function(){
+          tabs.forEach(function(x){ x.classList.remove('on'); });
+          cmds.forEach(function(x){ x.classList.remove('on'); });
+          t.classList.add('on');
+          var os = t.getAttribute('data-os');
+          var match = box.querySelector('.nd-try-cmd[data-os="' + os + '"]');
+          if(match) match.classList.add('on');
+        });
+      });
+    });
+
+    /* §13 discipline checklist */
+    var checkProg = document.getElementById('ndCheckProg');
+    function updateCheckProg(){
+      var ticked = pane.querySelectorAll('#ndChecklist .nd-check.ticked').length;
+      checkProg.innerHTML = 'Ticked <b>' + ticked + '</b> / 12 · ' +
+        (ticked === 12 ? 'all twelve defensible. Hand off to Chapter 2.' :
+         ticked >= 9  ? 'close — but a partial discipline is no discipline.' :
+         ticked >= 4  ? 'progress, but the unticked rows are exactly where reports go wrong.' :
+                        'sign off only when every box can be defended from your evidence.');
+    }
+    pane.querySelectorAll('#ndChecklist .nd-check').forEach(function(c){
+      c.addEventListener('click', function(){
+        c.classList.toggle('ticked');
+        updateCheckProg();
+      });
+    });
+    updateCheckProg();
 
   })();
   </script>
