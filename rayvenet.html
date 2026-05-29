@@ -644,11 +644,13 @@ body.rl-scrolled .tabs{
     .nd-chapter-blessing{font-family:'Source Serif Pro',Georgia,serif;font-style:italic;font-size:14.5px;color:var(--dim);line-height:1.6;max-width:680px;margin-bottom:24px;padding-left:14px;border-left:2px solid var(--gold)}
     .nd-chapter-lede{font-size:16.5px;color:var(--dim);line-height:1.65;max-width:720px;margin-bottom:22px}
     .nd-chapter-questions{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;max-width:920px}
-    .nd-chapter-questions > div{font-family:'Source Serif Pro',Georgia,serif;font-size:14.5px;color:var(--ink);padding:14px 16px;background:var(--paper2);border-left:2px solid var(--gold);line-height:1.45}
+    .nd-chapter-questions > div{font-family:'Source Serif Pro',Georgia,serif;font-size:14.5px;color:var(--ink);padding:14px 16px;background:var(--paper2);border-left:2px solid var(--gold);line-height:1.45;cursor:pointer;transition:background .15s, border-color .15s, transform .15s;position:relative}
+    .nd-chapter-questions > div:hover{background:var(--paper);border-left-color:var(--ink);transform:translateX(3px)}
+    .nd-chapter-questions > div::after{content:'→ §2';font-family:'Inter',sans-serif;font-size:9.5px;color:var(--faint);font-weight:600;letter-spacing:.8px;text-transform:uppercase;position:absolute;right:12px;top:14px;opacity:0;transition:opacity .15s}
+    .nd-chapter-questions > div:hover::after{opacity:1}
 
-    /* sub-nav */
-    .nd-subnav{position:sticky;top:0;z-index:30;background:rgba(251,251,249,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--rule-faint);margin:-8px -8px 32px;padding:10px 8px;display:flex;gap:4px;overflow-x:auto;white-space:nowrap;scrollbar-width:thin}
-    body.rl-scrolled .nd-subnav{top:60px}
+    /* sub-nav — positioned BELOW the sticky tab bar (which sits at top:64px) so it isn't covered */
+    .nd-subnav{position:sticky;top:108px;z-index:35;background:rgba(251,251,249,.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--rule-faint);margin:-8px -8px 32px;padding:10px 8px;display:flex;gap:4px;overflow-x:auto;white-space:nowrap;scrollbar-width:thin;box-shadow:0 8px 14px -12px rgba(40,30,10,.16)}
     .nd-subnav::-webkit-scrollbar{height:4px}
     .nd-subnav::-webkit-scrollbar-thumb{background:var(--rule);border-radius:99px}
     .nd-sn{font-family:'Inter',system-ui,sans-serif;font-size:11.5px;color:var(--dim);text-decoration:none;padding:6px 10px;border-radius:999px;transition:background .15s,color .15s;letter-spacing:.2px;flex:0 0 auto}
@@ -656,7 +658,7 @@ body.rl-scrolled .tabs{
     .nd-sn.on{background:var(--ink);color:var(--paper)}
 
     /* section shell */
-    .nd-section{padding:48px 0;border-bottom:1px solid var(--rule-faint);scroll-margin-top:96px}
+    .nd-section{padding:48px 0;border-bottom:1px solid var(--rule-faint);scroll-margin-top:170px}
     .nd-section:last-of-type{border-bottom:none}
     .nd-sec-num{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;color:var(--gold);letter-spacing:1.5px;margin-bottom:8px}
     .nd-sec-title{font-family:'Source Serif Pro',Georgia,serif;font-size:28px;font-weight:500;letter-spacing:-.3px;color:var(--ink);margin-bottom:6px;line-height:1.2;max-width:780px}
@@ -2371,8 +2373,35 @@ nmap -sT --open -p 22,80,443,445,554,631,1400,1883,3000,5000,8001,8008,8080,8443
       es.forEach(function(e){
         if(e.isIntersecting && e.intersectionRatio > 0.18) setActiveSec(e.target.id);
       });
-    }, {threshold:[0.18,0.5], rootMargin:'-80px 0px -50% 0px'});
+    }, {threshold:[0.18,0.5], rootMargin:'-160px 0px -50% 0px'});
     sections.forEach(function(s){ secIO.observe(s); });
+
+    /* === smooth-scroll on sub-nav clicks (offset for sticky header+tabs+subnav) === */
+    function scrollToSection(id){
+      var target = document.getElementById(id);
+      if(!target) return false;
+      var offset = 165; // 60 header + 44 tabs + 52 subnav + 9 breathing room
+      var y = target.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({top: y, behavior: 'smooth'});
+      setActiveSec(id);
+      // also center the active chip in the sub-nav so the user can see what's selected
+      var chip = pane.querySelector('.nd-sn[href="#' + id + '"]');
+      if(chip && chip.scrollIntoView){
+        setTimeout(function(){ chip.scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'}); }, 50);
+      }
+      return true;
+    }
+    subnavLinks.forEach(function(a){
+      a.addEventListener('click', function(e){
+        e.preventDefault();
+        scrollToSection(a.getAttribute('href').slice(1));
+      });
+    });
+
+    /* === chapter-intro question cards → scroll to §2 (The Four Questions) === */
+    pane.querySelectorAll('.nd-chapter-questions > div').forEach(function(d){
+      d.addEventListener('click', function(){ scrollToSection('nd-2'); });
+    });
 
     /* === running case card show/hide based on which section is in view === */
     var runcase = document.getElementById('ndRuncase');
