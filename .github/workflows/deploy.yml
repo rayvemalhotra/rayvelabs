@@ -49,6 +49,10 @@ jobs:
             ./ _site/
 
           # minify each HTML file aggressively
+          # quote_style:1 forces Terser to emit single-quoted strings, which
+          # guarantees inner double quotes get escaped (avoids the
+          # html-minifier-terser/Terser bug where re-wrapping a string with
+          # embedded quotes silently produced invalid JS).
           for f in _site/*.html; do
             echo "Minifying $f"
             html-minifier-terser \
@@ -60,10 +64,36 @@ jobs:
               --remove-style-link-type-attributes \
               --use-short-doctype \
               --minify-css true \
-              --minify-js '{"compress":{"drop_console":false,"passes":2},"mangle":true,"output":{"comments":false}}' \
+              --minify-js '{"compress":{"drop_console":false,"passes":2},"mangle":true,"output":{"comments":false,"quote_style":1}}' \
               -o "$f.min" "$f"
             mv "$f.min" "$f"
           done
+
+          # validate every <script> block in every minified HTML
+          # parses cleanly with node. fails the build if minification
+          # produced invalid JS — far better than silently deploying broken code.
+          node <<'NODE'
+          const fs = require('fs');
+          const path = require('path');
+          const files = fs.readdirSync('_site').filter(f => f.endsWith('.html'));
+          let bad = 0;
+          for (const f of files) {
+            const html = fs.readFileSync(path.join('_site', f), 'utf8');
+            const blocks = [...html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g)];
+            blocks.forEach((m, i) => {
+              const body = m[1].trim();
+              if (!body) return;
+              try {
+                new Function(body);
+              } catch (e) {
+                console.error(`✗ ${f} script #${i}: ${e.message}`);
+                bad++;
+              }
+            });
+            console.log(`✓ ${f}: ${blocks.length} script block(s) checked`);
+          }
+          if (bad) { console.error(`${bad} script block(s) failed parse — refusing to deploy.`); process.exit(1); }
+          NODE
 
           # re-inject a minimal copyright notice at the very top so the
           # ownership header survives minification
