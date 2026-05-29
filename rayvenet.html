@@ -636,21 +636,24 @@ body.rl-scrolled .tabs{
 
   <style>
     /* ==================== NETWORK DISCOVERY CHAPTER ==================== */
-    .nd-chapter-header{padding:32px 0 24px;border-bottom:1px solid var(--rule);margin-bottom:32px}
-    .nd-chapter-kicker{font-family:'Inter',system-ui,sans-serif;font-size:11px;color:var(--gold);text-transform:uppercase;letter-spacing:2.4px;font-weight:600;margin-bottom:14px;display:flex;align-items:center;gap:10px}
-    .nd-chapter-kicker::before{content:'';width:28px;height:1px;background:var(--gold)}
-    .nd-chapter-title{font-family:'Source Serif Pro',Georgia,serif;font-size:36px;font-weight:500;letter-spacing:-.5px;line-height:1.15;color:var(--ink);margin-bottom:16px;max-width:780px}
+    .nd-chapter-header{padding:18px 0 16px;border-bottom:1px solid var(--rule);margin-bottom:20px;display:grid;grid-template-columns:1fr;gap:6px}
+    .nd-chapter-meta{display:flex;align-items:center;gap:14px;flex-wrap:wrap;font-family:'Inter',system-ui,sans-serif}
+    .nd-chapter-kicker{font-size:10.5px;color:var(--gold);text-transform:uppercase;letter-spacing:2px;font-weight:600;display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
+    .nd-chapter-kicker::before{content:'';width:22px;height:1px;background:var(--gold)}
+    .nd-chapter-credit{font-size:11.5px;color:var(--dim);font-family:'Source Serif Pro',Georgia,serif;font-style:italic;line-height:1.45}
+    .nd-chapter-credit b{color:var(--ink);font-style:normal;font-family:'Inter',system-ui,sans-serif;font-weight:600;font-size:11px}
+    .nd-chapter-title{font-family:'Source Serif Pro',Georgia,serif;font-size:28px;font-weight:500;letter-spacing:-.4px;line-height:1.15;color:var(--ink);margin:2px 0 8px;max-width:780px}
     .nd-chapter-title em{font-style:italic;color:var(--gold)}
-    .nd-chapter-blessing{font-family:'Source Serif Pro',Georgia,serif;font-style:italic;font-size:14.5px;color:var(--dim);line-height:1.6;max-width:680px;margin-bottom:24px;padding-left:14px;border-left:2px solid var(--gold)}
-    .nd-chapter-lede{font-size:16.5px;color:var(--dim);line-height:1.65;max-width:720px;margin-bottom:22px}
-    .nd-chapter-questions{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;max-width:920px}
-    .nd-chapter-questions > div{font-family:'Source Serif Pro',Georgia,serif;font-size:14.5px;color:var(--ink);padding:14px 16px;background:var(--paper2);border-left:2px solid var(--gold);line-height:1.45;cursor:pointer;transition:background .15s, border-color .15s, transform .15s;position:relative}
-    .nd-chapter-questions > div:hover{background:var(--paper);border-left-color:var(--ink);transform:translateX(3px)}
-    .nd-chapter-questions > div::after{content:'→ §2';font-family:'Inter',sans-serif;font-size:9.5px;color:var(--faint);font-weight:600;letter-spacing:.8px;text-transform:uppercase;position:absolute;right:12px;top:14px;opacity:0;transition:opacity .15s}
+    .nd-chapter-lede{font-size:15px;color:var(--dim);line-height:1.55;max-width:780px;margin-bottom:14px}
+    .nd-chapter-questions{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;max-width:1000px}
+    .nd-chapter-questions > div{font-family:'Source Serif Pro',Georgia,serif;font-size:13px;color:var(--ink);padding:9px 12px;background:var(--paper2);border-left:2px solid var(--gold);line-height:1.35;cursor:pointer;transition:background .15s, border-color .15s, transform .15s;position:relative}
+    .nd-chapter-questions > div:hover{background:var(--paper);border-left-color:var(--ink);transform:translateX(2px)}
+    .nd-chapter-questions > div::after{content:'→ §2';font-family:'Inter',sans-serif;font-size:8.5px;color:var(--faint);font-weight:600;letter-spacing:.6px;text-transform:uppercase;position:absolute;right:8px;top:9px;opacity:0;transition:opacity .15s}
     .nd-chapter-questions > div:hover::after{opacity:1}
 
-    /* sub-nav — positioned BELOW the sticky tab bar (which sits at top:64px) so it isn't covered */
-    .nd-subnav{position:sticky;top:108px;z-index:35;background:rgba(251,251,249,.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--rule-faint);margin:-8px -8px 32px;padding:10px 8px;display:flex;gap:4px;overflow-x:auto;white-space:nowrap;scrollbar-width:thin;box-shadow:0 8px 14px -12px rgba(40,30,10,.16)}
+    /* sub-nav — sits below the sticky tab bar. Compact: 6px padding, 11px font */
+    .nd-subnav{position:sticky;top:108px;z-index:35;background:rgba(251,251,249,.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--rule-faint);margin:-8px -8px 24px;padding:6px 8px;display:flex;gap:3px;overflow-x:auto;white-space:nowrap;scrollbar-width:thin;box-shadow:0 6px 10px -10px rgba(40,30,10,.14)}
+    .nd-sn{font-size:11px;padding:5px 9px}
     .nd-subnav::-webkit-scrollbar{height:4px}
     .nd-subnav::-webkit-scrollbar-thumb{background:var(--rule);border-radius:99px}
     .nd-sn{font-family:'Inter',system-ui,sans-serif;font-size:11.5px;color:var(--dim);text-decoration:none;padding:6px 10px;border-radius:999px;transition:background .15s,color .15s;letter-spacing:.2px;flex:0 0 auto}
@@ -1036,21 +1039,21 @@ body.rl-scrolled .tabs{
     .nd-check-prog b{color:var(--ink);font-weight:600}
   </style>
 
-  <!-- ========== Chapter header ========== -->
+  <!-- ========== Chapter header (compact) ========== -->
   <header class="nd-chapter-header">
-    <div class="nd-chapter-kicker">Chapter 1 · RayveNet</div>
-    <h1 class="nd-chapter-title">Network Discovery &amp; <em>Asset Inventory</em></h1>
-    <div class="nd-chapter-blessing">
-      Drawn from the Chapter 1 lectures of <b>Dr. Ravinder Mallarapu</b> — Analytical Tools for Cyber · SEAS-8414 · DC9 · The George Washington University. Approved and blessed by Dr. Mallarapu. Built as an interactive lab by Rayve Malhotra, a student of the course.
+    <div class="nd-chapter-meta">
+      <span class="nd-chapter-kicker">Chapter 1 · RayveNet</span>
+      <span class="nd-chapter-credit">Lectures of <b>Dr. Ravinder Mallarapu</b> · SEAS-8414 · GW · interactive lab by Rayve Malhotra, student of the course · approved by Dr. Mallarapu</span>
     </div>
+    <h1 class="nd-chapter-title">Network Discovery &amp; <em>Asset Inventory</em></h1>
     <p class="nd-chapter-lede">
-      Discovery is the first substantive act of network defense. Before vulnerability matching, before attack-path reasoning, before remediation, defenders must answer four foundational questions — questions that look simple in enterprise IT and become hard in IoT and OT.
+      The first substantive act of network defense. Before vulnerability matching or attack-path reasoning, defenders answer four foundational questions — simple in enterprise IT, hard in IoT/OT.
     </p>
     <div class="nd-chapter-questions">
-      <div>What devices appear to exist on the network?</div>
-      <div>What evidence supports each host's claim?</div>
+      <div>What devices exist?</div>
+      <div>What evidence supports each claim?</div>
       <div>Which blind spots remain?</div>
-      <div>How much uncertainty attaches to the inventory?</div>
+      <div>How much uncertainty?</div>
     </div>
   </header>
 
