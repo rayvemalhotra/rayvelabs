@@ -651,8 +651,9 @@ body.rl-scrolled .tabs{
     .nd-chapter-questions > div::after{content:'→ §2';font-family:'Inter',sans-serif;font-size:8.5px;color:var(--faint);font-weight:600;letter-spacing:.6px;text-transform:uppercase;position:absolute;right:8px;top:9px;opacity:0;transition:opacity .15s}
     .nd-chapter-questions > div:hover::after{opacity:1}
 
-    /* sub-nav — sits below the sticky tab bar. Compact: 6px padding, 11px font */
-    .nd-subnav{position:sticky;top:108px;z-index:35;background:rgba(251,251,249,.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--rule-faint);margin:-8px -8px 24px;padding:6px 8px;display:flex;gap:3px;overflow-x:auto;white-space:nowrap;scrollbar-width:thin;box-shadow:0 6px 10px -10px rgba(40,30,10,.14)}
+    /* sub-nav — sticky, auto-hides on scroll-down to free vertical space */
+    .nd-subnav{position:sticky;top:108px;z-index:35;background:rgba(251,251,249,.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--rule-faint);margin:-8px -8px 24px;padding:6px 8px;display:flex;gap:3px;overflow-x:auto;white-space:nowrap;scrollbar-width:thin;box-shadow:0 6px 10px -10px rgba(40,30,10,.14);transition:transform .28s ease, opacity .28s ease}
+    .nd-subnav.nd-hide{transform:translateY(-140%);opacity:0;pointer-events:none}
     .nd-sn{font-size:11px;padding:5px 9px}
     .nd-subnav::-webkit-scrollbar{height:4px}
     .nd-subnav::-webkit-scrollbar-thumb{background:var(--rule);border-radius:99px}
@@ -955,6 +956,49 @@ body.rl-scrolled .tabs{
     .nd-cap-reflect b{color:var(--ink);font-weight:600}
     .nd-cap-handoff{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap}
 
+    /* counterfactual grid (§1) */
+    .nd-cf{display:grid;grid-template-columns:150px 1fr 1fr;gap:1px;background:var(--rule);border-radius:10px;overflow:hidden;border:1px solid var(--rule);max-width:1000px;margin-top:14px}
+    @media(max-width:760px){.nd-cf{grid-template-columns:1fr;font-size:12px}}
+    .nd-cf > div{background:var(--paper);padding:11px 14px;font-family:'Inter',sans-serif;font-size:13px;color:var(--dim);line-height:1.5}
+    .nd-cf > div.cf-h{background:var(--paper2);font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:1.2px;font-size:10.5px}
+    .nd-cf > div.cf-i{font-family:'Source Serif Pro',Georgia,serif;font-size:14px;font-weight:600;color:var(--ink);background:var(--paper2)}
+    .nd-cf em{color:var(--ink);font-style:italic;font-weight:500}
+
+    /* MAC edge cases panel (§9) */
+    .nd-mac-edge{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-top:14px;max-width:980px}
+    .nd-mac-e{background:var(--paper);border:1px solid var(--rule);border-radius:10px;padding:14px 16px;border-left:3px solid var(--gold)}
+    .nd-mac-e-h{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--gold);font-weight:600;margin-bottom:6px;letter-spacing:.5px}
+    .nd-mac-e-t{font-family:'Source Serif Pro',Georgia,serif;font-size:13.5px;color:var(--ink);font-weight:600;margin-bottom:6px}
+    .nd-mac-e-d{font-size:12.5px;color:var(--dim);line-height:1.5}
+    .nd-mac-e-d code{font-family:'JetBrains Mono',monospace;font-size:11px;background:var(--paper2);padding:1px 4px;border-radius:3px;color:var(--ink)}
+
+    /* publication gate callout (§10) */
+    .nd-pubgate{background:var(--paper);border:1px solid var(--gold);border-left:4px solid var(--gold);border-radius:10px;padding:18px 22px;max-width:880px;margin-top:18px}
+    .nd-pubgate-h{font-family:'Inter',sans-serif;font-size:10.5px;text-transform:uppercase;letter-spacing:1.6px;color:var(--gold);font-weight:600;margin-bottom:10px}
+    .nd-pubgate-t{font-family:'Source Serif Pro',Georgia,serif;font-size:17px;font-weight:500;color:var(--ink);margin-bottom:10px;letter-spacing:-.2px}
+    .nd-pubgate-list{display:grid;grid-template-columns:1fr;gap:6px;margin-top:10px}
+    .nd-pubgate-row{display:grid;grid-template-columns:140px 1fr;gap:14px;padding:8px 0;border-bottom:1px solid var(--rule-faint);align-items:start}
+    .nd-pubgate-row:last-child{border-bottom:none}
+    .nd-pubgate-row .lbl{font-family:'Inter',sans-serif;font-size:11.5px;color:var(--gold);font-weight:600;text-transform:uppercase;letter-spacing:1px}
+    .nd-pubgate-row .req{font-size:13px;color:var(--dim);line-height:1.5}
+    .nd-pubgate-row .req b{color:var(--ink)}
+
+    /* handoff contract (§11) */
+    .nd-handoff{background:#1a1a1a;color:#e9e2cf;border-radius:12px;padding:22px 26px;max-width:880px;margin-top:18px;font-family:'JetBrains Mono',monospace}
+    .nd-handoff-h{font-family:'Inter',sans-serif;font-size:10.5px;text-transform:uppercase;letter-spacing:1.6px;color:var(--gold-bright);font-weight:600;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+    .nd-handoff-h::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--gold-bright);box-shadow:0 0 0 3px rgba(196,165,101,.2)}
+    .nd-handoff-sect{margin-bottom:14px}
+    .nd-handoff-stitle{font-family:'Inter',sans-serif;font-size:11px;color:var(--gold-bright);font-weight:600;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:6px;padding-bottom:4px;border-bottom:1px dashed rgba(196,165,101,.3)}
+    .nd-handoff-line{display:grid;grid-template-columns:160px 80px 1fr;gap:14px;padding:4px 0;font-size:11.5px;line-height:1.5}
+    @media(max-width:680px){.nd-handoff-line{grid-template-columns:1fr;gap:2px}}
+    .nd-handoff-line .k{color:#c4a565}
+    .nd-handoff-line .ty{color:rgba(233,226,207,.55);font-size:10.5px}
+    .nd-handoff-line .nt{color:rgba(233,226,207,.75);font-family:'Inter',sans-serif;font-size:11.5px}
+    .nd-handoff-line.req .k::after{content:' *';color:#e24b4a}
+    .nd-handoff-forbidden{margin-top:14px;padding-top:14px;border-top:1px dashed rgba(196,165,101,.3)}
+    .nd-handoff-forbidden .nd-handoff-stitle{color:#f0997b}
+    .nd-handoff-forbidden .nd-handoff-line .k{color:#f0997b;text-decoration:line-through}
+
     /* ===== ENRICHMENTS ===== */
     /* 5 structural reasons (§4) */
     .nd-reasons{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px;margin-top:24px;max-width:980px}
@@ -1182,6 +1226,22 @@ body.rl-scrolled .tabs{
         </div>
       </div>
     </div>
+
+    <h3 style="font-family:'Source Serif Pro',Georgia,serif;font-size:18px;font-weight:500;color:var(--ink);margin:32px 0 4px;max-width:780px">Counterfactual · what discovery would, and would not, have prevented</h3>
+    <p class="nd-prose" style="margin-bottom:12px">Discovery is a precondition for many controls — it is rarely the control itself. Honest read of each incident:</p>
+
+    <div class="nd-cf">
+      <div class="cf-h">Incident</div><div class="cf-h">Discovery <em>would</em> have surfaced</div><div class="cf-h">Discovery alone <em>would NOT</em> have prevented</div>
+      <div class="cf-i">Mirai</div><div>The exposed Telnet population at scale → vendor firmware hardening could follow.</div><div>The default-credential design choice itself. Discovery is detection, not policy.</div>
+      <div class="cf-i">Verkada</div><div>The fleet's centralized blast radius — every camera was reachable from one credential.</div><div>The credential-governance failure. A privileged token misused remains misused even on a perfectly inventoried fleet.</div>
+      <div class="cf-i">Oldsmar</div><div>The exposed HMI / remote-management interface and its cross-zone placement.</div><div>The weak access control and shared credentials. Segmentation + MFA were the controlling fixes.</div>
+      <div class="cf-i">Target</div><div>The HVAC vendor link and the cross-zone path it sat on.</div><div>The poor segmentation that let one foothold reach payment systems. Discovery surfaces dependencies; least-privilege design enforces boundaries.</div>
+      <div class="cf-i">Casino</div><div>The thermometer's presence on the flat network with weak defaults.</div><div>The flat-network design and absence of monitoring. An inventoried thermometer on a flat segment is still a foothold.</div>
+    </div>
+
+    <p class="nd-prose" style="margin-top:14px;font-style:italic;font-size:13.5px">
+      The Chapter 1 stance: discovery sets the conditions for every later control. It is not a substitute for any of them.
+    </p>
   </section>
 
   <!-- ========== §2 Four Questions ========== -->
@@ -1770,6 +1830,37 @@ arp -an</div>
 arp -a</div>
         <div class="nd-try-note">Replace 192.168.1 with your own subnet (look at <code>ifconfig</code> / <code>ip addr</code> / <code>ipconfig</code>). The ping pass forces sleeping devices to respond, then ARP shows you the cache. Nothing leaves your machine.</div>
       </div>
+
+      <h4 style="font-family:'Source Serif Pro',Georgia,serif;font-size:16px;font-weight:600;color:var(--ink);margin:24px 0 4px">MAC address edge cases that break naive inventory work</h4>
+      <p class="nd-prose" style="font-size:13px;margin-bottom:10px;max-width:780px">An OUI prefix says "this MAC was assigned to vendor X" — not which product, not which user, not whether the device is even there now. Five edge cases that bite real fleets:</p>
+
+      <div class="nd-mac-edge">
+        <div class="nd-mac-e">
+          <div class="nd-mac-e-h">02:xx:xx:xx:xx:xx</div>
+          <div class="nd-mac-e-t">Locally-administered MAC</div>
+          <div class="nd-mac-e-d">The second-lowest bit of the first octet is set. There is <b>no IEEE OUI</b> — the MAC was assigned by software (a hypervisor, a container runtime, a docker bridge, a randomized phone). Vendor lookup returns nothing because there is nothing to look up.</div>
+        </div>
+        <div class="nd-mac-e">
+          <div class="nd-mac-e-h">DA:xx:xx:xx:xx:xx</div>
+          <div class="nd-mac-e-t">MAC randomization (iOS, Android)</div>
+          <div class="nd-mac-e-d">Modern phones rotate their Wi-Fi MAC per-SSID and on reconnects. Two ARP entries with different randomized MACs may be the <b>same device</b> reconnecting. Treat per-MAC counts on mixed user segments as noisy.</div>
+        </div>
+        <div class="nd-mac-e">
+          <div class="nd-mac-e-h">00:50:56:xx:xx:xx</div>
+          <div class="nd-mac-e-t">VMware virtualized interface</div>
+          <div class="nd-mac-e-d">OUI resolves to VMware, but the device behind it is a guest VM — possibly a Windows server, a Linux container, or a vendor-supplied appliance image. The OUI tells you about the hypervisor, not the workload.</div>
+        </div>
+        <div class="nd-mac-e">
+          <div class="nd-mac-e-h">FF:FF:FF:FF:FF:FF</div>
+          <div class="nd-mac-e-t">Broadcast — never a host</div>
+          <div class="nd-mac-e-d">This is the link-layer broadcast address. If it shows up paired with <code>.255</code> or as an "extra host" in your inventory, your pipeline isn't filtering. Strict admission excludes it; lenient admission flags it as needing review.</div>
+        </div>
+        <div class="nd-mac-e">
+          <div class="nd-mac-e-h">empty / incomplete</div>
+          <div class="nd-mac-e-t">Intermittent device · stale cache</div>
+          <div class="nd-mac-e-d">Battery-powered sensors and low-power radios may only respond briefly. ARP shows them, then ages out. Treat their evidence as <b>timing-dependent</b>, not as proof of constant presence. Repeat discovery is the only honest answer.</div>
+        </div>
+      </div>
     </div>
 
     <!-- TOOL 2: Router / SNMP Viewport -->
@@ -2077,6 +2168,21 @@ nmap -sT --open -p 22,80,443,445,554,631,1400,1883,3000,5000,8001,8008,8080,8443
     <p class="nd-prose" style="margin-top:18px;max-width:760px">
       <b>Why early partial truth matters.</b> A streaming pipeline delivers <em>provisional</em> rows with explicit incompleteness. That is preferable to long silence followed by output that looks final because it arrived at the end. Operators cancel, resume, and inspect scans while they're still in motion. Toggle to <em>batch mode</em> above to feel the difference.
     </p>
+
+    <div class="nd-pubgate">
+      <div class="nd-pubgate-h">Publication gate</div>
+      <div class="nd-pubgate-t">Before you publish a recall, precision, or harmonic-mean number — produce the underlying artifacts.</div>
+      <p style="font-size:13.5px;color:var(--dim);line-height:1.55;margin:0 0 4px;max-width:780px">A clean-looking percentage on a slide with no scoring script behind it is not evidence — it is theatre. The PDF (Table 1.9) requires the following before any discovery metric goes into a report:</p>
+      <div class="nd-pubgate-list">
+        <div class="nd-pubgate-row"><div class="lbl">Recall</div><div class="req"><b>Scored host-claim output against a named ground truth.</b> State the denominator and whether transient devices were in scope.</div></div>
+        <div class="nd-pubgate-row"><div class="lbl">Precision</div><div class="req"><b>Raw observations + the final admitted inventory.</b> State how stale ARP, broadcast, multicast, and phantom entries were filtered.</div></div>
+        <div class="nd-pubgate-row"><div class="lbl">Method contribution</div><div class="req"><b>Per-host source provenance from the scan output.</b> State whether each method uniquely admitted a host or only strengthened an existing claim.</div></div>
+        <div class="nd-pubgate-row"><div class="lbl">Runtime</div><div class="req"><b>Timestamped phase events or logs.</b> Separate time-to-first-host, time-to-stable-count, and end-to-end completion.</div></div>
+        <div class="nd-pubgate-row"><div class="lbl">Baseline</div><div class="req"><b>Matched-scope runs for each baseline tool.</b> Hold target scope, vantage point, and traffic policy constant — otherwise the comparison is unfair.</div></div>
+        <div class="nd-pubgate-row"><div class="lbl">Confidence interval</div><div class="req"><b>The count table and the interval script or formula.</b> State the confidence level and sample size.</div></div>
+      </div>
+      <p style="font-size:12.5px;color:var(--dim);font-style:italic;margin:10px 0 0;line-height:1.55">A missing artifact should <em>remove the number</em>, not invite a guess.</p>
+    </div>
   </section>
 
   <!-- ========== §11 Host Record Contract ========== -->
@@ -2170,6 +2276,47 @@ nmap -sT --open -p 22,80,443,445,554,631,1400,1883,3000,5000,8001,8008,8080,8443
         </div>
       </div>
     </div>
+
+    <h3 style="font-family:'Source Serif Pro',Georgia,serif;font-size:20px;font-weight:500;color:var(--ink);margin:36px 0 4px;max-width:780px">The formal handoff to Chapter 2</h3>
+    <p class="nd-prose" style="margin-bottom:10px">Treat the handoff as an API contract. Chapter 2 (Cascade Lab) consumes this shape — and is entitled to refuse it if required fields are missing or forbidden assertions appear.</p>
+
+    <div class="nd-handoff">
+      <div class="nd-handoff-h">interface ChapterOneHandoff · v1</div>
+
+      <div class="nd-handoff-sect">
+        <div class="nd-handoff-stitle">Required fields · contract violation if missing</div>
+        <div class="nd-handoff-line req"><span class="k">ip</span><span class="ty">string</span><span class="nt">IPv4 dotted-quad (IPv6 in v2)</span></div>
+        <div class="nd-handoff-line req"><span class="k">discovery_sources</span><span class="ty">string[]</span><span class="nt">non-empty · each method that admitted this host</span></div>
+        <div class="nd-handoff-line req"><span class="k">first_seen</span><span class="ty">ISO 8601</span><span class="nt">timezone-aware</span></div>
+        <div class="nd-handoff-line req"><span class="k">last_seen</span><span class="ty">ISO 8601</span><span class="nt">timezone-aware</span></div>
+        <div class="nd-handoff-line req"><span class="k">vantage_point</span><span class="ty">enum</span><span class="nt">laptop · switch · gateway · central · collector</span></div>
+        <div class="nd-handoff-line req"><span class="k">confidence</span><span class="ty">enum</span><span class="nt">low · moderate · strong · very-strong · durable</span></div>
+      </div>
+
+      <div class="nd-handoff-sect">
+        <div class="nd-handoff-stitle">Optional fields · preserve when present</div>
+        <div class="nd-handoff-line"><span class="k">mac</span><span class="ty">string</span><span class="nt">normalized (zero-padded, uppercase, colon-separated)</span></div>
+        <div class="nd-handoff-line"><span class="k">vendor_hint</span><span class="ty">string</span><span class="nt">OUI lookup · hint only · not identity</span></div>
+        <div class="nd-handoff-line"><span class="k">hostname</span><span class="ty">string</span><span class="nt">reverse DNS or self-advertised, source labeled</span></div>
+        <div class="nd-handoff-line"><span class="k">open_ports</span><span class="ty">int[]</span><span class="nt">TCP/UDP tuples preferred</span></div>
+        <div class="nd-handoff-line"><span class="k">services</span><span class="ty">string[]</span><span class="nt">e.g. _googlecast._tcp · _ipp._tcp · capability hints only</span></div>
+        <div class="nd-handoff-line"><span class="k">upnp_description</span><span class="ty">object</span><span class="nt">parsed via hardened XML parser only</span></div>
+        <div class="nd-handoff-line"><span class="k">notes</span><span class="ty">string[]</span><span class="nt">conflicts retained · e.g. "router ARP disagreed with local"</span></div>
+      </div>
+
+      <div class="nd-handoff-forbidden">
+        <div class="nd-handoff-stitle">Forbidden assertions · Chapter 2 refuses the row</div>
+        <div class="nd-handoff-line"><span class="k">device_model</span><span class="ty"></span><span class="nt">identity is Chapter 2's job · vendor hint ≠ model</span></div>
+        <div class="nd-handoff-line"><span class="k">firmware_version</span><span class="ty"></span><span class="nt">requires banner / service interrogation · not present in Ch.1</span></div>
+        <div class="nd-handoff-line"><span class="k">vulnerabilities</span><span class="ty"></span><span class="nt">Chapter 3 boundary · CVE matching needs identity first</span></div>
+        <div class="nd-handoff-line"><span class="k">business_criticality</span><span class="ty"></span><span class="nt">governance attribute · not derivable from network evidence</span></div>
+        <div class="nd-handoff-line"><span class="k">device_owner</span><span class="ty"></span><span class="nt">organizational attribute · requires CMDB / asset registry</span></div>
+      </div>
+    </div>
+
+    <p class="nd-prose" style="margin-top:14px;font-style:italic;font-size:13.5px;max-width:760px">
+      Note <code>*</code> = required. The forbidden fields are not just <em>missing</em> from a Chapter 1 record — they're <em>not Chapter 1's claim to make</em>. A record that asserts them anyway is a discipline failure, not a feature.
+    </p>
   </section>
 
   <!-- ========== §12 Capstone Lab ========== -->
@@ -2378,6 +2525,28 @@ nmap -sT --open -p 22,80,443,445,554,631,1400,1883,3000,5000,8001,8008,8080,8443
       });
     }, {threshold:[0.18,0.5], rootMargin:'-160px 0px -50% 0px'});
     sections.forEach(function(s){ secIO.observe(s); });
+
+    /* === auto-hide sub-nav on scroll-down, show on scroll-up === */
+    (function(){
+      var subnavEl = pane.querySelector('.nd-subnav');
+      if(!subnavEl) return;
+      var lastY = window.scrollY;
+      var ticking = false;
+      window.addEventListener('scroll', function(){
+        if(ticking) return;
+        ticking = true;
+        requestAnimationFrame(function(){
+          var y = window.scrollY;
+          if(y > lastY + 6 && y > 320){
+            subnavEl.classList.add('nd-hide');
+          } else if(y < lastY - 4){
+            subnavEl.classList.remove('nd-hide');
+          }
+          lastY = y;
+          ticking = false;
+        });
+      }, {passive:true});
+    })();
 
     /* === smooth-scroll on sub-nav clicks (offset for sticky header+tabs+subnav) === */
     function scrollToSection(id){
