@@ -1,0 +1,62 @@
+name: Uptime check
+
+on:
+  schedule:
+    # every 15 minutes
+    - cron: "*/15 * * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Probe rayvelabs.com
+        id: probe
+        run: |
+          set -euo pipefail
+          URL="https://rayvelabs.com/"
+          # 3 attempts, 10s timeout each
+          for i in 1 2 3; do
+            HTTP_CODE=$(curl -fsS -o /tmp/body -w "%{http_code}" --max-time 10 "$URL" || echo "000")
+            if [ "$HTTP_CODE" = "200" ]; then
+              echo "status=ok" >> "$GITHUB_OUTPUT"
+              echo "code=$HTTP_CODE" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+            sleep 10
+          done
+          echo "status=down" >> "$GITHUB_OUTPUT"
+          echo "code=$HTTP_CODE" >> "$GITHUB_OUTPUT"
+          exit 1
+
+      - name: Open an issue if down
+        if: failure() && steps.probe.outputs.status == 'down'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const title = `Uptime alert: rayvelabs.com returned ${{ steps.probe.outputs.code }}`;
+            // de-dupe — don't open a second issue if one is already open
+            const open = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'uptime'
+            });
+            if (open.data.find(i => i.title === title)) return;
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title,
+              labels: ['uptime'],
+              body: [
+                `**Site:** https://rayvelabs.com/`,
+                `**Returned:** \`${{ steps.probe.outputs.code }}\``,
+                `**Detected at:** ${new Date().toISOString()}`,
+                ``,
+                `See OPERATIONS.md for the recovery checklist.`
+              ].join('\n')
+            });
