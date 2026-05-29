@@ -673,9 +673,11 @@ body.rl-scrolled .tabs{
     .nd-prose b{color:var(--ink);font-weight:600}
     .nd-prose em{color:var(--gold);font-style:italic;font-weight:500}
 
-    /* sticky running case card */
-    .nd-runcase{position:fixed;right:20px;top:120px;width:260px;background:var(--paper);border:1px solid var(--rule);border-radius:12px;padding:16px 18px;box-shadow:0 8px 24px rgba(40,30,10,.08);z-index:20;font-family:'Inter',system-ui,sans-serif;opacity:0;transform:translateX(20px);transition:opacity .4s ease,transform .4s ease;pointer-events:none}
-    .nd-runcase.on{opacity:1;transform:translateX(0)}
+    /* sticky running case card — REMOVED.
+       The floating overlay was overlapping section content (notably the §5 Venn).
+       The chapter's narrative stands on its own without a sidebar; the §9 tools
+       still print evidence inline where it actually matters. */
+    .nd-runcase{display:none !important}
     @media(max-width:1240px){.nd-runcase{display:none}}
     .nd-rc-tag{font-size:9.5px;color:var(--gold);text-transform:uppercase;letter-spacing:2px;font-weight:600;margin-bottom:8px;display:flex;align-items:center;gap:8px}
     .nd-rc-tag::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold);animation:pulse 2.6s ease-in-out infinite}
@@ -1419,7 +1421,7 @@ body.rl-scrolled .tabs{
     <p class="nd-prose">
       <b>Meet 192.168.86.42.</b> Right now this is a single ARP line:<br>
       <code style="display:inline-block;margin-top:6px;font-family:'JetBrains Mono',monospace;font-size:12.5px;background:var(--paper2);padding:8px 12px;border-radius:6px">? (192.168.86.42) at d4:f5:47:xx:xx:xx on en0 ifscope [ethernet]</code><br>
-      Something exists on the local subnet. We have no idea what. The card on the right of your screen will grow as we accumulate evidence through the chapter.
+      Something exists on the local subnet. We have no idea what. As we work through this chapter, evidence accumulates — by the §11 handoff record we'll have a defensible, well-bounded claim about what this host actually is.
     </p>
 
     <div class="nd-card">
