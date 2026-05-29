@@ -814,7 +814,7 @@ html.loading{overflow:hidden}
 
 .ld-stage{
   position:relative;
-  width:320px; height:320px;
+  width:360px; height:360px;
   display:flex; align-items:center; justify-content:center;
 }
 .ld-svg{
@@ -903,7 +903,7 @@ html.loading{overflow:hidden}
   display:flex; flex-direction:column; align-items:center;
   opacity:0;
   transform:translateY(8px);
-  animation:ld-brand-in .8s cubic-bezier(.2,.7,.2,1) forwards 2.2s;
+  animation:ld-brand-in .8s cubic-bezier(.2,.7,.2,1) forwards 4.7s;
 }
 @keyframes ld-brand-in{to{opacity:1; transform:translateY(0)}}
 .ld-name{
@@ -923,7 +923,7 @@ html.loading{overflow:hidden}
   height:1px;
   background:linear-gradient(to right, transparent, var(--gold) 30%, var(--gold) 70%, transparent);
   transform:scaleX(0);
-  animation:ld-line 1s cubic-bezier(.7,0,.2,1) forwards 2.7s;
+  animation:ld-line 1s cubic-bezier(.7,0,.2,1) forwards 5.2s;
   transform-origin:center;
 }
 @keyframes ld-line{to{transform:scaleX(1)}}
@@ -941,16 +941,190 @@ html.loading{overflow:hidden}
   color:var(--faint);
   margin-top:14px;
   opacity:0;
-  animation:ld-fade .6s ease forwards 3.0s;
+  animation:ld-fade .6s ease forwards 5.5s;
 }
 @keyframes ld-fade{to{opacity:1}}
 
 /* when brand fades in, fade out the constellation */
 .loader.resolving .ld-stage{opacity:0; transition:opacity .8s ease}
 
+/* phase chip — narrates what's happening */
+.ld-phase{
+  position:absolute;
+  top:calc(50% - 175px);
+  left:50%;
+  transform:translateX(-50%);
+  font-family:'Inter',system-ui,sans-serif;
+  font-size:10px;
+  letter-spacing:2.6px;
+  text-transform:uppercase;
+  font-weight:600;
+  color:var(--gold);
+  padding:6px 14px;
+  border:1px solid var(--gold);
+  border-radius:999px;
+  background:rgba(255,255,255,.7);
+  white-space:nowrap;
+  opacity:0;
+  transition:opacity .35s ease;
+}
+.ld-phase.show{opacity:1}
+
+/* fingerprint cascade card */
+.ld-fp{
+  position:absolute;
+  top:50%;
+  left:50%;
+  width:268px;
+  margin:-78px 0 0 -134px;
+  background:var(--paper);
+  border:1px solid var(--rule);
+  border-radius:14px;
+  box-shadow:var(--shadow-2);
+  padding:16px 18px;
+  font-family:'Inter',system-ui,sans-serif;
+  opacity:0;
+  transform:scale(.94);
+  transition:opacity .4s ease, transform .5s cubic-bezier(.2,.7,.2,1);
+  pointer-events:none;
+}
+.loader.phase-fp .ld-fp{opacity:1; transform:scale(1)}
+.loader.phase-crypto .ld-fp{opacity:0; transform:scale(.94); transition:opacity .3s ease, transform .35s ease}
+.ld-fp-tag{
+  font-size:9px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--gold);
+  font-weight:600;
+  margin-bottom:10px;
+}
+.ld-fp-r{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:5px 0;
+  border-bottom:1px solid var(--rule-faint);
+  gap:14px;
+  opacity:.4;
+  transition:opacity .3s ease;
+}
+.ld-fp-r:last-of-type{border-bottom:none}
+.ld-fp-r.on{opacity:1}
+.ld-fp-r .k{color:var(--dim); font-size:10.5px; font-weight:500}
+.ld-fp-r .v{font-family:'JetBrains Mono',monospace; color:var(--ink); font-size:11px}
+.ld-fp-r .v.g{color:var(--gold); font-weight:500}
+.ld-fp-conf{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-top:10px;
+  padding-top:10px;
+  border-top:1px solid var(--rule-faint);
+}
+.ld-bar{
+  flex:1;
+  height:3px;
+  background:var(--rule-faint);
+  border-radius:99px;
+  overflow:hidden;
+}
+.ld-bar-fill{
+  height:100%;
+  width:0%;
+  background:var(--gold);
+  transition:width .55s cubic-bezier(.2,.7,.2,1);
+  border-radius:99px;
+}
+.ld-conf-val{
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;
+  color:var(--gold);
+  font-weight:500;
+  min-width:34px;
+  text-align:right;
+}
+
+/* cryptography / hash card */
+.ld-hash{
+  position:absolute;
+  top:50%;
+  left:50%;
+  width:268px;
+  margin:-50px 0 0 -134px;
+  background:var(--paper);
+  border:1px solid var(--rule);
+  border-radius:14px;
+  box-shadow:var(--shadow-2);
+  padding:16px 18px;
+  opacity:0;
+  transform:scale(.94);
+  transition:opacity .4s ease, transform .5s cubic-bezier(.2,.7,.2,1);
+}
+.loader.phase-crypto .ld-hash{opacity:1; transform:scale(1)}
+.loader.phase-ready .ld-hash{opacity:0; transform:scale(.94); transition:opacity .35s ease, transform .35s ease}
+.ld-hash-tag{
+  font-family:'Inter',system-ui,sans-serif;
+  font-size:9px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--gold);
+  font-weight:600;
+  margin-bottom:8px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.ld-hash-tag::before{
+  content:'';
+  width:5px; height:5px; border-radius:50%;
+  background:var(--gold);
+  animation:pulse 1.4s ease-in-out infinite;
+}
+.ld-hash-row{
+  display:flex;
+  justify-content:space-between;
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;
+  color:var(--faint);
+  margin-bottom:6px;
+}
+.ld-hash-row .from{color:var(--dim)}
+.ld-hash-val{
+  font-family:'JetBrains Mono',monospace;
+  font-size:13px;
+  color:var(--ink);
+  letter-spacing:.5px;
+  font-weight:500;
+  line-height:1.55;
+  word-break:break-all;
+}
+.ld-hash-val .g{color:var(--gold)}
+.ld-priv{
+  display:flex; align-items:center; gap:7px;
+  margin-top:10px;
+  padding-top:10px;
+  border-top:1px solid var(--rule-faint);
+  font-family:'Inter',system-ui,sans-serif;
+  font-size:10px;
+  color:var(--dim);
+  letter-spacing:.3px;
+}
+.ld-priv::before{
+  content:'\1F512';
+  font-size:11px;
+  filter:grayscale(1) brightness(.85);
+}
+
+/* dim the constellation during foreground phases */
+.loader.phase-fp .ld-svg,
+.loader.phase-crypto .ld-svg{opacity:.22; transition:opacity .5s ease}
+.loader.phase-ready .ld-svg{opacity:0; transition:opacity .7s ease}
+
 @media(max-width:520px){
-  .ld-stage{width:240px; height:240px}
+  .ld-stage{width:280px; height:280px}
   .ld-name{font-size:32px}
+  .ld-fp,.ld-hash{width:240px; margin-left:-120px}
+  .ld-phase{top:calc(50% - 155px); font-size:9.5px; letter-spacing:2.2px}
 }
 @media(prefers-reduced-motion:reduce){
   .loader{display:none}
@@ -993,6 +1167,27 @@ html.loading{overflow:hidden}
       </g>
       <circle class="ld-center" cx="0" cy="0" r="6"/>
     </svg>
+    <div class="ld-phase" id="ldPhase">Discovery</div>
+
+    <div class="ld-fp" id="ldFp" aria-hidden="true">
+      <div class="ld-fp-tag">Cascade · fingerprint</div>
+      <div class="ld-fp-r" data-step="0"><span class="k">MAC</span><span class="v">00:11:32:E1:9C:4F</span></div>
+      <div class="ld-fp-r" data-step="1"><span class="k">OUI</span><span class="v g">Synology</span></div>
+      <div class="ld-fp-r" data-step="2"><span class="k">realm</span><span class="v g">DSM</span></div>
+      <div class="ld-fp-r" data-step="3"><span class="k">banner</span><span class="v g">nginx 1.20</span></div>
+      <div class="ld-fp-conf">
+        <div class="ld-bar"><div class="ld-bar-fill" id="ldBar"></div></div>
+        <span class="ld-conf-val" id="ldConf">0.00</span>
+      </div>
+    </div>
+
+    <div class="ld-hash" id="ldHash" aria-hidden="true">
+      <div class="ld-hash-tag">SHA-256 · client-side</div>
+      <div class="ld-hash-row"><span class="from">192.168.1.1 ▸ GET /</span><span>↓</span></div>
+      <div class="ld-hash-val" id="ldHashVal"><span class="g">a3f9c2d8</span> e7b1a48f 9c2d8e7b 1a3f9c2d…</div>
+      <div class="ld-priv">no data leaves your browser</div>
+    </div>
+
     <div class="ld-status" id="ldStatus">scanning 10.0.0.0/24<span class="blink"></span></div>
   </div>
   <div class="ld-brand">
@@ -1198,35 +1393,109 @@ category-error spotter</pre>
 (function(){
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // --- load intro: network discovery sequence ---
+  // --- load intro: discovery ▸ fingerprint ▸ crypto ▸ resolve ---
   document.documentElement.classList.add('loading');
   var loader = document.getElementById('loader');
   var ldStatus = document.getElementById('ldStatus');
-  var statusSteps = [
-    'scanning 10.0.0.0/24',
-    'discovering hosts',
-    'fingerprinting devices',
-    'sha-256 ▸ a3f9c2…',
-    'ready'
-  ];
-  function setStatus(i){
-    if(!ldStatus || !statusSteps[i]) return;
-    ldStatus.innerHTML = statusSteps[i] + '<span class="blink"></span>';
+  var ldPhase = document.getElementById('ldPhase');
+  var ldBar = document.getElementById('ldBar');
+  var ldConf = document.getElementById('ldConf');
+  var ldHashVal = document.getElementById('ldHashVal');
+  var ldFp = document.getElementById('ldFp');
+
+  function setStatus(text){
+    if(!ldStatus) return;
+    ldStatus.innerHTML = text + '<span class="blink"></span>';
   }
+  function setPhase(label){
+    if(!ldPhase) return;
+    ldPhase.classList.remove('show');
+    setTimeout(function(){
+      ldPhase.textContent = label;
+      ldPhase.classList.add('show');
+    }, 220);
+  }
+  function activateFpRow(stepIdx){
+    if(!ldFp) return;
+    var row = ldFp.querySelector('.ld-fp-r[data-step="' + stepIdx + '"]');
+    if(row) row.classList.add('on');
+  }
+  function setConfidence(value){
+    if(ldBar) ldBar.style.width = Math.round(value * 100) + '%';
+    if(ldConf) ldConf.textContent = value.toFixed(2);
+  }
+  function scrambleHash(targetEl, finalText, durationMs){
+    if(!targetEl) return;
+    var hex = '0123456789abcdef';
+    // strip HTML, get plain string, but remember the structure to restore
+    var plain = finalText.replace(/<[^>]+>/g, '');
+    var start = performance.now();
+    function frame(now){
+      var t = Math.min(1, (now - start) / durationMs);
+      var revealed = Math.floor(plain.length * t);
+      var out = '';
+      for(var i = 0; i < plain.length; i++){
+        var ch = plain[i];
+        if(ch === ' ' || ch === '…') out += ch;
+        else if(i < revealed) out += plain[i];
+        else out += hex[Math.floor(Math.random()*16)];
+      }
+      // colour first 8 chars gold
+      var first = out.substring(0, 8);
+      var rest = out.substring(8);
+      targetEl.innerHTML = '<span class="g">' + first + '</span>' + rest;
+      if(t < 1) requestAnimationFrame(frame);
+      else targetEl.innerHTML = finalText;
+    }
+    requestAnimationFrame(frame);
+  }
+
   function runIntro(){
     if(!loader) return;
-    setTimeout(function(){ setStatus(1); }, 600);
-    setTimeout(function(){ setStatus(2); }, 1200);
-    setTimeout(function(){ setStatus(3); }, 1700);
-    setTimeout(function(){ setStatus(4); loader.classList.add('resolving'); }, 2100);
+
+    // PHASE 1 — Discovery (constellation is animating via CSS keyframes already)
+    setPhase('Discovery');
+    setStatus('scanning 10.0.0.0/24');
+    setTimeout(function(){ setStatus('discovered 8 hosts'); }, 1100);
+
+    // PHASE 2 — Fingerprint (cascade)
+    setTimeout(function(){
+      loader.classList.add('phase-fp');
+      setPhase('Fingerprint');
+      setStatus('cascade ▸ OUI + realm + banner');
+      activateFpRow(0);
+    }, 1700);
+    setTimeout(function(){ activateFpRow(1); setConfidence(0.40); }, 2000);
+    setTimeout(function(){ activateFpRow(2); setConfidence(0.70); }, 2400);
+    setTimeout(function(){ activateFpRow(3); setConfidence(0.80); }, 2800);
+
+    // PHASE 3 — Cryptography (hash)
+    setTimeout(function(){
+      loader.classList.remove('phase-fp');
+      loader.classList.add('phase-crypto');
+      setPhase('Cryptography');
+      setStatus('sha-256 ▸ normalize ▸ hash');
+      scrambleHash(ldHashVal, '<span class="g">a3f9c2d8</span> e7b1a48f 9c2d8e7b 1a3f9c2d…', 900);
+    }, 3400);
+
+    // PHASE 4 — Ready / resolve
+    setTimeout(function(){
+      loader.classList.remove('phase-crypto');
+      loader.classList.add('phase-ready');
+      setPhase('Ready');
+      setStatus('open research · cybersecurity');
+    }, 4700);
+
+    // lift the curtain
     setTimeout(function(){
       loader.classList.add('lifted');
       document.documentElement.classList.remove('loading');
-    }, 3400);
+    }, 5900);
     setTimeout(function(){
       if(loader && loader.parentNode) loader.parentNode.removeChild(loader);
-    }, 4600);
+    }, 7100);
   }
+
   if(reduce){
     if(loader && loader.parentNode) loader.parentNode.removeChild(loader);
     document.documentElement.classList.remove('loading');
