@@ -199,8 +199,8 @@ a:hover{text-decoration-color:var(--ink)}
   max-width:1180px;
   margin:0 auto;
   display:grid;
-  grid-template-columns:1.15fr .85fr;
-  gap:80px;
+  grid-template-columns:1.4fr .6fr;
+  gap:64px;
   align-items:center;
   min-height:calc(100vh - 220px);
 }
@@ -307,7 +307,7 @@ h1.title em::after{
 }
 .portrait-stage{
   position:relative;
-  width:min(100%, 420px);
+  width:min(100%, 240px);
   aspect-ratio:1/1;
   transform-style:preserve-3d;
   transition:transform .3s cubic-bezier(.2,.7,.2,1);
@@ -315,7 +315,7 @@ h1.title em::after{
 }
 .portrait-ring{
   position:absolute;
-  inset:-26px;
+  inset:-18px;
   border-radius:50%;
   background:conic-gradient(from 0deg, var(--gold) 0deg, transparent 60deg, transparent 180deg, var(--gold-bright) 220deg, transparent 280deg, transparent 360deg);
   opacity:.55;
@@ -326,14 +326,14 @@ h1.title em::after{
 .portrait-ring::after{
   content:'';
   position:absolute;
-  inset:14px;
+  inset:10px;
   border-radius:50%;
   background:var(--bg);
 }
 @keyframes spin{to{transform:translateZ(-40px) rotate(360deg)}}
 .portrait-outline{
   position:absolute;
-  inset:-46px;
+  inset:-32px;
   border-radius:50%;
   border:1px dashed rgba(157,133,82,.35);
   animation:spin-slow 60s linear infinite;
@@ -342,7 +342,7 @@ h1.title em::after{
 @keyframes spin-slow{to{transform:translateZ(-50px) rotate(-360deg)}}
 .portrait-glow{
   position:absolute;
-  inset:-60px;
+  inset:-44px;
   border-radius:50%;
   background:radial-gradient(circle at 50% 60%, rgba(196,165,101,.30), transparent 60%);
   filter:blur(20px);
@@ -383,20 +383,20 @@ h1.title em::after{
 }
 .portrait-meta{
   position:absolute;
-  bottom:-12px;
-  right:-12px;
+  bottom:-10px;
+  right:-18px;
   background:var(--paper);
   border:1px solid var(--rule);
-  border-radius:14px;
-  padding:14px 18px;
+  border-radius:12px;
+  padding:10px 14px;
   box-shadow:var(--shadow-1);
   transform:translateZ(80px);
   font-family:'Inter',system-ui,sans-serif;
-  min-width:180px;
+  min-width:150px;
 }
 .portrait-meta .name{
   font-family:'Source Serif Pro',Georgia,serif;
-  font-size:16px;
+  font-size:14px;
   font-weight:600;
   letter-spacing:-.2px;
   color:var(--ink);
@@ -412,10 +412,10 @@ h1.title em::after{
   animation:pulse 2.6s ease-in-out infinite;
 }
 .portrait-meta .role{
-  font-size:11px;
+  font-size:9.5px;
   color:var(--dim);
   text-transform:uppercase;
-  letter-spacing:1.2px;
+  letter-spacing:1.1px;
   font-weight:500;
 }
 .portrait-coord{
@@ -800,9 +800,206 @@ footer a:hover{color:var(--ink)}
   }
   .reveal{opacity:1;transform:none}
 }
+
+/* ============== LOAD INTRO — network discovery ============== */
+html.loading{overflow:hidden}
+.loader{
+  position:fixed; inset:0;
+  background:var(--bg);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  z-index:9999;
+  transition:transform 1.05s cubic-bezier(.76,0,.18,1), opacity .55s ease .5s;
+}
+.loader.lifted{transform:translateY(-101%); opacity:0}
+
+.ld-stage{
+  position:relative;
+  width:320px; height:320px;
+  display:flex; align-items:center; justify-content:center;
+}
+.ld-svg{
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  overflow:visible;
+}
+
+/* radar rings — ripple outward */
+.ld-ring{
+  fill:none;
+  stroke:var(--gold);
+  stroke-width:1;
+  transform-origin:center;
+  opacity:0;
+  animation:ld-ripple 2.4s cubic-bezier(.2,.7,.3,1) infinite;
+}
+.ld-ring.rg2{animation-delay:.6s}
+.ld-ring.rg3{animation-delay:1.2s}
+@keyframes ld-ripple{
+  0%{transform:scale(.4); opacity:.55}
+  100%{transform:scale(18); opacity:0}
+}
+
+/* constellation nodes — scale + fade in with stagger */
+.ld-node{
+  transform-box:fill-box;
+  transform-origin:center;
+  transform:scale(0);
+  opacity:0;
+  animation:ld-pop .5s cubic-bezier(.2,1.6,.4,1) forwards;
+}
+@keyframes ld-pop{to{transform:scale(1); opacity:1}}
+
+/* constellation lines — draw with stroke-dashoffset */
+.ld-line{
+  stroke-dasharray:240;
+  stroke-dashoffset:240;
+  opacity:0;
+  animation:ld-draw .55s ease-out forwards;
+}
+@keyframes ld-draw{
+  0%{stroke-dashoffset:240; opacity:0}
+  20%{opacity:.8}
+  100%{stroke-dashoffset:0; opacity:.8}
+}
+
+/* center dot — slow heartbeat */
+.ld-center{
+  fill:var(--gold);
+  transform-box:fill-box;
+  transform-origin:center;
+  animation:ld-heart 1.6s ease-in-out infinite;
+}
+@keyframes ld-heart{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.35)}
+}
+
+/* status terminal — telegraphs what's happening */
+.ld-status{
+  position:absolute;
+  top:calc(50% + 90px);
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:11px;
+  letter-spacing:.4px;
+  color:var(--dim);
+  white-space:nowrap;
+  opacity:0;
+  animation:ld-status-show .6s ease forwards .2s;
+}
+.ld-status .blink{
+  display:inline-block;
+  width:7px; height:1.1em;
+  background:var(--gold);
+  margin-left:6px;
+  vertical-align:-2px;
+  animation:ld-blink 1s steps(2) infinite;
+}
+@keyframes ld-status-show{to{opacity:1}}
+@keyframes ld-blink{50%{opacity:0}}
+
+/* brand resolves at the end */
+.ld-brand{
+  position:absolute;
+  display:flex; flex-direction:column; align-items:center;
+  opacity:0;
+  transform:translateY(8px);
+  animation:ld-brand-in .8s cubic-bezier(.2,.7,.2,1) forwards 2.2s;
+}
+@keyframes ld-brand-in{to{opacity:1; transform:translateY(0)}}
+.ld-name{
+  position:relative;
+  font-family:'Source Serif Pro',Georgia,serif;
+  font-size:42px;
+  font-weight:600;
+  letter-spacing:-.5px;
+  color:var(--ink);
+  display:flex; align-items:baseline; gap:12px;
+  padding-bottom:10px;
+}
+.ld-name::after{
+  content:'';
+  position:absolute;
+  left:8%; right:8%; bottom:0;
+  height:1px;
+  background:linear-gradient(to right, transparent, var(--gold) 30%, var(--gold) 70%, transparent);
+  transform:scaleX(0);
+  animation:ld-line 1s cubic-bezier(.7,0,.2,1) forwards 2.7s;
+  transform-origin:center;
+}
+@keyframes ld-line{to{transform:scaleX(1)}}
+.ld-name .lm-dot{
+  display:inline-block;
+  width:9px;height:9px;border-radius:50%;
+  background:var(--gold);
+  transform:translateY(-4px);
+}
+.ld-tag{
+  font-family:'Inter',system-ui,sans-serif;
+  font-size:10.5px;
+  letter-spacing:2.4px;
+  text-transform:uppercase;
+  color:var(--faint);
+  margin-top:14px;
+  opacity:0;
+  animation:ld-fade .6s ease forwards 3.0s;
+}
+@keyframes ld-fade{to{opacity:1}}
+
+/* when brand fades in, fade out the constellation */
+.loader.resolving .ld-stage{opacity:0; transition:opacity .8s ease}
+
+@media(max-width:520px){
+  .ld-stage{width:240px; height:240px}
+  .ld-name{font-size:32px}
+}
+@media(prefers-reduced-motion:reduce){
+  .loader{display:none}
+  html.loading{overflow:auto}
+}
 </style>
 </head>
 <body>
+
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="ld-stage" id="ldStage">
+    <svg class="ld-svg" viewBox="-160 -160 320 320" xmlns="http://www.w3.org/2000/svg">
+      <g>
+        <circle class="ld-ring rg1" cx="0" cy="0" r="8"/>
+        <circle class="ld-ring rg2" cx="0" cy="0" r="8"/>
+        <circle class="ld-ring rg3" cx="0" cy="0" r="8"/>
+      </g>
+      <g stroke="#9d8552" stroke-width="0.9" fill="none">
+        <line class="ld-line" x1="0" y1="0" x2="-95" y2="-50" style="animation-delay:.20s"/>
+        <line class="ld-line" x1="-95" y1="-50" x2="-115" y2="35" style="animation-delay:.35s"/>
+        <line class="ld-line" x1="-115" y1="35" x2="-60" y2="95" style="animation-delay:.50s"/>
+        <line class="ld-line" x1="-60" y1="95" x2="35" y2="110" style="animation-delay:.65s"/>
+        <line class="ld-line" x1="35" y1="110" x2="105" y2="60" style="animation-delay:.80s"/>
+        <line class="ld-line" x1="105" y1="60" x2="120" y2="-30" style="animation-delay:.95s"/>
+        <line class="ld-line" x1="120" y1="-30" x2="60" y2="-105" style="animation-delay:1.10s"/>
+        <line class="ld-line" x1="60" y1="-105" x2="-30" y2="-110" style="animation-delay:1.25s"/>
+        <line class="ld-line" x1="-30" y1="-110" x2="-95" y2="-50" style="animation-delay:1.40s"/>
+        <line class="ld-line" x1="0" y1="0" x2="105" y2="60" style="animation-delay:1.55s"/>
+        <line class="ld-line" x1="0" y1="0" x2="-30" y2="-110" style="animation-delay:1.70s"/>
+      </g>
+      <g fill="#9d8552">
+        <circle class="ld-node" cx="-95" cy="-50" r="3.5" style="animation-delay:.25s"/>
+        <circle class="ld-node" cx="-115" cy="35"  r="3"   style="animation-delay:.40s"/>
+        <circle class="ld-node" cx="-60" cy="95"   r="3.5" style="animation-delay:.55s"/>
+        <circle class="ld-node" cx="35"  cy="110"  r="3"   style="animation-delay:.70s"/>
+        <circle class="ld-node" cx="105" cy="60"   r="4"   style="animation-delay:.85s"/>
+        <circle class="ld-node" cx="120" cy="-30"  r="3"   style="animation-delay:1.00s"/>
+        <circle class="ld-node" cx="60"  cy="-105" r="3.5" style="animation-delay:1.15s"/>
+        <circle class="ld-node" cx="-30" cy="-110" r="3"   style="animation-delay:1.30s"/>
+      </g>
+      <circle class="ld-center" cx="0" cy="0" r="6"/>
+    </svg>
+    <div class="ld-status" id="ldStatus">scanning 10.0.0.0/24<span class="blink"></span></div>
+  </div>
+  <div class="ld-brand">
+    <div class="ld-name">RayveLabs<span class="lm-dot"></span></div>
+    <div class="ld-tag">Open research · Cybersecurity</div>
+  </div>
+</div>
 
 <div class="topnav" id="topnav">
   <a href="/" class="brand"><span class="dot"></span>RayveLabs</a>
@@ -1000,6 +1197,53 @@ category-error spotter</pre>
 <script>
 (function(){
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // --- load intro: network discovery sequence ---
+  document.documentElement.classList.add('loading');
+  var loader = document.getElementById('loader');
+  var ldStatus = document.getElementById('ldStatus');
+  var statusSteps = [
+    'scanning 10.0.0.0/24',
+    'discovering hosts',
+    'fingerprinting devices',
+    'sha-256 ▸ a3f9c2…',
+    'ready'
+  ];
+  function setStatus(i){
+    if(!ldStatus || !statusSteps[i]) return;
+    ldStatus.innerHTML = statusSteps[i] + '<span class="blink"></span>';
+  }
+  function runIntro(){
+    if(!loader) return;
+    setTimeout(function(){ setStatus(1); }, 600);
+    setTimeout(function(){ setStatus(2); }, 1200);
+    setTimeout(function(){ setStatus(3); }, 1700);
+    setTimeout(function(){ setStatus(4); loader.classList.add('resolving'); }, 2100);
+    setTimeout(function(){
+      loader.classList.add('lifted');
+      document.documentElement.classList.remove('loading');
+    }, 3400);
+    setTimeout(function(){
+      if(loader && loader.parentNode) loader.parentNode.removeChild(loader);
+    }, 4600);
+  }
+  if(reduce){
+    if(loader && loader.parentNode) loader.parentNode.removeChild(loader);
+    document.documentElement.classList.remove('loading');
+  } else if(document.readyState === 'complete'){
+    runIntro();
+  } else {
+    window.addEventListener('load', runIntro);
+  }
+  // tap-to-skip
+  if(loader){
+    loader.addEventListener('click', function(){
+      if(loader.classList.contains('lifted')) return;
+      loader.classList.add('lifted');
+      document.documentElement.classList.remove('loading');
+      setTimeout(function(){ if(loader && loader.parentNode) loader.parentNode.removeChild(loader); }, 1100);
+    });
+  }
 
   var topnav = document.getElementById('topnav');
   function onScroll(){
