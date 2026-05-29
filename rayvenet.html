@@ -394,6 +394,8 @@ footer a:hover{color:var(--ink);text-decoration-color:var(--ink)}
 .hide{display:none}
 .gold-rule{display:none}
 .cta-drop,.cta-email,.cta-linkedin,.about-section,.header-row{display:none !important}
+/* page-level lede + instructor-credit hidden — each chapter pane now carries its own header */
+.lede,.instructor-credit{display:none !important}
 
 /* ============== IMMERSIVE LAYER (parallax / sticky / 3D) ============== */
 :root{
@@ -7105,30 +7107,34 @@ document.addEventListener("DOMContentLoaded", () => {
     if (credit) credit.style.display = (t.dataset.pane === "weblog") ? "none" : "";
   }));
 
-  // Learn
+  // Learn — null-guarded · the old Learn/Scan tab markup has been removed
+  // and replaced by the Network Discovery chapter. These bindings are kept
+  // for safety in case any legacy element re-appears, but each is guarded.
+  const _bind = (sel, evt, fn) => { const el = document.querySelector(sel); if (el) el.addEventListener(evt, fn); };
   $$('.method-btn[data-method]').forEach(b => b.addEventListener("click", () => runLearnMethod(b.dataset.method)));
-  $("#learnReset").addEventListener("click", resetLearn);
+  _bind("#learnReset", "click", resetLearn);
 
-  // Scan — OS picker
+  // Scan — OS picker (querySelectorAll returns empty if no .ostab present)
   $$(".ostab").forEach(t => t.addEventListener("click", () => {
     $$(".ostab").forEach(x => x.classList.remove("on"));
     t.classList.add("on");
     const c = OS_CMDS[t.dataset.os];
-    $("#cmdText").textContent = c.cmd;
-    $("#cmdHint").innerHTML = c.hint;
+    const ct = $("#cmdText"); if (ct) ct.textContent = c.cmd;
+    const ch = $("#cmdHint"); if (ch) ch.innerHTML = c.hint;
   }));
   // copy buttons
   $$("[data-copy]").forEach(b => b.addEventListener("click", () => {
-    const text = $("#"+b.dataset.copy).textContent;
+    const tgt = $("#"+b.dataset.copy); if (!tgt) return;
+    const text = tgt.textContent;
     if (navigator.clipboard && navigator.clipboard.writeText){
       navigator.clipboard.writeText(text).then(() => {
         const orig = b.textContent; b.textContent = "copied"; setTimeout(()=>{ b.textContent = orig; }, 900);
       });
     }
   }));
-  $("#sampleBtn").addEventListener("click", () => { $("#pasteBox").value = SAMPLE_DATA; });
-  $("#analyzeBtn").addEventListener("click", () => analyzeScan($("#pasteBox").value));
-  $("#scanReset").addEventListener("click", resetScan);
+  _bind("#sampleBtn", "click", () => { const p = $("#pasteBox"); if (p) p.value = SAMPLE_DATA; });
+  _bind("#analyzeBtn", "click", () => { const p = $("#pasteBox"); if (p) analyzeScan(p.value); });
+  _bind("#scanReset", "click", resetScan);
 
   // download buttons (dynamic data attr)
   $$('[data-dl]').forEach(b => b.addEventListener("click", () => downloadDiagram(b.dataset.svg, b.dataset.dl)));
