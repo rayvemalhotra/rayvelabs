@@ -638,17 +638,20 @@ body.rl-scrolled .tabs{
 <div id="discovery" class="pane on">
 
   <style>
-    /* ==================== NETWORK DISCOVERY CHAPTER ==================== */
-    .nd-chapter-header{padding:18px 0 16px;border-bottom:1px solid var(--rule);margin-bottom:20px;display:grid;grid-template-columns:1fr;gap:6px}
-    .nd-chapter-meta{display:flex;align-items:center;gap:14px;flex-wrap:wrap;font-family:'Inter',system-ui,sans-serif}
-    .nd-chapter-kicker{font-size:10.5px;color:var(--gold);text-transform:uppercase;letter-spacing:2px;font-weight:600;display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
-    .nd-chapter-kicker::before{content:'';width:22px;height:1px;background:var(--gold)}
-    .nd-chapter-credit{font-size:11.5px;color:var(--dim);font-family:'Source Serif Pro',Georgia,serif;font-style:italic;line-height:1.45}
-    .nd-chapter-credit b{color:var(--ink);font-style:normal;font-family:'Inter',system-ui,sans-serif;font-weight:600;font-size:11px}
-    .nd-chapter-title{font-family:'Source Serif Pro',Georgia,serif;font-size:28px;font-weight:500;letter-spacing:-.4px;line-height:1.15;color:var(--ink);margin:2px 0 8px;max-width:780px}
+    /* ==================== NETWORK DISCOVERY CHAPTER ====================
+       Compact header. Title + kicker only. The credit, lede, and 4-question
+       intro cards have been hidden — they duplicated §1/§2 content and
+       wasted ~280px of viewport before anything useful. Dr. Mallarapu
+       credit moves to a small footer line at the bottom of each chapter. */
+    .nd-chapter-header{padding:14px 0 10px;border-bottom:1px solid var(--rule-faint);margin-bottom:14px;display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+    .nd-chapter-meta{display:none}
+    .nd-chapter-kicker{font-family:'Inter',system-ui,sans-serif;font-size:10px;color:var(--gold);text-transform:uppercase;letter-spacing:2px;font-weight:600;white-space:nowrap}
+    .nd-chapter-credit,.nd-chapter-lede,.nd-chapter-questions,.nd-chapter-blessing{display:none}
+    .nd-chapter-title{font-family:'Source Serif Pro',Georgia,serif;font-size:22px;font-weight:500;letter-spacing:-.3px;line-height:1.2;color:var(--ink);margin:0;flex:1;min-width:240px}
     .nd-chapter-title em{font-style:italic;color:var(--gold)}
-    .nd-chapter-lede{font-size:15px;color:var(--dim);line-height:1.55;max-width:780px;margin-bottom:14px}
-    .nd-chapter-questions{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;max-width:1000px}
+    /* per-chapter credit footer — small, at the very end */
+    .nd-chapter-foot{margin-top:48px;padding-top:18px;border-top:1px solid var(--rule-faint);font-family:'Source Serif Pro',Georgia,serif;font-size:11.5px;color:var(--dim);font-style:italic;line-height:1.55;text-align:center}
+    .nd-chapter-foot b{color:var(--ink);font-style:normal;font-family:'Inter',system-ui,sans-serif;font-weight:600;font-size:11px}
     .nd-chapter-questions > div{font-family:'Source Serif Pro',Georgia,serif;font-size:13px;color:var(--ink);padding:9px 12px;background:var(--paper2);border-left:2px solid var(--gold);line-height:1.35;cursor:pointer;transition:background .15s, border-color .15s, transform .15s;position:relative}
     .nd-chapter-questions > div:hover{background:var(--paper);border-left-color:var(--ink);transform:translateX(2px)}
     .nd-chapter-questions > div::after{content:'→ §2';font-family:'Inter',sans-serif;font-size:8.5px;color:var(--faint);font-weight:600;letter-spacing:.6px;text-transform:uppercase;position:absolute;right:8px;top:9px;opacity:0;transition:opacity .15s}
@@ -1758,6 +1761,9 @@ body.rl-scrolled .tabs{
       </div>
     </div>
   </section>
+
+  <div class="nd-chapter-foot">Drawn from <b>Dr. Ravinder Mallarapu</b>'s Chapter 1 lectures · Analytical Tools for Cyber · SEAS-8414 · GW · interactive lab by Rayve Malhotra · approved by Dr. Mallarapu.</div>
+
 
   <!-- ========== §9 Five Methods · Tools ========== -->
   <section id="nd-9" class="nd-section">
@@ -4086,6 +4092,9 @@ identity:      <span style="color:#8a6321">unresolved · hand off to Ch.2</span>
     </div>
   </section>
 
+  <div class="nd-chapter-foot">Drawn from <b>Dr. Ravinder Mallarapu</b>'s Chapter 2 lectures · Analytical Tools for Cyber · SEAS-8414 · GW · interactive lab by Rayve Malhotra · approved by Dr. Mallarapu.</div>
+
+
   <!-- ============== §3 Structural Independence ============== -->
   <section id="c2-3" class="nd-section">
     <div class="nd-sec-num">SECTION 03</div>
@@ -5562,6 +5571,9 @@ identity:      <span style="color:#8a6321">unresolved · hand off to Ch.2</span>
       A device left untested by a method is <em>not proven safe</em>. The final report must distinguish at least four states per method per host: <code>completed</code> · <code>disabled</code> · <code>unavailable</code> · <code>failed-or-partial</code>.
     </p>
   </section>
+
+  <div class="nd-chapter-foot">Drawn from <b>Dr. Ravinder Mallarapu</b>'s Chapter 3 lectures · Analytical Tools for Cyber · SEAS-8414 · GW · interactive lab by Rayve Malhotra · approved by Dr. Mallarapu.</div>
+
 
   <!-- ============== §4 Correlation ============== -->
   <section id="t3-4" class="nd-section">
