@@ -631,7 +631,842 @@ body.rl-scrolled .tabs{
   <button class="tab" data-pane="sim2">Cascade Lab</button>
   <button class="tab" data-pane="threat">Threat Hunt</button>
   <button class="tab" data-pane="weblog">Fingerprinting</button>
+  <button class="tab" data-pane="schoollabs">School Labs</button>
   <button class="tab" data-pane="terms">Key terms</button>
+</div>
+
+<!-- ===================== SCHOOL LABS ===================== -->
+<div id="schoollabs" class="pane">
+<style>
+/* School Labs — scoped (.sl-*) */
+.sl-lede{max-width:780px;margin-bottom:26px}
+.sl-lede .sl-kicker{font-family:'Inter',system-ui,sans-serif;font-size:11.5px;letter-spacing:1.4px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:10px}
+.sl-lede h2{font-family:'Source Serif Pro',Georgia,serif;font-size:30px;font-weight:600;letter-spacing:-.5px;line-height:1.2;margin-bottom:10px;color:var(--ink)}
+.sl-lede h2 em{font-style:italic}
+.sl-lede p{font-size:16.5px;color:var(--dim);line-height:1.6;max-width:700px}
+.sl-credit{margin:0 0 30px;padding:14px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.sl-credit .sl-cl{font-family:'Source Serif Pro',Georgia,serif;font-style:italic;color:var(--dim);font-size:14.5px}
+.sl-credit .sl-cn{font-family:'Source Serif Pro',Georgia,serif;font-weight:600;color:var(--ink);font-size:15.5px}
+.sl-credit .sl-cs{color:var(--faint);font-size:13px}
+.sl-credit .sl-cm{font-family:'Inter',system-ui,sans-serif;font-size:11.5px;color:var(--dim);letter-spacing:.6px;font-weight:500}
+.sl-lab{border:1px solid var(--line);border-radius:10px;background:var(--paper);padding:0;overflow:hidden;max-width:880px}
+.sl-lab-head{padding:24px 28px 20px;border-bottom:1px solid var(--rule);background:var(--paper2)}
+.sl-lab-tag{font-family:'JetBrains Mono',ui-monospace,Menlo,monospace;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--gold);font-weight:700}
+.sl-lab-title{font-family:'Source Serif Pro',Georgia,serif;font-size:22px;font-weight:600;letter-spacing:-.3px;color:var(--ink);margin:6px 0 8px}
+.sl-lab-meta{font-family:'Inter',system-ui,sans-serif;font-size:12px;color:var(--dim);display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.sl-lab-meta .sl-dot{color:var(--faint)}
+.sl-lab-body{padding:24px 28px 28px}
+.sl-lab-body>p{font-size:15.5px;color:var(--dim);line-height:1.6;margin-bottom:18px}
+.sl-h{font-family:'Inter',system-ui,sans-serif;font-size:11.5px;letter-spacing:1.2px;text-transform:uppercase;color:var(--ink);font-weight:700;margin:22px 0 10px}
+.sl-list{list-style:none;margin:0 0 4px;padding:0}
+.sl-list li{position:relative;padding:5px 0 5px 22px;font-size:14.5px;color:var(--dim);line-height:1.5}
+.sl-list li::before{content:"\2014";position:absolute;left:0;color:var(--gold)}
+.sl-code{font-family:'JetBrains Mono',ui-monospace,Menlo,monospace;font-size:12.5px;line-height:1.7;background:var(--ink);color:#f3f3f0;border-radius:8px;padding:16px 18px;overflow-x:auto;white-space:pre;margin:8px 0 6px}
+.sl-actions{display:flex;gap:12px;flex-wrap:wrap;margin:20px 0 4px}
+.sl-btn{font-family:'Inter',system-ui,sans-serif;font-size:13px;font-weight:600;text-decoration:none;padding:10px 18px;border-radius:7px;border:1px solid var(--ink);color:var(--paper);background:var(--ink);transition:opacity .15s}
+.sl-btn:hover{opacity:.85;text-decoration:none}
+.sl-btn.sl-ghost{background:transparent;color:var(--ink)}
+.sl-note{font-family:'Inter',system-ui,sans-serif;font-size:12.5px;color:var(--dim);line-height:1.55;background:rgba(157,133,82,.07);border-left:3px solid var(--gold);border-radius:0 6px 6px 0;padding:12px 16px;margin:22px 0 0}
+.sl-note b{color:var(--ink)}
+.sl-video{margin-top:22px}
+.sl-video-slot{aspect-ratio:16/9;width:100%;background:var(--paper2);border:1px dashed var(--line);border-radius:8px;display:flex;align-items:center;justify-content:center;text-align:center;color:var(--faint);font-family:'Inter',system-ui,sans-serif;font-size:13px;padding:20px}
+.sl-ex{border:1px solid var(--line);border-radius:8px;margin:10px 0;overflow:hidden;background:var(--paper)}
+.sl-ex>summary{cursor:pointer;list-style:none;padding:13px 16px;font-family:'Inter',system-ui,sans-serif;font-size:14px;font-weight:600;color:var(--ink);display:flex;align-items:center;gap:10px;background:var(--paper2)}
+.sl-ex>summary::-webkit-details-marker{display:none}
+.sl-ex>summary::before{content:"+";color:var(--gold);font-weight:700;font-size:16px;width:12px;text-align:center}
+.sl-ex[open]>summary::before{content:"\2212"}
+.sl-ex>summary .sl-ex-num{font-family:'JetBrains Mono',ui-monospace,Menlo,monospace;font-size:10.5px;letter-spacing:1px;color:var(--gold);text-transform:uppercase}
+.sl-ex-body{padding:14px 16px 18px}
+.sl-ex-body p{font-size:14px;color:var(--dim);line-height:1.55;margin:0 0 10px}
+.sl-ex-body p:last-child{margin-bottom:0}
+.sl-ex-body code{font-family:'JetBrains Mono',ui-monospace,Menlo,monospace;font-size:12px;background:var(--paper2);padding:1px 5px;border-radius:3px;color:var(--ink)}
+.sl-ex-body b{color:var(--ink)}
+@media(max-width:720px){.sl-lab-head,.sl-lab-body{padding-left:18px;padding-right:18px}}
+</style>
+
+  <div class="sl-lede">
+    <div class="sl-kicker">School Labs</div>
+    <h2>Graded coursework, <em>framed</em> for reference.</h2>
+    <p>The instructor-authored lab for this course. The official runtime and the graded
+    write-up live on Blackboard &mdash; this page describes the lab and points to the
+    canonical download so you can run it locally.</p>
+  </div>
+
+  <div class="sl-credit">
+    <span class="sl-cl">Instructor</span>
+    <span class="sl-cn">Dr. Ravinder Mallarapu</span>
+    <span class="sl-cs">&middot;</span>
+    <span class="sl-cm">Analytical Tools for Cyber &middot; SEAS-8414 &middot; DC9 &middot; The George Washington University</span>
+  </div>
+
+  <article class="sl-lab">
+    <div class="sl-lab-head">
+      <div class="sl-lab-tag">Phase 3 &middot; Week 03</div>
+      <div class="sl-lab-title">Vulnerability Assessment, Correlation &amp; Prioritization</div>
+      <div class="sl-lab-meta">
+        <span>SEAS-8414</span><span class="sl-dot">&middot;</span>
+        <span>Dockerized hands-on lab</span><span class="sl-dot">&middot;</span>
+        <span class="mono">release 2026.05.0+4e76a52f.aws8414</span>
+      </div>
+    </div>
+    <div class="sl-lab-body">
+      <p>A Docker Compose lab that walks a real vulnerability-assessment workflow against
+      live data sources &mdash; matching software to CPEs, reading CVSS as structure rather
+      than a single number, weighing competing evidence on one host, and assembling a
+      defensible remediation queue.</p>
+
+      <div class="sl-h">What you'll practice</div>
+      <ul class="sl-list">
+        <li>Comparing broad vs. narrow CPE matching strategies</li>
+        <li>Decomposing a CVSS vector by hand instead of trusting the score</li>
+        <li>Weighing evidence methods on a single host (CVE/NVD, EPSS, CISA KEV, direct probing, nuclei)</li>
+        <li>Diagnosing weak or empty CVE results</li>
+        <li>Treating default credentials as high-confidence evidence</li>
+        <li>False-positive triage, then correlation and convergence</li>
+        <li>Building a prioritized remediation queue</li>
+      </ul>
+
+      <div class="sl-h">Run it locally</div>
+      <div class="sl-code">mkdir -p "$HOME/seas8414-week03" &amp;&amp; cd "$HOME/seas8414-week03"
+curl -fL -o week03.zip \
+  https://8414.bwater.io/downloads/labs/packages/seas8414-blackboard-week-03-2026.05.0_4e76a52f_aws8414.zip
+unzip week03.zip &amp;&amp; cd seas8414-blackboard-week-03-2026.05.0_4e76a52f_aws8414
+make week03</div>
+      <p style="font-size:13px;margin:6px 0 0">Requires Docker. Run from a normal user folder
+      (<span class="mono">$HOME</span>, Downloads, Desktop) &mdash; not <span class="mono">/tmp</span>.</p>
+
+      <div class="sl-actions">
+        <a class="sl-btn" href="https://8414.bwater.io/downloads/labs/packages/seas8414-blackboard-week-03-2026.05.0_4e76a52f_aws8414.zip" rel="noopener">Download official package</a>
+      </div>
+
+      <div class="sl-h">Hands-on walkthrough</div>
+      <p style="font-size:14px;color:var(--dim);margin:0 0 12px">A worked version of the Phase&nbsp;3 flow on a
+      single host, using public APIs and tooling. Running example: <b>CVE-2021-41773</b> (Apache httpd 2.4.49
+      path traversal). Swap in your own host and CVEs as you go.</p>
+
+      <details class="sl-ex">
+        <summary><span class="sl-ex-num">Ex 1</span>Match the software to a CPE &mdash; broad vs. narrow</summary>
+        <div class="sl-ex-body">
+          <p>From observed evidence (a banner reading <code>Apache/2.4.49</code>) you can build a <b>broad</b>
+          CPE that matches the whole product line, or a <b>narrow</b> one pinned to the exact version. Query NVD
+          both ways and watch how the CVE count changes &mdash; broad over-reports, narrow can miss adjacent versions.</p>
+          <div class="sl-code">// narrow — exact version
+curl 'https://services.nvd.nist.gov/rest/json/cves/2.0?cpeName=cpe:2.3:a:apache:http_server:2.4.49:*:*:*:*:*:*:*'
+
+// broad — whole product
+curl 'https://services.nvd.nist.gov/rest/json/cves/2.0?cpeName=cpe:2.3:a:apache:http_server:*:*:*:*:*:*:*:*'</div>
+        </div>
+      </details>
+
+      <details class="sl-ex">
+        <summary><span class="sl-ex-num">Ex 2</span>Read the CVSS vector as structure, not a score</summary>
+        <div class="sl-ex-body">
+          <p>The 9.8 is a summary; the vector is the argument. Decompose
+          <code>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H</code> metric by metric:</p>
+          <div class="sl-code">AV:N  attack vector = Network   -> reachable remotely
+AC:L  attack complexity = Low    -> no special conditions
+PR:N  privileges required = None -> unauthenticated
+UI:N  user interaction = None    -> no victim action needed
+S:U   scope = Unchanged
+C:H I:H A:H  full confidentiality / integrity / availability loss</div>
+          <p>Read together: trivially exploitable, remote, unauthenticated, total impact &mdash; that's the 9.8.</p>
+        </div>
+      </details>
+
+      <details class="sl-ex">
+        <summary><span class="sl-ex-num">Ex 3</span>Correlate exploit signals &mdash; EPSS + CISA KEV</summary>
+        <div class="sl-ex-body">
+          <p>Base score says <b>how bad if exploited</b>. EPSS estimates the <b>probability it will be</b>, and the
+          CISA KEV catalog tells you it <b>already is</b>, in the wild. Pull both:</p>
+          <div class="sl-code">// EPSS probability for this CVE
+curl 'https://api.first.org/data/v1/epss?cve=CVE-2021-41773'
+
+// is it on CISA's Known Exploited Vulnerabilities list?
+curl -s https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json \
+  | grep -i CVE-2021-41773</div>
+          <p>A KEV hit is the strongest single signal you have &mdash; it outweighs a high base score with no real-world activity.</p>
+        </div>
+      </details>
+
+      <details class="sl-ex">
+        <summary><span class="sl-ex-num">Ex 4</span>Confirm with direct evidence on the host</summary>
+        <div class="sl-ex-body">
+          <p>API data is inference; a response from the host is evidence. Two high-confidence checks &mdash; a default-credential
+          probe and a version confirmation:</p>
+          <div class="sl-code">// default credentials accepted? 200 = high-confidence finding
+curl -s -o /dev/null -w '%{http_code}\n' -u admin:admin http://TARGET/
+
+// confirm the server banner you matched on
+curl -sI http://TARGET/ | grep -i '^Server:'</div>
+          <p>Default creds are treated as high-confidence evidence: little ambiguity, directly actionable.</p>
+        </div>
+      </details>
+
+      <details class="sl-ex">
+        <summary><span class="sl-ex-num">Ex 5</span>Scan one host with nuclei</summary>
+        <div class="sl-ex-body">
+          <p>Template scanners map known CVEs to detection logic. Run the high/critical CVE templates against your one host:</p>
+          <div class="sl-code">nuclei -u http://TARGET -tags cve -severity critical,high</div>
+          <p>Treat hits as leads to verify, not verdicts &mdash; carry each one back through the CVSS / EPSS / KEV read above.</p>
+        </div>
+      </details>
+
+      <details class="sl-ex">
+        <summary><span class="sl-ex-num">Ex 6</span>Build a prioritized remediation queue</summary>
+        <div class="sl-ex-body">
+          <p>Rank by <b>exploitation reality</b>, not raw score. A 7.5 that's actively exploited outranks a 9.8 nobody is touching:</p>
+          <div class="sl-code">1. On CISA KEV            -> patch now
+2. High EPSS (>= ~0.5)   -> patch this cycle
+3. High CVSS, low EPSS   -> schedule
+4. Default creds present -> rotate immediately (independent of CVE)
+5. Everything else       -> backlog</div>
+        </div>
+      </details>
+
+      <div class="sl-video">
+        <div class="sl-h">Walkthrough screencast</div>
+        <div class="sl-video-slot">Drop your own screencast here &mdash; replace this slot with a
+        &lt;video&gt; or embed once you've recorded your run.</div>
+      </div>
+
+      <div class="sl-note"><b>Academic integrity:</b> the graded homework and the lab runtime are
+      Dr.&nbsp;Mallarapu's coursework, distributed through Blackboard. They are not reproduced here &mdash;
+      this card only describes the lab and links to the canonical source.</div>
+    </div>
+  </article>
+
+  <!-- ============== PYTHON TOOLKIT · original teaching code ============== -->
+  <style>
+    .sl-py{margin-top:30px;border-top:1px solid var(--rule);padding-top:24px}
+    .sl-py .sl-pyhead{font:600 11px/1 'Inter',sans-serif;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+    .sl-py h3{font:600 19px/1.3 'Source Serif Pro',serif;color:var(--ink);margin:0 0 6px}
+    .sl-py .sl-pylede{font:400 14px/1.6 'Source Serif Pro',serif;color:var(--dim);max-width:66ch;margin:0 0 6px}
+    .sl-py .sl-step{font:600 14px/1.4 'Inter',sans-serif;color:var(--ink);margin:24px 0 6px;display:flex;align-items:center;gap:9px}
+    .sl-py .sl-step b{font:700 11px/1 'JetBrains Mono',monospace;color:#fff;background:var(--gold);border-radius:6px;padding:4px 7px;flex-shrink:0}
+    .sl-py .sl-pycap{font:400 13px/1.55 'Inter',sans-serif;color:var(--dim);margin:0 0 9px;max-width:72ch}
+    .sl-py .sl-pynote{margin-top:20px;font:400 12px/1.55 'Inter',sans-serif;color:var(--faint);border-top:1px solid var(--rule-faint);padding-top:12px;max-width:74ch}
+  </style>
+
+  <section class="sl-py">
+    <div class="sl-pyhead">Python toolkit · copy &amp; run</div>
+    <h3>The assessment pipeline, in five short scripts</h3>
+    <p class="sl-pylede">The console above shows the <i>result</i>. These scripts show the <i>method</i> &mdash;
+    the same vulnerability-assessment, correlation and prioritization flow the lab asks you to build,
+    written from scratch against public data sources so you can run each step and watch it work.</p>
+
+    <div class="sl-step"><b>1</b> Fingerprint &rarr; candidate CVEs</div>
+    <p class="sl-pycap">Turn an asset fingerprint into a CPE&nbsp;2.3 string, then ask NVD which CVEs are
+    recorded against that exact product and version.</p>
+    <div class="sl-code">import requests
+
+def cpe_for(vendor, product, version):
+    return f"cpe:2.3:a:{vendor}:{product}:{version}:*:*:*:*:*:*:*"
+
+def cves_for_cpe(cpe):
+    r = requests.get(
+        "https://services.nvd.nist.gov/rest/json/cves/2.0",
+        params={"cpeName": cpe, "resultsPerPage": 50},
+        timeout=30,
+    )
+    r.raise_for_status()
+    vulns = r.json().get("vulnerabilities", [])
+    return [v["cve"]["id"] for v in vulns]
+
+cpe = cpe_for("apache", "http_server", "2.4.49")
+print(cves_for_cpe(cpe))   # -&gt; ['CVE-2021-41773', ...]</div>
+
+    <div class="sl-step"><b>2</b> Decompose the CVSS vector</div>
+    <p class="sl-pycap">A score of 9.8 means nothing until you can explain it. Pull the base metrics out of
+    the v3.1 vector so you can say <i>why</i> it is critical &mdash; remote, no privileges, no user action.</p>
+    <div class="sl-code">def parse_cvss(vector):
+    body = vector.removeprefix("CVSS:3.1/")
+    parts = dict(p.split(":") for p in body.split("/"))
+    legend = {
+        "AV": {"N": "Network", "A": "Adjacent", "L": "Local", "P": "Physical"},
+        "AC": {"L": "Low", "H": "High"},
+        "PR": {"N": "None", "L": "Low", "H": "High"},
+        "UI": {"N": "None", "R": "Required"},
+        "C":  {"H": "High", "L": "Low", "N": "None"},
+        "I":  {"H": "High", "L": "Low", "N": "None"},
+        "A":  {"H": "High", "L": "Low", "N": "None"},
+    }
+    return {k: legend.get(k, {}).get(v, v) for k, v in parts.items()}
+
+print(parse_cvss("CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"))
+# {'AV': 'Network', 'AC': 'Low', 'PR': 'None', 'UI': 'None', ...}</div>
+
+    <div class="sl-step"><b>3</b> Enrich with EPSS + CISA KEV</div>
+    <p class="sl-pycap">Severity is not likelihood. EPSS gives the 30-day exploitation probability; the CISA KEV
+    catalog tells you what is <i>already</i> being exploited in the wild. Correlate both.</p>
+    <div class="sl-code">import csv, io, requests
+
+def epss_score(cve):
+    r = requests.get("https://api.first.org/data/v1/epss",
+                     params={"cve": cve}, timeout=30)
+    rows = r.json().get("data", [])
+    return float(rows[0]["epss"]) if rows else 0.0
+
+def kev_set():
+    url = ("https://www.cisa.gov/sites/default/files/csv/"
+           "known_exploited_vulnerabilities.csv")
+    text = requests.get(url, timeout=30).text
+    return {row["cveID"] for row in csv.DictReader(io.StringIO(text))}
+
+kev = kev_set()
+for cve in ["CVE-2021-41773", "CVE-2019-10929"]:
+    print(cve, f"epss={epss_score(cve):.3f}", "KEV" if cve in kev else "-")</div>
+
+    <div class="sl-step"><b>4</b> Confirm with direct evidence</div>
+    <p class="sl-pycap">A CPE match is a hypothesis. Grab the live service banner and verify the version that is
+    actually running before you raise a finding &mdash; this is what kills false positives.</p>
+    <div class="sl-code">import socket
+
+def banner(host, port, probe=b"HEAD / HTTP/1.0\r\n\r\n"):
+    with socket.create_connection((host, port), timeout=5) as s:
+        s.sendall(probe)
+        return s.recv(2048).decode("latin-1", "replace")
+
+def confirms(host, port, needle):
+    return needle.lower() in banner(host, port).lower()
+
+print(confirms("10.20.7.42", 80, "Apache/2.4.49"))  # True -&gt; CVE applies</div>
+
+    <div class="sl-step"><b>5</b> Build the prioritized remediation queue</div>
+    <p class="sl-pycap">Finally, triage like an operator: anything in KEV jumps the line, then weight by EPSS
+    likelihood and by CVSS scaled to how critical the affected asset is.</p>
+    <div class="sl-code">CRIT_WEIGHT = {"low": 1.0, "medium": 1.5, "high": 2.0, "critical": 3.0}
+
+def priority(f):
+    score = f["cvss"] * CRIT_WEIGHT[f["asset_criticality"]]
+    score += f["epss"] * 10          # exploitation likelihood
+    if f["in_kev"]:
+        score += 100                 # actively exploited -&gt; top of queue
+    return score
+
+queue = sorted(findings, key=priority, reverse=True)
+for f in queue[:10]:
+    print(f"{f['cve']:&lt;16} {f['hostname']:&lt;22} score={priority(f):6.1f}")</div>
+
+    <div class="sl-pynote"><b>Sources:</b> NVD CVE API, FIRST.org EPSS, and the CISA Known Exploited
+    Vulnerabilities catalog &mdash; all public. This is original teaching code written for this site; it
+    does not reproduce Dr.&nbsp;Mallarapu's graded assignment, only the public method it exercises.</div>
+  </section>
+
+  <!-- ============== EMBEDDED LAB APP · RayveNet Chapter 3 console ==============
+       An original re-implementation of the Chapter 3 Discovery & Evidence
+       workflow as a self-contained vanilla-JS single-page app, themed to the
+       rayvelabs light/gold palette. Deterministic data (seeded PRNG) — no
+       network, no secrets. -->
+  <style>
+    .bw-wrap{margin-top:30px;border-top:1px solid var(--rule);padding-top:24px}
+    .bw-wrap .bw-kick{font:600 11px/1 'Inter',sans-serif;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+    .bw-wrap .bw-lede{font:400 14px/1.6 'Source Serif Pro',serif;color:var(--dim);max-width:64ch;margin:0 0 18px}
+    .bw-app{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--paper);font-family:'Inter',sans-serif;color:var(--ink)}
+    .bw-top{display:flex;align-items:center;gap:14px;padding:12px 16px;border-bottom:1px solid var(--line);background:var(--paper2);flex-wrap:wrap}
+    .bw-logo{display:flex;align-items:center;gap:10px}
+    .bw-logo .bw-mark{height:30px;width:30px;border-radius:8px;background:linear-gradient(135deg,var(--green),var(--violet));color:#fff;display:grid;place-items:center;font:700 15px/1 'Inter',sans-serif}
+    .bw-logo b{font:700 14px/1.1 'Inter',sans-serif;color:var(--ink);display:block}
+    .bw-logo span{font:500 11px/1.1 'Inter',sans-serif;color:var(--faint)}
+    .bw-nav{display:flex;gap:2px;margin-left:auto;flex-wrap:wrap}
+    .bw-nav button{font:500 13px/1 'Inter',sans-serif;color:var(--dim);background:transparent;border:1px solid transparent;border-radius:8px;padding:7px 12px;cursor:pointer;transition:.15s}
+    .bw-nav button:hover{color:var(--ink);background:rgba(0,0,0,.04)}
+    .bw-nav button.on{color:var(--ink);background:var(--paper);border-color:var(--line);box-shadow:0 1px 2px rgba(0,0,0,.04)}
+    .bw-conn{display:flex;align-items:center;gap:6px;font:500 11px/1 'Inter',sans-serif;color:var(--green)}
+    .bw-conn i{height:7px;width:7px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 rgba(45,94,58,.5);animation:bwping 2s infinite}
+    @keyframes bwping{0%{box-shadow:0 0 0 0 rgba(45,94,58,.4)}70%{box-shadow:0 0 0 6px rgba(45,94,58,0)}100%{box-shadow:0 0 0 0 rgba(45,94,58,0)}}
+    .bw-main{padding:0}
+    .bw-head{position:sticky;top:0;z-index:2;display:flex;align-items:flex-end;justify-content:space-between;gap:12px;padding:16px 20px;border-bottom:1px solid var(--line);background:rgba(255,255,255,.85);backdrop-filter:blur(6px);flex-wrap:wrap}
+    .bw-head h3{font:600 17px/1.2 'Inter',sans-serif;color:var(--ink);margin:0}
+    .bw-head p{font:400 12px/1.4 'Inter',sans-serif;color:var(--faint);margin:2px 0 0}
+    .bw-body{padding:20px}
+    .bw-grid{display:grid;gap:14px}
+    .bw-c4{grid-template-columns:repeat(4,1fr)}
+    .bw-c3{grid-template-columns:repeat(3,1fr)}
+    .bw-c2{grid-template-columns:repeat(2,1fr)}
+    @media(max-width:780px){.bw-c4,.bw-c3,.bw-c2{grid-template-columns:1fr 1fr}}
+    @media(max-width:520px){.bw-c4,.bw-c3,.bw-c2{grid-template-columns:1fr}.bw-nav{width:100%;margin-left:0}}
+    .bw-card{border:1px solid var(--line);border-radius:12px;background:var(--paper);padding:16px}
+    .bw-card h4{font:600 12px/1 'Inter',sans-serif;color:var(--ink);margin:0 0 14px;letter-spacing:.01em}
+    .bw-stat-l{font:500 11px/1 'Inter',sans-serif;text-transform:uppercase;letter-spacing:.1em;color:var(--faint)}
+    .bw-stat-v{font:700 30px/1 'Inter',sans-serif;color:var(--ink);margin-top:8px;font-variant-numeric:tabular-nums}
+    .bw-stat-s{font:400 12px/1.3 'Inter',sans-serif;color:var(--dim);margin-top:6px}
+    .bw-stat-v.accent-amber{color:var(--amber)}
+    .bw-stat-v.accent-rose{color:var(--rose)}
+    .bw-bar-row{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+    .bw-bar-row .bw-bl{font:500 12px/1 'Inter',sans-serif;color:var(--dim);width:120px;flex-shrink:0;display:flex;align-items:center;gap:7px}
+    .bw-bar-track{flex:1;height:8px;border-radius:99px;background:var(--paper2);overflow:hidden}
+    .bw-bar-fill{height:100%;border-radius:99px}
+    .bw-bar-row .bw-bv{font:600 12px/1 'Inter',sans-serif;color:var(--ink);width:34px;text-align:right;font-variant-numeric:tabular-nums}
+    .bw-dot{height:8px;width:8px;border-radius:50%;flex-shrink:0;display:inline-block}
+    .bw-badge{display:inline-flex;align-items:center;gap:5px;font:500 11px/1 'Inter',sans-serif;border:1px solid var(--line);border-radius:99px;padding:3px 9px;color:var(--dim);background:var(--paper2);white-space:nowrap}
+    .bw-badge.mono{font-family:'JetBrains Mono',monospace}
+    .bw-list{display:flex;flex-direction:column}
+    .bw-li{display:flex;align-items:flex-start;gap:10px;padding:11px 4px;border-top:1px solid var(--rule-faint)}
+    .bw-li:first-child{border-top:none}
+    .bw-li .bw-lk{font:600 13px/1.3 'Inter',sans-serif;color:var(--green);background:none;border:none;padding:0;cursor:pointer;text-align:left}
+    .bw-li .bw-lk:hover{text-decoration:underline}
+    .bw-li .bw-lsub{font:400 11px/1.3 'Inter',sans-serif;color:var(--faint);margin-top:2px}
+    .bw-li .bw-lr{margin-left:auto;text-align:right;flex-shrink:0}
+    .bw-controls{display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+    .bw-search{flex:1;min-width:180px;font:400 13px/1 'Inter',sans-serif;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:9px;padding:9px 12px}
+    .bw-search:focus{outline:none;border-color:var(--gold)}
+    .bw-seg{display:inline-flex;border:1px solid var(--line);border-radius:9px;overflow:hidden;background:var(--paper2)}
+    .bw-seg button{font:500 12px/1 'Inter',sans-serif;color:var(--dim);background:transparent;border:none;padding:8px 13px;cursor:pointer;border-left:1px solid var(--line)}
+    .bw-seg button:first-child{border-left:none}
+    .bw-seg button.on{background:var(--paper);color:var(--ink);font-weight:600}
+    .bw-check{display:inline-flex;align-items:center;gap:7px;font:500 12px/1 'Inter',sans-serif;color:var(--dim);cursor:pointer;user-select:none}
+    .bw-table-wrap{border:1px solid var(--line);border-radius:12px;overflow:hidden}
+    .bw-table{width:100%;border-collapse:collapse}
+    .bw-table th{font:600 11px/1 'Inter',sans-serif;text-transform:uppercase;letter-spacing:.07em;color:var(--faint);text-align:left;padding:11px 14px;background:var(--paper2);border-bottom:1px solid var(--line);white-space:nowrap}
+    .bw-table td{font:400 13px/1.3 'Inter',sans-serif;color:var(--dim);padding:11px 14px;border-bottom:1px solid var(--rule-faint);white-space:nowrap}
+    .bw-table tr:last-child td{border-bottom:none}
+    .bw-table tbody tr:hover{background:var(--paper2)}
+    .bw-table .bw-host{font-weight:600;color:var(--green);background:none;border:none;padding:0;cursor:pointer}
+    .bw-table .bw-host:hover{text-decoration:underline}
+    .bw-table .mono{font-family:'JetBrains Mono',monospace;font-size:12px}
+    .bw-empty{padding:34px;text-align:center;font:400 13px/1.5 'Inter',sans-serif;color:var(--faint)}
+    .bw-zone{border:1px solid var(--line);border-radius:12px;background:var(--paper);padding:16px;margin-bottom:12px}
+    .bw-zone-h{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:13px}
+    .bw-zone-h h4{font:600 13px/1.2 'Inter',sans-serif;color:var(--ink);margin:0}
+    .bw-zone-h p{font:400 11px/1.2 'Inter',sans-serif;color:var(--faint);margin:3px 0 0}
+    .bw-zone-h .bw-zc{font:600 11px/1 'Inter',sans-serif;color:var(--faint);font-variant-numeric:tabular-nums}
+    .bw-nodes{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:8px}
+    .bw-node{display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:9px;background:var(--paper2);padding:9px 11px;cursor:pointer;text-align:left;transition:.15s}
+    .bw-node:hover{border-color:var(--gold);background:var(--paper)}
+    .bw-node .bw-nn{font:600 12px/1.1 'Inter',sans-serif;color:var(--ink);display:flex;align-items:center;gap:6px;min-width:0}
+    .bw-node .bw-nn span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .bw-node .bw-nt{font:400 10px/1.2 'Inter',sans-serif;color:var(--faint);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .bw-node .bw-nv{margin-left:auto;font:600 10px/1 'Inter',sans-serif;color:var(--amber);background:rgba(138,99,33,.12);border-radius:5px;padding:2px 5px;font-variant-numeric:tabular-nums;flex-shrink:0}
+    .bw-back{font:500 12px/1 'Inter',sans-serif;color:var(--dim);background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:7px 12px;cursor:pointer}
+    .bw-back:hover{color:var(--ink);border-color:var(--gold)}
+    .bw-field dt{font:500 10px/1 'Inter',sans-serif;text-transform:uppercase;letter-spacing:.1em;color:var(--faint)}
+    .bw-field dd{font:400 13px/1.3 'Inter',sans-serif;color:var(--ink);margin:4px 0 0}
+    .bw-field dd.mono{font-family:'JetBrains Mono',monospace;font-size:12px}
+    .bw-vuln{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;border:1px solid var(--line);border-radius:9px;background:var(--paper2);padding:11px 13px;margin-bottom:8px}
+    .bw-vuln .bw-cve{font:600 13px/1 'JetBrains Mono',monospace;color:var(--ink)}
+    .bw-vuln .bw-vsum{font:400 12px/1.4 'Inter',sans-serif;color:var(--dim);margin-top:5px}
+    .bw-vuln .bw-cvss{flex-shrink:0;font:600 11px/1 'JetBrains Mono',monospace;color:var(--dim);background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:5px 8px;font-variant-numeric:tabular-nums}
+    .bw-tl{position:relative;border-left:2px solid var(--line);padding-left:18px;margin:0;list-style:none}
+    .bw-tl li{position:relative;padding-bottom:18px}
+    .bw-tl li:last-child{padding-bottom:0}
+    .bw-tl .bw-td{position:absolute;left:-25px;top:3px;height:11px;width:11px;border-radius:50%;border:3px solid var(--paper)}
+    .bw-tl .bw-tk{font:400 11px/1.3 'Inter',sans-serif;color:var(--faint);margin:5px 0 0}
+    .bw-tl .bw-tx{font:400 13px/1.4 'Inter',sans-serif;color:var(--dim);margin:4px 0 0}
+    .bw-sev-critical{color:var(--rose)}.bw-sev-high{color:var(--amber)}.bw-sev-medium{color:var(--gold)}.bw-sev-low{color:var(--green)}
+    .bw-note{margin-top:14px;font:400 12px/1.5 'Inter',sans-serif;color:var(--faint);border-top:1px solid var(--rule-faint);padding-top:12px}
+  </style>
+
+  <section class="bw-wrap">
+    <div class="bw-kick">Lab runtime · interactive</div>
+    <p class="bw-lede">A working re-creation of the Chapter&nbsp;3 <b>Discovery &amp; Evidence</b>
+    console &mdash; the same five views the reference lab ships, rebuilt natively in this site and
+    re-themed to the rayvelabs palette. Data is deterministic and generated locally in your
+    browser; there is no backend and nothing leaves this page.</p>
+    <div id="bwApp" class="bw-app" data-bw></div>
+  </section>
+
+  <script>
+  /* ============ RayveNet Chapter 3 lab — embedded vanilla-JS console ============ */
+  (function(){
+    var root = document.getElementById('bwApp');
+    if(!root) return;
+    /* ---------- deterministic PRNG (mulberry32) ---------- */
+    function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+    var rng = mulberry32(0xb4e4a7);
+    function pick(arr){return arr[Math.floor(rng()*arr.length)]}
+    function pickN(arr,n){var c=arr.slice(),o=[];while(o.length<n&&c.length){o.push(c.splice(Math.floor(rng()*c.length),1)[0])}return o}
+    function inti(min,max){return Math.floor(rng()*(max-min+1))+min}
+    function hex(len){var s='';while(s.length<len)s+=Math.floor(rng()*16).toString(16);return s.slice(0,len)}
+    function mac(){var p=[];for(var i=0;i<6;i++)p.push(hex(2));return p.join(':')}
+
+    /* ---------- asset profiles ---------- */
+    var PROFILES = [
+      {domain:'OT',type:'PLC',vendors:['Siemens','Allen-Bradley','Schneider Electric'],protocols:['Modbus/TCP','S7comm','EtherNet/IP'],zone:'Cell/Area Zone',zoneLevel:1,subnet:'10.20.1',baseCriticality:'high'},
+      {domain:'OT',type:'RTU',vendors:['ABB','GE','Schneider Electric'],protocols:['DNP3','Modbus/TCP','IEC 60870-5-104'],zone:'Cell/Area Zone',zoneLevel:1,subnet:'10.20.2',baseCriticality:'high'},
+      {domain:'OT',type:'Safety Controller',vendors:['HIMA','Siemens','Schneider Electric'],protocols:['PROFIsafe','S7comm'],zone:'Safety Zone',zoneLevel:1,subnet:'10.20.3',baseCriticality:'critical'},
+      {domain:'OT',type:'HMI',vendors:['Siemens','Wonderware','GE'],protocols:['VNC','RDP','S7comm'],zone:'Supervisory Zone',zoneLevel:2,subnet:'10.20.4',baseCriticality:'medium'},
+      {domain:'OT',type:'SCADA Server',vendors:['Wonderware','GE iFIX','Ignition'],protocols:['OPC UA','Modbus/TCP','DNP3'],zone:'Supervisory Zone',zoneLevel:2,subnet:'10.20.5',baseCriticality:'critical'},
+      {domain:'OT',type:'Historian',vendors:['OSIsoft PI','Aspen','GE Proficy'],protocols:['OPC UA','SQL','HTTPS'],zone:'Operations Zone',zoneLevel:3,subnet:'10.20.6',baseCriticality:'high'},
+      {domain:'OT',type:'Engineering Workstation',vendors:['Siemens','Rockwell','Schneider Electric'],protocols:['S7comm','RDP','SMB'],zone:'Operations Zone',zoneLevel:3,subnet:'10.20.7',baseCriticality:'high'},
+      {domain:'OT',type:'VFD Drive',vendors:['ABB','Danfoss','Yaskawa'],protocols:['Modbus/TCP','PROFINET'],zone:'Cell/Area Zone',zoneLevel:1,subnet:'10.20.8',baseCriticality:'medium'},
+      {domain:'IoT',type:'Temperature Sensor',vendors:['Honeywell','Bosch','Endress+Hauser'],protocols:['MQTT','CoAP'],zone:'Field Zone',zoneLevel:0,subnet:'10.30.1',baseCriticality:'low'},
+      {domain:'IoT',type:'Pressure Sensor',vendors:['Emerson','Yokogawa','WIKA'],protocols:['MQTT','HART-IP'],zone:'Field Zone',zoneLevel:0,subnet:'10.30.2',baseCriticality:'low'},
+      {domain:'IoT',type:'Vibration Sensor',vendors:['SKF','Fluke','Bently Nevada'],protocols:['MQTT','CoAP'],zone:'Field Zone',zoneLevel:0,subnet:'10.30.3',baseCriticality:'low'},
+      {domain:'IoT',type:'Smart Camera',vendors:['Axis','Hikvision','Bosch'],protocols:['RTSP','ONVIF','HTTPS'],zone:'Field Zone',zoneLevel:0,subnet:'10.30.4',baseCriticality:'medium'},
+      {domain:'IoT',type:'IoT Gateway',vendors:['Advantech','Moxa','Dell'],protocols:['MQTT','HTTPS','OPC UA'],zone:'Edge Zone',zoneLevel:2,subnet:'10.30.5',baseCriticality:'medium'},
+      {domain:'IoT',type:'Smart Meter',vendors:['Landis+Gyr','Itron','Schneider Electric'],protocols:['DLMS/COSEM','MQTT'],zone:'Field Zone',zoneLevel:0,subnet:'10.30.6',baseCriticality:'low'},
+      {domain:'IT',type:'Domain Controller',vendors:['Microsoft'],protocols:['LDAP','Kerberos','SMB','DNS'],zone:'Enterprise Zone',zoneLevel:4,subnet:'10.10.1',baseCriticality:'critical'},
+      {domain:'IT',type:'File Server',vendors:['Microsoft','Dell','NetApp'],protocols:['SMB','NFS','HTTPS'],zone:'Enterprise Zone',zoneLevel:4,subnet:'10.10.2',baseCriticality:'high'},
+      {domain:'IT',type:'Database Server',vendors:['Oracle','Microsoft','PostgreSQL'],protocols:['SQL','HTTPS'],zone:'Enterprise Zone',zoneLevel:4,subnet:'10.10.3',baseCriticality:'high'},
+      {domain:'IT',type:'Network Switch',vendors:['Cisco','Juniper','Aruba'],protocols:['SNMP','SSH','HTTPS'],zone:'Enterprise Zone',zoneLevel:4,subnet:'10.10.4',baseCriticality:'medium'},
+      {domain:'IT',type:'Firewall',vendors:['Palo Alto','Fortinet','Cisco'],protocols:['HTTPS','SSH','SNMP'],zone:'DMZ',zoneLevel:3.5,subnet:'10.10.5',baseCriticality:'critical'},
+      {domain:'IT',type:'Workstation',vendors:['Dell','HP','Lenovo'],protocols:['SMB','RDP','HTTPS'],zone:'Enterprise Zone',zoneLevel:4,subnet:'10.10.6',baseCriticality:'low'}
+    ];
+
+    /* ---------- CVE pool ---------- */
+    var CVE_POOL = [
+      {cve:'CVE-2023-28489',summary:'Authentication bypass in industrial gateway web interface allowing unauthenticated configuration changes.'},
+      {cve:'CVE-2022-1373',summary:'Stack-based buffer overflow in engineering software project file parser enabling remote code execution.'},
+      {cve:'CVE-2021-44228',summary:'Log4Shell — remote code execution via crafted JNDI lookup string in Apache Log4j 2.'},
+      {cve:'CVE-2020-15782',summary:'Memory protection bypass on Siemens S7 CPUs permitting read/write to protected memory regions.'},
+      {cve:'CVE-2024-21762',summary:'Out-of-bounds write in SSL-VPN daemon leading to unauthenticated remote code execution.'},
+      {cve:'CVE-2019-10929',summary:'Man-in-the-middle weakness in PROFINET DCP allowing spoofed device responses.'},
+      {cve:'CVE-2023-3595',summary:'Out-of-bounds write in communication module firmware enabling denial of service or RCE.'},
+      {cve:'CVE-2022-30276',summary:'Missing authentication for the management protocol on field controllers (insecure by design).'}
+    ];
+    function sevByCvss(c){return c>=9?'critical':c>=7?'high':c>=4?'medium':'low'}
+    /* CVEs that appear in the CISA Known Exploited Vulnerabilities catalog */
+    var KEV_SET={'CVE-2021-44228':1,'CVE-2024-21762':1,'CVE-2022-30276':1};
+    function makeVulns(){
+      var n=inti(0,3),out=[],used=pickN(CVE_POOL,n);
+      for(var i=0;i<used.length;i++){
+        var cvss=+(rng()*6+4).toFixed(1);
+        var kev=!!KEV_SET[used[i].cve];
+        /* EPSS = 30-day exploitation probability; KEV CVEs skew high */
+        var epss=kev?+(rng()*0.28+0.70).toFixed(2):+(Math.pow(rng(),1.8)*0.5).toFixed(2);
+        out.push({cve:used[i].cve,summary:used[i].summary,cvss:cvss,severity:sevByCvss(cvss),epss:epss,kev:kev});
+      }
+      return out
+    }
+
+    /* ---------- timestamps (base 2026-05-30 UTC) ---------- */
+    function daysAgo(d){return new Date(Date.UTC(2026,4,30)-d*86400000).toISOString()}
+    function makeEvidence(a){
+      var ev=[],n=0;
+      ev.push({id:a.id+'-e'+(n++),timestamp:daysAgo(inti(20,90)),kind:'discovery',source:'passive-discovery',detail:'Asset first observed via passive traffic analysis on '+a.subnet+'.0/24.'});
+      ev.push({id:a.id+'-e'+(n++),timestamp:daysAgo(inti(5,40)),kind:'protocol',source:'protocol-fingerprint',detail:'Deep-packet inspection identified '+a.protocols.join(', ')+' on this host.'});
+      if(a.vulnerabilities.length){var v=a.vulnerabilities[0];ev.push({id:a.id+'-e'+(n++),timestamp:daysAgo(inti(1,18)),kind:'vulnerability',source:'cve-correlation',detail:v.cve+' matched against '+a.vendor+' '+a.model+' fingerprint (CVSS '+v.cvss+').'})}
+      if(rng()>0.5)ev.push({id:a.id+'-e'+(n++),timestamp:daysAgo(inti(1,12)),kind:'change',source:'config-monitor',detail:'Firmware/configuration delta detected; baseline updated to '+a.firmware+'.'});
+      ev.push({id:a.id+'-e'+(n++),timestamp:daysAgo(inti(0,4)),kind:'traffic',source:'flow-monitor',detail:'Recurring '+pick(a.protocols)+' session to peer in '+a.zone+'.'});
+      return ev.sort(function(x,y){return x.timestamp<y.timestamp?1:-1})
+    }
+
+    /* ---------- build the environment ---------- */
+    var CRIT_ORDER={low:0,medium:1,high:2,critical:3};
+    var CRIT_NAME=['low','medium','high','critical'];
+    function bump(c,by){return CRIT_NAME[Math.min(3,CRIT_ORDER[c]+by)]}
+    function slug(s){return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'')}
+    function buildAssets(){
+      var assets=[];
+      for(var p=0;p<PROFILES.length;p++){
+        var prof=PROFILES[p],count=inti(2,4);
+        for(var i=1;i<=count;i++){
+          var nn=String(i).padStart(2,'0');
+          var base=slug(prof.type);
+          var vendor=pick(prof.vendors);
+          var vulns=makeVulns();
+          var crit=prof.baseCriticality;
+          if(vulns.some(function(v){return v.severity==='critical'}))crit=bump(crit,1);
+          var r=rng(),status=r>0.92?'offline':r>0.85?'degraded':'online';
+          var a={
+            id:base+'-'+nn,
+            hostname:base.replace(/-/g,'')+'-'+nn,
+            domain:prof.domain,type:prof.type,vendor:vendor,
+            model:vendor.split(' ')[0].toUpperCase()+'-'+inti(100,9999),
+            ip:prof.subnet+'.'+inti(2,250),mac:mac(),
+            firmware:'v'+inti(1,9)+'.'+inti(0,20)+'.'+inti(0,40),
+            protocols:prof.protocols.slice(),zone:prof.zone,zoneLevel:prof.zoneLevel,
+            criticality:crit,status:status,
+            firstSeen:daysAgo(inti(40,120)),lastSeen:daysAgo(inti(0,3)),
+            vulnerabilities:vulns,evidence:[]
+          };
+          a.evidence=makeEvidence(a);
+          assets.push(a);
+        }
+      }
+      return assets.sort(function(x,y){return x.id<y.id?-1:1})
+    }
+    var ASSETS=buildAssets();
+    var BYID={};ASSETS.forEach(function(a){BYID[a.id]=a});
+
+    function getStats(){
+      var s={total:ASSETS.length,byDomain:{OT:0,IoT:0,IT:0},online:0,degraded:0,offline:0,byCriticality:{low:0,medium:0,high:0,critical:0},vulnTotal:0,criticalVulns:0,zones:{}};
+      ASSETS.forEach(function(a){
+        s.byDomain[a.domain]++;s[a.status]++;s.byCriticality[a.criticality]++;
+        s.vulnTotal+=a.vulnerabilities.length;
+        a.vulnerabilities.forEach(function(v){if(v.severity==='critical')s.criticalVulns++});
+        if(!s.zones[a.zoneLevel])s.zones[a.zoneLevel]={level:a.zoneLevel,zone:a.zone,count:0};
+        s.zones[a.zoneLevel].count++;
+      });
+      s.zones=Object.keys(s.zones).map(function(k){return s.zones[k]}).sort(function(x,y){return y.level-x.level});
+      return s
+    }
+    var STATS=getStats();
+    function getAllEvidence(){
+      var all=[];
+      ASSETS.forEach(function(a){a.evidence.forEach(function(e){all.push({id:e.id,timestamp:e.timestamp,kind:e.kind,source:e.source,detail:e.detail,assetId:a.id,hostname:a.hostname,domain:a.domain})})});
+      return all.sort(function(x,y){return x.timestamp<y.timestamp?1:-1})
+    }
+    var ALL_EV=getAllEvidence();
+
+    /* ---------- formatters ---------- */
+    function pad(n){return n<10?'0'+n:''+n}
+    var MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    function fmtDate(iso){var d=new Date(iso);return MON[d.getUTCMonth()]+' '+d.getUTCDate()+', '+d.getUTCFullYear()}
+    function fmtDateTime(iso){var d=new Date(iso);var h=d.getUTCHours(),m=pad(d.getUTCMinutes());var ap=h>=12?'PM':'AM';var h12=h%12;if(h12===0)h12=12;return fmtDate(iso)+', '+h12+':'+m+' '+ap}
+    var NOW=Date.UTC(2026,4,30,12);
+    function relative(iso){var diff=NOW-new Date(iso).getTime();var d=Math.floor(diff/86400000);if(d<=0)return'today';if(d===1)return'yesterday';if(d<30)return d+'d ago';return Math.floor(d/30)+'mo ago'}
+    function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+
+    /* ---------- color maps (rayvelabs palette) ---------- */
+    var DOMC={OT:'#1f6f78',IoT:'#5b3d8a',IT:'#8a6321'};
+    var STC={online:'#2d5e3a',degraded:'#8a6321',offline:'#8a3a3a'};
+    var SEVC={critical:'#8a3a3a',high:'#b4541e',medium:'#8a6321',low:'#2d5e3a'};
+    var KINDC={discovery:'#1f6f78',protocol:'#5b3d8a',vulnerability:'#8a3a3a',change:'#8a6321',traffic:'#2d5e3a'};
+    var CRITC={low:'#2d5e3a',medium:'#8a6321',high:'#b4541e',critical:'#8a3a3a'};
+    var ZONE_ORDER=[
+      {level:4,name:'Level 4 — Enterprise',blurb:'Business IT systems &amp; corporate network'},
+      {level:3.5,name:'Level 3.5 — DMZ',blurb:'Industrial DMZ — brokered IT/OT exchange'},
+      {level:3,name:'Level 3 — Operations',blurb:'Site operations, historians, scheduling'},
+      {level:2,name:'Level 2 — Supervisory',blurb:'SCADA / HMI supervisory control'},
+      {level:1,name:'Level 1 — Control',blurb:'PLCs, RTUs &amp; safety controllers'},
+      {level:0,name:'Level 0 — Process',blurb:'Field sensors &amp; actuators'}
+    ];
+
+    /* ---------- prioritization (Step 5 of the Python toolkit, live) ---------- */
+    var CRIT_W={low:1.0,medium:1.5,high:2.0,critical:3.0};
+    function priorityScore(cvss,epss,kev,crit){var s=cvss*CRIT_W[crit]+epss*10;if(kev)s+=100;return s}
+    function getFindings(){
+      var f=[];
+      ASSETS.forEach(function(a){a.vulnerabilities.forEach(function(v){
+        f.push({cve:v.cve,summary:v.summary,cvss:v.cvss,severity:v.severity,epss:v.epss,kev:v.kev,
+          assetId:a.id,hostname:a.hostname,domain:a.domain,criticality:a.criticality,
+          score:priorityScore(v.cvss,v.epss,v.kev,a.criticality)});
+      })});
+      return f.sort(function(x,y){return y.score-x.score})
+    }
+    var FINDINGS=getFindings();
+
+    /* ---------- view state ---------- */
+    var state={view:'overview',assetId:null,query:'',domain:'All',vulnOnly:false,kind:'all'};
+
+    /* ---------- small html helpers ---------- */
+    function dot(color){return '<span class="bw-dot" style="background:'+color+'"></span>'}
+    function domBadge(d){return '<span class="bw-badge">'+dot(DOMC[d])+esc(d)+'</span>'}
+    function sevBadge(s){return '<span class="bw-badge bw-sev-'+s+'" style="text-transform:capitalize">'+esc(s)+'</span>'}
+    function critBadge(c){return '<span class="bw-badge" style="text-transform:capitalize;color:'+CRITC[c]+'">'+dot(CRITC[c])+esc(c)+'</span>'}
+    function statBadge(st){return '<span class="bw-badge" style="text-transform:capitalize">'+dot(STC[st])+esc(st)+'</span>'}
+
+    /* ---------- 1 · OVERVIEW (dashboard) ---------- */
+    function vOverview(){
+      var topRisk=ASSETS.slice().filter(function(a){return a.vulnerabilities.length}).sort(function(x,y){
+        var sx=x.vulnerabilities.reduce(function(t,v){return t+v.cvss},0);
+        var sy=y.vulnerabilities.reduce(function(t,v){return t+v.cvss},0);
+        return sy-sx
+      }).slice(0,6);
+      var recent=ALL_EV.slice(0,7);
+      var maxZone=Math.max.apply(null,STATS.zones.map(function(z){return z.count}));
+      var maxDom=Math.max(STATS.byDomain.OT,STATS.byDomain.IoT,STATS.byDomain.IT);
+      function statCard(l,v,s,cls){return '<div class="bw-card"><div class="bw-stat-l">'+l+'</div><div class="bw-stat-v '+(cls||'')+'">'+v+'</div><div class="bw-stat-s">'+s+'</div></div>'}
+      var h='';
+      h+='<div class="bw-grid bw-c4">';
+      h+=statCard('Discovered Assets',STATS.total,'across OT, IoT and IT','');
+      h+=statCard('OT / IoT / IT',STATS.byDomain.OT+' / '+STATS.byDomain.IoT+' / '+STATS.byDomain.IT,'by managed domain','');
+      h+=statCard('Open Vulnerabilities',STATS.vulnTotal,STATS.criticalVulns+' rated critical','accent-amber');
+      h+=statCard('Critical Assets',STATS.byCriticality.critical,'highest business impact','accent-rose');
+      h+='</div>';
+      h+='<div class="bw-grid bw-c3" style="margin-top:14px">';
+      // assets by domain
+      h+='<div class="bw-card"><h4>Assets by Domain</h4>';
+      ['OT','IoT','IT'].forEach(function(d){var c=STATS.byDomain[d];h+='<div class="bw-bar-row"><div class="bw-bl">'+dot(DOMC[d])+d+'</div><div class="bw-bar-track"><div class="bw-bar-fill" style="width:'+(c/maxDom*100)+'%;background:'+DOMC[d]+'"></div></div><div class="bw-bv">'+c+'</div></div>'});
+      h+='</div>';
+      // purdue zones
+      h+='<div class="bw-card"><h4>Purdue Zone Distribution</h4>';
+      STATS.zones.forEach(function(z){h+='<div class="bw-bar-row"><div class="bw-bl">Level '+z.level+'</div><div class="bw-bar-track"><div class="bw-bar-fill" style="width:'+(z.count/maxZone*100)+'%;background:var(--gold)"></div></div><div class="bw-bv">'+z.count+'</div></div>'});
+      h+='</div>';
+      // posture
+      h+='<div class="bw-card"><h4>Posture</h4>';
+      [['online',STATS.online],['degraded',STATS.degraded],['offline',STATS.offline]].forEach(function(p){h+='<div class="bw-bar-row"><div class="bw-bl">'+dot(STC[p[0]])+'<span style="text-transform:capitalize">'+p[0]+'</span></div><div class="bw-bar-track"><div class="bw-bar-fill" style="width:'+(p[1]/STATS.total*100)+'%;background:'+STC[p[0]]+'"></div></div><div class="bw-bv">'+p[1]+'</div></div>'});
+      h+='</div>';
+      h+='</div>';
+      h+='<div class="bw-grid bw-c2" style="margin-top:14px">';
+      // top risk
+      h+='<div class="bw-card"><h4>Top Risk Assets</h4><div class="bw-list">';
+      topRisk.forEach(function(a){var score=a.vulnerabilities.reduce(function(t,v){return t+v.cvss},0).toFixed(1);h+='<div class="bw-li">'+dot(DOMC[a.domain])+'<div style="min-width:0"><button class="bw-lk" data-asset="'+a.id+'">'+esc(a.hostname)+'</button><div class="bw-lsub">'+esc(a.type)+' · '+a.vulnerabilities.length+' CVE'+(a.vulnerabilities.length===1?'':'s')+'</div></div><div class="bw-lr"><div class="bw-badge mono" style="color:var(--rose)">Σ '+score+'</div></div></div>'});
+      h+='</div></div>';
+      // recent evidence
+      h+='<div class="bw-card"><h4>Recent Evidence</h4><div class="bw-list">';
+      recent.forEach(function(e){h+='<div class="bw-li">'+dot(KINDC[e.kind])+'<div style="min-width:0"><button class="bw-lk" data-asset="'+e.assetId+'">'+esc(e.hostname)+'</button><div class="bw-lsub">'+esc(e.detail)+'</div></div><div class="bw-lr"><div class="bw-lsub">'+relative(e.timestamp)+'</div></div></div>'});
+      h+='</div></div>';
+      h+='</div>';
+      return {title:'Discovery Overview',sub:'Live posture across the discovered environment',body:h}
+    }
+
+    /* ---------- 2 · ASSET INVENTORY ---------- */
+    function vInventory(){
+      var q=state.query.trim().toLowerCase();
+      var rows=ASSETS.filter(function(a){
+        if(state.domain!=='All'&&a.domain!==state.domain)return false;
+        if(state.vulnOnly&&a.vulnerabilities.length===0)return false;
+        if(q&&!(a.hostname.toLowerCase().indexOf(q)>=0||a.ip.indexOf(q)>=0||a.type.toLowerCase().indexOf(q)>=0||a.vendor.toLowerCase().indexOf(q)>=0))return false;
+        return true
+      });
+      var h='';
+      h+='<div class="bw-controls">';
+      h+='<input id="bwSearch" class="bw-search" placeholder="Search host, IP, type or vendor…" value="'+esc(state.query)+'">';
+      h+='<div class="bw-seg">'+['All','OT','IoT','IT'].map(function(d){return '<button data-domain="'+d+'" class="'+(state.domain===d?'on':'')+'">'+d+'</button>'}).join('')+'</div>';
+      h+='<label class="bw-check"><input type="checkbox" id="bwVuln" '+(state.vulnOnly?'checked':'')+'> Vulnerable only</label>';
+      h+='</div>';
+      h+='<div style="font:500 11px/1 Inter,sans-serif;color:var(--faint);margin-bottom:10px">'+rows.length+' of '+ASSETS.length+' assets</div>';
+      if(rows.length===0){h+='<div class="bw-table-wrap"><div class="bw-empty">No assets match the current filters.</div></div>';}
+      else{
+        h+='<div class="bw-table-wrap"><table class="bw-table"><thead><tr><th>Asset</th><th>Domain</th><th>Type</th><th>IP Address</th><th>Zone</th><th>Criticality</th><th>CVEs</th><th>Last Seen</th></tr></thead><tbody>';
+        rows.forEach(function(a){
+          h+='<tr>';
+          h+='<td><button class="bw-host" data-asset="'+a.id+'">'+esc(a.hostname)+'</button></td>';
+          h+='<td>'+domBadge(a.domain)+'</td>';
+          h+='<td>'+esc(a.type)+'</td>';
+          h+='<td class="mono">'+esc(a.ip)+'</td>';
+          h+='<td>'+esc(a.zone)+'</td>';
+          h+='<td>'+critBadge(a.criticality)+'</td>';
+          h+='<td>'+(a.vulnerabilities.length?'<span style="color:var(--amber);font-weight:600">'+a.vulnerabilities.length+'</span>':'<span style="color:var(--faint)">—</span>')+'</td>';
+          h+='<td>'+relative(a.lastSeen)+'</td>';
+          h+='</tr>';
+        });
+        h+='</tbody></table></div>';
+      }
+      return {title:'Asset Inventory',sub:'Every discovered host with its fingerprint and risk',body:h}
+    }
+
+    /* ---------- 3 · NETWORK TOPOLOGY ---------- */
+    function vTopology(){
+      var byLevel={};
+      ASSETS.forEach(function(a){(byLevel[a.zoneLevel]=byLevel[a.zoneLevel]||[]).push(a)});
+      var h='';
+      ZONE_ORDER.forEach(function(z){
+        var nodes=(byLevel[z.level]||[]).slice().sort(function(x,y){return x.hostname<y.hostname?-1:1});
+        if(!nodes.length)return;
+        h+='<div class="bw-zone"><div class="bw-zone-h"><div><h4>'+z.name+'</h4><p>'+z.blurb+'</p></div><span class="bw-zc">'+nodes.length+' assets</span></div><div class="bw-nodes">';
+        nodes.forEach(function(a){
+          h+='<button class="bw-node" data-asset="'+a.id+'">'+dot(DOMC[a.domain])+'<span style="min-width:0;flex:1"><span class="bw-nn"><span>'+esc(a.hostname)+'</span>'+dot(STC[a.status])+'</span><span class="bw-nt">'+esc(a.type)+'</span></span>'+(a.vulnerabilities.length?'<span class="bw-nv">'+a.vulnerabilities.length+'</span>':'')+'</button>';
+        });
+        h+='</div></div>';
+      });
+      return {title:'Network Topology',sub:'Assets mapped to the Purdue Enterprise Reference Architecture',body:h}
+    }
+
+    /* ---------- 4 · EVIDENCE LOG ---------- */
+    function vEvidence(){
+      var KINDS=['all','discovery','protocol','vulnerability','change','traffic'];
+      var rows=state.kind==='all'?ALL_EV:ALL_EV.filter(function(e){return e.kind===state.kind});
+      var h='';
+      h+='<div class="bw-seg" style="margin-bottom:14px">'+KINDS.map(function(k){return '<button data-kind="'+k+'" class="'+(state.kind===k?'on':'')+'" style="text-transform:capitalize">'+k+'</button>'}).join('')+'</div>';
+      h+='<div style="font:500 11px/1 Inter,sans-serif;color:var(--faint);margin-bottom:10px">'+rows.length+' evidence records</div>';
+      h+='<div class="bw-table-wrap"><div class="bw-list" style="padding:0 14px">';
+      rows.forEach(function(e){
+        h+='<div class="bw-li">'+dot(KINDC[e.kind])+'<div style="min-width:0"><div style="display:flex;gap:7px;align-items:center;flex-wrap:wrap"><span class="bw-badge" style="text-transform:capitalize">'+e.kind+'</span>'+domBadge(e.domain)+'<button class="bw-lk" data-asset="'+e.assetId+'">'+esc(e.hostname)+'</button></div><div class="bw-lsub" style="margin-top:4px;color:var(--dim)">'+esc(e.detail)+'</div></div><div class="bw-lr"><div class="bw-lsub">'+fmtDateTime(e.timestamp)+'</div><div class="bw-lsub">'+esc(e.source)+'</div></div></div>';
+      });
+      h+='</div></div>';
+      return {title:'Evidence Log',sub:'Every observation the discovery engine recorded',body:h}
+    }
+
+    /* ---------- 5 · ASSET DETAIL ---------- */
+    function vDetail(id){
+      var a=BYID[id];
+      if(!a)return {title:'Not found',sub:'',body:'<div class="bw-empty">Asset not found.</div>'};
+      function field(l,v,mono){return '<div class="bw-field"><dt>'+l+'</dt><dd'+(mono?' class="mono"':'')+'>'+v+'</dd></div>'}
+      var h='';
+      h+='<button class="bw-back" data-back="1">← Back to inventory</button>';
+      h+='<div style="display:flex;gap:8px;flex-wrap:wrap;margin:14px 0">'+domBadge(a.domain)+critBadge(a.criticality)+statBadge(a.status)+'<span class="bw-badge">'+esc(a.zone)+'</span></div>';
+      h+='<div class="bw-grid" style="grid-template-columns:1fr 2fr;gap:14px">';
+      // left column
+      h+='<div style="display:flex;flex-direction:column;gap:14px">';
+      h+='<div class="bw-card"><h4>Identity</h4><div class="bw-grid bw-c2" style="gap:12px">';
+      h+=field('IP Address',esc(a.ip),1)+field('MAC',esc(a.mac),1)+field('Firmware',esc(a.firmware),1)+field('Asset ID',esc(a.id),1)+field('First Seen',fmtDate(a.firstSeen))+field('Last Seen',fmtDate(a.lastSeen));
+      h+='</div></div>';
+      h+='<div class="bw-card"><h4>Observed Protocols</h4><div style="display:flex;flex-wrap:wrap;gap:7px">'+a.protocols.map(function(p){return '<span class="bw-badge mono">'+esc(p)+'</span>'}).join('')+'</div></div>';
+      h+='</div>';
+      // right column
+      h+='<div style="display:flex;flex-direction:column;gap:14px">';
+      h+='<div class="bw-card"><h4>Vulnerabilities <span style="color:var(--faint);font-weight:400">· '+a.vulnerabilities.length+' matched</span></h4>';
+      if(!a.vulnerabilities.length){h+='<p style="font:400 13px/1.5 Inter,sans-serif;color:var(--faint);margin:0">No known vulnerabilities matched against this asset’s fingerprint.</p>';}
+      else{a.vulnerabilities.forEach(function(v){h+='<div class="bw-vuln"><div style="min-width:0"><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><span class="bw-cve">'+esc(v.cve)+'</span>'+sevBadge(v.severity)+(v.kev?'<span class="bw-badge" style="color:#fff;background:var(--rose);border-color:var(--rose)">CISA KEV</span>':'')+'</div><div class="bw-vsum">'+esc(v.summary)+'</div></div><div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end;flex-shrink:0"><div class="bw-cvss">CVSS '+v.cvss+'</div><div class="bw-cvss" style="color:var(--violet)">EPSS '+Math.round(v.epss*100)+'%</div></div></div>'});}
+      h+='</div>';
+      h+='<div class="bw-card"><h4>Evidence Timeline</h4><ol class="bw-tl">';
+      a.evidence.forEach(function(e){h+='<li><span class="bw-td" style="background:'+KINDC[e.kind]+'"></span><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><span class="bw-badge" style="text-transform:capitalize">'+e.kind+'</span><span class="bw-tk" style="margin:0">'+fmtDateTime(e.timestamp)+'</span></div><div class="bw-tx">'+esc(e.detail)+'</div><div class="bw-tk">via '+esc(e.source)+'</div></li>'});
+      h+='</ol></div>';
+      h+='</div>';
+      h+='</div>';
+      return {title:a.hostname,sub:a.type+' · '+a.vendor+' '+a.model,body:h}
+    }
+
+    /* ---------- 6 · RISK QUEUE (correlation + prioritization) ---------- */
+    function vPrioritize(){
+      var kev=FINDINGS.filter(function(f){return f.kev});
+      var actNow=FINDINGS.filter(function(f){return f.kev||f.score>=20});
+      var h='';
+      h+='<div class="bw-grid bw-c3" style="margin-bottom:16px">';
+      h+='<div class="bw-card"><div class="bw-stat-l">Open Findings</div><div class="bw-stat-v">'+FINDINGS.length+'</div><div class="bw-stat-s">CVE × asset pairs across the estate</div></div>';
+      h+='<div class="bw-card"><div class="bw-stat-l">In CISA KEV</div><div class="bw-stat-v accent-rose">'+kev.length+'</div><div class="bw-stat-s">known exploited — remediate first</div></div>';
+      h+='<div class="bw-card"><div class="bw-stat-l">Act-now Queue</div><div class="bw-stat-v accent-amber">'+actNow.length+'</div><div class="bw-stat-s">KEV, or priority ≥ 20</div></div>';
+      h+='</div>';
+      h+='<div class="bw-table-wrap"><table class="bw-table"><thead><tr><th>#</th><th>CVE</th><th>Asset</th><th>Domain</th><th>Asset Crit</th><th>CVSS</th><th>EPSS</th><th>KEV</th><th>Priority</th></tr></thead><tbody>';
+      FINDINGS.forEach(function(f,i){
+        h+='<tr>';
+        h+='<td style="color:var(--faint);font-variant-numeric:tabular-nums">'+(i+1)+'</td>';
+        h+='<td><span class="mono" style="color:var(--ink);font-weight:600">'+esc(f.cve)+'</span> '+sevBadge(f.severity)+'</td>';
+        h+='<td><button class="bw-host" data-asset="'+f.assetId+'">'+esc(f.hostname)+'</button></td>';
+        h+='<td>'+domBadge(f.domain)+'</td>';
+        h+='<td>'+critBadge(f.criticality)+'</td>';
+        h+='<td class="mono">'+f.cvss.toFixed(1)+'</td>';
+        h+='<td class="mono">'+Math.round(f.epss*100)+'%</td>';
+        h+='<td>'+(f.kev?'<span class="bw-badge" style="color:#fff;background:var(--rose);border-color:var(--rose)">KEV</span>':'<span style="color:var(--faint)">—</span>')+'</td>';
+        h+='<td class="mono" style="font-weight:700;color:'+(f.kev?'var(--rose)':'var(--ink)')+'">'+f.score.toFixed(1)+'</td>';
+        h+='</tr>';
+      });
+      h+='</tbody></table></div>';
+      h+='<div class="bw-note">Ranking = CVSS × asset-criticality weight + EPSS × 10, with any CISA-KEV finding boosted +100 so actively-exploited vulnerabilities always surface first. This is the Step&nbsp;5 algorithm from the Python toolkit above, running live over the discovered estate.</div>';
+      return {title:'Risk Queue',sub:'Findings ranked for remediation — exploited & likely-exploited first',body:h}
+    }
+
+    /* ---------- shell + dispatch ---------- */
+    var NAV=[['overview','Overview'],['assets','Asset Inventory'],['topology','Network Topology'],['evidence','Evidence Log'],['prioritize','Risk Queue']];
+    function viewFor(){
+      if(state.view==='detail')return vDetail(state.assetId);
+      if(state.view==='assets')return vInventory();
+      if(state.view==='topology')return vTopology();
+      if(state.view==='evidence')return vEvidence();
+      if(state.view==='prioritize')return vPrioritize();
+      return vOverview();
+    }
+    function render(){
+      var v=viewFor();
+      var activeNav=state.view==='detail'?'assets':state.view;
+      var h='';
+      h+='<div class="bw-top"><div class="bw-logo"><span class="bw-mark">R</span><div><b>RayveNet</b><span>Discovery &amp; Evidence</span></div></div>';
+      h+='<nav class="bw-nav">'+NAV.map(function(n){return '<button data-view="'+n[0]+'" class="'+(activeNav===n[0]?'on':'')+'">'+n[1]+'</button>'}).join('')+'</nav>';
+      h+='<span class="bw-conn"><i></i> Simulator connected</span></div>';
+      h+='<div class="bw-main"><div class="bw-head"><div><h3>'+esc(v.title)+'</h3><p>'+esc(v.sub)+'</p></div></div><div class="bw-body">'+v.body+'</div></div>';
+      root.innerHTML=h;
+    }
+
+    /* ---------- event wiring (delegation on root) ---------- */
+    root.addEventListener('click',function(ev){
+      var t=ev.target.closest('[data-view],[data-asset],[data-back],[data-domain],[data-kind]');
+      if(!t||!root.contains(t))return;
+      if(t.hasAttribute('data-view')){state.view=t.getAttribute('data-view');state.assetId=null;render();}
+      else if(t.hasAttribute('data-asset')){state.view='detail';state.assetId=t.getAttribute('data-asset');render();}
+      else if(t.hasAttribute('data-back')){state.view='assets';state.assetId=null;render();}
+      else if(t.hasAttribute('data-domain')){state.domain=t.getAttribute('data-domain');render();}
+      else if(t.hasAttribute('data-kind')){state.kind=t.getAttribute('data-kind');render();}
+    });
+    root.addEventListener('input',function(ev){
+      if(ev.target.id==='bwSearch'){
+        var caret=ev.target.selectionStart;
+        state.query=ev.target.value;
+        render();
+        var box=document.getElementById('bwSearch');
+        if(box){box.focus();try{box.setSelectionRange(caret,caret)}catch(e){}}
+      }
+    });
+    root.addEventListener('change',function(ev){
+      if(ev.target.id==='bwVuln'){state.vulnOnly=ev.target.checked;render();}
+    });
+
+    render();
+  })();
+  </script>
+
 </div>
 
 <!-- ===================== NETWORK DISCOVERY · CHAPTER 1 ===================== -->
