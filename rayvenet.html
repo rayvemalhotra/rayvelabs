@@ -5537,6 +5537,7 @@ identity:      <span style="color:#8a6321">unresolved · hand off to Ch.2</span>
     <a href="#t3-1" class="nd-sn">1 · The Boundary</a>
     <a href="#t3-2" class="nd-sn">2 · CVSS Anatomy</a>
     <a href="#t3-3" class="nd-sn">3 · 5 Methods</a>
+    <a href="#t3-pipeline" class="nd-sn">▶ Pipeline (live)</a>
     <a href="#t3-4" class="nd-sn">4 · Correlation</a>
     <a href="#t3-kev" class="nd-sn">Live KEV</a>
     <a href="#t3-g1" class="nd-sn">🎯 Triage Room</a>
@@ -5546,6 +5547,7 @@ identity:      <span style="color:#8a6321">unresolved · hand off to Ch.2</span>
     <a href="#t3-cast" class="nd-sn">Chromecast Trace</a>
     <a href="#t3-cap" class="nd-sn">Capstone</a>
     <a href="#t3-handoff" class="nd-sn">Handoff</a>
+    <a href="#t3-sources" class="nd-sn">Sources</a>
     <a href="#t3-disc" class="nd-sn">Discipline</a>
   </nav>
 
@@ -5786,6 +5788,622 @@ identity:      <span style="color:#8a6321">unresolved · hand off to Ch.2</span>
 
 
   <div class="nd-chapter-foot">Drawn from <b>Dr. Ravinder Mallarapu</b>'s Chapter 3 lectures · Analytical Tools for Cyber · SEAS-8414 · GW · interactive lab by Rayve Malhotra · approved by Dr. Mallarapu.</div>
+
+
+    <!-- ============== §3.5 LIVE CPE→CVE PIPELINE EXERCISE ============== -->
+  <section id="t3-pipeline" class="nd-section">
+    <div class="nd-sec-num">PRACTICAL EXERCISE</div>
+    <h2 class="nd-sec-title">Run the CPE→CVE Pipeline · Live</h2>
+    <div class="nd-sec-sub">Six steps. Real public APIs. Real CVE data fetched in your browser.</div>
+
+    <p class="nd-prose">
+      Pick a banner, click through six steps. Each step exposes its real API call so you can copy the URL and verify in your own terminal. Cached for 24 hours per banner in your <code>localStorage</code>. <a href="https://nvd.nist.gov/developers/vulnerabilities" target="_blank" rel="noopener" class="t3-pl-doc">NVD API docs</a> · <a href="https://api.first.org/" target="_blank" rel="noopener" class="t3-pl-doc">FIRST EPSS API</a> · <a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" target="_blank" rel="noopener" class="t3-pl-doc">CISA KEV</a>
+    </p>
+
+    <style>
+      .t3-pl-doc{color:var(--gold);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+      .t3-pl-doc:hover{color:var(--ink)}
+      .t3-pl{background:var(--paper);border:1px solid var(--rule);border-radius:12px;padding:0;max-width:1080px;margin-top:14px;overflow:hidden}
+      .t3-pl-step{border-bottom:1px solid var(--rule-faint);padding:18px 22px;opacity:.45;transition:opacity .25s}
+      .t3-pl-step:last-child{border-bottom:none}
+      .t3-pl-step.active,.t3-pl-step.done{opacity:1}
+      .t3-pl-h{font-family:'Inter',sans-serif;font-size:10.5px;color:var(--gold);text-transform:uppercase;letter-spacing:1.6px;font-weight:600;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+      .t3-pl-h .live{font-family:'JetBrains Mono',monospace;font-size:10px;color:#2d5e3a;background:rgba(45,94,58,.08);padding:3px 8px;border-radius:99px;font-weight:600;display:none}
+      .t3-pl-step.has-live .t3-pl-h .live{display:inline-block}
+      .t3-pl-body{font-size:13.5px;color:var(--dim);line-height:1.6}
+      .t3-pl-input{padding:9px 13px;font-family:'JetBrains Mono',monospace;font-size:13px;border:1px solid var(--rule);border-radius:8px;outline:none;width:100%;max-width:480px;color:var(--ink);background:var(--paper);margin-bottom:10px}
+      .t3-pl-input:focus{border-color:var(--ink)}
+      .t3-pl-presets{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:12px}
+      .t3-pl-preset{padding:5px 11px;font-family:'JetBrains Mono',monospace;font-size:11px;background:var(--paper2);border:1px solid var(--rule);border-radius:99px;cursor:pointer;color:var(--dim)}
+      .t3-pl-preset:hover{border-color:var(--ink);color:var(--ink)}
+      .t3-pl-cta{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;font-family:'Inter',sans-serif;font-size:12.5px;font-weight:600;border:1px solid var(--ink);background:var(--ink);color:var(--paper);border-radius:99px;cursor:pointer;letter-spacing:.2px}
+      .t3-pl-cta:hover{background:#000}
+      .t3-pl-cta:disabled{opacity:.4;cursor:not-allowed}
+      .t3-pl-url{background:#1a1a1a;color:#e9e2cf;border-radius:6px;padding:9px 13px;margin:10px 0;font-family:'JetBrains Mono',monospace;font-size:11px;word-break:break-all;line-height:1.6;display:none}
+      .t3-pl-step.done .t3-pl-url{display:block}
+      .t3-pl-url .lbl{display:block;font-family:'Inter',sans-serif;font-size:9px;text-transform:uppercase;letter-spacing:1.6px;color:var(--gold-bright);font-weight:600;margin-bottom:4px}
+      .t3-pl-url a{color:#c4a565;text-decoration:underline}
+      .t3-pl-norm{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px;margin-top:10px}
+      .t3-pl-norm-cell{padding:8px 12px;background:var(--paper2);border-radius:6px;border-left:2px solid var(--gold);font-family:'JetBrains Mono',monospace;font-size:11.5px}
+      .t3-pl-norm-cell .k{font-family:'Inter',sans-serif;font-size:9.5px;color:var(--gold);text-transform:uppercase;letter-spacing:1.2px;font-weight:600;display:block;margin-bottom:3px}
+      .t3-pl-norm-cell .v{color:var(--ink)}
+      .t3-pl-norm-cell .v.q{color:var(--faint);font-style:italic;font-family:'Source Serif Pro',Georgia,serif}
+      .t3-pl-cpe{display:flex;flex-direction:column;gap:6px;margin-top:10px}
+      .t3-pl-cpe-r{display:grid;grid-template-columns:80px 1fr;gap:14px;align-items:center;padding:8px 12px;background:var(--paper2);border-radius:6px;font-family:'JetBrains Mono',monospace;font-size:11.5px;border-left:3px solid var(--gold)}
+      .t3-pl-cpe-r.exact{border-left-color:#2d5e3a}
+      .t3-pl-cpe-r.fuzzy{border-left-color:#8a6321}
+      .t3-pl-cpe-r.family{border-left-color:#888}
+      .t3-pl-cpe-r .precision{font-family:'Inter',sans-serif;font-size:10px;text-transform:uppercase;letter-spacing:1.2px;font-weight:600}
+      .t3-pl-cpe-r.exact .precision{color:#2d5e3a}
+      .t3-pl-cpe-r.fuzzy .precision{color:#8a6321}
+      .t3-pl-cpe-r.family .precision{color:#888}
+      .t3-pl-cpe-r .cpe{color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+      .t3-pl-cves{display:flex;flex-direction:column;gap:6px;margin-top:10px;max-height:380px;overflow-y:auto}
+      .t3-pl-cve{padding:11px 14px;background:var(--paper);border:1px solid var(--rule);border-radius:8px;font-family:'Inter',sans-serif;font-size:12.5px}
+      .t3-pl-cve.applies{border-left:3px solid #2d5e3a}
+      .t3-pl-cve.backport{border-left:3px solid #8a6321;background:rgba(138,99,33,.03)}
+      .t3-pl-cve.outofrange{opacity:.5}
+      .t3-pl-cve-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:6px}
+      .t3-pl-cve-id{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--ink);font-weight:500}
+      .t3-pl-cve-id a{color:var(--gold);text-decoration:none}
+      .t3-pl-cve-id a:hover{text-decoration:underline}
+      .t3-pl-cve-tags{display:flex;gap:5px;flex-wrap:wrap}
+      .t3-pl-cve-tag{padding:2px 8px;font-size:9.5px;text-transform:uppercase;letter-spacing:1px;font-weight:600;border-radius:99px}
+      .t3-pl-cve-tag.severity-critical{background:rgba(138,58,58,.15);color:#8a3a3a}
+      .t3-pl-cve-tag.severity-high{background:rgba(168,81,26,.15);color:#a8511a}
+      .t3-pl-cve-tag.severity-medium{background:rgba(138,99,33,.15);color:#8a6321}
+      .t3-pl-cve-tag.severity-low{background:rgba(45,94,58,.15);color:#2d5e3a}
+      .t3-pl-cve-tag.kev{background:rgba(226,75,74,.15);color:#a83a3a}
+      .t3-pl-cve-tag.epss-hi{background:rgba(157,133,82,.15);color:var(--gold)}
+      .t3-pl-cve-tag.backport{background:rgba(138,99,33,.15);color:#8a6321}
+      .t3-pl-cve-desc{font-size:12px;color:var(--dim);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+      .t3-pl-cve-meta{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--faint);margin-top:6px;display:flex;gap:14px;flex-wrap:wrap}
+      .t3-pl-warn{margin-top:10px;padding:10px 14px;background:rgba(138,99,33,.05);border-left:3px solid #8a6321;font-size:12.5px;color:var(--dim);line-height:1.55;font-family:'Source Serif Pro',Georgia,serif;font-style:italic;display:none}
+      .t3-pl-warn.show{display:block}
+      .t3-pl-warn b{color:#8a6321;font-style:normal}
+      .t3-pl-summary{background:var(--paper2);padding:16px 20px;margin-top:14px;border-radius:8px;display:none}
+      .t3-pl-summary.show{display:block}
+      .t3-pl-summary h4{font-family:'Source Serif Pro',Georgia,serif;font-size:16px;font-weight:600;color:var(--ink);margin:0 0 8px}
+      .t3-pl-summary p{font-size:13.5px;color:var(--dim);line-height:1.65;margin:0}
+      .t3-pl-summary p b{color:var(--ink)}
+      .t3-pl-loading{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--gold);font-style:italic;padding:8px 0}
+      .t3-pl-meta{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--faint);margin-top:6px}
+    </style>
+
+    <div class="t3-pl" id="t3PlBox">
+
+      <!-- STEP 1 -->
+      <div class="t3-pl-step active" id="t3PlS1">
+        <div class="t3-pl-h">Step 1 · Collect evidence <span class="live">no api</span></div>
+        <div class="t3-pl-body">
+          <p style="margin:0 0 10px;font-size:13.5px;color:var(--dim);line-height:1.55">Paste a banner string. Where did this come from in real life? <code>nmap -sV</code> output, an HTTP <code>Server</code> header, a TLS certificate CN, an SNMP sysDescr, an SBOM line — any text that names a vendor + product + version.</p>
+          <input class="t3-pl-input" type="text" id="t3PlBanner" value="OpenSSH_8.4">
+          <div class="t3-pl-presets" id="t3PlPresets">
+            <button class="t3-pl-preset" data-b="OpenSSH_8.4">OpenSSH_8.4</button>
+            <button class="t3-pl-preset" data-b="OpenSSH_8.4 (Ubuntu)">OpenSSH_8.4 (Ubuntu)</button>
+            <button class="t3-pl-preset" data-b="nginx/1.18.0">nginx/1.18.0</button>
+            <button class="t3-pl-preset" data-b="nginx/1.18.0 (Ubuntu)">nginx/1.18.0 (Ubuntu)</button>
+            <button class="t3-pl-preset" data-b="Apache/2.4.50">Apache/2.4.50</button>
+            <button class="t3-pl-preset" data-b="Hikvision-Webs/8.13">Hikvision-Webs/8.13</button>
+            <button class="t3-pl-preset" data-b="lighttpd/1.4.55">lighttpd/1.4.55</button>
+          </div>
+          <button class="t3-pl-cta" id="t3PlGo1">▶ Normalize this banner</button>
+        </div>
+      </div>
+
+      <!-- STEP 2 -->
+      <div class="t3-pl-step" id="t3PlS2">
+        <div class="t3-pl-h">Step 2 · Normalize <span class="live">no api</span></div>
+        <div class="t3-pl-body">
+          <p style="margin:0 0 8px;font-size:13.5px;color:var(--dim);line-height:1.55">Regex + vendor mapping extracts canonical fields. Ambiguous fields stay <em>?</em> rather than guessed.</p>
+          <div class="t3-pl-norm" id="t3PlNorm"></div>
+          <div class="t3-pl-meta" id="t3PlNormMeta"></div>
+          <div style="margin-top:12px"><button class="t3-pl-cta" id="t3PlGo2">▶ Resolve CPE candidates</button></div>
+        </div>
+      </div>
+
+      <!-- STEP 3 -->
+      <div class="t3-pl-step" id="t3PlS3">
+        <div class="t3-pl-h">Step 3 · Resolve CPE candidates <span class="live">no api</span></div>
+        <div class="t3-pl-body">
+          <p style="margin:0 0 8px;font-size:13.5px;color:var(--dim);line-height:1.55">Three candidates from most-specific to least. We'll query NVD with the exact one first; fall back to fuzzy if exact returns nothing. CPE 2.3 syntax · <a href="https://csrc.nist.gov/projects/security-content-automation-protocol/specifications/cpe" target="_blank" rel="noopener" class="t3-pl-doc">NIST CPE specification</a>.</p>
+          <div class="t3-pl-cpe" id="t3PlCpe"></div>
+          <div style="margin-top:12px"><button class="t3-pl-cta" id="t3PlGo3">▶ Query NVD live</button></div>
+        </div>
+      </div>
+
+      <!-- STEP 4 -->
+      <div class="t3-pl-step" id="t3PlS4">
+        <div class="t3-pl-h">Step 4 · Query NVD <span class="live">LIVE API</span></div>
+        <div class="t3-pl-body">
+          <p style="margin:0 0 8px;font-size:13.5px;color:var(--dim);line-height:1.55">Real fetch to <a href="https://services.nvd.nist.gov/rest/json/cves/2.0" target="_blank" rel="noopener" class="t3-pl-doc">services.nvd.nist.gov</a>. First tries <code>cpeName=</code> (exact); if 0 results, falls back to <code>virtualMatchString=</code> (prefix). Cached 24h locally.</p>
+          <div class="t3-pl-url" id="t3PlUrl4"></div>
+          <div class="t3-pl-loading" id="t3PlLoad4" style="display:none">▸ fetching from NVD…</div>
+          <div class="t3-pl-cves" id="t3PlCves"></div>
+          <div class="t3-pl-meta" id="t3PlCvesMeta"></div>
+          <div style="margin-top:12px"><button class="t3-pl-cta" id="t3PlGo4">▶ Interpret applicability</button></div>
+        </div>
+      </div>
+
+      <!-- STEP 5 -->
+      <div class="t3-pl-step" id="t3PlS5">
+        <div class="t3-pl-h">Step 5 · Interpret applicability <span class="live">no api</span></div>
+        <div class="t3-pl-body">
+          <p style="margin:0 0 8px;font-size:13.5px;color:var(--dim);line-height:1.55">For each CVE: which versions are affected, does our version fall in range, did a distro likely backport a patch? CVEs that may not apply get flagged.</p>
+          <div class="t3-pl-cves" id="t3PlCvesApply"></div>
+          <div class="t3-pl-warn" id="t3PlWarn"></div>
+          <div style="margin-top:12px"><button class="t3-pl-cta" id="t3PlGo5">▶ Score &amp; prioritize</button></div>
+        </div>
+      </div>
+
+      <!-- STEP 6 -->
+      <div class="t3-pl-step" id="t3PlS6">
+        <div class="t3-pl-h">Step 6 · Score &amp; prioritize <span class="live">LIVE API</span></div>
+        <div class="t3-pl-body">
+          <p style="margin:0 0 8px;font-size:13.5px;color:var(--dim);line-height:1.55">CVSS comes from the NVD record. EPSS (Exploit Prediction Scoring System) fetched live from <a href="https://www.first.org/epss/" target="_blank" rel="noopener" class="t3-pl-doc">FIRST.org</a>. KEV lookup from the cached CISA catalog. Composite priority = severity × evidence × exposure × consequence.</p>
+          <div class="t3-pl-url" id="t3PlUrl6"></div>
+          <div class="t3-pl-loading" id="t3PlLoad6" style="display:none">▸ fetching EPSS scores from first.org…</div>
+          <div class="t3-pl-cves" id="t3PlCvesScored"></div>
+          <div class="t3-pl-summary show" id="t3PlSummary" style="display:none"></div>
+          <div style="margin-top:12px"><button class="t3-pl-cta" id="t3PlReset">↻ Run again with a different banner</button></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+  (function(){
+    /* ============================================================
+       LIVE CPE→CVE PIPELINE EXERCISE
+       Uses real public APIs:
+         - NVD CVE search: services.nvd.nist.gov/rest/json/cves/2.0
+         - FIRST EPSS: api.first.org/data/v1/epss
+         - CISA KEV catalog (cached from earlier in the chapter)
+       ============================================================ */
+
+    var box = document.getElementById("t3PlBox");
+    if(!box) return;
+
+    var state = {banner:"", normalized:null, cpes:null, cves:null, scored:null};
+
+    function showStep(n){
+      for(var i = 1; i <= 6; i++){
+        var s = document.getElementById("t3PlS" + i);
+        if(!s) continue;
+        if(i < n){ s.classList.add("done"); s.classList.remove("active"); }
+        else if(i === n){ s.classList.add("active"); s.classList.remove("done"); }
+        else { s.classList.remove("active","done"); }
+      }
+    }
+
+    /* ---------- BANNER NORMALIZER ---------- */
+    /* Known vendor/product mappings for common banner shapes. The CPE official
+       vendor and product strings live in the NVD CPE Dictionary —
+       https://nvd.nist.gov/products/cpe/search */
+    var VENDOR_MAP = {
+      "openssh":  {vendor:"openbsd",   product:"openssh",      part:"a"},
+      "nginx":    {vendor:"nginx",     product:"nginx",        part:"a"},
+      "apache":   {vendor:"apache",    product:"http_server",  part:"a"},
+      "hikvision":{vendor:"hikvision", product:"web_server",   part:"a"},
+      "lighttpd": {vendor:"lighttpd",  product:"lighttpd",     part:"a"},
+      "iis":      {vendor:"microsoft", product:"iis",          part:"a"},
+      "tomcat":   {vendor:"apache",    product:"tomcat",       part:"a"},
+      "openssl":  {vendor:"openssl",   product:"openssl",      part:"a"},
+      "log4j":    {vendor:"apache",    product:"log4j",        part:"a"}
+    };
+    /* Linux distributor hint patterns — backport risk indicators */
+    var DISTRO_PATTERNS = /\((Ubuntu|Debian|Red ?Hat|RHEL|CentOS|SUSE|Amazon|Fedora|Oracle|Alpine|Arch)\)/i;
+
+    function normalizeBanner(banner){
+      var b = (banner || "").trim();
+      var result = {raw:b, vendor:null, product:null, version:null, edition:null, distro:null, ambiguous:[], part:"a"};
+      if(!b){ result.ambiguous.push("empty banner"); return result; }
+
+      /* extract distributor hint */
+      var dm = b.match(DISTRO_PATTERNS);
+      if(dm){ result.distro = dm[1]; }
+
+      /* try product_VERSION (OpenSSH-style) and product/VERSION (nginx-style) */
+      var m = b.match(/^([A-Za-z][A-Za-z0-9\-]*)[_\/\-]([0-9][0-9a-zA-Z\.\-]*)/);
+      if(m){
+        var p = m[1].toLowerCase().replace(/-webs.*/, "").replace(/-server/, "");
+        var v = m[2];
+        var lookup = VENDOR_MAP[p];
+        if(lookup){
+          result.vendor = lookup.vendor;
+          result.product = lookup.product;
+          result.part = lookup.part;
+        } else {
+          /* try a vendor-prefixed banner like Hikvision-Webs/8.13 */
+          var hkm = b.match(/^([A-Za-z][A-Za-z0-9]*)-/);
+          if(hkm){
+            var hp = hkm[1].toLowerCase();
+            if(VENDOR_MAP[hp]){
+              result.vendor = VENDOR_MAP[hp].vendor;
+              result.product = VENDOR_MAP[hp].product;
+              result.part = VENDOR_MAP[hp].part;
+            } else {
+              result.vendor = p;
+              result.product = p;
+              result.ambiguous.push("vendor inferred from banner prefix — not validated against CPE dictionary");
+            }
+          } else {
+            result.vendor = p;
+            result.product = p;
+            result.ambiguous.push("vendor==product — banner did not name a distinct vendor");
+          }
+        }
+        result.version = v;
+      } else {
+        result.ambiguous.push("could not parse vendor/version from banner");
+      }
+      if(!result.version){ result.ambiguous.push("no version extracted — only vendor/product CPE possible"); }
+      if(result.distro){ result.edition = result.distro.toLowerCase(); }
+      return result;
+    }
+
+    function renderNorm(){
+      var n = state.normalized;
+      var grid = document.getElementById("t3PlNorm");
+      grid.innerHTML =
+        '<div class="t3-pl-norm-cell"><span class="k">Vendor</span><span class="v ' + (n.vendor ? "" : "q") + '">' + (n.vendor || "?") + '</span></div>' +
+        '<div class="t3-pl-norm-cell"><span class="k">Product</span><span class="v ' + (n.product ? "" : "q") + '">' + (n.product || "?") + '</span></div>' +
+        '<div class="t3-pl-norm-cell"><span class="k">Version</span><span class="v ' + (n.version ? "" : "q") + '">' + (n.version || "?") + '</span></div>' +
+        '<div class="t3-pl-norm-cell"><span class="k">Part</span><span class="v">' + n.part + ' · ' + ({a:"application",o:"operating system",h:"hardware"})[n.part] + '</span></div>' +
+        '<div class="t3-pl-norm-cell"><span class="k">Distro hint</span><span class="v ' + (n.distro ? "" : "q") + '">' + (n.distro || "(none)") + '</span></div>';
+      var meta = "";
+      if(n.ambiguous.length) meta = "Notes: " + n.ambiguous.join(" · ");
+      document.getElementById("t3PlNormMeta").textContent = meta;
+    }
+
+    /* ---------- CPE BUILDER ---------- */
+    function buildCpes(n){
+      var p = n.part || "a";
+      var v = n.vendor ? n.vendor.replace(/[\s]/g, "_") : "*";
+      var prod = n.product ? n.product.replace(/[\s]/g, "_") : "*";
+      var ver = n.version || "*";
+      return [
+        {precision:"exact",  cpe:"cpe:2.3:" + p + ":" + v + ":" + prod + ":" + ver + ":*:*:*:*:*:*:*", note:"vendor + product + exact version"},
+        {precision:"fuzzy",  cpe:"cpe:2.3:" + p + ":" + v + ":" + prod + ":*:*:*:*:*:*:*:*",          note:"vendor + product, wildcard version"},
+        {precision:"family", cpe:"cpe:2.3:" + p + ":" + v + ":*:*:*:*:*:*:*:*:*",                       note:"vendor only — broad family"}
+      ];
+    }
+    function renderCpes(){
+      var c = state.cpes;
+      var grid = document.getElementById("t3PlCpe");
+      grid.innerHTML = c.map(function(x){
+        return '<div class="t3-pl-cpe-r ' + x.precision + '">' +
+          '<div class="precision">' + x.precision + '</div>' +
+          '<div><div class="cpe">' + x.cpe + '</div><div style="font-family:Inter,sans-serif;font-size:10.5px;color:var(--faint);margin-top:3px">' + x.note + '</div></div>' +
+        '</div>';
+      }).join("");
+    }
+
+    /* ---------- LIVE NVD QUERY (with 24h localStorage cache) ---------- */
+    var NVD_CACHE_KEY = "rl_nvd_cache_v1";
+    var NVD_TTL = 24 * 60 * 60 * 1000;
+    function getNvdCache(){ try{ return JSON.parse(localStorage.getItem(NVD_CACHE_KEY) || "{}"); } catch(e){ return {}; } }
+    function setNvdCache(c){ try{ localStorage.setItem(NVD_CACHE_KEY, JSON.stringify(c)); } catch(e){} }
+
+    function nvdUrl(cpe, mode){
+      var qp = mode === "exact" ? "cpeName=" : "virtualMatchString=";
+      return "https://services.nvd.nist.gov/rest/json/cves/2.0?" + qp + encodeURIComponent(cpe) + "&resultsPerPage=20";
+    }
+
+    function fetchNvd(cpe, mode){
+      var cache = getNvdCache();
+      var key = mode + "|" + cpe;
+      var now = Date.now();
+      if(cache[key] && (now - cache[key].ts) < NVD_TTL){
+        return Promise.resolve({fromCache:true, data:cache[key].data, url:nvdUrl(cpe, mode)});
+      }
+      var url = nvdUrl(cpe, mode);
+      return fetch(url).then(function(r){
+        if(!r.ok && r.status === 404) return {vulnerabilities:[]};
+        return r.json();
+      }).then(function(data){
+        cache[key] = {ts:now, data:data};
+        setNvdCache(cache);
+        return {fromCache:false, data:data, url:url};
+      });
+    }
+
+    /* Parse a single CVE record from the NVD response */
+    function parseCveRecord(item){
+      var cve = item.cve || item;
+      var desc = "";
+      if(cve.descriptions){
+        var en = cve.descriptions.find(function(d){ return d.lang === "en"; });
+        if(en) desc = en.value;
+      }
+      var sev = null, score = null, vector = null;
+      if(cve.metrics){
+        var m = cve.metrics.cvssMetricV31 || cve.metrics.cvssMetricV30 || cve.metrics.cvssMetricV2;
+        if(m && m[0]){
+          var cd = m[0].cvssData;
+          score = cd.baseScore;
+          sev = (cd.baseSeverity || "").toLowerCase();
+          vector = cd.vectorString;
+        }
+      }
+      /* extract affected version ranges from cpe_match (configurations) */
+      var ranges = [];
+      if(cve.configurations){
+        cve.configurations.forEach(function(c){
+          if(!c.nodes) return;
+          c.nodes.forEach(function(n){
+            if(!n.cpeMatch) return;
+            n.cpeMatch.forEach(function(cm){
+              ranges.push({criteria:cm.criteria, vsi:cm.versionStartIncluding, vse:cm.versionStartExcluding, vei:cm.versionEndIncluding, vee:cm.versionEndExcluding, vulnerable:cm.vulnerable});
+            });
+          });
+        });
+      }
+      return {id:cve.id, desc:desc, severity:sev, score:score, vector:vector, ranges:ranges, published:cve.published};
+    }
+
+    function renderCves(target, list, opts){
+      opts = opts || {};
+      target.innerHTML = list.map(function(c){
+        var sevTag = c.severity ? '<span class="t3-pl-cve-tag severity-' + c.severity + '">' + c.severity + ' ' + (c.score || "?") + '</span>' : "";
+        var kevTag = c.kev ? '<span class="t3-pl-cve-tag kev">KEV · in the wild</span>' : "";
+        var epssTag = c.epss != null && c.epss > 0.1 ? '<span class="t3-pl-cve-tag epss-hi">EPSS ' + (c.epss * 100).toFixed(1) + '%</span>' : "";
+        var bpTag = c.backportRisk ? '<span class="t3-pl-cve-tag backport">backport risk</span>' : "";
+        var oorTag = c.outOfRange ? '<span class="t3-pl-cve-tag" style="background:var(--paper2);color:var(--faint)">version not in range</span>' : "";
+        var cls = "t3-pl-cve";
+        if(c.outOfRange) cls += " outofrange";
+        else if(c.backportRisk) cls += " backport";
+        else if(opts.applies) cls += " applies";
+        var meta = [];
+        if(c.published) meta.push("published " + (c.published || "").slice(0, 10));
+        if(c.priority != null) meta.push("priority " + c.priority.toFixed(2));
+        return '<div class="' + cls + '">' +
+          '<div class="t3-pl-cve-top">' +
+            '<div class="t3-pl-cve-id"><a href="https://nvd.nist.gov/vuln/detail/' + c.id + '" target="_blank" rel="noopener">' + c.id + '</a></div>' +
+            '<div class="t3-pl-cve-tags">' + sevTag + kevTag + epssTag + bpTag + oorTag + '</div>' +
+          '</div>' +
+          '<div class="t3-pl-cve-desc">' + (c.desc || "(no description)") + '</div>' +
+          '<div class="t3-pl-cve-meta">' + meta.join(" · ") + '</div>' +
+        '</div>';
+      }).join("");
+    }
+
+    /* Compare two semver-ish versions. Returns -1, 0, 1. */
+    function cmpVersion(a, b){
+      if(!a || !b) return 0;
+      var as = String(a).split(/[^0-9]+/).map(function(x){ return parseInt(x) || 0; });
+      var bs = String(b).split(/[^0-9]+/).map(function(x){ return parseInt(x) || 0; });
+      for(var i = 0; i < Math.max(as.length, bs.length); i++){
+        var ai = as[i] || 0, bi = bs[i] || 0;
+        if(ai < bi) return -1;
+        if(ai > bi) return 1;
+      }
+      return 0;
+    }
+    function isVersionInRange(version, range){
+      if(!version) return null; /* unknown */
+      var v = version;
+      var ok = true;
+      if(range.vsi !== undefined && range.vsi !== null && range.vsi !== ""){
+        if(cmpVersion(v, range.vsi) < 0) ok = false;
+      }
+      if(range.vse !== undefined && range.vse !== null && range.vse !== ""){
+        if(cmpVersion(v, range.vse) <= 0) ok = false;
+      }
+      if(range.vei !== undefined && range.vei !== null && range.vei !== ""){
+        if(cmpVersion(v, range.vei) > 0) ok = false;
+      }
+      if(range.vee !== undefined && range.vee !== null && range.vee !== ""){
+        if(cmpVersion(v, range.vee) >= 0) ok = false;
+      }
+      return ok;
+    }
+
+    /* ---------- LIVE EPSS QUERY ---------- */
+    var EPSS_CACHE_KEY = "rl_epss_cache_v1";
+    function getEpssCache(){ try{ return JSON.parse(localStorage.getItem(EPSS_CACHE_KEY) || "{}"); } catch(e){ return {}; } }
+    function setEpssCache(c){ try{ localStorage.setItem(EPSS_CACHE_KEY, JSON.stringify(c)); } catch(e){} }
+
+    function epssUrl(cveIds){
+      return "https://api.first.org/data/v1/epss?cve=" + encodeURIComponent(cveIds.join(","));
+    }
+    function fetchEpss(cveIds){
+      var cache = getEpssCache();
+      var now = Date.now();
+      var needed = cveIds.filter(function(id){ return !cache[id] || (now - cache[id].ts) > NVD_TTL; });
+      var url = epssUrl(cveIds);
+      if(!needed.length) return Promise.resolve({fromCache:true, results:cveIds.map(function(id){ return cache[id].data; }), url:url});
+      return fetch(epssUrl(needed)).then(function(r){ return r.json(); }).then(function(data){
+        (data.data || []).forEach(function(d){
+          cache[d.cve] = {ts:now, data:d};
+        });
+        setEpssCache(cache);
+        return {fromCache:false, results:cveIds.map(function(id){ return cache[id] ? cache[id].data : null; }), url:url};
+      });
+    }
+
+    /* ---------- KEV lookup (from cached chapter data) ---------- */
+    function getKevSet(){
+      var s = new Set();
+      try{
+        var raw = localStorage.getItem("rl_kev_v1");
+        if(raw){
+          var p = JSON.parse(raw);
+          (p.data || []).forEach(function(v){ s.add(v.cveID); });
+        }
+      } catch(e){}
+      /* always include the bundled fallback set */
+      ["CVE-2021-36260","CVE-2017-7921","CVE-2019-2099","CVE-2021-44228","CVE-2024-3400","CVE-2017-11882","CVE-2022-22965","CVE-2014-0160","CVE-2019-19781","CVE-2023-23397"].forEach(function(c){ s.add(c); });
+      return s;
+    }
+
+    /* ---------- STEP HANDLERS ---------- */
+    function setBanner(b){
+      document.getElementById("t3PlBanner").value = b;
+      state.banner = b;
+    }
+    Array.prototype.forEach.call(box.querySelectorAll(".t3-pl-preset"), function(b){
+      b.addEventListener("click", function(){ setBanner(b.getAttribute("data-b")); });
+    });
+
+    document.getElementById("t3PlGo1").addEventListener("click", function(){
+      var b = document.getElementById("t3PlBanner").value.trim();
+      if(!b){ alert("Enter a banner first."); return; }
+      state.banner = b;
+      state.normalized = normalizeBanner(b);
+      renderNorm();
+      showStep(2);
+      document.getElementById("t3PlS2").classList.add("done");
+    });
+
+    document.getElementById("t3PlGo2").addEventListener("click", function(){
+      if(!state.normalized){ alert("Normalize first."); return; }
+      state.cpes = buildCpes(state.normalized);
+      renderCpes();
+      showStep(3);
+      document.getElementById("t3PlS3").classList.add("done");
+    });
+
+    document.getElementById("t3PlGo3").addEventListener("click", function(){
+      if(!state.cpes){ alert("Resolve CPEs first."); return; }
+      var exact = state.cpes[0].cpe;
+      var fuzzy = state.cpes[1].cpe;
+      var loadEl = document.getElementById("t3PlLoad4");
+      var urlEl = document.getElementById("t3PlUrl4");
+      var cvesEl = document.getElementById("t3PlCves");
+      var metaEl = document.getElementById("t3PlCvesMeta");
+      loadEl.style.display = "block";
+      cvesEl.innerHTML = "";
+      metaEl.textContent = "";
+      showStep(4);
+
+      function tryFetch(cpe, mode){
+        urlEl.innerHTML = '<span class="lbl">live query · ' + mode + '</span><a href="' + nvdUrl(cpe, mode) + '" target="_blank" rel="noopener">' + nvdUrl(cpe, mode) + '</a>';
+        return fetchNvd(cpe, mode);
+      }
+      tryFetch(exact, "exact").then(function(r1){
+        var vulns = (r1.data.vulnerabilities || []);
+        var src = r1.fromCache ? " · cached" : " · live";
+        if(vulns.length === 0){
+          /* fall back */
+          metaEl.textContent = "exact CPE returned 0 results — falling back to virtualMatchString…";
+          return tryFetch(fuzzy, "fuzzy").then(function(r2){
+            return {result:r2, mode:"fuzzy"};
+          });
+        }
+        return {result:r1, mode:"exact"};
+      }).then(function(out){
+        loadEl.style.display = "none";
+        var vulns = (out.result.data.vulnerabilities || []).slice(0, 15);
+        state.cves = vulns.map(parseCveRecord);
+        var kev = getKevSet();
+        state.cves.forEach(function(c){ c.kev = kev.has(c.id); });
+        renderCves(cvesEl, state.cves);
+        metaEl.textContent = state.cves.length + " CVE(s) returned · query mode: " + out.mode + (out.result.fromCache ? " · loaded from local cache" : " · fetched live") + " · click any CVE-ID to open the NVD detail page";
+        document.getElementById("t3PlS4").classList.add("done");
+      }).catch(function(err){
+        loadEl.style.display = "none";
+        cvesEl.innerHTML = '<div style="padding:14px;background:rgba(138,99,33,.06);border-left:3px solid #8a6321;font-family:Source Serif Pro,serif;font-size:13px;font-style:italic;color:var(--dim);line-height:1.55">NVD fetch failed — likely rate-limited (5 req/30s without API key). Wait a moment and click again, or get a free key at <a href="https://nvd.nist.gov/developers/request-an-api-key" target="_blank" rel="noopener" class="t3-pl-doc">nvd.nist.gov</a>. Detail: ' + (err.message || err) + '</div>';
+      });
+    });
+
+    document.getElementById("t3PlGo4").addEventListener("click", function(){
+      if(!state.cves){ alert("Query NVD first."); return; }
+      var n = state.normalized;
+      var hasBackportHint = !!n.distro;
+      /* Annotate each CVE with applicability info */
+      state.cves.forEach(function(c){
+        var anyVulnerable = c.ranges.some(function(r){ return r.vulnerable; });
+        var inRange = null;
+        if(n.version && c.ranges.length){
+          var vulnRanges = c.ranges.filter(function(r){ return r.vulnerable; });
+          var any = vulnRanges.some(function(r){ return isVersionInRange(n.version, r); });
+          inRange = any;
+        }
+        c.outOfRange = (inRange === false);
+        c.backportRisk = hasBackportHint && (inRange !== false);
+      });
+      var applying = state.cves.filter(function(c){ return !c.outOfRange; });
+      renderCves(document.getElementById("t3PlCvesApply"), state.cves, {applies:true});
+      var warnEl = document.getElementById("t3PlWarn");
+      if(hasBackportHint){
+        warnEl.classList.add("show");
+        warnEl.innerHTML = '<b>Backport risk:</b> the banner names a Linux distribution (<code>' + n.distro + '</code>). Major distros backport security patches to existing version strings — so a vulnerable-looking version may already be fixed. ' + (applying.length) + ' of ' + state.cves.length + ' CVEs survive version-range filtering; all of them still need vendor-advisory cross-check before being treated as confirmed.';
+      } else {
+        warnEl.classList.remove("show");
+      }
+      showStep(5);
+      document.getElementById("t3PlS5").classList.add("done");
+    });
+
+    document.getElementById("t3PlGo5").addEventListener("click", function(){
+      if(!state.cves){ alert("Interpret applicability first."); return; }
+      var applying = state.cves.filter(function(c){ return !c.outOfRange; });
+      if(!applying.length){
+        document.getElementById("t3PlCvesScored").innerHTML = '<div style="padding:14px;font-family:Source Serif Pro,serif;font-size:13.5px;font-style:italic;color:var(--dim)">No CVEs survived applicability filtering. The banner version is outside the affected range for every returned CVE.</div>';
+        showStep(6);
+        document.getElementById("t3PlS6").classList.add("done");
+        return;
+      }
+      var ids = applying.map(function(c){ return c.id; });
+      var loadEl = document.getElementById("t3PlLoad6");
+      var urlEl = document.getElementById("t3PlUrl6");
+      var url = epssUrl(ids);
+      loadEl.style.display = "block";
+      urlEl.innerHTML = '<span class="lbl">live query · EPSS</span><a href="' + url + '" target="_blank" rel="noopener">' + url + '</a>';
+      showStep(6);
+
+      fetchEpss(ids).then(function(r){
+        loadEl.style.display = "none";
+        var epssMap = {};
+        r.results.forEach(function(e){ if(e) epssMap[e.cve] = parseFloat(e.epss); });
+        applying.forEach(function(c){
+          c.epss = epssMap[c.id] || 0;
+          /* Composite priority: severity weight + EPSS weight + KEV bonus + backport penalty */
+          var sev = c.score || 0;
+          var p = (sev / 10) * 0.4 + (c.epss || 0) * 0.4 + (c.kev ? 0.2 : 0) - (c.backportRisk ? 0.15 : 0);
+          c.priority = Math.max(0, Math.min(1, p));
+        });
+        applying.sort(function(a, b){ return b.priority - a.priority; });
+        state.scored = applying;
+        renderCves(document.getElementById("t3PlCvesScored"), applying);
+        document.getElementById("t3PlS6").classList.add("done");
+
+        /* summary */
+        var kevCount = applying.filter(function(c){ return c.kev; }).length;
+        var bpCount = applying.filter(function(c){ return c.backportRisk; }).length;
+        var critCount = applying.filter(function(c){ return c.severity === "critical"; }).length;
+        var summary = document.getElementById("t3PlSummary");
+        summary.style.display = "block";
+        summary.innerHTML = '<h4>Pipeline complete · summary</h4><p>' +
+          'Banner <code>' + state.banner + '</code> ran through 6 steps.<br>' +
+          '<b>' + state.cves.length + '</b> CVE(s) returned from NVD; <b>' + applying.length + '</b> survived version-range filtering; <b>' + kevCount + '</b> on CISA KEV; <b>' + bpCount + '</b> flagged for backport risk; <b>' + critCount + '</b> rated critical.<br>' +
+          (bpCount > 0 ? 'The <em>backport risk</em> flag is exactly the "false precision" failure mode Dr. M warns about — the upstream version string does not always reflect what the distributor shipped. Cross-check vendor advisories before treating any of these as confirmed.<br>' : '') +
+          (kevCount > 0 ? '<b>Prioritize the ' + kevCount + ' KEV-listed CVE(s) first.</b> KEV means actively exploited in the wild — those are the actual "act now" candidates.' : 'No KEV-listed CVEs. Priority falls to severity × EPSS × business path.') +
+        '</p>';
+      }).catch(function(err){
+        loadEl.style.display = "none";
+        document.getElementById("t3PlCvesScored").innerHTML = '<div style="padding:14px;background:rgba(138,99,33,.06);border-left:3px solid #8a6321;font-family:Source Serif Pro,serif;font-size:13px;font-style:italic;color:var(--dim);line-height:1.55">EPSS fetch failed: ' + (err.message || err) + '. The pipeline is complete — just no EPSS scores attached.</div>';
+        document.getElementById("t3PlS6").classList.add("done");
+      });
+    });
+
+    document.getElementById("t3PlReset").addEventListener("click", function(){
+      state = {banner:"", normalized:null, cpes:null, cves:null, scored:null};
+      showStep(1);
+      document.getElementById("t3PlS1").classList.add("active");
+      ["t3PlS2","t3PlS3","t3PlS4","t3PlS5","t3PlS6"].forEach(function(id){
+        document.getElementById(id).classList.remove("done","active");
+      });
+      document.getElementById("t3PlSummary").style.display = "none";
+      document.getElementById("t3PlWarn").classList.remove("show");
+      ["t3PlNorm","t3PlCpe","t3PlCves","t3PlCvesApply","t3PlCvesScored","t3PlUrl4","t3PlUrl6"].forEach(function(id){ var el = document.getElementById(id); if(el) el.innerHTML = ""; });
+      window.scrollTo({top: document.getElementById("t3-pipeline").getBoundingClientRect().top + window.scrollY - 165, behavior:"smooth"});
+    });
+
+  })();
+  </script>
 
 
   <!-- ============== §4 Correlation ============== -->
@@ -6201,6 +6819,101 @@ identity:      <span style="color:#8a6321">unresolved · hand off to Ch.2</span>
       </div>
     </div>
   </section>
+
+    <!-- ============== SOURCES & FURTHER READING ============== -->
+  <section id="t3-sources" class="nd-section">
+    <div class="nd-sec-num">SOURCES &amp; FURTHER READING</div>
+    <h2 class="nd-sec-title">The Actual Documents This Chapter Cites</h2>
+    <div class="nd-sec-sub">Every standard, catalog, scanner, and advisory referenced — with direct links.</div>
+
+    <style>
+      .t3-sources{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;max-width:1080px;margin-top:14px}
+      .t3-src-cat{background:var(--paper);border:1px solid var(--rule);border-radius:10px;padding:16px 18px;border-left:3px solid var(--gold)}
+      .t3-src-cat h4{font-family:'Inter',sans-serif;font-size:10.5px;text-transform:uppercase;letter-spacing:1.4px;color:var(--gold);font-weight:600;margin:0 0 10px}
+      .t3-src-cat ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px}
+      .t3-src-cat li{font-family:'Source Serif Pro',Georgia,serif;font-size:13.5px;color:var(--ink);line-height:1.45}
+      .t3-src-cat a{color:var(--gold);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px;font-weight:500}
+      .t3-src-cat a:hover{color:var(--ink)}
+      .t3-src-cat li .note{display:block;font-family:'Inter',sans-serif;font-size:11px;color:var(--dim);margin-top:2px;font-style:italic}
+    </style>
+
+    <div class="t3-sources">
+
+      <div class="t3-src-cat">
+        <h4>Vulnerability databases &amp; catalogs</h4>
+        <ul>
+          <li><a href="https://nvd.nist.gov/" target="_blank" rel="noopener">National Vulnerability Database</a><span class="note">NIST's canonical CVE store with CVSS scores and affected-CPE lists.</span></li>
+          <li><a href="https://nvd.nist.gov/developers/vulnerabilities" target="_blank" rel="noopener">NVD API 2.0 documentation</a><span class="note">Endpoints, rate limits, query parameters.</span></li>
+          <li><a href="https://nvd.nist.gov/developers/request-an-api-key" target="_blank" rel="noopener">Get a free NVD API key</a><span class="note">Raises rate limit from 5 req/30s to 50 req/30s.</span></li>
+          <li><a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" target="_blank" rel="noopener">CISA KEV catalog</a><span class="note">~1,200 actively-exploited CVEs. The prioritization gate.</span></li>
+          <li><a href="https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json" target="_blank" rel="noopener">KEV JSON feed</a><span class="note">The raw feed this chapter pulls from.</span></li>
+          <li><a href="https://www.cve.org/" target="_blank" rel="noopener">MITRE CVE program</a><span class="note">Where CVE IDs are issued by CNAs.</span></li>
+          <li><a href="https://www.first.org/epss/" target="_blank" rel="noopener">FIRST EPSS</a><span class="note">Exploit Prediction Scoring System — probability of exploitation in the next 30 days.</span></li>
+          <li><a href="https://api.first.org/" target="_blank" rel="noopener">EPSS API documentation</a><span class="note">Public, no auth, batched queries supported.</span></li>
+        </ul>
+      </div>
+
+      <div class="t3-src-cat">
+        <h4>Standards &amp; specifications</h4>
+        <ul>
+          <li><a href="https://www.first.org/cvss/v3.1/specification-document" target="_blank" rel="noopener">CVSS v3.1 specification</a><span class="note">The full vector definition · what each metric means.</span></li>
+          <li><a href="https://www.first.org/cvss/calculator/3.1" target="_blank" rel="noopener">FIRST.org CVSS calculator</a><span class="note">The official calculator. Verify your scores against ours.</span></li>
+          <li><a href="https://csrc.nist.gov/projects/security-content-automation-protocol/specifications/cpe" target="_blank" rel="noopener">NIST CPE 2.3 specification</a><span class="note">The naming scheme this chapter's pipeline produces.</span></li>
+          <li><a href="https://nvd.nist.gov/products/cpe/search" target="_blank" rel="noopener">CPE Dictionary search</a><span class="note">Look up the official vendor + product strings for a CPE.</span></li>
+          <li><a href="https://cwe.mitre.org/" target="_blank" rel="noopener">MITRE CWE</a><span class="note">Common Weakness Enumeration · the underlying weakness classes CVEs reference.</span></li>
+        </ul>
+      </div>
+
+      <div class="t3-src-cat">
+        <h4>Active scanners (referenced in §3)</h4>
+        <ul>
+          <li><a href="https://www.greenbone.net/en/community-edition/" target="_blank" rel="noopener">Greenbone Community Edition (OpenVAS)</a><span class="note">The open-source NVT-based scanner this chapter discusses.</span></li>
+          <li><a href="https://docs.greenbone.net/" target="_blank" rel="noopener">Greenbone documentation</a><span class="note">GMP protocol, scan configs, port lists.</span></li>
+          <li><a href="https://github.com/projectdiscovery/nuclei" target="_blank" rel="noopener">Nuclei (ProjectDiscovery)</a><span class="note">Template-based active vulnerability scanner.</span></li>
+          <li><a href="https://docs.projectdiscovery.io/tools/nuclei/overview" target="_blank" rel="noopener">Nuclei documentation</a><span class="note">Template syntax, output format, tags.</span></li>
+          <li><a href="https://github.com/projectdiscovery/nuclei-templates" target="_blank" rel="noopener">nuclei-templates</a><span class="note">The community template repository · where coverage gaps are visible.</span></li>
+          <li><a href="https://nmap.org/book/man.html" target="_blank" rel="noopener">nmap reference guide</a><span class="note">The mainstream port + service scanner.</span></li>
+          <li><a href="https://github.com/inguardians/peirates" target="_blank" rel="noopener">peirates</a><span class="note">An IoT/OT-focused asset discovery + assessment tool (referenced contextually).</span></li>
+        </ul>
+      </div>
+
+      <div class="t3-src-cat">
+        <h4>Operational guidance</h4>
+        <ul>
+          <li><a href="https://www.cisa.gov/news-events/cybersecurity-advisories" target="_blank" rel="noopener">CISA Cybersecurity Advisories</a><span class="note">Active threats + vendor + IoT/OT alerts.</span></li>
+          <li><a href="https://www.cisa.gov/topics/industrial-control-systems" target="_blank" rel="noopener">CISA ICS advisories</a><span class="note">Specific to OT / SCADA environments.</span></li>
+          <li><a href="https://www.first.org/" target="_blank" rel="noopener">FIRST</a><span class="note">Forum of Incident Response and Security Teams · the body behind CVSS and EPSS.</span></li>
+          <li><a href="https://www.iso.org/standard/77299.html" target="_blank" rel="noopener">ISO/IEC 27035</a><span class="note">Incident management standard · the discipline behind action bands.</span></li>
+        </ul>
+      </div>
+
+      <div class="t3-src-cat">
+        <h4>The incidents referenced in Ch.1</h4>
+        <ul>
+          <li><a href="https://krebsonsecurity.com/2016/10/source-code-for-iot-botnet-mirai-released/" target="_blank" rel="noopener">Mirai botnet · KrebsOnSecurity</a><span class="note">Source code release writeup. IoT cameras + DVRs + default credentials.</span></li>
+          <li><a href="https://www.bloomberg.com/news/articles/2021-03-09/hackers-expose-tesla-jails-in-breach-of-150-000-security-cameras" target="_blank" rel="noopener">Verkada breach · Bloomberg</a><span class="note">Fleet camera platform, centralized credentials.</span></li>
+          <li><a href="https://www.cisa.gov/news-events/news/compromise-us-water-treatment-facility" target="_blank" rel="noopener">Oldsmar water plant · CISA</a><span class="note">SCADA / HMI exposure, weak access control.</span></li>
+          <li><a href="https://www.bloomberg.com/news/articles/2014-03-13/target-missed-warnings-in-epic-hack-of-credit-card-data" target="_blank" rel="noopener">Target breach · Bloomberg</a><span class="note">HVAC vendor link, cross-zone pivot.</span></li>
+          <li><a href="https://thehackernews.com/2018/04/iot-hacking-thermometer.html" target="_blank" rel="noopener">Casino fish-tank thermometer · The Hacker News</a><span class="note">The originating example for the "boring device, central path" framing.</span></li>
+        </ul>
+      </div>
+
+      <div class="t3-src-cat">
+        <h4>Ch.2 protocols &amp; tools</h4>
+        <ul>
+          <li><a href="https://www.onvif.org/profiles/specifications/" target="_blank" rel="noopener">ONVIF specifications</a><span class="note">Camera self-report protocol (GetDeviceInformation).</span></li>
+          <li><a href="https://www.rfc-editor.org/rfc/rfc7826" target="_blank" rel="noopener">RTSP 2.0 · RFC 7826</a><span class="note">Real Time Streaming Protocol — the camera/media banner source.</span></li>
+          <li><a href="https://datatracker.ietf.org/doc/html/rfc6762" target="_blank" rel="noopener">mDNS · RFC 6762</a><span class="note">Multicast DNS — the local-link self-description protocol.</span></li>
+          <li><a href="https://datatracker.ietf.org/doc/html/rfc6763" target="_blank" rel="noopener">DNS-SD · RFC 6763</a><span class="note">DNS-based service discovery (the <code>_googlecast._tcp</code> shape).</span></li>
+          <li><a href="https://github.com/salesforce/jarm" target="_blank" rel="noopener">JARM (Salesforce)</a><span class="note">The TLS fingerprinting tool. Open-source implementation.</span></li>
+          <li><a href="https://github.com/tiran/defusedxml" target="_blank" rel="noopener">defusedxml</a><span class="note">Hardened XML parser — the Ch.2 SSDP security note.</span></li>
+          <li><a href="https://standards-oui.ieee.org/" target="_blank" rel="noopener">IEEE OUI registry</a><span class="note">Where OUI prefixes are officially assigned.</span></li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
 
   <!-- ============== Discipline ============== -->
   <section id="t3-disc" class="nd-section">
