@@ -1762,6 +1762,77 @@ body.rl-scrolled .tabs{
     </div>
   </section>
 
+    <section id="nd-quiz" class="nd-section">
+    <div class="nd-sec-num">SELF-TEST</div>
+    <h2 class="nd-sec-title">Five questions to check yourself</h2>
+    <p class="nd-prose" style="margin-bottom:14px">Click an answer to see if it's right and why. Score updates as you go.</p>
+
+    <div class="rl-quiz" data-quiz="c1">
+      <div class="rl-q" data-correct="b">
+        <div class="rl-q-n">QUESTION 1 / 5</div>
+        <div class="rl-q-stem">Your ICMP sweep returned no responses from one host on a /24. The other 14 hosts answered. Which interpretation is defensible?</div>
+        <div class="rl-q-opts">
+          <button class="rl-q-opt" data-v="a">The host does not exist on this subnet.</button>
+          <button class="rl-q-opt" data-v="b">The method used from this position did not produce evidence during this time window.</button>
+          <button class="rl-q-opt" data-v="c">The host's firewall is blocking your IP specifically.</button>
+          <button class="rl-q-opt" data-v="d">The subnet is clean.</button>
+        </div>
+        <div class="rl-q-why"><b>Correct: B.</b> Many IoT devices deliberately drop ICMP while remaining reachable on HTTP, RTSP, or vendor management ports. ICMP non-response narrows neither existence nor identity. A and D claim certainty the method cannot support; C is unsupported speculation.</div>
+      </div>
+
+      <div class="rl-q" data-correct="b">
+        <div class="rl-q-n">QUESTION 2 / 5</div>
+        <div class="rl-q-stem">Which combination most strengthens a host claim through <em>structural independence</em>?</div>
+        <div class="rl-q-opts">
+          <button class="rl-q-opt" data-v="a">ARP cache entry + router ARP entry (same MAC, same subnet).</button>
+          <button class="rl-q-opt" data-v="b">ARP cache + mDNS service advertisement + successful TCP connect.</button>
+          <button class="rl-q-opt" data-v="c">Three different HTTP banner observations.</button>
+          <button class="rl-q-opt" data-v="d">The same nmap scan repeated three times.</button>
+        </div>
+        <div class="rl-q-why"><b>Correct: B.</b> ARP (link layer), mDNS (multicast self-description), and TCP connect (active service evidence) come from <em>different protocol families</em> — independent observations of the device. A is two views of the same link state. C and D are same-method repetition: they reinforce nothing.</div>
+      </div>
+
+      <div class="rl-q" data-correct="c">
+        <div class="rl-q-n">QUESTION 3 / 5</div>
+        <div class="rl-q-stem">A MAC address <code>02:1A:2B:3C:4D:5E</code> appears in your ARP cache. What can you confidently infer?</div>
+        <div class="rl-q-opts">
+          <button class="rl-q-opt" data-v="a">The device is from vendor 02:1A:2B.</button>
+          <button class="rl-q-opt" data-v="b">The device is a randomized phone.</button>
+          <button class="rl-q-opt" data-v="c">There is no IEEE OUI to look up — the MAC is locally administered (second-lowest bit of the first octet is set).</button>
+          <button class="rl-q-opt" data-v="d">The device is a virtual machine.</button>
+        </div>
+        <div class="rl-q-why"><b>Correct: C.</b> The second-lowest bit of <code>02</code> is set, which marks the address as locally administered. There is no IEEE OUI assignment. Identification must fall back to behavioral evidence — JARM, TCP fingerprint, service pattern. B and D are possible <em>causes</em> of locally-administered MACs but not the inference from the MAC alone.</div>
+      </div>
+
+      <div class="rl-q" data-correct="b">
+        <div class="rl-q-n">QUESTION 4 / 5</div>
+        <div class="rl-q-stem">What is the <em>discovery gap</em>?</div>
+        <div class="rl-q-opts">
+          <button class="rl-q-opt" data-v="a">The number of phantom hosts you admitted into the inventory.</button>
+          <button class="rl-q-opt" data-v="b">The set of real devices not in the discovered population — the unobserved residue D ∖ D̂.</button>
+          <button class="rl-q-opt" data-v="c">The time between two consecutive scans.</button>
+          <button class="rl-q-opt" data-v="d">The number of subnets out of scope.</button>
+        </div>
+        <div class="rl-q-why"><b>Correct: B.</b> D is the true device population; D̂ is what your methods saw. The gap is what's real but unseen. It's the part of the network an attacker is most likely to exploit precisely because you don't know it exists.</div>
+      </div>
+
+      <div class="rl-q" data-correct="c">
+        <div class="rl-q-n">QUESTION 5 / 5</div>
+        <div class="rl-q-stem">Why does Chapter 1 refuse to make identity claims, even when the evidence looks compelling?</div>
+        <div class="rl-q-opts">
+          <button class="rl-q-opt" data-v="a">Because identification is computationally expensive.</button>
+          <button class="rl-q-opt" data-v="b">Because the scanner lacks credentials.</button>
+          <button class="rl-q-opt" data-v="c">Because existence evidence (a Google OUI + ports 80/443) is not identity evidence — it could be a Chromecast, Nest, Wi-Fi product, or virtualized interface. Chapter 2 does identity.</button>
+          <button class="rl-q-opt" data-v="d">Because Chapter 1 is descriptive only and hands off to Chapter 3 next.</button>
+        </div>
+        <div class="rl-q-why"><b>Correct: C.</b> Same vendor prefix and port set can belong to many products. Chapter 1's job is to admit hosts and preserve evidence — preferring honest uncertainty to false precision. Chapter 2 (Cascade Lab) takes the identity question; Chapter 3 follows.</div>
+      </div>
+
+      <div class="rl-quiz-score"></div>
+    </div>
+  </section>
+
+
   <div class="nd-chapter-foot">Drawn from <b>Dr. Ravinder Mallarapu</b>'s Chapter 1 lectures · Analytical Tools for Cyber · SEAS-8414 · GW · interactive lab by Rayve Malhotra · approved by Dr. Mallarapu.</div>
 
 
@@ -4092,6 +4163,77 @@ identity:      <span style="color:#8a6321">unresolved · hand off to Ch.2</span>
     </div>
   </section>
 
+    <section id="c2-quiz" class="nd-section">
+    <div class="nd-sec-num">SELF-TEST</div>
+    <h2 class="nd-sec-title">Five questions to check yourself</h2>
+    <p class="nd-prose" style="margin-bottom:14px">Click an answer to see if it's right and why.</p>
+
+    <div class="rl-quiz" data-quiz="c2">
+      <div class="rl-q" data-correct="b">
+        <div class="rl-q-n">QUESTION 1 / 5</div>
+        <div class="rl-q-stem">Two evidence sources implemented in Breakwater share the <em>same</em> 0.85 confidence ceiling. Which two?</div>
+        <div class="rl-q-opts">
+          <button class="rl-q-opt" data-v="a">OUI hint and HTTP server header.</button>
+          <button class="rl-q-opt" data-v="b">ONVIF manufacturer/model AND Fingerprint DB MAC-prefix match.</button>
+          <button class="rl-q-opt" data-v="c">JARM known hash and DHCP vendor class.</button>
+          <button class="rl-q-opt" data-v="d">RTSP server header and TLS certificate upgrade.</button>
+        </div>
+        <div class="rl-q-why"><b>Correct: B.</b> Both cap at 0.85 — ONVIF because structured camera self-report is high quality (but still self-reported), and the Fingerprint DB MAC-prefix match because it's a stored, curated fingerprint. SSDP, mDNS, Fingerbank ≥70 cap at 0.75. Hostname rules, HTTP title rules, JARM known hash cap at 0.70.</div>
+      </div>
+
+      <div class="rl-q" data-correct="c">
+        <div class="rl-q-n">QUESTION 2 / 5</div>
+        <div class="rl-q-stem">An ONVIF response and an HTTP title disagree about the device model. What's the right action?</div>
+        <div class="rl-q-opts">
+          <button class="rl-q-opt" data-v="a">Trust ONVIF — it has the higher ceiling.</button>
+          <button class="rl-q-opt" data-v="b">Trust HTTP — it's easier to verify in a browser.</button>
+          <button class="rl-q-opt" data-v="c">Preserve both as a conflict and lower confidence in any single-source claim. Seek identity refinement before promoting either to model-level evidence.</button>
+          <button class="rl-q-opt" data-v="d">Average their stated models.</button>
+        </div>
+        <div class="rl-q-why"><b>Correct: C.</b> Averaging or silently picking one is the most common discipline failure. The conflict is itself information — it survives in the host record's <code>conflicts</code> array. Chapter 3 reads this and weights downstream queries accordingly.</div>
+      </div>
+
+      <div class="rl-q" data-correct="b">
+        <div class="rl-q-n">QUESTION 3 / 5</div>
+        <div class="rl-q-stem">A JARM hash on Host B matches the hash of a well-identified Hikvision camera (Host A). What does Chapter 2 admit?</div>
+        <div class="rl-q-opts">
+          <button class="rl-q-opt" data-v="a">Host B is the same product as Host A. Confidence 0.85.</button>
+          <button class="rl-q-opt" data-v="b">Host B is a peer hypothesis — same TLS stack and config — with confidence capped at 0.60. Still needs its own corroboration before model-level CPE use.</button>
+          <button class="rl-q-opt" data-v="c">Host B is definitely a Hikvision camera.</button>
+          <button class="rl-q-opt" data-v="d">Nothing — JARM is unreliable.</button>
+        </div>
+        <div class="rl-q-why"><b>Correct: B.</b> JARM groups by behavior, not identity. Two products sharing the same TLS library and config produce the same hash — JARM is propagation evidence, not primary identification. The 0.60 ceiling is implemented for exactly this reason.</div>
+      </div>
+
+      <div class="rl-q" data-correct="b">
+        <div class="rl-q-n">QUESTION 4 / 5</div>
+        <div class="rl-q-stem">A device shows both <code>_airplay._tcp</code> AND <code>_ssh._tcp</code> via mDNS. The Apple SSH guard fires. What does it prevent?</div>
+        <div class="rl-q-opts">
+          <button class="rl-q-opt" data-v="a">It blocks SSH brute-force attempts during enrichment.</button>
+          <button class="rl-q-opt" data-v="b">It prevents AirPlay evidence from misclassifying a Mac as a media player — the specific mix (SSH + AirPlay) wins over the single ambiguous clue.</button>
+          <button class="rl-q-opt" data-v="c">It prevents SSH credentials from being tested.</button>
+          <button class="rl-q-opt" data-v="d">It removes Apple devices from the inventory.</button>
+        </div>
+        <div class="rl-q-why"><b>Correct: B.</b> A MacBook advertises both. Without the guard, AirPlay alone would classify it as a media player. The guard encodes the rule that a specific combination dominates a single ambiguous signal — preserving rule precedence over evidence count.</div>
+      </div>
+
+      <div class="rl-q" data-correct="c">
+        <div class="rl-q-n">QUESTION 5 / 5</div>
+        <div class="rl-q-stem">A wildcard CPE comes out of Chapter 2 enrichment for an IoT device. What does Chapter 3 do with it?</div>
+        <div class="rl-q-opts">
+          <button class="rl-q-opt" data-v="a">Promotes it to confirmed if NVD returns any CVEs.</button>
+          <button class="rl-q-opt" data-v="b">Discards it — wildcards aren't actionable.</button>
+          <button class="rl-q-opt" data-v="c">Uses it for broad family-level queries, not model-level claims. The version-confidence class travels with the CPE, controlling downstream admissibility.</button>
+          <button class="rl-q-opt" data-v="d">Waits for an ONVIF answer.</button>
+        </div>
+        <div class="rl-q-why"><b>Correct: C.</b> Wildcards are admissible <em>with explicit uncertainty</em>. They produce candidate CVEs, not confirmed ones — and Chapter 3's job is to keep that distinction visible. The <code>version_confidence_class</code> tag on the CPE travels into Chapter 3's lookups and prevents wildcard-CPE-matched CVEs from being treated as model-specific evidence.</div>
+      </div>
+
+      <div class="rl-quiz-score"></div>
+    </div>
+  </section>
+
+
   <div class="nd-chapter-foot">Drawn from <b>Dr. Ravinder Mallarapu</b>'s Chapter 2 lectures · Analytical Tools for Cyber · SEAS-8414 · GW · interactive lab by Rayve Malhotra · approved by Dr. Mallarapu.</div>
 
 
@@ -5571,6 +5713,77 @@ identity:      <span style="color:#8a6321">unresolved · hand off to Ch.2</span>
       A device left untested by a method is <em>not proven safe</em>. The final report must distinguish at least four states per method per host: <code>completed</code> · <code>disabled</code> · <code>unavailable</code> · <code>failed-or-partial</code>.
     </p>
   </section>
+
+    <section id="t3-quiz" class="nd-section">
+    <div class="nd-sec-num">SELF-TEST</div>
+    <h2 class="nd-sec-title">Five questions to check yourself</h2>
+    <p class="nd-prose" style="margin-bottom:14px">Click an answer to see if it's right and why.</p>
+
+    <div class="rl-quiz" data-quiz="c3">
+      <div class="rl-q" data-correct="b">
+        <div class="rl-q-n">QUESTION 1 / 5</div>
+        <div class="rl-q-stem">NVD returns a CVE for a host whose CPE was built from a vendor OUI wildcard. What state should this finding hold?</div>
+        <div class="rl-q-opts">
+          <button class="rl-q-opt" data-v="a">Confirmed weakness — NVD said so.</button>
+          <button class="rl-q-opt" data-v="b">Candidate vulnerability — applicability must still be checked against the affected CPE list and firmware branch.</button>
+          <button class="rl-q-opt" data-v="c">False positive — wildcards are always wrong.</button>
+          <button class="rl-q-opt" data-v="d">Prioritized item — patch immediately.</button>
+        </div>
+        <div class="rl-q-why"><b>Correct: B.</b> NVD's answer is an association, not a confirmation. Candidate → confirmed requires direct or strong corroborating evidence (active probe, vendor advisory agreement, or default-credential success). The four-term boundary is the chapter's vocabulary discipline.</div>
+      </div>
+
+      <div class="rl-q" data-correct="c">
+        <div class="rl-q-n">QUESTION 2 / 5</div>
+        <div class="rl-q-stem">For "act now" prioritization, which list should drive your decisions?</div>
+        <div class="rl-q-opts">
+          <button class="rl-q-opt" data-v="a">NVD — it has ~280,000 entries, so it's comprehensive.</button>
+          <button class="rl-q-opt" data-v="b">Vendor advisories only — they're authoritative.</button>
+          <button class="rl-q-opt" data-v="c">CISA KEV — ~1,200 entries of CVEs actually being exploited in the wild. Exploitability + business path matter more than severity alone.</button>
+          <button class="rl-q-opt" data-v="d">CVSS scores ≥ 7.0.</button>
+        </div>
+        <div class="rl-q-why"><b>Correct: C.</b> CVSS is a structural score; KEV is empirical evidence of <em>active exploitation</em>. A 9.8 CVSS with no public exploit deserves different urgency than a 7.5 CVE on the KEV list. Severity alone is the wrong prioritization axis.</div>
+      </div>
+
+      <div class="rl-q" data-correct="b">
+        <div class="rl-q-n">QUESTION 3 / 5</div>
+        <div class="rl-q-stem">A default-credential test against a camera at <code>admin:admin</code> returns <code>HTTP 401 Unauthorized</code>. What does this mean?</div>
+        <div class="rl-q-opts">
+          <button class="rl-q-opt" data-v="a">The credential succeeded — 401 means "authenticated."</button>
+          <button class="rl-q-opt" data-v="b">The credential failed — 401 is the failure code, not a vulnerability finding.</button>
+          <button class="rl-q-opt" data-v="c">The device is offline.</button>
+          <button class="rl-q-opt" data-v="d">The credential is correct but the device firewall blocked it.</button>
+        </div>
+        <div class="rl-q-why"><b>Correct: B.</b> 401 means "authentication required and the supplied credentials were rejected." This is the entire point of HTTP authentication. A sloppy default-credential adapter that counts 401 as a hit produces false positives. The Breakwater adapter explicitly requires a 2xx response with content distinct from the unauthenticated baseline.</div>
+      </div>
+
+      <div class="rl-q" data-correct="c">
+        <div class="rl-q-n">QUESTION 4 / 5</div>
+        <div class="rl-q-stem">NVD says a host is vulnerable to CVE-X. A Nuclei template targeting that exact vuln returns no findings. What's the correct action?</div>
+        <div class="rl-q-opts">
+          <button class="rl-q-opt" data-v="a">Trust NVD; ignore Nuclei.</button>
+          <button class="rl-q-opt" data-v="b">Trust Nuclei; dismiss the NVD finding as a false positive.</button>
+          <button class="rl-q-opt" data-v="c">Preserve the contradiction in the host record. Investigate: is the template's coverage complete? Is the firmware actually patched? Is a configuration required to expose the vulnerability?</button>
+          <button class="rl-q-opt" data-v="d">Run OpenVAS.</button>
+        </div>
+        <div class="rl-q-why"><b>Correct: C.</b> Active evidence does not always take precedence. Templates have coverage gaps; configurations matter; backported patches happen. The contradiction is itself useful information — it tells the analyst what to investigate next, and Chapter 4 needs to see it.</div>
+      </div>
+
+      <div class="rl-q" data-correct="a">
+        <div class="rl-q-n">QUESTION 5 / 5</div>
+        <div class="rl-q-stem">A default-credential test on a Cisco gateway succeeds with <code>cisco:cisco</code>. NVD returns no CVEs for this host. Why is the credential finding still high-priority?</div>
+        <div class="rl-q-opts">
+          <button class="rl-q-opt" data-v="a">A successful authentication is direct evidence of an authentication boundary failure — it doesn't need a CVE to be actionable.</button>
+          <button class="rl-q-opt" data-v="b">It's only high-priority if the device is on the KEV list.</button>
+          <button class="rl-q-opt" data-v="c">Cisco devices always have CVEs.</button>
+          <button class="rl-q-opt" data-v="d">Without a CVE, it's a Chapter 2 problem, not a Chapter 3 finding.</button>
+        </div>
+        <div class="rl-q-why"><b>Correct: A.</b> Default-credential success is gold-standard direct evidence — it's the most concrete vulnerability class because it required no inference. The action is immediate: rotate credentials, restrict management reach, segment the device. A CVE ID is not required for the finding to drive action; credentials and CVEs are different evidence classes.</div>
+      </div>
+
+      <div class="rl-quiz-score"></div>
+    </div>
+  </section>
+
 
   <div class="nd-chapter-foot">Drawn from <b>Dr. Ravinder Mallarapu</b>'s Chapter 3 lectures · Analytical Tools for Cyber · SEAS-8414 · GW · interactive lab by Rayve Malhotra · approved by Dr. Mallarapu.</div>
 
@@ -10378,6 +10591,480 @@ document.addEventListener('DOMContentLoaded', () => {
   requestAnimationFrame(tick);
 })();
 </script>
+
+
+<!-- ============================================================
+     RAYVENET STUDENT LAYER · v1
+     - Inline definitions (glossary tooltips)
+     - Cross-chapter jumps
+     - Self-test quizzes (5 questions per chapter)
+     - Progress tracking via localStorage
+     ============================================================ -->
+<style>
+  /* Inline term — dotted underline, click to open tooltip */
+  .rl-term{border-bottom:1px dotted var(--gold);cursor:help;color:var(--ink);font-weight:500;background:rgba(157,133,82,.05);padding:0 2px;border-radius:2px}
+  .rl-term:hover{background:rgba(157,133,82,.12);border-bottom-color:var(--ink)}
+  .rl-term.pinned{background:var(--gold);color:var(--paper);border-bottom-color:var(--gold)}
+  /* Tooltip — floats near the term */
+  .rl-tip{position:fixed;z-index:9999;max-width:340px;background:var(--paper);border:1px solid var(--ink);border-radius:8px;padding:14px 16px;box-shadow:0 14px 36px rgba(40,30,10,.18);font-family:'Source Serif Pro',Georgia,serif;font-size:13.5px;color:var(--ink);line-height:1.55;opacity:0;transform:translateY(-4px);pointer-events:none;transition:opacity .12s ease, transform .12s ease}
+  .rl-tip.show{opacity:1;transform:translateY(0);pointer-events:auto}
+  .rl-tip-name{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--gold);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:6px;font-weight:600}
+  .rl-tip-body{font-style:italic}
+  .rl-tip-body b{font-style:normal;color:var(--ink);font-weight:600}
+  .rl-tip-body code{font-family:'JetBrains Mono',monospace;font-size:11.5px;background:var(--paper2);padding:1px 5px;border-radius:3px;font-style:normal;color:var(--ink)}
+  .rl-tip-close{position:absolute;top:6px;right:8px;font-size:14px;color:var(--faint);cursor:pointer;line-height:1;background:none;border:none}
+  .rl-tip-close:hover{color:var(--ink)}
+
+  /* Cross-chapter jump link — gold underline */
+  .rl-jump{cursor:pointer;color:var(--gold);font-weight:500;text-decoration:underline;text-decoration-style:solid;text-decoration-thickness:1px;text-underline-offset:2px;background:rgba(157,133,82,.04);padding:0 3px;border-radius:2px}
+  .rl-jump:hover{background:var(--gold);color:var(--paper);text-decoration-color:var(--paper)}
+
+  /* Self-test quiz */
+  .rl-quiz{max-width:780px;margin-top:10px;display:flex;flex-direction:column;gap:18px}
+  .rl-q{padding:18px 20px;background:var(--paper);border:1px solid var(--rule);border-radius:10px}
+  .rl-q-n{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--gold);letter-spacing:1.2px;font-weight:600;margin-bottom:6px}
+  .rl-q-stem{font-family:'Source Serif Pro',Georgia,serif;font-size:15.5px;color:var(--ink);font-weight:500;line-height:1.55;margin-bottom:12px}
+  .rl-q-stem code{font-family:'JetBrains Mono',monospace;font-size:13px;background:var(--paper2);padding:1px 5px;border-radius:3px}
+  .rl-q-opts{display:flex;flex-direction:column;gap:6px}
+  .rl-q-opt{padding:11px 14px;background:var(--paper2);border:1px solid var(--rule);border-radius:8px;cursor:pointer;text-align:left;font-family:'Source Serif Pro',Georgia,serif;font-size:13.5px;color:var(--ink);line-height:1.5;transition:all .15s}
+  .rl-q-opt:hover{border-color:var(--ink);background:var(--paper)}
+  .rl-q-opt.picked.right{border-color:#2d5e3a;background:rgba(45,94,58,.06);color:#2d5e3a;font-weight:500}
+  .rl-q-opt.picked.wrong{border-color:#8a3a3a;background:rgba(138,58,58,.06);color:#8a3a3a}
+  .rl-q-opt.reveal-right:not(.picked){border-color:#2d5e3a;background:rgba(45,94,58,.03);color:#2d5e3a}
+  .rl-q-why{display:none;margin-top:10px;padding:10px 14px;border-left:2px solid var(--gold);background:rgba(157,133,82,.05);font-size:12.5px;color:var(--dim);line-height:1.6;font-style:italic;font-family:'Source Serif Pro',Georgia,serif}
+  .rl-q-why.show{display:block}
+  .rl-q-why b{color:var(--ink);font-style:normal}
+  .rl-quiz-score{margin-top:14px;padding:14px 18px;background:var(--paper2);border-radius:8px;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--dim);display:none}
+  .rl-quiz-score.show{display:block}
+  .rl-quiz-score b{color:var(--ink);font-family:'Source Serif Pro',Georgia,serif;font-size:18px;font-weight:600}
+
+  /* Progress dot in sub-nav */
+  .nd-sn.visited{position:relative}
+  .nd-sn.visited::after{content:'';position:absolute;top:3px;right:3px;width:5px;height:5px;border-radius:50%;background:#2d5e3a;box-shadow:0 0 0 2px rgba(45,94,58,.18)}
+  .rl-chap-prog{display:inline-flex;align-items:center;gap:5px;margin-left:6px;font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--faint);font-weight:400;vertical-align:middle}
+  .rl-chap-prog::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--faint)}
+  .rl-chap-prog.complete{color:#2d5e3a}
+  .rl-chap-prog.complete::before{background:#2d5e3a}
+  .rl-chap-prog.partial::before{background:var(--gold)}
+  .rl-chap-prog.partial{color:var(--gold)}
+</style>
+
+<script>
+(function(){
+  /* ============================================================
+     STUDENT LAYER · single IIFE
+     Runs after all chapter scripts have loaded.
+     ============================================================ */
+
+  /* ---------- GLOSSARY DICTIONARY ---------- */
+  var GLOSSARY = {
+    "OUI": "<b>Organizationally Unique Identifier.</b> The first 3 bytes (24 bits) of a MAC address. The IEEE assigns OUI ranges to vendors, so the OUI usually identifies the manufacturer — but never the specific product, model, or owner.",
+    "MAC": "<b>Media Access Control address.</b> A 48-bit hardware identifier for a network interface. Usually formatted <code>aa:bb:cc:dd:ee:ff</code>. The first half (OUI) identifies the vendor; the second half is vendor-assigned.",
+    "ARP": "<b>Address Resolution Protocol.</b> Maps IP addresses to MAC addresses on the local link. Cached by the OS; the cache is the easiest, lowest-cost discovery evidence on IPv4. Does not cross routers.",
+    "mDNS": "<b>Multicast DNS.</b> Local-link service discovery on UDP/5353. Devices voluntarily announce service types like <code>_googlecast._tcp</code> or <code>_airplay._tcp</code>. Cannot cross multicast boundaries (routers, VLANs).",
+    "SSDP": "<b>Simple Service Discovery Protocol.</b> The discovery half of UPnP. Devices respond to an M-SEARCH on UDP/1900 with a LOCATION header pointing to an XML device description.",
+    "UPnP": "<b>Universal Plug and Play.</b> A set of protocols (SSDP + SOAP + HTTP) for zero-config networking. Often surfaces manufacturer + model + service list on consumer devices.",
+    "RTSP": "<b>Real-Time Streaming Protocol.</b> TCP/554. Used by cameras and media servers. A bounded OPTIONS request often discloses a Server header and an authentication realm — useful identity hints.",
+    "ONVIF": "<b>Open Network Video Interface Forum.</b> A standard for IP cameras. The <code>GetDeviceInformation</code> SOAP call can return manufacturer, model, firmware, serial number — high-confidence identity when the device answers.",
+    "SNMP": "<b>Simple Network Management Protocol.</b> Lets you query network infrastructure (routers, switches) for state — including IP-to-MAC mappings via <code>ipNetToMediaPhysAddress</code>. Requires credentials.",
+    "JARM": "<b>Active TLS fingerprinting tool.</b> Sends 10 ClientHello variants and hashes the responses. Devices sharing the same TLS stack and config produce the same JARM hash — useful for grouping, not for definitive product identity.",
+    "CPE": "<b>Common Platform Enumeration.</b> A naming scheme like <code>cpe:2.3:o:hikvision:firmware:5.5.52:*:*:*:*:*:*:*</code>. The bridge from device identity to vulnerability database lookups.",
+    "CVE": "<b>Common Vulnerabilities and Exposures.</b> Unique identifier for a publicly-known vulnerability, like <code>CVE-2021-36260</code>. Issued by MITRE and CNAs (CVE Numbering Authorities).",
+    "CVSS": "<b>Common Vulnerability Scoring System.</b> A 0.0–10.0 base score derived from 8 metrics (AV/AC/PR/UI/S/C/I/A). The vector matters more than the number — two 8.8s can be operationally different.",
+    "NVD": "<b>National Vulnerability Database.</b> Run by NIST. The canonical source for CVE records with CVSS scores, affected-product CPE lists, and references. Free API, modest rate limits.",
+    "KEV": "<b>Known Exploited Vulnerabilities catalog.</b> Maintained by CISA. ~1,200 entries of CVEs <em>actually being exploited in the wild</em> — vs NVD's ~280,000. The right prioritization list.",
+    "CISA": "<b>Cybersecurity and Infrastructure Security Agency.</b> A US federal agency. Publishes the KEV catalog, alerts on active threats, and guidance for critical infrastructure.",
+    "GMP": "<b>Greenbone Management Protocol.</b> The XML-over-TLS protocol used to talk to OpenVAS (gvmd) for scan configuration, task creation, polling, and report retrieval.",
+    "NVT": "<b>Network Vulnerability Test.</b> An OpenVAS plugin — a script that probes a service for a specific weakness and reports findings. The feed is updated regularly.",
+    "ICMP": "<b>Internet Control Message Protocol.</b> Echo (ping) is the most common use. Cheap broad liveness — but many IoT devices deliberately drop it while remaining reachable on other protocols.",
+    "TCP": "<b>Transmission Control Protocol.</b> Connection-oriented transport. A successful TCP connect to a port is stronger evidence than ICMP — it ties the host to a reachable service endpoint.",
+    "UDP": "<b>User Datagram Protocol.</b> Connectionless transport. Used by mDNS (5353), SSDP (1900), SNMP (161), DNS (53), and many IoT discovery protocols.",
+    "IPv4": "<b>Internet Protocol version 4.</b> 32-bit addresses (e.g. 192.168.1.1). Still dominant on LANs. ARP, DHCP, broadcast all assume IPv4 semantics.",
+    "IPv6": "<b>Internet Protocol version 6.</b> 128-bit addresses. Replaces ARP with Neighbor Discovery and changes multicast surfaces, but the same vantage-point-and-protocol-behavior problems apply.",
+    "VLAN": "<b>Virtual LAN.</b> A logical segmentation layer that partitions broadcast domains. Devices on different VLANs cannot see each other via ARP/mDNS, even if they're physically on the same switch.",
+    "IoT": "<b>Internet of Things.</b> Network-connected consumer and embedded devices — cameras, doorbells, lights, speakers. Often unmanaged, agentless, and short on long-lived security updates.",
+    "OT": "<b>Operational Technology.</b> Industrial control systems, SCADA, building automation, medical devices. Active scanning here can cause real-world physical harm — passive-first is a safety requirement.",
+    "SCADA": "<b>Supervisory Control and Data Acquisition.</b> The systems that monitor and control physical processes — water treatment, power grids, manufacturing. Often runs on fragile embedded OSes with vendor-proprietary protocols.",
+    "HMI": "<b>Human-Machine Interface.</b> The screen and controls operators use to interact with industrial systems. Compromising an HMI can let an attacker manipulate physical processes.",
+    "PLC": "<b>Programmable Logic Controller.</b> An industrial computer that controls machinery. Common targets in OT incidents (Oldsmar, Stuxnet).",
+    "fping": "<b>Parallel ping tool.</b> Sweeps a subnet faster than serial pings. The Breakwater command <code>fping -a -g 10.0.0.0/24 -q -r 0 -t 50</code> means: alive hosts only, generate range, quiet, no retries, 50ms timeout.",
+    "masscan": "<b>Stateless port scanner.</b> Very fast at scanning large address spaces. Used for coarse search-space reduction. Loses information under packet loss — treat results as a cost signal, not as proof of empty space.",
+    "nmap": "<b>Network mapper.</b> The mainstream port scanner. <code>-sV</code> enables service version detection; <code>-sT</code> uses full TCP connect (no raw socket needed). Mature, well-supported, well-fingerprinted by defenders.",
+    "Nuclei": "<b>Template-driven vulnerability scanner.</b> Each template is a YAML file that describes how to probe a specific weakness. Outputs JSONL. Fast and specific — but only finds what its templates cover.",
+    "OpenVAS": "<b>Open-source vulnerability scanner.</b> Greenbone's mature NVT-based active scanner. Powerful but slow, feed-dependent, and can disrupt fragile devices. Talks GMP via gvmd.",
+    "gvmd": "<b>Greenbone Vulnerability Manager daemon.</b> The OpenVAS control plane process. Listens on TCP/9390 by default; you talk to it via GMP (Greenbone Management Protocol).",
+    "Fingerbank": "<b>Cloud-based device classification service.</b> Identifies devices from MAC + DHCP fingerprint. Optional in Breakwater; requires an API key and external trust.",
+    "defusedxml": "<b>A hardened Python XML parser.</b> Used for SSDP device descriptions because the standard XML parser is vulnerable to XXE (XML External Entity) and entity-expansion attacks from hostile devices.",
+    "XXE": "<b>XML External Entity attack.</b> A vulnerability in XML parsers that follow external entity references — letting attackers read arbitrary files or trigger SSRF. Always use a defused XML parser on third-party XML.",
+    "ipNetToMediaPhysAddress": "<b>SNMP table entry.</b> The OID <code>1.3.6.1.2.1.4.22.1.2</code> on a router. Returns the router's view of which IP maps to which MAC — extending visibility beyond your local segment.",
+    "virtualMatchString": "<b>NVD CVE search parameter.</b> A prefix-match alternative to <code>cpeName</code>. Used when exact CPE matching fails — broader, more lenient, but requires more skepticism about the returned CVE applicability.",
+    "cpeName": "<b>NVD exact-CPE query parameter.</b> Requires the full CPE 2.3 string. Cleaner than <code>virtualMatchString</code> when it works.",
+    "MAC randomization": "<b>Privacy feature in modern iOS/Android.</b> Phones rotate their Wi-Fi MAC address per-SSID or per-connection. Defeats OUI-based vendor inference; treat MAC counts on user-device segments as noisy.",
+    "Locally-administered MAC": "<b>A MAC where the second-lowest bit of the first octet is set</b> (e.g. <code>02:xx:xx:xx:xx:xx</code>). No IEEE OUI assignment — typically assigned by software (a hypervisor, container runtime, or randomization).",
+    "DHCP": "<b>Dynamic Host Configuration Protocol.</b> Hands out IP leases on a network. The router/server's lease table is a great source of host evidence — hostnames, MACs, vendor-class identifiers — when you have access.",
+    "JetDirect": "<b>HP's printer networking technology.</b> Raw TCP/9100 print port. Open <code>9100</code> is a strong printer signal.",
+    "IPP": "<b>Internet Printing Protocol.</b> TCP/631 and <code>_ipp._tcp</code> mDNS. Modern printers and many MFDs advertise IPP.",
+    "SMB": "<b>Server Message Block.</b> Windows file sharing on TCP/445. Open SMB suggests a Windows host, a NAS, or a Samba server.",
+    "M-SEARCH": "<b>The SSDP discovery request.</b> A UDP multicast packet to <code>239.255.255.250:1900</code> asking devices to respond with their UPnP descriptions.",
+    "IGMP": "<b>Internet Group Management Protocol.</b> Manages multicast group membership. Managed switches use IGMP snooping to limit multicast flood scope — which is why mDNS can disappear silently on segmented networks.",
+    "Zeroconf": "<b>Zero-configuration networking.</b> The umbrella for mDNS + DNS-SD + IPv4 link-local addressing. Apple's <code>Bonjour</code> is the most common implementation.",
+    "Bonjour": "<b>Apple's Zeroconf implementation.</b> Bundles mDNS + DNS-SD. The reason printers, AirPlay speakers, and Macs find each other automatically.",
+    "AirPlay": "<b>Apple's wireless streaming protocol.</b> Discovered via mDNS as <code>_airplay._tcp</code>. Capability signal — many TVs and speakers (not just Apple devices) support it.",
+    "Cast": "<b>Google's wireless streaming protocol.</b> Discovered via mDNS as <code>_googlecast._tcp</code>. Suggests a Cast-capable endpoint (Chromecast, smart TV, smart speaker) — narrows the device class but not the model.",
+    "TLS": "<b>Transport Layer Security.</b> Encrypts HTTPS, MQTT-S, and many service protocols. The handshake exposes certificate identity fields (subject, issuer, SAN) that can fingerprint vendors.",
+    "ClientHello": "<b>The first TLS handshake message from the client.</b> Lists supported cipher suites, extensions, TLS versions. JARM varies these systematically to fingerprint the server's TLS stack.",
+    "vantage point": "<b>The position from which a scanner observes.</b> A laptop on Wi-Fi, a switch port, a gateway, a central VPN scanner, a distributed collector — all see different evidence on the same network.",
+    "soundness": "<b>Discovery-quality metric.</b> Fraction of admitted hosts that are real (not phantoms). Coverage without soundness is noise.",
+    "completeness": "<b>Discovery-quality metric.</b> Fraction of real hosts that were discovered. Soundness without completeness is false comfort.",
+    "discovery gap": "<b>The set of real devices not in the discovered population</b> (D \\ D̂). The unobserved residue — what an attacker hunts.",
+    "passive-first": "<b>Discovery discipline.</b> Read existing state before generating new traffic. Reduces operational risk on fragile networks (hospitals, factories) and improves the interpretive quality of any findings.",
+    "structural independence": "<b>The principle that evidence from different protocol families is harder to forge than multiple pieces from the same family.</b> Three HTTP banners are not three independent confirmations — they're one piece of evidence.",
+    "existence vs identity": "<b>Chapter 1 vs Chapter 2 boundary.</b> Existence = a host responds (Ch.1). Identity = what the device actually is (Ch.2). A Google OUI is existence-level evidence — naming it a Chromecast is an identity claim.",
+    "phantom host": "<b>A false positive in discovery.</b> Stale ARP cache entries, broadcast artifacts (.255), or malformed observations promoted into the inventory. Phantom hosts contaminate every later chapter that reads them.",
+    "DNS": "<b>Domain Name System.</b> Maps names to addresses. Reverse DNS maps addresses back to names — sometimes useful for discovery context.",
+    "FQDN": "<b>Fully Qualified Domain Name.</b> A complete hostname including all parent domains, like <code>printer.lab.example.com</code>."
+  };
+
+  /* ---------- CROSS-CHAPTER JUMP MAP ---------- */
+  var JUMP_PATTERNS = [
+    {re:/\bChapter\s*1\b/g, label:"Chapter 1", paneId:"discovery"},
+    {re:/\bChapter\s*2\b/g, label:"Chapter 2", paneId:"sim2"},
+    {re:/\bChapter\s*3\b/g, label:"Chapter 3", paneId:"threat"},
+    {re:/\bCh\.\s*1\b/g, label:"Ch.1", paneId:"discovery"},
+    {re:/\bCh\.\s*2\b/g, label:"Ch.2", paneId:"sim2"},
+    {re:/\bCh\.\s*3\b/g, label:"Ch.3", paneId:"threat"}
+  ];
+
+  /* ---------- TOOLTIP RENDERER ---------- */
+  var tip = null;
+  var pinnedTerm = null;
+  function ensureTip(){
+    if(tip) return tip;
+    tip = document.createElement("div");
+    tip.className = "rl-tip";
+    tip.innerHTML = '<button class="rl-tip-close" aria-label="close">×</button><div class="rl-tip-name"></div><div class="rl-tip-body"></div>';
+    tip.querySelector(".rl-tip-close").addEventListener("click", hideTip);
+    document.body.appendChild(tip);
+    return tip;
+  }
+  function showTip(termEl, term, body){
+    var t = ensureTip();
+    t.querySelector(".rl-tip-name").textContent = term;
+    t.querySelector(".rl-tip-body").innerHTML = body;
+    var r = termEl.getBoundingClientRect();
+    var w = 340;
+    var x = Math.min(window.innerWidth - w - 12, Math.max(12, r.left));
+    var y = r.bottom + 6;
+    /* if not enough room below, open above */
+    if(y + 200 > window.innerHeight) y = Math.max(12, r.top - 200);
+    t.style.left = x + "px";
+    t.style.top = y + "px";
+    t.classList.add("show");
+  }
+  function hideTip(){
+    if(tip) tip.classList.remove("show");
+    if(pinnedTerm){ pinnedTerm.classList.remove("pinned"); pinnedTerm = null; }
+  }
+
+  /* ---------- GLOSSARY: wrap matching terms in text nodes ---------- */
+  /* Strategy: walk only paragraph text nodes inside the chapter panes
+     and wrap the first occurrence of each term per section. Avoid
+     wrapping inside <code>, <pre>, <a>, existing .rl-term, .rl-jump,
+     headings, or interactive controls — those should stay clean. */
+  var SKIP_TAGS = {SCRIPT:1, STYLE:1, CODE:1, PRE:1, A:1, BUTTON:1, SELECT:1, INPUT:1, TEXTAREA:1, H1:1, H2:1, H3:1, H4:1, H5:1, H6:1};
+  function shouldSkip(node){
+    var p = node.parentElement;
+    while(p){
+      if(SKIP_TAGS[p.tagName]) return true;
+      if(p.classList && (p.classList.contains("rl-term") || p.classList.contains("rl-jump") || p.classList.contains("rl-tip") || p.classList.contains("nd-sn") || p.classList.contains("nd-chapter-foot"))) return true;
+      p = p.parentElement;
+    }
+    return false;
+  }
+  /* Sort terms by length descending so longer terms match first (e.g. "MAC randomization" before "MAC") */
+  var glossaryKeys = Object.keys(GLOSSARY).sort(function(a, b){ return b.length - a.length; });
+  function buildTermRegex(){
+    var escaped = glossaryKeys.map(function(k){ return k.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); });
+    return new RegExp("\\b(" + escaped.join("|") + ")\\b", "g");
+  }
+  var termRegex = buildTermRegex();
+
+  function processSection(root){
+    /* track first occurrence per section by walking text nodes */
+    var seen = {};
+    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode: function(node){
+        if(!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        if(shouldSkip(node)) return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    var toWrap = [];
+    var node;
+    while((node = walker.nextNode())){
+      termRegex.lastIndex = 0;
+      var m, matches = [];
+      while((m = termRegex.exec(node.nodeValue)) !== null){
+        var k = m[1];
+        /* normalize lookup: try exact, then case-insensitive match against glossary keys */
+        var resolvedKey = null;
+        if(GLOSSARY[k]) resolvedKey = k;
+        else {
+          /* find case-insensitive match */
+          for(var i = 0; i < glossaryKeys.length; i++){
+            if(glossaryKeys[i].toLowerCase() === k.toLowerCase()){ resolvedKey = glossaryKeys[i]; break; }
+          }
+        }
+        if(!resolvedKey) continue;
+        if(seen[resolvedKey]) continue;
+        seen[resolvedKey] = true;
+        matches.push({start:m.index, end:m.index + m[0].length, text:m[0], key:resolvedKey});
+      }
+      if(matches.length) toWrap.push({node:node, matches:matches});
+    }
+    /* mutate after walking */
+    toWrap.forEach(function(entry){
+      var node = entry.node;
+      var matches = entry.matches;
+      /* matches are in ascending order of start position */
+      var parent = node.parentNode;
+      if(!parent) return;
+      var frag = document.createDocumentFragment();
+      var cursor = 0;
+      var text = node.nodeValue;
+      matches.forEach(function(m){
+        if(m.start > cursor) frag.appendChild(document.createTextNode(text.substring(cursor, m.start)));
+        var span = document.createElement("span");
+        span.className = "rl-term";
+        span.setAttribute("data-term", m.key);
+        span.textContent = m.text;
+        frag.appendChild(span);
+        cursor = m.end;
+      });
+      if(cursor < text.length) frag.appendChild(document.createTextNode(text.substring(cursor)));
+      parent.replaceChild(frag, node);
+    });
+  }
+
+  function initGlossary(){
+    /* process each chapter pane independently so each chapter gets first-occurrence wrapping */
+    ["discovery","sim2","threat"].forEach(function(paneId){
+      var pane = document.getElementById(paneId);
+      if(!pane) return;
+      pane.querySelectorAll(".nd-section").forEach(function(sec){ processSection(sec); });
+    });
+    /* click handler — toggle pinned tooltip */
+    document.body.addEventListener("click", function(e){
+      var t = e.target;
+      if(t.classList && t.classList.contains("rl-term")){
+        e.stopPropagation();
+        if(pinnedTerm === t){
+          hideTip();
+        } else {
+          if(pinnedTerm) pinnedTerm.classList.remove("pinned");
+          pinnedTerm = t;
+          t.classList.add("pinned");
+          showTip(t, t.getAttribute("data-term"), GLOSSARY[t.getAttribute("data-term")]);
+        }
+      } else if(tip && !tip.contains(t)){
+        hideTip();
+      }
+    });
+  }
+
+  /* ---------- CROSS-CHAPTER JUMPS ---------- */
+  function processJumpsInNode(root){
+    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode: function(node){
+        if(!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        if(shouldSkip(node)) return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    var nodes = [];
+    var n;
+    while((n = walker.nextNode())) nodes.push(n);
+    nodes.forEach(function(node){
+      var text = node.nodeValue;
+      var hits = [];
+      JUMP_PATTERNS.forEach(function(p){
+        p.re.lastIndex = 0;
+        var m;
+        while((m = p.re.exec(text)) !== null){
+          hits.push({start:m.index, end:m.index + m[0].length, text:m[0], paneId:p.paneId});
+        }
+      });
+      if(!hits.length) return;
+      hits.sort(function(a, b){ return a.start - b.start; });
+      /* remove overlapping/duplicate */
+      var clean = [];
+      var cursor = -1;
+      hits.forEach(function(h){ if(h.start >= cursor){ clean.push(h); cursor = h.end; } });
+      var parent = node.parentNode;
+      if(!parent) return;
+      var frag = document.createDocumentFragment();
+      var c = 0;
+      clean.forEach(function(h){
+        if(h.start > c) frag.appendChild(document.createTextNode(text.substring(c, h.start)));
+        var span = document.createElement("span");
+        span.className = "rl-jump";
+        span.setAttribute("data-jump-pane", h.paneId);
+        span.textContent = h.text;
+        frag.appendChild(span);
+        c = h.end;
+      });
+      if(c < text.length) frag.appendChild(document.createTextNode(text.substring(c)));
+      parent.replaceChild(frag, node);
+    });
+  }
+  function initJumps(){
+    ["discovery","sim2","threat"].forEach(function(pid){
+      var pane = document.getElementById(pid);
+      if(!pane) return;
+      pane.querySelectorAll(".nd-section, .nd-prose").forEach(function(sec){ processJumpsInNode(sec); });
+    });
+    document.body.addEventListener("click", function(e){
+      var t = e.target;
+      if(t.classList && t.classList.contains("rl-jump")){
+        e.stopPropagation();
+        var target = t.getAttribute("data-jump-pane");
+        var tab = document.querySelector('.tab[data-pane="' + target + '"]');
+        if(tab){
+          tab.click();
+          window.scrollTo({top: 0, behavior:"smooth"});
+        }
+      }
+    });
+  }
+
+  /* ---------- SELF-TEST QUIZZES ---------- */
+  function initQuizzes(){
+    document.querySelectorAll(".rl-quiz").forEach(function(quiz){
+      var questions = quiz.querySelectorAll(".rl-q");
+      var total = questions.length;
+      var answered = 0;
+      var correct = 0;
+      questions.forEach(function(q, idx){
+        var opts = q.querySelectorAll(".rl-q-opt");
+        opts.forEach(function(opt){
+          opt.addEventListener("click", function(){
+            if(q.classList.contains("done")) return;
+            q.classList.add("done");
+            var pick = opt.getAttribute("data-v");
+            var correctV = q.getAttribute("data-correct");
+            var isRight = pick === correctV;
+            opts.forEach(function(o){
+              if(o.getAttribute("data-v") === correctV) o.classList.add("reveal-right");
+            });
+            opt.classList.add("picked", isRight ? "right" : "wrong");
+            var why = q.querySelector(".rl-q-why");
+            if(why) why.classList.add("show");
+            answered++;
+            if(isRight) correct++;
+            var score = quiz.querySelector(".rl-quiz-score");
+            if(score){
+              score.classList.add("show");
+              if(answered < total){
+                score.innerHTML = '<b>' + correct + '</b> correct of ' + answered + ' answered · ' + (total - answered) + ' to go';
+              } else {
+                var pct = (correct / total * 100).toFixed(0);
+                var note = correct === total ? "perfect — defensible understanding." :
+                           correct >= total * 0.8 ? "strong run — review the items you missed." :
+                           correct >= total * 0.6 ? "passing, but re-read the chapter sections behind the misses." :
+                           "re-read this chapter before moving on. Quiz is intentionally unforgiving.";
+                score.innerHTML = '<b>' + correct + ' / ' + total + '</b> correct · ' + pct + '% · <em style="font-family:Source Serif Pro,Georgia,serif">' + note + '</em>';
+              }
+            }
+          });
+        });
+      });
+    });
+  }
+
+  /* ---------- PROGRESS TRACKING ---------- */
+  var PROG_KEY = "rl_progress_v1";
+  function loadProgress(){
+    try{ return JSON.parse(localStorage.getItem(PROG_KEY) || "{}"); } catch(e){ return {}; }
+  }
+  function saveProgress(p){
+    try{ localStorage.setItem(PROG_KEY, JSON.stringify(p)); } catch(e){}
+  }
+  function chapterSectionCount(paneId){
+    var pane = document.getElementById(paneId);
+    if(!pane) return 0;
+    return pane.querySelectorAll(".nd-section[id]").length;
+  }
+  function renderChapterProgressBadges(){
+    var p = loadProgress();
+    [{pane:"discovery", tab:"discovery"}, {pane:"sim2", tab:"sim2"}, {pane:"threat", tab:"threat"}].forEach(function(c){
+      var total = chapterSectionCount(c.pane);
+      if(!total) return;
+      var visited = (p[c.pane] || []).length;
+      var tabEl = document.querySelector('.tab[data-pane="' + c.tab + '"]');
+      if(!tabEl) return;
+      var existing = tabEl.querySelector(".rl-chap-prog");
+      if(existing) existing.remove();
+      if(visited === 0) return;
+      var badge = document.createElement("span");
+      badge.className = "rl-chap-prog " + (visited >= total ? "complete" : "partial");
+      badge.textContent = visited + "/" + total;
+      tabEl.appendChild(badge);
+    });
+  }
+  function markSubnavVisited(paneId){
+    var p = loadProgress();
+    var visited = p[paneId] || [];
+    var pane = document.getElementById(paneId);
+    if(!pane) return;
+    pane.querySelectorAll(".nd-sn").forEach(function(a){
+      var href = a.getAttribute("href");
+      if(!href || href[0] !== "#") return;
+      var id = href.slice(1);
+      if(visited.indexOf(id) !== -1) a.classList.add("visited");
+    });
+  }
+  function initProgress(){
+    var p = loadProgress();
+    ["discovery","sim2","threat"].forEach(function(paneId){
+      var pane = document.getElementById(paneId);
+      if(!pane) return;
+      var sections = pane.querySelectorAll(".nd-section[id]");
+      var io = new IntersectionObserver(function(entries){
+        var changed = false;
+        entries.forEach(function(e){
+          if(e.isIntersecting && e.intersectionRatio > 0.35){
+            var id = e.target.id;
+            var arr = p[paneId] || [];
+            if(arr.indexOf(id) === -1){ arr.push(id); p[paneId] = arr; changed = true; }
+          }
+        });
+        if(changed){
+          saveProgress(p);
+          markSubnavVisited(paneId);
+          renderChapterProgressBadges();
+        }
+      }, {threshold:0.35, rootMargin:"-100px 0px -200px 0px"});
+      sections.forEach(function(s){ io.observe(s); });
+      markSubnavVisited(paneId);
+    });
+    renderChapterProgressBadges();
+  }
+
+  /* ---------- BOOTSTRAP ---------- */
+  function boot(){
+    try{ initGlossary(); } catch(e){ console.warn("glossary init failed", e); }
+    try{ initJumps(); } catch(e){ console.warn("jumps init failed", e); }
+    try{ initQuizzes(); } catch(e){ console.warn("quiz init failed", e); }
+    try{ initProgress(); } catch(e){ console.warn("progress init failed", e); }
+  }
+  if(document.readyState === "loading"){
+    document.addEventListener("DOMContentLoaded", boot);
+  } else {
+    boot();
+  }
+})();
+</script>
+
 
 </body>
 </html>
