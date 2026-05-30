@@ -629,6 +629,7 @@ body.rl-scrolled .tabs{
 <div class="tabs">
   <button class="tab on" data-pane="discovery">Network Discovery</button>
   <button class="tab" data-pane="sim2">Cascade Lab</button>
+  <button class="tab" data-pane="threat">Threat Hunt</button>
   <button class="tab" data-pane="weblog">Fingerprinting</button>
   <button class="tab" data-pane="terms">Key terms</button>
 </div>
@@ -5149,6 +5150,1577 @@ identity:      <span style="color:#8a6321">unresolved · hand off to Ch.2</span>
   </script>
 
 </div>
+
+<!-- ===================== THREAT HUNT · CHAPTER 3 ===================== -->
+<div id="threat" class="pane">
+
+  <style>
+    /* C3 prefix · "Threat Hunt" — reuses .nd-* base from Ch.1/Ch.2 */
+
+    /* boundary vocabulary flip cards (Beat 1) */
+    .t3-bound{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:14px 0;max-width:1080px}
+    .t3-bc{background:var(--paper);border:1px solid var(--rule);border-radius:12px;padding:18px 20px;cursor:pointer;transition:all .2s;perspective:600px;position:relative;border-left:3px solid var(--gold);min-height:160px}
+    .t3-bc:hover{box-shadow:0 4px 14px rgba(40,30,10,.08);transform:translateY(-1px)}
+    .t3-bc.flip{background:rgba(157,133,82,.05)}
+    .t3-bc-h{font-family:'Inter',sans-serif;font-size:10.5px;color:var(--gold);text-transform:uppercase;letter-spacing:1.4px;font-weight:600;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center}
+    .t3-bc-h .turn{font-size:9.5px;color:var(--faint);letter-spacing:.5px}
+    .t3-bc-t{font-family:'Source Serif Pro',Georgia,serif;font-size:18px;font-weight:600;color:var(--ink);margin-bottom:8px;line-height:1.25}
+    .t3-bc-d{font-size:13px;color:var(--dim);line-height:1.55}
+    .t3-bc-x{display:none;font-size:12.5px;color:var(--dim);line-height:1.6;margin-top:8px;padding-top:8px;border-top:1px solid var(--rule-faint)}
+    .t3-bc.flip .t3-bc-x{display:block}
+    .t3-bc.flip .t3-bc-d{opacity:.5}
+    .t3-bc-x b{color:var(--ink)}
+    .t3-bc-x code{font-family:'JetBrains Mono',monospace;font-size:11px;background:var(--paper2);padding:1px 5px;border-radius:3px;color:var(--ink)}
+
+    /* CVSS calculator (Beat 2) */
+    .t3-cvss{background:var(--paper);border:1px solid var(--rule);border-radius:12px;padding:20px 24px;max-width:920px;margin-top:14px}
+    .t3-cvss-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:18px}
+    .t3-cvss-m{display:flex;flex-direction:column;gap:4px}
+    .t3-cvss-m label{font-family:'Inter',sans-serif;font-size:10.5px;color:var(--dim);text-transform:uppercase;letter-spacing:1.2px;font-weight:600}
+    .t3-cvss-m label .full{font-size:9.5px;color:var(--faint);font-weight:500;letter-spacing:.5px;display:block;margin-top:2px}
+    .t3-cvss-m select{padding:7px 10px;font-family:'JetBrains Mono',monospace;font-size:12px;border:1px solid var(--rule);border-radius:6px;outline:none;color:var(--ink);background:var(--paper)}
+    .t3-cvss-m select:focus{border-color:var(--ink)}
+    .t3-cvss-vec{background:#1a1a1a;color:#e9e2cf;border-radius:8px;padding:12px 16px;font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.4px;margin-bottom:14px;word-break:break-all}
+    .t3-cvss-vec .lbl{display:block;font-family:'Inter',sans-serif;font-size:9.5px;text-transform:uppercase;letter-spacing:1.6px;color:var(--gold-bright);font-weight:600;margin-bottom:6px}
+    .t3-cvss-score{display:flex;gap:24px;flex-wrap:wrap;align-items:center}
+    .t3-cvss-num{font-family:'Source Serif Pro',Georgia,serif;font-size:44px;font-weight:500;letter-spacing:-1px;line-height:1}
+    .t3-cvss-band{font-family:'Inter',sans-serif;font-size:11px;text-transform:uppercase;letter-spacing:1.6px;font-weight:600;padding:5px 12px;border-radius:99px}
+    .t3-cvss-band.none{background:var(--paper2);color:var(--faint)}
+    .t3-cvss-band.low{background:rgba(45,94,58,.15);color:#2d5e3a}
+    .t3-cvss-band.medium{background:rgba(138,99,33,.15);color:#8a6321}
+    .t3-cvss-band.high{background:rgba(200,90,30,.15);color:#a8511a}
+    .t3-cvss-band.critical{background:rgba(138,58,58,.15);color:#8a3a3a}
+    .t3-cvss-context{font-size:13.5px;color:var(--dim);line-height:1.55;font-style:italic;max-width:680px;margin-top:14px;padding-top:14px;border-top:1px solid var(--rule-faint)}
+    .t3-cvss-context b{color:var(--ink);font-style:normal}
+
+    /* five methods comparison (Beat 3) */
+    .t3-methods{display:grid;grid-template-columns:140px repeat(4,1fr);gap:1px;background:var(--rule);border-radius:10px;overflow:hidden;border:1px solid var(--rule);margin-top:14px;max-width:1080px}
+    @media(max-width:760px){.t3-methods{grid-template-columns:1fr;font-size:12px}}
+    .t3-methods > div{background:var(--paper);padding:11px 14px;font-family:'Inter',sans-serif;font-size:12.5px;color:var(--dim);line-height:1.5}
+    .t3-methods > div.h{background:var(--paper2);font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:1.2px;font-size:10.5px}
+    .t3-methods > div.r{background:var(--paper2);font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink);font-weight:500}
+    .t3-methods b{color:var(--ink)}
+
+    /* correlation puzzle (Beat 4) */
+    .t3-corr{background:var(--paper);border:1px solid var(--rule);border-radius:12px;padding:18px 22px;max-width:920px;margin-top:14px}
+    .t3-corr-pool{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+    .t3-corr-card{padding:8px 14px;font-family:'Inter',sans-serif;font-size:12.5px;border:1px solid var(--rule);background:var(--paper);color:var(--dim);border-radius:99px;cursor:pointer;transition:all .15s;font-weight:500}
+    .t3-corr-card[data-method]:hover{border-color:var(--ink);color:var(--ink)}
+    .t3-corr-card.on{background:var(--gold);color:var(--paper);border-color:var(--gold)}
+    .t3-corr-out{margin-top:14px;padding-top:14px;border-top:1px solid var(--rule-faint)}
+    .t3-corr-out .pattern{font-family:'Inter',sans-serif;font-size:10.5px;text-transform:uppercase;letter-spacing:1.4px;color:var(--gold);font-weight:600;margin-bottom:6px}
+    .t3-corr-out .verdict{font-family:'Source Serif Pro',Georgia,serif;font-size:15.5px;font-weight:500;color:var(--ink);line-height:1.5}
+    .t3-corr-out .verdict b{color:var(--ink)}
+    .t3-corr-conf-bar{height:6px;background:var(--paper2);border-radius:99px;overflow:hidden;margin-top:10px;max-width:480px}
+    .t3-corr-conf-bar > div{height:100%;background:linear-gradient(to right,#8a6321,var(--gold),#c4a565);width:0%;transition:width .5s cubic-bezier(.2,.7,.2,1);border-radius:99px}
+
+    /* SOC dark band wrapper for Triage Room (Game 1) */
+    .t3-soc{background:#141414;color:#e9e2cf;border-radius:12px;padding:0;margin-top:14px;max-width:1080px;overflow:hidden;border:1px solid #2a2a2a}
+    .t3-soc-head{padding:14px 22px;background:#1a1a1a;border-bottom:1px solid #2a2a2a;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
+    .t3-soc-h{font-family:'Inter',sans-serif;font-size:10.5px;text-transform:uppercase;letter-spacing:2px;color:var(--gold-bright);font-weight:600;display:flex;align-items:center;gap:10px}
+    .t3-soc-h::before{content:'';width:8px;height:8px;border-radius:50%;background:#e24b4a;animation:t3-pulse 1.4s ease-in-out infinite}
+    @keyframes t3-pulse{0%,100%{opacity:1}50%{opacity:.3}}
+    .t3-soc-timer{font-family:'JetBrains Mono',monospace;font-size:24px;color:#fafafa;font-weight:500;letter-spacing:1px;font-variant-numeric:tabular-nums}
+    .t3-soc-timer.warn{color:#f0997b}
+    .t3-soc-timer.crit{color:#e24b4a;animation:t3-pulse 1s ease-in-out infinite}
+    .t3-soc-stats{font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(233,226,207,.6);display:flex;gap:18px}
+    .t3-soc-stats b{color:#fafafa;font-size:13px}
+    .t3-soc-body{padding:18px 22px;min-height:340px}
+    .t3-soc-start{text-align:center;padding:48px 20px}
+    .t3-soc-start h3{font-family:'Source Serif Pro',Georgia,serif;font-size:22px;font-weight:500;color:#fafafa;margin-bottom:8px}
+    .t3-soc-start p{font-size:13.5px;color:rgba(233,226,207,.6);max-width:520px;margin:0 auto 18px;line-height:1.6}
+    .t3-soc-start .nd-btn{background:transparent;border-color:#c4a565;color:#c4a565}
+    .t3-soc-start .nd-btn:hover{background:#c4a565;color:#141414}
+    .t3-soc-best{font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(233,226,207,.5);margin-top:12px}
+    .t3-soc-alert{background:#1a1a1a;border-left:4px solid #888;border-radius:6px;padding:14px 18px;margin-bottom:10px;animation:t3-slide-in .3s ease}
+    @keyframes t3-slide-in{from{opacity:0;transform:translateX(-12px)}to{opacity:1;transform:translateX(0)}}
+    .t3-soc-alert.kev{border-left-color:#e24b4a}
+    .t3-soc-alert.phantom{border-left-color:#8a6321}
+    .t3-soc-alert-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;margin-bottom:8px}
+    .t3-soc-alert-cve{font-family:'JetBrains Mono',monospace;font-size:13px;color:#fafafa;font-weight:500}
+    .t3-soc-alert-tags{display:flex;gap:6px;flex-wrap:wrap;font-family:'Inter',sans-serif;font-size:9.5px;text-transform:uppercase;letter-spacing:1.2px;font-weight:600}
+    .t3-soc-alert-tags .tag{padding:3px 8px;border-radius:99px;background:#2a2a2a;color:rgba(233,226,207,.7)}
+    .t3-soc-alert-tags .tag.kev{background:rgba(226,75,74,.18);color:#f0a4a4}
+    .t3-soc-alert-tags .tag.score{background:#1f1f1f;color:#c4a565}
+    .t3-soc-alert-meta{font-size:12px;color:rgba(233,226,207,.7);margin-bottom:6px;line-height:1.5}
+    .t3-soc-alert-meta b{color:#fafafa}
+    .t3-soc-alert-vec{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:rgba(196,165,101,.7);letter-spacing:.3px;margin-bottom:10px}
+    .t3-soc-actions{display:flex;gap:6px;flex-wrap:wrap}
+    .t3-soc-act{flex:1;min-width:90px;padding:7px 8px;font-family:'Inter',sans-serif;font-size:11px;font-weight:600;background:#2a2a2a;color:#e9e2cf;border:1px solid #3a3a3a;border-radius:6px;cursor:pointer;transition:all .15s;text-align:center;text-transform:uppercase;letter-spacing:.8px}
+    .t3-soc-act:hover{background:#3a3a3a;border-color:#c4a565}
+    .t3-soc-act.act{border-color:#e24b4a}.t3-soc-act.act:hover{background:#e24b4a;color:#fff}
+    .t3-soc-act.val{border-color:#c4a565}.t3-soc-act.val:hover{background:#c4a565;color:#141414}
+    .t3-soc-act.sch{border-color:#888}.t3-soc-act.sch:hover{background:#888;color:#141414}
+    .t3-soc-act.mon{border-color:#666}.t3-soc-act.mon:hover{background:#666;color:#fff}
+    .t3-soc-act.dis{border-color:#444;color:rgba(233,226,207,.4)}.t3-soc-act.dis:hover{background:#444;color:#fff}
+    .t3-soc-result{padding:24px}
+    .t3-soc-result h3{font-family:'Source Serif Pro',Georgia,serif;font-size:24px;font-weight:500;color:#fafafa;margin-bottom:10px}
+    .t3-soc-result .scoreline{font-family:'JetBrains Mono',monospace;font-size:13px;color:rgba(233,226,207,.7);margin-bottom:18px;line-height:1.6}
+    .t3-soc-result .scoreline b{color:#fafafa;font-size:16px}
+    .t3-soc-replay-list{display:flex;flex-direction:column;gap:8px;margin-top:14px;max-height:280px;overflow-y:auto}
+    .t3-soc-replay{padding:9px 12px;background:#1f1f1f;border-radius:6px;display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:11px;gap:14px}
+    .t3-soc-replay .your{color:rgba(233,226,207,.7)}
+    .t3-soc-replay .ideal{color:#c4a565}
+    .t3-soc-replay.match{border-left:2px solid #2d5e3a;padding-left:10px}
+    .t3-soc-replay.miss{border-left:2px solid #e24b4a;padding-left:10px}
+
+    /* Phantom Hunt (Game 2) */
+    .t3-phantom{background:var(--paper);border:1px solid var(--rule);border-radius:12px;padding:18px 22px;max-width:1080px;margin-top:14px}
+    .t3-phantom-mechs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--rule-faint)}
+    .t3-pm{padding:6px 12px;font-family:'Inter',sans-serif;font-size:11px;background:var(--paper2);color:var(--dim);border:1px solid var(--rule);border-radius:99px;cursor:grab;font-weight:500;user-select:none;letter-spacing:.3px}
+    .t3-pm:hover{border-color:var(--ink);color:var(--ink)}
+    .t3-pm.dragging{opacity:.4}
+    .t3-phantom-list{display:flex;flex-direction:column;gap:8px;max-height:480px;overflow-y:auto}
+    .t3-phantom-rec{background:var(--paper2);border:1px solid var(--rule);border-radius:8px;padding:12px 14px;display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center}
+    .t3-phantom-rec.judged{border-color:var(--gold)}
+    .t3-phantom-rec.judged.correct{background:rgba(45,94,58,.04);border-color:#2d5e3a}
+    .t3-phantom-rec.judged.wrong{background:rgba(138,58,58,.04);border-color:#8a3a3a}
+    .t3-phantom-info{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--ink);line-height:1.55}
+    .t3-phantom-info .ip{color:var(--gold);font-weight:500}
+    .t3-phantom-info .cve{color:var(--ink);font-weight:500}
+    .t3-phantom-info .id{color:var(--dim);font-size:10.5px;font-family:'Inter',sans-serif}
+    .t3-phantom-drop{padding:14px;border:1.5px dashed var(--rule);border-radius:8px;font-family:'Inter',sans-serif;font-size:11px;color:var(--faint);min-width:160px;text-align:center;letter-spacing:.3px;font-weight:500;background:var(--paper)}
+    .t3-phantom-drop.has{border-style:solid;border-color:var(--gold);color:var(--ink);background:var(--paper2)}
+    .t3-phantom-drop.real{border-color:#2d5e3a;color:#2d5e3a}
+    .t3-phantom-drop.real::before{content:'real · keep · '}
+    .t3-phantom-explain{display:none;margin-top:10px;padding:10px 12px;background:rgba(157,133,82,.08);border-left:2px solid var(--gold);font-size:12px;color:var(--dim);line-height:1.55;font-family:'Source Serif Pro',Georgia,serif;font-style:italic}
+    .t3-phantom-rec.judged .t3-phantom-explain{display:block;grid-column:1/-1}
+
+    /* Default credential roulette (Game 3) */
+    .t3-roul{background:var(--paper);border:1px solid var(--rule);border-radius:12px;padding:18px 22px;max-width:920px;margin-top:14px}
+    .t3-roul-head{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;align-items:center;margin-bottom:14px}
+    .t3-roul-class{display:flex;gap:6px;flex-wrap:wrap}
+    .t3-roul-c{padding:7px 12px;font-family:'Inter',sans-serif;font-size:11.5px;border:1px solid var(--rule);background:var(--paper);color:var(--dim);border-radius:99px;cursor:pointer;font-weight:500}
+    .t3-roul-c:hover{border-color:var(--ink);color:var(--ink)}
+    .t3-roul-c.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+    .t3-roul-stage{background:#0a0a0a;color:#e9e2cf;border-radius:10px;padding:24px;min-height:220px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;position:relative;overflow:hidden}
+    .t3-roul-display{font-family:'JetBrains Mono',monospace;font-size:32px;letter-spacing:2px;color:#fafafa;font-weight:500;margin-bottom:14px;line-height:1.2}
+    .t3-roul-display.spinning{color:#c4a565;animation:t3-spin .08s linear infinite}
+    @keyframes t3-spin{0%{transform:translateY(-2px)}100%{transform:translateY(2px)}}
+    .t3-roul-resp{font-family:'JetBrains Mono',monospace;font-size:13px;color:rgba(233,226,207,.6);margin-bottom:14px;min-height:32px}
+    .t3-roul-resp.real{color:#90c46c}
+    .t3-roul-resp.fake401{color:#e24b4a}
+    .t3-roul-resp.fakepublic{color:#f0997b}
+    .t3-roul-q{font-family:'Source Serif Pro',Georgia,serif;font-size:14px;color:#e9e2cf;margin-bottom:10px}
+    .t3-roul-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+    .t3-roul-btn{padding:8px 14px;background:transparent;border:1px solid #c4a565;color:#c4a565;border-radius:99px;cursor:pointer;font-family:'Inter',sans-serif;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.8px}
+    .t3-roul-btn:hover{background:#c4a565;color:#0a0a0a}
+    .t3-roul-feedback{margin-top:12px;font-family:'Inter',sans-serif;font-size:11.5px;color:rgba(233,226,207,.7);min-height:16px}
+    .t3-roul-feedback.correct{color:#90c46c}
+    .t3-roul-feedback.wrong{color:#e24b4a}
+    .t3-roul-score{margin-top:14px;padding-top:14px;border-top:1px solid var(--rule-faint);font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--dim);display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px}
+    .t3-roul-score b{color:var(--ink)}
+
+    /* Live KEV feed strip */
+    .t3-kev-strip{background:var(--paper);border:1px solid var(--gold);border-left:4px solid var(--gold);border-radius:10px;padding:16px 20px;margin-top:14px;max-width:1080px}
+    .t3-kev-h{font-family:'Inter',sans-serif;font-size:10.5px;text-transform:uppercase;letter-spacing:1.6px;color:var(--gold);font-weight:600;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+    .t3-kev-h .src{font-size:9.5px;color:var(--dim);font-weight:500;letter-spacing:.5px;text-transform:none;font-style:italic}
+    .t3-kev-list{display:flex;flex-direction:column;gap:6px}
+    .t3-kev-r{display:grid;grid-template-columns:130px 1fr auto;gap:14px;padding:8px 0;font-family:'Inter',sans-serif;font-size:12.5px;border-bottom:1px solid var(--rule-faint);align-items:center}
+    .t3-kev-r:last-child{border-bottom:none}
+    .t3-kev-r .cve{font-family:'JetBrains Mono',monospace;color:var(--ink);font-weight:500}
+    .t3-kev-r .desc{color:var(--dim);line-height:1.5;font-size:12.5px;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+    .t3-kev-r .date{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--faint)}
+    .t3-kev-loading{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--faint);font-style:italic;text-align:center;padding:14px 0}
+
+    /* worked trace reuses .c2-trace from Ch.2 */
+
+    /* Patch Tuesday capstone */
+    .t3-capstone{background:var(--paper);border:1px solid var(--rule);border-radius:12px;padding:20px 24px;max-width:1080px;margin-top:14px}
+    .t3-cap-config{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-bottom:18px}
+    .t3-cap-cfg{padding:12px 16px;background:var(--paper2);border-radius:8px;border-left:3px solid var(--gold)}
+    .t3-cap-cfg-lbl{font-family:'Inter',sans-serif;font-size:9.5px;text-transform:uppercase;letter-spacing:1.6px;color:var(--gold);font-weight:600;margin-bottom:6px}
+    .t3-cap-cfg-val{font-family:'Source Serif Pro',Georgia,serif;font-size:18px;font-weight:500;color:var(--ink)}
+    .t3-cap-cfg select{padding:5px 10px;font-family:'Inter',sans-serif;font-size:12px;border:1px solid var(--rule);border-radius:6px;outline:none;width:100%;margin-top:4px}
+    .t3-cap-methods{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-bottom:18px}
+    .t3-cap-m{padding:12px 14px;background:var(--paper);border:1px solid var(--rule);border-radius:8px;cursor:pointer;transition:all .15s;position:relative}
+    .t3-cap-m:hover{border-color:var(--ink)}
+    .t3-cap-m.on{border-color:#2d5e3a;background:rgba(45,94,58,.04)}
+    .t3-cap-m.dangerous{border-left:3px solid #8a3a3a}
+    .t3-cap-m.dangerous.on{border-left-color:#2d5e3a}
+    .t3-cap-mh{font-family:'Source Serif Pro',Georgia,serif;font-size:14.5px;font-weight:600;color:var(--ink);margin-bottom:4px}
+    .t3-cap-md{font-size:11.5px;color:var(--dim);line-height:1.45;font-family:'Inter',sans-serif}
+    .t3-cap-m .warn{display:block;font-size:10px;color:#8a3a3a;margin-top:4px;font-weight:600;text-transform:uppercase;letter-spacing:.6px}
+    .t3-cap-stream{background:var(--paper2);border-radius:8px;padding:12px;min-height:80px;max-height:280px;overflow-y:auto;display:none;flex-direction:column;gap:4px;margin-bottom:14px;font-family:'JetBrains Mono',monospace;font-size:11.5px}
+    .t3-cap-stream.on{display:flex}
+    .t3-cap-row{display:grid;grid-template-columns:100px 1fr 80px;gap:10px;padding:6px 10px;background:var(--paper);border-radius:5px;align-items:center;animation:t3-slide-in .25s ease}
+    .t3-cap-row .ip{color:var(--gold)}
+    .t3-cap-row .desc{color:var(--dim);font-size:11px;font-family:'Inter',sans-serif}
+    .t3-cap-row .tag{font-size:9.5px;text-align:right;text-transform:uppercase;letter-spacing:.5px;font-family:'Inter',sans-serif;font-weight:600;color:var(--ink)}
+    .t3-cap-row.kev .tag{color:#e24b4a}
+    .t3-cap-row.phantom .tag{color:#8a6321;opacity:.7}
+    .t3-cap-row.confirmed .tag{color:#2d5e3a}
+    .t3-cap-score{display:none;background:var(--paper2);border-radius:10px;padding:20px 24px;border-left:3px solid var(--gold)}
+    .t3-cap-score.on{display:block}
+    .t3-cap-metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:14px}
+    .t3-cap-metric{padding:12px 14px;background:var(--paper);border-radius:6px}
+    .t3-cap-metric-lbl{font-family:'Inter',sans-serif;font-size:9.5px;text-transform:uppercase;letter-spacing:1.3px;color:var(--gold);font-weight:600;margin-bottom:3px}
+    .t3-cap-metric-val{font-family:'Source Serif Pro',Georgia,serif;font-size:28px;font-weight:500;color:var(--ink);letter-spacing:-.5px;line-height:1}
+    .t3-cap-metric-sub{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--dim);margin-top:3px}
+    .t3-cap-reflect{font-family:'Source Serif Pro',Georgia,serif;font-size:13.5px;color:var(--dim);line-height:1.7;font-style:italic;padding:12px 14px;background:var(--paper);border-radius:6px}
+    .t3-cap-reflect b{color:var(--ink);font-style:normal}
+    .t3-cap-reflect .good{color:#2d5e3a;font-style:normal;font-weight:600}
+    .t3-cap-reflect .bad{color:#8a3a3a;font-style:normal;font-weight:600}
+  </style>
+
+  <!-- ============== Chapter header ============== -->
+  <header class="nd-chapter-header">
+    <div class="nd-chapter-meta">
+      <span class="nd-chapter-kicker">Chapter 3 · Threat Hunt</span>
+      <span class="nd-chapter-credit">Lectures of <b>Dr. Ravinder Mallarapu</b> · SEAS-8414 · GW · interactive lab by Rayve Malhotra, student of the course · approved by Dr. Mallarapu</span>
+    </div>
+    <h1 class="nd-chapter-title">Vulnerability Assessment &amp; <em>The Detective Layer</em></h1>
+    <p class="nd-chapter-lede">
+      A vulnerability identified by an automated tool is an initial indicator — never a definitive conclusion. Its significance is established only when an analyst contextualizes it with device-specific evidence. Chapter 3 is the bridge from <em>identity</em> (what is this device?) to <em>candidate weaknesses</em> (what might apply?) — and the discipline that decides which candidates earn the right to move forward.
+    </p>
+    <div class="nd-chapter-questions">
+      <div>Which CVEs actually apply?</div>
+      <div>How sure can we be?</div>
+      <div>What's actually being exploited?</div>
+      <div>Where does Ch.3 stop?</div>
+    </div>
+  </header>
+
+  <!-- ============== Sub-nav ============== -->
+  <nav class="nd-subnav" id="t3Subnav">
+    <a href="#t3-1" class="nd-sn">1 · The Boundary</a>
+    <a href="#t3-2" class="nd-sn">2 · CVSS Anatomy</a>
+    <a href="#t3-3" class="nd-sn">3 · 5 Methods</a>
+    <a href="#t3-4" class="nd-sn">4 · Correlation</a>
+    <a href="#t3-kev" class="nd-sn">Live KEV</a>
+    <a href="#t3-g1" class="nd-sn">🎯 Triage Room</a>
+    <a href="#t3-g2" class="nd-sn">🕵️ Phantom Hunt</a>
+    <a href="#t3-g3" class="nd-sn">🎰 Cred Roulette</a>
+    <a href="#t3-hik" class="nd-sn">Hikvision Trace</a>
+    <a href="#t3-cast" class="nd-sn">Chromecast Trace</a>
+    <a href="#t3-cap" class="nd-sn">Capstone</a>
+    <a href="#t3-handoff" class="nd-sn">Handoff</a>
+    <a href="#t3-disc" class="nd-sn">Discipline</a>
+  </nav>
+
+  <!-- ============== §1 Boundary ============== -->
+  <section id="t3-1" class="nd-section">
+    <div class="nd-sec-num">SECTION 01</div>
+    <h2 class="nd-sec-title">The Four-Term Boundary</h2>
+    <div class="nd-sec-sub">Vocabulary controls everything. A scanner result is not a vulnerability — until it earns the right.</div>
+
+    <p class="nd-prose">
+      Most vulnerability tools fail by collapsing four distinct states into one number. Dr. M's chapter holds them apart. <b>Click each card</b> to see the definition, the example, and what evidence is required to move a finding between states.
+    </p>
+
+    <div class="t3-bound" id="t3Bound">
+      <div class="t3-bc" data-i="0">
+        <div class="t3-bc-h">STATE 01<span class="turn">↻ flip</span></div>
+        <div class="t3-bc-t">Candidate vulnerability</div>
+        <div class="t3-bc-d">A weakness that <em>may</em> apply, based on identity, CPE, banner, template, or scanner evidence.</div>
+        <div class="t3-bc-x">
+          <b>Example:</b> NVD returns CVE-2021-36260 for a wildcard Hikvision camera CPE built from an HTTP server header. Affected versions match the rough family — but no firmware-level evidence has been gathered yet.<br><br>
+          <b>To promote → confirmed:</b> an active check (Nuclei template hits the vulnerable endpoint) OR a direct corroborating signal (vendor advisory confirms the firmware branch).
+        </div>
+      </div>
+      <div class="t3-bc" data-i="1">
+        <div class="t3-bc-h">STATE 02<span class="turn">↻ flip</span></div>
+        <div class="t3-bc-t">Confirmed weakness</div>
+        <div class="t3-bc-d">A weakness supported by <em>direct or strong corroborating</em> evidence — not just identity.</div>
+        <div class="t3-bc-x">
+          <b>Example:</b> A Nuclei template verifies the vulnerable endpoint <em>and</em> the CPE matches affected criteria <em>and</em> the firmware is on a vulnerable branch. Two independent paths agree.<br><br>
+          <b>Also example:</b> Default credentials succeed. That single direct authentication event is gold-standard evidence for <em>authentication-failure</em>, even if no CVE ID applies.
+        </div>
+      </div>
+      <div class="t3-bc" data-i="2">
+        <div class="t3-bc-h">STATE 03<span class="turn">↻ flip</span></div>
+        <div class="t3-bc-t">False positive</div>
+        <div class="t3-bc-d">A candidate that <em>does not apply</em> to this device after triage. Recorded, not deleted.</div>
+        <div class="t3-bc-x">
+          <b>Five mechanisms produce false positives:</b> CPE imprecision · backported patch · stale banner · configuration dependency · active-scan misinterpretation.<br><br>
+          <b>The validation note matters:</b> not just "false positive" but <code>"CVE applies to firmware before V5.5.800; ONVIF reports V5.7.1 and vendor advisory confirms patch branch."</code> Future analysts can challenge or retire the decision.
+        </div>
+      </div>
+      <div class="t3-bc" data-i="3">
+        <div class="t3-bc-h">STATE 04<span class="turn">↻ flip</span></div>
+        <div class="t3-bc-t">Prioritized item</div>
+        <div class="t3-bc-d">A finding selected for action under operational constraints — not just sorted by CVSS.</div>
+        <div class="t3-bc-x">
+          <b>Five inputs:</b> severity · evidence strength · exposure · device role · consequence. A medium CVE on a router routing zones beats a critical CVE on an isolated lab camera.<br><br>
+          <b>Five action bands:</b> act now · validate next · schedule · monitor · accept temporarily. Each requires a defensible rationale — not "the score said so."
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== §2 CVSS Anatomy ============== -->
+  <section id="t3-2" class="nd-section">
+    <div class="nd-sec-num">SECTION 02</div>
+    <h2 class="nd-sec-title">CVSS Is a Vector, Not a Number</h2>
+    <div class="nd-sec-sub">Read the eight metrics. The kind of danger matters more than the score.</div>
+
+    <p class="nd-prose">
+      A CVSS v3.1 base score summarizes eight metrics. Two findings with the same 8.8 can be operationally different — one breaks confidentiality, the other breaks availability. On a media device with private metadata, confidentiality dominates. On a clinical camera supporting safety monitoring, availability does. <b>Adjust the metrics below</b> and watch the vector and band recompute.
+    </p>
+
+    <div class="t3-cvss">
+      <div class="t3-cvss-grid">
+        <div class="t3-cvss-m">
+          <label>AV<span class="full">Attack Vector</span></label>
+          <select id="t3CvssAV"><option value="N" data-w="0.85">N · Network</option><option value="A" data-w="0.62">A · Adjacent</option><option value="L" data-w="0.55">L · Local</option><option value="P" data-w="0.2">P · Physical</option></select>
+        </div>
+        <div class="t3-cvss-m">
+          <label>AC<span class="full">Attack Complexity</span></label>
+          <select id="t3CvssAC"><option value="L" data-w="0.77">L · Low</option><option value="H" data-w="0.44">H · High</option></select>
+        </div>
+        <div class="t3-cvss-m">
+          <label>PR<span class="full">Privileges Required</span></label>
+          <select id="t3CvssPR"><option value="N" data-w="0.85">N · None</option><option value="L" data-w="0.62">L · Low</option><option value="H" data-w="0.27">H · High</option></select>
+        </div>
+        <div class="t3-cvss-m">
+          <label>UI<span class="full">User Interaction</span></label>
+          <select id="t3CvssUI"><option value="N" data-w="0.85">N · None</option><option value="R" data-w="0.62">R · Required</option></select>
+        </div>
+        <div class="t3-cvss-m">
+          <label>S<span class="full">Scope</span></label>
+          <select id="t3CvssS"><option value="U">U · Unchanged</option><option value="C">C · Changed</option></select>
+        </div>
+        <div class="t3-cvss-m">
+          <label>C<span class="full">Confidentiality</span></label>
+          <select id="t3CvssC"><option value="H" data-w="0.56">H · High</option><option value="L" data-w="0.22">L · Low</option><option value="N" data-w="0">N · None</option></select>
+        </div>
+        <div class="t3-cvss-m">
+          <label>I<span class="full">Integrity</span></label>
+          <select id="t3CvssI"><option value="H" data-w="0.56">H · High</option><option value="L" data-w="0.22">L · Low</option><option value="N" data-w="0">N · None</option></select>
+        </div>
+        <div class="t3-cvss-m">
+          <label>A<span class="full">Availability</span></label>
+          <select id="t3CvssA"><option value="N" data-w="0">N · None</option><option value="L" data-w="0.22">L · Low</option><option value="H" data-w="0.56">H · High</option></select>
+        </div>
+      </div>
+      <div class="t3-cvss-vec">
+        <span class="lbl">CVSS v3.1 vector</span>
+        <span id="t3CvssVec">CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:L/A:N</span>
+      </div>
+      <div class="t3-cvss-score">
+        <div class="t3-cvss-num" id="t3CvssNum">8.2</div>
+        <div class="t3-cvss-band high" id="t3CvssBand">High</div>
+        <div style="flex:1;min-width:180px;font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--dim);line-height:1.6">
+          0.1–3.9 · low<br>4.0–6.9 · medium<br>7.0–8.9 · high<br>9.0–10.0 · critical
+        </div>
+      </div>
+      <div class="t3-cvss-context" id="t3CvssCtx">
+        <b>Reading the vector:</b> network-reachable, low complexity, no privileges, no user interaction, unchanged scope, high confidentiality impact. This is the classic "remote unauthenticated information disclosure" shape. On a router carrying credentials in management traffic, this would be act-now. On an isolated lab device with no sensitive data, it would be schedule.
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== §3 Five Methods ============== -->
+  <section id="t3-3" class="nd-section">
+    <div class="nd-sec-num">SECTION 03</div>
+    <h2 class="nd-sec-title">Five Methods, Different Error Profiles</h2>
+    <div class="nd-sec-sub">Each tool observes different things. Each fails differently. Combine accordingly.</div>
+
+    <p class="nd-prose">
+      Breakwater's vulnerability phase runs five distinct evidence paths. They are <em>not redundant</em> — combining them is how confidence grows, but only when they agree about structurally different things. Combining them <em>without</em> understanding their failure modes is how false certainty spreads.
+    </p>
+
+    <div class="t3-methods">
+      <div class="h">Method</div>
+      <div class="h">What it observes</div>
+      <div class="h">Strength</div>
+      <div class="h">Failure mode</div>
+      <div class="h">Safety</div>
+
+      <div class="r">NVD lookup</div>
+      <div>CPE-to-CVE association from a public database</div>
+      <div>Broad coverage of known vulnerabilities</div>
+      <div>Depends on identity + CPE precision; database lag</div>
+      <div><b>Passive</b> · no device contact</div>
+
+      <div class="r">OpenVAS</div>
+      <div>Active network probes (NVT plugins)</div>
+      <div>Mature active assessment of service behavior</div>
+      <div>Slow · feed-dependent · can disrupt fragile devices</div>
+      <div><b>Active</b> · maintenance windows + policy approval</div>
+
+      <div class="r">Nuclei</div>
+      <div>Template-driven endpoint checks (JSONL output)</div>
+      <div>Targeted confirmation of specific weaknesses</div>
+      <div>Template coverage gaps; partial results on timeout</div>
+      <div><b>Active</b> · less invasive than OpenVAS</div>
+
+      <div class="r">Default creds</div>
+      <div>Vendor-aware authentication attempts</div>
+      <div>Gold-standard direct evidence when succeeds</div>
+      <div>Lockouts · alerts · false-positive on public pages</div>
+      <div><b>Opt-in only</b> · written authorization required</div>
+
+      <div class="r">Validation</div>
+      <div>Analyst decisions on prior findings (pair-level)</div>
+      <div>Suppresses known false positives without losing history</div>
+      <div>Stale if devices change · requires ongoing curation</div>
+      <div><b>Passive</b> · note-taking</div>
+    </div>
+
+    <p class="nd-prose" style="font-size:13.5px;margin-top:14px;max-width:780px;font-style:italic">
+      A device left untested by a method is <em>not proven safe</em>. The final report must distinguish at least four states per method per host: <code>completed</code> · <code>disabled</code> · <code>unavailable</code> · <code>failed-or-partial</code>.
+    </p>
+  </section>
+
+  <!-- ============== §4 Correlation ============== -->
+  <section id="t3-4" class="nd-section">
+    <div class="nd-sec-num">SECTION 04</div>
+    <h2 class="nd-sec-title">Correlation Without Double-Counting</h2>
+    <div class="nd-sec-sub">Three patterns: convergence · unique coverage · contradiction.</div>
+
+    <p class="nd-prose">
+      Pick evidence types to corroborate a Hikvision camera CVE claim. Watch confidence rise when methods are <em>structurally different</em> — and notice what happens with same-method repetition or active/passive disagreement.
+    </p>
+
+    <div class="t3-corr">
+      <div class="t3-corr-pool" id="t3CorrPool">
+        <span class="t3-corr-card" data-method="nvd" data-w="0.40">NVD exact CPE match</span>
+        <span class="t3-corr-card" data-method="nvd" data-w="0.20">NVD wildcard CPE match</span>
+        <span class="t3-corr-card" data-method="openvas" data-w="0.50">OpenVAS active probe finding</span>
+        <span class="t3-corr-card" data-method="nuclei" data-w="0.55">Nuclei template verifies endpoint</span>
+        <span class="t3-corr-card" data-method="creds" data-w="0.80">Default credentials succeed</span>
+        <span class="t3-corr-card" data-method="validation" data-w="0.30">Validation record (analyst confirmed)</span>
+        <span class="t3-corr-card" data-method="nvd" data-w="0.15">Second NVD wildcard hit</span>
+      </div>
+      <div class="t3-corr-out">
+        <div class="pattern" id="t3CorrPattern">PICK · evidence</div>
+        <div class="verdict" id="t3CorrVerdict">Select evidence above. Notice how a Nuclei template + NVD exact CPE (two structurally different methods agreeing) raises confidence faster than three NVD hits.</div>
+        <div class="t3-corr-conf-bar"><div id="t3CorrBar"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== Live KEV strip ============== -->
+  <section id="t3-kev" class="nd-section">
+    <div class="nd-sec-num">LIVE DATA</div>
+    <h2 class="nd-sec-title">What's Actively Being Exploited · Right Now</h2>
+    <div class="nd-sec-sub">CISA KEV — Known Exploited Vulnerabilities — fetched live, cached 24h. ~1,200 entries vs NVD's ~280,000.</div>
+
+    <p class="nd-prose">
+      Severity bands tell you what <em>could</em> be bad. CISA's KEV catalog tells you what is <em>actually being exploited in the wild</em>. For prioritization, KEV beats CVSS. Below: the 10 most recently-added entries from <code>cisa.gov</code>, refreshed in your browser at most once every 24 hours.
+    </p>
+
+    <div class="t3-kev-strip">
+      <div class="t3-kev-h">
+        <span>CISA KEV · most recent additions</span>
+        <span class="src" id="t3KevSrc">loading from cisa.gov…</span>
+      </div>
+      <div class="t3-kev-list" id="t3KevList">
+        <div class="t3-kev-loading">▸ fetching feed · falls back to cached snapshot if offline</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== GAME 1 · Triage Room ============== -->
+  <section id="t3-g1" class="nd-section">
+    <div class="nd-sec-num">GAME 01</div>
+    <h2 class="nd-sec-title">🎯 The Triage Room</h2>
+    <div class="nd-sec-sub">8 minutes simulated time. ~20 alerts. Pick an action band for each.</div>
+
+    <p class="nd-prose">
+      Alerts stream in from the simulated SOC. For each, you get device identity (inherited from the Ch.2 capstone), the CVE candidate, CVSS vector + score, exposure class, KEV status, and evidence-source provenance. You assign one of Dr. M's five action bands. <b>Some alerts are phantoms</b> — dismissing them is correct.
+    </p>
+
+    <div class="t3-soc">
+      <div class="t3-soc-head">
+        <div class="t3-soc-h">SOC · shift active</div>
+        <div class="t3-soc-timer" id="t3SocTimer">8:00</div>
+        <div class="t3-soc-stats" id="t3SocStats">
+          <div>Decided: <b id="t3SocDecided">0</b></div>
+          <div>Score: <b id="t3SocScore">—</b></div>
+        </div>
+      </div>
+      <div class="t3-soc-body" id="t3SocBody">
+        <div class="t3-soc-start">
+          <h3>You are on shift.</h3>
+          <p>Alerts will arrive at irregular intervals. Read the vector, not just the score. Check KEV status. Reference your Ch.2 identity confidence. <em>Wildcard CPE matches in the source field are suspect.</em></p>
+          <button class="nd-btn" id="t3SocStart">▶ Start shift</button>
+          <div class="t3-soc-best" id="t3SocBest"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== GAME 2 · Phantom Hunt ============== -->
+  <section id="t3-g2" class="nd-section">
+    <div class="nd-sec-num">GAME 02</div>
+    <h2 class="nd-sec-title">🕵️ Phantom Hunt</h2>
+    <div class="nd-sec-sub">Spot the false positives. Identify <em>which</em> of the five mechanisms produced each one.</div>
+
+    <p class="nd-prose">
+      12 host records, each with a CVE candidate match. Some are <b>real</b> (the CVE truly applies). Some are <b>phantoms</b> caused by one of the five false-positive mechanisms. Drag the right mechanism label onto each phantom record. Mark real ones as "real · keep." The reveal explains the validation note that should be written.
+    </p>
+
+    <div class="t3-phantom" id="t3PhantomBox">
+      <div style="font-family:'Inter',sans-serif;font-size:10.5px;color:var(--gold);text-transform:uppercase;letter-spacing:1.4px;font-weight:600;margin-bottom:6px">Drag a mechanism onto each record · or use "real" if it actually applies</div>
+      <div class="t3-phantom-mechs" id="t3PhantomMechs">
+        <span class="t3-pm" draggable="true" data-mech="real">real · keep</span>
+        <span class="t3-pm" draggable="true" data-mech="cpe">CPE imprecision</span>
+        <span class="t3-pm" draggable="true" data-mech="backport">backported patch</span>
+        <span class="t3-pm" draggable="true" data-mech="banner">stale banner</span>
+        <span class="t3-pm" draggable="true" data-mech="config">config dependency</span>
+        <span class="t3-pm" draggable="true" data-mech="active">active-scan misread</span>
+      </div>
+      <div class="t3-phantom-list" id="t3PhantomList"></div>
+      <div style="margin-top:14px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--dim)">
+        Score: <b id="t3PhantomScore">0 / 12</b>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== GAME 3 · Default Credential Roulette ============== -->
+  <section id="t3-g3" class="nd-section">
+    <div class="nd-sec-num">GAME 03</div>
+    <h2 class="nd-sec-title">🎰 Default Credential Roulette</h2>
+    <div class="nd-sec-sub">Read the response. Did the credential actually succeed?</div>
+
+    <p class="nd-prose">
+      A camera/NAS/printer is probed with vendor-default credentials. The response comes back. <b>Decide:</b> was that a real authentication success, a 401 failure, or a public-page false positive? The default-credential checker's whole job is reading responses correctly — 401/403 are failures, 2xx with matching unauth body is a public page (not a credential success), only 2xx with a <em>different</em> authenticated response counts.
+    </p>
+
+    <div class="t3-roul">
+      <div class="t3-roul-head">
+        <div class="t3-roul-class" id="t3RoulClass">
+          <button class="t3-roul-c on" data-class="camera">📷 Camera</button>
+          <button class="t3-roul-c" data-class="nas">💾 NAS</button>
+          <button class="t3-roul-c" data-class="printer">🖨 Printer</button>
+          <button class="t3-roul-c" data-class="iot">🏠 IoT gateway</button>
+        </div>
+      </div>
+      <div class="t3-roul-stage">
+        <div class="t3-roul-display" id="t3RoulDisplay">— · —</div>
+        <div class="t3-roul-resp" id="t3RoulResp">Click SPIN to attempt a credential</div>
+        <div class="t3-roul-q" id="t3RoulQ" style="display:none">Was this a successful default-credential attack?</div>
+        <div class="t3-roul-actions" id="t3RoulActions">
+          <button class="t3-roul-btn" id="t3RoulSpin">▶ SPIN</button>
+        </div>
+        <div class="t3-roul-feedback" id="t3RoulFb"></div>
+      </div>
+      <div class="t3-roul-score">
+        <div>Round <b id="t3RoulRound">0</b> / 10</div>
+        <div>Correct: <b id="t3RoulCorrect">0</b></div>
+        <div>Best: <b id="t3RoulBest">—</b></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== Hikvision Trace ============== -->
+  <section id="t3-hik" class="nd-section">
+    <div class="nd-sec-num">WORKED TRACE 01</div>
+    <h2 class="nd-sec-title">172.30.0.10 · Hikvision Camera</h2>
+    <div class="nd-sec-sub">Identity is rich. CVEs are known. Default credentials are present.</div>
+
+    <p class="nd-prose">
+      The lab ground truth lists CVE-2021-36260 and CVE-2017-7921 for this camera, plus default credentials <code>admin:12345</code> and <code>admin:Hikvision</code>. <b>Ground truth is a grading oracle — not an analytical shortcut.</b> The scanner has to earn each finding through real evidence.
+    </p>
+
+    <div class="c2-trace">
+      <div class="c2-trace-head">
+        <h4>Hikvision DS-2CD2143G2-I · firmware V5.5.52</h4>
+        <div class="c2-trace-meta">CVE-2021-36260 · CVE-2017-7921 · admin:12345 · admin:Hikvision</div>
+      </div>
+      <div class="c2-trace-body">
+        <div class="c2-trace-col truth">
+          <div class="c2-trace-col-h">Ground truth · oracle</div>
+<pre><span class="k">cve_list:</span>
+  CVE-2021-36260
+  CVE-2017-7921
+<span class="k">defaults:</span>
+  admin:12345
+  admin:Hikvision
+<span class="k">firmware:</span> V5.5.52
+<span class="k">protocols:</span>
+  http/80 · rtsp/554
+  tcp/8000 · ssdp
+<span class="c"># the answer key.
+# scanner must EARN
+# every claim.</span></pre>
+        </div>
+        <div class="c2-trace-col bad">
+          <div class="c2-trace-col-h">Overconfident · sloppy</div>
+<pre><span class="k">cves:</span>
+  <span class="warn">CVE-2021-36260
+  CVE-2017-7921</span>
+<span class="k">status:</span> <span class="warn">VULNERABLE</span>
+<span class="k">action:</span> <span class="warn">act now</span>
+<span class="k">confidence:</span> <span class="warn">0.95</span>
+<span class="c"># NVD returned these but
+# only a wildcard CPE matched.
+# No active probe ran.
+# Default creds not tested
+# (no authorization).
+# All listed as confirmed —
+# Ch.2 admissibility ignored.</span></pre>
+        </div>
+        <div class="c2-trace-col good">
+          <div class="c2-trace-col-h">Defensible · evidence-based</div>
+<pre><span class="k">cve_candidates:</span>
+  CVE-2021-36260
+    cpe: hikvision wildcard
+    status: <span class="good">candidate</span>
+    evidence: nvd_lookup
+    confidence: 0.55
+  CVE-2017-7921
+    cpe: family-level
+    status: <span class="good">candidate</span>
+<span class="k">defaults_test:</span> <span class="warn">not run
+  (no authorization)</span>
+<span class="k">priority:</span> <span class="good">validate next</span>
+<span class="k">next_action:</span>
+  refine firmware identity
+  via authenticated probe
+  before claiming confirmed</pre>
+        </div>
+      </div>
+    </div>
+
+    <p class="nd-prose" style="margin-top:14px">
+      <b>If default-credential test runs and succeeds</b> with explicit authorization, the artifact upgrades. The credential success becomes <code>match_method: default_creds_http</code> with confidence 0.95+ for authentication-failure. The priority moves to <em>act now</em>, but the action is <em>rotate credentials and restrict management reach</em> — not "patch the CVE." Different action for different evidence type.
+    </p>
+  </section>
+
+  <!-- ============== Chromecast Trace ============== -->
+  <section id="t3-cast" class="nd-section">
+    <div class="nd-sec-num">WORKED TRACE 02</div>
+    <h2 class="nd-sec-title">172.30.0.20 · Google Chromecast</h2>
+    <div class="nd-sec-sub">Sparse evidence. Zero findings ≠ safe.</div>
+
+    <p class="nd-prose">
+      Ground truth lists CVE-2019-2099, firmware 1.68.382489, no default credentials. The Chromecast trace demonstrates a different problem: <em>zero findings is ambiguous</em>. NVD may return nothing because the CPE was too weak, the product name didn't match, the firmware wasn't represented, or the device truly has no matching records. The artifact has to say which.
+    </p>
+
+    <div class="c2-trace">
+      <div class="c2-trace-head">
+        <h4>Google Chromecast · firmware 1.68.382489</h4>
+        <div class="c2-trace-meta">CVE-2019-2099 · no default credentials · http/8008 · tls/8443 · mdns</div>
+      </div>
+      <div class="c2-trace-body">
+        <div class="c2-trace-col truth">
+          <div class="c2-trace-col-h">Ground truth · oracle</div>
+<pre><span class="k">cve_list:</span> CVE-2019-2099
+<span class="k">defaults:</span> none
+<span class="k">firmware:</span> 1.68.382489
+<span class="k">device_type:</span> media_player
+<span class="k">protocols:</span>
+  http/8008 · tcp/8009
+  tls/8443 · mdns
+<span class="c"># Cast ecosystem device.
+# No camera-class probes.</span></pre>
+        </div>
+        <div class="c2-trace-col bad">
+          <div class="c2-trace-col-h">Overconfident · sloppy</div>
+<pre><span class="k">cves:</span> <span class="warn">none</span>
+<span class="k">status:</span> <span class="warn">CLEAN</span>
+<span class="k">priority:</span> <span class="warn">monitor</span>
+<span class="c"># "Clean" is a claim.
+# Did Nuclei run? No template
+# for Cast Eureka endpoint.
+# Did OpenVAS run? Disabled.
+# Did default-creds run?
+# No credentials defined
+# for this class.
+# Zero findings is a
+# coverage statement —
+# NOT a safety statement.</span></pre>
+        </div>
+        <div class="c2-trace-col good">
+          <div class="c2-trace-col-h">Defensible · evidence-based</div>
+<pre><span class="k">cve_candidates:</span> []
+<span class="k">methods_run:</span>
+  nvd: completed
+    matches: 0
+  openvas: disabled
+  nuclei: completed
+    matches: 0
+    (no cast template)
+  default_creds: <span class="warn">n/a
+    (no creds for class)</span>
+<span class="k">finding_state:</span>
+  <span class="good">no_known_public_cves
+  · coverage_gap_likely</span>
+<span class="k">priority:</span> validate next
+<span class="k">action:</span>
+  monitor for firmware
+  changes · request
+  Cast-specific templates</pre>
+        </div>
+      </div>
+    </div>
+
+    <p class="nd-prose" style="margin-top:14px">
+      Two devices in the same lab. <em>Same assessment phase. Wildly different priorities.</em> The Hikvision case demands credential rotation as the first action. The Chromecast case demands coverage improvement — Cast-specific templates, deeper protocol probing — before any "clean" claim is defensible.
+    </p>
+  </section>
+
+  <!-- ============== Capstone · Patch Tuesday ============== -->
+  <section id="t3-cap" class="nd-section">
+    <div class="nd-sec-num">CAPSTONE</div>
+    <h2 class="nd-sec-title">🛠 Patch Tuesday · The 26-Device Fleet</h2>
+    <div class="nd-sec-sub">40 patch-hours · 4 maintenance windows · 7 days · a chosen attacker model.</div>
+
+    <p class="nd-prose">
+      Inherits identity + CPE candidates from the Chapter 2 capstone. Pick which methods to authorize (active ones carry safety warnings). Pick an attacker model. Then the simulator runs "the week" — exploits land based on KEV status, your patch order, and the attacker model. Score against Dr. M's four method-completion states.
+    </p>
+
+    <div class="t3-capstone">
+      <div class="t3-cap-config">
+        <div class="t3-cap-cfg">
+          <div class="t3-cap-cfg-lbl">Attacker model</div>
+          <select id="t3CapAttacker">
+            <option value="opportunistic">Opportunistic · KEV-driven</option>
+            <option value="targeted">Targeted · high-value path</option>
+            <option value="advanced">Advanced · any path, including zero-day</option>
+          </select>
+        </div>
+        <div class="t3-cap-cfg">
+          <div class="t3-cap-cfg-lbl">Budget</div>
+          <div class="t3-cap-cfg-val">40 patch-hours</div>
+        </div>
+        <div class="t3-cap-cfg">
+          <div class="t3-cap-cfg-lbl">Windows</div>
+          <div class="t3-cap-cfg-val">4 over 7 days</div>
+        </div>
+      </div>
+
+      <div style="font-family:'Inter',sans-serif;font-size:10.5px;color:var(--gold);text-transform:uppercase;letter-spacing:1.6px;font-weight:600;margin-bottom:8px">Authorize methods</div>
+      <div class="t3-cap-methods" id="t3CapMethods">
+        <div class="t3-cap-m on" data-m="nvd">
+          <div class="t3-cap-mh">NVD lookup</div>
+          <div class="t3-cap-md">Passive · always safe</div>
+        </div>
+        <div class="t3-cap-m dangerous" data-m="openvas">
+          <div class="t3-cap-mh">OpenVAS</div>
+          <div class="t3-cap-md">Active · GMP probes</div>
+          <span class="warn">⚠ can disrupt fragile devices</span>
+        </div>
+        <div class="t3-cap-m dangerous" data-m="nuclei">
+          <div class="t3-cap-mh">Nuclei templates</div>
+          <div class="t3-cap-md">Active · targeted endpoint checks</div>
+          <span class="warn">⚠ less invasive than OpenVAS</span>
+        </div>
+        <div class="t3-cap-m dangerous" data-m="creds">
+          <div class="t3-cap-mh">Default credentials</div>
+          <div class="t3-cap-md">Opt-in · vendor-aware</div>
+          <span class="warn">⚠ written authorization required</span>
+        </div>
+        <div class="t3-cap-m on" data-m="kev">
+          <div class="t3-cap-mh">CISA KEV filter</div>
+          <div class="t3-cap-md">Prioritize what's actively exploited</div>
+        </div>
+        <div class="t3-cap-m on" data-m="validation">
+          <div class="t3-cap-mh">Validation suppression</div>
+          <div class="t3-cap-md">Filter known false positives</div>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <button class="nd-btn primary" id="t3CapRun">▶ Run the week</button>
+        <button class="nd-btn ghost" id="t3CapSkip">Skip to results</button>
+        <button class="nd-btn ghost" id="t3CapReset">Reset</button>
+      </div>
+
+      <div class="t3-cap-stream" id="t3CapStream"></div>
+
+      <div class="t3-cap-score" id="t3CapScore">
+        <div style="font-family:'Inter',sans-serif;font-size:10.5px;text-transform:uppercase;letter-spacing:1.6px;color:var(--gold);font-weight:600;margin-bottom:14px">Scorecard · after 7 simulated days</div>
+        <div class="t3-cap-metrics">
+          <div class="t3-cap-metric"><div class="t3-cap-metric-lbl">Incidents prevented</div><div class="t3-cap-metric-val" id="t3ScPrev">—</div><div class="t3-cap-metric-sub" id="t3ScPrevSub">of N possible</div></div>
+          <div class="t3-cap-metric"><div class="t3-cap-metric-lbl">KEV CVEs unpatched</div><div class="t3-cap-metric-val" id="t3ScKev">—</div><div class="t3-cap-metric-sub">attacker priority list</div></div>
+          <div class="t3-cap-metric"><div class="t3-cap-metric-lbl">Hours on phantoms</div><div class="t3-cap-metric-val" id="t3ScPhant">—</div><div class="t3-cap-metric-sub">wasted budget</div></div>
+          <div class="t3-cap-metric"><div class="t3-cap-metric-lbl">Method coverage</div><div class="t3-cap-metric-val" id="t3ScCov">—</div><div class="t3-cap-metric-sub" id="t3ScCovSub">of 5 methods</div></div>
+        </div>
+        <div class="t3-cap-reflect" id="t3CapReflect"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== Handoff Contract ============== -->
+  <section id="t3-handoff" class="nd-section">
+    <div class="nd-sec-num">HANDOFF</div>
+    <h2 class="nd-sec-title">Chapter 3 → Chapter 4 Contract</h2>
+    <div class="nd-sec-sub">Weighted vulnerability claims · not a raw CVE list.</div>
+
+    <p class="nd-prose">
+      Chapter 4 (attack-graph reasoning) consumes the artifact below. An edge based on a high-confidence default-credential finding is structurally different from one based on a broad wildcard CPE. The contract preserves that difference.
+    </p>
+
+    <div class="nd-handoff">
+      <div class="nd-handoff-h">interface ChapterThreeHandoff · v1</div>
+
+      <div class="nd-handoff-sect">
+        <div class="nd-handoff-stitle">Required</div>
+        <div class="nd-handoff-line req"><span class="k">ip</span><span class="ty">string</span><span class="nt">inherited from Ch.1</span></div>
+        <div class="nd-handoff-line req"><span class="k">identity_confidence_inherited</span><span class="ty">float</span><span class="nt">from Ch.2 · CVE applicability depends on it</span></div>
+        <div class="nd-handoff-line req"><span class="k">cve_candidates</span><span class="ty">CveRef[]</span><span class="nt">each with cpe_source, version_confidence_class, evidence_method</span></div>
+        <div class="nd-handoff-line req"><span class="k">method_completion_states</span><span class="ty">enum[]</span><span class="nt">completed / disabled / unavailable / failed-or-partial · per method</span></div>
+        <div class="nd-handoff-line req"><span class="k">priority_band</span><span class="ty">enum</span><span class="nt">act_now / validate_next / schedule / monitor / accept_temporarily</span></div>
+        <div class="nd-handoff-line req"><span class="k">priority_rationale</span><span class="ty">string</span><span class="nt">explains the 5-input reasoning</span></div>
+      </div>
+
+      <div class="nd-handoff-sect">
+        <div class="nd-handoff-stitle">Optional</div>
+        <div class="nd-handoff-line"><span class="k">confirmed_findings</span><span class="ty">CveRef[]</span><span class="nt">candidates promoted via active corroboration</span></div>
+        <div class="nd-handoff-line"><span class="k">credential_findings</span><span class="ty">CredHit[]</span><span class="nt">direct authentication-failure evidence</span></div>
+        <div class="nd-handoff-line"><span class="k">false_positives</span><span class="ty">Validation[]</span><span class="nt">pair-level (cve_id, device_ip) with mechanism note</span></div>
+        <div class="nd-handoff-line"><span class="k">kev_listed</span><span class="ty">CveId[]</span><span class="nt">subset that appears in CISA KEV</span></div>
+        <div class="nd-handoff-line"><span class="k">unresolved_contradictions</span><span class="ty">string[]</span><span class="nt">conflicts that survived triage · preserve, don't average</span></div>
+      </div>
+
+      <div class="nd-handoff-forbidden">
+        <div class="nd-handoff-stitle">Forbidden · Ch.4 rejects the row</div>
+        <div class="nd-handoff-line"><span class="k">attack_path_assertions</span><span class="ty"></span><span class="nt">that's Ch.4's claim · Ch.3 names weaknesses, Ch.4 connects them</span></div>
+        <div class="nd-handoff-line"><span class="k">exploit_attempt_results</span><span class="ty"></span><span class="nt">requires explicit authorization beyond Ch.3 scope</span></div>
+        <div class="nd-handoff-line"><span class="k">business_impact_quantification</span><span class="ty"></span><span class="nt">governance attribute · not derivable from CVE evidence</span></div>
+        <div class="nd-handoff-line"><span class="k">guaranteed_safety</span><span class="ty"></span><span class="nt">"no CVEs found" ≠ "safe" · Ch.3 never claims this</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== Discipline ============== -->
+  <section id="t3-disc" class="nd-section">
+    <div class="nd-sec-num">DISCIPLINE</div>
+    <h2 class="nd-sec-title">The Vulnerability Assessment Checklist</h2>
+    <div class="nd-sec-sub">Twelve sign-off items. Each must be defensible from your evidence.</div>
+
+    <div class="nd-check-list" id="t3Checklist">
+      <div class="nd-check"><div class="nd-check-box"></div><div class="nd-check-text"><div class="nd-check-t">No method declared authoritative.</div><div class="nd-check-x">NVD candidates are not "vulnerabilities found." OpenVAS findings are not "the truth." Each is one stream.</div></div></div>
+      <div class="nd-check"><div class="nd-check-box"></div><div class="nd-check-text"><div class="nd-check-t">Every finding is tagged candidate / confirmed / false positive / prioritized.</div><div class="nd-check-x">The four-term boundary is the chapter's vocabulary. Collapsing them silently is the most common discipline failure.</div></div></div>
+      <div class="nd-check"><div class="nd-check-box"></div><div class="nd-check-text"><div class="nd-check-t">Wildcard CPE matches were never passed forward as confirmed.</div><div class="nd-check-x">Ch.2's <code>version_confidence_class</code> exists for this reason. A wildcard CPE produces candidates only.</div></div></div>
+      <div class="nd-check"><div class="nd-check-box"></div><div class="nd-check-text"><div class="nd-check-t">CISA KEV was cross-referenced before any "act now" call.</div><div class="nd-check-x">~1,200 KEV entries vs. ~280,000 NVD CVEs. Severity alone is the wrong prioritization axis. Exploitability + business path are.</div></div></div>
+      <div class="nd-check"><div class="nd-check-box"></div><div class="nd-check-text"><div class="nd-check-t">No credentials were tested without explicit written authorization.</div><div class="nd-check-x">Default-credential testing can trigger lockouts, generate logs, violate engagement rules. Opt-in always.</div></div></div>
+      <div class="nd-check"><div class="nd-check-box"></div><div class="nd-check-text"><div class="nd-check-t">Attacker model is stated explicitly.</div><div class="nd-check-x">"Critical" depends on attacker capabilities and motivation. Without a stated model, prioritization is unfalsifiable.</div></div></div>
+      <div class="nd-check"><div class="nd-check-box"></div><div class="nd-check-text"><div class="nd-check-t">Validation notes name the mechanism, not just "false positive."</div><div class="nd-check-x">Dr. M's example: <code>"CVE applies to firmware before V5.5.800; ONVIF reports V5.7.1 and vendor advisory confirms patch branch."</code> Lets future analysts retire the decision.</div></div></div>
+      <div class="nd-check"><div class="nd-check-box"></div><div class="nd-check-text"><div class="nd-check-t">Method-completion state is recorded per host.</div><div class="nd-check-x">completed / disabled / unavailable / failed-or-partial. Silent absence is not "no findings."</div></div></div>
+      <div class="nd-check"><div class="nd-check-box"></div><div class="nd-check-text"><div class="nd-check-t">"No findings" was never claimed as "safe."</div><div class="nd-check-x">Cloud-only devices, sparse evidence, missing templates, unauthenticated probes all produce absence. None proves safety.</div></div></div>
+      <div class="nd-check"><div class="nd-check-box"></div><div class="nd-check-text"><div class="nd-check-t">Contradictions between methods survived to the handoff.</div><div class="nd-check-x">NVD says vulnerable, Nuclei template fails. Both observations matter. Don't average; preserve.</div></div></div>
+      <div class="nd-check"><div class="nd-check-box"></div><div class="nd-check-text"><div class="nd-check-t">No attack-path claims or exploit-attempt results in the artifact.</div><div class="nd-check-x">Ch.4 chains weaknesses into paths. Ch.3 names the weaknesses. The boundary is sharp.</div></div></div>
+      <div class="nd-check"><div class="nd-check-box"></div><div class="nd-check-text"><div class="nd-check-t">CVSS vector was read, not just the score.</div><div class="nd-check-x">Two 8.8s are not equivalent. AV/AC/PR/UI/S/C/I/A determines which device class needs the attention most.</div></div></div>
+    </div>
+
+    <div class="nd-check-prog" id="t3CheckProg">Ticked <b>0</b> / 12 · the assessment is defensible when every row can be supported.</div>
+  </section>
+
+  <script>
+  (function(){
+    /* ============================================================
+       CHAPTER 3 · THREAT HUNT · INTERACTIVITY
+       © 2026 Rayve Malhotra · RayveLabs
+       Lectures of Dr. Ravinder Mallarapu · SEAS-8414 · GW
+       ============================================================ */
+    var pane = document.getElementById("threat");
+    if(!pane) return;
+
+    /* sub-nav active highlight + smooth scroll */
+    var sections = pane.querySelectorAll(".nd-section");
+    var subnavLinks = pane.querySelectorAll(".nd-sn");
+    function setActive(id){
+      subnavLinks.forEach(function(a){
+        if(a.getAttribute("href") === "#" + id) a.classList.add("on");
+        else a.classList.remove("on");
+      });
+    }
+    var secIO = new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(e.isIntersecting && e.intersectionRatio > 0.18) setActive(e.target.id);
+      });
+    }, {threshold:[0.18,0.5], rootMargin:"-160px 0px -50% 0px"});
+    sections.forEach(function(s){ secIO.observe(s); });
+
+    /* sub-nav auto-hide on scroll-down */
+    (function(){
+      var sn = pane.querySelector(".nd-subnav");
+      if(!sn) return;
+      var lastY = window.scrollY, ticking = false;
+      window.addEventListener("scroll", function(){
+        if(ticking) return;
+        ticking = true;
+        requestAnimationFrame(function(){
+          var y = window.scrollY;
+          if(y > lastY + 6 && y > 320) sn.classList.add("nd-hide");
+          else if(y < lastY - 4) sn.classList.remove("nd-hide");
+          lastY = y;
+          ticking = false;
+        });
+      }, {passive:true});
+    })();
+
+    subnavLinks.forEach(function(a){
+      a.addEventListener("click", function(e){
+        e.preventDefault();
+        var t = document.getElementById(a.getAttribute("href").slice(1));
+        if(!t) return;
+        window.scrollTo({top: t.getBoundingClientRect().top + window.scrollY - 165, behavior:"smooth"});
+        setActive(a.getAttribute("href").slice(1));
+      });
+    });
+
+    /* §1 boundary flip cards */
+    pane.querySelectorAll("#t3Bound .t3-bc").forEach(function(c){
+      c.addEventListener("click", function(){ c.classList.toggle("flip"); });
+    });
+
+    /* §2 CVSS calculator */
+    var cvssEls = {
+      AV: document.getElementById("t3CvssAV"),
+      AC: document.getElementById("t3CvssAC"),
+      PR: document.getElementById("t3CvssPR"),
+      UI: document.getElementById("t3CvssUI"),
+      S:  document.getElementById("t3CvssS"),
+      C:  document.getElementById("t3CvssC"),
+      I:  document.getElementById("t3CvssI"),
+      A:  document.getElementById("t3CvssA")
+    };
+    function roundUp1(x){ return Math.ceil(x * 10) / 10; }
+    function cvssCalc(){
+      var get = function(k){ return cvssEls[k].value; };
+      var w = function(k){ var o = cvssEls[k].selectedOptions[0]; return parseFloat(o.getAttribute("data-w")) || 0; };
+      var prW = w("PR");
+      /* PR adjustment if scope changed */
+      if(get("S") === "C"){
+        if(get("PR") === "L") prW = 0.68;
+        else if(get("PR") === "H") prW = 0.5;
+      }
+      var iss = 1 - ((1 - w("C")) * (1 - w("I")) * (1 - w("A")));
+      var impact = get("S") === "U" ? 6.42 * iss : 7.52 * (iss - 0.029) - 3.25 * Math.pow(iss - 0.02, 15);
+      var exploit = 8.22 * w("AV") * w("AC") * prW * w("UI");
+      var base = 0;
+      if(impact > 0){
+        var raw = get("S") === "U" ? Math.min(impact + exploit, 10) : Math.min(1.08 * (impact + exploit), 10);
+        base = roundUp1(raw);
+      }
+      var vec = "CVSS:3.1/AV:" + get("AV") + "/AC:" + get("AC") + "/PR:" + get("PR") + "/UI:" + get("UI") + "/S:" + get("S") + "/C:" + get("C") + "/I:" + get("I") + "/A:" + get("A");
+      document.getElementById("t3CvssVec").textContent = vec;
+      document.getElementById("t3CvssNum").textContent = base.toFixed(1);
+      var band, label;
+      if(base === 0){ band = "none"; label = "None"; }
+      else if(base < 4){ band = "low"; label = "Low"; }
+      else if(base < 7){ band = "medium"; label = "Medium"; }
+      else if(base < 9){ band = "high"; label = "High"; }
+      else { band = "critical"; label = "Critical"; }
+      var bandEl = document.getElementById("t3CvssBand");
+      bandEl.className = "t3-cvss-band " + band;
+      bandEl.textContent = label;
+      /* contextual narration */
+      var ctx = "";
+      if(get("AV") === "N" && get("PR") === "N" && get("UI") === "N") ctx += "Remote, unauthenticated, no user interaction — the classic 'wormable' shape. ";
+      if(get("C") === "H" && get("I") === "N" && get("A") === "N") ctx += "Confidentiality dominates. On a device handling private metadata or auth tokens, this is urgent. On a media display with no sensitive data, lower priority. ";
+      if(get("A") === "H" && get("C") === "N") ctx += "Availability dominates. On a safety-critical camera or industrial controller, this is urgent. On an entertainment device, lower priority. ";
+      if(get("I") === "H" && get("S") === "C") ctx += "Integrity impact with changed scope — configuration tampering reaching beyond the device. Extremely dangerous on routers or hypervisors. ";
+      if(get("AC") === "H") ctx += "High complexity means real attacker effort required — useful prioritization down-weight unless it's KEV-listed. ";
+      if(!ctx) ctx = "Read the vector. The score summarizes; the vector explains.";
+      document.getElementById("t3CvssCtx").innerHTML = "<b>Reading the vector:</b> " + ctx;
+    }
+    Object.values(cvssEls).forEach(function(el){ el.addEventListener("change", cvssCalc); });
+    cvssCalc();
+
+    /* §4 Correlation puzzle */
+    var corrPicked = new Set();
+    function renderCorr(){
+      var byMethod = {};
+      var totalCount = 0;
+      corrPicked.forEach(function(el){
+        var m = el.getAttribute("data-method");
+        byMethod[m] = (byMethod[m] || []).concat(parseFloat(el.getAttribute("data-w")));
+        totalCount++;
+      });
+      var methodCount = Object.keys(byMethod).length;
+      /* confidence = 1 - product(1 - p_first_per_method) + small bonus for repeat */
+      var product = 1;
+      var extras = 0;
+      Object.keys(byMethod).forEach(function(m){
+        var ws = byMethod[m].slice().sort(function(a,b){ return b - a; });
+        product *= (1 - ws[0]);
+        for(var i = 1; i < ws.length; i++) extras += 0.02;
+      });
+      var conf = Math.min(0.95, 1 - product + extras);
+      var pattern, verdict;
+      if(totalCount === 0){
+        pattern = "PICK · evidence";
+        verdict = "Select evidence above. Notice how a Nuclei template + NVD exact CPE (two structurally different methods agreeing) raises confidence faster than three NVD hits.";
+      } else if(methodCount === 1 && totalCount >= 2){
+        pattern = "SAME-METHOD REPETITION · weak";
+        verdict = "<b>Same method, multiple picks · confidence " + conf.toFixed(2) + ".</b> Repeating NVD hits doesn't add independent corroboration. Two CPE matches from one database query is one piece of evidence, not two.";
+      } else if(methodCount >= 2 && methodCount === totalCount){
+        pattern = "CONVERGENCE · strong";
+        verdict = "<b>" + methodCount + " independent methods agreeing · confidence " + conf.toFixed(2) + ".</b> Each method observes structurally different things. NVD reasons from identity; Nuclei reasons from active behavior; credentials reason from auth state. Convergence here is real.";
+      } else {
+        pattern = "MIXED · partial";
+        verdict = "<b>" + methodCount + " methods, " + totalCount + " pieces · confidence " + conf.toFixed(2) + ".</b> Each new independent method matters more than each repeated one.";
+      }
+      document.getElementById("t3CorrPattern").textContent = pattern;
+      document.getElementById("t3CorrVerdict").innerHTML = verdict;
+      document.getElementById("t3CorrBar").style.width = (conf * 100).toFixed(0) + "%";
+    }
+    pane.querySelectorAll("#t3CorrPool .t3-corr-card").forEach(function(el){
+      el.addEventListener("click", function(){
+        if(corrPicked.has(el)){ corrPicked.delete(el); el.classList.remove("on"); }
+        else { corrPicked.add(el); el.classList.add("on"); }
+        renderCorr();
+      });
+    });
+
+    /* === LIVE CISA KEV FETCH (cached 24h in localStorage) === */
+    var KEV_KEY = "rl_kev_v1";
+    var KEV_TTL = 24 * 60 * 60 * 1000;
+    function renderKev(items, srcNote){
+      var src = document.getElementById("t3KevSrc");
+      var list = document.getElementById("t3KevList");
+      src.textContent = srcNote;
+      if(!items || !items.length){
+        list.innerHTML = '<div class="t3-kev-loading">no entries</div>';
+        return;
+      }
+      list.innerHTML = items.slice(0, 10).map(function(v){
+        return '<div class="t3-kev-r">' +
+          '<div class="cve">' + (v.cveID || "—") + '</div>' +
+          '<div class="desc">' + (v.shortDescription || v.vulnerabilityName || "—") + '</div>' +
+          '<div class="date">' + (v.dateAdded || "") + '</div>' +
+        '</div>';
+      }).join("");
+    }
+    function loadKev(){
+      var cached = null;
+      try{
+        var raw = localStorage.getItem(KEV_KEY);
+        if(raw){
+          var parsed = JSON.parse(raw);
+          if(parsed && parsed.ts && (Date.now() - parsed.ts) < KEV_TTL){
+            cached = parsed.data;
+          }
+        }
+      } catch(e){}
+      if(cached){
+        renderKev(cached, "loaded from cache · refresh in " + Math.floor((KEV_TTL - (Date.now() - JSON.parse(localStorage.getItem(KEV_KEY)).ts)) / 3600000) + "h");
+      }
+      /* always try fresh fetch; fall back silently on error */
+      fetch("https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json", {cache:"force-cache"})
+        .then(function(r){ return r.json(); })
+        .then(function(data){
+          var items = data.vulnerabilities || [];
+          items.sort(function(a, b){
+            return (b.dateAdded || "").localeCompare(a.dateAdded || "");
+          });
+          try{ localStorage.setItem(KEV_KEY, JSON.stringify({ts:Date.now(), data:items.slice(0, 100)})); } catch(e){}
+          renderKev(items, "live · " + items.length + " entries · cisa.gov · cached 24h");
+        })
+        .catch(function(err){
+          if(!cached){
+            renderKev(SAMPLE_KEV, "offline · using bundled snapshot · " + err.message);
+          }
+        });
+    }
+    var SAMPLE_KEV = [
+      {cveID:"CVE-2021-36260", shortDescription:"Hikvision IP Camera command injection in web server", dateAdded:"2022-01-10"},
+      {cveID:"CVE-2017-7921", shortDescription:"Hikvision improper authentication allows bypass", dateAdded:"2022-01-10"},
+      {cveID:"CVE-2019-2099", shortDescription:"Android (Chromecast) information disclosure", dateAdded:"2022-03-25"},
+      {cveID:"CVE-2023-23397", shortDescription:"Microsoft Outlook elevation of privilege via NTLM relay", dateAdded:"2023-03-14"},
+      {cveID:"CVE-2024-3400", shortDescription:"Palo Alto PAN-OS command injection", dateAdded:"2024-04-12"},
+      {cveID:"CVE-2017-11882", shortDescription:"Microsoft Equation Editor stack buffer overflow", dateAdded:"2022-01-10"},
+      {cveID:"CVE-2022-22965", shortDescription:"Spring Framework RCE (Spring4Shell)", dateAdded:"2022-04-04"},
+      {cveID:"CVE-2021-44228", shortDescription:"Apache Log4j2 JNDI RCE (Log4Shell)", dateAdded:"2021-12-10"},
+      {cveID:"CVE-2014-0160", shortDescription:"OpenSSL Heartbleed information disclosure", dateAdded:"2022-05-04"},
+      {cveID:"CVE-2019-19781", shortDescription:"Citrix ADC / Gateway path traversal", dateAdded:"2022-01-10"}
+    ];
+    loadKev();
+
+    /* === GAME 1 · TRIAGE ROOM === */
+    var SOC_BEST_KEY = "rl_soc_best_v1";
+    var socState = null;
+    function loadBestSoc(){
+      try{
+        var raw = localStorage.getItem(SOC_BEST_KEY);
+        if(raw){
+          var p = JSON.parse(raw);
+          document.getElementById("t3SocBest").innerHTML = "Your best run: <b style='color:#c4a565'>" + p.score + "</b> at " + p.date;
+        }
+      } catch(e){}
+    }
+    loadBestSoc();
+
+    function buildAlerts(){
+      /* mix of phantoms and real, drawing on lab + KEV-known CVEs */
+      return [
+        {cve:"CVE-2021-36260", host:"172.30.0.10", ident:"Hikvision DS-2CD2143G2-I", confidence:0.75, score:9.8, vec:"AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H", kev:true, source:"nvd_exact_cpe + nuclei_template", ideal:"act_now"},
+        {cve:"CVE-2017-7921", host:"172.30.0.10", ident:"Hikvision DS-2CD family", confidence:0.65, score:9.8, vec:"AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H", kev:true, source:"nvd_family_cpe", ideal:"validate_next"},
+        {cve:"CVE-2019-2099", host:"172.30.0.20", ident:"Google Chromecast", confidence:0.70, score:4.0, vec:"AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:L/A:N", kev:false, source:"nvd_exact_cpe", ideal:"schedule"},
+        {cve:"CVE-2020-XXXX-PHANTOM", host:"172.30.0.20", ident:"Google Chromecast", confidence:0.20, score:7.5, vec:"AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N", kev:false, source:"nvd_wildcard_cpe_oui_only", ideal:"dismiss", phantom:true, mech:"CPE imprecision · OUI-only Google CPE matched a camera CVE"},
+        {cve:"CVE-2021-44228", host:"172.30.0.25", ident:"HP Printer · embedded Java", confidence:0.55, score:10.0, vec:"AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H", kev:true, source:"nvd_keyword_log4j + openvas_partial", ideal:"validate_next"},
+        {cve:"CVE-2023-PHANTOM", host:"172.30.0.55", ident:"Roku media player", confidence:0.25, score:8.8, vec:"AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N", kev:false, source:"nvd_stale_banner_match", ideal:"dismiss", phantom:true, mech:"Stale banner · banner unchanged but firmware was patched in V2.3.1"},
+        {cve:"CVE-2024-CRED-FAIL", host:"172.30.0.40", ident:"Cisco gateway · admin:cisco succeeded", confidence:0.95, score:9.8, vec:"AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H", kev:false, source:"default_creds_http", ideal:"act_now"},
+        {cve:"CVE-2023-23397", host:"172.30.0.30", ident:"Lab workstation · Outlook", confidence:0.50, score:9.8, vec:"AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H", kev:true, source:"nvd_keyword_outlook", ideal:"act_now"},
+        {cve:"CVE-2022-PHANTOM", host:"172.30.0.50", ident:"Cloud-only Alexa · sparse", confidence:0.15, score:7.5, vec:"AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N", kev:false, source:"nvd_wildcard_cpe_amazon_oui", ideal:"dismiss", phantom:true, mech:"Backported patch · firmware update from cloud is silent; CVE no longer applies"},
+        {cve:"CVE-2024-3400", host:"172.30.0.40", ident:"Network gateway · PAN-OS like", confidence:0.40, score:10.0, vec:"AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H", kev:true, source:"nvd_wildcard_keyword_match", ideal:"validate_next"},
+        {cve:"CVE-2022-22965", host:"172.30.0.21", ident:"Synology NAS · Spring4Shell", confidence:0.45, score:9.8, vec:"AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H", kev:true, source:"nvd_keyword_spring + nuclei_attempt_failed", ideal:"validate_next"},
+        {cve:"CVE-2014-0160", host:"172.30.0.40", ident:"Network gateway · old SSL stack", confidence:0.50, score:7.5, vec:"AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N", kev:true, source:"nvd_exact + heartbleed_check_succeeded", ideal:"act_now"},
+        {cve:"CVE-2023-PHANTOM-CFG", host:"172.30.0.11", ident:"Apple TV", confidence:0.30, score:6.5, vec:"AV:A/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:L", kev:false, source:"nvd_template + active_probe_misread", ideal:"dismiss", phantom:true, mech:"Active-scan misread · Nuclei matched a benign endpoint that resembles the vuln pattern"},
+        {cve:"CVE-2017-11882", host:"172.30.0.30", ident:"Lab workstation · Office", confidence:0.55, score:7.8, vec:"AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H", kev:true, source:"nvd_keyword", ideal:"schedule"},
+        {cve:"CVE-2022-CONFIG", host:"172.30.0.20", ident:"Chromecast · cast guest mode", confidence:0.35, score:6.5, vec:"AV:A/AC:L/PR:N/UI:R/S:U/C:L/I:L/A:N", kev:false, source:"nuclei_template_fired_but_feature_disabled", ideal:"dismiss", phantom:true, mech:"Config dependency · CVE applies only when guest mode is enabled; device shows it's disabled"},
+        {cve:"CVE-2019-19781", host:"172.30.0.42", ident:"Network appliance · Citrix-like", confidence:0.40, score:9.8, vec:"AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H", kev:true, source:"nvd_keyword_match", ideal:"validate_next"},
+        {cve:"CVE-2024-AXIS", host:"172.30.0.5", ident:"Axis camera", confidence:0.80, score:9.1, vec:"AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H", kev:false, source:"nvd_exact + onvif_firmware_match", ideal:"act_now"},
+        {cve:"CVE-DAHUA-2024", host:"172.30.0.60", ident:"Dahua camera · admin:admin succeeded", confidence:0.95, score:9.8, vec:"AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H", kev:false, source:"default_creds_rtsp", ideal:"act_now"},
+        {cve:"CVE-2025-LOW", host:"172.30.0.92", ident:"Sonos speaker", confidence:0.50, score:3.5, vec:"AV:A/AC:L/PR:N/UI:R/S:U/C:L/I:N/A:N", kev:false, source:"nvd_template", ideal:"monitor"},
+        {cve:"CVE-2023-NAS-MID", host:"172.30.0.70", ident:"Synology NAS · DSM", confidence:0.65, score:6.8, vec:"AV:N/AC:H/PR:L/UI:N/S:U/C:H/I:N/A:L", kev:false, source:"nvd_exact + openvas_finding", ideal:"schedule"}
+      ];
+    }
+    function actLabel(a){
+      return {act_now:"ACT NOW", validate_next:"VALIDATE", schedule:"SCHEDULE", monitor:"MONITOR", dismiss:"DISMISS"}[a] || a;
+    }
+    function scoreAction(picked, ideal, alert){
+      if(picked === ideal) return 2;
+      /* near-misses */
+      if(ideal === "act_now" && picked === "validate_next") return 1;
+      if(ideal === "validate_next" && (picked === "act_now" || picked === "schedule")) return 1;
+      if(ideal === "schedule" && (picked === "validate_next" || picked === "monitor")) return 1;
+      if(ideal === "monitor" && picked === "schedule") return 1;
+      if(ideal === "dismiss" && picked === "monitor") return 0;
+      /* hard misses */
+      if(alert.phantom && picked === "act_now") return -2;
+      if(alert.kev && picked === "dismiss") return -3;
+      if(alert.kev && picked === "monitor") return -1;
+      return 0;
+    }
+    function startSoc(){
+      socState = {
+        alerts: buildAlerts(),
+        idx: 0,
+        timeLeft: 480,
+        decisions: [],
+        score: 0,
+        running: true
+      };
+      var body = document.getElementById("t3SocBody");
+      body.innerHTML = '<div id="t3SocAlertSlot"></div>';
+      nextSocAlert();
+      socState.timerId = setInterval(function(){
+        if(!socState || !socState.running) return;
+        socState.timeLeft--;
+        var t = document.getElementById("t3SocTimer");
+        var m = Math.floor(socState.timeLeft / 60);
+        var s = socState.timeLeft % 60;
+        t.textContent = m + ":" + (s < 10 ? "0" + s : s);
+        t.className = "t3-soc-timer" + (socState.timeLeft < 60 ? " crit" : socState.timeLeft < 120 ? " warn" : "");
+        if(socState.timeLeft <= 0){ endSoc(); }
+      }, 1000);
+    }
+    function nextSocAlert(){
+      if(!socState || socState.idx >= socState.alerts.length){ endSoc(); return; }
+      var a = socState.alerts[socState.idx];
+      var slot = document.getElementById("t3SocAlertSlot");
+      var tags = '<span class="tag score">CVSS ' + a.score.toFixed(1) + '</span>';
+      if(a.kev) tags += '<span class="tag kev">KEV · in the wild</span>';
+      tags += '<span class="tag">conf ' + a.confidence.toFixed(2) + '</span>';
+      slot.innerHTML =
+        '<div class="t3-soc-alert' + (a.kev ? " kev" : a.phantom ? " phantom" : "") + '">' +
+          '<div class="t3-soc-alert-top">' +
+            '<div class="t3-soc-alert-cve">' + a.cve + '</div>' +
+            '<div class="t3-soc-alert-tags">' + tags + '</div>' +
+          '</div>' +
+          '<div class="t3-soc-alert-meta"><b>' + a.host + '</b> · ' + a.ident + '</div>' +
+          '<div class="t3-soc-alert-meta">source: ' + a.source + '</div>' +
+          '<div class="t3-soc-alert-vec">' + a.vec + '</div>' +
+          '<div class="t3-soc-actions">' +
+            '<button class="t3-soc-act act" data-a="act_now">Act now</button>' +
+            '<button class="t3-soc-act val" data-a="validate_next">Validate</button>' +
+            '<button class="t3-soc-act sch" data-a="schedule">Schedule</button>' +
+            '<button class="t3-soc-act mon" data-a="monitor">Monitor</button>' +
+            '<button class="t3-soc-act dis" data-a="dismiss">Dismiss</button>' +
+          '</div>' +
+        '</div>';
+      slot.querySelectorAll(".t3-soc-act").forEach(function(b){
+        b.addEventListener("click", function(){
+          var pick = b.getAttribute("data-a");
+          var delta = scoreAction(pick, a.ideal, a);
+          socState.score += delta;
+          socState.decisions.push({alert:a, pick:pick, delta:delta});
+          socState.idx++;
+          document.getElementById("t3SocDecided").textContent = socState.decisions.length;
+          document.getElementById("t3SocScore").textContent = socState.score;
+          nextSocAlert();
+        });
+      });
+    }
+    function endSoc(){
+      if(!socState) return;
+      socState.running = false;
+      if(socState.timerId) clearInterval(socState.timerId);
+      var s = socState.score;
+      var d = socState.decisions;
+      var kevMissed = d.filter(function(x){ return x.alert.kev && (x.pick === "dismiss" || x.pick === "monitor"); }).length;
+      var phantomActed = d.filter(function(x){ return x.alert.phantom && x.pick === "act_now"; }).length;
+      var correctDismissed = d.filter(function(x){ return x.alert.phantom && x.pick === "dismiss"; }).length;
+      var totalPhantoms = socState.alerts.filter(function(x){ return x.phantom; }).length;
+      var body = document.getElementById("t3SocBody");
+      body.innerHTML =
+        '<div class="t3-soc-result">' +
+          '<h3>Shift complete</h3>' +
+          '<div class="scoreline">Final score: <b>' + s + '</b><br>' +
+            'Decisions made: ' + d.length + ' / ' + socState.alerts.length + '<br>' +
+            'KEV CVEs dismissed or only-monitored: <b style="color:#e24b4a">' + kevMissed + '</b><br>' +
+            'Phantoms correctly dismissed: <b style="color:#90c46c">' + correctDismissed + ' / ' + totalPhantoms + '</b><br>' +
+            'Phantoms acted on (wasted effort): <b style="color:#f0997b">' + phantomActed + '</b>' +
+          '</div>' +
+          '<div style="font-family:Inter,sans-serif;font-size:11px;text-transform:uppercase;letter-spacing:1.4px;color:#c4a565;font-weight:600;margin-bottom:8px">Replay · your decision vs ideal</div>' +
+          '<div class="t3-soc-replay-list">' +
+            d.map(function(x){
+              var ok = x.delta >= 1;
+              return '<div class="t3-soc-replay ' + (ok ? "match" : "miss") + '">' +
+                '<span>' + x.alert.cve + ' · ' + x.alert.host + '</span>' +
+                '<span class="your">' + actLabel(x.pick) + '</span>' +
+                '<span class="ideal">→ ' + actLabel(x.alert.ideal) + '</span>' +
+              '</div>';
+            }).join("") +
+          '</div>' +
+          '<div style="margin-top:18px;text-align:center">' +
+            '<button class="nd-btn" style="background:transparent;border-color:#c4a565;color:#c4a565" onclick="document.getElementById(&quot;t3SocStart&quot;).click()">↻ play again</button>' +
+          '</div>' +
+        '</div>';
+      try{
+        var raw = localStorage.getItem(SOC_BEST_KEY);
+        var prev = raw ? JSON.parse(raw) : {score:-999};
+        if(s > prev.score){
+          localStorage.setItem(SOC_BEST_KEY, JSON.stringify({score:s, date:new Date().toLocaleDateString()}));
+        }
+      } catch(e){}
+    }
+    /* hook the start button — but since body innerHTML is replaced after start, we need delegation */
+    document.body.addEventListener("click", function(e){
+      if(e.target && e.target.id === "t3SocStart") startSoc();
+    });
+
+    /* === GAME 2 · PHANTOM HUNT === */
+    var phantomRecords = [
+      {ip:"172.30.0.10", id:"Hikvision DS-2CD2143G2-I", cve:"CVE-2021-36260", cpe:"hikvision exact + firmware match", real:true, mech:"real", explain:"NVD returned this for the exact CPE built from ONVIF manufacturer + model + firmware. Vendor advisory confirms the firmware branch is affected. Defensible candidate; promote with active corroboration."},
+      {ip:"172.30.0.20", id:"Google Chromecast", cve:"CVE-2019-2099", cpe:"google:chromecast_firmware:1.68.382489", real:true, mech:"real", explain:"Exact firmware CPE match for the Cast SDK. Real CVE for this device. Schedule patch via firmware OTA channel."},
+      {ip:"172.30.0.50", id:"Cloud-only Amazon device", cve:"CVE-2022-CAMERA-X", cpe:"amazon:* (OUI wildcard)", real:false, mech:"cpe", explain:"CPE imprecision · the only match is an Amazon OUI wildcard. The CVE is for a specific camera product not in this device family. Validation note: 'OUI wildcard matched camera CVE; affected product list does not include this device class.'"},
+      {ip:"172.30.0.25", id:"HP printer · firmware 6.2.4", cve:"CVE-2021-FIRMWARE-OLD", cpe:"hp:firmware:6.2.3", real:false, mech:"backport", explain:"Backported patch · banner reports firmware 6.2.4; the CVE was fixed in a HP backport to 6.2.3-build205. The banner is correct but the patch was applied. Validation note: 'Vendor advisory confirms backport in build205; banner unchanged.'"},
+      {ip:"172.30.0.4", id:"Hikvision DS-2CD family", cve:"CVE-2017-7921", cpe:"hikvision:family-level", real:true, mech:"real", explain:"Family-level CPE matches the affected criteria. CVE is in CISA KEV. Active CVE applicability check would confirm; in absence, treat as high-priority candidate."},
+      {ip:"172.30.0.11", id:"Apple TV", cve:"CVE-2020-AIRPLAY", cpe:"apple:airplay:* (no version)", real:false, mech:"banner", explain:"Stale banner · the device's announcement string lists an old AirPlay version, but iOS auto-updates have shipped the fix. Banner did not refresh. Validation note: 'Device reports old AirPlay version; iOS update channel confirms fix shipped V14.2+.'"},
+      {ip:"172.30.0.40", id:"Network gateway · admin:cisco success", cve:"DIRECT-CRED-FAIL", cpe:"(no CPE · credential evidence)", real:true, mech:"real", explain:"Direct authentication evidence. No CVE ID, but this is gold-standard. Move immediately to credential rotation. The lack of a CVE is not a problem — credentials are a separate evidence class."},
+      {ip:"172.30.0.30", id:"Lab workstation · IoT gateway", cve:"CVE-2024-CONFIG-BIND", cpe:"vendor:product:*", real:false, mech:"config", explain:"Config dependency · the CVE only applies when the optional 'cloud bind' feature is enabled. Configuration scan shows it's disabled. Validation note: 'CVE-2024-XXX requires cloud-bind=true; device config shows cloud-bind=false.'"},
+      {ip:"172.30.0.5", id:"Axis camera", cve:"CVE-2023-ONVIF", cpe:"axis:* + onvif probe", real:true, mech:"real", explain:"ONVIF GetDeviceInformation confirmed model and firmware. NVD lookup returned the matching CVE. Two independent paths agree."},
+      {ip:"172.30.0.55", id:"Roku media player", cve:"CVE-2023-ACTIVE-X", cpe:"roku:firmware:9.4", real:false, mech:"active", explain:"Active-scan misread · Nuclei template matched a benign Roku endpoint that resembles the vulnerable pattern in another product. The endpoint returns 200 OK but doesn't execute the vulnerable code path. Validation note: 'Template assumes ASP.NET response shape; Roku returns matching shape from a benign handler.'"},
+      {ip:"172.30.0.92", id:"Sonos speaker", cve:"CVE-2023-NETWORK-X", cpe:"sonos:firmware:*", real:false, mech:"cpe", explain:"CPE imprecision · the CVE is for a different Sonos product class (commercial line). Consumer firmware does not include the vulnerable component. Wildcard version match overstated applicability."},
+      {ip:"172.30.0.60", id:"Dahua camera · admin:admin success", cve:"DIRECT-CRED-FAIL", cpe:"(no CPE · credential evidence)", real:true, mech:"real", explain:"Default-credential success on an exposed camera. CVE-less but high-priority. The action is credential rotation + RTSP isolation, not a software patch."}
+    ];
+    function renderPhantom(){
+      var list = document.getElementById("t3PhantomList");
+      list.innerHTML = phantomRecords.map(function(r, i){
+        return '<div class="t3-phantom-rec" data-i="' + i + '">' +
+          '<div class="t3-phantom-info">' +
+            '<div><span class="ip">' + r.ip + '</span> · <span class="id">' + r.id + '</span></div>' +
+            '<div><span class="cve">' + r.cve + '</span> <span class="id">via ' + r.cpe + '</span></div>' +
+          '</div>' +
+          '<div class="t3-phantom-drop" data-i="' + i + '">drop a label</div>' +
+          '<div class="t3-phantom-explain">' + r.explain + '</div>' +
+        '</div>';
+      }).join("");
+      bindPhantomDnd();
+    }
+    function bindPhantomDnd(){
+      pane.querySelectorAll("#t3PhantomMechs .t3-pm").forEach(function(p){
+        p.addEventListener("dragstart", function(e){
+          p.classList.add("dragging");
+          e.dataTransfer.setData("text/plain", p.getAttribute("data-mech"));
+        });
+        p.addEventListener("dragend", function(){ p.classList.remove("dragging"); });
+        p.addEventListener("click", function(){
+          /* click also picks for non-drag UX */
+          pane.querySelectorAll("#t3PhantomMechs .t3-pm").forEach(function(x){ x.classList.remove("dragging"); });
+          p.classList.add("dragging");
+          /* drop into first unjudged record */
+          var first = pane.querySelector(".t3-phantom-rec:not(.judged)");
+          if(first){
+            var drop = first.querySelector(".t3-phantom-drop");
+            judgePhantom(drop, p.getAttribute("data-mech"));
+          }
+        });
+      });
+      pane.querySelectorAll("#t3PhantomList .t3-phantom-drop").forEach(function(d){
+        d.addEventListener("dragover", function(e){ e.preventDefault(); });
+        d.addEventListener("drop", function(e){
+          e.preventDefault();
+          var mech = e.dataTransfer.getData("text/plain");
+          judgePhantom(d, mech);
+        });
+      });
+    }
+    function judgePhantom(drop, mech){
+      var rec = drop.closest(".t3-phantom-rec");
+      if(rec.classList.contains("judged")) return;
+      var i = parseInt(rec.getAttribute("data-i"));
+      var r = phantomRecords[i];
+      var correct = (mech === r.mech) || (mech === "real" && r.real);
+      drop.classList.add("has");
+      if(mech === "real"){ drop.classList.add("real"); drop.textContent = ""; }
+      else { drop.textContent = mech; }
+      rec.classList.add("judged");
+      rec.classList.add(correct ? "correct" : "wrong");
+      updatePhantomScore();
+    }
+    function updatePhantomScore(){
+      var judged = pane.querySelectorAll(".t3-phantom-rec.judged").length;
+      var correct = pane.querySelectorAll(".t3-phantom-rec.judged.correct").length;
+      document.getElementById("t3PhantomScore").textContent = correct + " / " + phantomRecords.length;
+    }
+    renderPhantom();
+
+    /* === GAME 3 · CRED ROULETTE === */
+    var ROUL_BEST_KEY = "rl_roul_best_v1";
+    var roulVendor = {
+      camera: [
+        {vendor:"Hikvision", user:"admin", pass:"12345", resp:"real", note:"Real factory default · 2xx with auth-only content"},
+        {vendor:"Dahua", user:"admin", pass:"admin", resp:"real", note:"Real factory default · 2xx response"},
+        {vendor:"Axis", user:"root", pass:"pass", resp:"real", note:"Real factory default"},
+        {vendor:"Generic", user:"admin", pass:"admin", resp:"fake401", note:"401 Unauthorized · NOT a credential success"},
+        {vendor:"Reolink", user:"admin", pass:"", resp:"real", note:"Empty-password default on older firmware"},
+        {vendor:"Hanwha", user:"admin", pass:"4321", resp:"fake401", note:"401 · not a Hanwha default"},
+        {vendor:"Bosch", user:"service", pass:"service", resp:"fakepublic", note:"2xx · same response as unauthenticated (public page)"},
+        {vendor:"Vivotek", user:"root", pass:"vivotek", resp:"real", note:"Real factory default for Vivotek"}
+      ],
+      nas: [
+        {vendor:"Synology", user:"admin", pass:"", resp:"fake401", note:"Synology requires initial setup · 401"},
+        {vendor:"QNAP", user:"admin", pass:"admin", resp:"real", note:"QNAP default for older firmware"},
+        {vendor:"Generic", user:"root", pass:"root", resp:"fake401", note:"401 · most NAS lock root via web"},
+        {vendor:"Buffalo", user:"admin", pass:"password", resp:"real", note:"Buffalo factory default"},
+        {vendor:"Asustor", user:"admin", pass:"admin", resp:"fake401", note:"Disabled by default"},
+        {vendor:"Drobo", user:"admin", pass:"", resp:"fakepublic", note:"2xx but matches unauth response · public landing"}
+      ],
+      printer: [
+        {vendor:"HP", user:"admin", pass:"", resp:"real", note:"Empty password default on HP JetDirect"},
+        {vendor:"Brother", user:"admin", pass:"access", resp:"real", note:"Brother default"},
+        {vendor:"Canon", user:"7654321", pass:"", resp:"fakepublic", note:"Pin works but page is informational"},
+        {vendor:"Lexmark", user:"admin", pass:"admin", resp:"fake401", note:"Modern Lexmark prompts on first boot"},
+        {vendor:"Epson", user:"EPSONWEB", pass:"epson", resp:"real", note:"Epson default"},
+        {vendor:"Xerox", user:"admin", pass:"1111", resp:"real", note:"Xerox WorkCentre default"}
+      ],
+      iot: [
+        {vendor:"Ubiquiti", user:"ubnt", pass:"ubnt", resp:"real", note:"Ubiquiti factory default · classic"},
+        {vendor:"D-Link", user:"admin", pass:"", resp:"real", note:"Older D-Link routers · empty password"},
+        {vendor:"TP-Link", user:"admin", pass:"admin", resp:"real", note:"TP-Link default on consumer routers"},
+        {vendor:"Cisco", user:"cisco", pass:"cisco", resp:"real", note:"Older Cisco SMB default"},
+        {vendor:"Netgear", user:"admin", pass:"password", resp:"fake401", note:"Modern Netgear · 401 (initial setup wizard)"},
+        {vendor:"Generic", user:"root", pass:"toor", resp:"fakepublic", note:"2xx but unauthenticated page · false positive"}
+      ]
+    };
+    var roulState = {cls:"camera", round:0, correct:0, currentResp:null};
+    function loadRoulBest(){
+      try{
+        var raw = localStorage.getItem(ROUL_BEST_KEY);
+        if(raw){
+          var b = JSON.parse(raw);
+          document.getElementById("t3RoulBest").textContent = b.score + " / 10";
+        }
+      } catch(e){}
+    }
+    loadRoulBest();
+    pane.querySelectorAll("#t3RoulClass .t3-roul-c").forEach(function(b){
+      b.addEventListener("click", function(){
+        pane.querySelectorAll("#t3RoulClass .t3-roul-c").forEach(function(x){ x.classList.remove("on"); });
+        b.classList.add("on");
+        roulState.cls = b.getAttribute("data-class");
+      });
+    });
+    function roulSpin(){
+      if(roulState.round >= 10){ roulReset(); return; }
+      var pool = roulVendor[roulState.cls];
+      var pick = pool[Math.floor(Math.random() * pool.length)];
+      roulState.currentResp = pick;
+      var disp = document.getElementById("t3RoulDisplay");
+      var resp = document.getElementById("t3RoulResp");
+      var q = document.getElementById("t3RoulQ");
+      var actions = document.getElementById("t3RoulActions");
+      var fb = document.getElementById("t3RoulFb");
+      fb.textContent = "";
+      fb.className = "t3-roul-feedback";
+      q.style.display = "none";
+      disp.classList.add("spinning");
+      disp.textContent = pick.vendor + " · " + pick.user + ":" + (pick.pass || "(empty)");
+      resp.className = "t3-roul-resp";
+      resp.textContent = "▸ attempting credential…";
+      actions.innerHTML = "";
+      setTimeout(function(){
+        disp.classList.remove("spinning");
+        if(pick.resp === "real"){
+          resp.className = "t3-roul-resp real";
+          resp.textContent = "HTTP 200 OK · authenticated content shown · auth-required header present";
+        } else if(pick.resp === "fake401"){
+          resp.className = "t3-roul-resp fake401";
+          resp.textContent = "HTTP 401 Unauthorized · WWW-Authenticate: Basic realm=…";
+        } else {
+          resp.className = "t3-roul-resp fakepublic";
+          resp.textContent = "HTTP 200 OK · same response body length as unauthenticated request · this is a public landing page";
+        }
+        q.style.display = "block";
+        actions.innerHTML =
+          '<button class="t3-roul-btn" data-v="success">✓ Successful default-cred</button>' +
+          '<button class="t3-roul-btn" data-v="failed">✗ NOT a success (401 / public)</button>';
+        actions.querySelectorAll(".t3-roul-btn").forEach(function(b){
+          b.addEventListener("click", function(){
+            var picked = b.getAttribute("data-v");
+            var ideal = pick.resp === "real" ? "success" : "failed";
+            roulState.round++;
+            if(picked === ideal){
+              roulState.correct++;
+              fb.className = "t3-roul-feedback correct";
+              fb.textContent = "✓ correct · " + pick.note;
+            } else {
+              fb.className = "t3-roul-feedback wrong";
+              fb.textContent = "✗ " + pick.note;
+            }
+            document.getElementById("t3RoulRound").textContent = roulState.round;
+            document.getElementById("t3RoulCorrect").textContent = roulState.correct;
+            actions.innerHTML = '<button class="t3-roul-btn" id="t3RoulNext">▶ NEXT</button>';
+            document.getElementById("t3RoulNext").addEventListener("click", function(){
+              if(roulState.round >= 10){
+                try{
+                  var raw = localStorage.getItem(ROUL_BEST_KEY);
+                  var prev = raw ? JSON.parse(raw) : {score:-1};
+                  if(roulState.correct > prev.score){
+                    localStorage.setItem(ROUL_BEST_KEY, JSON.stringify({score:roulState.correct, date:new Date().toLocaleDateString()}));
+                    document.getElementById("t3RoulBest").textContent = roulState.correct + " / 10";
+                  }
+                } catch(e){}
+                fb.className = "t3-roul-feedback correct";
+                fb.innerHTML = "Round complete · final score <b>" + roulState.correct + " / 10</b>. Click SPIN to play again (resets counter).";
+                actions.innerHTML = '<button class="t3-roul-btn" id="t3RoulSpin2">↻ play again</button>';
+                document.getElementById("t3RoulSpin2").addEventListener("click", function(){
+                  roulState.round = 0; roulState.correct = 0;
+                  document.getElementById("t3RoulRound").textContent = 0;
+                  document.getElementById("t3RoulCorrect").textContent = 0;
+                  roulSpin();
+                });
+              } else {
+                roulSpin();
+              }
+            });
+          });
+        });
+      }, 800 + Math.random() * 400);
+    }
+    function roulReset(){
+      roulState.round = 0;
+      roulState.correct = 0;
+      document.getElementById("t3RoulRound").textContent = 0;
+      document.getElementById("t3RoulCorrect").textContent = 0;
+    }
+    document.getElementById("t3RoulSpin").addEventListener("click", function(){ roulSpin(); });
+
+    /* === CAPSTONE · PATCH TUESDAY === */
+    var capMethods = new Set(["nvd","kev","validation"]);
+    pane.querySelectorAll("#t3CapMethods .t3-cap-m").forEach(function(m){
+      m.addEventListener("click", function(){
+        var k = m.getAttribute("data-m");
+        if(capMethods.has(k)){ capMethods.delete(k); m.classList.remove("on"); }
+        else { capMethods.add(k); m.classList.add("on"); }
+      });
+    });
+    function runCap(instant){
+      var fleet = buildAlerts();
+      var attacker = document.getElementById("t3CapAttacker").value;
+      var stream = document.getElementById("t3CapStream");
+      var score = document.getElementById("t3CapScore");
+      stream.classList.add("on");
+      stream.innerHTML = "";
+      score.classList.remove("on");
+
+      var realCves = fleet.filter(function(a){ return !a.phantom; });
+      var phantoms = fleet.filter(function(a){ return a.phantom; });
+      /* simulate enrichment runs against the fleet */
+      var rows = [];
+      realCves.forEach(function(a){
+        var cls = a.kev ? "kev" : "confirmed";
+        var tag = a.kev ? "KEV · WILD" : "confirmed";
+        rows.push({ip:a.host, desc:a.cve + " · " + a.ident, tag:tag, cls:cls});
+      });
+      if(capMethods.has("nvd")){
+        phantoms.forEach(function(a){
+          var keep = !capMethods.has("validation");
+          if(keep) rows.push({ip:a.host, desc:a.cve + " · " + a.mech.split("·")[0], tag:"phantom", cls:"phantom"});
+        });
+      }
+      var perRow = instant ? 5 : Math.max(60, Math.floor(7000 / Math.max(1, rows.length)));
+      rows.forEach(function(r, i){
+        setTimeout(function(){
+          var row = document.createElement("div");
+          row.className = "t3-cap-row " + r.cls;
+          row.innerHTML = '<span class="ip">' + r.ip + '</span><span class="desc">' + r.desc + '</span><span class="tag">' + r.tag + '</span>';
+          stream.appendChild(row);
+          stream.scrollTop = stream.scrollHeight;
+        }, i * perRow);
+      });
+      setTimeout(function(){
+        /* compute score */
+        var kevCount = realCves.filter(function(a){ return a.kev; }).length;
+        var canPatch = Math.min(realCves.length, 8);
+        /* attacker priorities exploits in this order: KEV first if opportunistic */
+        var exploited = 0;
+        if(attacker === "opportunistic"){
+          /* exploits only KEV CVEs we left unpatched */
+          var unpatchedKev = Math.max(0, kevCount - Math.floor(canPatch * 0.6));
+          exploited = unpatchedKev;
+        } else if(attacker === "targeted"){
+          /* exploits high-cvss network-reachable, regardless of KEV */
+          exploited = Math.max(0, realCves.filter(function(a){ return a.score >= 8; }).length - Math.floor(canPatch * 0.5));
+        } else {
+          /* advanced — also picks up direct-cred and config issues */
+          exploited = Math.max(0, Math.floor(realCves.length * 0.45) - Math.floor(canPatch * 0.4));
+        }
+        var prevented = Math.max(0, realCves.filter(function(a){ return a.kev; }).length - exploited);
+        var phantomHours = capMethods.has("validation") ? 0 : Math.min(phantoms.length * 2, 16);
+        var kevUnpatched = Math.max(0, kevCount - Math.floor(canPatch * (capMethods.has("kev") ? 0.85 : 0.5)));
+        var totalMethods = 5;
+        var usedMethods = ["nvd","openvas","nuclei","creds","validation"].filter(function(m){ return capMethods.has(m); }).length;
+        document.getElementById("t3ScPrev").textContent = prevented;
+        document.getElementById("t3ScPrevSub").textContent = "of " + kevCount + " KEV-listed";
+        document.getElementById("t3ScKev").textContent = kevUnpatched;
+        document.getElementById("t3ScPhant").textContent = phantomHours + "h";
+        document.getElementById("t3ScCov").textContent = usedMethods;
+        document.getElementById("t3ScCovSub").textContent = "of " + totalMethods + " methods";
+
+        /* reflection */
+        var r = "";
+        if(!capMethods.has("kev")) r += '<span class="bad">Without KEV filtering</span>, you treated all severity-9 CVEs as equally urgent — the opportunistic attacker exploited ' + exploited + ' KEV-listed vulns while you patched theoretical highs. ';
+        else r += '<span class="good">KEV filtering</span> kept your priority list focused on what is actually being exploited. ';
+        if(!capMethods.has("validation")) r += '<span class="bad">Without validation suppression</span>, ' + phantomHours + ' hours of your 40-hour budget were spent investigating phantom CVEs. ';
+        else r += '<span class="good">Validation suppression</span> reclaimed budget by not re-investigating known false positives. ';
+        if(!capMethods.has("creds")) r += 'You did not test default credentials — any direct authentication weaknesses on the camera and gateway hosts remained invisible to the assessment. ';
+        if(!capMethods.has("openvas") && !capMethods.has("nuclei")) r += '<span class="bad">No active probes</span> — passive NVD lookups produced candidates only, none promoted to confirmed. ';
+        if(attacker === "advanced") r += 'Against an advanced attacker, the prioritization framework alone is not enough — segmentation, monitoring, and incident response capacity matter more than patch ordering. ';
+        if(prevented > kevCount * 0.7) r += '<b>Strong run.</b> ';
+        else if(prevented < kevCount * 0.3) r += '<b>Tough week.</b> ';
+        document.getElementById("t3CapReflect").innerHTML = r;
+        score.classList.add("on");
+        score.scrollIntoView({behavior:"smooth", block:"start"});
+      }, instant ? 200 : rows.length * perRow + 600);
+    }
+    document.getElementById("t3CapRun").addEventListener("click", function(){ runCap(false); });
+    document.getElementById("t3CapSkip").addEventListener("click", function(){ runCap(true); });
+    document.getElementById("t3CapReset").addEventListener("click", function(){
+      document.getElementById("t3CapStream").classList.remove("on");
+      document.getElementById("t3CapScore").classList.remove("on");
+    });
+
+    /* === DISCIPLINE CHECKLIST === */
+    var cp = document.getElementById("t3CheckProg");
+    function updateCp(){
+      var t = pane.querySelectorAll("#t3Checklist .nd-check.ticked").length;
+      cp.innerHTML = "Ticked <b>" + t + "</b> / 12 · " +
+        (t === 12 ? "every row defensible. The assessment is ready for handoff." :
+         t >= 9 ? "close — but a partial discipline produces partial trust." :
+         t >= 4 ? "progress, but the unticked rows are exactly where Ch.4 inherits problems." :
+                  "sign off only when every row can be defended from evidence.");
+    }
+    pane.querySelectorAll("#t3Checklist .nd-check").forEach(function(c){
+      c.addEventListener("click", function(){ c.classList.toggle("ticked"); updateCp(); });
+    });
+    updateCp();
+
+  })();
+  </script>
+
+</div>
+
 
 <div id="weblog" class="pane">
 <style>
