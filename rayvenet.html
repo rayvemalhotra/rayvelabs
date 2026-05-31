@@ -631,14 +631,116 @@ body.rl-scrolled .tabs{
   <button class="tab" data-pane="sim2">Cascade Lab</button>
   <button class="tab" data-pane="threat">Threat Hunt</button>
   <button class="tab" data-pane="weblog">Fingerprinting</button>
-  <button class="tab" data-pane="schoollabs">School Labs</button>
+  <button class="tab" data-pane="lecture">Lecture</button>
+  <button class="tab" data-pane="gwulab">GWU Dr M Lab</button>
   <button class="tab" data-pane="terms">Key terms</button>
 </div>
 
-<!-- ===================== SCHOOL LABS ===================== -->
-<div id="schoollabs" class="pane">
+<!-- ===================== LECTURE · DR. RAVINDER MALLARAPU ===================== -->
+<div id="lecture" class="pane">
 <style>
-/* School Labs — scoped (.sl-*) */
+/* Lecture — scoped (.lec-*) */
+.lec-wrap{max-width:820px}
+.lec-kicker{font:600 11.5px/1 'Inter',system-ui,sans-serif;letter-spacing:1.4px;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.lec-wrap h2{font:600 30px/1.2 'Source Serif Pro',Georgia,serif;letter-spacing:-.5px;color:var(--ink);margin:0 0 8px}
+.lec-by{font:italic 400 15px/1.5 'Source Serif Pro',Georgia,serif;color:var(--dim);margin:0 0 4px}
+.lec-by b{font-style:normal;font-weight:600;color:var(--ink)}
+.lec-meta{font:500 11.5px/1.4 'Inter',system-ui,sans-serif;letter-spacing:.6px;color:var(--faint);margin:0 0 24px}
+.lec-lede{font:400 17px/1.6 'Source Serif Pro',Georgia,serif;color:var(--dim);margin:0 0 26px;padding-bottom:22px;border-bottom:1px solid var(--rule)}
+.lec-obj{background:var(--paper2);border:1px solid var(--line);border-radius:10px;padding:18px 22px;margin:0 0 30px;max-width:760px}
+.lec-obj .lec-h{font:700 11.5px/1 'Inter',system-ui,sans-serif;letter-spacing:1.2px;text-transform:uppercase;color:var(--ink);margin:0 0 12px}
+.lec-obj ul{list-style:none;margin:0;padding:0}
+.lec-obj li{position:relative;padding:5px 0 5px 22px;font:400 14.5px/1.5 'Inter',system-ui,sans-serif;color:var(--dim)}
+.lec-obj li::before{content:"\2014";position:absolute;left:0;color:var(--gold)}
+.lec-sec{margin:0 0 26px;max-width:760px}
+.lec-sec h3{font:600 13px/1.3 'Inter',system-ui,sans-serif;letter-spacing:.3px;color:var(--ink);margin:0;display:flex;align-items:center;gap:10px}
+.lec-sec h3 b{font:700 11px/1 'JetBrains Mono',ui-monospace,Menlo,monospace;color:#fff;background:var(--gold);border-radius:5px;padding:4px 7px}
+.lec-sec p{font:400 15.5px/1.65 'Source Serif Pro',Georgia,serif;color:var(--dim);margin:10px 0 0}
+.lec-sec p b{color:var(--ink);font-weight:600}
+.lec-key{font:400 13.5px/1.6 'Inter',system-ui,sans-serif;color:var(--dim);background:rgba(157,133,82,.07);border-left:3px solid var(--gold);border-radius:0 6px 6px 0;padding:10px 16px;margin:12px 0 0}
+.lec-key b{color:var(--ink)}
+.lec-cta{display:inline-flex;align-items:center;gap:8px;font:600 14px/1 'Inter',system-ui,sans-serif;text-decoration:none;color:var(--paper);background:var(--ink);border-radius:8px;padding:13px 22px;margin-top:8px;transition:opacity .15s}
+.lec-cta:hover{opacity:.85;text-decoration:none}
+.lec-foot{margin-top:30px;padding-top:14px;border-top:1px solid var(--rule);font:400 12px/1.55 'Inter',system-ui,sans-serif;color:var(--faint);max-width:760px}
+</style>
+
+  <div class="lec-wrap">
+    <div class="lec-kicker">GWU · SEAS-8414 · Lecture</div>
+    <h2>Vulnerability Assessment, Correlation &amp; Prioritization</h2>
+    <p class="lec-by">A lecture overview by <b>Dr. Ravinder Mallarapu</b></p>
+    <p class="lec-meta">Analytical Tools for Cyber &middot; SEAS-8414 &middot; DC9 &middot; The George Washington University</p>
+
+    <p class="lec-lede">Discovery tells you <i>what</i> is on the network. This lecture is about the
+    harder question that follows: of everything you found, what actually puts the mission at risk, and
+    in what order should you fix it? We move from raw asset fingerprints to a defensible, ranked
+    remediation plan.</p>
+
+    <div class="lec-obj">
+      <div class="lec-h">By the end of this lecture you should be able to</div>
+      <ul>
+        <li>Turn an asset fingerprint into a set of candidate vulnerabilities</li>
+        <li>Read a CVSS vector and explain what actually drives the score</li>
+        <li>Separate severity from real-world exploitation likelihood</li>
+        <li>Confirm a finding with direct evidence instead of trusting a guess</li>
+        <li>Rank findings so the most dangerous work rises to the top</li>
+      </ul>
+    </div>
+
+    <div class="lec-sec">
+      <h3><b>1</b> From discovery to assessment</h3>
+      <p>A discovered host is a <b>hypothesis</b>, not a finding. Knowing that a device runs a
+      particular product and version is the starting point &mdash; assessment is the work of asking
+      <i>which known weaknesses that software carries</i>, and whether they are actually reachable and
+      relevant here. Skipping this step is how teams drown in noise.</p>
+    </div>
+
+    <div class="lec-sec">
+      <h3><b>2</b> Identification &mdash; CPE and the CVE match</h3>
+      <p>We name software with a structured identifier (a <b>CPE</b>) so it can be matched against the
+      public vulnerability record (the <b>CVE</b> list). The match is powerful but blunt: version
+      ranges overlap, back-ported patches hide real state, and one string can map to dozens of CVEs.
+      Treat the result as a candidate list to be narrowed &mdash; never a verdict.</p>
+      <div class="lec-key"><b>Watch for:</b> false positives from version-only matching &mdash; a
+      vendor may patch the flaw without changing the banner.</div>
+    </div>
+
+    <div class="lec-sec">
+      <h3><b>3</b> Severity is not likelihood</h3>
+      <p>A <b>CVSS</b> base score describes how bad an exploit <i>would</i> be &mdash; remote? no
+      privileges? no user interaction? It says nothing about whether anyone is actually using it.
+      <b>EPSS</b> estimates the probability a vulnerability will be exploited in the near term, and the
+      <b>CISA KEV</b> catalog lists what is being exploited <i>right now</i>. The three answer different
+      questions, and you need all three.</p>
+    </div>
+
+    <div class="lec-sec">
+      <h3><b>4</b> Correlation &mdash; confirming with evidence</h3>
+      <p>The strongest finding is corroborated by more than one independent signal: the version match,
+      a service banner you pulled yourself, observed protocol behavior, traffic patterns. When several
+      evidence paths agree, confidence rises and false positives fall. <b>Direct evidence beats
+      inference</b> every time.</p>
+    </div>
+
+    <div class="lec-sec">
+      <h3><b>5</b> Prioritization &mdash; the remediation queue</h3>
+      <p>Finally we triage like an operator with limited hours. Anything actively exploited (KEV) jumps
+      the line; then weight by exploitation likelihood (EPSS) and by raw severity (CVSS) scaled to
+      <b>how critical the affected asset is to the mission</b>. The output is a single ordered list that
+      tells the team exactly what to touch first.</p>
+    </div>
+
+    <a class="lec-cta" href="#gwulab" onclick="event.preventDefault();var b=document.querySelector('.tab[data-pane=&quot;gwulab&quot;]');if(b){b.click();window.scrollTo(0,0);}">Continue to the lab &rarr;</a>
+
+    <div class="lec-foot">Original lecture overview prepared for rayvelabs.com. It summarizes the
+    concepts of the SEAS-8414 module in original wording and does not reproduce
+    Dr.&nbsp;Mallarapu&rsquo;s slides, notes, or graded materials.</div>
+  </div>
+</div>
+
+<!-- ===================== GWU · DR M LAB ===================== -->
+<div id="gwulab" class="pane">
+<style>
+/* GWU Dr M Lab — scoped (.sl-*) */
 .sl-lede{max-width:780px;margin-bottom:26px}
 .sl-lede .sl-kicker{font-family:'Inter',system-ui,sans-serif;font-size:11.5px;letter-spacing:1.4px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:10px}
 .sl-lede h2{font-family:'Source Serif Pro',Georgia,serif;font-size:30px;font-weight:600;letter-spacing:-.5px;line-height:1.2;margin-bottom:10px;color:var(--ink)}
@@ -685,7 +787,7 @@ body.rl-scrolled .tabs{
 </style>
 
   <div class="sl-lede">
-    <div class="sl-kicker">School Labs</div>
+    <div class="sl-kicker">GWU · Dr M Lab</div>
     <h2>Graded coursework, <em>framed</em> for reference.</h2>
     <p>The instructor-authored lab for this course. The official runtime and the graded
     write-up live on Blackboard &mdash; this page describes the lab and points to the
@@ -952,7 +1054,7 @@ for f in queue[:10]:
     does not reproduce Dr.&nbsp;Mallarapu's graded assignment, only the public method it exercises.</div>
   </section>
 
-  <!-- ============== EMBEDDED LAB APP · RayveNet Chapter 3 console ==============
+  <!-- ============== EMBEDDED LAB APP · GWU Dr M Lab Chapter 3 console ==============
        An original re-implementation of the Chapter 3 Discovery & Evidence
        workflow as a self-contained vanilla-JS single-page app, themed to the
        rayvelabs light/gold palette. Deterministic data (seeded PRNG) — no
@@ -1058,15 +1160,15 @@ for f in queue[:10]:
 
   <section class="bw-wrap">
     <div class="bw-kick">Lab runtime · interactive</div>
-    <p class="bw-lede">A working re-creation of the Chapter&nbsp;3 <b>Discovery &amp; Evidence</b>
-    console &mdash; the same five views the reference lab ships, rebuilt natively in this site and
-    re-themed to the rayvelabs palette. Data is deterministic and generated locally in your
-    browser; there is no backend and nothing leaves this page.</p>
+    <p class="bw-lede">A working build of the Chapter&nbsp;3 <b>Discovery &amp; Evidence</b> workflow
+    &mdash; six linked views from asset inventory through to a live, ranked remediation queue.
+    Data is deterministic and generated locally in your browser; there is no backend and nothing
+    leaves this page.</p>
     <div id="bwApp" class="bw-app" data-bw></div>
   </section>
 
   <script>
-  /* ============ RayveNet Chapter 3 lab — embedded vanilla-JS console ============ */
+  /* ============ GWU Dr M Lab · Chapter 3 — embedded vanilla-JS console ============ */
   (function(){
     var root = document.getElementById('bwApp');
     if(!root) return;
@@ -1433,7 +1535,7 @@ for f in queue[:10]:
       var v=viewFor();
       var activeNav=state.view==='detail'?'assets':state.view;
       var h='';
-      h+='<div class="bw-top"><div class="bw-logo"><span class="bw-mark">R</span><div><b>RayveNet</b><span>Discovery &amp; Evidence</span></div></div>';
+      h+='<div class="bw-top"><div class="bw-logo"><span class="bw-mark">M</span><div><b>Dr. Mallarapu&rsquo;s Lab</b><span>Discovery &amp; Evidence</span></div></div>';
       h+='<nav class="bw-nav">'+NAV.map(function(n){return '<button data-view="'+n[0]+'" class="'+(activeNav===n[0]?'on':'')+'">'+n[1]+'</button>'}).join('')+'</nav>';
       h+='<span class="bw-conn"><i></i> Simulator connected</span></div>';
       h+='<div class="bw-main"><div class="bw-head"><div><h3>'+esc(v.title)+'</h3><p>'+esc(v.sub)+'</p></div></div><div class="bw-body">'+v.body+'</div></div>';
