@@ -788,10 +788,11 @@ body.rl-scrolled .tabs{
 
   <div class="sl-lede">
     <div class="sl-kicker">GWU · Dr M Lab</div>
-    <h2>Graded coursework, <em>framed</em> for reference.</h2>
-    <p>The instructor-authored lab for this course. The official runtime and the graded
-    write-up live on Blackboard &mdash; this page describes the lab and points to the
-    canonical download so you can run it locally.</p>
+    <h2>The Phase&nbsp;3 lesson, <em>rebuilt</em> to run.</h2>
+    <p>A from-scratch recreation of the vulnerability-assessment lesson &mdash; the full
+    reasoning path from a device fingerprint to a defensible remediation queue, with every
+    concept made runnable: a written walkthrough, a Python toolkit you can paste, and a live
+    console. The graded coursework stays on Blackboard; everything on this page is original.</p>
   </div>
 
   <div class="sl-credit">
@@ -801,21 +802,352 @@ body.rl-scrolled .tabs{
     <span class="sl-cm">Analytical Tools for Cyber &middot; SEAS-8414 &middot; DC9 &middot; The George Washington University</span>
   </div>
 
+  <!-- ===== The lesson — original recreation (.ls-*) ===== -->
+  <style>
+  .ls{max-width:880px;margin:6px 0 10px}
+  .ls-kick{font-family:'Inter',system-ui,sans-serif;font-size:11.5px;letter-spacing:1.4px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:8px}
+  .ls-h2{font-family:'Source Serif Pro',Georgia,serif;font-size:26px;font-weight:600;letter-spacing:-.4px;color:var(--ink);margin:0 0 10px;line-height:1.2}
+  .ls-intro{font-size:15.5px;color:var(--dim);line-height:1.62;max-width:730px;margin:0 0 4px}
+  .ls-step{margin:32px 0 0;padding-top:24px;border-top:1px solid var(--rule)}
+  .ls-step.ls-first{border-top:none;padding-top:14px}
+  .ls-step-n{font-family:'JetBrains Mono',ui-monospace,Menlo,monospace;font-size:11px;font-weight:700;color:#fff;background:var(--gold);border-radius:6px;padding:4px 9px;letter-spacing:.5px}
+  .ls-step-h{font-family:'Source Serif Pro',Georgia,serif;font-size:20px;font-weight:600;color:var(--ink);margin:12px 0 9px;letter-spacing:-.2px}
+  .ls-step p{font-size:14.5px;color:var(--dim);line-height:1.62;margin:0 0 10px;max-width:740px}
+  .ls-step p b{color:var(--ink);font-weight:600}
+  .ls-step p i{font-style:italic}
+  .ls-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:10px;margin:14px 0 4px}
+  .ls-card{border:1px solid var(--line);border-radius:8px;padding:13px 15px;background:var(--paper)}
+  .ls-card h4{font-family:'Inter',system-ui,sans-serif;font-size:13px;font-weight:700;color:var(--ink);margin:0 0 5px;display:flex;align-items:center;gap:7px}
+  .ls-card h4 .ls-tick{font-family:'JetBrains Mono',ui-monospace,Menlo,monospace;font-size:10px;color:var(--gold);font-weight:700}
+  .ls-card p{font-size:12.5px;color:var(--dim);line-height:1.5;margin:0;max-width:none}
+  .ls-tbl{width:100%;border-collapse:collapse;margin:13px 0 6px;font-family:'Inter',system-ui,sans-serif}
+  .ls-tbl th{text-align:left;font-size:10.5px;letter-spacing:.8px;text-transform:uppercase;color:var(--faint);font-weight:600;padding:7px 12px;border-bottom:1px solid var(--rule)}
+  .ls-tbl td{font-size:13px;color:var(--dim);padding:9px 12px;border-bottom:1px solid var(--rule-faint);vertical-align:top;line-height:1.45}
+  .ls-tbl td:first-child{color:var(--ink);font-weight:600;white-space:nowrap}
+  .ls-tbl code{font-family:'JetBrains Mono',ui-monospace,Menlo,monospace;font-size:11.5px;background:var(--paper2);padding:1px 5px;border-radius:3px;color:var(--ink)}
+  .ls-band{display:flex;align-items:flex-start;gap:13px;padding:11px 0;border-bottom:1px solid var(--rule-faint)}
+  .ls-band:last-child{border-bottom:none}
+  .ls-band-tag{flex-shrink:0;font-family:'Inter',system-ui,sans-serif;font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;padding:5px 9px;border-radius:5px;min-width:92px;text-align:center}
+  .ls-band-d{font-size:13px;color:var(--dim);line-height:1.5}
+  .ls-band-d b{color:var(--ink);font-weight:600}
+  .ls-hand{border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;background:var(--paper);padding:16px 20px;margin:14px 0 4px}
+  .ls-hand ol{margin:0;padding-left:20px}
+  .ls-hand li{font-size:13.5px;color:var(--dim);line-height:1.5;margin:0 0 6px}
+  .ls-hand li:last-child{margin-bottom:0}
+  .ls-hand li b{color:var(--ink);font-weight:600}
+  @media(max-width:720px){.ls-band{flex-direction:column;gap:5px}}
+  </style>
+
+  <section class="ls">
+    <div class="ls-kick">The lesson &middot; rebuilt to teach</div>
+    <h2 class="ls-h2">From a fingerprint to a defensible queue</h2>
+    <p class="ls-intro">Phase&nbsp;3 is not &ldquo;run a scanner and read the score.&rdquo; It is a
+    reasoning discipline: turn what you know about a device into a list of <i>candidate</i>
+    weaknesses, test each one until the evidence is honest, then rank what survives by what an
+    attacker can actually reach and break. Seven steps &mdash; each one runnable in the toolkit
+    and console below.</p>
+
+    <!-- vocabulary -->
+    <div class="ls-step ls-first">
+      <span class="ls-step-n">00</span>
+      <div class="ls-step-h">Four words that keep you honest</div>
+      <p>Most bad vulnerability reports come from collapsing these four states into one. Hold
+      them apart and the rest of the method follows on its own.</p>
+      <div class="ls-cards">
+        <div class="ls-card"><h4><span class="ls-tick">01</span>Candidate</h4><p>A weakness that <i>might</i> apply &mdash; a CPE match, a banner, a template hit. A lead, never a verdict.</p></div>
+        <div class="ls-card"><h4><span class="ls-tick">02</span>Confirmed</h4><p>A candidate backed by direct or strongly corroborating evidence on the actual host.</p></div>
+        <div class="ls-card"><h4><span class="ls-tick">03</span>False positive</h4><p>A candidate that does not survive triage &mdash; wrong version, backported patch, feature not enabled.</p></div>
+        <div class="ls-card"><h4><span class="ls-tick">04</span>Prioritized</h4><p>A confirmed finding chosen for action now, under real exposure and consequence.</p></div>
+      </div>
+      <p>Every finding also carries five things you should be able to name on demand:
+      <b>observation</b> (what a tool saw), <b>state</b> (source, method, confidence, validation
+      status), <b>decision</b> (candidate / confirmed / false positive / accepted),
+      <b>guardrail</b> (no promotion without applicable evidence), and an <b>action handoff</b>.</p>
+    </div>
+
+    <!-- assumptions -->
+    <div class="ls-step">
+      <span class="ls-step-n">&middot;</span>
+      <div class="ls-step-h">Five assumptions you work under</div>
+      <ul class="sl-list">
+        <li><b>No single method is authoritative.</b> A database match, an active probe, and a successful login each see something the others cannot.</li>
+        <li><b>Zero CVEs is not zero risk.</b> It can mean a weak CPE, thin database coverage, or a firmware nobody indexed &mdash; not a clean host.</li>
+        <li><b>A high score is not an automatic first action.</b> A 9.8 nobody is exploiting can wait behind a 7.5 that is already in the wild.</li>
+        <li><b>An untested host is not a safe host.</b> &ldquo;Found nothing,&rdquo; &ldquo;never ran,&rdquo; and &ldquo;skipped by policy&rdquo; are three different sentences.</li>
+        <li><b>A working default login is your strongest single signal.</b> It is direct proof, not a hypothesis &mdash; treat it as top of queue.</li>
+      </ul>
+    </div>
+
+    <!-- step 1: CPE -->
+    <div class="ls-step">
+      <span class="ls-step-n">01</span>
+      <div class="ls-step-h">Turn identity into applicability &mdash; the CPE</div>
+      <p>A CPE&nbsp;2.3 string is how you ask the world, &ldquo;is <i>this exact product</i> known
+      to be vulnerable?&rdquo; Its precision decides everything downstream: too broad and you drown
+      in unrelated advisories, too narrow and you miss adjacent builds.</p>
+      <table class="ls-tbl">
+        <tr><th>What raises CPE quality</th><th>Why it matters</th></tr>
+        <tr><td>Source strength</td><td>An ONVIF or TLS identity beats an HTTP header, which beats a generic OUI guess.</td></tr>
+        <tr><td>Version precision</td><td>A specific build sharpens the CVE set; a wildcard version blurs it into noise.</td></tr>
+        <tr><td>Layer clarity</td><td>Software, firmware, and hardware CPEs imply different fixes &mdash; keep them distinct.</td></tr>
+        <tr><td>Kept alternatives</td><td>When identity conflicts, preserve both candidates rather than averaging them away.</td></tr>
+      </table>
+      <p>One practical guardrail: do not feed OS-level CPEs (a broad <code>linux</code> or
+      <code>android</code> match) into actionable CVE lookups &mdash; they pull thousands of
+      advisories that have nothing to do with the device in front of you.</p>
+    </div>
+
+    <!-- step 2: NVD -->
+    <div class="ls-step">
+      <span class="ls-step-n">02</span>
+      <div class="ls-step-h">Ask the database &mdash; NVD, read carefully</div>
+      <p>Query NVD with the exact <code>cpeName</code> first; on a miss, fall back to a broader
+      <code>virtualMatchString</code> prefix. Cache by CPE and rate-limit politely &mdash; identical
+      CPEs across hosts should resolve to a single lookup. But the real skill is <i>reading the
+      record</i>:</p>
+      <table class="ls-tbl">
+        <tr><th>Field</th><th>How to read it</th></tr>
+        <tr><td>Affected products</td><td><b>The field that matters most.</b> It names the CPE criteria the CVE actually applies to &mdash; check your version against it.</td></tr>
+        <tr><td>Description</td><td>A public claim, often product-level not version-level. Necessary, never sufficient.</td></tr>
+        <tr><td>Severity + vector</td><td>A standardized estimate. Keep the vector; you will decompose it next.</td></tr>
+        <tr><td>CWE</td><td>A weakness-category hint, useful for grouping and generic mitigations.</td></tr>
+        <tr><td>References</td><td>Patch &gt; Vendor Advisory &gt; Mitigation tags give you the fix hierarchy.</td></tr>
+      </table>
+      <p>A recent <i>modified</i> date does not mean newly exploitable, and an old <i>published</i>
+      date does not mean low priority. Dates organize; they do not rank.</p>
+    </div>
+
+    <!-- step 3: CVSS -->
+    <div class="ls-step">
+      <span class="ls-step-n">03</span>
+      <div class="ls-step-h">Read CVSS as structure, not a number</div>
+      <p>A 9.8 means nothing until you can explain it. The base vector is a claim about the
+      <i>attack path</i> and the <i>impact</i> &mdash; learn to read it metric by metric so two
+      findings with the same score can still earn different priorities.</p>
+      <table class="ls-tbl">
+        <tr><th>Metric</th><th>Reads as</th></tr>
+        <tr><td>AV &mdash; Attack Vector</td><td>Network / Adjacent / Local / Physical &mdash; how close must the attacker be?</td></tr>
+        <tr><td>AC &mdash; Attack Complexity</td><td>Low / High &mdash; are special conditions required?</td></tr>
+        <tr><td>PR &mdash; Privileges Required</td><td>None / Low / High &mdash; authenticated or not?</td></tr>
+        <tr><td>UI &mdash; User Interaction</td><td>None / Required &mdash; must a victim do something?</td></tr>
+        <tr><td>S, C, I, A</td><td>Scope, then Confidentiality / Integrity / Availability impact &mdash; what is actually lost.</td></tr>
+      </table>
+      <p>Bands (0&middot;1&ndash;3&middot;9 Low, 4&ndash;6&middot;9 Medium, 7&ndash;8&middot;9 High,
+      9+ Critical) are general indicators, not rules. <code>AV:N/AC:L/PR:N/UI:N</code> means
+      remote, trivial, unauthenticated, no victim action &mdash; <i>that</i> is the 9.8.</p>
+    </div>
+
+    <!-- step 4: evidence streams -->
+    <div class="ls-step">
+      <span class="ls-step-n">04</span>
+      <div class="ls-step-h">Gather evidence from four different angles</div>
+      <p>No method is authoritative, so you run several and compare. They trade breadth against
+      directness, and passivity against intrusiveness:</p>
+      <table class="ls-tbl">
+        <tr><th>Method</th><th>What it observes</th><th>Posture</th></tr>
+        <tr><td>NVD / CVE</td><td>CPE-to-CVE association from a public database.</td><td>Passive, broad</td></tr>
+        <tr><td>OpenVAS</td><td>Network probe + vulnerability-test result.</td><td>Active</td></tr>
+        <tr><td>Nuclei</td><td>Template-driven check of target behavior.</td><td>Active, precise</td></tr>
+        <tr><td>Default creds</td><td>A successful authentication on the host.</td><td>Direct proof</td></tr>
+      </table>
+      <p>A CPE match is a hypothesis; a banner you pulled yourself, or a login that succeeded, is
+      evidence. The closer a method gets to the host, the more it can confirm &mdash; and the more
+      carefully you must run it. Active and credential checks stay <i>off by default</i> for a
+      reason.</p>
+    </div>
+
+    <!-- step 5: correlation -->
+    <div class="ls-step">
+      <span class="ls-step-n">05</span>
+      <div class="ls-step-h">Correlate &mdash; without double-counting</div>
+      <p>Three things can happen when methods meet on one host. Name which one you are looking at
+      before you write the finding.</p>
+      <div class="ls-cards">
+        <div class="ls-card"><h4>Convergence</h4><p>Different methods support the same claim (CPE match <i>and</i> an active template fires). The strongest case &mdash; but count it once.</p></div>
+        <div class="ls-card"><h4>Unique coverage</h4><p>One method finds what no other can &mdash; a default-credential login with no CVE attached. Still fully actionable.</p></div>
+        <div class="ls-card"><h4>Contradiction</h4><p>Methods disagree (CPE says vulnerable, the active probe fails). Do not average &mdash; record the conflict and resolve identity first.</p></div>
+      </div>
+      <p>Rank the strength of what you have on a confidence ladder &mdash; a scaffold for judgment,
+      not a replacement for it:</p>
+      <table class="ls-tbl">
+        <tr><th>Evidence you hold</th><th>Confidence</th></tr>
+        <tr><td>Successful authentication</td><td>High</td></tr>
+        <tr><td>Active behavior check + matching identity</td><td>High</td></tr>
+        <tr><td>Single active tool, clear target behavior</td><td>Medium&ndash;high</td></tr>
+        <tr><td>Exact CPE + version, no active confirmation</td><td>Medium</td></tr>
+        <tr><td>Wildcard CPE, no version</td><td>Low&ndash;medium</td></tr>
+        <tr><td>Broad family match + conflicting identity</td><td>Low</td></tr>
+      </table>
+    </div>
+
+    <!-- step 6: false positives -->
+    <div class="ls-step">
+      <span class="ls-step-n">06</span>
+      <div class="ls-step-h">Triage the false positives</div>
+      <p>A candidate that does not apply is noise that costs trust. Most false positives come from
+      one of five places &mdash; each with a cheap check that resolves it:</p>
+      <table class="ls-tbl">
+        <tr><th>Source</th><th>What happened</th><th>The check</th></tr>
+        <tr><td>CPE too broad</td><td>The product family is wider than this device.</td><td>Is the device in the CVE&rsquo;s affected-CPE list?</td></tr>
+        <tr><td>Backported patch</td><td>The banner is stale; the fix is already in.</td><td>Vendor firmware / patch-branch history.</td></tr>
+        <tr><td>Stale banner</td><td>The service string is simply outdated.</td><td>A second, independent version source.</td></tr>
+        <tr><td>Config-dependent</td><td>Vulnerable only when a feature is enabled.</td><td>Is that setting actually present?</td></tr>
+        <tr><td>Misread probe</td><td>An active response was interpreted wrongly.</td><td>A safe second check.</td></tr>
+      </table>
+      <p>Suppress at the <code>(cve_id, host)</code> pair level, never globally &mdash; and write the
+      <i>reason</i>. &ldquo;False positive&rdquo; is weak; &ldquo;CVE applies to firmware &lt;V5.5.800,
+      device reports V5.7.1, vendor confirms patched branch&rdquo; is reusable.</p>
+    </div>
+
+    <!-- step 7: prioritization -->
+    <div class="ls-step">
+      <span class="ls-step-n">07</span>
+      <div class="ls-step-h">Prioritize into action bands</div>
+      <p>Rank by exploitation <i>reality</i>, not raw score. Five inputs decide the band: severity,
+      evidence strength, exposure (can an attacker reach it?), device role (what it controls), and
+      consequence (what breaks if it goes).</p>
+      <div>
+        <div class="ls-band"><span class="ls-band-tag" style="background:rgba(176,52,42,.12);color:#9a2f25">Act now</span><span class="ls-band-d"><b>High consequence + strong evidence.</b> Patch, isolate, rotate credentials, or disable the exposure today. A camera taking default RTSP creds on a user subnet lives here.</span></div>
+        <div class="ls-band"><span class="ls-band-tag" style="background:rgba(157,133,82,.18);color:#7a663d">Validate next</span><span class="ls-band-d"><b>Severe but uncertain.</b> Gather one safe piece of confirming evidence before you commit. Broad-family CVEs on an isolated VLAN belong here.</span></div>
+        <div class="ls-band"><span class="ls-band-tag" style="background:rgba(69,89,122,.13);color:#45597a">Schedule</span><span class="ls-band-d"><b>Real finding, lower urgency.</b> Add it to the maintenance plan with an owner and a date.</span></div>
+        <div class="ls-band"><span class="ls-band-tag" style="background:rgba(120,120,120,.13);color:#555">Monitor</span><span class="ls-band-d"><b>Weak or externally dependent.</b> Track it until more evidence arrives &mdash; e.g. a cloud-only device with sparse local signal.</span></div>
+        <div class="ls-band"><span class="ls-band-tag" style="background:rgba(120,120,120,.08);color:#777">Accept</span><span class="ls-band-d"><b>Known risk under policy.</b> Record the owner, the reason, and a review date. Acceptance is a decision, not a shrug.</span></div>
+      </div>
+    </div>
+
+    <!-- handoff -->
+    <div class="ls-step">
+      <span class="ls-step-n">&rarr;</span>
+      <div class="ls-step-h">What you hand forward</div>
+      <p>The next phase (attack-graph analytics) is only as good as the packet you pass it. An edge
+      built on a confirmed default login is worth far more than one built on a wildcard CPE &mdash;
+      so the handoff carries provenance, not just a verdict:</p>
+      <div class="ls-hand">
+        <ol>
+          <li><b>Identity + confidence</b> for the host.</li>
+          <li><b>CPE candidates</b> with their precision.</li>
+          <li><b>CVE candidates</b> with source and affected-product evidence.</li>
+          <li><b>CVSS base score + vector.</b></li>
+          <li><b>Active findings</b> (OpenVAS, Nuclei) with method provenance.</li>
+          <li><b>Default-credential findings</b> as direct authentication proof.</li>
+          <li><b>Validation status</b> &mdash; confirmed / false positive / accepted / unresolved.</li>
+          <li><b>Priority band + rationale.</b></li>
+          <li><b>Unresolved contradictions</b>, stated plainly.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Lesson -> Lab map (.map-*) ===== -->
+  <style>
+  .mapwrap{max-width:880px;margin:34px 0 8px;padding-top:24px;border-top:1px solid var(--rule)}
+  .map-kick{font-family:'Inter',system-ui,sans-serif;font-size:11.5px;letter-spacing:1.4px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:8px}
+  .map-h2{font-family:'Source Serif Pro',Georgia,serif;font-size:23px;font-weight:600;letter-spacing:-.3px;color:var(--ink);margin:0 0 9px}
+  .map-intro{font-size:14.5px;color:var(--dim);line-height:1.6;max-width:730px;margin:0 0 16px}
+  .map-row{display:grid;grid-template-columns:34px 1fr auto;gap:14px;align-items:center;padding:14px 16px;border:1px solid var(--line);border-radius:9px;margin:9px 0;background:var(--paper);transition:border-color .15s}
+  .map-row:hover{border-color:var(--gold)}
+  .map-num{font-family:'JetBrains Mono',ui-monospace,Menlo,monospace;font-size:10px;font-weight:700;color:#fff;background:var(--ink);border-radius:6px;padding:5px 0;text-align:center;letter-spacing:.3px}
+  .map-ex{font-family:'Inter',system-ui,sans-serif;font-size:14.5px;font-weight:600;color:var(--ink);margin:0 0 3px}
+  .map-les{font-family:'Inter',system-ui,sans-serif;font-size:12.5px;color:var(--dim);line-height:1.45;margin:0 0 5px}
+  .map-les b{color:var(--gold);font-weight:600}
+  .map-ep{font-family:'JetBrains Mono',ui-monospace,Menlo,monospace;font-size:11px;color:var(--faint);background:var(--paper2);padding:2px 7px;border-radius:4px}
+  .map-go{font-family:'Inter',system-ui,sans-serif;font-size:12.5px;font-weight:600;color:var(--ink);background:transparent;border:1px solid var(--line);border-radius:7px;padding:8px 13px;cursor:pointer;white-space:nowrap;transition:.15s}
+  .map-go:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .map-note{font-family:'Inter',system-ui,sans-serif;font-size:12.5px;color:var(--dim);line-height:1.55;background:rgba(157,133,82,.07);border-left:3px solid var(--gold);border-radius:0 6px 6px 0;padding:12px 16px;margin:16px 0 0}
+  .map-note b{color:var(--ink)}
+  @media(max-width:640px){.map-row{grid-template-columns:34px 1fr}.map-go{grid-column:2/3;justify-self:start;margin-top:4px}}
+  </style>
+  <script>function bwGo(v){var b=document.querySelector('#bwApp [data-view="'+v+'"]');if(b){b.click();}var a=document.getElementById('bwApp');if(a){a.scrollIntoView({behavior:'smooth',block:'start'});}}</script>
+
+  <section class="mapwrap">
+    <div class="map-kick">Lesson &rarr; Lab</div>
+    <h2 class="map-h2">Where each idea becomes hands-on</h2>
+    <p class="map-intro">The lab is the lesson, made concrete. The course runs it as six exercises &mdash;
+    each one takes a concept from above, gives you a real call to make, and produces evidence you reason
+    over (the skill is interpretation, not API tourism). Below: the exercise, the lesson it practices, the
+    canonical lab endpoint, and a button that drops you into the matching view of the live console.</p>
+
+    <div class="map-row">
+      <div class="map-num">Ex&nbsp;1</div>
+      <div>
+        <div class="map-ex">Pre-commitment &mdash; pick hosts, state expectations</div>
+        <div class="map-les">Practices <b>the four states &amp; the evidence model</b> &mdash; decide what would confirm or break each guess before you look.</div>
+        <span class="map-ep">GET /v1/scanning/smart-scan/{id}/results</span>
+      </div>
+      <button class="map-go" onclick="bwGo('overview')">Overview &rarr;</button>
+    </div>
+
+    <div class="map-row">
+      <div class="map-num">Ex&nbsp;2</div>
+      <div>
+        <div class="map-ex">Broad vs. narrow CPE</div>
+        <div class="map-les">Practices <b>01 CPE applicability + 02 NVD lookup</b> &mdash; watch the CVE set widen and blur, or sharpen and miss.</div>
+        <span class="map-ep">POST /v1/cves/lookup</span>
+      </div>
+      <button class="map-go" onclick="bwGo('assets')">Asset Inventory &rarr;</button>
+    </div>
+
+    <div class="map-row">
+      <div class="map-num">Ex&nbsp;3</div>
+      <div>
+        <div class="map-ex">Decompose the CVSS vector</div>
+        <div class="map-les">Practices <b>03 CVSS as structure</b> &mdash; open any asset and read the vector as an attack path, not a number.</div>
+        <span class="map-ep">GET /v1/cves/{cve_id}</span>
+      </div>
+      <button class="map-go" onclick="bwGo('assets')">Open an asset &rarr;</button>
+    </div>
+
+    <div class="map-row">
+      <div class="map-num">Ex&nbsp;4</div>
+      <div>
+        <div class="map-ex">Correlate four evidence methods on one host</div>
+        <div class="map-les">Practices <b>04 evidence streams + 05 correlation</b> &mdash; spot convergence, unique coverage, and contradiction.</div>
+        <span class="map-ep">GET /v1/cves/search?keyword=</span>
+      </div>
+      <button class="map-go" onclick="bwGo('evidence')">Evidence Log &rarr;</button>
+    </div>
+
+    <div class="map-row">
+      <div class="map-num">Ex&nbsp;5</div>
+      <div>
+        <div class="map-ex">Explain a zero-result host</div>
+        <div class="map-les">Practices <b>06 false-positive triage</b> &mdash; is &ldquo;no CVEs&rdquo; a clean host, a weak CPE, or a coverage gap?</div>
+        <span class="map-ep">GET /v1/cves/search?keyword=</span>
+      </div>
+      <button class="map-go" onclick="bwGo('assets')">Asset Inventory &rarr;</button>
+    </div>
+
+    <div class="map-row">
+      <div class="map-num">Ex&nbsp;6</div>
+      <div>
+        <div class="map-ex">Write the analyst memorandum</div>
+        <div class="map-les">Practices <b>07 prioritization + the handoff</b> &mdash; separate output, rationale, evidence strength, and action into a ranked queue.</div>
+        <span class="map-ep">results &rarr; ranked queue</span>
+      </div>
+      <button class="map-go" onclick="bwGo('prioritize')">Risk Queue &rarr;</button>
+    </div>
+
+    <div class="map-note"><b>How to read this:</b> work top to bottom. Each row&rsquo;s button jumps the
+    console to the view where that exercise&rsquo;s output is visible &mdash; so you can move from the
+    idea, to the command, to the evidence without leaving the page.</div>
+  </section>
+
   <article class="sl-lab">
     <div class="sl-lab-head">
-      <div class="sl-lab-tag">Phase 3 &middot; Week 03</div>
-      <div class="sl-lab-title">Vulnerability Assessment, Correlation &amp; Prioritization</div>
+      <div class="sl-lab-tag">Phase 3 &middot; Week 03 &middot; Hands-on</div>
+      <div class="sl-lab-title">Run the workflow on one host</div>
       <div class="sl-lab-meta">
         <span>SEAS-8414</span><span class="sl-dot">&middot;</span>
-        <span>Dockerized hands-on lab</span><span class="sl-dot">&middot;</span>
-        <span class="mono">release 2026.05.0+4e76a52f.aws8414</span>
+        <span>Worked walkthrough</span><span class="sl-dot">&middot;</span>
+        <span>public APIs &amp; tooling, no backend</span>
       </div>
     </div>
     <div class="sl-lab-body">
-      <p>A Docker Compose lab that walks a real vulnerability-assessment workflow against
-      live data sources &mdash; matching software to CPEs, reading CVSS as structure rather
-      than a single number, weighing competing evidence on one host, and assembling a
-      defensible remediation queue.</p>
+      <p>The lesson above is the reasoning; this is the practice. Take a single host through the
+      whole flow against live, public data sources &mdash; match software to a CPE, decompose the
+      CVSS vector, correlate exploit signals, confirm with direct evidence, then assemble the
+      queue. Running example throughout: <b>CVE-2021-41773</b> (Apache httpd 2.4.49 path
+      traversal). Swap in your own host as you go.</p>
 
       <div class="sl-h">What you'll practice</div>
       <ul class="sl-list">
@@ -828,25 +1160,12 @@ body.rl-scrolled .tabs{
         <li>Building a prioritized remediation queue</li>
       </ul>
 
-      <div class="sl-h">Run it locally</div>
-      <div class="sl-code">mkdir -p "$HOME/seas8414-week03" &amp;&amp; cd "$HOME/seas8414-week03"
-curl -fL -o week03.zip \
-  https://8414.bwater.io/downloads/labs/packages/seas8414-blackboard-week-03-2026.05.0_4e76a52f_aws8414.zip
-unzip week03.zip &amp;&amp; cd seas8414-blackboard-week-03-2026.05.0_4e76a52f_aws8414
-make week03</div>
-      <p style="font-size:13px;margin:6px 0 0">Requires Docker. Run from a normal user folder
-      (<span class="mono">$HOME</span>, Downloads, Desktop) &mdash; not <span class="mono">/tmp</span>.</p>
+      <div class="sl-h">The walkthrough</div>
+      <p style="font-size:14px;color:var(--dim);margin:0 0 12px">Six short steps, each with a
+      command you can run now. The graded runtime and write-up are Dr.&nbsp;Mallarapu&rsquo;s
+      coursework on Blackboard &mdash; these are an original, public-tooling worked version.</p>
 
-      <div class="sl-actions">
-        <a class="sl-btn" href="https://8414.bwater.io/downloads/labs/packages/seas8414-blackboard-week-03-2026.05.0_4e76a52f_aws8414.zip" rel="noopener">Download official package</a>
-      </div>
-
-      <div class="sl-h">Hands-on walkthrough</div>
-      <p style="font-size:14px;color:var(--dim);margin:0 0 12px">A worked version of the Phase&nbsp;3 flow on a
-      single host, using public APIs and tooling. Running example: <b>CVE-2021-41773</b> (Apache httpd 2.4.49
-      path traversal). Swap in your own host and CVEs as you go.</p>
-
-      <details class="sl-ex">
+      <details class="sl-ex" open>
         <summary><span class="sl-ex-num">Ex 1</span>Match the software to a CPE &mdash; broad vs. narrow</summary>
         <div class="sl-ex-body">
           <p>From observed evidence (a banner reading <code>Apache/2.4.49</code>) you can build a <b>broad</b>
@@ -860,7 +1179,7 @@ curl 'https://services.nvd.nist.gov/rest/json/cves/2.0?cpeName=cpe:2.3:a:apache:
         </div>
       </details>
 
-      <details class="sl-ex">
+      <details class="sl-ex" open>
         <summary><span class="sl-ex-num">Ex 2</span>Read the CVSS vector as structure, not a score</summary>
         <div class="sl-ex-body">
           <p>The 9.8 is a summary; the vector is the argument. Decompose
@@ -875,7 +1194,7 @@ C:H I:H A:H  full confidentiality / integrity / availability loss</div>
         </div>
       </details>
 
-      <details class="sl-ex">
+      <details class="sl-ex" open>
         <summary><span class="sl-ex-num">Ex 3</span>Correlate exploit signals &mdash; EPSS + CISA KEV</summary>
         <div class="sl-ex-body">
           <p>Base score says <b>how bad if exploited</b>. EPSS estimates the <b>probability it will be</b>, and the
@@ -890,7 +1209,7 @@ curl -s https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabi
         </div>
       </details>
 
-      <details class="sl-ex">
+      <details class="sl-ex" open>
         <summary><span class="sl-ex-num">Ex 4</span>Confirm with direct evidence on the host</summary>
         <div class="sl-ex-body">
           <p>API data is inference; a response from the host is evidence. Two high-confidence checks &mdash; a default-credential
@@ -904,7 +1223,7 @@ curl -sI http://TARGET/ | grep -i '^Server:'</div>
         </div>
       </details>
 
-      <details class="sl-ex">
+      <details class="sl-ex" open>
         <summary><span class="sl-ex-num">Ex 5</span>Scan one host with nuclei</summary>
         <div class="sl-ex-body">
           <p>Template scanners map known CVEs to detection logic. Run the high/critical CVE templates against your one host:</p>
@@ -913,7 +1232,7 @@ curl -sI http://TARGET/ | grep -i '^Server:'</div>
         </div>
       </details>
 
-      <details class="sl-ex">
+      <details class="sl-ex" open>
         <summary><span class="sl-ex-num">Ex 6</span>Build a prioritized remediation queue</summary>
         <div class="sl-ex-body">
           <p>Rank by <b>exploitation reality</b>, not raw score. A 7.5 that's actively exploited outranks a 9.8 nobody is touching:</p>
@@ -931,9 +1250,10 @@ curl -sI http://TARGET/ | grep -i '^Server:'</div>
         &lt;video&gt; or embed once you've recorded your run.</div>
       </div>
 
-      <div class="sl-note"><b>Academic integrity:</b> the graded homework and the lab runtime are
-      Dr.&nbsp;Mallarapu's coursework, distributed through Blackboard. They are not reproduced here &mdash;
-      this card only describes the lab and links to the canonical source.</div>
+      <div class="sl-note"><b>Academic integrity:</b> the graded homework and the official lab runtime
+      are Dr.&nbsp;Mallarapu's coursework, distributed through Blackboard. None of it is reproduced
+      here &mdash; this lesson, walkthrough, and toolkit are original, written from the public method
+      (NVD, FIRST.org EPSS, the CISA KEV catalog) the course exercises.</div>
     </div>
   </article>
 
