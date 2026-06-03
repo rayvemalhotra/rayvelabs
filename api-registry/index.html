@@ -1,0 +1,566 @@
+<!doctype html>
+<!--
+  ============================================================
+   RayveLabs API Registry · https://rayvelabs.com/api-registry/
+   © 2026 Rayve Malhotra. All rights reserved.
+
+   Curated catalogue of free, public cybersecurity data files
+   for academic research and teaching. Each entry is driven
+   from registry.json — edit that file, regenerate this page.
+
+   Original work of Rayve Malhotra. Public availability is not
+   a license to reproduce.
+  ============================================================
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>API Registry · RayveLabs</title>
+<meta name="description" content="A curated catalogue of free, public cybersecurity data files — CVE feeds, MITRE frameworks, threat intelligence, blocklists, honeypot telemetry, breach data, compliance controls — with direct download links, curl commands, and academic citations.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://rayvelabs.com/api-registry/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="RayveLabs API Registry">
+<meta property="og:description" content="Free cybersecurity data sources for students and researchers — files, formats, sizes, and citations.">
+<meta property="og:url" content="https://rayvelabs.com/api-registry/">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+:root{
+  --bg:#fbfbf9;
+  --paper:#ffffff;
+  --paper2:#f3f3f0;
+  --line:#d4d4d4;
+  --line-dark:#1a1a1a;
+  --ink:#1a1a1a;
+  --dim:#525252;
+  --faint:#909090;
+  --rule:#d4d4d4;
+  --accent:#2d5e3a;
+  --accent-dim:#446a4f;
+  --amber:#8a6321;
+  --rose:#8a3a3a;
+  --shadow-1: 0 1px 0 rgba(0,0,0,.04);
+  --shadow-2: 0 8px 24px rgba(0,0,0,.06);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:'Source Serif Pro',Georgia,serif;
+  font-size:16px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+a{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;text-decoration-color:var(--rule);transition:text-decoration-color .15s}
+a:hover{text-decoration-color:var(--ink)}
+
+/* Header */
+header.site{
+  border-bottom:1px solid var(--line);
+  background:var(--bg);
+  padding:18px 32px;
+  position:sticky; top:0; z-index:10;
+  backdrop-filter: blur(6px);
+  background:rgba(251,251,249,.92);
+}
+header.site .row{
+  display:flex; align-items:center; justify-content:space-between;
+  max-width:1200px; margin:0 auto;
+}
+header.site .brand{
+  font-family:'Source Serif Pro',Georgia,serif;
+  font-weight:700; font-size:18px;
+  text-decoration:none;
+  letter-spacing:-.2px;
+}
+header.site .brand .sub{
+  color:var(--dim); font-weight:400; font-style:italic;
+}
+header.site nav a{
+  font-family:'Inter',system-ui,sans-serif;
+  font-size:13.5px; font-weight:500;
+  margin-left:24px; color:var(--dim);
+  text-decoration:none;
+}
+header.site nav a:hover{color:var(--ink)}
+
+/* Hero */
+.hero{
+  max-width:1100px; margin:0 auto; padding:64px 32px 32px;
+}
+.hero .eyebrow{
+  font-family:'JetBrains Mono',monospace; font-size:11.5px;
+  color:var(--dim); letter-spacing:.18em; text-transform:uppercase;
+  margin-bottom:18px; font-weight:500;
+}
+.hero h1{
+  font-family:'Source Serif Pro',Georgia,serif;
+  font-weight:600; font-size:46px; line-height:1.15;
+  letter-spacing:-1px; margin-bottom:18px; max-width:780px;
+}
+.hero h1 em{color:var(--accent); font-style:italic; font-weight:600}
+.hero p.lede{
+  font-size:18px; line-height:1.65; color:var(--dim);
+  max-width:680px;
+}
+.hero p.lede strong{color:var(--ink); font-weight:600}
+.hero .stats{
+  display:flex; gap:36px; margin-top:28px;
+  font-family:'Inter',system-ui,sans-serif; font-size:13px;
+}
+.hero .stats .stat{display:flex; flex-direction:column; gap:2px}
+.hero .stats .n{
+  font-family:'JetBrains Mono',monospace; font-size:24px; font-weight:600;
+  color:var(--ink); letter-spacing:-.5px;
+}
+.hero .stats .l{color:var(--dim); font-size:11.5px; text-transform:uppercase; letter-spacing:.12em; font-weight:500}
+
+/* Toolbar */
+.toolbar{
+  position:sticky; top:60px; z-index:9;
+  background:rgba(251,251,249,.95); backdrop-filter:blur(6px);
+  border-bottom:1px solid var(--line);
+  padding:14px 32px;
+}
+.toolbar .row{
+  max-width:1100px; margin:0 auto;
+  display:flex; gap:14px; align-items:center; flex-wrap:wrap;
+}
+.toolbar input.search{
+  flex:1 1 280px;
+  font-family:'Inter',system-ui,sans-serif;
+  font-size:14px;
+  padding:10px 14px;
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:8px;
+  outline:none;
+  transition:border-color .15s;
+}
+.toolbar input.search:focus{ border-color:var(--ink) }
+.toolbar input.search::placeholder{ color:var(--faint) }
+.toolbar .filters{ display:flex; gap:8px; flex-wrap:wrap }
+.toolbar .chip{
+  font-family:'Inter',system-ui,sans-serif;
+  font-size:12px; font-weight:500;
+  padding:7px 14px;
+  background:var(--paper); border:1px solid var(--line);
+  border-radius:999px; cursor:pointer; color:var(--dim);
+  transition:all .12s;
+  user-select:none;
+}
+.toolbar .chip:hover{ border-color:var(--ink); color:var(--ink) }
+.toolbar .chip.on{
+  background:var(--ink); border-color:var(--ink); color:var(--bg);
+}
+.toolbar .meta-actions{
+  font-family:'Inter',system-ui,sans-serif; font-size:12.5px;
+  display:flex; gap:14px;
+}
+.toolbar .meta-actions a{ color:var(--dim); text-decoration:none }
+.toolbar .meta-actions a:hover{ color:var(--ink); text-decoration:underline }
+
+/* Main grid */
+main{
+  max-width:1100px; margin:0 auto; padding:36px 32px 80px;
+}
+.category{
+  margin-bottom:48px;
+}
+.category h2{
+  font-family:'Source Serif Pro',Georgia,serif;
+  font-weight:600; font-size:28px; letter-spacing:-.4px;
+  border-bottom:1px solid var(--line-dark);
+  padding-bottom:12px; margin-bottom:8px;
+  display:flex; align-items:baseline; justify-content:space-between;
+}
+.category h2 .cnt{
+  font-family:'JetBrains Mono',monospace; font-size:13px;
+  color:var(--dim); font-weight:500; letter-spacing:.04em;
+}
+.category .csummary{
+  font-size:15px; color:var(--dim); margin:6px 0 22px; max-width:780px;
+}
+
+.entries{
+  display:grid; grid-template-columns:1fr; gap:14px;
+}
+
+.entry{
+  background:var(--paper); border:1px solid var(--line);
+  border-radius:12px; padding:24px 26px;
+  box-shadow:var(--shadow-1);
+  transition:box-shadow .2s, border-color .2s;
+}
+.entry:hover{ box-shadow:var(--shadow-2); border-color:#bdbdbd }
+.entry.hidden{ display:none }
+
+.entry .top{
+  display:flex; justify-content:space-between; align-items:baseline;
+  gap:16px; flex-wrap:wrap; margin-bottom:6px;
+}
+.entry h3{
+  font-family:'Source Serif Pro',Georgia,serif;
+  font-weight:600; font-size:20px; letter-spacing:-.2px;
+  line-height:1.3;
+}
+.entry .publisher{
+  font-family:'Inter',system-ui,sans-serif;
+  font-size:12px; color:var(--dim); font-style:italic;
+}
+.entry .desc{
+  font-size:14.5px; color:var(--dim); line-height:1.65;
+  margin:10px 0 16px;
+}
+.entry .desc strong{ color:var(--ink); font-weight:600 }
+
+.metarow{
+  display:flex; gap:6px; flex-wrap:wrap;
+  margin-bottom:14px;
+}
+.metarow .pill{
+  font-family:'JetBrains Mono',monospace; font-size:10.5px;
+  background:var(--paper2);
+  border:1px solid var(--line);
+  padding:3px 9px; border-radius:999px;
+  color:var(--ink); letter-spacing:.04em;
+  display:inline-flex; align-items:center; gap:6px;
+}
+.metarow .pill.format{ color:var(--accent); border-color:#cbe0d2 }
+.metarow .pill.auth-none{ color:var(--accent); border-color:#cbe0d2 }
+.metarow .pill.auth-key{ color:var(--amber); border-color:#e7d3a4 }
+.metarow .pill.auth-paid{ color:var(--rose); border-color:#e0bdbd }
+.metarow .pill .k{ color:var(--dim); font-weight:400 }
+
+.entry .file{
+  font-family:'JetBrains Mono',monospace; font-size:12.5px;
+  background:#0a0a0a; color:#e8e8e3;
+  padding:9px 13px; border-radius:6px;
+  display:inline-block; margin-bottom:14px;
+  word-break:break-all;
+}
+
+.entry .actions{
+  display:flex; gap:8px; flex-wrap:wrap; margin-top:6px;
+}
+.entry .btn{
+  font-family:'Inter',system-ui,sans-serif;
+  font-size:12.5px; font-weight:600;
+  padding:8px 16px;
+  text-decoration:none;
+  border-radius:7px;
+  border:1px solid var(--line-dark);
+  background:var(--bg); color:var(--ink);
+  cursor:pointer;
+  transition:background .12s, color .12s;
+  display:inline-flex; align-items:center; gap:7px;
+}
+.entry .btn:hover{ background:var(--ink); color:var(--bg) }
+.entry .btn.primary{ background:var(--ink); color:var(--bg) }
+.entry .btn.primary:hover{ background:#000 }
+.entry .btn.subtle{
+  border-color:var(--line); color:var(--dim);
+}
+.entry .btn.subtle:hover{ border-color:var(--ink); background:var(--paper); color:var(--ink) }
+
+.entry .curl-box{
+  display:none;
+  margin-top:14px;
+  background:#0a0a0a; color:#e8e8e3;
+  padding:14px 16px; border-radius:8px;
+  font-family:'JetBrains Mono',monospace; font-size:12.5px;
+  line-height:1.55; white-space:pre-wrap; word-break:break-all;
+  position:relative;
+}
+.entry .curl-box.open{ display:block }
+.entry .curl-box .copy{
+  position:absolute; top:8px; right:8px;
+  font-family:'Inter',system-ui,sans-serif; font-size:11px;
+  background:#222; color:#ddd; border:none;
+  padding:5px 10px; border-radius:5px; cursor:pointer;
+}
+.entry .curl-box .copy:hover{ background:#333 }
+
+.entry .citation-box{
+  display:none;
+  margin-top:14px;
+  background:var(--paper2); border:1px solid var(--line);
+  padding:14px 16px; border-radius:8px;
+  font-family:'Source Serif Pro',Georgia,serif; font-size:13.5px;
+  line-height:1.5; color:var(--ink); font-style:italic;
+}
+.entry .citation-box.open{ display:block }
+.entry .citation-box::before{
+  content:"// citation";
+  display:block;
+  font-family:'JetBrains Mono',monospace; font-size:10.5px;
+  font-style:normal;
+  color:var(--dim); letter-spacing:.12em; text-transform:uppercase;
+  margin-bottom:6px;
+}
+
+.empty-state{
+  text-align:center; padding:80px 20px;
+  color:var(--dim); font-size:15px;
+}
+
+footer{
+  border-top:1px solid var(--line); margin-top:60px;
+  padding:36px 32px;
+  font-family:'Inter',system-ui,sans-serif; font-size:13px; color:var(--dim);
+}
+footer .row{ max-width:1100px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:18px }
+footer a{ color:var(--dim); text-decoration:underline; text-decoration-color:var(--line) }
+footer a:hover{ color:var(--ink) }
+
+@media (max-width: 720px){
+  .hero h1{ font-size:34px }
+  .hero p.lede{ font-size:16px }
+  .toolbar .row{ gap:10px }
+  main{ padding:24px 18px 60px }
+  .entry{ padding:18px 18px }
+  header.site{ padding:14px 18px }
+}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="row">
+    <a href="/" class="brand">RayveLabs <span class="sub">— api registry</span></a>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/rayvenet.html">Labs</a>
+      <a href="https://github.com/Reckless8/rayvelabs" target="_blank" rel="noopener">Repo</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="eyebrow">// for students of cybersecurity</div>
+  <h1>A curated registry of <em>free, public</em> cybersecurity data files.</h1>
+  <p class="lede">CVE catalogues, MITRE frameworks, threat-intel feeds, blocklists, honeypot telemetry, breach datasets, compliance controls, and research datasets — every entry is a real <strong>file you can download</strong>, with the URL, the curl command, the format, the size, and the citation you need for academic work.</p>
+  <div class="stats">
+    <div class="stat"><span class="n" id="stat-entries">—</span><span class="l">files catalogued</span></div>
+    <div class="stat"><span class="n" id="stat-cats">—</span><span class="l">categories</span></div>
+    <div class="stat"><span class="n" id="stat-free">—</span><span class="l">need no auth</span></div>
+  </div>
+</section>
+
+<div class="toolbar">
+  <div class="row">
+    <input class="search" id="search" type="search" placeholder="Search files, sources, formats, descriptions…" autocomplete="off">
+    <div class="filters" id="filters"></div>
+    <div class="meta-actions">
+      <a href="registry.json" download>↓ registry.json</a>
+      <a href="#" id="export-curl">↓ curl-all.sh</a>
+    </div>
+  </div>
+</div>
+
+<main id="main">
+  <div class="empty-state" id="loading">Loading registry…</div>
+</main>
+
+<footer>
+  <div class="row">
+    <div>© 2026 Rayve Malhotra · <a href="/">RayveLabs</a></div>
+    <div>Maintained for academic and teaching use. Verify license terms before commercial use.</div>
+  </div>
+</footer>
+
+<script>
+(async function(){
+  const main = document.getElementById('main');
+  const search = document.getElementById('search');
+  const filtersEl = document.getElementById('filters');
+  const loading = document.getElementById('loading');
+
+  let registry;
+  try {
+    const r = await fetch('registry.json', { cache: 'no-cache' });
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    registry = await r.json();
+  } catch (e) {
+    loading.textContent = 'Could not load registry: ' + e.message;
+    return;
+  }
+
+  // Stats
+  document.getElementById('stat-entries').textContent = registry.entries.length;
+  document.getElementById('stat-cats').textContent = registry.categories.length;
+  document.getElementById('stat-free').textContent = registry.entries.filter(e => /^none/i.test(e.auth || '')).length;
+
+  // Build category filter chips
+  const allChip = chip('all', 'All', true);
+  filtersEl.appendChild(allChip);
+  registry.categories.forEach(c => {
+    filtersEl.appendChild(chip(c.id, c.name.replace(/\s*\(.+\)\s*$/, '')));
+  });
+
+  function chip(id, label, on=false){
+    const b = document.createElement('button');
+    b.className = 'chip' + (on ? ' on' : '');
+    b.dataset.cat = id;
+    b.textContent = label;
+    b.onclick = () => {
+      document.querySelectorAll('.chip').forEach(x => x.classList.remove('on'));
+      b.classList.add('on');
+      currentCat = id;
+      apply();
+    };
+    return b;
+  }
+
+  let currentCat = 'all';
+  let currentQ = '';
+
+  function apply(){
+    document.querySelectorAll('.entry').forEach(el => {
+      const cat = el.dataset.cat;
+      const text = el.dataset.text;
+      const catMatch = (currentCat === 'all') || (cat === currentCat);
+      const qMatch = !currentQ || text.includes(currentQ);
+      el.classList.toggle('hidden', !(catMatch && qMatch));
+    });
+    // Hide empty categories
+    document.querySelectorAll('.category').forEach(c => {
+      const visible = c.querySelectorAll('.entry:not(.hidden)').length;
+      c.style.display = visible > 0 ? '' : 'none';
+      const cnt = c.querySelector('.cnt');
+      if (cnt) cnt.textContent = visible + ' file' + (visible === 1 ? '' : 's');
+    });
+  }
+
+  search.addEventListener('input', e => {
+    currentQ = e.target.value.toLowerCase().trim();
+    apply();
+  });
+
+  // Render
+  loading.remove();
+  registry.categories.forEach(cat => {
+    const inCat = registry.entries.filter(e => e.category === cat.id);
+    if (inCat.length === 0) return;
+
+    const section = document.createElement('section');
+    section.className = 'category';
+    section.dataset.cat = cat.id;
+    section.innerHTML = `
+      <h2>${escapeHtml(cat.name)}<span class="cnt">${inCat.length} file${inCat.length===1?'':'s'}</span></h2>
+      <p class="csummary">${escapeHtml(cat.summary)}</p>
+      <div class="entries"></div>
+    `;
+    const entriesEl = section.querySelector('.entries');
+    inCat.forEach(e => entriesEl.appendChild(renderEntry(e)));
+    main.appendChild(section);
+  });
+
+  function renderEntry(e){
+    const authClass = /^none/i.test(e.auth || '') ? 'auth-none'
+                    : /paid|account/i.test(e.auth || '') ? 'auth-paid'
+                    : 'auth-key';
+    const downloadable = isDirectDownload(e.url);
+    const downloadBtn = downloadable
+      ? `<a class="btn primary" href="${escapeAttr(e.url)}" target="_blank" rel="noopener">↓ Download</a>`
+      : `<a class="btn primary" href="${escapeAttr(e.url)}" target="_blank" rel="noopener">↗ Open source</a>`;
+
+    const div = document.createElement('article');
+    div.className = 'entry';
+    div.dataset.cat = e.category;
+    div.dataset.text = ((e.title||'') + ' ' + (e.publisher||'') + ' ' + (e.description||'') + ' ' + (e.format||'') + ' ' + (e.filename||'')).toLowerCase();
+    div.innerHTML = `
+      <div class="top">
+        <h3>${escapeHtml(e.title)}</h3>
+        <span class="publisher">${escapeHtml(e.publisher||'')}</span>
+      </div>
+      <div class="metarow">
+        <span class="pill format">${escapeHtml(e.format||'—')}</span>
+        <span class="pill"><span class="k">size</span> ${escapeHtml(e.size_est||'—')}</span>
+        <span class="pill"><span class="k">updated</span> ${escapeHtml(e.cadence||'—')}</span>
+        <span class="pill ${authClass}"><span class="k">auth</span> ${escapeHtml(e.auth||'—')}</span>
+        <span class="pill"><span class="k">license</span> ${escapeHtml(e.license||'—')}</span>
+      </div>
+      <div class="file">${escapeHtml(e.filename||'')}</div>
+      <p class="desc">${escapeHtml(e.description||'')}</p>
+      <div class="actions">
+        ${downloadBtn}
+        ${e.curl ? `<button class="btn" data-toggle="curl">▸ Copy curl</button>` : ''}
+        ${e.citation ? `<button class="btn subtle" data-toggle="cite">▸ Citation</button>` : ''}
+        ${e.api_docs ? `<a class="btn subtle" href="${escapeAttr(e.api_docs)}" target="_blank" rel="noopener">↗ API docs</a>` : ''}
+        ${e.schema_url ? `<a class="btn subtle" href="${escapeAttr(e.schema_url)}" target="_blank" rel="noopener">↗ Schema</a>` : ''}
+      </div>
+      ${e.curl ? `<div class="curl-box"><button class="copy">Copy</button>${escapeHtml(e.curl)}</div>` : ''}
+      ${e.citation ? `<div class="citation-box">${escapeHtml(e.citation).replace(/\{DATE\}/g, todayStr())}</div>` : ''}
+    `;
+
+    // Wire toggles
+    div.querySelectorAll('[data-toggle]').forEach(btn => {
+      btn.onclick = () => {
+        const which = btn.dataset.toggle;
+        const box = div.querySelector(which === 'curl' ? '.curl-box' : '.citation-box');
+        box.classList.toggle('open');
+        if (which === 'curl' && box.classList.contains('open')) {
+          // Auto-copy
+          navigator.clipboard?.writeText(e.curl).catch(()=>{});
+          const c = box.querySelector('.copy');
+          if (c) { c.textContent = 'Copied!'; setTimeout(() => c.textContent = 'Copy', 1400); }
+        }
+      };
+    });
+    const copyBtn = div.querySelector('.curl-box .copy');
+    if (copyBtn) {
+      copyBtn.onclick = (ev) => {
+        ev.stopPropagation();
+        navigator.clipboard?.writeText(e.curl).then(() => {
+          copyBtn.textContent = 'Copied!';
+          setTimeout(() => copyBtn.textContent = 'Copy', 1400);
+        });
+      };
+    }
+    return div;
+  }
+
+  // Export curl-all.sh
+  document.getElementById('export-curl').addEventListener('click', (ev) => {
+    ev.preventDefault();
+    const lines = [
+      '#!/usr/bin/env bash',
+      '# RayveLabs API Registry — curl-all.sh',
+      '# Generated: ' + new Date().toISOString(),
+      '# Pulls every catalogued file into the current directory.',
+      '# Some endpoints require free auth keys — set them as env vars before running.',
+      'set -e',
+      'mkdir -p data && cd data',
+      ''
+    ];
+    registry.entries.forEach(e => {
+      if (!e.curl) return;
+      lines.push('# ' + e.title + ' — ' + (e.publisher || ''));
+      lines.push(e.curl);
+      lines.push('');
+    });
+    const blob = new Blob([lines.join('\n')], { type: 'text/x-shellscript' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'rayvelabs-curl-all.sh';
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  });
+
+  function isDirectDownload(url){
+    if (!url) return false;
+    return /\.(json|csv|zip|gz|tgz|txt|pdf|xml)(\?|$)/i.test(url) || url.includes('/downloads/') || url.includes('/feeds/');
+  }
+  function escapeHtml(s){ return String(s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])) }
+  function escapeAttr(s){ return escapeHtml(s) }
+  function todayStr(){ return new Date().toISOString().slice(0,10) }
+})();
+</script>
+
+</body>
+</html>
