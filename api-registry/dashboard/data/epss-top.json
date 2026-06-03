@@ -1,0 +1,131 @@
+{
+  "total_cves_scored": 337466,
+  "model_metadata": "model_version:v2025.03.14,score_date:2026-06-03T12:55:00Z",
+  "top": [
+    {
+      "cve": "CVE-2023-23752",
+      "epss": 0.9452,
+      "percentile": 1.0
+    },
+    {
+      "cve": "CVE-2017-8917",
+      "epss": 0.94513,
+      "percentile": 1.0
+    },
+    {
+      "cve": "CVE-2018-7600",
+      "epss": 0.94489,
+      "percentile": 1.0
+    },
+    {
+      "cve": "CVE-2018-1000861",
+      "epss": 0.94485,
+      "percentile": 1.0
+    },
+    {
+      "cve": "CVE-2021-22986",
+      "epss": 0.94485,
+      "percentile": 0.99999
+    },
+    {
+      "cve": "CVE-2017-1000353",
+      "epss": 0.94479,
+      "percentile": 0.99999
+    },
+    {
+      "cve": "CVE-2018-13379",
+      "epss": 0.94473,
+      "percentile": 0.99999
+    },
+    {
+      "cve": "CVE-2019-3396",
+      "epss": 0.94471,
+      "percentile": 0.99998
+    },
+    {
+      "cve": "CVE-2019-17558",
+      "epss": 0.9447,
+      "percentile": 0.99998
+    },
+    {
+      "cve": "CVE-2020-1938",
+      "epss": 0.94469,
+      "percentile": 0.99998
+    },
+    {
+      "cve": "CVE-2022-46169",
+      "epss": 0.94469,
+      "percentile": 0.99998
+    },
+    {
+      "cve": "CVE-2019-2725",
+      "epss": 0.94468,
+      "percentile": 0.99997
+    },
+    {
+      "cve": "CVE-2024-6670",
+      "epss": 0.94468,
+      "percentile": 0.99997
+    },
+    {
+      "cve": "CVE-2021-22205",
+      "epss": 0.94467,
+      "percentile": 0.99997
+    },
+    {
+      "cve": "CVE-2024-23897",
+      "epss": 0.94466,
+      "percentile": 0.99996
+    },
+    {
+      "cve": "CVE-2014-0160",
+      "epss": 0.94464,
+      "percentile": 0.99996
+    },
+    {
+      "cve": "CVE-2019-11510",
+      "epss": 0.94462,
+      "percentile": 0.99996
+    },
+    {
+      "cve": "CVE-2022-22963",
+      "epss": 0.94462,
+      "percentile": 0.99995
+    },
+    {
+      "cve": "CVE-2019-16662",
+      "epss": 0.94461,
+      "percentile": 0.99995
+    },
+    {
+      "cve": "CVE-2021-44529",
+      "epss": 0.94461,
+      "percentile": 0.99995
+    },
+    {
+      "cve": "CVE-2022-22947",
+      "epss": 0.94461,
+      "percentile": 0.99995
+    },
+    {
+      "cve": "CVE-2019-15107",
+      "epss": 0.94459,
+      "percentile": 0.99994
+    },
+    {
+      "cve": "CVE-2021-22005",
+      "epss": 0.94457,
+      "percentile": 0.99994
+    },
+    {
+      "cve": "CVE-2022-44877",
+      "epss": 0.94457,
+      "percentile": 0.99994
+    },
+    {
+      "cve": "CVE-2022-1388",
+      "epss": 0.94456,
+      "percentile": 0.99993
+    }
+  ]
+}

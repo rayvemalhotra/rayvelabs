@@ -1,0 +1,54 @@
+name: Refresh API Registry dashboard
+
+# Daily server-side fetch of every CORS-blocked security feed. The script
+# in api-registry/dashboard/refresh.py pulls each feed, parses it, writes
+# a small summary JSON into api-registry/dashboard/data/, and the static
+# dashboard page reads those same-origin from rayvelabs.com.
+#
+# Why a cron + commit (instead of a server with a proxy):
+#   - rayvelabs.com is GitHub Pages — no server-side execution at request time
+#   - browsers can't fetch most feeds directly (CORS-blocked by publishers)
+#   - committed JSON is same-origin, cached, fast, and survives outages
+#
+# Runs once a day at 06:00 UTC. Also runnable on demand from the Actions tab.
+
+on:
+  schedule:
+    - cron: "0 6 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write   # needs to push the refreshed data/
+
+concurrency:
+  group: api-registry-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run refresh
+        working-directory: api-registry/dashboard
+        run: python3 refresh.py
+
+      - name: Commit refreshed data (if anything changed)
+        run: |
+          set -euo pipefail
+          git config user.name  "rayvelabs-bot"
+          git config user.email "rayvelabs-bot@users.noreply.github.com"
+          git add api-registry/dashboard/data/
+          if git diff --cached --quiet; then
+            echo "No changes to commit — every feed returned identical output."
+            exit 0
+          fi
+          git commit -m "API Registry dashboard: daily refresh ($(date -u +%Y-%m-%d))"
+          git push

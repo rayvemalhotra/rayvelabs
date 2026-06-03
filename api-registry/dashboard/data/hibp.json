@@ -1,0 +1,130 @@
+{
+  "total_breaches": 1000,
+  "total_records_exposed": 17596966922,
+  "recent": [
+    {
+      "name": "AtlasMenu",
+      "title": "Atlas Menu",
+      "domain": "atlasmenu.net",
+      "breach_date": "2026-05-30",
+      "added_date": "2026-05-30T23:35:29Z",
+      "pwn_count": 63926,
+      "data_classes": [
+        "Email addresses",
+        "IP addresses",
+        "Passwords",
+        "Support tickets",
+        "Usernames"
+      ],
+      "verified": true
+    },
+    {
+      "name": "Charter",
+      "title": "Charter",
+      "domain": "charter.com",
+      "breach_date": "2026-05-23",
+      "added_date": "2026-05-28T20:00:34Z",
+      "pwn_count": 4851517,
+      "data_classes": [
+        "Email addresses",
+        "Job titles",
+        "Names",
+        "Phone numbers",
+        "Physical addresses"
+      ],
+      "verified": true
+    },
+    {
+      "name": "CushmanWakefield",
+      "title": "Cushman & Wakefield",
+      "domain": "cushmanwakefield.com",
+      "breach_date": "2026-05-05",
+      "added_date": "2026-05-12T06:58:16Z",
+      "pwn_count": 310431,
+      "data_classes": [
+        "Email addresses",
+        "Job titles",
+        "Names",
+        "Phone numbers",
+        "Physical addresses",
+        "Salutations"
+      ],
+      "verified": true
+    },
+    {
+      "name": "RebornGaming",
+      "title": "Reborn Gaming",
+      "domain": "reborngaming.net",
+      "breach_date": "2026-04-30",
+      "added_date": "2026-05-04T03:43:06Z",
+      "pwn_count": 126,
+      "data_classes": [
+        "Email addresses",
+        "IP addresses"
+      ],
+      "verified": true
+    },
+    {
+      "name": "Vimeo",
+      "title": "Vimeo",
+      "domain": "vimeo.com",
+      "breach_date": "2026-04-28",
+      "added_date": "2026-05-05T02:08:50Z",
+      "pwn_count": 119167,
+      "data_classes": [
+        "Email addresses",
+        "Names"
+      ],
+      "verified": true
+    },
+    {
+      "name": "CTT",
+      "title": "CTT",
+      "domain": "ctt.pt",
+      "breach_date": "2026-04-26",
+      "added_date": "2026-05-19T00:28:54Z",
+      "pwn_count": 468124,
+      "data_classes": [
+        "Email addresses",
+        "Names",
+        "Phone numbers"
+      ],
+      "verified": true
+    },
+    {
+      "name": "Udemy",
+      "title": "Udemy",
+      "domain": "udemy.com",
+      "breach_date": "2026-04-24",
+      "added_date": "2026-04-26T23:01:50Z",
+      "pwn_count": 1401259,
+      "data_classes": [
+        "Email addresses",
+        "Employers",
+        "Job titles",
+        "Names",
+        "Payment methods",
+        "Phone numbers",
+        "Physical addresses"
+      ],
+      "verified": true
+    },
+    {
+      "name": "ADT",
+      "title": "ADT",
+      "domain": "adt.com",
+      "breach_date": "2026-04-20",
+      "added_date": "2026-04-27T07:36:42Z",
+      "pwn_count": 5488888,
+      "data_classes": [
+        "Dates of birth",
+        "Email addresses",
+        "Names",
+        "Partial government issued IDs",
+        "Phone numbers",
+        "Physical addresses"
+      ],
+      "verified": true
+    }
+  ]
+}

@@ -372,7 +372,34 @@ footer a:hover{ color:var(--ink) }
     <div class="stat"><span class="n" id="stat-cats">—</span><span class="l">categories</span></div>
     <div class="stat"><span class="n" id="stat-free">—</span><span class="l">need no auth</span></div>
   </div>
+  <a href="dashboard/" class="dashboard-cta">
+    <div>
+      <div class="dc-eyebrow">// new · daily snapshot</div>
+      <div class="dc-title">Open the live dashboard <span class="arr">→</span></div>
+      <div class="dc-sub">Today's CVEs, MITRE technique of the day, fresh malicious URLs, active C2s, top attacker IPs, latest breaches — all pre-parsed and ready to read, no downloads.</div>
+    </div>
+  </a>
 </section>
+<style>
+.dashboard-cta{
+  display:block; margin-top:28px; padding:24px 28px;
+  background:linear-gradient(135deg, var(--paper), var(--paper2));
+  border:1px solid var(--line-dark); border-radius:14px;
+  text-decoration:none; color:var(--ink);
+  transition:transform .15s, box-shadow .15s;
+  box-shadow:0 1px 0 rgba(0,0,0,.04);
+}
+.dashboard-cta:hover{ transform:translateY(-2px); box-shadow:0 12px 28px rgba(0,0,0,.08) }
+.dashboard-cta .dc-eyebrow{
+  font-family:'JetBrains Mono',monospace; font-size:10.5px;
+  letter-spacing:.16em; text-transform:uppercase; color:var(--accent);
+  font-weight:600; margin-bottom:6px;
+}
+.dashboard-cta .dc-title{ font-family:'Source Serif Pro',Georgia,serif; font-size:22px; font-weight:600; letter-spacing:-.3px; margin-bottom:6px }
+.dashboard-cta .dc-title .arr{ display:inline-block; transition:transform .15s; margin-left:4px }
+.dashboard-cta:hover .arr{ transform:translateX(4px) }
+.dashboard-cta .dc-sub{ font-size:14.5px; color:var(--dim); line-height:1.55 }
+</style>
 
 <div class="toolbar">
   <div class="row">
@@ -578,6 +605,8 @@ footer a:hover{ color:var(--ink) }
   function primaryAction(e){
     const u = e.url || '';
     const auth = e.auth || '';
+    // Research datasets that need registration / download portal
+    if (/registration|free download/i.test(auth)) return { label: '↗ Request dataset' };
     // Template placeholder → can't be a download
     if (/\{[A-Za-z_][A-Za-z0-9_-]*\}/.test(u)) return { label: '↗ View source' };
     // Repo or HTML page (no file extension, but a public URL)

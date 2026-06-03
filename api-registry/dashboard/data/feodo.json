@@ -1,0 +1,69 @@
+{
+  "total_c2_active": 6,
+  "by_family": [
+    {
+      "family": "last_online",
+      "count": 1
+    },
+    {
+      "family": "2026-03-07",
+      "count": 1
+    },
+    {
+      "family": "2026-03-12",
+      "count": 1
+    },
+    {
+      "family": "2026-03-01",
+      "count": 1
+    },
+    {
+      "family": "2026-02-18",
+      "count": 1
+    }
+  ],
+  "recent": [
+    {
+      "first_seen": "first_seen_utc",
+      "ip": "dst_ip",
+      "port": "dst_port",
+      "last_online": "c2_status",
+      "malware": "last_online"
+    },
+    {
+      "first_seen": "2022-06-04 21:24:53",
+      "ip": "162.243.103.246",
+      "port": "8080",
+      "last_online": "offline",
+      "malware": "2026-03-07"
+    },
+    {
+      "first_seen": "2025-12-30 13:56:31",
+      "ip": "50.16.16.211",
+      "port": "443",
+      "last_online": "online",
+      "malware": "2026-03-12"
+    },
+    {
+      "first_seen": "2026-01-13 21:41:15",
+      "ip": "34.204.119.63",
+      "port": "443",
+      "last_online": "offline",
+      "malware": "2026-03-01"
+    },
+    {
+      "first_seen": "2026-02-17 05:41:23",
+      "ip": "178.62.3.223",
+      "port": "443",
+      "last_online": "offline",
+      "malware": "2026-02-18"
+    },
+    {
+      "first_seen": "2026-03-04 14:28:39",
+      "ip": "27.133.154.218",
+      "port": "443",
+      "last_online": "offline",
+      "malware": "2026-03-05"
+    }
+  ]
+}

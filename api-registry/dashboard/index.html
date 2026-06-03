@@ -1,0 +1,478 @@
+<!doctype html>
+<!--
+  ============================================================
+   RayveLabs API Registry · Live Dashboard
+   https://rayvelabs.com/api-registry/dashboard/
+   © 2026 Rayve Malhotra. All rights reserved.
+
+   Pulls 11 pre-parsed feed summaries from ./data/ (same-origin
+   JSON files written by the daily GitHub Actions cron in
+   .github/workflows/api-registry-refresh.yml). The student
+   experience: open the page, see live(ish) cyber threat data,
+   no API keys, no install, no CORS games.
+
+   To run a manual refresh: GitHub → Actions → "Refresh API
+   Registry dashboard" → Run workflow.
+  ============================================================
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Live Dashboard · API Registry · RayveLabs</title>
+<meta name="description" content="Live daily snapshot of the world's open cybersecurity feeds — CISA KEV, EPSS, MITRE ATT&CK, abuse.ch URLhaus / Feodo / SSLBL, Spamhaus, Tor exits, DShield, DataPlane.org SSH, HaveIBeenPwned — refreshed every morning, all in one view.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://rayvelabs.com/api-registry/dashboard/">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+:root{
+  --bg:#fbfbf9;
+  --paper:#ffffff;
+  --paper2:#f3f3f0;
+  --line:#d4d4d4;
+  --line-dark:#1a1a1a;
+  --ink:#1a1a1a;
+  --dim:#525252;
+  --faint:#909090;
+  --rule:#d4d4d4;
+  --accent:#2d5e3a;
+  --amber:#8a6321;
+  --rose:#8a3a3a;
+  --violet:#5b3d8a;
+  --shadow-1: 0 1px 0 rgba(0,0,0,.04);
+  --shadow-2: 0 8px 24px rgba(0,0,0,.06);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:'Source Serif Pro',Georgia,serif;
+  font-size:16px; line-height:1.65;
+  -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+}
+a{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;text-decoration-color:var(--rule);transition:text-decoration-color .15s}
+a:hover{text-decoration-color:var(--ink)}
+
+/* Header (matches /api-registry/) */
+header.site{
+  border-bottom:1px solid var(--line);
+  padding:18px 32px;
+  position:sticky; top:0; z-index:10;
+  backdrop-filter: blur(6px);
+  background:rgba(251,251,249,.92);
+}
+header.site .row{ display:flex; align-items:center; justify-content:space-between; max-width:1200px; margin:0 auto }
+header.site .brand{ font-family:'Source Serif Pro',Georgia,serif; font-weight:700; font-size:18px; text-decoration:none; letter-spacing:-.2px }
+header.site .brand .sub{ color:var(--dim); font-weight:400; font-style:italic }
+header.site nav a{ font-family:'Inter',system-ui,sans-serif; font-size:13.5px; font-weight:500; margin-left:24px; color:var(--dim); text-decoration:none }
+header.site nav a:hover{ color:var(--ink) }
+
+/* Hero */
+.hero{ max-width:1200px; margin:0 auto; padding:48px 32px 24px }
+.hero .eyebrow{ font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--dim); letter-spacing:.18em; text-transform:uppercase; margin-bottom:16px; font-weight:500 }
+.hero h1{ font-family:'Source Serif Pro',Georgia,serif; font-weight:600; font-size:40px; line-height:1.15; letter-spacing:-.8px; margin-bottom:14px; max-width:880px }
+.hero h1 em{ color:var(--accent); font-style:italic; font-weight:600 }
+.hero p.lede{ font-size:16.5px; line-height:1.6; color:var(--dim); max-width:760px }
+.hero .status{
+  display:flex; gap:24px; margin-top:22px; align-items:center; flex-wrap:wrap;
+  font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--dim);
+}
+.hero .status .dot{ width:8px; height:8px; border-radius:50%; background:var(--accent); display:inline-block; margin-right:6px; vertical-align:middle }
+.hero .status .dot.stale{ background:var(--amber) }
+.hero .status .dot.fail{ background:var(--rose) }
+
+/* Counters strip */
+.counters{
+  max-width:1200px; margin:0 auto; padding:0 32px 24px;
+  display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));
+  gap:14px;
+}
+.counter{
+  background:var(--paper); border:1px solid var(--line); border-radius:12px;
+  padding:18px 20px; box-shadow:var(--shadow-1);
+}
+.counter .v{ font-family:'JetBrains Mono',monospace; font-size:28px; font-weight:700; letter-spacing:-.6px; color:var(--ink); line-height:1.1 }
+.counter .l{ font-family:'Inter',system-ui,sans-serif; font-size:11px; color:var(--dim); text-transform:uppercase; letter-spacing:.12em; font-weight:500; margin-top:6px }
+.counter .src{ font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--faint); margin-top:4px }
+
+/* Widget grid */
+main{ max-width:1200px; margin:0 auto; padding:8px 32px 80px }
+.widgets{ display:grid; grid-template-columns:repeat(auto-fit, minmax(420px, 1fr)); gap:18px }
+.widget{
+  background:var(--paper); border:1px solid var(--line); border-radius:14px;
+  padding:22px 24px 20px; box-shadow:var(--shadow-1);
+  display:flex; flex-direction:column;
+}
+.widget:hover{ box-shadow:var(--shadow-2) }
+.widget header{ display:flex; justify-content:space-between; align-items:baseline; gap:12px; margin-bottom:4px }
+.widget h2{ font-family:'Source Serif Pro',Georgia,serif; font-weight:600; font-size:20px; letter-spacing:-.2px; line-height:1.25 }
+.widget .src{ font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--faint); letter-spacing:.04em; white-space:nowrap }
+.widget .sub{ font-family:'Inter',system-ui,sans-serif; font-size:12.5px; color:var(--dim); margin:4px 0 14px }
+.widget table{ width:100%; border-collapse:collapse; font-family:'Inter',system-ui,sans-serif; font-size:12.5px }
+.widget th{ text-align:left; font-weight:600; color:var(--dim); font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; padding:6px 8px 6px 0; border-bottom:1px solid var(--line) }
+.widget td{ padding:7px 8px 7px 0; border-bottom:1px solid var(--paper2); vertical-align:top; color:var(--ink); line-height:1.4 }
+.widget td.mono{ font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--ink) }
+.widget td.dim{ color:var(--dim) }
+.widget td.sm{ font-size:11.5px }
+.widget tr:last-child td{ border-bottom:none }
+.widget .footer{ margin-top:auto; padding-top:12px; border-top:1px dashed var(--line); font-family:'Inter',system-ui,sans-serif; font-size:11.5px; color:var(--dim); display:flex; justify-content:space-between; align-items:center }
+.widget .footer a{ color:var(--dim); text-decoration:none }
+.widget .footer a:hover{ color:var(--ink); text-decoration:underline }
+.tag{
+  display:inline-block; font-family:'JetBrains Mono',monospace;
+  font-size:9.5px; font-weight:600; letter-spacing:.06em;
+  padding:1px 6px; border-radius:3px; vertical-align:middle;
+}
+.tag.kev{ background:rgba(138,58,58,.10); color:var(--rose); border:1px solid rgba(138,58,58,.25) }
+.tag.ransom{ background:rgba(138,99,33,.10); color:var(--amber); border:1px solid rgba(138,99,33,.25) }
+.tag.green{ background:rgba(45,94,58,.10); color:var(--accent); border:1px solid rgba(45,94,58,.25) }
+.bar{ display:inline-block; height:6px; background:var(--accent); border-radius:2px; vertical-align:middle; margin-right:6px }
+.scroll{ max-height:340px; overflow-y:auto; }
+.scroll::-webkit-scrollbar{ width:6px }
+.scroll::-webkit-scrollbar-thumb{ background:var(--line); border-radius:3px }
+.url-trunc{ display:block; max-width:240px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-family:'JetBrains Mono',monospace; font-size:11px }
+.skeleton{
+  height:200px; background:linear-gradient(90deg,var(--paper2),var(--paper),var(--paper2));
+  background-size:200% 100%; animation:sk 1.4s ease-in-out infinite; border-radius:8px;
+}
+@keyframes sk{ 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+.empty{ color:var(--dim); font-style:italic; padding:18px 0; font-size:13px }
+.spotlight{
+  background:linear-gradient(180deg,var(--paper),var(--paper2));
+  border-left:3px solid var(--violet); padding:14px 16px; border-radius:6px;
+  margin-bottom:14px;
+}
+.spotlight .name{ font-family:'Source Serif Pro',Georgia,serif; font-weight:600; font-size:17px; letter-spacing:-.2px; margin-bottom:4px }
+.spotlight .meta{ font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--dim); margin-bottom:8px; letter-spacing:.04em }
+.spotlight p{ font-size:13.5px; line-height:1.55; color:var(--ink) }
+.chip{ display:inline-block; font-family:'Inter',system-ui,sans-serif; font-size:10.5px; color:var(--dim); background:var(--paper2); border:1px solid var(--line); padding:2px 7px; border-radius:999px; margin:3px 4px 0 0 }
+
+footer{ border-top:1px solid var(--line); margin-top:60px; padding:36px 32px; font-family:'Inter',system-ui,sans-serif; font-size:13px; color:var(--dim) }
+footer .row{ max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:18px }
+
+@media (max-width:720px){
+  .hero h1{ font-size:30px }
+  .widgets{ grid-template-columns:1fr }
+  main, .hero, .counters, header.site{ padding-left:18px; padding-right:18px }
+}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="row">
+    <a href="/" class="brand">RayveLabs <span class="sub">— dashboard</span></a>
+    <nav>
+      <a href="/api-registry/">Registry</a>
+      <a href="/rayvenet.html">Labs</a>
+      <a href="/">Home</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="eyebrow">// live · 11 open cybersecurity feeds · refreshed every morning</div>
+  <h1>Today's <em>cyber landscape,</em> read from the open feeds.</h1>
+  <p class="lede">A teaching dashboard that pulls eleven of the most-cited free security data sources, parses them once a day on a GitHub Actions cron, and lays the result out for you to read like a morning briefing. No login, no install, no API keys.</p>
+  <div class="status" id="status">
+    <span><span class="dot"></span> Loading status…</span>
+  </div>
+</section>
+
+<section class="counters" id="counters">
+  <div class="counter"><div class="v skeleton" style="height:34px"></div></div>
+  <div class="counter"><div class="v skeleton" style="height:34px"></div></div>
+  <div class="counter"><div class="v skeleton" style="height:34px"></div></div>
+  <div class="counter"><div class="v skeleton" style="height:34px"></div></div>
+</section>
+
+<main>
+  <div class="widgets" id="widgets">
+    <div class="widget"><div class="skeleton"></div></div>
+    <div class="widget"><div class="skeleton"></div></div>
+    <div class="widget"><div class="skeleton"></div></div>
+    <div class="widget"><div class="skeleton"></div></div>
+  </div>
+</main>
+
+<footer>
+  <div class="row">
+    <div>© 2026 Rayve Malhotra · <a href="/">RayveLabs</a> · Dashboard data refreshed daily via GitHub Actions cron.</div>
+    <div>Each feed credits its source — see the <a href="/api-registry/">API Registry</a> for citations.</div>
+  </div>
+</footer>
+
+<script>
+(async function(){
+  const widgets = document.getElementById('widgets');
+  const counters = document.getElementById('counters');
+  const statusBar = document.getElementById('status');
+
+  async function loadJson(name){
+    try {
+      const r = await fetch('data/' + name + '.json', { cache: 'no-cache' });
+      if (!r.ok) return null;
+      return await r.json();
+    } catch (e) { return null; }
+  }
+
+  // Load everything in parallel
+  const [meta, kev, epss, attack, urlhaus, feodo, tor, dshield, dataplane, spamhaus, hibp, sslbl] = await Promise.all([
+    loadJson('meta'), loadJson('kev'), loadJson('epss-top'), loadJson('attack-spotlight'),
+    loadJson('urlhaus'), loadJson('feodo'), loadJson('tor'), loadJson('dshield'),
+    loadJson('dataplane-ssh'), loadJson('spamhaus-drop'), loadJson('hibp'), loadJson('sslbl')
+  ]);
+
+  // ---- Status bar ----
+  if (meta) {
+    const finished = new Date(meta.finished_at);
+    const ageMs = Date.now() - finished.getTime();
+    const ageHrs = ageMs / 36e5;
+    const ageStr = ageHrs < 1 ? Math.round(ageHrs * 60) + ' min ago'
+                 : ageHrs < 24 ? Math.round(ageHrs) + ' h ago'
+                 : Math.round(ageHrs / 24) + ' d ago';
+    const cls = ageHrs < 36 ? '' : (ageHrs < 72 ? 'stale' : 'fail');
+    const okCount = meta.ok_count, total = meta.feed_count;
+    statusBar.innerHTML = `
+      <span><span class="dot ${cls}"></span> Last refresh ${escapeHtml(ageStr)} (${escapeHtml(finished.toUTCString().replace(' GMT',' UTC'))})</span>
+      <span>${okCount}/${total} feeds healthy</span>`;
+  } else {
+    statusBar.innerHTML = '<span><span class="dot fail"></span> No refresh data yet — the GitHub Actions cron has not run.</span>';
+  }
+
+  // ---- Counters ----
+  counters.innerHTML = `
+    <div class="counter">
+      <div class="v">${kev ? num(kev.total) : '—'}</div>
+      <div class="l">CVEs in KEV catalog</div>
+      <div class="src">cisa.gov · actively exploited</div>
+    </div>
+    <div class="counter">
+      <div class="v">${epss ? num(epss.total_cves_scored) : '—'}</div>
+      <div class="l">CVEs scored by EPSS</div>
+      <div class="src">first.org · today's snapshot</div>
+    </div>
+    <div class="counter">
+      <div class="v">${urlhaus ? num(urlhaus.total_recent) : '—'}</div>
+      <div class="l">Malicious URLs (last 30d)</div>
+      <div class="src">abuse.ch · URLhaus</div>
+    </div>
+    <div class="counter">
+      <div class="v">${tor ? num(tor.total_exits) : '—'}</div>
+      <div class="l">Active Tor exit relays</div>
+      <div class="src">torproject.org</div>
+    </div>
+    <div class="counter">
+      <div class="v">${feodo ? num(feodo.total_c2_active) : '—'}</div>
+      <div class="l">Active C2 servers</div>
+      <div class="src">abuse.ch · Feodo Tracker</div>
+    </div>
+    <div class="counter">
+      <div class="v">${hibp ? num(hibp.total_breaches) : '—'}</div>
+      <div class="l">Indexed data breaches</div>
+      <div class="src">haveibeenpwned.com</div>
+    </div>
+    <div class="counter">
+      <div class="v">${hibp ? num(hibp.total_records_exposed) : '—'}</div>
+      <div class="l">Records ever exposed</div>
+      <div class="src">haveibeenpwned.com</div>
+    </div>
+    <div class="counter">
+      <div class="v">${spamhaus ? num(spamhaus.total_cidrs) : '—'}</div>
+      <div class="l">Hijacked netblocks (DROP)</div>
+      <div class="src">spamhaus.org</div>
+    </div>
+  `;
+
+  // ---- Widgets ----
+  const html = [];
+
+  // 1. CISA KEV recent
+  html.push(card({
+    title: 'CISA KEV — recently added',
+    src: 'cisa.gov',
+    sub: 'CVEs CISA has confirmed actively exploited. Federal agencies must patch each by the due date.',
+    link: { href: 'https://www.cisa.gov/known-exploited-vulnerabilities-catalog', label: 'Full catalog ↗' },
+    body: kev ? rows(['CVE','Vendor / product','Added','Tags'], kev.recent.map(v => [
+      `<span class="mono">${escapeHtml(v.cve)}</span>`,
+      escapeHtml((v.vendor || '') + ' / ' + (v.product || '')),
+      `<span class="dim">${escapeHtml(v.date_added || '')}</span>`,
+      `<span class="tag kev">KEV</span>${v.ransomware ? ' <span class="tag ransom">RANSOMWARE</span>' : ''}`
+    ])) : empty('No KEV data — refresh not run yet.')
+  }));
+
+  // 2. EPSS top
+  html.push(card({
+    title: 'Top 15 by exploit prediction (EPSS)',
+    src: 'first.org',
+    sub: epss?.model_metadata ? escapeHtml(epss.model_metadata) : 'CVEs ranked by 30-day exploit-likelihood model.',
+    link: { href: 'https://www.first.org/epss/', label: 'EPSS docs ↗' },
+    body: epss ? rows(['CVE','Score','Percentile','Likelihood'], epss.top.slice(0,15).map(r => [
+      `<span class="mono">${escapeHtml(r.cve)}</span>`,
+      `<span class="mono">${r.epss.toFixed(4)}</span>`,
+      `<span class="dim mono">${(r.percentile*100).toFixed(1)}%</span>`,
+      `<span class="bar" style="width:${Math.round(r.epss*120)}px"></span>`
+    ])) : empty('No EPSS data — refresh not run yet.')
+  }));
+
+  // 3. MITRE technique of the day
+  html.push(card({
+    title: 'ATT&CK technique of the day',
+    src: 'attack.mitre.org',
+    sub: attack ? `${attack.total_techniques} techniques in catalogue · rotates daily by day-of-year.` : '',
+    link: attack?.technique?.url ? { href: attack.technique.url, label: 'Open on MITRE ↗' } : null,
+    body: attack ? `
+      <div class="spotlight">
+        <div class="name">${escapeHtml(attack.technique.name)}</div>
+        <div class="meta">${escapeHtml(attack.technique.id || '')} · ${(attack.technique.tactics || []).map(t => escapeHtml(t.replace(/-/g,' '))).join(' · ') || '—'}</div>
+        <p>${escapeHtml(attack.technique.description || '')}</p>
+        <div style="margin-top:10px">
+          ${(attack.technique.platforms || []).map(p => `<span class="chip">${escapeHtml(p)}</span>`).join('')}
+        </div>
+      </div>` : empty('No ATT&CK data — refresh not run yet.')
+  }));
+
+  // 4. URLhaus recent
+  html.push(card({
+    title: 'Fresh malicious URLs',
+    src: 'abuse.ch · URLhaus',
+    sub: 'URLs submitted in the last 30 days. Status, threat type, and URL host.',
+    link: { href: 'https://urlhaus.abuse.ch/', label: 'URLhaus ↗' },
+    body: urlhaus ? scrollWrap(rows(['Date','Host','Threat','Status'], urlhaus.recent.map(r => [
+      `<span class="dim sm">${escapeHtml((r.date_added || '').slice(0,16))}</span>`,
+      `<span class="url-trunc">${escapeHtml(r.host || '')}</span>`,
+      escapeHtml(r.threat || ''),
+      `<span class="tag ${r.url_status === 'online' ? 'kev' : 'green'}">${escapeHtml((r.url_status || '').toUpperCase())}</span>`
+    ]))) : empty('No URLhaus data — refresh not run yet.')
+  }));
+
+  // 5. Feodo C2 list (with families)
+  html.push(card({
+    title: 'Active botnet C2 servers',
+    src: 'abuse.ch · Feodo Tracker',
+    sub: feodo ? `${feodo.total_c2_active} active C2s · top families shown.` : '',
+    link: { href: 'https://feodotracker.abuse.ch/', label: 'Feodo Tracker ↗' },
+    body: feodo ? `
+      <table><thead><tr><th>Malware family</th><th style="text-align:right">C2s</th></tr></thead>
+      <tbody>${feodo.by_family.map(f => `
+        <tr><td><strong>${escapeHtml(f.family)}</strong></td>
+        <td class="mono" style="text-align:right">${num(f.count)}</td></tr>`).join('')}</tbody></table>
+      <div style="margin-top:12px">${rows(['First seen','IP','Family'], feodo.recent.map(r => [
+        `<span class="dim sm">${escapeHtml((r.first_seen || '').slice(0,10))}</span>`,
+        `<span class="mono">${escapeHtml(r.ip)}:${escapeHtml(r.port || '')}</span>`,
+        escapeHtml(r.malware || '')
+      ]))}</div>` : empty('No Feodo data — refresh not run yet.')
+  }));
+
+  // 6. DShield top attackers
+  html.push(card({
+    title: 'Top attacker IPs (DShield honeypot mesh)',
+    src: 'isc.sans.edu',
+    sub: 'IPs hitting SANS Internet Storm Center honeypots most often in the last 24h.',
+    link: { href: 'https://isc.sans.edu/', label: 'SANS ISC ↗' },
+    body: dshield ? scrollWrap(rows(['IP','Attacks','Targets','Last seen'], (dshield.top || []).map(r => [
+      `<span class="mono">${escapeHtml(r.ip)}</span>`,
+      `<span class="mono">${num(r.attacks)}</span>`,
+      `<span class="mono dim">${num(r.targets)}</span>`,
+      `<span class="dim sm">${escapeHtml((r.last_seen || '').slice(0,10))}</span>`
+    ]))) : empty('No DShield data — refresh not run yet.')
+  }));
+
+  // 7. DataPlane SSH brute-force
+  html.push(card({
+    title: 'SSH brute-force sources (last hour)',
+    src: 'dataplane.org',
+    sub: dataplane ? `${num(dataplane.total)} unique IPs observed brute-forcing SSH in the last hour.` : '',
+    link: { href: 'https://dataplane.org/', label: 'DataPlane.org ↗' },
+    body: dataplane ? scrollWrap(rows(['ASN','Operator','IP','Last seen'], dataplane.recent.map(r => [
+      `<span class="mono">AS${escapeHtml(r.asn)}</span>`,
+      `<span class="sm">${escapeHtml(r.as_name)}</span>`,
+      `<span class="mono">${escapeHtml(r.ip)}</span>`,
+      `<span class="dim sm">${escapeHtml((r.last_seen || '').slice(0,10))}</span>`
+    ]))) : empty('No DataPlane data — refresh not run yet.')
+  }));
+
+  // 8. HIBP recent breaches
+  html.push(card({
+    title: 'Most recent breaches indexed (HIBP)',
+    src: 'haveibeenpwned.com',
+    sub: hibp ? `${num(hibp.total_breaches)} breaches · ${num(hibp.total_records_exposed)} total records exposed.` : '',
+    link: { href: 'https://haveibeenpwned.com/PwnedWebsites', label: 'All breaches ↗' },
+    body: hibp ? rows(['Breach','Date','Records','Data classes'], hibp.recent.map(b => [
+      `<strong>${escapeHtml(b.title || b.name || '')}</strong>${b.domain ? `<div class="dim sm" style="margin-top:2px">${escapeHtml(b.domain)}</div>` : ''}`,
+      `<span class="dim sm">${escapeHtml(b.breach_date || '')}</span>`,
+      `<span class="mono">${num(b.pwn_count)}</span>`,
+      `<span class="sm dim">${(b.data_classes || []).slice(0,3).map(escapeHtml).join(', ')}${(b.data_classes || []).length > 3 ? '…' : ''}</span>`
+    ])) : empty('No HIBP data — refresh not run yet.')
+  }));
+
+  // 9. SSL Blacklist top reasons
+  html.push(card({
+    title: 'Malicious TLS certificates (SSLBL)',
+    src: 'abuse.ch · SSL Blacklist',
+    sub: sslbl ? `${num(sslbl.total_listings)} listed certs · grouped by listing reason.` : '',
+    link: { href: 'https://sslbl.abuse.ch/', label: 'SSLBL ↗' },
+    body: sslbl ? `
+      <table><thead><tr><th>Listing reason</th><th style="text-align:right">Certs</th></tr></thead>
+      <tbody>${sslbl.by_reason.map(f => `
+        <tr><td>${escapeHtml(f.reason)}</td>
+        <td class="mono" style="text-align:right">${num(f.count)}</td></tr>`).join('')}</tbody></table>
+      <div style="margin-top:12px">${rows(['Listed','SHA-1 fingerprint','Reason'], sslbl.recent.map(r => [
+        `<span class="dim sm">${escapeHtml((r.listing_date || '').slice(0,10))}</span>`,
+        `<span class="mono sm">${escapeHtml((r.sha1 || '').slice(0,16))}…</span>`,
+        `<span class="sm">${escapeHtml(r.listing_reason || '')}</span>`
+      ]))}</div>` : empty('No SSLBL data — refresh not run yet.')
+  }));
+
+  // 10. Spamhaus DROP sample
+  html.push(card({
+    title: 'Hijacked netblocks (Spamhaus DROP)',
+    src: 'spamhaus.org',
+    sub: spamhaus ? `${num(spamhaus.total_cidrs)} CIDR ranges currently in DROP — drop these at your border.` : '',
+    link: { href: 'https://www.spamhaus.org/drop/', label: 'Spamhaus DROP ↗' },
+    body: spamhaus ? scrollWrap(rows(['CIDR range','SBL reference'], spamhaus.sample.map(r => [
+      `<span class="mono">${escapeHtml(r.cidr)}</span>`,
+      `<span class="mono dim sm">${escapeHtml(r.sbl)}</span>`
+    ]))) : empty('No Spamhaus data — refresh not run yet.')
+  }));
+
+  // 11. Tor exit sample
+  html.push(card({
+    title: 'Sample Tor exit relays',
+    src: 'torproject.org',
+    sub: tor ? `${num(tor.total_exits)} active exit relays · 10 sampled below.` : '',
+    link: { href: 'https://check.torproject.org/torbulkexitlist', label: 'Full exit list ↗' },
+    body: tor ? `<div class="mono" style="font-size:12px; line-height:1.9; columns:2; column-gap:18px">${tor.sample.map(ip => escapeHtml(ip)).join('<br>')}</div>` : empty('No Tor data — refresh not run yet.')
+  }));
+
+  widgets.innerHTML = html.join('');
+
+  // ---- Helpers ----
+  function card({ title, src, sub, body, link }){
+    return `<div class="widget">
+      <header>
+        <h2>${escapeHtml(title)}</h2>
+        <span class="src">${escapeHtml(src)}</span>
+      </header>
+      ${sub ? `<div class="sub">${sub}</div>` : ''}
+      <div>${body}</div>
+      <div class="footer">
+        <span>${link ? `<a href="${escapeAttr(link.href)}" target="_blank" rel="noopener">${escapeHtml(link.label)}</a>` : ''}</span>
+        <span>last refresh: ${meta ? escapeHtml(new Date(meta.finished_at).toISOString().slice(0,10)) : '—'}</span>
+      </div>
+    </div>`;
+  }
+  function rows(headers, body){
+    return `<table><thead><tr>${headers.map(h => `<th>${escapeHtml(h)}</th>`).join('')}</tr></thead>
+    <tbody>${body.map(r => `<tr>${r.map(c => `<td>${c}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
+  }
+  function scrollWrap(s){ return `<div class="scroll">${s}</div>` }
+  function empty(msg){ return `<div class="empty">${escapeHtml(msg)}</div>` }
+  function num(n){ if (n == null) return '—'; return new Intl.NumberFormat('en-US').format(n) }
+  function escapeHtml(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])) }
+  function escapeAttr(s){ return escapeHtml(s) }
+})();
+</script>
+
+</body>
+</html>
