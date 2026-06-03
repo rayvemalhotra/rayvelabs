@@ -464,10 +464,8 @@ footer a:hover{ color:var(--ink) }
     const authClass = /^none/i.test(e.auth || '') ? 'auth-none'
                     : /paid|account/i.test(e.auth || '') ? 'auth-paid'
                     : 'auth-key';
-    const downloadable = isDirectDownload(e.url);
-    const downloadBtn = downloadable
-      ? `<a class="btn primary" href="${escapeAttr(e.url)}" target="_blank" rel="noopener">↓ Download</a>`
-      : `<a class="btn primary" href="${escapeAttr(e.url)}" target="_blank" rel="noopener">↗ Open source</a>`;
+    const action = primaryAction(e);
+    const downloadBtn = `<a class="btn primary" href="${escapeAttr(e.url)}" target="_blank" rel="noopener">${escapeHtml(action.label)}</a>`;
 
     const div = document.createElement('article');
     div.className = 'entry';
@@ -552,9 +550,21 @@ footer a:hover{ color:var(--ink) }
     setTimeout(() => URL.revokeObjectURL(a.href), 1000);
   });
 
-  function isDirectDownload(url){
-    if (!url) return false;
-    return /\.(json|csv|zip|gz|tgz|txt|pdf|xml)(\?|$)/i.test(url) || url.includes('/downloads/') || url.includes('/feeds/');
+  function primaryAction(e){
+    const u = e.url || '';
+    const auth = e.auth || '';
+    // Template placeholder → can't be a download
+    if (/\{[A-Za-z_][A-Za-z0-9_-]*\}/.test(u)) return { label: '↗ View source' };
+    // Repo or HTML page (no file extension, but a public URL)
+    if (/github\.com\/[^/]+\/[^/]+\/?$/i.test(u) || /gitlab\.com\/[^/]+\/[^/]+\/?$/i.test(u)) return { label: '↗ Open repo' };
+    if (/\.(htm|html)\/?$/i.test(u) || (!/\.(json|csv|zip|gz|tgz|tar|txt|pdf|xml)(\?|$)/i.test(u) && !u.includes('/downloads/') && !u.includes('/feeds/') && !u.includes('/export/'))) {
+      return { label: '↗ Open source' };
+    }
+    // Real downloadable file
+    if (/^none/i.test(auth)) return { label: '↓ Download' };
+    // Needs free key or paid auth
+    if (/paid|enterprise/i.test(auth)) return { label: '↗ Source (paid)' };
+    return { label: '↗ Source (key needed)' };
   }
   function escapeHtml(s){ return String(s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])) }
   function escapeAttr(s){ return escapeHtml(s) }
