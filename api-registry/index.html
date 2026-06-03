@@ -214,9 +214,32 @@ main{
 }
 .entry .desc{
   font-size:14.5px; color:var(--dim); line-height:1.65;
-  margin:10px 0 16px;
+  margin:10px 0 14px;
 }
 .entry .desc strong{ color:var(--ink); font-weight:600 }
+
+.entry .explain{
+  border-left:2px solid var(--rule);
+  padding:8px 16px 10px;
+  margin:0 0 10px;
+  background:transparent;
+}
+.entry .explain.why{ border-left-color:var(--accent) }
+.entry .explain.use{ border-left-color:var(--amber) }
+.entry .explain .ex-label{
+  display:block;
+  font-family:'JetBrains Mono',monospace; font-size:10.5px;
+  letter-spacing:.14em; text-transform:uppercase; font-weight:600;
+  margin-bottom:4px;
+}
+.entry .explain.why .ex-label{ color:var(--accent) }
+.entry .explain.use .ex-label{ color:var(--amber) }
+.entry .explain p{
+  font-size:14px; line-height:1.6; color:var(--ink);
+  font-style:italic;
+}
+.entry .explain.use p{ font-style:normal }
+.entry .actions{ margin-top:14px }
 
 .metarow{
   display:flex; gap:6px; flex-wrap:wrap;
@@ -485,6 +508,8 @@ footer a:hover{ color:var(--ink) }
       </div>
       <div class="file">${escapeHtml(e.filename||'')}</div>
       <p class="desc">${escapeHtml(e.description||'')}</p>
+      ${e.why_it_matters ? `<div class="explain why"><span class="ex-label">Why it matters</span><p>${escapeHtml(e.why_it_matters)}</p></div>` : ''}
+      ${e.use_it_for ? `<div class="explain use"><span class="ex-label">Use it for</span><p>${escapeHtml(e.use_it_for)}</p></div>` : ''}
       <div class="actions">
         ${downloadBtn}
         ${e.curl ? `<button class="btn" data-toggle="curl">▸ Copy curl</button>` : ''}
