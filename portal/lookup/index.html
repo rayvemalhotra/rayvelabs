@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IoC Lookup · Open Cyber Atlas · RayveLabs</title>
+<meta name="description" content="Paste any IP, domain, URL, file hash, or CVE — the Open Cyber Atlas checks every major free security feed at once and shows you what they say.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://rayvelabs.com/portal/lookup/">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+:root{
+  --bg:#fbfbf9; --paper:#ffffff; --paper2:#f3f3f0;
+  --line:#d4d4d4; --line-dark:#1a1a1a; --ink:#1a1a1a;
+  --dim:#525252; --faint:#909090;
+  --accent:#2d5e3a; --amber:#8a6321; --rose:#8a3a3a; --violet:#5b3d8a;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{ background:var(--bg); color:var(--ink); font-family:'Source Serif Pro',Georgia,serif; font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased }
+a{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;text-decoration-color:var(--line)}
+a:hover{text-decoration-color:var(--ink)}
+header.site{ border-bottom:1px solid var(--line); padding:18px 32px; position:sticky; top:0; z-index:10; backdrop-filter:blur(6px); background:rgba(251,251,249,.92) }
+header.site .row{ display:flex; align-items:center; justify-content:space-between; max-width:1200px; margin:0 auto }
+header.site .brand{ font-family:'Source Serif Pro',Georgia,serif; font-weight:700; font-size:18px; text-decoration:none; letter-spacing:-.2px }
+header.site .brand .sub{ color:var(--dim); font-weight:400; font-style:italic }
+header.site nav a{ font-family:'Inter',system-ui,sans-serif; font-size:13.5px; font-weight:500; margin-left:24px; color:var(--dim); text-decoration:none }
+header.site nav a:hover{ color:var(--ink) }
+.hero{ max-width:920px; margin:0 auto; padding:48px 32px 28px }
+.eyebrow{ font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--dim); letter-spacing:.18em; text-transform:uppercase; font-weight:500; margin-bottom:12px }
+h1{ font-family:'Source Serif Pro',Georgia,serif; font-size:34px; font-weight:600; letter-spacing:-.6px; line-height:1.2; margin-bottom:10px }
+h1 em{ color:var(--accent); font-style:italic }
+.sub{ font-size:16px; color:var(--dim); margin-bottom:26px; max-width:680px }
+.search-box{ max-width:920px; margin:0 auto; padding:0 32px }
+.input-row{ display:flex; gap:10px; align-items:stretch }
+input.q{ flex:1; padding:18px 22px; background:var(--paper); border:1.5px solid var(--line-dark); border-radius:12px; font-family:'JetBrains Mono',monospace; font-size:15px; color:var(--ink); outline:none; transition:box-shadow .15s }
+input.q:focus{ box-shadow:0 0 0 4px rgba(45,94,58,.16) }
+input.q::placeholder{ color:var(--faint); font-family:'Inter',system-ui,sans-serif; font-style:italic }
+button.go{ padding:0 28px; background:var(--ink); color:var(--bg); border:none; border-radius:12px; font-family:'Inter',system-ui,sans-serif; font-weight:600; font-size:14.5px; cursor:pointer; transition:background .15s }
+button.go:hover{ background:#000 }
+button.go:disabled{ background:var(--faint); cursor:not-allowed }
+.examples{ margin-top:14px; font-family:'Inter',system-ui,sans-serif; font-size:13px; color:var(--dim) }
+.examples .ex{ display:inline-block; margin-right:8px; padding:5px 11px; background:var(--paper); border:1px solid var(--line); border-radius:999px; cursor:pointer; font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--ink); transition:all .12s }
+.examples .ex:hover{ border-color:var(--ink); background:var(--ink); color:var(--bg) }
+.load-status{ max-width:920px; margin:18px auto 0; padding:0 32px; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--faint); letter-spacing:.04em }
+.load-status .pill{ display:inline-block; padding:2px 7px; border-radius:999px; border:1px solid var(--line); margin-right:6px }
+.load-status .pill.ok{ color:var(--accent); border-color:rgba(45,94,58,.3) }
+.load-status .pill.no{ color:var(--rose); border-color:rgba(138,58,58,.3) }
+main{ max-width:920px; margin:0 auto; padding:32px }
+.result-head{
+  background:var(--paper); border:1px solid var(--line-dark); border-radius:14px;
+  padding:24px 28px; margin-bottom:18px;
+}
+.result-head .label{ font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--dim); letter-spacing:.14em; text-transform:uppercase; font-weight:600; margin-bottom:6px }
+.result-head .value{ font-family:'JetBrains Mono',monospace; font-size:22px; color:var(--ink); word-break:break-all }
+.result-head .verdict{ margin-top:14px; padding:10px 14px; border-radius:8px; font-size:14px }
+.result-head .verdict.hits{ background:rgba(138,58,58,.08); border:1px solid rgba(138,58,58,.25); color:var(--rose) }
+.result-head .verdict.clean{ background:rgba(45,94,58,.08); border:1px solid rgba(45,94,58,.25); color:var(--accent) }
+.result-head .verdict strong{ font-weight:600 }
+.findings{ display:flex; flex-direction:column; gap:12px }
+.finding{
+  background:var(--paper); border:1px solid var(--line); border-radius:11px;
+  padding:18px 22px; display:flex; gap:18px; align-items:flex-start;
+}
+.finding.hit{ border-left:3px solid var(--rose); padding-left:20px }
+.finding.clean{ border-left:3px solid var(--accent); padding-left:20px; opacity:.85 }
+.finding .src{ flex-shrink:0; width:140px; font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--dim); letter-spacing:.04em; padding-top:2px }
+.finding .body{ flex:1; font-size:14.5px; line-height:1.55 }
+.finding .body strong{ color:var(--ink); font-weight:600 }
+.finding .body .k{ font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--dim); margin-right:6px }
+.finding .body .v{ font-family:'JetBrains Mono',monospace; font-size:12.5px; color:var(--ink) }
+.finding .body .row{ margin-bottom:4px }
+.finding .body .row:last-child{ margin-bottom:0 }
+.finding .body .verdict-msg{ font-style:italic; color:var(--dim); font-size:13.5px }
+.bigskel{ height:200px; background:linear-gradient(90deg,var(--paper2),var(--paper),var(--paper2)); background-size:200% 100%; animation:sk 1.4s ease-in-out infinite; border-radius:11px; margin-top:18px }
+@keyframes sk{ 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+.about-tool{ max-width:920px; margin:48px auto 100px; padding:0 32px; font-size:14.5px; line-height:1.6; color:var(--dim) }
+.about-tool h3{ font-family:'Source Serif Pro',Georgia,serif; font-weight:600; font-size:19px; color:var(--ink); margin-bottom:10px; letter-spacing:-.2px }
+.about-tool .feed-list{ display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:10px 18px; margin-top:14px; font-size:13.5px }
+.about-tool .feed-list .f{ display:flex; gap:8px }
+.about-tool .feed-list .f .ic{ color:var(--accent); font-family:'JetBrains Mono',monospace }
+footer{ border-top:1px solid var(--line); padding:36px 32px; font-family:'Inter',system-ui,sans-serif; font-size:13px; color:var(--dim) }
+footer .row{ max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:18px }
+.empty{ padding:30px; text-align:center; color:var(--dim); font-style:italic; font-size:14.5px; background:var(--paper); border:1px dashed var(--line); border-radius:11px }
+@media (max-width:600px){ h1{ font-size:26px } .input-row{ flex-direction:column } button.go{ padding:14px } }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="row">
+    <a href="/" class="brand">RayveLabs <span class="sub">— atlas · lookup</span></a>
+    <nav>
+      <a href="/portal/">Atlas home</a>
+      <a href="/portal/cve/">CVE explorer</a>
+      <a href="/portal/map/">Map</a>
+      <a href="/api-registry/">Registry</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="eyebrow">// ioc lookup · 11 feeds in one query</div>
+  <h1>What do we know about <em>this thing?</em></h1>
+  <p class="sub">Paste an IP, domain, URL, file hash, or CVE. We check every supported feed at once and tell you which ones have something to say. Data refreshes every morning.</p>
+</section>
+
+<section class="search-box">
+  <div class="input-row">
+    <input class="q" id="q" type="text" autocomplete="off" spellcheck="false"
+           placeholder="e.g.  1.2.3.4   ·   example.com   ·   CVE-2021-44228   ·   sha1:abc123…" autofocus>
+    <button class="go" id="go">Look up →</button>
+  </div>
+  <div class="examples">
+    Try:
+    <span class="ex" data-ex="CVE-2021-44228">CVE-2021-44228</span>
+    <span class="ex" data-ex="CVE-2017-0144">CVE-2017-0144</span>
+    <span class="ex" data-ex="171.25.193.78">a Tor exit IP</span>
+    <span class="ex" data-ex="1.10.16.0/20">a Spamhaus CIDR</span>
+  </div>
+  <div class="load-status" id="load-status">Loading indexes…</div>
+</section>
+
+<main id="main"></main>
+
+<section class="about-tool">
+  <h3>How the lookup works</h3>
+  <p>Every supported feed is fetched server-side once a day by a GitHub Actions cron, indexed by the right key (IP, host, hash, CVE), and committed to <a href="/api-registry/" target="_blank">this repo</a>. When you click <em>look up</em>, your browser searches those indexes locally — no API keys, no rate limits, nothing leaves your machine except the request for the indexes themselves.</p>
+  <h3 style="margin-top:24px">Feeds checked</h3>
+  <div class="feed-list">
+    <div class="f"><span class="ic">→</span><span><strong>CISA KEV</strong> — actively exploited CVEs</span></div>
+    <div class="f"><span class="ic">→</span><span><strong>EPSS</strong> — exploit-likelihood for any CVE</span></div>
+    <div class="f"><span class="ic">→</span><span><strong>URLhaus</strong> — malicious URLs by host</span></div>
+    <div class="f"><span class="ic">→</span><span><strong>ThreatFox</strong> — IoCs with actor attribution</span></div>
+    <div class="f"><span class="ic">→</span><span><strong>Feodo Tracker</strong> — active botnet C2 IPs</span></div>
+    <div class="f"><span class="ic">→</span><span><strong>SSLBL</strong> — malicious TLS cert fingerprints</span></div>
+    <div class="f"><span class="ic">→</span><span><strong>Spamhaus DROP</strong> — hijacked netblocks</span></div>
+    <div class="f"><span class="ic">→</span><span><strong>Tor exit list</strong> — anonymisation relays</span></div>
+    <div class="f"><span class="ic">→</span><span><strong>DShield</strong> — top honeypot attackers</span></div>
+    <div class="f"><span class="ic">→</span><span><strong>DataPlane.org</strong> — SSH brute-forcers</span></div>
+    <div class="f"><span class="ic">→</span><span><strong>HIBP</strong> — breaches by domain</span></div>
+  </div>
+</section>
+
+<footer>
+  <div class="row">
+    <div>© 2026 Rayve Malhotra · <a href="/">RayveLabs</a></div>
+    <div>Lookup runs entirely in your browser against daily-refreshed indexes. <a href="/api-registry/">View source feeds</a>.</div>
+  </div>
+</footer>
+
+<script>
+(async function(){
+  const q = document.getElementById('q');
+  const go = document.getElementById('go');
+  const main = document.getElementById('main');
+  const loadStatus = document.getElementById('load-status');
+  const dataBase = '/portal/data/';
+
+  // Load all indexes in parallel (one-time)
+  const FEEDS = [
+    ['kev',         'CISA KEV',           dataBase + 'kev.json'],
+    ['epss',        'EPSS',               dataBase + 'epss.json'],
+    ['urlhaus',     'URLhaus',            dataBase + 'urlhaus.json'],
+    ['threatfox',   'ThreatFox',          dataBase + 'threatfox.json'],
+    ['feodo',       'Feodo Tracker',      dataBase + 'feodo.json'],
+    ['sslbl',       'SSLBL',              dataBase + 'sslbl.json'],
+    ['spamhaus',    'Spamhaus DROP',      dataBase + 'spamhaus-drop.json'],
+    ['tor',         'Tor exit list',      dataBase + 'tor-exits.json'],
+    ['dshield',     'DShield',            dataBase + 'dshield.json'],
+    ['dataplane',   'DataPlane SSH',      dataBase + 'dataplane-ssh.json'],
+    ['hibp',        'HIBP',               dataBase + 'hibp.json'],
+  ];
+
+  const indexes = {};
+  const pills = [];
+  for (const [key, name] of FEEDS) {
+    pills.push(`<span class="pill" id="pill-${key}">${escapeHtml(name)} …</span>`);
+  }
+  loadStatus.innerHTML = pills.join('');
+
+  await Promise.all(FEEDS.map(async ([key, name, url]) => {
+    try {
+      const r = await fetch(url, { cache: 'no-cache' });
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      indexes[key] = await r.json();
+      document.getElementById('pill-' + key).classList.add('ok');
+      document.getElementById('pill-' + key).textContent = name + ' ✓';
+    } catch (e) {
+      document.getElementById('pill-' + key).classList.add('no');
+      document.getElementById('pill-' + key).textContent = name + ' ✗';
+    }
+  }));
+
+  const totalCount = Object.keys(indexes).length;
+  loadStatus.innerHTML = `<span style="color:var(--accent)">●</span> ${totalCount}/${FEEDS.length} indexes loaded — ready to query.`;
+  go.disabled = false;
+
+  function classifyInput(s){
+    const v = s.trim();
+    if (/^CVE-\d{4}-\d{4,}$/i.test(v)) return { type: 'cve', value: v.toUpperCase() };
+    if (/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}(\/\d{1,2})?$/.test(v)) return { type: 'ipv4', value: v };
+    if (/^[0-9a-fA-F:]+$/.test(v) && v.includes(':')) return { type: 'ipv6', value: v };
+    if (/^[a-f0-9]{32}$/i.test(v)) return { type: 'hash-md5', value: v.toLowerCase() };
+    if (/^[a-f0-9]{40}$/i.test(v)) return { type: 'hash-sha1', value: v.toLowerCase() };
+    if (/^[a-f0-9]{64}$/i.test(v)) return { type: 'hash-sha256', value: v.toLowerCase() };
+    if (/^(https?:\/\/)?[a-z0-9.-]+\.[a-z]{2,}/i.test(v)) return { type: 'host-or-url', value: v };
+    return { type: 'unknown', value: v };
+  }
+
+  function lookup(input){
+    const { type, value } = classifyInput(input);
+    const findings = [];
+
+    // ── CVE queries ──────────────────────────────────────────────────
+    if (type === 'cve') {
+      const k = indexes.kev?.by_cve?.[value];
+      if (k) findings.push({ src:'CISA KEV', hit:true, body: kevRow(value, k) });
+      else findings.push({ src:'CISA KEV', hit:false, body:'<span class="verdict-msg">Not in the KEV catalog — not confirmed actively exploited in the wild.</span>' });
+
+      const e = indexes.epss?.by_cve?.[value];
+      if (e) findings.push({ src:'EPSS', hit: e.epss > 0.05, body: epssRow(value, e) });
+      else findings.push({ src:'EPSS', hit:false, body:'<span class="verdict-msg">No EPSS score on file — CVE may be too new for the model.</span>' });
+    }
+
+    // ── IP queries ───────────────────────────────────────────────────
+    else if (type === 'ipv4' || type === 'ipv6') {
+      const bareIp = value.split('/')[0];
+      if (indexes.feodo?.by_ip?.[bareIp]) findings.push({ src:'Feodo', hit:true, body: feodoRow(indexes.feodo.by_ip[bareIp]) });
+      if (indexes.tor?.ips && indexes.tor.ips.includes(bareIp)) findings.push({ src:'Tor exits', hit:true, body:`<strong>This is an active Tor exit relay.</strong> ${indexes.tor.total} are currently active worldwide.` });
+      if (indexes.dshield?.by_ip?.[bareIp]) findings.push({ src:'DShield', hit:true, body: dshieldRow(indexes.dshield.by_ip[bareIp]) });
+      if (indexes.dataplane?.by_ip?.[bareIp]) findings.push({ src:'DataPlane SSH', hit:true, body: dataplaneRow(indexes.dataplane.by_ip[bareIp]) });
+      // Spamhaus CIDR check
+      const spam = (indexes.spamhaus?.cidrs || []).find(c => ipInCidr(bareIp, c.cidr));
+      if (spam) findings.push({ src:'Spamhaus DROP', hit:true, body:`<strong>IP is inside a Spamhaus DROP range.</strong> <div class="row"><span class="k">cidr</span><span class="v">${escapeHtml(spam.cidr)}</span></div><div class="row"><span class="k">sbl ref</span><span class="v">${escapeHtml(spam.sbl)}</span></div>` });
+      // ThreatFox IoC match
+      if (indexes.threatfox?.by_ioc?.[bareIp]) findings.push({ src:'ThreatFox', hit:true, body: threatfoxRow(indexes.threatfox.by_ioc[bareIp]) });
+      // Mark feeds that returned clean
+      ['Feodo','Tor exits','DShield','DataPlane SSH','Spamhaus DROP','ThreatFox'].forEach(s => {
+        if (!findings.some(f => f.src === s)) findings.push({ src:s, hit:false, body:`<span class="verdict-msg">No record.</span>` });
+      });
+    }
+
+    // ── Domain / URL queries ─────────────────────────────────────────
+    else if (type === 'host-or-url') {
+      // Strip scheme + path
+      let host = value.replace(/^https?:\/\//i, '').split('/')[0].toLowerCase();
+      if (indexes.urlhaus?.by_host?.[host]) findings.push({ src:'URLhaus', hit:true, body: urlhausRow(host, indexes.urlhaus.by_host[host]) });
+      else findings.push({ src:'URLhaus', hit:false, body:`<span class="verdict-msg">No URLhaus submissions for this host in the last 30 days.</span>` });
+
+      if (indexes.threatfox?.by_ioc?.[host]) findings.push({ src:'ThreatFox', hit:true, body: threatfoxRow(indexes.threatfox.by_ioc[host]) });
+      else findings.push({ src:'ThreatFox', hit:false, body:`<span class="verdict-msg">No ThreatFox IoC match.</span>` });
+
+      // HIBP by domain
+      const dom = host.replace(/^www\./, '');
+      if (indexes.hibp?.by_domain?.[dom]) findings.push({ src:'HIBP', hit:true, body: hibpRow(indexes.hibp.by_domain[dom]) });
+    }
+
+    // ── Hash queries ─────────────────────────────────────────────────
+    else if (type.startsWith('hash')) {
+      if (type === 'hash-sha1' && indexes.sslbl?.by_sha1?.[value]) {
+        findings.push({ src:'SSLBL', hit:true, body: sslblRow(indexes.sslbl.by_sha1[value]) });
+      }
+      if (indexes.threatfox?.by_ioc?.[value]) findings.push({ src:'ThreatFox', hit:true, body: threatfoxRow(indexes.threatfox.by_ioc[value]) });
+      if (findings.length === 0) findings.push({ src:'No match', hit:false, body:'<span class="verdict-msg">No hits across SSLBL or ThreatFox. Try MalwareBazaar at <a href="https://bazaar.abuse.ch/browse/" target="_blank">bazaar.abuse.ch</a> for a fuller hash search.</span>' });
+    }
+
+    return { type, value, findings };
+  }
+
+  function ipInCidr(ip, cidr){
+    if (ip.includes(':')) return false; // skip v6
+    const [net, bitsStr] = cidr.split('/');
+    const bits = parseInt(bitsStr, 10);
+    if (!bits) return ip === net;
+    const ipInt = ip.split('.').reduce((a, o) => (a << 8) + parseInt(o, 10), 0) >>> 0;
+    const netInt = net.split('.').reduce((a, o) => (a << 8) + parseInt(o, 10), 0) >>> 0;
+    const mask = bits === 0 ? 0 : (0xFFFFFFFF << (32 - bits)) >>> 0;
+    return (ipInt & mask) === (netInt & mask);
+  }
+
+  // ── Formatters per source ──────────────────────────────────────────
+  function kevRow(cve, k){
+    return `<strong>Actively exploited in the wild.</strong> ${k.ransomware ? '<span style="color:var(--rose)"> · ransomware known</span>' : ''}
+      <div class="row"><span class="k">vendor / product</span><span class="v">${escapeHtml(k.vendor||'')} / ${escapeHtml(k.product||'')}</span></div>
+      <div class="row"><span class="k">vuln name</span><span class="v">${escapeHtml(k.name||'')}</span></div>
+      <div class="row"><span class="k">added · due</span><span class="v">${escapeHtml(k.date_added||'')} · patch by ${escapeHtml(k.due_date||'')}</span></div>
+      ${k.short_desc ? `<div class="row" style="margin-top:8px">${escapeHtml(k.short_desc)}</div>` : ''}
+      <div class="row" style="margin-top:8px"><a href="https://nvd.nist.gov/vuln/detail/${encodeURIComponent(cve)}" target="_blank">NVD ↗</a> · <a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" target="_blank">KEV catalog ↗</a></div>`;
+  }
+  function epssRow(cve, e){
+    const pct = (e.epss*100).toFixed(2);
+    const percentile = (e.percentile*100).toFixed(1);
+    const verdict = e.epss > 0.5 ? '<strong style="color:var(--rose)">High likelihood of exploit.</strong>'
+                  : e.epss > 0.1 ? '<strong style="color:var(--amber)">Elevated exploit likelihood.</strong>'
+                  : e.epss > 0.01 ? 'Moderate exploit likelihood.'
+                  : 'Low exploit likelihood.';
+    return `${verdict}
+      <div class="row"><span class="k">EPSS score</span><span class="v">${e.epss.toFixed(5)} (${pct}% chance in next 30 days)</span></div>
+      <div class="row"><span class="k">percentile</span><span class="v">${percentile}%</span></div>
+      <div class="row" style="margin-top:8px"><a href="https://api.first.org/data/v1/epss?cve=${encodeURIComponent(cve)}" target="_blank">FIRST EPSS API ↗</a></div>`;
+  }
+  function feodoRow(f){
+    return `<strong>Active botnet C2 server.</strong>
+      <div class="row"><span class="k">malware</span><span class="v">${escapeHtml(f.malware||'')}</span></div>
+      <div class="row"><span class="k">port</span><span class="v">${escapeHtml(f.port||'')}</span></div>
+      <div class="row"><span class="k">first seen</span><span class="v">${escapeHtml(f.first_seen||'')}</span></div>
+      <div class="row"><span class="k">last online</span><span class="v">${escapeHtml(f.last_online||'')}</span></div>`;
+  }
+  function dshieldRow(d){
+    return `<strong>Top attacker IP on the SANS ISC honeypot mesh.</strong>
+      <div class="row"><span class="k">attacks observed</span><span class="v">${d.attacks||'?'}</span></div>
+      <div class="row"><span class="k">targets seen</span><span class="v">${d.targets||'?'}</span></div>
+      <div class="row"><span class="k">first / last</span><span class="v">${escapeHtml(d.first_seen||'')} → ${escapeHtml(d.last_seen||'')}</span></div>`;
+  }
+  function dataplaneRow(d){
+    return `<strong>Currently brute-forcing SSH.</strong>
+      <div class="row"><span class="k">ASN / operator</span><span class="v">AS${escapeHtml(d.asn||'?')} · ${escapeHtml(d.as_name||'')}</span></div>
+      <div class="row"><span class="k">last seen</span><span class="v">${escapeHtml(d.last_seen||'')}</span></div>
+      <div class="row"><span class="k">category</span><span class="v">${escapeHtml(d.category||'')}</span></div>`;
+  }
+  function urlhausRow(host, hits){
+    const recent = hits.slice(0, 5);
+    return `<strong>${hits.length} malicious URL${hits.length===1?'':'s'} on this host (last 30 days).</strong>
+      ${recent.map(h => `<div class="row" style="margin-top:8px"><span class="k">${escapeHtml((h.date_added||'').slice(0,10))}</span> <span class="v">${escapeHtml((h.url||'').slice(0,80))}</span><div style="margin-left:18px;color:var(--dim);font-size:12.5px">threat: ${escapeHtml(h.threat||'')} · status: ${escapeHtml(h.status||'')}</div></div>`).join('')}`;
+  }
+  function threatfoxRow(t){
+    return `<strong>IoC attributed to a known threat actor or malware family.</strong>
+      <div class="row"><span class="k">type</span><span class="v">${escapeHtml(t.type||'')}</span></div>
+      <div class="row"><span class="k">threat</span><span class="v">${escapeHtml(t.threat||'')}</span></div>
+      <div class="row"><span class="k">family</span><span class="v">${escapeHtml(t.malware||'')}</span></div>
+      <div class="row"><span class="k">first seen</span><span class="v">${escapeHtml(t.first_seen||'')}</span></div>
+      ${t.confidence ? `<div class="row"><span class="k">confidence</span><span class="v">${escapeHtml(t.confidence)}%</span></div>` : ''}`;
+  }
+  function sslblRow(s){
+    return `<strong>This SHA-1 is a malicious TLS certificate fingerprint.</strong>
+      <div class="row"><span class="k">listed on</span><span class="v">${escapeHtml(s.listing_date||'')}</span></div>
+      <div class="row"><span class="k">reason</span><span class="v">${escapeHtml(s.reason||'')}</span></div>`;
+  }
+  function hibpRow(breaches){
+    const recent = breaches.slice(0, 5);
+    return `<strong>${breaches.length} breach${breaches.length===1?'':'es'} indexed for this domain.</strong>
+      ${recent.map(b => `<div class="row" style="margin-top:8px"><span class="v">${escapeHtml(b.title||b.name||'')}</span> · <span class="k">${escapeHtml(b.breach_date||'')}</span><div style="margin-left:0;color:var(--dim);font-size:12.5px">${Number(b.pwn_count||0).toLocaleString()} records · ${(b.data_classes||[]).slice(0,3).map(escapeHtml).join(', ')}</div></div>`).join('')}`;
+  }
+
+  function render(input){
+    if (!input.trim()) { main.innerHTML = ''; return; }
+    const { type, value, findings } = lookup(input);
+    const hits = findings.filter(f => f.hit);
+    const verdict = hits.length > 0
+      ? `<div class="verdict hits"><strong>${hits.length}</strong> hit${hits.length===1?'':'s'} across ${escapeHtml(hits.map(h=>h.src).join(', '))}.</div>`
+      : `<div class="verdict clean">No hits in any indexed feed. <strong>Not in our snapshot</strong> — doesn't mean the indicator is safe; it just means none of the supported daily feeds know about it. Cross-check with the <a href="/api-registry/">registry</a> for feeds requiring API keys.</div>`;
+    main.innerHTML = `
+      <div class="result-head">
+        <div class="label">${escapeHtml(typeLabel(type))}</div>
+        <div class="value">${escapeHtml(value)}</div>
+        ${verdict}
+      </div>
+      <div class="findings">
+        ${findings.map(f => `
+          <div class="finding ${f.hit ? 'hit' : 'clean'}">
+            <div class="src">${escapeHtml(f.src)}</div>
+            <div class="body">${f.body}</div>
+          </div>`).join('')}
+      </div>`;
+  }
+
+  function typeLabel(t){
+    return { cve:'CVE identifier', ipv4:'IPv4 address', ipv6:'IPv6 address',
+             'host-or-url':'Host or URL', 'hash-md5':'MD5 hash', 'hash-sha1':'SHA-1 hash',
+             'hash-sha256':'SHA-256 hash', unknown:'Unrecognised input' }[t] || t;
+  }
+
+  go.addEventListener('click', () => render(q.value));
+  q.addEventListener('keydown', e => { if (e.key === 'Enter') render(q.value); });
+  document.querySelectorAll('.examples .ex').forEach(el => {
+    el.addEventListener('click', () => { q.value = el.dataset.ex; render(q.value); });
+  });
+
+  function escapeHtml(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])) }
+})();
+</script>
+
+</body>
+</html>

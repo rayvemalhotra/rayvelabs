@@ -45,10 +45,11 @@ jobs:
           set -euo pipefail
           git config user.name  "rayvelabs-bot"
           git config user.email "rayvelabs-bot@users.noreply.github.com"
-          git add api-registry/dashboard/data/
+          # Dashboard summaries AND portal full-feed indexes both refresh here
+          git add api-registry/dashboard/data/ portal/data/
           if git diff --cached --quiet; then
             echo "No changes to commit — every feed returned identical output."
             exit 0
           fi
-          git commit -m "API Registry dashboard: daily refresh ($(date -u +%Y-%m-%d))"
+          git commit -m "API Registry + Atlas: daily refresh ($(date -u +%Y-%m-%d))"
           git push

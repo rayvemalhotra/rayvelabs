@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CVE Explorer · Open Cyber Atlas · RayveLabs</title>
+<meta name="description" content="Look up any CVE and see its full constellation — CISA KEV status, EPSS exploit-prediction score, MITRE ATT&CK mappings, CWE root cause, vendor and product context — on one page.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://rayvelabs.com/portal/cve/">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+:root{
+  --bg:#fbfbf9; --paper:#ffffff; --paper2:#f3f3f0;
+  --line:#d4d4d4; --line-dark:#1a1a1a; --ink:#1a1a1a;
+  --dim:#525252; --faint:#909090;
+  --accent:#2d5e3a; --amber:#8a6321; --rose:#8a3a3a; --violet:#5b3d8a;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{ background:var(--bg); color:var(--ink); font-family:'Source Serif Pro',Georgia,serif; font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased }
+a{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;text-decoration-color:var(--line)}
+a:hover{text-decoration-color:var(--ink)}
+header.site{ border-bottom:1px solid var(--line); padding:18px 32px; position:sticky; top:0; z-index:10; backdrop-filter:blur(6px); background:rgba(251,251,249,.92) }
+header.site .row{ display:flex; align-items:center; justify-content:space-between; max-width:1200px; margin:0 auto }
+header.site .brand{ font-family:'Source Serif Pro',Georgia,serif; font-weight:700; font-size:18px; text-decoration:none; letter-spacing:-.2px }
+header.site .brand .sub{ color:var(--dim); font-weight:400; font-style:italic }
+header.site nav a{ font-family:'Inter',system-ui,sans-serif; font-size:13.5px; font-weight:500; margin-left:24px; color:var(--dim); text-decoration:none }
+header.site nav a:hover{ color:var(--ink) }
+.hero{ max-width:920px; margin:0 auto; padding:48px 32px 24px }
+.eyebrow{ font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--dim); letter-spacing:.18em; text-transform:uppercase; font-weight:500; margin-bottom:12px }
+h1{ font-family:'Source Serif Pro',Georgia,serif; font-size:34px; font-weight:600; letter-spacing:-.6px; line-height:1.2; margin-bottom:10px }
+h1 em{ color:var(--accent); font-style:italic }
+.sub{ font-size:16px; color:var(--dim); margin-bottom:18px; max-width:680px }
+.search-box{ max-width:920px; margin:0 auto; padding:0 32px }
+.input-row{ display:flex; gap:10px }
+input.q{ flex:1; padding:18px 22px; background:var(--paper); border:1.5px solid var(--line-dark); border-radius:12px; font-family:'JetBrains Mono',monospace; font-size:15px; color:var(--ink); outline:none; text-transform:uppercase; transition:box-shadow .15s }
+input.q:focus{ box-shadow:0 0 0 4px rgba(45,94,58,.16) }
+input.q::placeholder{ color:var(--faint); font-family:'Inter',system-ui,sans-serif; font-style:italic; text-transform:none }
+button.go{ padding:0 28px; background:var(--ink); color:var(--bg); border:none; border-radius:12px; font-family:'Inter',system-ui,sans-serif; font-weight:600; font-size:14.5px; cursor:pointer }
+button.go:hover{ background:#000 }
+.examples{ margin-top:14px; font-family:'Inter',system-ui,sans-serif; font-size:13px; color:var(--dim) }
+.examples .ex{ display:inline-block; margin-right:8px; padding:5px 11px; background:var(--paper); border:1px solid var(--line); border-radius:999px; cursor:pointer; font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--ink); transition:all .12s }
+.examples .ex:hover{ border-color:var(--ink); background:var(--ink); color:var(--bg) }
+.load-status{ max-width:920px; margin:14px auto 0; padding:0 32px; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--faint) }
+main{ max-width:920px; margin:24px auto; padding:0 32px }
+.cve-head{ background:var(--paper); border:1px solid var(--line-dark); border-radius:14px; padding:28px 32px; margin-bottom:18px }
+.cve-head .id{ font-family:'JetBrains Mono',monospace; font-size:28px; color:var(--ink); letter-spacing:-.5px; margin-bottom:10px }
+.cve-head .summary{ font-size:15.5px; color:var(--dim); line-height:1.55; margin-bottom:18px }
+.cve-head .summary strong{ color:var(--ink); font-weight:600 }
+.badges{ display:flex; gap:10px; flex-wrap:wrap }
+.badge{ display:inline-flex; align-items:center; gap:6px; padding:7px 14px; border-radius:999px; font-family:'JetBrains Mono',monospace; font-size:11.5px; font-weight:600; letter-spacing:.04em; border:1px solid }
+.badge.kev{ background:rgba(138,58,58,.08); color:var(--rose); border-color:rgba(138,58,58,.3) }
+.badge.ransom{ background:rgba(138,99,33,.08); color:var(--amber); border-color:rgba(138,99,33,.3) }
+.badge.epss-high{ background:rgba(138,58,58,.08); color:var(--rose); border-color:rgba(138,58,58,.3) }
+.badge.epss-med{ background:rgba(138,99,33,.08); color:var(--amber); border-color:rgba(138,99,33,.3) }
+.badge.epss-low{ background:rgba(45,94,58,.08); color:var(--accent); border-color:rgba(45,94,58,.3) }
+.badge.clean{ background:rgba(45,94,58,.08); color:var(--accent); border-color:rgba(45,94,58,.3) }
+.section{ background:var(--paper); border:1px solid var(--line); border-radius:12px; padding:22px 26px; margin-bottom:14px }
+.section h2{ font-family:'Source Serif Pro',Georgia,serif; font-weight:600; font-size:18px; letter-spacing:-.2px; margin-bottom:6px }
+.section .src{ font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--faint); letter-spacing:.08em; margin-bottom:14px }
+.section p{ font-size:14.5px; line-height:1.6; color:var(--ink); margin-bottom:10px }
+.section p:last-child{ margin-bottom:0 }
+.section p .k{ font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--dim); margin-right:6px }
+.section p .v{ font-family:'JetBrains Mono',monospace; font-size:12.5px; color:var(--ink) }
+.section .epss-bar{ display:flex; align-items:center; gap:14px; margin:14px 0 8px }
+.section .epss-bar .track{ flex:1; height:10px; background:var(--paper2); border-radius:5px; overflow:hidden }
+.section .epss-bar .fill{ height:100%; background:linear-gradient(90deg, var(--accent), var(--amber), var(--rose)); border-radius:5px; transition:width .4s }
+.section .epss-bar .pct{ font-family:'JetBrains Mono',monospace; font-size:14px; font-weight:700; color:var(--ink); min-width:64px; text-align:right }
+.section .empty{ font-style:italic; color:var(--dim); font-size:14px }
+.chip{ display:inline-block; font-family:'Inter',system-ui,sans-serif; font-size:11px; color:var(--dim); background:var(--paper2); border:1px solid var(--line); padding:3px 9px; border-radius:999px; margin:3px 4px 0 0 }
+.outlink{ font-family:'Inter',system-ui,sans-serif; font-size:13px; padding:6px 14px; background:var(--bg); border:1px solid var(--line-dark); border-radius:7px; color:var(--ink); text-decoration:none; display:inline-block; margin:6px 6px 0 0; transition:all .12s }
+.outlink:hover{ background:var(--ink); color:var(--bg) }
+footer{ border-top:1px solid var(--line); margin-top:48px; padding:36px 32px; font-family:'Inter',system-ui,sans-serif; font-size:13px; color:var(--dim) }
+footer .row{ max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:18px }
+.empty-state{ padding:40px; text-align:center; color:var(--dim); font-style:italic; font-size:14.5px; background:var(--paper); border:1px dashed var(--line); border-radius:11px }
+@media (max-width:600px){ h1{ font-size:26px } .input-row{ flex-direction:column } button.go{ padding:14px } }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="row">
+    <a href="/" class="brand">RayveLabs <span class="sub">— atlas · cve explorer</span></a>
+    <nav>
+      <a href="/portal/">Atlas home</a>
+      <a href="/portal/lookup/">IoC lookup</a>
+      <a href="/portal/map/">Map</a>
+      <a href="/api-registry/">Registry</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="eyebrow">// cve explorer · full constellation</div>
+  <h1>One CVE, <em>every angle.</em></h1>
+  <p class="sub">Type any CVE and see what every major free feed says about it — KEV status, EPSS exploit-prediction score, ATT&amp;CK mappings, the CWEs behind it, and citation-ready outbound links.</p>
+</section>
+
+<section class="search-box">
+  <div class="input-row">
+    <input class="q" id="q" type="text" autocomplete="off" spellcheck="false"
+           placeholder="CVE-2021-44228" autofocus>
+    <button class="go" id="go">Explore →</button>
+  </div>
+  <div class="examples">
+    Try:
+    <span class="ex" data-ex="CVE-2021-44228">CVE-2021-44228 (Log4Shell)</span>
+    <span class="ex" data-ex="CVE-2017-0144">CVE-2017-0144 (EternalBlue)</span>
+    <span class="ex" data-ex="CVE-2014-0160">CVE-2014-0160 (Heartbleed)</span>
+    <span class="ex" data-ex="CVE-2024-3094">CVE-2024-3094 (XZ backdoor)</span>
+  </div>
+  <div class="load-status" id="load-status">Loading indexes…</div>
+</section>
+
+<main id="main"></main>
+
+<footer>
+  <div class="row">
+    <div>© 2026 Rayve Malhotra · <a href="/">RayveLabs</a></div>
+    <div>Data refreshed daily via GitHub Actions cron. <a href="/api-registry/">View source feeds & citations</a>.</div>
+  </div>
+</footer>
+
+<script>
+(async function(){
+  const q = document.getElementById('q');
+  const go = document.getElementById('go');
+  const main = document.getElementById('main');
+  const ls = document.getElementById('load-status');
+
+  ls.textContent = 'Loading KEV · EPSS · ATT&CK …';
+  const [kev, epss, attack] = await Promise.all([
+    fetch('/portal/data/kev.json').then(r => r.ok ? r.json() : null).catch(()=>null),
+    fetch('/portal/data/epss.json').then(r => r.ok ? r.json() : null).catch(()=>null),
+    fetch('/portal/data/attack.json').then(r => r.ok ? r.json() : null).catch(()=>null),
+  ]);
+
+  const indexes = { kev, epss, attack };
+  ls.innerHTML = `<span style="color:var(--accent)">●</span> KEV (${kev ? Object.keys(kev.by_cve||{}).length : '?'} entries) · EPSS (${epss ? Object.keys(epss.by_cve||{}).length : '?'} scored) · ATT&CK (${attack?.total || '?'} techniques) — ready to query.`;
+
+  // Build a small lookup: CWE → list of ATT&CK technique IDs that mention that CWE in their description.
+  // This is a heuristic, not authoritative, but useful as a starting point.
+
+  function render(input){
+    const cve = (input || '').trim().toUpperCase();
+    if (!/^CVE-\d{4}-\d{4,}$/.test(cve)) {
+      main.innerHTML = `<div class="empty-state">Enter a CVE id (format: <code>CVE-YYYY-NNNNN</code>).</div>`;
+      return;
+    }
+
+    const k = indexes.kev?.by_cve?.[cve];
+    const e = indexes.epss?.by_cve?.[cve];
+
+    const badges = [];
+    if (k) badges.push(`<span class="badge kev">⚠ KEV · actively exploited</span>`);
+    if (k?.ransomware) badges.push(`<span class="badge ransom">RANSOMWARE CAMPAIGN</span>`);
+    if (e) {
+      const cls = e.epss > 0.5 ? 'epss-high' : e.epss > 0.1 ? 'epss-med' : 'epss-low';
+      badges.push(`<span class="badge ${cls}">EPSS ${(e.epss*100).toFixed(1)}% · pctile ${(e.percentile*100).toFixed(0)}</span>`);
+    }
+    if (!k && !e) badges.push(`<span class="badge clean">Not in KEV · No EPSS data</span>`);
+
+    const summary = k?.short_desc ? `<strong>${escapeHtml(k.vendor||'')} ${escapeHtml(k.product||'')}</strong> — ${escapeHtml(k.short_desc)}` : `CVE id verified. <span style="color:var(--dim)">Click NVD below for the full record.</span>`;
+
+    const cwes = k?.cwes || [];
+
+    // ATT&CK heuristic: techniques whose description mentions this CVE id verbatim
+    const attackMatches = [];
+    if (indexes.attack?.by_id) {
+      for (const [id, t] of Object.entries(indexes.attack.by_id)) {
+        if ((t.description || '').includes(cve)) attackMatches.push({ id, ...t });
+      }
+    }
+
+    main.innerHTML = `
+      <div class="cve-head">
+        <div class="id">${escapeHtml(cve)}</div>
+        <div class="summary">${summary}</div>
+        <div class="badges">${badges.join('')}</div>
+      </div>
+
+      <div class="section">
+        <h2>CISA Known Exploited Vulnerabilities</h2>
+        <div class="src">cisa.gov · last refresh ${escapeHtml((indexes.kev?.date_released||'').slice(0,10)) || '—'}</div>
+        ${k ? `
+          <p><span class="k">vendor / product</span><span class="v">${escapeHtml(k.vendor||'')} / ${escapeHtml(k.product||'')}</span></p>
+          <p><span class="k">vuln name</span><span class="v">${escapeHtml(k.name||'')}</span></p>
+          <p><span class="k">added · due</span><span class="v">${escapeHtml(k.date_added||'')} · ${escapeHtml(k.due_date||'')}</span></p>
+          <p><span class="k">ransomware-use</span><span class="v">${k.ransomware ? 'YES — known ransomware campaign' : 'not confirmed'}</span></p>
+          ${k.required_action ? `<p style="margin-top:10px"><strong>Required action:</strong> ${escapeHtml(k.required_action)}</p>` : ''}
+        ` : `<p class="empty">Not in the CISA KEV catalog. This CVE is <strong>not</strong> currently confirmed as being actively exploited in the wild.</p>`}
+      </div>
+
+      <div class="section">
+        <h2>EPSS — exploit prediction</h2>
+        <div class="src">first.org · 30-day exploit-likelihood model</div>
+        ${e ? `
+          <div class="epss-bar">
+            <div class="track"><div class="fill" style="width:${(e.epss*100).toFixed(1)}%"></div></div>
+            <div class="pct">${(e.epss*100).toFixed(2)}%</div>
+          </div>
+          <p><span class="k">percentile</span><span class="v">${(e.percentile*100).toFixed(1)}% — higher than ${(e.percentile*100).toFixed(0)}% of all scored CVEs</span></p>
+          <p><span class="k">raw score</span><span class="v">${e.epss.toFixed(5)}</span></p>
+          <p style="margin-top:14px;color:var(--dim);font-size:13.5px">EPSS estimates the probability that this CVE will be exploited <em>in the next 30 days</em>. It complements CVSS — CVSS says how bad the impact <em>could</em> be, EPSS says how likely it is to <em>actually happen</em>.</p>
+        ` : `<p class="empty">No EPSS score on file. Either the CVE is too new for the model, or the identifier is invalid.</p>`}
+      </div>
+
+      <div class="section">
+        <h2>MITRE ATT&CK references</h2>
+        <div class="src">attack.mitre.org · techniques that mention this CVE in their public description</div>
+        ${attackMatches.length > 0 ? `
+          <p style="margin-bottom:14px">Found <strong>${attackMatches.length}</strong> ATT&CK technique${attackMatches.length===1?'':'s'} that reference this CVE:</p>
+          ${attackMatches.map(t => `
+            <div style="border-left:2px solid var(--violet); padding:10px 14px; margin-bottom:10px; background:rgba(91,61,138,.04)">
+              <p><strong>${escapeHtml(t.id)} · ${escapeHtml(t.name||'')}</strong></p>
+              <p style="font-size:13.5px;color:var(--dim);margin-top:6px">${escapeHtml((t.description||'').slice(0,400))}…</p>
+              <p style="margin-top:8px">
+                ${(t.tactics||[]).map(x => `<span class="chip">${escapeHtml(x.replace(/-/g,' '))}</span>`).join('')}
+                ${(t.platforms||[]).slice(0,4).map(x => `<span class="chip">${escapeHtml(x)}</span>`).join('')}
+              </p>
+              <a class="outlink" href="${escapeAttr(t.url||'')}" target="_blank">Open on attack.mitre.org ↗</a>
+            </div>
+          `).join('')}
+        ` : `<p class="empty">No ATT&CK technique description mentions this CVE directly. (Most CVEs don't — ATT&CK techniques describe the attacker's <em>behaviour</em>, not specific vulnerabilities. Look at the broader category of attack the CVE enables.)</p>`}
+      </div>
+
+      ${cwes.length > 0 ? `
+      <div class="section">
+        <h2>CWE — root-cause weakness class</h2>
+        <div class="src">cwe.mitre.org · classification per CISA KEV record</div>
+        <p style="margin-bottom:10px">CISA tagged this CVE with the following CWE${cwes.length===1?'':'s'}:</p>
+        ${cwes.map(c => `<a class="outlink" href="https://cwe.mitre.org/data/definitions/${escapeAttr(c.replace('CWE-',''))}.html" target="_blank">${escapeHtml(c)} ↗</a>`).join('')}
+      </div>` : ''}
+
+      <div class="section">
+        <h2>Outbound references</h2>
+        <div class="src">authoritative sources for citation</div>
+        <a class="outlink" href="https://nvd.nist.gov/vuln/detail/${encodeURIComponent(cve)}" target="_blank">NVD record ↗</a>
+        <a class="outlink" href="https://www.cve.org/CVERecord?id=${encodeURIComponent(cve)}" target="_blank">CVE.org ↗</a>
+        <a class="outlink" href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" target="_blank">CISA KEV catalog ↗</a>
+        <a class="outlink" href="https://api.first.org/data/v1/epss?cve=${encodeURIComponent(cve)}" target="_blank">FIRST EPSS API ↗</a>
+        <a class="outlink" href="https://www.exploit-db.com/search?cve=${encodeURIComponent(cve)}" target="_blank">Exploit-DB ↗</a>
+      </div>
+    `;
+  }
+
+  // Initial state — accept ?id=CVE-... query string
+  const initial = new URLSearchParams(location.search).get('id');
+  if (initial) { q.value = initial; render(initial); }
+
+  go.addEventListener('click', () => render(q.value));
+  q.addEventListener('keydown', e => { if (e.key === 'Enter') render(q.value); });
+  document.querySelectorAll('.examples .ex').forEach(el => {
+    el.addEventListener('click', () => { q.value = el.dataset.ex; render(q.value); });
+  });
+
+  function escapeHtml(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])) }
+  function escapeAttr(s){ return escapeHtml(s) }
+})();
+</script>
+
+</body>
+</html>

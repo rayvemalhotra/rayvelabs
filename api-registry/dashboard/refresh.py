@@ -32,11 +32,28 @@ HERE = Path(__file__).parent
 DATA = HERE / "data"
 DATA.mkdir(exist_ok=True)
 
+# Portal full-feeds output — read by /portal/lookup, /portal/cve, etc.
+PORTAL_DATA = HERE.parent.parent / "portal" / "data"
+PORTAL_DATA.mkdir(parents=True, exist_ok=True)
+
 
 def http_get(url: str, headers: dict[str, str] | None = None) -> bytes:
     req = urllib.request.Request(url, headers={"User-Agent": UA, **(headers or {})})
     with urllib.request.urlopen(req, timeout=TIMEOUT) as r:
         return r.read()
+
+
+def write_portal(name: str, payload) -> None:
+    """Write a full-feed file to portal/data/ for the lookup/cve pages."""
+    p = PORTAL_DATA / name
+    if isinstance(payload, (dict, list)):
+        p.write_text(json.dumps(payload, separators=(",", ":")) + "\n")
+    elif isinstance(payload, str):
+        p.write_text(payload)
+    elif isinstance(payload, bytes):
+        p.write_bytes(payload)
+    else:
+        raise TypeError(f"unsupported payload type: {type(payload)}")
 
 
 # ---------------------------------------------------------------------------
@@ -50,6 +67,25 @@ def fetch_cisa_kev() -> dict:
     vulns = d.get("vulnerabilities", [])
     # Sort by date added, most recent first
     vulns.sort(key=lambda v: v.get("dateAdded", ""), reverse=True)
+    # Full feed for portal CVE explorer — index by CVE
+    write_portal("kev.json", {
+        "catalog_version": d.get("catalogVersion"),
+        "date_released": d.get("dateReleased"),
+        "by_cve": {
+            v.get("cveID"): {
+                "vendor": v.get("vendorProject"),
+                "product": v.get("product"),
+                "name": v.get("vulnerabilityName"),
+                "date_added": v.get("dateAdded"),
+                "due_date": v.get("dueDate"),
+                "short_desc": v.get("shortDescription"),
+                "required_action": v.get("requiredAction"),
+                "ransomware": v.get("knownRansomwareCampaignUse") == "Known",
+                "cwes": v.get("cwes", []),
+            }
+            for v in vulns
+        }
+    })
     recent = []
     for v in vulns[:12]:
         recent.append({
@@ -78,6 +114,10 @@ def fetch_epss_top() -> dict:
     header_idx = next(i for i, ln in enumerate(lines) if ln.startswith("cve"))
     reader = csv.DictReader(lines[header_idx:])
     rows = [(r["cve"], float(r["epss"]), float(r["percentile"])) for r in reader]
+    # Full feed for portal CVE explorer — every CVE keyed by ID
+    write_portal("epss.json", {
+        "by_cve": {c: {"epss": round(e, 5), "percentile": round(p, 5)} for c, e, p in rows}
+    })
     rows.sort(key=lambda x: x[1], reverse=True)
     top = [{"cve": c, "epss": round(e, 5), "percentile": round(p, 5)} for c, e, p in rows[:25]]
     # Metadata line
@@ -90,20 +130,41 @@ def fetch_epss_top() -> dict:
 
 
 def fetch_mitre_technique_of_day() -> dict:
-    """Deterministic 'technique of the day' from MITRE ATT&CK Enterprise STIX."""
+    """Deterministic 'technique of the day' from MITRE ATT&CK Enterprise STIX.
+    Also writes a trimmed full technique catalogue to portal/data/attack.json."""
     raw = http_get("https://raw.githubusercontent.com/mitre/cti/master/enterprise-attack/enterprise-attack.json")
     stix = json.loads(raw)
-    techs = [o for o in stix.get("objects", [])
-             if o.get("type") == "attack-pattern"
-             and not o.get("revoked")
-             and not o.get("x_mitre_deprecated")
-             and not o.get("x_mitre_is_subtechnique")]
+    objs = stix.get("objects", [])
+    techs_all = [o for o in objs
+                 if o.get("type") == "attack-pattern"
+                 and not o.get("revoked")
+                 and not o.get("x_mitre_deprecated")]
+    techs = [t for t in techs_all if not t.get("x_mitre_is_subtechnique")]
+
+    def attack_id_of(obj):
+        return next((r.get("external_id") for r in obj.get("external_references", [])
+                     if r.get("source_name") == "mitre-attack"), None)
+
+    # Trim every technique into a small record for portal queries
+    portal_techs = {}
+    for t in techs_all:
+        aid = attack_id_of(t)
+        if not aid:
+            continue
+        portal_techs[aid] = {
+            "name": t.get("name"),
+            "description": (t.get("description") or "").split("\n\n")[0][:600],
+            "tactics": [p["phase_name"] for p in t.get("kill_chain_phases", [])],
+            "platforms": t.get("x_mitre_platforms", []),
+            "is_subtechnique": t.get("x_mitre_is_subtechnique", False),
+            "url": f"https://attack.mitre.org/techniques/{aid.replace('.', '/')}",
+        }
+    write_portal("attack.json", {"by_id": portal_techs, "total": len(portal_techs)})
+
     # Pick deterministically based on day-of-year
     day = datetime.datetime.utcnow().timetuple().tm_yday
     pick = techs[day % len(techs)]
-    # Extract attack-id from external references
-    attack_id = next((r.get("external_id") for r in pick.get("external_references", [])
-                      if r.get("source_name") == "mitre-attack"), None)
+    attack_id = attack_id_of(pick)
     return {
         "total_techniques": len(techs),
         "technique": {
@@ -136,9 +197,57 @@ def fetch_urlhaus_recent() -> dict:
                 "tags": r[6],
                 "host": r[7] if len(r) > 7 else None,
             })
+    # Portal: index by host for fast IP/domain lookup
+    by_host: dict[str, list] = {}
+    for r in rows:
+        h = (r.get("host") or "").strip()
+        if not h:
+            continue
+        by_host.setdefault(h, []).append({
+            "url": r["url"], "threat": r["threat"], "status": r["url_status"],
+            "date_added": r["date_added"], "tags": r["tags"],
+        })
+    write_portal("urlhaus.json", {"by_host": by_host, "total": len(rows)})
     return {
         "total_recent": len(rows),
         "recent": rows[:15],
+    }
+
+
+def fetch_threatfox() -> dict:
+    """abuse.ch ThreatFox IoC feed — IPs, domains, hashes, URLs with attribution."""
+    raw = http_get("https://threatfox.abuse.ch/export/csv/recent/")
+    text = raw.decode("utf-8", errors="replace")
+    # Strip leading """ wrapped values
+    rows = []
+    reader = csv.reader([ln for ln in text.splitlines() if ln and not ln.startswith("#")],
+                        quotechar='"')
+    for r in reader:
+        if len(r) >= 8:
+            rows.append({
+                "first_seen": r[1].strip(' "'),
+                "ioc": r[2].strip(' "'),
+                "ioc_type": r[3].strip(' "'),
+                "threat_type": r[4].strip(' "'),
+                "malware": r[5].strip(' "'),
+                "malware_alias": r[6].strip(' "'),
+                "malware_printable": r[7].strip(' "'),
+                "confidence": r[10].strip(' "') if len(r) > 10 else None,
+            })
+    # Index by IoC value
+    by_ioc = {}
+    for r in rows:
+        by_ioc[r["ioc"]] = {
+            "type": r["ioc_type"],
+            "threat": r["threat_type"],
+            "malware": r["malware_printable"] or r["malware"],
+            "first_seen": r["first_seen"],
+            "confidence": r["confidence"],
+        }
+    write_portal("threatfox.json", {"by_ioc": by_ioc, "total": len(rows)})
+    return {
+        "total": len(rows),
+        "recent": rows[:12],
     }
 
 
@@ -162,6 +271,9 @@ def fetch_feodo() -> dict:
     for r in rows:
         family_counts[r["malware"]] = family_counts.get(r["malware"], 0) + 1
     top_families = sorted(family_counts.items(), key=lambda x: x[1], reverse=True)[:5]
+    # Portal: index by IP for IoC lookup
+    by_ip = {r["ip"]: {"port": r["port"], "malware": r["malware"], "first_seen": r["first_seen"], "last_online": r["last_online"]} for r in rows}
+    write_portal("feodo.json", {"by_ip": by_ip, "total": len(rows)})
     return {
         "total_c2_active": len(rows),
         "by_family": [{"family": f, "count": c} for f, c in top_families],
@@ -173,6 +285,8 @@ def fetch_tor_exits() -> dict:
     """Current Tor exit relay count + a few sample IPs."""
     raw = http_get("https://check.torproject.org/torbulkexitlist")
     ips = [ln.strip() for ln in raw.decode("utf-8", errors="replace").splitlines() if ln.strip()]
+    # Portal: full set for IP lookup
+    write_portal("tor-exits.json", {"ips": ips, "total": len(ips)})
     return {
         "total_exits": len(ips),
         "sample": ips[:10],
@@ -186,7 +300,7 @@ def fetch_dshield_top() -> dict:
     # API returns array of dicts
     entries = d if isinstance(d, list) else d.get("sources", [])
     top = []
-    for e in entries[:15]:
+    for e in entries:
         top.append({
             "ip": e.get("ip"),
             "attacks": int(e.get("attacks") or 0),
@@ -194,7 +308,10 @@ def fetch_dshield_top() -> dict:
             "first_seen": e.get("firstseen"),
             "last_seen": e.get("lastseen"),
         })
-    return {"top": top}
+    # Portal: keep all 100 indexed by IP for lookup
+    by_ip = {t["ip"]: t for t in top if t["ip"]}
+    write_portal("dshield.json", {"by_ip": by_ip, "total": len(top)})
+    return {"top": top[:15]}
 
 
 def fetch_dataplane_ssh() -> dict:
@@ -213,6 +330,9 @@ def fetch_dataplane_ssh() -> dict:
                 "last_seen": parts[3].strip(),
                 "category": parts[4].strip(),
             })
+    # Portal: index by IP
+    by_ip = {r["ip"]: {"asn": r["asn"], "as_name": r["as_name"], "last_seen": r["last_seen"], "category": r["category"]} for r in rows}
+    write_portal("dataplane-ssh.json", {"by_ip": by_ip, "total": len(rows)})
     return {
         "total": len(rows),
         "recent": rows[:15],
@@ -232,6 +352,8 @@ def fetch_spamhaus_drop() -> dict:
         cidr = parts[0].strip()
         sbl = parts[1].strip() if len(parts) > 1 else ""
         cidrs.append({"cidr": cidr, "sbl": sbl})
+    # Portal: full set for CIDR lookup
+    write_portal("spamhaus-drop.json", {"cidrs": cidrs, "total": len(cidrs)})
     return {
         "total_cidrs": len(cidrs),
         "sample": cidrs[:10],
@@ -261,6 +383,21 @@ def fetch_hibp_breaches() -> dict:
             "data_classes": b.get("DataClasses", []),
             "verified": b.get("IsVerified"),
         })
+    # Portal: index by lowercased domain for breach-by-domain lookup
+    by_domain: dict[str, list] = {}
+    for b in d:
+        dom = (b.get("Domain") or "").strip().lower()
+        if not dom:
+            continue
+        by_domain.setdefault(dom, []).append({
+            "name": b.get("Name"),
+            "title": b.get("Title"),
+            "breach_date": b.get("BreachDate"),
+            "pwn_count": b.get("PwnCount"),
+            "data_classes": b.get("DataClasses", []),
+            "verified": b.get("IsVerified"),
+        })
+    write_portal("hibp.json", {"by_domain": by_domain, "total_breaches": total, "total_records": total_records})
     return {
         "total_breaches": total,
         "total_records_exposed": total_records,
@@ -286,6 +423,9 @@ def fetch_sslbl() -> dict:
     for r in rows:
         reason_counts[r["listing_reason"]] = reason_counts.get(r["listing_reason"], 0) + 1
     top_reasons = sorted(reason_counts.items(), key=lambda x: x[1], reverse=True)[:5]
+    # Portal: index by SHA-1
+    by_sha1 = {r["sha1"]: {"listing_date": r["listing_date"], "reason": r["listing_reason"]} for r in rows if r.get("sha1")}
+    write_portal("sslbl.json", {"by_sha1": by_sha1, "total": len(rows)})
     return {
         "total_listings": len(rows),
         "by_reason": [{"reason": k, "count": v} for k, v in top_reasons],
@@ -302,6 +442,7 @@ FEEDS = {
     "epss-top":       fetch_epss_top,
     "attack-spotlight": fetch_mitre_technique_of_day,
     "urlhaus":        fetch_urlhaus_recent,
+    "threatfox":      fetch_threatfox,
     "feodo":          fetch_feodo,
     "tor":            fetch_tor_exits,
     "dshield":        fetch_dshield_top,

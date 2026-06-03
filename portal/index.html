@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Open Cyber Atlas · RayveLabs</title>
+<meta name="description" content="An open cyber data atlas — look up any IP, domain, hash, or CVE against every major free security feed in one query. Explore CVEs in full constellation. See how the open security databases connect to each other.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://rayvelabs.com/portal/">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+:root{
+  --bg:#fbfbf9; --paper:#ffffff; --paper2:#f3f3f0;
+  --line:#d4d4d4; --line-dark:#1a1a1a; --ink:#1a1a1a;
+  --dim:#525252; --faint:#909090;
+  --accent:#2d5e3a; --amber:#8a6321; --rose:#8a3a3a; --violet:#5b3d8a;
+  --shadow-1: 0 1px 0 rgba(0,0,0,.04); --shadow-2: 0 8px 24px rgba(0,0,0,.06);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{ background:var(--bg); color:var(--ink); font-family:'Source Serif Pro',Georgia,serif; font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased }
+a{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;text-decoration-color:var(--line);transition:text-decoration-color .15s}
+a:hover{text-decoration-color:var(--ink)}
+header.site{ border-bottom:1px solid var(--line); padding:18px 32px; position:sticky; top:0; z-index:10; backdrop-filter:blur(6px); background:rgba(251,251,249,.92) }
+header.site .row{ display:flex; align-items:center; justify-content:space-between; max-width:1200px; margin:0 auto }
+header.site .brand{ font-family:'Source Serif Pro',Georgia,serif; font-weight:700; font-size:18px; text-decoration:none; letter-spacing:-.2px }
+header.site .brand .sub{ color:var(--dim); font-weight:400; font-style:italic }
+header.site nav a{ font-family:'Inter',system-ui,sans-serif; font-size:13.5px; font-weight:500; margin-left:24px; color:var(--dim); text-decoration:none }
+header.site nav a:hover{ color:var(--ink) }
+.hero{ max-width:1100px; margin:0 auto; padding:80px 32px 40px; text-align:center }
+.hero .eyebrow{ font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--accent); letter-spacing:.18em; text-transform:uppercase; margin-bottom:22px; font-weight:600 }
+.hero h1{ font-family:'Source Serif Pro',Georgia,serif; font-weight:600; font-size:56px; line-height:1.1; letter-spacing:-1.4px; margin-bottom:18px }
+.hero h1 em{ color:var(--accent); font-style:italic; font-weight:600 }
+.hero p.lede{ font-size:19px; line-height:1.55; color:var(--dim); max-width:680px; margin:0 auto }
+.hero p.lede strong{ color:var(--ink); font-weight:600 }
+.tools{ max-width:1200px; margin:60px auto; padding:0 32px; display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:18px }
+.tool{ display:block; background:var(--paper); border:1px solid var(--line); border-radius:16px; padding:32px 30px; text-decoration:none; color:var(--ink); transition:transform .15s, box-shadow .15s, border-color .15s; box-shadow:var(--shadow-1) }
+.tool:hover{ transform:translateY(-3px); box-shadow:var(--shadow-2); border-color:var(--line-dark) }
+.tool .ic{ font-size:30px; margin-bottom:18px; display:inline-block }
+.tool .title{ font-family:'Source Serif Pro',Georgia,serif; font-weight:600; font-size:22px; letter-spacing:-.3px; margin-bottom:8px }
+.tool .desc{ font-size:14.5px; color:var(--dim); line-height:1.55; margin-bottom:18px }
+.tool .desc strong{ color:var(--ink); font-weight:600 }
+.tool .feeds{ font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--faint); letter-spacing:.04em; line-height:1.7 }
+.tool .arr{ display:block; margin-top:14px; font-family:'Inter',system-ui,sans-serif; font-size:13px; font-weight:600; color:var(--ink) }
+.tool:hover .arr{ color:var(--accent) }
+.about{ max-width:760px; margin:60px auto 100px; padding:0 32px; font-size:15.5px; line-height:1.65; color:var(--dim) }
+.about h2{ font-family:'Source Serif Pro',Georgia,serif; font-weight:600; font-size:24px; color:var(--ink); margin-bottom:14px; letter-spacing:-.3px }
+.about p{ margin-bottom:14px }
+.about strong{ color:var(--ink); font-weight:600 }
+.about ul{ list-style:none; padding-left:0; margin:14px 0 }
+.about ul li{ position:relative; padding-left:18px; margin-bottom:8px; font-size:14.5px }
+.about ul li::before{ content:"→"; position:absolute; left:0; color:var(--accent); font-family:'JetBrains Mono',monospace }
+footer{ border-top:1px solid var(--line); padding:36px 32px; font-family:'Inter',system-ui,sans-serif; font-size:13px; color:var(--dim) }
+footer .row{ max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:18px }
+@media (max-width:720px){ .hero h1{ font-size:36px } .hero{ padding:48px 18px 28px } }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="row">
+    <a href="/" class="brand">RayveLabs <span class="sub">— open cyber atlas</span></a>
+    <nav>
+      <a href="/api-registry/">Registry</a>
+      <a href="/api-registry/dashboard/">Dashboard</a>
+      <a href="/">Home</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="eyebrow">// rayvelabs · open cyber atlas</div>
+  <h1>One place to <em>look up</em> the open security data.</h1>
+  <p class="lede">Paste an IP, domain, hash, or CVE — the atlas checks <strong>every major free feed at once</strong> and tells you what they say. No sign-up, no API keys, no install. For students, researchers, and anyone trying to understand what's going on out there.</p>
+</section>
+
+<section class="tools">
+  <a class="tool" href="lookup/">
+    <div class="ic">🔎</div>
+    <div class="title">IoC Lookup</div>
+    <div class="desc">Paste an IP, domain, URL, hash, or CVE. We check <strong>10+ free feeds</strong> in one query and stitch the answer together.</div>
+    <div class="feeds">URLhaus · ThreatFox · Feodo · SSLBL · Spamhaus · Tor · DShield · DataPlane · KEV · EPSS</div>
+    <span class="arr">Open lookup →</span>
+  </a>
+
+  <a class="tool" href="cve/">
+    <div class="ic">🛡</div>
+    <div class="title">CVE Explorer</div>
+    <div class="desc">Type a CVE — see its <strong>full constellation</strong>: KEV status, EPSS score, ATT&amp;CK mappings, CWE, related products, all on one page.</div>
+    <div class="feeds">CISA KEV · EPSS · MITRE ATT&CK · CWE · NVD links</div>
+    <span class="arr">Open explorer →</span>
+  </a>
+
+  <a class="tool" href="map/">
+    <div class="ic">🗺</div>
+    <div class="title">Connections Map</div>
+    <div class="desc">A visual atlas of how the <strong>open security databases relate</strong>. Hover any node to see what flows in and out of it.</div>
+    <div class="feeds">CVE hub · IoC hub · MITRE chain · compliance crosswalks</div>
+    <span class="arr">Open map →</span>
+  </a>
+</section>
+
+<section class="about">
+  <h2>Why this exists</h2>
+  <p>The free, open security data <strong>already exists</strong> — CISA KEV, EPSS, MITRE ATT&CK, abuse.ch, Spamhaus, HaveIBeenPwned, NIST, the research datasets. The hard part is using it. Each feed has its own format, its own access pattern, its own quirks. Stitching them together for one question — "what do we know about <em>this</em> indicator?" — is most of the work in a real security investigation.</p>
+  <p>The Open Cyber Atlas does that stitching, once a day, for everyone:</p>
+  <ul>
+    <li>A daily server-side cron pulls every supported feed</li>
+    <li>The results are indexed and committed to <a href="https://github.com/Reckless8/rayvelabs/tree/main/portal/data" target="_blank" rel="noopener">portal/data</a></li>
+    <li>Your browser does the lookup against the indexes, same-origin, no API keys</li>
+    <li>Every answer cites its source so academic work stays citable</li>
+  </ul>
+  <p>It's a <strong>teaching tool first</strong>. Built for students at GWU and anyone else who wants to understand how the open cybersecurity ecosystem fits together. Free, no account, no tracking.</p>
+</section>
+
+<footer>
+  <div class="row">
+    <div>© 2026 Rayve Malhotra · <a href="/">RayveLabs</a> · <a href="/api-registry/">View the full registry</a> for citations &amp; download links.</div>
+    <div>Data refreshed daily via GitHub Actions cron. See <a href="/api-registry/dashboard/">dashboard</a> for last-refresh time.</div>
+  </div>
+</footer>
+</body>
+</html>

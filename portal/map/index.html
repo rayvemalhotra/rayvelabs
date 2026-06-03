@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Connections Map · Open Cyber Atlas · RayveLabs</title>
+<meta name="description" content="An interactive visual atlas showing how the open cybersecurity databases — CVE, KEV, EPSS, ATT&CK, CWE, CAPEC, abuse.ch, Spamhaus, HIBP, NIST — connect to each other.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://rayvelabs.com/portal/map/">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+:root{
+  --bg:#fbfbf9; --paper:#ffffff; --paper2:#f3f3f0;
+  --line:#d4d4d4; --line-dark:#1a1a1a; --ink:#1a1a1a;
+  --dim:#525252; --faint:#909090;
+  --accent:#2d5e3a; --amber:#8a6321; --rose:#8a3a3a; --violet:#5b3d8a; --blue:#1e4a8a;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{ background:var(--bg); color:var(--ink); font-family:'Source Serif Pro',Georgia,serif; font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased }
+a{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;text-decoration-color:var(--line)}
+a:hover{text-decoration-color:var(--ink)}
+header.site{ border-bottom:1px solid var(--line); padding:18px 32px; position:sticky; top:0; z-index:10; backdrop-filter:blur(6px); background:rgba(251,251,249,.92) }
+header.site .row{ display:flex; align-items:center; justify-content:space-between; max-width:1200px; margin:0 auto }
+header.site .brand{ font-family:'Source Serif Pro',Georgia,serif; font-weight:700; font-size:18px; text-decoration:none; letter-spacing:-.2px }
+header.site .brand .sub{ color:var(--dim); font-weight:400; font-style:italic }
+header.site nav a{ font-family:'Inter',system-ui,sans-serif; font-size:13.5px; font-weight:500; margin-left:24px; color:var(--dim); text-decoration:none }
+header.site nav a:hover{ color:var(--ink) }
+.hero{ max-width:1100px; margin:0 auto; padding:48px 32px 24px }
+.eyebrow{ font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--dim); letter-spacing:.18em; text-transform:uppercase; font-weight:500; margin-bottom:12px }
+h1{ font-family:'Source Serif Pro',Georgia,serif; font-size:34px; font-weight:600; letter-spacing:-.6px; line-height:1.2; margin-bottom:10px }
+h1 em{ color:var(--accent); font-style:italic }
+.sub{ font-size:16px; color:var(--dim); margin-bottom:18px; max-width:760px }
+.layout{ max-width:1240px; margin:0 auto; padding:0 32px 32px; display:grid; grid-template-columns:1fr 320px; gap:24px }
+@media (max-width:900px){ .layout{ grid-template-columns:1fr } }
+.map-wrap{ background:var(--paper); border:1px solid var(--line); border-radius:14px; padding:8px; overflow:hidden; min-height:560px }
+.map-wrap svg{ display:block; width:100%; height:auto; max-height:680px }
+.detail{
+  background:var(--paper); border:1px solid var(--line); border-radius:14px;
+  padding:24px 26px; position:sticky; top:90px; align-self:flex-start;
+  max-height:calc(100vh - 110px); overflow-y:auto;
+}
+.detail .label{ font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--dim); letter-spacing:.16em; text-transform:uppercase; font-weight:600; margin-bottom:6px }
+.detail .title{ font-family:'Source Serif Pro',Georgia,serif; font-size:22px; font-weight:600; letter-spacing:-.2px; line-height:1.25; margin-bottom:6px }
+.detail .pub{ font-family:'Inter',system-ui,sans-serif; font-size:12px; color:var(--dim); margin-bottom:14px; font-style:italic }
+.detail .desc{ font-size:14px; color:var(--ink); line-height:1.6; margin-bottom:14px }
+.detail .desc strong{ font-weight:600 }
+.detail h4{ font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--accent); letter-spacing:.14em; text-transform:uppercase; font-weight:600; margin:16px 0 6px }
+.detail h4.in{ color:var(--blue) }
+.detail h4.out{ color:var(--amber) }
+.detail ul{ list-style:none; padding:0; margin:0 }
+.detail ul li{ font-size:13.5px; padding:4px 0; border-bottom:1px dashed var(--line); cursor:pointer; transition:padding-left .12s, color .12s }
+.detail ul li:last-child{ border-bottom:none }
+.detail ul li:hover{ padding-left:6px; color:var(--accent) }
+.detail ul li .arr{ color:var(--faint); margin-right:6px; font-family:'JetBrains Mono',monospace }
+.detail .links{ margin-top:14px; padding-top:14px; border-top:1px solid var(--line) }
+.detail .links a{ display:inline-block; margin-right:8px; margin-top:4px; padding:5px 12px; background:var(--bg); border:1px solid var(--line); border-radius:999px; font-family:'Inter',system-ui,sans-serif; font-size:11.5px; color:var(--ink); text-decoration:none; transition:all .12s }
+.detail .links a:hover{ border-color:var(--ink); background:var(--ink); color:var(--bg) }
+.detail .hint{ font-size:13px; color:var(--dim); font-style:italic; line-height:1.55 }
+
+/* SVG node styles */
+.node-bg{ fill:var(--paper); stroke:var(--line-dark); stroke-width:1.5; transition:all .15s; cursor:pointer }
+.node-bg.hub{ stroke-width:2.5 }
+.node-bg.cve-hub{ fill:#fdf3f3; stroke:var(--rose) }
+.node-bg.ioc-hub{ fill:#f3f6fd; stroke:var(--blue) }
+.node-bg.framework{ fill:#f6f3fd }
+.node-bg.intel{ fill:#fdf7f3 }
+.node-bg.compliance{ fill:#f3fdf6 }
+.node-bg.research{ fill:#fdf3f9 }
+.node-bg:hover, .node-bg.selected{ stroke-width:3; filter:drop-shadow(0 4px 12px rgba(0,0,0,.15)) }
+.node-label{ font-family:'Inter',system-ui,sans-serif; font-size:11.5px; font-weight:600; fill:var(--ink); pointer-events:none; text-anchor:middle }
+.node-sublabel{ font-family:'JetBrains Mono',monospace; font-size:9px; fill:var(--dim); pointer-events:none; text-anchor:middle; letter-spacing:.04em }
+.edge{ stroke:#c4c4c4; stroke-width:1.5; fill:none; pointer-events:none; transition:stroke .15s, stroke-width .15s, opacity .15s }
+.edge.active{ stroke:var(--accent); stroke-width:2.5 }
+.edge.faded{ opacity:.18 }
+.node-bg.faded{ opacity:.35 }
+.node-label.faded, .node-sublabel.faded{ opacity:.35 }
+.legend{ font-family:'Inter',system-ui,sans-serif; font-size:12px; color:var(--dim); margin-top:14px; display:flex; flex-wrap:wrap; gap:14px }
+.legend .swatch{ display:inline-block; width:10px; height:10px; border-radius:2px; margin-right:5px; vertical-align:middle; border:1px solid var(--line-dark) }
+
+footer{ border-top:1px solid var(--line); margin-top:48px; padding:36px 32px; font-family:'Inter',system-ui,sans-serif; font-size:13px; color:var(--dim) }
+footer .row{ max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:18px }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="row">
+    <a href="/" class="brand">RayveLabs <span class="sub">— atlas · map</span></a>
+    <nav>
+      <a href="/portal/">Atlas home</a>
+      <a href="/portal/lookup/">IoC lookup</a>
+      <a href="/portal/cve/">CVE explorer</a>
+      <a href="/api-registry/">Registry</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="eyebrow">// connections map · how the open cyber data relates</div>
+  <h1>The open cyber data <em>has structure.</em></h1>
+  <p class="sub">Every security question collapses into one of two hubs: a <strong>CVE</strong> (a known vulnerability) or an <strong>IoC</strong> (an indicator of compromise — IP, hash, host). Around each hub sit the feeds that enrich it. Click any node to see what flows in and what flows out.</p>
+</section>
+
+<div class="layout">
+  <div class="map-wrap">
+    <svg id="map" viewBox="0 0 1000 720" xmlns="http://www.w3.org/2000/svg" aria-label="Connections map">
+      <!-- edges drawn first so nodes layer on top -->
+      <g id="edges"></g>
+      <g id="nodes"></g>
+    </svg>
+    <div class="legend">
+      <div><span class="swatch" style="background:#fdf3f3;border-color:var(--rose)"></span>CVE hub</div>
+      <div><span class="swatch" style="background:#f3f6fd;border-color:var(--blue)"></span>IoC hub</div>
+      <div><span class="swatch" style="background:#f6f3fd"></span>MITRE frameworks</div>
+      <div><span class="swatch" style="background:#fdf7f3"></span>Threat intel</div>
+      <div><span class="swatch" style="background:#f3fdf6"></span>Compliance</div>
+      <div><span class="swatch" style="background:#fdf3f9"></span>Research datasets</div>
+    </div>
+  </div>
+  <aside class="detail" id="detail">
+    <div class="label">// detail</div>
+    <div class="title">Hover or click a node</div>
+    <p class="hint">Each node is a real open dataset on rayvelabs.com/api-registry. The lines show how data flows between them — when you find a CVE, the connected feeds tell you what's known about it. Click a node to see its inputs, outputs, and where to find the source.</p>
+  </aside>
+</div>
+
+<footer>
+  <div class="row">
+    <div>© 2026 Rayve Malhotra · <a href="/">RayveLabs</a></div>
+    <div>Map data is curated; see the <a href="/api-registry/">full registry</a> for source citations.</div>
+  </div>
+</footer>
+
+<script>
+// ─────────────────────────────────────────────────────────────────────
+// The atlas — nodes + edges
+//
+// Layout is hand-tuned, two hubs (CVE on the left, IoC on the right),
+// satellite feeds positioned around them, frameworks across the top.
+// ─────────────────────────────────────────────────────────────────────
+const NODES = [
+  // ── CVE hub ─────────────────────────────────────────────────────────
+  { id:'cve',       x:260, y:360, w:160, h:80,  cls:'cve-hub hub',  label:'CVE',           sub:'a vulnerability',
+    title:'CVE — Common Vulnerabilities and Exposures',
+    pub:'MITRE / CVE.org',
+    desc:'<strong>The central identifier</strong> for every publicly disclosed software vulnerability. Every other feed in this atlas refers back to a CVE id (CVE-YYYY-NNNNN). Think of it as the primary key for security data.',
+    open_url:'https://www.cve.org/' },
+
+  // CVE satellites
+  { id:'nvd',       x:80,  y:200, w:130, h:60,  cls:'',  label:'NVD',            sub:'gov scoring',
+    title:'NVD — National Vulnerability Database',
+    pub:'U.S. National Institute of Standards and Technology',
+    desc:'The authoritative U.S. record for every CVE — CVSS scores, CPE applicability strings, references. NVD is downstream of MITRE\'s CVE List but adds the analysis layer.',
+    open_url:'https://nvd.nist.gov/' },
+  { id:'kev',       x:80,  y:300, w:130, h:60,  cls:'',  label:'CISA KEV',       sub:'exploited',
+    title:'CISA Known Exploited Vulnerabilities',
+    pub:'Cybersecurity and Infrastructure Security Agency',
+    desc:'A curated subset of CVEs that CISA has <strong>confirmed are being actively exploited in the wild</strong>. Federal agencies must patch each by the due date. The closest thing to an emergency list in cybersecurity.' },
+  { id:'epss',      x:80,  y:400, w:130, h:60,  cls:'',  label:'EPSS',           sub:'exploit likelihood',
+    title:'EPSS — Exploit Prediction Scoring System',
+    pub:'FIRST.org Special Interest Group',
+    desc:'A model that estimates the <strong>probability a CVE will be exploited in the next 30 days</strong>. Where CVSS tells you how bad an exploit could be, EPSS tells you how likely it actually is.' },
+  { id:'cvss',      x:80,  y:500, w:130, h:60,  cls:'',  label:'CVSS',           sub:'severity score',
+    title:'CVSS — Common Vulnerability Scoring System',
+    pub:'FIRST.org',
+    desc:'A 0–10 numeric severity score for each CVE. Captures attack vector, complexity, privileges required, and impact. Required for FedRAMP and many compliance frameworks. Lives inside the NVD record.' },
+  { id:'cwe',       x:260, y:200, w:130, h:60,  cls:'framework',  label:'CWE',   sub:'weakness class',
+    title:'CWE — Common Weakness Enumeration',
+    pub:'The MITRE Corporation',
+    desc:'The vocabulary for software flaws. <strong>Every CVE is tagged with one or more CWEs</strong> (CWE-89 SQL injection, CWE-79 XSS, CWE-787 out-of-bounds write). The CWE Top 25 drives industry priorities.' },
+  { id:'capec',     x:430, y:200, w:130, h:60,  cls:'framework',  label:'CAPEC', sub:'attack pattern',
+    title:'CAPEC — Common Attack Pattern Enumeration',
+    pub:'The MITRE Corporation',
+    desc:'Sits between concrete CWEs and adversary techniques. The right level for threat modelling sessions and security training.' },
+  { id:'attack',    x:430, y:100, w:160, h:60,  cls:'framework hub',  label:'MITRE ATT&CK', sub:'adversary techniques',
+    title:'MITRE ATT&CK',
+    pub:'The MITRE Corporation',
+    desc:'The catalogue of <strong>real adversary tactics and techniques</strong> observed in the wild. Every EDR vendor and threat-intel team maps to ATT&CK. Used to describe what attackers actually do.' },
+  { id:'d3fend',    x:620, y:200, w:130, h:60,  cls:'framework',  label:'D3FEND', sub:'defensive ontology',
+    title:'MITRE D3FEND',
+    pub:'The MITRE Corporation',
+    desc:'The defensive counterpart to ATT&CK. Maps countermeasures to the techniques they defend against, with NIST SP 800-53 control crosswalks.' },
+  { id:'osv',       x:80,  y:580, w:130, h:60,  cls:'',  label:'OSV',            sub:'package advisories',
+    title:'OSV — Open Source Vulnerabilities',
+    pub:'Google / OpenSSF',
+    desc:'CVE applicability mapped onto open-source package ecosystems (PyPI, npm, Maven, Go, Rubygems...). Tells you <strong>which version of which package</strong> a CVE actually affects.' },
+  { id:'exploitdb', x:260, y:580, w:130, h:60,  cls:'',  label:'Exploit-DB',     sub:'public PoCs',
+    title:'Exploit-DB',
+    pub:'OffSec',
+    desc:'Maps CVEs to <strong>actual proof-of-concept exploit code</strong>. The bridge from "this vulnerability exists" to "here\'s how to demonstrate it."' },
+
+  // ── IoC hub ─────────────────────────────────────────────────────────
+  { id:'ioc',       x:740, y:360, w:160, h:80,  cls:'ioc-hub hub',  label:'IoC',           sub:'an indicator',
+    title:'IoC — Indicator of Compromise',
+    pub:'(conceptual hub)',
+    desc:'<strong>The second great hub</strong> of cyber data. Any IP, domain, URL, file hash, or email that sits at the centre of an investigation. The feeds around it tell you whether anyone has seen it before, and what they saw.' },
+
+  // IoC satellites
+  { id:'urlhaus',   x:920, y:200, w:130, h:60,  cls:'intel',  label:'URLhaus',     sub:'malicious URLs',
+    title:'URLhaus',
+    pub:'abuse.ch (Bern University of Applied Sciences)',
+    desc:'The fastest community-curated feed of fresh malicious URLs. Submitted within hours of going live.' },
+  { id:'threatfox', x:920, y:280, w:130, h:60,  cls:'intel',  label:'ThreatFox',   sub:'attributed IoCs',
+    title:'ThreatFox',
+    pub:'abuse.ch',
+    desc:'IoCs (IPs, domains, hashes, URLs) <strong>tagged with the threat actor or malware family</strong> they belong to. Attribution included.' },
+  { id:'feodo',     x:920, y:360, w:130, h:60,  cls:'intel',  label:'Feodo Tracker', sub:'botnet C2',
+    title:'Feodo Tracker',
+    pub:'abuse.ch',
+    desc:'Active command-and-control servers for Dridex, Emotet, TrickBot, QakBot. The C2 IPs that commodity malware phones home to right now.' },
+  { id:'sslbl',     x:920, y:440, w:130, h:60,  cls:'intel',  label:'SSLBL',       sub:'malicious TLS certs',
+    title:'SSL Blacklist',
+    pub:'abuse.ch',
+    desc:'SHA-1 fingerprints of TLS certificates seen serving malware C2 traffic. Useful for JA3/JA4 fingerprinting.' },
+  { id:'spamhaus',  x:560, y:580, w:130, h:60,  cls:'intel',  label:'Spamhaus DROP', sub:'hijacked netblocks',
+    title:'Spamhaus DROP',
+    pub:'The Spamhaus Project',
+    desc:'Netblocks fully controlled by abusers — drop them at the border with no logging. Major ISPs use this as a default deny-rule.' },
+  { id:'tor',       x:740, y:580, w:130, h:60,  cls:'intel',  label:'Tor exits',   sub:'anonymisers',
+    title:'Tor exit relays',
+    pub:'The Tor Project',
+    desc:'Every current Tor exit relay IP. If you see a connection from one of these, the client is intentionally anonymising.' },
+  { id:'dshield',   x:920, y:520, w:130, h:60,  cls:'intel',  label:'DShield',     sub:'honeypot mesh',
+    title:'DShield (SANS ISC)',
+    pub:'SANS Internet Storm Center',
+    desc:'The longest-running distributed honeypot mesh. Tells you which IPs are currently the noisiest attackers globally.' },
+  { id:'dataplane', x:920, y:600, w:130, h:60,  cls:'intel',  label:'DataPlane',   sub:'SSH brute force',
+    title:'DataPlane.org',
+    pub:'DataPlane.org',
+    desc:'IPs observed brute-forcing SSH against their sensor mesh in the last hour. Bulk-blockable.' },
+  { id:'hibp',      x:560, y:480, w:130, h:60,  cls:'intel',  label:'HaveIBeenPwned', sub:'breach data',
+    title:'HaveIBeenPwned',
+    pub:'Troy Hunt / HIBP',
+    desc:'Every major data breach indexed in one place. The reference behind every reputable password-strength meter.' },
+
+  // ── Compliance ──────────────────────────────────────────────────────
+  { id:'nist53',    x:620, y:100, w:160, h:60,  cls:'compliance',  label:'NIST SP 800-53', sub:'controls',
+    title:'NIST SP 800-53 Rev 5',
+    pub:'U.S. National Institute of Standards and Technology',
+    desc:'The control catalogue that underpins FedRAMP, FISMA, and most U.S. federal security programs. Crosswalks to D3FEND.' },
+  { id:'nist171',   x:790, y:100, w:130, h:60,  cls:'compliance',  label:'NIST SP 800-171', sub:'CUI controls',
+    title:'NIST SP 800-171 Rev 3',
+    pub:'NIST',
+    desc:'The baseline for any organization handling Controlled Unclassified Information for the U.S. DoD. CMMC 2.0 is built on it.' },
+
+  // ── Research datasets ───────────────────────────────────────────────
+  { id:'research',  x:430, y:480, w:130, h:60,  cls:'research hub',  label:'Research datasets', sub:'replayable',
+    title:'Research datasets',
+    pub:'CIC / UNSW / DARPA / LANL / Splunk',
+    desc:'<strong>Pre-captured attack data</strong> for reproducible research — CIC-IDS2017, UNSW-NB15, DARPA OpTC, LANL Auth, Splunk BOTS v3. Use these to train and evaluate detection models with citable baselines.' },
+];
+
+const EDGES = [
+  // CVE hub
+  ['cve','nvd'], ['cve','kev'], ['cve','epss'], ['cve','cvss'],
+  ['cve','cwe'], ['cve','capec'], ['cve','osv'], ['cve','exploitdb'],
+  ['cve','attack'],   // CVEs mention ATT&CK techniques
+  // Framework chain
+  ['cwe','capec'], ['capec','attack'], ['attack','d3fend'],
+  ['d3fend','nist53'],
+  // ATT&CK ←→ research
+  ['attack','research'],
+  // IoC hub
+  ['ioc','urlhaus'], ['ioc','threatfox'], ['ioc','feodo'], ['ioc','sslbl'],
+  ['ioc','spamhaus'], ['ioc','tor'], ['ioc','dshield'], ['ioc','dataplane'],
+  ['ioc','hibp'],
+  // CVE ←→ IoC (exploitation in the wild)
+  ['kev','ioc'],
+  ['feodo','attack'],  // C2 infra maps to T1071 etc.
+  // Compliance link
+  ['nist53','nist171'],
+];
+
+// ─────────────────────────────────────────────────────────────────────
+// Render
+// ─────────────────────────────────────────────────────────────────────
+const svg = document.getElementById('map');
+const edgesG = document.getElementById('edges');
+const nodesG = document.getElementById('nodes');
+const detail = document.getElementById('detail');
+const byId = Object.fromEntries(NODES.map(n => [n.id, n]));
+const adj = {};
+NODES.forEach(n => { adj[n.id] = { in:[], out:[] } });
+EDGES.forEach(([a, b]) => {
+  adj[a].out.push(b);
+  adj[b].in.push(a);
+});
+
+function center(n){ return { cx:n.x + n.w/2, cy:n.y + n.h/2 } }
+
+// Draw edges as smooth quadratic curves
+EDGES.forEach(([a, b], i) => {
+  const A = center(byId[a]), B = center(byId[b]);
+  // Curve control point — halfway, perpendicular nudge
+  const mx = (A.cx + B.cx) / 2, my = (A.cy + B.cy) / 2;
+  const dx = B.cx - A.cx, dy = B.cy - A.cy;
+  const len = Math.hypot(dx, dy);
+  const nudge = Math.min(40, len * 0.12);
+  const ncx = mx + (-dy / len) * nudge;
+  const ncy = my + (dx / len) * nudge;
+  const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+  path.setAttribute('d', `M ${A.cx} ${A.cy} Q ${ncx} ${ncy} ${B.cx} ${B.cy}`);
+  path.setAttribute('class', 'edge');
+  path.dataset.from = a;
+  path.dataset.to = b;
+  edgesG.appendChild(path);
+});
+
+NODES.forEach(n => {
+  const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+  g.dataset.id = n.id;
+  const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+  rect.setAttribute('x', n.x); rect.setAttribute('y', n.y);
+  rect.setAttribute('width', n.w); rect.setAttribute('height', n.h);
+  rect.setAttribute('rx', 10);
+  rect.setAttribute('class', 'node-bg ' + n.cls);
+  g.appendChild(rect);
+  const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+  label.setAttribute('x', n.x + n.w/2); label.setAttribute('y', n.y + n.h/2 - 2);
+  label.setAttribute('class', 'node-label');
+  label.textContent = n.label;
+  g.appendChild(label);
+  if (n.sub){
+    const sub = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    sub.setAttribute('x', n.x + n.w/2); sub.setAttribute('y', n.y + n.h/2 + 14);
+    sub.setAttribute('class', 'node-sublabel');
+    sub.textContent = n.sub;
+    g.appendChild(sub);
+  }
+  g.addEventListener('mouseenter', () => highlight(n.id));
+  g.addEventListener('click', () => select(n.id));
+  g.addEventListener('mouseleave', () => clearHighlight());
+  nodesG.appendChild(g);
+});
+
+let selectedId = null;
+
+function highlight(id){
+  document.querySelectorAll('.edge').forEach(e => {
+    const isOn = e.dataset.from === id || e.dataset.to === id;
+    e.classList.toggle('active', isOn);
+    e.classList.toggle('faded', !isOn);
+  });
+  document.querySelectorAll('[data-id]').forEach(g => {
+    const nid = g.dataset.id;
+    const isOn = nid === id || adj[id].in.includes(nid) || adj[id].out.includes(nid);
+    g.querySelector('.node-bg').classList.toggle('faded', !isOn);
+    g.querySelectorAll('.node-label, .node-sublabel').forEach(t => t.classList.toggle('faded', !isOn));
+  });
+}
+
+function clearHighlight(){
+  if (selectedId) return highlight(selectedId);
+  document.querySelectorAll('.edge').forEach(e => { e.classList.remove('active', 'faded') });
+  document.querySelectorAll('.node-bg, .node-label, .node-sublabel').forEach(el => el.classList.remove('faded'));
+}
+
+function select(id){
+  selectedId = id;
+  document.querySelectorAll('.node-bg').forEach(r => r.classList.remove('selected'));
+  document.querySelector(`[data-id="${id}"] .node-bg`).classList.add('selected');
+  const n = byId[id];
+  const ins = adj[id].in.map(x => byId[x]);
+  const outs = adj[id].out.map(x => byId[x]);
+  detail.innerHTML = `
+    <div class="label">// ${escapeHtml(n.cls.includes('hub') ? 'hub node' : 'dataset')}</div>
+    <div class="title">${escapeHtml(n.title)}</div>
+    <div class="pub">${escapeHtml(n.pub)}</div>
+    <div class="desc">${n.desc}</div>
+    ${ins.length > 0 ? `<h4 class="in">↓ Inputs (what feeds into this)</h4>
+      <ul>${ins.map(i => `<li data-jump="${escapeAttr(i.id)}"><span class="arr">↳</span>${escapeHtml(i.label)} <span style="color:var(--faint);font-size:12px"> · ${escapeHtml(i.sub||'')}</span></li>`).join('')}</ul>` : ''}
+    ${outs.length > 0 ? `<h4 class="out">↑ Outputs (what this enriches)</h4>
+      <ul>${outs.map(o => `<li data-jump="${escapeAttr(o.id)}"><span class="arr">↳</span>${escapeHtml(o.label)} <span style="color:var(--faint);font-size:12px"> · ${escapeHtml(o.sub||'')}</span></li>`).join('')}</ul>` : ''}
+    <div class="links">
+      <a href="/api-registry/#${escapeAttr(id)}">View in registry ↗</a>
+      ${n.open_url ? `<a href="${escapeAttr(n.open_url)}" target="_blank">Visit source ↗</a>` : ''}
+    </div>
+  `;
+  detail.querySelectorAll('[data-jump]').forEach(li => {
+    li.addEventListener('click', () => select(li.dataset.jump));
+  });
+  highlight(id);
+}
+
+function escapeHtml(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])) }
+function escapeAttr(s){ return escapeHtml(s) }
+
+// Pre-select CVE hub so the detail panel starts populated
+select('cve');
+</script>
+
+</body>
+</html>
