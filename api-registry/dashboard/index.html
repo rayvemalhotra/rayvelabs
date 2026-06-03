@@ -81,23 +81,34 @@ header.site nav a:hover{ color:var(--ink) }
 .hero .status .dot.stale{ background:var(--amber) }
 .hero .status .dot.fail{ background:var(--rose) }
 
-/* Counters strip */
+/* Counters strip — explicit 4-up on desktop, 2-up on tablet, 1-up on phone */
 .counters{
-  max-width:1200px; margin:0 auto; padding:0 32px 24px;
-  display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));
-  gap:14px;
+  max-width:1200px; margin:0 auto; padding:0 32px 32px;
+  display:grid; grid-template-columns:repeat(4, 1fr);
+  gap:18px;
 }
+@media (max-width:980px){ .counters{ grid-template-columns:repeat(2, 1fr) } }
+@media (max-width:520px){ .counters{ grid-template-columns:1fr } }
 .counter{
-  background:var(--paper); border:1px solid var(--line); border-radius:12px;
-  padding:18px 20px; box-shadow:var(--shadow-1);
+  background:var(--paper); border:1px solid var(--line); border-radius:13px;
+  padding:22px 24px 20px; box-shadow:var(--shadow-1);
+  min-height:118px; display:flex; flex-direction:column; justify-content:space-between;
 }
-.counter .v{ font-family:'JetBrains Mono',monospace; font-size:28px; font-weight:700; letter-spacing:-.6px; color:var(--ink); line-height:1.1 }
-.counter .l{ font-family:'Inter',system-ui,sans-serif; font-size:11px; color:var(--dim); text-transform:uppercase; letter-spacing:.12em; font-weight:500; margin-top:6px }
-.counter .src{ font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--faint); margin-top:4px }
+.counter .v{
+  font-family:'JetBrains Mono',monospace; font-weight:700; color:var(--ink);
+  line-height:1.05; letter-spacing:-.6px;
+  /* clamp font so very long numbers (17.6B in full digits) never overflow */
+  font-size: clamp(20px, 2.4vw, 30px);
+  word-break: break-all;
+}
+.counter .v .unit{ font-size:.65em; color:var(--dim); margin-left:2px; letter-spacing:0; font-weight:600 }
+.counter .v .full{ display:block; font-size:11px; color:var(--faint); font-weight:500; letter-spacing:.04em; margin-top:4px }
+.counter .l{ font-family:'Inter',system-ui,sans-serif; font-size:11px; color:var(--dim); text-transform:uppercase; letter-spacing:.12em; font-weight:600; margin-top:10px }
+.counter .src{ font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--faint); margin-top:3px }
 
 /* Widget grid */
-main{ max-width:1200px; margin:0 auto; padding:8px 32px 80px }
-.widgets{ display:grid; grid-template-columns:repeat(auto-fit, minmax(420px, 1fr)); gap:18px }
+main{ max-width:1200px; margin:0 auto; padding:20px 32px 80px }
+.widgets{ display:grid; grid-template-columns:repeat(auto-fit, minmax(440px, 1fr)); gap:24px }
 .widget{
   background:var(--paper); border:1px solid var(--line); border-radius:14px;
   padding:22px 24px 20px; box-shadow:var(--shadow-1);
@@ -241,47 +252,16 @@ footer .row{ max-width:1200px; margin:0 auto; display:flex; justify-content:spac
   }
 
   // ---- Counters ----
+  // 8 counters laid out 4-up so the row is balanced (no awkward 5+3 split).
   counters.innerHTML = `
-    <div class="counter">
-      <div class="v">${kev ? num(kev.total) : '—'}</div>
-      <div class="l">CVEs in KEV catalog</div>
-      <div class="src">cisa.gov · actively exploited</div>
-    </div>
-    <div class="counter">
-      <div class="v">${epss ? num(epss.total_cves_scored) : '—'}</div>
-      <div class="l">CVEs scored by EPSS</div>
-      <div class="src">first.org · today's snapshot</div>
-    </div>
-    <div class="counter">
-      <div class="v">${urlhaus ? num(urlhaus.total_recent) : '—'}</div>
-      <div class="l">Malicious URLs (last 30d)</div>
-      <div class="src">abuse.ch · URLhaus</div>
-    </div>
-    <div class="counter">
-      <div class="v">${tor ? num(tor.total_exits) : '—'}</div>
-      <div class="l">Active Tor exit relays</div>
-      <div class="src">torproject.org</div>
-    </div>
-    <div class="counter">
-      <div class="v">${feodo ? num(feodo.total_c2_active) : '—'}</div>
-      <div class="l">Active C2 servers</div>
-      <div class="src">abuse.ch · Feodo Tracker</div>
-    </div>
-    <div class="counter">
-      <div class="v">${hibp ? num(hibp.total_breaches) : '—'}</div>
-      <div class="l">Indexed data breaches</div>
-      <div class="src">haveibeenpwned.com</div>
-    </div>
-    <div class="counter">
-      <div class="v">${hibp ? num(hibp.total_records_exposed) : '—'}</div>
-      <div class="l">Records ever exposed</div>
-      <div class="src">haveibeenpwned.com</div>
-    </div>
-    <div class="counter">
-      <div class="v">${spamhaus ? num(spamhaus.total_cidrs) : '—'}</div>
-      <div class="l">Hijacked netblocks (DROP)</div>
-      <div class="src">spamhaus.org</div>
-    </div>
+    <div class="counter"><div class="v">${big(kev?.total)}</div><div><div class="l">CVEs in KEV catalog</div><div class="src">cisa.gov · actively exploited</div></div></div>
+    <div class="counter"><div class="v">${big(epss?.total_cves_scored)}</div><div><div class="l">CVEs scored by EPSS</div><div class="src">first.org · today's snapshot</div></div></div>
+    <div class="counter"><div class="v">${big(urlhaus?.total_recent)}</div><div><div class="l">Malicious URLs (last 30d)</div><div class="src">abuse.ch · URLhaus</div></div></div>
+    <div class="counter"><div class="v">${big(feodo?.total_c2_active)}</div><div><div class="l">Active C2 servers</div><div class="src">abuse.ch · Feodo Tracker</div></div></div>
+    <div class="counter"><div class="v">${big(tor?.total_exits)}</div><div><div class="l">Active Tor exit relays</div><div class="src">torproject.org</div></div></div>
+    <div class="counter"><div class="v">${big(spamhaus?.total_cidrs)}</div><div><div class="l">Hijacked netblocks (DROP)</div><div class="src">spamhaus.org</div></div></div>
+    <div class="counter"><div class="v">${big(hibp?.total_breaches)}</div><div><div class="l">Indexed data breaches</div><div class="src">haveibeenpwned.com</div></div></div>
+    <div class="counter"><div class="v">${big(hibp?.total_records_exposed, true)}</div><div><div class="l">Records ever exposed</div><div class="src">haveibeenpwned.com</div></div></div>
   `;
 
   // ---- Widgets ----
@@ -469,6 +449,18 @@ footer .row{ max-width:1200px; margin:0 auto; display:flex; justify-content:spac
   function scrollWrap(s){ return `<div class="scroll">${s}</div>` }
   function empty(msg){ return `<div class="empty">${escapeHtml(msg)}</div>` }
   function num(n){ if (n == null) return '—'; return new Intl.NumberFormat('en-US').format(n) }
+  function big(n, alwaysAbbrev){
+    if (n == null) return '—';
+    const full = new Intl.NumberFormat('en-US').format(n);
+    // Always abbreviate when caller forces, or when value >= 1M (to fit the card)
+    if (alwaysAbbrev || n >= 1_000_000) {
+      const fmt = (val, unit) => `${val}<span class="unit">${unit}</span><span class="full">(${full})</span>`;
+      if (n >= 1_000_000_000_000) return fmt((n/1e12).toFixed(1), 'T');
+      if (n >= 1_000_000_000)     return fmt((n/1e9).toFixed(1),  'B');
+      if (n >= 1_000_000)         return fmt((n/1e6).toFixed(1),  'M');
+    }
+    return full;
+  }
   function escapeHtml(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])) }
   function escapeAttr(s){ return escapeHtml(s) }
 })();
