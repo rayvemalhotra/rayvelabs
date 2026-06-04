@@ -1,140 +1,140 @@
 {
-  "total_recent": 20040,
+  "total_recent": 19535,
   "recent": [
     {
-      "id": "3858118",
-      "date_added": "2026-06-03 18:59:04",
-      "url": "http://91.92.242.236/files-129312398/files/file_3cd781bcee69e6b7.exe",
-      "url_status": "online",
+      "id": "3858504",
+      "date_added": "2026-06-04 09:46:09",
+      "url": "https://ecomarkperu.com/vvvvvvvvv.ps1",
+      "url_status": "offline",
       "threat": "malware_download",
-      "tags": "c2-monitor-auto,dropped-by-amadey",
-      "host": "https://urlhaus.abuse.ch/url/3858118/"
+      "tags": "ps1,SnakeKeylogger",
+      "host": "https://urlhaus.abuse.ch/url/3858504/"
     },
     {
-      "id": "3858117",
-      "date_added": "2026-06-03 18:48:15",
-      "url": "http://42.180.39.77:49590/i",
+      "id": "3858503",
+      "date_added": "2026-06-04 09:46:05",
+      "url": "https://hottestline.pro/Sudsss-02-06/magazine25348.ecw",
+      "url_status": "offline",
+      "threat": "malware_download",
+      "tags": "encrypted,GuLoader",
+      "host": "https://urlhaus.abuse.ch/url/3858503/"
+    },
+    {
+      "id": "3858502",
+      "date_added": "2026-06-04 09:46:04",
+      "url": "https://db0.chris-smart.workers.dev/Sudsss-02-06/droop/actively/amount/6/4/2026/ay25348.kdc",
+      "url_status": "offline",
+      "threat": "malware_download",
+      "tags": "ascii,Encoded,GuLoader",
+      "host": "https://urlhaus.abuse.ch/url/3858502/"
+    },
+    {
+      "id": "3858501",
+      "date_added": "2026-06-04 09:45:23",
+      "url": "https://baolongwes.oss-ap-southeast-1.aliyuncs.com/spx/spx.vbs",
+      "url_status": "offline",
+      "threat": "malware_download",
+      "tags": "None",
+      "host": "https://urlhaus.abuse.ch/url/3858501/"
+    },
+    {
+      "id": "3858500",
+      "date_added": "2026-06-04 09:45:17",
+      "url": "https://baolongwes.oss-ap-southeast-1.aliyuncs.com/spx/ficeo.zip",
+      "url_status": "online",
+      "threat": "malware_download",
+      "tags": "None",
+      "host": "https://urlhaus.abuse.ch/url/3858500/"
+    },
+    {
+      "id": "3858499",
+      "date_added": "2026-06-04 09:45:07",
+      "url": "https://baolongwes.oss-ap-southeast-1.aliyuncs.com/blaoso/uac399.txt",
+      "url_status": "offline",
+      "threat": "malware_download",
+      "tags": "None",
+      "host": "https://urlhaus.abuse.ch/url/3858499/"
+    },
+    {
+      "id": "3858498",
+      "date_added": "2026-06-04 09:44:17",
+      "url": "http://115.58.135.72:43125/bin.sh",
       "url_status": "online",
       "threat": "malware_download",
       "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3858117/"
+      "host": "https://urlhaus.abuse.ch/url/3858498/"
     },
     {
-      "id": "3858116",
-      "date_added": "2026-06-03 18:35:21",
-      "url": "https://favmrwg.1xbet-official-xbet.top/ef4352b4-ba4c-4235-a72f-de9d4bb179be",
+      "id": "3858497",
+      "date_added": "2026-06-04 09:44:09",
+      "url": "https://inervadores.life/bin/stego_payload.png",
+      "url_status": "online",
+      "threat": "malware_download",
+      "tags": "None",
+      "host": "https://urlhaus.abuse.ch/url/3858497/"
+    },
+    {
+      "id": "3858496",
+      "date_added": "2026-06-04 09:44:07",
+      "url": "http://188.213.175.222/mp/files.png",
+      "url_status": "online",
+      "threat": "malware_download",
+      "tags": "None",
+      "host": "https://urlhaus.abuse.ch/url/3858496/"
+    },
+    {
+      "id": "3858495",
+      "date_added": "2026-06-04 09:43:09",
+      "url": "https://delte-mobrey.com/images/587.exe",
+      "url_status": "online",
+      "threat": "malware_download",
+      "tags": "exe,PureLogsStealer",
+      "host": "https://urlhaus.abuse.ch/url/3858495/"
+    },
+    {
+      "id": "3858494",
+      "date_added": "2026-06-04 09:43:08",
+      "url": "https://ffeqlui.betrayon.casino/bc84e8a9-e44b-47de-b068-ba0379defd7a",
       "url_status": "offline",
       "threat": "malware_download",
       "tags": "ClearFake",
-      "host": "https://urlhaus.abuse.ch/url/3858116/"
+      "host": "https://urlhaus.abuse.ch/url/3858494/"
     },
     {
-      "id": "3858115",
-      "date_added": "2026-06-03 18:34:12",
-      "url": "http://42.52.39.77:45266/i",
+      "id": "3858488",
+      "date_added": "2026-06-04 09:42:20",
+      "url": "http://176.65.148.97/bins/arm6",
       "url_status": "online",
       "threat": "malware_download",
-      "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3858115/"
+      "tags": "elf,mirai,ua-wget",
+      "host": "https://urlhaus.abuse.ch/url/3858488/"
     },
     {
-      "id": "3858114",
-      "date_added": "2026-06-03 18:28:19",
-      "url": "https://qyteglr.1xbetios.bet/b4b3b67d-770f-43ba-95b3-6c31b299ce60",
-      "url_status": "offline",
-      "threat": "malware_download",
-      "tags": "ClearFake",
-      "host": "https://urlhaus.abuse.ch/url/3858114/"
-    },
-    {
-      "id": "3858113",
-      "date_added": "2026-06-03 18:06:06",
-      "url": "http://125.43.104.117:33982/i",
+      "id": "3858489",
+      "date_added": "2026-06-04 09:42:20",
+      "url": "http://176.65.148.97/bins/m68k",
       "url_status": "online",
       "threat": "malware_download",
-      "tags": "Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3858113/"
+      "tags": "elf,mirai,ua-wget",
+      "host": "https://urlhaus.abuse.ch/url/3858489/"
     },
     {
-      "id": "3858112",
-      "date_added": "2026-06-03 17:56:14",
-      "url": "http://222.134.163.121:47510/i",
+      "id": "3858490",
+      "date_added": "2026-06-04 09:42:20",
+      "url": "http://176.65.148.97/bins/x86",
       "url_status": "online",
       "threat": "malware_download",
-      "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3858112/"
+      "tags": "elf,mirai,ua-wget",
+      "host": "https://urlhaus.abuse.ch/url/3858490/"
     },
     {
-      "id": "3858111",
-      "date_added": "2026-06-03 17:53:06",
-      "url": "https://qjothjo.1xbetandroid.bet/d3e5d83c-596f-4450-bc7a-59428ccf0ab6",
-      "url_status": "offline",
-      "threat": "malware_download",
-      "tags": "ClearFake",
-      "host": "https://urlhaus.abuse.ch/url/3858111/"
-    },
-    {
-      "id": "3858110",
-      "date_added": "2026-06-03 17:52:18",
-      "url": "https://4ly606b9.aftabsport.ir/?ublib=f381ca2a-b6b2-4093-8c72-3ae7d7a02d6d",
-      "url_status": "offline",
-      "threat": "malware_download",
-      "tags": "ClearFake",
-      "host": "https://urlhaus.abuse.ch/url/3858110/"
-    },
-    {
-      "id": "3858109",
-      "date_added": "2026-06-03 17:49:05",
-      "url": "https://vtqjke.1xbet1farsi.com/3e2d04bf-9595-4a7d-b9ab-37c9511842b9",
-      "url_status": "offline",
-      "threat": "malware_download",
-      "tags": "ClearFake",
-      "host": "https://urlhaus.abuse.ch/url/3858109/"
-    },
-    {
-      "id": "3858108",
-      "date_added": "2026-06-03 17:48:15",
-      "url": "http://182.114.35.229:47900/i",
+      "id": "3858491",
+      "date_added": "2026-06-04 09:42:20",
+      "url": "http://176.65.148.97/bins/mips",
       "url_status": "online",
       "threat": "malware_download",
-      "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3858108/"
-    },
-    {
-      "id": "3858107",
-      "date_added": "2026-06-03 17:34:08",
-      "url": "http://125.44.18.81:36286/i",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3858107/"
-    },
-    {
-      "id": "3858106",
-      "date_added": "2026-06-03 17:32:14",
-      "url": "http://222.134.163.121:47510/bin.sh",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3858106/"
-    },
-    {
-      "id": "3858105",
-      "date_added": "2026-06-03 17:30:21",
-      "url": "http://219.156.22.2:32963/i",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3858105/"
-    },
-    {
-      "id": "3858104",
-      "date_added": "2026-06-03 17:29:12",
-      "url": "http://42.235.90.54:49233/i",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3858104/"
+      "tags": "elf,mirai,ua-wget",
+      "host": "https://urlhaus.abuse.ch/url/3858491/"
     }
   ]
 }

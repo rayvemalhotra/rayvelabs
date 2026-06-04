@@ -1,15 +1,22 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1683",
-    "name": "Generate Content",
-    "description": "Adversaries may create or generate content to support targeting and operations. This content may be used to establish personas, impersonate known individuals or organizations, and support [Social Engineering](https://attack.mitre.org/techniques/T1684), fraud, or influence activities. Written materials, audio, images, video, or other media may be developed and tailored to the target and objective.(Citation: IBM AI-Generated Content)",
+    "id": "T1201",
+    "name": "Password Policy Discovery",
+    "description": "Adversaries may attempt to access detailed information about the password policy used within an enterprise network or cloud environment. Password policies are a way to enforce complex passwords that are difficult to guess or crack through [Brute Force](https://attack.mitre.org/techniques/T1110). This information may help the adversary to create a list of common passwords and launch dictionary and/or brute force attacks which adheres to the policy (e.g. if the minimum password length should be 8, then not trying passwords such as 'pass123'; not checking for more than 3-4 passwords per account if the lockout is set to 6 as to not lock out accounts).",
     "tactics": [
-      "resource-development"
+      "discovery"
     ],
     "platforms": [
-      "PRE"
+      "Windows",
+      "Linux",
+      "macOS",
+      "IaaS",
+      "Network Devices",
+      "Identity Provider",
+      "SaaS",
+      "Office Suite"
     ],
-    "url": "https://attack.mitre.org/techniques/T1683"
+    "url": "https://attack.mitre.org/techniques/T1201"
   }
 }

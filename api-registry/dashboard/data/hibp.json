@@ -1,6 +1,6 @@
 {
-  "total_breaches": 1000,
-  "total_records_exposed": 17596966922,
+  "total_breaches": 1001,
+  "total_records_exposed": 17599520521,
   "recent": [
     {
       "name": "AtlasMenu",
@@ -28,6 +28,25 @@
       "data_classes": [
         "Email addresses",
         "Job titles",
+        "Names",
+        "Phone numbers",
+        "Physical addresses"
+      ],
+      "verified": true
+    },
+    {
+      "name": "DentaQuest",
+      "title": "DentaQuest",
+      "domain": "dentaquest.com",
+      "breach_date": "2026-05-23",
+      "added_date": "2026-06-03T22:56:30Z",
+      "pwn_count": 2553599,
+      "data_classes": [
+        "Dates of birth",
+        "Email addresses",
+        "Genders",
+        "Government issued IDs",
+        "Health insurance information",
         "Names",
         "Phone numbers",
         "Physical addresses"
@@ -104,23 +123,6 @@
         "Job titles",
         "Names",
         "Payment methods",
-        "Phone numbers",
-        "Physical addresses"
-      ],
-      "verified": true
-    },
-    {
-      "name": "ADT",
-      "title": "ADT",
-      "domain": "adt.com",
-      "breach_date": "2026-04-20",
-      "added_date": "2026-04-27T07:36:42Z",
-      "pwn_count": 5488888,
-      "data_classes": [
-        "Dates of birth",
-        "Email addresses",
-        "Names",
-        "Partial government issued IDs",
         "Phone numbers",
         "Physical addresses"
       ],
