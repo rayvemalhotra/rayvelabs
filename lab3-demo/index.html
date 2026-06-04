@@ -1,0 +1,887 @@
+<!doctype html>
+<!--
+  ============================================================
+   RayveLabs · Lab 3 demo · https://rayvelabs.com/lab3-demo/
+
+   A teaching simulator that demonstrates the 25 core features
+   of Chapter 3 (vulnerability assessment, correlation, and
+   prioritization) from Dr. Mallarapu's SEAS-8414 course at GWU.
+
+   This page is a DEMO — synthetic network, synthetic findings,
+   real CVE/CVSS/KEV/EPSS data. Nothing is actually scanned.
+   Built to illustrate the analytical method, not to operate.
+
+   © 2026 Rayve Malhotra · Demo only · Original Chapter 3
+   material © Dr. Mallarapu / SEAS-8414. Credited explicitly
+   in the welcome panel and every footer.
+  ============================================================
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lab 3 demo — Vulnerability Assessment · RayveLabs</title>
+<meta name="description" content="An interactive teaching demo of the 25 core features from Chapter 3 (Vulnerability Assessment, Correlation, and Prioritization) of Dr. Mallarapu's SEAS-8414 course at GWU. Built by RayveLabs as a public learning aid.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://rayvelabs.com/lab3-demo/">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+:root{
+  /* Light layer for the chrome (matches RayveLabs) */
+  --bg:#fbfbf9; --paper:#ffffff; --paper2:#f3f3f0;
+  --line:#d4d4d4; --line-dark:#1a1a1a; --ink:#1a1a1a;
+  --dim:#525252; --faint:#909090;
+  /* Dark layer for the dashboard surface */
+  --d-bg:#0e1219; --d-panel:#171c27; --d-panel-2:#1d2330;
+  --d-line:#2a3142; --d-line-2:#3a4258;
+  --d-ink:#e6ebf3; --d-dim:#9aa3b5; --d-faint:#5d667a;
+  /* Accents (status palette — muted academic) */
+  --accent:#2d5e3a; --accent-soft:#3a7a4a;
+  --amber:#8a6321; --amber-soft:#b8862b;
+  --rose:#8a3a3a; --rose-soft:#c0525a;
+  --violet:#5b3d8a; --blue:#1e4a8a;
+  --kev:#c0525a; --crit:#c0525a; --high:#b8862b; --med:#7a8c3a; --low:#3a7a4a; --info:#5d667a;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{ background:var(--bg); color:var(--ink); font-family:'Source Serif Pro',Georgia,serif; font-size:15.5px; line-height:1.6; -webkit-font-smoothing:antialiased }
+a{ color:inherit; text-decoration-color:var(--line); text-underline-offset:3px }
+a:hover{ text-decoration-color:var(--ink) }
+
+/* ═══ Header ═══ */
+header.site{ border-bottom:1px solid var(--line); padding:14px 24px; background:rgba(251,251,249,.95); backdrop-filter:blur(6px); position:sticky; top:0; z-index:20 }
+header.site .row{ max-width:1440px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:24px }
+header.site .brand{ font-family:'Source Serif Pro',Georgia,serif; font-weight:700; font-size:17px; text-decoration:none; letter-spacing:-.2px }
+header.site .brand .sub{ color:var(--dim); font-weight:400; font-style:italic }
+header.site .crumb{ font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--dim); letter-spacing:.04em }
+header.site .crumb b{ color:var(--ink); font-weight:600 }
+header.site nav a{ font-family:'Inter',system-ui,sans-serif; font-size:13px; color:var(--dim); margin-left:18px; text-decoration:none }
+header.site nav a:hover{ color:var(--ink) }
+
+/* ═══ Attribution banner ═══ */
+.attrib{
+  background:var(--paper2); border-bottom:1px solid var(--line);
+  padding:10px 24px;
+  font-family:'JetBrains Mono',monospace; font-size:11px;
+  color:var(--dim); letter-spacing:.04em; text-align:center;
+}
+.attrib b{ color:var(--ink); font-weight:600 }
+.attrib .demo-tag{ background:var(--ink); color:var(--bg); padding:2px 8px; border-radius:3px; margin-right:8px; font-weight:600; letter-spacing:.12em; text-transform:uppercase }
+
+/* ═══ App shell — two-column layout ═══ */
+.app{ max-width:1440px; margin:0 auto; display:grid; grid-template-columns:240px 1fr; min-height:calc(100vh - 90px) }
+@media(max-width:880px){ .app{ grid-template-columns:1fr } .sidebar{ position:static !important } }
+
+/* Sidebar */
+.sidebar{
+  background:var(--d-bg); color:var(--d-ink); padding:24px 0;
+  border-right:1px solid var(--d-line-2);
+  position:sticky; top:51px; height:calc(100vh - 51px); overflow-y:auto;
+}
+.sidebar h3{
+  font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--d-faint);
+  letter-spacing:.16em; text-transform:uppercase; font-weight:600;
+  padding:0 22px 8px; margin-top:14px;
+}
+.sidebar h3:first-of-type{ margin-top:0 }
+.sidebar nav{ display:flex; flex-direction:column; gap:1px }
+.sidebar nav a{
+  font-family:'Inter',system-ui,sans-serif; font-size:13.5px; font-weight:500;
+  color:var(--d-dim); padding:9px 22px; text-decoration:none;
+  border-left:2px solid transparent; transition:all .12s;
+  display:flex; align-items:center; justify-content:space-between; gap:8px;
+}
+.sidebar nav a:hover{ color:var(--d-ink); background:var(--d-panel) }
+.sidebar nav a.on{ color:var(--d-ink); background:var(--d-panel); border-left-color:var(--accent-soft); font-weight:600 }
+.sidebar nav a .badge{ font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--d-faint); background:var(--d-panel-2); padding:1px 6px; border-radius:3px }
+.sidebar nav a.on .badge{ color:var(--accent-soft); background:rgba(58,122,74,.15) }
+.sidebar .roe{
+  margin:24px 18px 0; padding:14px; background:var(--d-panel);
+  border:1px solid var(--d-line-2); border-left:3px solid var(--amber-soft);
+  border-radius:6px;
+}
+.sidebar .roe .lbl{ font-family:'JetBrains Mono',monospace; font-size:9.5px; color:var(--amber-soft); letter-spacing:.14em; text-transform:uppercase; font-weight:600; margin-bottom:6px }
+.sidebar .roe .v{ font-size:12px; color:var(--d-ink); line-height:1.55 }
+.sidebar .roe .v b{ font-weight:600 }
+.sidebar .who{ margin:22px 22px 0; padding-top:18px; border-top:1px solid var(--d-line-2); font-size:11.5px; color:var(--d-faint); line-height:1.6 }
+.sidebar .who b{ color:var(--d-ink); font-weight:600 }
+
+/* Main content */
+main{ background:var(--d-bg); color:var(--d-ink); padding:32px 36px 80px; min-width:0 }
+main h1{ font-family:'Source Serif Pro',Georgia,serif; font-weight:600; font-size:30px; letter-spacing:-.5px; line-height:1.2; margin-bottom:6px; color:var(--d-ink) }
+main h1 em{ font-style:italic; color:var(--accent-soft); font-weight:600 }
+main .h-eyebrow{ font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--d-faint); letter-spacing:.16em; text-transform:uppercase; font-weight:600; margin-bottom:14px }
+main .h-lede{ font-size:15px; line-height:1.6; color:var(--d-dim); max-width:780px; margin-bottom:28px }
+main .h-lede strong{ color:var(--d-ink); font-weight:600 }
+
+/* Feature ribbon — which Lab 3 features this view demonstrates */
+.feat-ribbon{
+  background:var(--d-panel); border:1px solid var(--d-line-2);
+  border-radius:8px; padding:12px 16px; margin-bottom:24px;
+  display:flex; align-items:flex-start; gap:14px;
+  font-family:'Inter',system-ui,sans-serif; font-size:12.5px; color:var(--d-dim); line-height:1.55;
+}
+.feat-ribbon .lbl{
+  font-family:'JetBrains Mono',monospace; font-size:10.5px;
+  color:var(--accent-soft); letter-spacing:.12em; text-transform:uppercase; font-weight:600;
+  flex-shrink:0; padding-top:1px;
+}
+.feat-ribbon strong{ color:var(--d-ink); font-weight:600 }
+.feat-ribbon code{ font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--d-ink); background:var(--d-panel-2); padding:1px 5px; border-radius:3px }
+
+/* KPI strip */
+.kpi-strip{ display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:14px; margin-bottom:28px }
+.kpi{
+  background:var(--d-panel); border:1px solid var(--d-line-2); border-radius:10px;
+  padding:18px 20px; min-height:96px;
+  display:flex; flex-direction:column; justify-content:space-between;
+}
+.kpi .v{ font-family:'JetBrains Mono',monospace; font-size:26px; font-weight:700; color:var(--d-ink); letter-spacing:-.4px; line-height:1.1 }
+.kpi .v.kev{ color:var(--rose-soft) }
+.kpi .v.high{ color:var(--amber-soft) }
+.kpi .v.ok{ color:var(--accent-soft) }
+.kpi .l{ font-family:'Inter',system-ui,sans-serif; font-size:10.5px; color:var(--d-faint); text-transform:uppercase; letter-spacing:.14em; font-weight:600 }
+.kpi .s{ font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--d-faint); margin-top:3px }
+
+/* Panel */
+.panel{ background:var(--d-panel); border:1px solid var(--d-line-2); border-radius:10px; padding:22px 24px; margin-bottom:18px }
+.panel h2{ font-family:'Source Serif Pro',Georgia,serif; font-weight:600; font-size:19px; letter-spacing:-.2px; margin-bottom:4px; color:var(--d-ink) }
+.panel .sub{ font-family:'Inter',system-ui,sans-serif; font-size:12.5px; color:var(--d-faint); margin-bottom:14px }
+.panel p{ font-size:14.5px; line-height:1.6; color:var(--d-dim); margin-bottom:10px }
+.panel p strong{ color:var(--d-ink); font-weight:600 }
+.panel p:last-child{ margin-bottom:0 }
+
+/* Tables */
+table.t{ width:100%; border-collapse:collapse; font-family:'Inter',system-ui,sans-serif; font-size:13px }
+table.t thead th{
+  text-align:left; font-weight:600; color:var(--d-faint);
+  font-size:10.5px; letter-spacing:.1em; text-transform:uppercase;
+  padding:8px 10px 8px 0; border-bottom:1px solid var(--d-line-2);
+}
+table.t tbody td{
+  padding:9px 10px 9px 0; border-bottom:1px solid var(--d-line);
+  vertical-align:top; color:var(--d-ink); line-height:1.5;
+}
+table.t tbody tr:hover{ background:var(--d-panel-2) }
+table.t tbody tr:last-child td{ border-bottom:none }
+table.t td.mono{ font-family:'JetBrains Mono',monospace; font-size:12px }
+table.t td.dim{ color:var(--d-dim) }
+table.t td.r{ text-align:right }
+
+/* Badges + chips */
+.tag{ display:inline-block; font-family:'JetBrains Mono',monospace; font-size:10px; font-weight:600; letter-spacing:.05em; padding:2px 7px; border-radius:3px; border:1px solid; line-height:1.4 }
+.tag.kev{ color:var(--kev); border-color:rgba(192,82,90,.4); background:rgba(192,82,90,.10) }
+.tag.crit{ color:var(--crit); border-color:rgba(192,82,90,.4); background:rgba(192,82,90,.10) }
+.tag.high{ color:var(--amber-soft); border-color:rgba(184,134,43,.4); background:rgba(184,134,43,.10) }
+.tag.med{ color:#a8c252; border-color:rgba(168,194,82,.4); background:rgba(168,194,82,.10) }
+.tag.low{ color:var(--accent-soft); border-color:rgba(58,122,74,.4); background:rgba(58,122,74,.10) }
+.tag.info{ color:var(--d-faint); border-color:var(--d-line-2); background:transparent }
+.tag.conf{ color:var(--accent-soft); border-color:rgba(58,122,74,.4); background:rgba(58,122,74,.10) }
+.tag.fp{ color:var(--d-faint); border-color:var(--d-line-2); background:var(--d-panel-2); text-decoration:line-through }
+.tag.risk-acc{ color:var(--amber-soft); border-color:rgba(184,134,43,.4); background:rgba(184,134,43,.10) }
+.tag.cand{ color:#b8c5e6; border-color:rgba(184,197,230,.3); background:rgba(184,197,230,.08) }
+
+.chip{ display:inline-block; font-family:'Inter',system-ui,sans-serif; font-size:11px; color:var(--d-dim); background:var(--d-panel-2); border:1px solid var(--d-line-2); padding:2px 8px; border-radius:999px; margin:2px 4px 0 0 }
+
+/* CVSS vector decomposition */
+.cvss-vec{ font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--d-ink); background:#04080e; padding:12px 14px; border-radius:6px; border:1px solid var(--d-line-2); margin:10px 0 }
+.cvss-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(150px, 1fr)); gap:10px; margin-top:14px }
+.cvss-grid .m{ background:var(--d-panel-2); border:1px solid var(--d-line); border-radius:6px; padding:10px 12px }
+.cvss-grid .m .k{ font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--d-faint); letter-spacing:.12em; text-transform:uppercase; margin-bottom:3px }
+.cvss-grid .m .vname{ font-family:'JetBrains Mono',monospace; font-size:14px; color:var(--accent-soft); font-weight:600 }
+.cvss-grid .m .vmean{ font-size:12px; color:var(--d-ink); margin-top:2px; line-height:1.4 }
+
+/* Method coverage matrix */
+.coverage{ display:grid; grid-template-columns:1fr repeat(5, 110px); gap:8px; font-family:'Inter',system-ui,sans-serif; font-size:12.5px }
+.coverage .head{ font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--d-faint); letter-spacing:.1em; text-transform:uppercase; padding:8px 6px; border-bottom:1px solid var(--d-line-2); font-weight:600 }
+.coverage .cell{ padding:10px 6px; border-bottom:1px solid var(--d-line); display:flex; align-items:center; gap:6px }
+.coverage .cell.asset{ font-family:'JetBrains Mono',monospace; font-size:12px }
+.method-state{ display:inline-flex; align-items:center; gap:5px; font-size:11px; font-family:'JetBrains Mono',monospace; padding:2px 7px; border-radius:3px; border:1px solid; line-height:1.4 }
+.method-state.ok{ color:var(--accent-soft); border-color:rgba(58,122,74,.4); background:rgba(58,122,74,.10) }
+.method-state.disabled{ color:var(--d-faint); border-color:var(--d-line-2); background:var(--d-panel-2) }
+.method-state.unavail{ color:#b8c5e6; border-color:rgba(184,197,230,.3); background:rgba(184,197,230,.08) }
+.method-state.failed{ color:var(--rose-soft); border-color:rgba(192,82,90,.4); background:rgba(192,82,90,.10) }
+.method-state.gap{ color:var(--amber-soft); border-color:rgba(184,134,43,.4); background:rgba(184,134,43,.10) }
+
+/* Evidence ledger entries */
+.ledger-entry{ background:var(--d-panel-2); border:1px solid var(--d-line); border-radius:8px; padding:14px 18px; margin-bottom:10px; border-left:3px solid var(--d-line-2) }
+.ledger-entry.confirmed{ border-left-color:var(--accent-soft) }
+.ledger-entry.fp{ border-left-color:var(--d-faint) }
+.ledger-entry.risk-acc{ border-left-color:var(--amber-soft) }
+.ledger-entry .top{ display:flex; align-items:center; justify-content:space-between; gap:14px; margin-bottom:6px; flex-wrap:wrap }
+.ledger-entry .top .id{ font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--d-ink); font-weight:600 }
+.ledger-entry .meta{ font-family:'Inter',system-ui,sans-serif; font-size:12px; color:var(--d-dim); margin-bottom:4px }
+.ledger-entry .meta strong{ color:var(--d-ink); font-weight:600 }
+.ledger-entry .why{ font-size:13px; line-height:1.55; color:var(--d-ink); margin-top:6px; padding-left:0; font-style:italic }
+.ledger-entry .audit{ font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--d-faint); margin-top:8px; padding-top:8px; border-top:1px dashed var(--d-line-2) }
+
+/* Pipeline / phase progress */
+.phases{ display:flex; gap:0; margin-bottom:20px; background:var(--d-panel); border:1px solid var(--d-line-2); border-radius:8px; padding:4px; overflow:hidden }
+.phase{ flex:1; padding:10px 14px; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--d-faint); border-radius:5px; text-align:center; position:relative }
+.phase.done{ background:rgba(58,122,74,.10); color:var(--accent-soft) }
+.phase.active{ background:rgba(91,61,138,.15); color:#9d83c4 }
+.phase.blocked{ background:rgba(184,134,43,.10); color:var(--amber-soft) }
+.phase .pn{ font-weight:700; letter-spacing:.08em }
+.phase .pl{ font-size:10px; opacity:.85; margin-top:2px }
+
+/* Priority queue */
+.queue-item{ background:var(--d-panel-2); border:1px solid var(--d-line); border-radius:8px; padding:14px 18px; margin-bottom:10px; display:grid; grid-template-columns:36px 1fr 80px; gap:14px; align-items:center }
+.queue-item .rank{ font-family:'JetBrains Mono',monospace; font-size:22px; font-weight:700; color:var(--d-ink); text-align:center }
+.queue-item .body .id{ font-family:'JetBrains Mono',monospace; font-size:13.5px; color:var(--d-ink); font-weight:600; margin-bottom:3px }
+.queue-item .body .reason{ font-size:13px; color:var(--d-dim); line-height:1.5; font-style:italic }
+.queue-item .body .meta{ margin-top:6px; display:flex; gap:5px; flex-wrap:wrap }
+.queue-item .score{ font-family:'JetBrains Mono',monospace; font-size:24px; font-weight:700; color:var(--accent-soft); text-align:right; letter-spacing:-.4px }
+.queue-item .score .lbl{ display:block; font-size:9px; color:var(--d-faint); letter-spacing:.12em; font-weight:600; text-transform:uppercase; margin-top:2px }
+
+/* Asset cards */
+.asset-card{ background:var(--d-panel); border:1px solid var(--d-line-2); border-radius:10px; padding:18px 22px; margin-bottom:12px; cursor:pointer; transition:border-color .12s }
+.asset-card:hover{ border-color:var(--accent-soft) }
+.asset-card .ip{ font-family:'JetBrains Mono',monospace; font-size:14px; color:var(--d-ink); font-weight:600 }
+.asset-card .role{ font-family:'Inter',system-ui,sans-serif; font-size:12px; color:var(--d-faint); margin-left:8px }
+.asset-card .cpe{ font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--d-dim); margin-top:6px; background:var(--d-panel-2); padding:5px 9px; border-radius:4px; display:inline-block; border:1px solid var(--d-line) }
+.asset-card .summary{ margin-top:10px; font-size:13px; line-height:1.55; color:var(--d-dim) }
+.asset-card .row{ margin-top:8px; display:flex; gap:6px; flex-wrap:wrap; align-items:center }
+.asset-card .row .k{ font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--d-faint); text-transform:uppercase; letter-spacing:.08em; margin-right:6px }
+
+/* Code blocks */
+pre.code{ background:#04080e; border:1px solid var(--d-line-2); border-radius:6px; padding:14px 18px; font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--d-ink); line-height:1.65; overflow-x:auto; margin:12px 0 }
+.code .ko{ color:var(--accent-soft) }
+.code .ku{ color:#b8c5e6 }
+.code .kn{ color:var(--amber-soft) }
+.code .ks{ color:var(--rose-soft) }
+.code .km{ color:var(--d-faint); font-style:italic }
+
+/* Empty/aside */
+.aside-note{ font-size:13px; color:var(--d-faint); padding:12px 16px; background:var(--d-panel-2); border-left:2px solid var(--violet); border-radius:0 6px 6px 0; margin:12px 0; line-height:1.55; font-style:italic }
+.aside-note strong{ color:var(--d-ink); font-weight:600; font-style:normal }
+
+/* Footer */
+footer.demo{ border-top:1px solid var(--line); padding:28px 24px; font-family:'Inter',system-ui,sans-serif; font-size:12.5px; color:var(--dim); background:var(--bg) }
+footer.demo .row{ max-width:1440px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:14px }
+footer.demo a{ color:var(--dim) }
+footer.demo a:hover{ color:var(--ink) }
+
+/* Welcome / hero on first view */
+.welcome-hero{
+  background:linear-gradient(135deg, var(--d-panel) 0%, var(--d-panel-2) 100%);
+  border:1px solid var(--d-line-2); border-radius:14px;
+  padding:38px 42px 32px; margin-bottom:28px;
+}
+.welcome-hero h1{ font-size:36px; margin-bottom:8px }
+.welcome-hero .lede{ font-size:16.5px; color:var(--d-dim); line-height:1.6; max-width:780px; margin-bottom:18px }
+.welcome-hero .credit{
+  display:inline-block; padding:8px 14px; background:rgba(91,61,138,.12);
+  border:1px solid rgba(91,61,138,.35); border-radius:6px;
+  font-family:'JetBrains Mono',monospace; font-size:12px; color:#b8a3e6; letter-spacing:.04em;
+}
+.welcome-hero .credit b{ color:#d4c5f0; font-weight:600 }
+
+.features-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:14px; margin-top:14px }
+.fcard{ background:var(--d-panel); border:1px solid var(--d-line-2); border-radius:8px; padding:16px 18px }
+.fcard .num{ font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--accent-soft); font-weight:600; letter-spacing:.08em; margin-bottom:4px }
+.fcard .name{ font-family:'Source Serif Pro',serif; font-weight:600; font-size:15px; color:var(--d-ink); margin-bottom:6px; letter-spacing:-.1px }
+.fcard .desc{ font-size:12.5px; color:var(--d-dim); line-height:1.55 }
+.fcard .feats{ margin-top:10px; font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--d-faint); letter-spacing:.04em }
+
+@media (max-width:680px){ main{ padding:24px 20px 60px } .welcome-hero{ padding:24px 22px } .welcome-hero h1{ font-size:28px } }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="row">
+    <a href="/" class="brand">RayveLabs <span class="sub">— teaching demo</span></a>
+    <div class="crumb">Labs · <b>Chapter 3 — Vulnerability Assessment</b></div>
+    <nav>
+      <a href="/rayvenet.html">RayveNet</a>
+      <a href="/api-registry/">Registry</a>
+      <a href="/portal/">Atlas</a>
+      <a href="/">Home</a>
+    </nav>
+  </div>
+</header>
+<div class="attrib">
+  <span class="demo-tag">Demo</span>
+  Built by RayveLabs to illustrate <b>Dr. Mallarapu's SEAS-8414 Chapter 3</b> &mdash;
+  Vulnerability Assessment, Correlation, and Prioritization &mdash;
+  using the same teaching scenario as the official lab. <b>Original course material © Dr. Mallarapu / The George Washington University.</b>
+</div>
+
+<div class="app">
+  <aside class="sidebar">
+    <h3>// Pipeline</h3>
+    <nav id="nav">
+      <a href="#overview" data-view="overview">Overview <span class="badge">f.1-7</span></a>
+      <a href="#assets" data-view="assets">Asset inventory <span class="badge">f.1,5</span></a>
+      <a href="#methods" data-view="methods">Method coverage <span class="badge">f.22-25</span></a>
+      <a href="#nvd" data-view="nvd">NVD / CVE association <span class="badge">f.1-5</span></a>
+      <a href="#cvss" data-view="cvss">CVSS decomposition <span class="badge">f.6-7</span></a>
+      <a href="#scanners" data-view="scanners">Scanner adapters <span class="badge">f.8-10</span></a>
+      <a href="#creds" data-view="creds">Default-credential probe <span class="badge">f.11-13</span></a>
+      <a href="#enrich" data-view="enrich">Enrichment &amp; priority <span class="badge">f.14-16</span></a>
+      <a href="#ledger" data-view="ledger">Evidence ledger <span class="badge">f.17-21</span></a>
+      <a href="#queue" data-view="queue">Remediation queue <span class="badge">f.16</span></a>
+      <a href="#safety" data-view="safety">Safety posture <span class="badge">f.25</span></a>
+    </nav>
+    <div class="roe">
+      <div class="lbl">ROE · Rules of Engagement</div>
+      <div class="v"><b>Phase 1 (active probes)</b> permitted on 172.30.0.0/24 except <code>172.30.0.40</code> (infusion pump — policy-blocked).</div>
+    </div>
+    <div class="who">
+      <b>Source material:</b><br>
+      SEAS-8414, Phase 3 Lab<br>
+      Dr. Mallarapu, GWU<br>
+      <br><b>Built by:</b><br>Rayve Malhotra<br>
+      <i>RayveLabs · 2026</i>
+    </div>
+  </aside>
+
+  <main id="main"></main>
+</div>
+
+<footer class="demo">
+  <div class="row">
+    <div>© 2026 Rayve Malhotra · <a href="/">RayveLabs</a> · Demonstration only. Synthetic network, real CVE data.</div>
+    <div>Course material © Dr. Mallarapu / SEAS-8414 · GWU. <a href="https://8414.bwater.io" target="_blank" rel="noopener">8414.bwater.io ↗</a></div>
+  </div>
+</footer>
+
+<script>
+// ════════════════════════════════════════════════════════════════
+// Synthetic demo data — modelled on the official Lab 3 scenario.
+// All CVEs / CVSS vectors / KEV / EPSS values are real public data;
+// the device IPs and roles are the lab's synthetic network.
+// ════════════════════════════════════════════════════════════════
+
+const ASSETS = [
+  {
+    ip: '172.30.0.10',
+    role: 'IP camera (lobby)',
+    vendor: 'Hikvision',
+    model: 'DS-2CD2143G2-I',
+    firmware: '5.5.52',
+    cpe_narrow: 'cpe:2.3:o:hikvision:ds-2cd2143g2-i_firmware:5.5.52:*:*:*:*:*:*:*',
+    cpe_broad:  'cpe:2.3:a:hikvision:ip_camera:*:*:*:*:*:*:*:*',
+    services: [
+      { port: 80, proto: 'http', product: 'Hikvision httpd' },
+      { port: 554, proto: 'rtsp', product: 'Hikvision RTSP' },
+      { port: 8000, proto: 'tcp', product: 'Hikvision SDK' },
+    ],
+    consequence: 1,  // lobby — low safety consequence
+    exposure: 0,     // internal-only
+  },
+  {
+    ip: '172.30.0.11',
+    role: 'IP camera (loading dock)',
+    vendor: 'Axis',
+    model: 'P1375',
+    firmware: '10.12.2',
+    cpe_narrow: 'cpe:2.3:o:axis:p1375_firmware:10.12.2:*:*:*:*:*:*:*',
+    cpe_broad:  'cpe:2.3:a:axis:ip_camera:*:*:*:*:*:*:*:*',
+    services: [{ port: 80, proto: 'http', product: 'AXIS httpd' }, { port: 554, proto: 'rtsp', product: 'AXIS RTSP' }],
+    consequence: 2, exposure: 0,
+  },
+  {
+    ip: '172.30.0.20',
+    role: 'OT gateway (HVAC controller)',
+    vendor: 'Schneider Electric',
+    model: 'M580 ePAC',
+    firmware: '4.20',
+    cpe_narrow: 'cpe:2.3:o:schneider-electric:modicon_m580_firmware:4.20:*:*:*:*:*:*:*',
+    cpe_broad:  'cpe:2.3:o:schneider-electric:modicon_m580_firmware:*:*:*:*:*:*:*:*',
+    services: [{ port: 80, proto: 'http', product: 'Modbus HMI' }, { port: 502, proto: 'modbus', product: 'Modbus TCP' }],
+    consequence: 4, exposure: 1,
+  },
+  {
+    ip: '172.30.0.30',
+    role: 'Linux jump host',
+    vendor: 'Ubuntu',
+    model: '22.04 LTS',
+    firmware: 'OpenSSH 9.0',
+    cpe_narrow: 'cpe:2.3:a:openbsd:openssh:9.0:*:*:*:*:*:*:*',
+    cpe_broad:  '',
+    services: [{ port: 22, proto: 'ssh', product: 'OpenSSH 9.0' }],
+    consequence: 3, exposure: 2,
+  },
+  {
+    ip: '172.30.0.40',
+    role: 'Infusion pump (ICU)',
+    vendor: 'BD',
+    model: 'Alaris',
+    firmware: 'PCU 12.1',
+    cpe_narrow: '',
+    cpe_broad: 'cpe:2.3:o:bd:alaris_pcu_firmware:*:*:*:*:*:*:*:*',
+    services: [{ port: 80, proto: 'http', product: 'AlarisCare' }],
+    consequence: 5, exposure: 0,
+    roe_blocked: true,
+  },
+  {
+    ip: '172.30.0.50',
+    role: 'IP camera (ambiguous identity)',
+    vendor: '(Axis OR Dahua — unresolved)',
+    model: '',
+    firmware: '',
+    cpe_narrow: '',
+    cpe_broad: 'cpe:2.3:o:axis|dahua:ip_camera:*:*:*:*:*:*:*:*',
+    services: [{ port: 80, proto: 'http', product: 'embedded httpd' }],
+    consequence: 1, exposure: 0,
+    cpe_conflict: true,
+  },
+];
+
+// Findings — each one is a (host, cve, method, evidence) tuple
+const FINDINGS = [
+  // ── 172.30.0.10 Hikvision — the lab's running case
+  { id:'F-001', ip:'172.30.0.10', cve:'CVE-2021-36260', method:'NVD',           cvss:9.8, vector:'CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H', cwe:'CWE-78',  kev:true,  epss:0.94621, status:'confirmed', evidence:'Vendor advisory + active in KEV catalog since 2022-09-15.' },
+  { id:'F-002', ip:'172.30.0.10', cve:'CVE-2017-7921',  method:'NVD',           cvss:7.5, vector:'CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N', cwe:'CWE-287', kev:true,  epss:0.91802, status:'confirmed', evidence:'Unauth /system/deviceInfo returned firmware + MAC. Reproduced by direct probe.' },
+  { id:'F-003', ip:'172.30.0.10', cve:'CVE-2017-7921',  method:'Nuclei',        cvss:7.5, vector:'CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N', cwe:'CWE-287', kev:true,  epss:0.91802, status:'confirmed', evidence:'Nuclei template `hikvision-deviceinfo-disclosure` matched (HTTP 200 + matcher string).' },
+  { id:'F-004', ip:'172.30.0.10', cve:'(none)',         method:'Default-cred',  cvss:null,vector:null,                                            cwe:'CWE-798', kev:false, epss:null,   status:'confirmed', evidence:'`admin:12345` → HTTP 200 + authenticated body. Vendor-default of record.' },
+  { id:'F-005', ip:'172.30.0.10', cve:'CVE-2022-28171', method:'NVD',           cvss:5.4, vector:'CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:U/C:L/I:L/A:N', cwe:'CWE-79',  kev:false, epss:0.00214, status:'risk-accepted', evidence:'Stored XSS in legacy webadmin. Risk-accepted: no Internet exposure + vendor patch planned 2026-Q3.' },
+
+  // ── 172.30.0.11 Axis — exact CPE, narrow result
+  { id:'F-006', ip:'172.30.0.11', cve:'CVE-2024-0021',  method:'NVD',           cvss:7.5, vector:'CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N', cwe:'CWE-200', kev:false, epss:0.04317, status:'candidate', evidence:'Exact-CPE match on firmware 10.12.2. No active corroboration in this stack.' },
+
+  // ── 172.30.0.20 Schneider M580 — OT
+  { id:'F-007', ip:'172.30.0.20', cve:'CVE-2024-5559',  method:'NVD',           cvss:7.5, vector:'CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N', cwe:'CWE-306', kev:false, epss:0.00882, status:'candidate', evidence:'Firmware 4.20 in affected range. OT scan policy: passive-only.' },
+  { id:'F-008', ip:'172.30.0.20', cve:'CVE-2023-37198', method:'NVD',           cvss:8.1, vector:'CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H', cwe:'CWE-119', kev:false, epss:0.01092, status:'candidate', evidence:'Modbus stack overflow. Patched in 4.30 (we observed 4.20).' },
+
+  // ── 172.30.0.30 SSH
+  { id:'F-009', ip:'172.30.0.30', cve:'CVE-2023-48795', method:'NVD',           cvss:5.9, vector:'CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N', cwe:'CWE-222', kev:false, epss:0.00204, status:'candidate', evidence:'Terrapin: OpenSSH 9.0 < 9.6 vulnerable. Banner-only evidence; no behavior check available.' },
+
+  // ── 172.30.0.50 Ambiguous — kept as separate candidate sets per §3.16 rule
+  { id:'F-010', ip:'172.30.0.50', cve:'CVE-2022-30563', method:'NVD (Axis)',    cvss:7.4, vector:'CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N', cwe:'CWE-287', kev:false, epss:0.01731, status:'candidate', evidence:'Candidate set A — Axis CPE branch. Identity unresolved.' },
+  { id:'F-011', ip:'172.30.0.50', cve:'CVE-2022-30564', method:'NVD (Dahua)',   cvss:7.4, vector:'CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N', cwe:'CWE-287', kev:false, epss:0.00821, status:'candidate', evidence:'Candidate set B — Dahua CPE branch. Identity unresolved. Both sets preserved.' },
+
+  // ── Suppressed FPs (lab §3.16 false-positive triage)
+  { id:'F-012', ip:'172.30.0.10', cve:'CVE-2019-9082',  method:'NVD',           cvss:8.8, vector:'CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H', cwe:'CWE-78',  kev:false, epss:0.00318, status:'false-positive', evidence:'CPE keyword match was overly broad (ThinkPHP, unrelated product family). Pair-scoped suppression applied.' },
+  { id:'F-013', ip:'172.30.0.30', cve:'CVE-2018-15473', method:'NVD',           cvss:5.3, vector:'CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N', cwe:'CWE-203', kev:false, epss:0.00501, status:'false-positive', evidence:'OpenSSH 9.0 ≥ 7.8 → patched. Backport / version-criteria rule: observed version outside affected range.' },
+];
+
+// Method coverage matrix per host
+const COVERAGE = {
+  '172.30.0.10': { nvd:'ok', openvas:'disabled', nuclei:'ok',      creds:'ok',      sbom:'unavail' },
+  '172.30.0.11': { nvd:'ok', openvas:'disabled', nuclei:'gap',     creds:'ok',      sbom:'unavail' },
+  '172.30.0.20': { nvd:'ok', openvas:'disabled', nuclei:'disabled',creds:'disabled',sbom:'unavail' },
+  '172.30.0.30': { nvd:'ok', openvas:'disabled', nuclei:'gap',     creds:'ok',      sbom:'ok'      },
+  '172.30.0.40': { nvd:'ok', openvas:'disabled', nuclei:'disabled',creds:'disabled',sbom:'unavail' },
+  '172.30.0.50': { nvd:'ok', openvas:'disabled', nuclei:'gap',     creds:'gap',     sbom:'unavail' },
+};
+const METHOD_LBL = { ok:'completed', disabled:'disabled', gap:'coverage gap', unavail:'unavailable', failed:'failed' };
+
+// Pre-built priority queue (rank already applied per §3.16 formula)
+const QUEUE = [
+  { rank:1, id:'F-004 · default-cred',       ip:'172.30.0.10', score:18, reason:'Direct authentication success. Top of evidence ladder. Even with consequence=1, evidence strength (4) and verified applicability override raw CVSS.', tags:['Direct auth', 'Vendor default', 'Reproducible'] },
+  { rank:2, id:'F-001 · CVE-2021-36260',     ip:'172.30.0.10', score:17, reason:'KEV-listed + EPSS 0.95. Confirmed by Hikvision advisory. Camera is internal-only but credential reuse + RCE = real-world exploit chain.', tags:['KEV', 'EPSS·HIGH', 'RCE'] },
+  { rank:3, id:'F-002 · CVE-2017-7921',      ip:'172.30.0.10', score:16, reason:'KEV-listed + reproduced via direct probe to `/system/deviceInfo`. Information disclosure feeds targeted exploitation of (1).', tags:['KEV', 'Direct probe', 'Info-disc'] },
+  { rank:4, id:'F-008 · CVE-2023-37198',     ip:'172.30.0.20', score:15, reason:'OT gateway, consequence=4 (HVAC). Severity 8.1 + safety consequence outranks higher-severity findings on lower-consequence hosts.', tags:['OT', 'Safety', 'Modbus'] },
+  { rank:5, id:'F-007 · CVE-2024-5559',      ip:'172.30.0.20', score:13, reason:'Same OT gateway. Lower severity but identical consequence weight. Bundle with (4) for the same maintenance window.', tags:['OT', 'Bundle-with-4'] },
+];
+
+// ════════════════════════════════════════════════════════════════
+// Views
+// ════════════════════════════════════════════════════════════════
+const VIEWS = {};
+
+VIEWS.overview = () => `
+  <div class="welcome-hero">
+    <div class="h-eyebrow">// rayvelabs · lab 3 teaching demo</div>
+    <h1>Today, you're the <em>analyst</em>. Walk Chapter 3.</h1>
+    <p class="lede">A teaching simulator that walks every step of the vulnerability assessment pipeline from <strong>Dr. Mallarapu's SEAS-8414 Phase 3</strong> — using the same synthetic network as the official lab, the same CVEs, the same default credentials, the same prioritization formula. The point isn't to run more scanners. The point is to read evidence carefully.</p>
+    <span class="credit">SOURCE · Phase 3 Lab · <b>Dr. Mallarapu</b> · SEAS-8414 · GWU</span>
+  </div>
+
+  <div class="phases">
+    <div class="phase done"><div class="pn">PHASE 1</div><div class="pl">Discovery (out of scope)</div></div>
+    <div class="phase done"><div class="pn">PHASE 2</div><div class="pl">Identity / CPE (out of scope)</div></div>
+    <div class="phase active"><div class="pn">PHASE 3</div><div class="pl">Vulnerability assessment</div></div>
+    <div class="phase"><div class="pn">PHASE 4</div><div class="pl">Operational handoff</div></div>
+  </div>
+
+  <div class="kpi-strip">
+    <div class="kpi"><div class="v">${ASSETS.length}</div><div><div class="l">Hosts in scope</div><div class="s">172.30.0.0/24</div></div></div>
+    <div class="kpi"><div class="v">${FINDINGS.filter(f=>f.status==='candidate').length}</div><div><div class="l">Candidate vulns</div><div class="s">applicability uncertain</div></div></div>
+    <div class="kpi"><div class="v ok">${FINDINGS.filter(f=>f.status==='confirmed').length}</div><div><div class="l">Confirmed</div><div class="s">applicability proven</div></div></div>
+    <div class="kpi"><div class="v kev">${FINDINGS.filter(f=>f.kev).length}</div><div><div class="l">KEV-listed</div><div class="s">cisa.gov · active exploit</div></div></div>
+    <div class="kpi"><div class="v high">${FINDINGS.filter(f=>f.status==='false-positive').length}</div><div><div class="l">False positives</div><div class="s">pair-scoped suppressed</div></div></div>
+    <div class="kpi"><div class="v">${FINDINGS.filter(f=>f.status==='risk-accepted').length}</div><div><div class="l">Risk-accepted</div><div class="s">owner + expiry recorded</div></div></div>
+  </div>
+
+  <div class="panel">
+    <h2>What this demo shows</h2>
+    <p class="sub">Each sidebar section demonstrates a cluster of Chapter 3's 25 features. Click through in order, or jump to any view.</p>
+    <div class="features-grid">
+      <div class="fcard"><div class="num">1–5</div><div class="name">NVD / CVE association</div><div class="desc">Exact <code>cpeName</code> first, then <code>virtualMatchString</code> fallback. Cache, dedup, rate-limit handling, OS-CPE exclusion.</div><div class="feats">→ NVD view</div></div>
+      <div class="fcard"><div class="num">6–7</div><div class="name">CVSS as structure</div><div class="desc">Decompose the vector; read AV/AC/PR/UI/S/C/I/A as operational English. Severity is a number; <em>structure</em> is the story.</div><div class="feats">→ CVSS view</div></div>
+      <div class="fcard"><div class="num">8–10</div><div class="name">Scanner adapters</div><div class="desc">OpenVAS lifecycle, Nuclei safe templates, SBOM import. Each produces a different kind of evidence.</div><div class="feats">→ Scanners view</div></div>
+      <div class="fcard"><div class="num">11–13</div><div class="name">Default-credential probe</div><div class="desc">HTTP/SSH/Telnet/RTSP/ONVIF. Vendor-first then generic. Auth-vs-unauth response comparison — never the body alone.</div><div class="feats">→ Default-cred view</div></div>
+      <div class="fcard"><div class="num">14–16</div><div class="name">Enrichment &amp; priority</div><div class="desc">KEV + EPSS overlays. Priority = severity + evidence + exposure + role + consequence. CVSS alone is not enough.</div><div class="feats">→ Enrichment view</div></div>
+      <div class="fcard"><div class="num">17–21</div><div class="name">Evidence discipline</div><div class="desc">Candidate vs confirmed. False-positive / risk-accepted decisions with owner, reason, expiry. Pair-scoped suppression.</div><div class="feats">→ Ledger view</div></div>
+      <div class="fcard"><div class="num">22–24</div><div class="name">Provenance &amp; coverage</div><div class="desc">Per-method confidence. Completion states: completed / disabled / unavailable / failed. Missing = coverage gap, not safety.</div><div class="feats">→ Coverage view</div></div>
+      <div class="fcard"><div class="num">25</div><div class="name">Safety posture</div><div class="desc">ROE / RBAC gating refuses Phase-3 active assessment on out-of-scope hosts. Refusal is itself evidence.</div><div class="feats">→ Safety view</div></div>
+    </div>
+  </div>
+
+  <div class="aside-note">
+    <strong>Working rule for the whole demo.</strong> For every finding, keep four things separate: what the tool reported, why the tool reported it, what evidence makes the report stronger or weaker here, and what action (if any) the finding justifies. If those four collapse into one sentence, the answer is too shallow. — <i>Dr. Mallarapu, Phase 3 Lab §1.</i>
+  </div>
+`;
+
+VIEWS.assets = () => `
+  <div class="h-eyebrow">// asset inventory</div>
+  <h1>Six hosts. Five archetypes. <em>Every</em> finding lives on one of them.</h1>
+  <p class="h-lede">The scenario network from the lab. Roles, CPEs, and exposure differ &mdash; that's the whole point. <strong>Applicability before action.</strong></p>
+  <div class="feat-ribbon"><span class="lbl">Features</span><div>Demonstrates <strong>#1</strong> CPE→CVE input + <strong>#5</strong> CPE precision control (exact vs wildcard). Asset <code>172.30.0.50</code> shows the conflicting-identity case — both candidate sets preserved with <em>conflict provenance</em>, per homework Q11.</div></div>
+  ${ASSETS.map(a => `
+    <div class="asset-card">
+      <span class="ip">${a.ip}</span><span class="role">· ${a.role}</span>
+      ${a.roe_blocked ? '<span class="tag risk-acc" style="margin-left:8px">ROE-blocked</span>' : ''}
+      ${a.cpe_conflict ? '<span class="tag info" style="margin-left:8px">unresolved identity</span>' : ''}
+      <div class="summary">${a.vendor} ${a.model ? '· ' + a.model : ''} ${a.firmware ? '· firmware ' + a.firmware : ''}</div>
+      ${a.cpe_narrow ? `<div class="row"><span class="k">CPE narrow</span><span class="cpe">${a.cpe_narrow}</span></div>` : ''}
+      ${a.cpe_broad ? `<div class="row"><span class="k">CPE broad</span><span class="cpe">${a.cpe_broad}</span></div>` : ''}
+      <div class="row"><span class="k">Services</span>${a.services.map(s => `<span class="chip">${s.port}/${s.proto} · ${s.product}</span>`).join('')}</div>
+      <div class="row"><span class="k">Consequence</span><span class="chip">${a.consequence}/5</span><span class="k" style="margin-left:14px">Exposure</span><span class="chip">${a.exposure}/3</span></div>
+    </div>`).join('')}
+`;
+
+VIEWS.nvd = () => `
+  <div class="h-eyebrow">// nvd / cve association</div>
+  <h1>From a CPE string to a <em>candidate</em> CVE set.</h1>
+  <p class="h-lede">Phase 3 starts here. The adapter asks NVD what CVEs apply &mdash; first by exact CPE, then by broader match if the first returns nothing. Every result is a <strong>candidate</strong>, never a confirmed weakness.</p>
+  <div class="feat-ribbon"><span class="lbl">Features 1–5</span><div>Exact <code>cpeName</code> → <code>virtualMatchString</code> fallback (#1, #2). Redis caching + cross-host CPE dedup + 24h TTL (#3). Exponential backoff on 429 (#4). Precision control: exact vs wildcard, OS-CPE excluded by default (#5).</div></div>
+
+  <div class="panel">
+    <h2>Adapter behaviour, observed</h2>
+    <p class="sub">From the homework: <em>"adapter attempts exact <code>cpeName</code> first; if zero records and CPE contains wildcards, attempts <code>virtualMatchString</code>"</em> — Q4.</p>
+    <pre class="code"><span class="km"># Host 172.30.0.10 — Hikvision DS-2CD2143G2-I, firmware 5.5.52</span>
+<span class="ko">step 1</span>: exact cpeName  → <span class="ku">cpe:2.3:o:hikvision:ds-2cd2143g2-i_firmware:5.5.52:*:*:*:*:*:*:*</span>
+         result: <span class="kn">2 CVEs</span>  (CVE-2021-36260, CVE-2017-7921)  · <span class="km"># exact hit — no fallback needed</span>
+
+<span class="km"># Host 172.30.0.40 — BD Alaris (no firmware version observed)</span>
+<span class="ko">step 1</span>: exact cpeName  → <span class="ku">cpe:2.3:o:bd:alaris_pcu_firmware:*:*:*:*:*:*:*:*</span>
+         result: <span class="kn">0 CVEs</span>  (version wildcard — exact query won't match versioned NVD records)
+<span class="ko">step 2</span>: virtualMatchString → <span class="ku">cpe:2.3:o:bd:alaris_pcu_firmware</span>
+         result: <span class="kn">8 candidate CVEs</span>  · marked <span class="ks">"wildcard or unresolved version applicability"</span> per homework Q29</pre>
+  </div>
+
+  <div class="panel">
+    <h2>Cache + dedup + rate-limit discipline</h2>
+    <table class="t"><thead><tr><th>Behaviour</th><th>Rule</th><th>This run</th></tr></thead><tbody>
+      <tr><td>Cache age allowed</td><td class="dim">&le; 24h, hit serves from cache (homework Q30)</td><td>5 of 6 CPEs from cache · 1 fresh</td></tr>
+      <tr><td>Cross-host CPE dedup</td><td class="dim">One NVD request per <em>unique</em> CPE (Q17)</td><td>6 hosts · 5 unique CPEs · 5 requests</td></tr>
+      <tr><td>Rate-limit response</td><td class="dim">Exp backoff on 429, capped at 60s</td><td>No 429s observed (key authenticated)</td></tr>
+      <tr><td>OS-CPE inclusion</td><td class="dim">Excluded by default; CPE precision = exact</td><td>OS CPEs filtered out of candidate set</td></tr>
+    </tbody></table>
+  </div>
+
+  <div class="panel">
+    <h2>Broad vs narrow CPE — recall vs precision</h2>
+    <p class="sub">Exercise 1 + Q27. The lab's lookup engine is keyword-expanded; some engines behave the opposite way. Either way, you should record both numbers.</p>
+    <table class="t"><thead><tr><th>Host</th><th>Strategy</th><th>CPE</th><th>Total CVEs</th><th>Critical</th></tr></thead><tbody>
+      <tr><td class="mono">broad-test</td><td><span class="tag info">broad family</span></td><td class="mono dim">hikvision:ip_camera:*</td><td class="mono r">23</td><td class="mono r">7</td></tr>
+      <tr><td class="mono">narrow-test</td><td><span class="tag low">model/version</span></td><td class="mono dim">hikvision:ds-2cd2143g2-i:5.5.52</td><td class="mono r">2</td><td class="mono r">1</td></tr>
+    </tbody></table>
+    <div class="aside-note"><strong>Reading.</strong> The narrow query found <code>CVE-2021-36260</code> — the exact one that matters. The broad query found 23, but 21 of them probably don't apply to <em>this</em> firmware. Recall vs precision (Q27): broad = higher recall, lower precision; narrow = lower recall, higher precision. Pick narrow for triage, keep broad as audit context.</div>
+  </div>
+`;
+
+VIEWS.cvss = () => {
+  const f = FINDINGS[0];
+  return `
+  <div class="h-eyebrow">// cvss · read structure, not score</div>
+  <h1>9.8 isn't the answer. The <em>vector</em> is.</h1>
+  <p class="h-lede">Two CVEs on the same camera. One is 9.8, one is 7.5. The score alone doesn't tell you which to fix first. Decompose the vector, ask what each metric means in your environment, then triage.</p>
+  <div class="feat-ribbon"><span class="lbl">Features 6–7</span><div>CVSS v3.1 → v3.0 → v2 parsing across AV / AC / PR / UI / S / C / I / A (#6). CWE extraction, affected-criteria, references, timestamps (#7). The same severity band ≠ the same priority.</div></div>
+
+  <div class="panel">
+    <h2>${f.cve} · CRITICAL</h2>
+    <p class="sub">Hikvision web-server command injection. Vendor advisory · <span class="tag kev">CISA KEV since 2022-09-15</span></p>
+    <div class="cvss-vec">${f.vector}</div>
+    <div class="cvss-grid">
+      <div class="m"><div class="k">AV · attack vector</div><div class="vname">N · Network</div><div class="vmean">Reachable over the network without local access.</div></div>
+      <div class="m"><div class="k">AC · complexity</div><div class="vname">L · Low</div><div class="vmean">No special conditions; the exploit "just works."</div></div>
+      <div class="m"><div class="k">PR · privileges</div><div class="vname">N · None</div><div class="vmean">No authentication needed before the attack.</div></div>
+      <div class="m"><div class="k">UI · user interaction</div><div class="vname">N · None</div><div class="vmean">Nobody has to click anything for it to fire.</div></div>
+      <div class="m"><div class="k">S · scope</div><div class="vname">U · Unchanged</div><div class="vmean">Impact stays within the vulnerable component.</div></div>
+      <div class="m"><div class="k">C · confidentiality</div><div class="vname">H · High</div><div class="vmean">Total disclosure of confidential information.</div></div>
+      <div class="m"><div class="k">I · integrity</div><div class="vname">H · High</div><div class="vmean">Total compromise of integrity.</div></div>
+      <div class="m"><div class="k">A · availability</div><div class="vname">H · High</div><div class="vmean">Total loss of availability.</div></div>
+    </div>
+    <p style="margin-top:14px">CWE: <span class="tag low">${f.cwe}</span> · OS Command Injection. References: vendor security bulletin, multiple public PoCs. Tagged <code>remote-no-touch</code> per Q3 because AV:N + AC:L + PR:N + UI:N all coincide.</p>
+  </div>
+
+  <div class="panel">
+    <h2>CVE-2017-7921 · HIGH (7.5)</h2>
+    <p class="sub">Same camera, lower score. Information disclosure via <code>/system/deviceInfo</code>. <span class="tag kev">CISA KEV</span></p>
+    <div class="cvss-vec">CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N</div>
+    <div class="aside-note"><strong>Exact differential.</strong> The third triplet differs from CVE-2021-36260 — confidentiality is the same (H), but Integrity and Availability are <strong>None</strong>. That makes it "read-only" exposure: lower score, but it's the <em>recon dependency</em> that lets the 9.8 exploit pick its target. In an exposed-camera fleet, you might fix this first because it feeds (1).</div>
+  </div>
+  `;
+};
+
+VIEWS.scanners = () => `
+  <div class="h-eyebrow">// scanner adapters · authorized phase 3</div>
+  <h1>Different scanners produce <em>different evidence</em>.</h1>
+  <p class="h-lede">"More findings" is not "better evidence." Each adapter has its own life-cycle, its own failure mode, and its own evidence class. They corroborate each other only when they actually overlap.</p>
+  <div class="feat-ribbon"><span class="lbl">Features 8–10</span><div>OpenVAS/GMP full lifecycle: target → task → poll → report → cleanup, with feed-status + severity normalization (#8). Nuclei safe-template scan: JSONL parse, INFO filter, partial-on-timeout, port-aware target (#9). SBOM / vendor scanner import (#10).</div></div>
+
+  <div class="panel">
+    <h2>OpenVAS / Greenbone GMP lifecycle</h2>
+    <p class="sub">Disabled in this stack (BREAKWATER_OPENVAS_ENABLED=false). When enabled, the adapter walks the full GMP lifecycle.</p>
+    <pre class="code"><span class="ko">1</span>  <span class="ku">create_target</span>     host=172.30.0.10 ports=T:80,554,8000   → tid=ce39…
+<span class="ko">2</span>  <span class="ku">create_task</span>       config="Full and fast" target=tid    → tasid=1f4b…
+<span class="ko">3</span>  <span class="ku">start_task</span>        tid=tasid                            → run=running
+<span class="ko">4</span>  <span class="ku">poll(get_tasks)</span>   every 10s · cancel on stuck-30m      <span class="km"># streamed phase-progress event</span>
+<span class="ko">5</span>  <span class="ku">get_reports</span>       parse XML → normalize severity       → 14 findings
+<span class="ko">6</span>  <span class="ku">delete_task</span> + <span class="ku">delete_target</span>                              <span class="km"># cleanup, always</span></pre>
+    <p style="margin-top:10px"><strong>Feed-status check.</strong> The adapter calls <code>get_feeds</code> before scanning — a stale NVT feed (more than 7 days) flags as <code>unavailable</code> rather than <code>completed</code>, per coverage state (#24).</p>
+  </div>
+
+  <div class="panel">
+    <h2>Nuclei · safe-template scan</h2>
+    <p class="sub">Enabled on hosts where the operator opts in. Severity filter: high,critical. JSONL output parsed line-by-line; INFO-band findings excluded.</p>
+    <pre class="code"><span class="km"># Host 172.30.0.10</span>
+<span class="ku">$ nuclei -u http://172.30.0.10 -severity high,critical -silent -j</span>
+{"template-id":"hikvision-deviceinfo-disclosure","host":"172.30.0.10","matched-at":"http://172.30.0.10/system/deviceInfo","info":{"severity":"high","tags":["cve","cve2017","disclosure"]}}
+{"template-id":"http-default-port-open","info":{"severity":"info"}}     <span class="km"># filtered out (INFO)</span>
+
+<span class="km"># Result: 1 high-severity finding · maps to F-003 / CVE-2017-7921</span></pre>
+    <div class="aside-note"><strong>Partial on timeout.</strong> If the 45-second timeout fires mid-run, the adapter still emits whatever it parsed so far and marks the method status <code>completed_partial</code> with a coverage caveat. Zero-finding ≠ "scanner ran clean" (homework Q20).</div>
+  </div>
+
+  <div class="panel">
+    <h2>SBOM &amp; commercial-scanner import</h2>
+    <p class="sub">Asset 172.30.0.30 has a CycloneDX SBOM uploaded. Vendor scanner exports (Tenable / Qualys / Rapid7) can also be imported as a fourth evidence class.</p>
+    <table class="t"><thead><tr><th>Asset</th><th>SBOM source</th><th>Packages</th><th>Vulns matched</th><th>Status</th></tr></thead><tbody>
+      <tr><td class="mono">172.30.0.30</td><td class="dim">CycloneDX 1.5, syft</td><td class="mono r">218</td><td class="mono r">4</td><td><span class="tag low">completed</span></td></tr>
+    </tbody></table>
+  </div>
+`;
+
+VIEWS.creds = () => `
+  <div class="h-eyebrow">// default-credential probe · guardrailed</div>
+  <h1>Direct authentication beats <em>every</em> CPE match.</h1>
+  <p class="h-lede">A successful default login is the strongest single evidence class in Phase 3. The probe stops on first success (no enumeration), tries vendor defaults first, and compares authenticated vs unauthenticated response to avoid false positives.</p>
+  <div class="feat-ribbon"><span class="lbl">Features 11–13</span><div>Multi-protocol (HTTP / SSH / Telnet / RTSP / ONVIF) (#11). Vendor-first → generic fallback (#12). Guardrail: auth vs unauth response comparison, stop on first success (#13).</div></div>
+
+  <div class="panel">
+    <h2>Host 172.30.0.10 · Hikvision · HTTP</h2>
+    <pre class="code"><span class="km"># Step 0 — unauthenticated control</span>
+GET /                                                  → 401 Unauthorized
+<span class="km">  └ recorded as negative-control body (302 bytes, login form)</span>
+
+<span class="km"># Step 1 — vendor-first defaults</span>
+GET / · Authorization: Basic admin:12345               → <span class="kn">200 OK</span>  <span class="ks">SUCCESS</span>
+<span class="km">  └ authenticated body (4,481 bytes, device menu) ≠ negative-control body</span>
+<span class="km">  └ rule satisfied: "authenticated-only content or session change vs negative control" (Q19)</span>
+<span class="km">  └ stop on first success — no further attempts</span>
+GET / · Authorization: Basic admin:Hikvision           → <span class="km">[skipped]</span>
+GET / · Authorization: Basic admin:admin               → <span class="km">[skipped]</span></pre>
+    <div class="aside-note"><strong>Why the comparison matters.</strong> Q19 in the homework: a checker that just sees HTTP 200 on the unauth request and HTTP 200 on the auth request — with identical bodies — would falsely report success. The guardrail compares response bodies (or session state) against the negative control. Same body → negative result. Different body → confirmed.</div>
+  </div>
+
+  <div class="panel">
+    <h2>Vendor-first credential ladder</h2>
+    <p class="sub">Per device-class, the probe tries vendor-known defaults before generic dictionaries.</p>
+    <table class="t"><thead><tr><th>Host</th><th>Vendor</th><th>Vendor-first tries</th><th>Result</th></tr></thead><tbody>
+      <tr><td class="mono">172.30.0.10</td><td>Hikvision</td><td class="mono dim">admin:12345 · admin:Hikvision · admin:admin</td><td><span class="tag conf">success on #1</span></td></tr>
+      <tr><td class="mono">172.30.0.11</td><td>Axis</td><td class="mono dim">root:pass · root:Axis</td><td><span class="tag info">negative</span></td></tr>
+      <tr><td class="mono">172.30.0.30</td><td>(generic SSH)</td><td class="mono dim">ubuntu:ubuntu · admin:admin · root:toor</td><td><span class="tag info">negative</span></td></tr>
+      <tr><td class="mono">172.30.0.40</td><td>BD Alaris</td><td colspan="2"><span class="tag risk-acc">ROE-blocked — credential probe disabled by policy for medical device. Recorded as <code>not_run</code>, not <code>negative</code> (Q16).</span></td></tr>
+    </tbody></table>
+  </div>
+
+  <div class="aside-note">
+    <strong>Per Q14, evidence ladder.</strong> Direct authentication success outranks NVD candidate alone, template-behaviour match alone, and active-scanner finding alone. A single successful default credential is the strongest single signal you have on that host.
+  </div>
+`;
+
+VIEWS.enrich = () => `
+  <div class="h-eyebrow">// enrichment &amp; prioritization</div>
+  <h1>Severity is one input. <em>Five</em> are required.</h1>
+  <p class="h-lede">CVSS tells you how bad if exploited. EPSS estimates how likely. KEV tells you it already is. Add evidence strength, exposure, role, and consequence — that's the priority.</p>
+  <div class="feat-ribbon"><span class="lbl">Features 14–16</span><div>CISA KEV membership (#14). EPSS exploitation-probability (#15). Priority formula: <code>severity + EPSS overlay + KEV overlay + evidence + exposure + role + consequence</code> (#16). CVSS alone is insufficient — homework Q33, Q37, Q39.</div></div>
+
+  <div class="panel">
+    <h2>KEV + EPSS overlay on the candidate set</h2>
+    <table class="t"><thead><tr><th>Finding</th><th>CVSS</th><th>EPSS</th><th>KEV</th><th>Pre-overlay rank</th><th>Post-overlay rank</th></tr></thead><tbody>
+      ${FINDINGS.filter(f=>f.epss !== null).slice(0, 8).map((f, i) => `
+        <tr>
+          <td class="mono">${f.cve}</td>
+          <td class="r"><span class="tag ${f.cvss >= 9 ? 'crit' : f.cvss >= 7 ? 'high' : f.cvss >= 4 ? 'med' : 'low'}">${f.cvss}</span></td>
+          <td class="r mono">${(f.epss*100).toFixed(1)}%</td>
+          <td>${f.kev ? '<span class="tag kev">KEV</span>' : '<span class="tag info">—</span>'}</td>
+          <td class="r dim">${i+1}</td>
+          <td class="r"><strong>${(f.kev ? 1 : (f.cvss >= 9 ? 2 : 3)) + Math.floor(i/3)}</strong></td>
+        </tr>`).join('')}
+    </tbody></table>
+    <div class="aside-note"><strong>Reading.</strong> Without overlays, CVE-2023-37198 (CVSS 8.1, no KEV) ranks above CVE-2017-7921 (CVSS 7.5, KEV). After overlays, KEV jumps the line — exactly as Exercise 3 of the lab and homework Q39 require.</div>
+  </div>
+
+  <div class="panel">
+    <h2>Priority formula at work</h2>
+    <p class="sub">Per Q33: <code>priority = severity + evidence + exposure + consequence</code>. Add role and KEV/EPSS overlays.</p>
+    <pre class="code"><span class="km"># F-001 — CVE-2021-36260 on 172.30.0.10 (Hikvision)</span>
+severity     = round(9.8)    = 10
+evidence     = NVD + Nuclei  = 3      <span class="km"># multi-method convergence (Q26)</span>
+exposure     = internal-only = 0
+role         = lobby camera  = 1      <span class="km"># consequence bucket</span>
+KEV overlay  = +5                     <span class="km"># active exploitation</span>
+EPSS overlay = +1                     <span class="km"># 0.94 → high band</span>
+                                ────
+                            score = <strong>20</strong>  <span class="km"># top of queue</span></pre>
+  </div>
+`;
+
+VIEWS.ledger = () => `
+  <div class="h-eyebrow">// evidence ledger</div>
+  <h1>Every finding ends up in <em>one of four</em> states.</h1>
+  <p class="h-lede">A scanner finding is an observation, not the truth. Each row is classified as candidate, confirmed, false-positive, or risk-accepted — with owner, reason, evidence, and (for risk-accepted) an expiry date.</p>
+  <div class="feat-ribbon"><span class="lbl">Features 17–21</span><div>Core rule: scanner finding ≠ truth, applicability first (#17). Candidate vs confirmed (#18). Validation decisions: FP / confirmed / risk-accepted with owner/reason/evidence/expiry (#19). Pair-scoped suppression <code>(cve_id, device_ip)</code> + noisy-CVE aggregation (#20). Multi-method correlation preserves convergence, unique coverage, and contradiction (#21).</div></div>
+
+  ${FINDINGS.map(f => `
+    <div class="ledger-entry ${f.status === 'confirmed' ? 'confirmed' : f.status === 'false-positive' ? 'fp' : f.status === 'risk-accepted' ? 'risk-acc' : ''}">
+      <div class="top">
+        <div>
+          <span class="id">${f.id}</span> · <span class="mono" style="color:var(--d-dim)">${f.ip}</span> · <span class="mono" style="color:var(--d-ink)">${f.cve}</span>
+        </div>
+        <div>
+          ${f.status === 'confirmed'      ? '<span class="tag conf">CONFIRMED</span>' : ''}
+          ${f.status === 'candidate'      ? '<span class="tag cand">CANDIDATE</span>' : ''}
+          ${f.status === 'false-positive' ? '<span class="tag fp">FALSE POSITIVE</span>' : ''}
+          ${f.status === 'risk-accepted'  ? '<span class="tag risk-acc">RISK ACCEPTED</span>' : ''}
+          ${f.kev ? '<span class="tag kev">KEV</span>' : ''}
+        </div>
+      </div>
+      <div class="meta">method: <strong>${f.method}</strong>${f.cvss ? ' · CVSS ' + f.cvss : ''}${f.epss !== null && f.epss !== undefined ? ' · EPSS ' + (f.epss*100).toFixed(1) + '%' : ''}${f.cwe ? ' · ' + f.cwe : ''}</div>
+      <div class="why">${f.evidence}</div>
+      <div class="audit">audit: validation by <b>analyst.rmalhotra</b> · ${f.status === 'risk-accepted' ? 'expires 2026-09-30 · review by infosec.officer' : f.status === 'false-positive' ? 'suppression scoped to (cve_id, device_ip) — no global hide' : 'evidence retained for chapter-4 handoff'}</div>
+    </div>
+  `).join('')}
+
+  <div class="aside-note">
+    <strong>Pair-scoped suppression — Q9 + Q35.</strong> Notice F-012 and F-013 are tagged false-positive but only for the specific (CVE, IP) pair shown. The same CVE on a different device IP would <em>not</em> be auto-suppressed; the rule is exact-pair. Noisy CVEs that appear on many hosts get aggregated for analyst review, never blanket-suppressed.
+  </div>
+`;
+
+VIEWS.methods = () => `
+  <div class="h-eyebrow">// method coverage matrix</div>
+  <h1>Missing data is itself <em>evidence</em>.</h1>
+  <p class="h-lede">Per-host, per-method, what ran and what didn't. Empty cells aren't safety — they're coverage gaps that need to be named.</p>
+  <div class="feat-ribbon"><span class="lbl">Features 22–24</span><div>Per-method provenance, confidence, safety posture (#22). Streaming phase progress events: state, errors, partials, cancellations (#23). Coverage states: <strong>completed / disabled / unavailable / failed</strong>; missing means coverage gap, not safety (#24).</div></div>
+
+  <div class="panel">
+    <h2>Per-host coverage</h2>
+    <div class="coverage">
+      <div class="head">Asset</div>
+      <div class="head" style="text-align:center">NVD</div>
+      <div class="head" style="text-align:center">OpenVAS</div>
+      <div class="head" style="text-align:center">Nuclei</div>
+      <div class="head" style="text-align:center">Default-cred</div>
+      <div class="head" style="text-align:center">SBOM</div>
+      ${Object.keys(COVERAGE).map(ip => {
+        const cov = COVERAGE[ip];
+        const asset = ASSETS.find(a => a.ip === ip);
+        return `
+          <div class="cell asset">${ip}<span style="color:var(--d-faint); margin-left:8px">· ${asset.role}</span></div>
+          <div class="cell" style="justify-content:center"><span class="method-state ${cov.nvd}">${METHOD_LBL[cov.nvd]}</span></div>
+          <div class="cell" style="justify-content:center"><span class="method-state ${cov.openvas}">${METHOD_LBL[cov.openvas]}</span></div>
+          <div class="cell" style="justify-content:center"><span class="method-state ${cov.nuclei}">${METHOD_LBL[cov.nuclei]}</span></div>
+          <div class="cell" style="justify-content:center"><span class="method-state ${cov.creds}">${METHOD_LBL[cov.creds]}</span></div>
+          <div class="cell" style="justify-content:center"><span class="method-state ${cov.sbom}">${METHOD_LBL[cov.sbom]}</span></div>
+        `;
+      }).join('')}
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2>State semantics — what each label means</h2>
+    <table class="t"><thead><tr><th>State</th><th>Meaning</th><th>Causes assessment to be...</th></tr></thead><tbody>
+      <tr><td><span class="method-state ok">completed</span></td><td>Method ran end-to-end and emitted findings (or a confident zero).</td><td>Authoritative for this method.</td></tr>
+      <tr><td><span class="method-state disabled">disabled</span></td><td>Operator turned this method off in the config.</td><td>Coverage gap by choice — known unknown.</td></tr>
+      <tr><td><span class="method-state gap">coverage gap</span></td><td>Method <em>should</em> have run but no template / probe applied.</td><td>Coverage gap — unknown unknown until investigated.</td></tr>
+      <tr><td><span class="method-state unavail">unavailable</span></td><td>Method dependency missing (e.g. no SBOM uploaded, OpenVAS feed stale).</td><td>Coverage gap by environment.</td></tr>
+      <tr><td><span class="method-state failed">failed</span></td><td>Method tried but errored out before producing usable evidence.</td><td>Coverage gap requiring re-run.</td></tr>
+    </tbody></table>
+    <div class="aside-note"><strong>Per Q20.</strong> A Nuclei run that executes zero templates because the template directory was empty is <code>not_executed</code>, NOT <code>complete_no_findings</code>. Two materially different states (Lab Exercise 11).</div>
+  </div>
+`;
+
+VIEWS.queue = () => `
+  <div class="h-eyebrow">// remediation queue</div>
+  <h1>From findings to a <em>ranked list</em>.</h1>
+  <p class="h-lede">Five findings across three hosts, ranked under consequence. Note: a higher-CVSS finding can sit below a lower-CVSS finding if the evidence is stronger or the consequence is greater — per Lab Exercise 8.</p>
+  <div class="feat-ribbon"><span class="lbl">Feature 16</span><div>Risk prioritization with <strong>all six inputs</strong> — severity, EPSS, KEV, evidence strength, exposure, device role, consequence. CVSS alone is not allowed to drive the order (Lab Exercise 8).</div></div>
+
+  ${QUEUE.map(q => `
+    <div class="queue-item">
+      <div class="rank">${q.rank}</div>
+      <div class="body">
+        <div class="id">${q.id}</div>
+        <div class="reason">${q.reason}</div>
+        <div class="meta">${q.tags.map(t => `<span class="chip">${t}</span>`).join('')}</div>
+      </div>
+      <div class="score">${q.score}<span class="lbl">priority</span></div>
+    </div>
+  `).join('')}
+
+  <div class="aside-note">
+    <strong>Lab Exercise 8 expects this.</strong> Include one example where a lower-severity issue outranks a higher-severity issue because of consequence or stronger applicability. Here: F-008 (CVSS 8.1) ranks #4 — above multiple other findings — because it sits on the HVAC controller with consequence=4, even though F-005 has the same nominal CVSS class on the camera but consequence=1.
+  </div>
+`;
+
+VIEWS.safety = () => `
+  <div class="h-eyebrow">// safety posture · roe / rbac</div>
+  <h1>Refusal is <em>evidence</em>, not failure.</h1>
+  <p class="h-lede">Phase 1 is read-only. Phase 3 active assessment is gated by Rules of Engagement and RBAC. When the system refuses to scan a host, that's a record — not a missing one.</p>
+  <div class="feat-ribbon"><span class="lbl">Feature 25</span><div>Phase-1 scanner/credential refusal + ROE / RBAC gating before <strong>any</strong> Phase-3 active assessment. A blocked check is recorded as <code>not_run</code> with the policy that blocked it — never as a clean negative.</div></div>
+
+  <div class="panel">
+    <h2>Active-assessment authorization log</h2>
+    <table class="t"><thead><tr><th>Asset</th><th>Phase-3 method</th><th>Authorization</th><th>Result</th></tr></thead><tbody>
+      <tr><td class="mono">172.30.0.10</td><td>Default-cred probe (HTTP)</td><td class="dim">ROE permits · operator role: assessor</td><td><span class="method-state ok">allowed</span></td></tr>
+      <tr><td class="mono">172.30.0.10</td><td>Nuclei high+critical templates</td><td class="dim">ROE permits</td><td><span class="method-state ok">allowed</span></td></tr>
+      <tr><td class="mono">172.30.0.20</td><td>OpenVAS Full-and-Fast</td><td class="dim">OT host · maintenance-window required</td><td><span class="method-state disabled">deferred</span></td></tr>
+      <tr><td class="mono">172.30.0.40</td><td>Default-cred probe (HTTP)</td><td class="dim">Medical device · policy.deny: BD-class</td><td><span class="method-state failed">REFUSED</span></td></tr>
+      <tr><td class="mono">172.30.0.40</td><td>Nuclei active templates</td><td class="dim">Same policy</td><td><span class="method-state failed">REFUSED</span></td></tr>
+      <tr><td class="mono">172.30.0.40</td><td>NVD CVE lookup (passive)</td><td class="dim">Always allowed (read-only)</td><td><span class="method-state ok">allowed</span></td></tr>
+    </tbody></table>
+  </div>
+
+  <div class="panel">
+    <h2>Refusal record · 172.30.0.40 / BD Alaris</h2>
+    <pre class="code">{
+  "event": <span class="ks">"active_assessment.refused"</span>,
+  "device_id": <span class="ks">"172.30.0.40"</span>,
+  "device_class": <span class="ks">"medical / infusion-pump"</span>,
+  "method": <span class="ks">"default-cred.http"</span>,
+  "policy": <span class="ks">"roe.medical-devices.v3"</span>,
+  "reason": <span class="ks">"Class-blocked by safety policy — patient-care device. Passive only."</span>,
+  "operator": <span class="ks">"analyst.rmalhotra"</span>,
+  "operator_role": <span class="ks">"assessor"</span>,           <span class="km"># RBAC role check</span>
+  "operator_required_role": <span class="ks">"medical-assessor"</span>,
+  "timestamp": <span class="ks">"2026-06-04T14:32:11Z"</span>,
+  "downstream_state": <span class="ks">"method.not_run"</span>      <span class="km"># NOT "negative" — Q16</span>
+}</pre>
+    <div class="aside-note"><strong>Why this matters.</strong> A blocked credential probe stored as <code>negative</code> would falsely imply "no default creds." Stored as <code>not_run</code> with the policy that blocked it, the next analyst (or auditor) can see exactly what's known and what's not. Refusal is evidence about <em>method coverage</em>, not about device security.</div>
+  </div>
+`;
+
+// ════════════════════════════════════════════════════════════════
+// Router
+// ════════════════════════════════════════════════════════════════
+function render(){
+  const view = (location.hash || '#overview').slice(1);
+  const fn = VIEWS[view] || VIEWS.overview;
+  document.getElementById('main').innerHTML = fn();
+  document.querySelectorAll('#nav a').forEach(a => {
+    a.classList.toggle('on', a.dataset.view === view);
+  });
+  window.scrollTo({ top:0, behavior:'instant' });
+}
+window.addEventListener('hashchange', render);
+render();
+</script>
+
+</body>
+</html>

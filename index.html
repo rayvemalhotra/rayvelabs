@@ -1385,6 +1385,56 @@ category-error spotter</pre>
       </div>
     </div>
 
+    <div class="project-card reveal d4" id="lab3DemoCard">
+      <div>
+        <div class="p-head">
+          <div class="p-name">Demo for Dr. Mallarapu</div>
+          <span class="p-status">Live</span>
+        </div>
+        <p class="p-desc">A teaching simulator that walks <b>Chapter 3 — Vulnerability Assessment, Correlation, and Prioritization</b> from Dr. Mallarapu's <b>SEAS-8414 course</b> at GWU. Same network as the official Lab 3 (Hikvision camera at 172.30.0.10, OT gateway, medical-device ROE block, ambiguous-identity host), same CVEs (CVE-2021-36260, CVE-2017-7921), same default-credentials and priority formula. Demonstrates <b>all 25 core features</b>: NVD/CVE association, CVSS decomposition, OpenVAS / Nuclei / SBOM adapters, multi-protocol default-credential probe, KEV + EPSS overlays, the evidence ledger (candidate / confirmed / false-positive / risk-accepted), per-method coverage states, and ROE / RBAC safety posture.</p>
+        <p class="p-desc" style="font-size:14px"><i>Demonstration only. Original course material © Dr. Mallarapu / The George Washington University. Synthetic network, real CVE data.</i></p>
+        <div class="p-tags">
+          <span class="p-tag">SEAS-8414</span>
+          <span class="p-tag">Chapter 3</span>
+          <span class="p-tag">25 features</span>
+          <span class="p-tag">Evidence ledger</span>
+          <span class="p-tag">KEV + EPSS</span>
+          <span class="p-tag">ROE / RBAC</span>
+        </div>
+        <a href="lab3-demo/" class="p-link">Open the Lab 3 demo <span class="arrow">→</span></a>
+      </div>
+      <div class="p-preview">
+        <div class="p-tile">
+          <span class="tag">Asset</span>
+          <div class="tt">172.30.0.10 · Hikvision</div>
+          <pre>DS-2CD2143G2-I
+firmware 5.5.52
+KEV · CVE-2021-36260</pre>
+        </div>
+        <div class="p-tile">
+          <span class="tag">Evidence</span>
+          <div class="tt">admin:12345 → HTTP 200</div>
+          <pre>direct-auth success
+strongest evidence class
+stop on first success</pre>
+        </div>
+        <div class="p-tile">
+          <span class="tag">Priority</span>
+          <div class="tt">severity + 5 inputs</div>
+          <pre>+ EPSS + KEV
++ evidence + exposure
++ role + consequence</pre>
+        </div>
+        <div class="p-tile">
+          <span class="tag">Safety</span>
+          <div class="tt">ROE-blocked: 172.30.0.40</div>
+          <pre>medical / Alaris pump
+method.not_run
+not method.negative</pre>
+        </div>
+      </div>
+    </div>
+
     <div class="project-card reveal d4" id="cyberAtlasCard">
       <div>
         <div class="p-head">
