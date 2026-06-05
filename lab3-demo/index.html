@@ -611,6 +611,17 @@ VIEWS.cvss = () => {
   </div>
 
   <div class="panel">
+    <h2>Vector-version fallback · v3.1 → v3.0 → v2</h2>
+    <p class="sub">Not every CVE carries a v3.1 vector. The parser tries the newest available, falls back to v3.0, then v2 with severity band remapping.</p>
+    <table class="t"><thead><tr><th>CVE</th><th>Available vector</th><th>Parsed as</th><th>Severity band</th></tr></thead><tbody>
+      <tr><td class="mono">CVE-2021-36260</td><td class="mono dim">CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H · score 9.8</td><td><span class="tag low">v3.1</span></td><td><span class="tag crit">CRITICAL (9.0–10.0)</span></td></tr>
+      <tr><td class="mono">CVE-2017-7921</td><td class="mono dim">CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N · score 7.5</td><td><span class="tag low">v3.0</span></td><td><span class="tag high">HIGH (7.0–8.9)</span></td></tr>
+      <tr><td class="mono">CVE-2014-0160</td><td class="mono dim">AV:N/AC:L/Au:N/C:P/I:N/A:N · score 5.0 (Heartbleed)</td><td><span class="tag info">v2 (legacy)</span></td><td><span class="tag med">MEDIUM (4.0–6.9)</span></td></tr>
+    </tbody></table>
+    <div class="aside-note"><strong>v2 → v3 band remapping.</strong> A v2 score of 5.0 maps to <em>Medium</em> in v2's band table (4.0–6.9) but its operational meaning roughly equals what v3 would call High. The parser preserves the original vector + band, and the priority engine reads both — never the score alone.</div>
+  </div>
+
+  <div class="panel">
     <h2>CVE-2017-7921 · HIGH (7.5)</h2>
     <p class="sub">Same camera, lower score. Information disclosure via <code>/system/deviceInfo</code>. <span class="tag kev">CISA KEV</span></p>
     <div class="cvss-vec">CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N</div>
@@ -640,12 +651,18 @@ VIEWS.scanners = () => `
   <div class="panel">
     <h2>Nuclei · safe-template scan</h2>
     <p class="sub">Enabled on hosts where the operator opts in. Severity filter: high,critical. JSONL output parsed line-by-line; INFO-band findings excluded.</p>
-    <pre class="code"><span class="km"># Host 172.30.0.10</span>
-<span class="ku">$ nuclei -u http://172.30.0.10 -severity high,critical -silent -j</span>
-{"template-id":"hikvision-deviceinfo-disclosure","host":"172.30.0.10","matched-at":"http://172.30.0.10/system/deviceInfo","info":{"severity":"high","tags":["cve","cve2017","disclosure"]}}
+    <pre class="code"><span class="km"># Host 172.30.0.10 — port-aware target list built from Chapter 2 services</span>
+<span class="km"># observed services: 80/http, 554/rtsp, 8000/http(sdk) — three URLs queued, not one</span>
+<span class="ku">$ nuclei \\
+    -u http://172.30.0.10:80 \\
+    -u http://172.30.0.10:8000 \\
+    -u rtsp://172.30.0.10:554 \\
+    -severity high,critical -silent -j -timeout 45</span>
+{"template-id":"hikvision-deviceinfo-disclosure","host":"172.30.0.10:80","matched-at":"http://172.30.0.10/system/deviceInfo","info":{"severity":"high","tags":["cve","cve2017","disclosure"]}}
 {"template-id":"http-default-port-open","info":{"severity":"info"}}     <span class="km"># filtered out (INFO)</span>
 
-<span class="km"># Result: 1 high-severity finding · maps to F-003 / CVE-2017-7921</span></pre>
+<span class="km"># Result: 1 high-severity finding · maps to F-003 / CVE-2017-7921</span>
+<span class="km"># JSONL parse: 12 lines read · 1 high-band kept · 11 INFO-band dropped</span></pre>
     <div class="aside-note"><strong>Partial on timeout.</strong> If the 45-second timeout fires mid-run, the adapter still emits whatever it parsed so far and marks the method status <code>completed_partial</code> with a coverage caveat. Zero-finding ≠ "scanner ran clean" (homework Q20).</div>
   </div>
 
@@ -681,14 +698,20 @@ GET / · Authorization: Basic admin:admin               → <span class="km">[sk
   </div>
 
   <div class="panel">
-    <h2>Vendor-first credential ladder</h2>
-    <p class="sub">Per device-class, the probe tries vendor-known defaults before generic dictionaries.</p>
-    <table class="t"><thead><tr><th>Host</th><th>Vendor</th><th>Vendor-first tries</th><th>Result</th></tr></thead><tbody>
-      <tr><td class="mono">172.30.0.10</td><td>Hikvision</td><td class="mono dim">admin:12345 · admin:Hikvision · admin:admin</td><td><span class="tag conf">success on #1</span></td></tr>
-      <tr><td class="mono">172.30.0.11</td><td>Axis</td><td class="mono dim">root:pass · root:Axis</td><td><span class="tag info">negative</span></td></tr>
-      <tr><td class="mono">172.30.0.30</td><td>(generic SSH)</td><td class="mono dim">ubuntu:ubuntu · admin:admin · root:toor</td><td><span class="tag info">negative</span></td></tr>
-      <tr><td class="mono">172.30.0.40</td><td>BD Alaris</td><td colspan="2"><span class="tag risk-acc">ROE-blocked — credential probe disabled by policy for medical device. Recorded as <code>not_run</code>, not <code>negative</code> (Q16).</span></td></tr>
+    <h2>Vendor-first credential ladder · five protocols</h2>
+    <p class="sub">Per protocol and device-class, the probe tries vendor-known defaults before generic dictionaries.</p>
+    <table class="t"><thead><tr><th>Host</th><th>Protocol</th><th>Vendor-first tries</th><th>Result</th></tr></thead><tbody>
+      <tr><td class="mono">172.30.0.10</td><td><span class="tag low">HTTP</span></td><td class="mono dim">admin:12345 · admin:Hikvision · admin:admin</td><td><span class="tag conf">success on #1</span></td></tr>
+      <tr><td class="mono">172.30.0.10</td><td><span class="tag low">RTSP</span></td><td class="mono dim">admin:12345 · admin:Hikvision (rtsp://…/Streaming/Channels/101)</td><td><span class="tag conf">success on #1</span></td></tr>
+      <tr><td class="mono">172.30.0.10</td><td><span class="tag low">ONVIF</span></td><td class="mono dim">admin:12345 (WS-Security UsernameToken on :8000)</td><td><span class="tag conf">success</span></td></tr>
+      <tr><td class="mono">172.30.0.11</td><td><span class="tag low">HTTP</span></td><td class="mono dim">root:pass · root:Axis</td><td><span class="tag info">negative</span></td></tr>
+      <tr><td class="mono">172.30.0.11</td><td><span class="tag low">ONVIF</span></td><td class="mono dim">root:pass · service:axis</td><td><span class="tag info">negative</span></td></tr>
+      <tr><td class="mono">172.30.0.20</td><td><span class="tag low">Telnet</span></td><td class="mono dim">admin:Modicon · USER:USER (legacy PLC default)</td><td><span class="tag info">port closed</span></td></tr>
+      <tr><td class="mono">172.30.0.30</td><td><span class="tag low">SSH</span></td><td class="mono dim">ubuntu:ubuntu · admin:admin · root:toor</td><td><span class="tag info">negative · key-only auth</span></td></tr>
+      <tr><td class="mono">172.30.0.50</td><td><span class="tag low">RTSP</span></td><td class="mono dim">admin:admin · root:vizxv · (vendor branch unresolved)</td><td><span class="tag info">negative</span></td></tr>
+      <tr><td class="mono">172.30.0.40</td><td>medical</td><td colspan="2"><span class="tag risk-acc">ROE-blocked — credential probe disabled by policy for BD Alaris class. Recorded as <code>not_run</code>, not <code>negative</code> (Q16).</span></td></tr>
     </tbody></table>
+    <div class="aside-note"><strong>Protocol coverage.</strong> The probe ladder runs in this order: <em>HTTP → SSH → Telnet → RTSP → ONVIF</em>. Each protocol has its own success rule — HTTP uses the body-comparison guardrail; SSH uses an auth-success event (not just connect); Telnet matches a post-banner shell prompt; RTSP requires DESCRIBE 200 OK with channel listing; ONVIF needs a non-fault SOAP response. <em>Stop on first success per (host, protocol)</em> — no enumeration after a positive.</div>
   </div>
 
   <div class="aside-note">
@@ -792,6 +815,19 @@ VIEWS.methods = () => `
         `;
       }).join('')}
     </div>
+  </div>
+
+  <div class="panel">
+    <h2>Multi-method correlation · convergence / unique / contradiction</h2>
+    <p class="sub">When two methods report the same CVE on the same host, that's convergence. When one method reports something no other method touched, that's unique coverage. When two methods <em>disagree</em>, that contradiction is preserved — never silently averaged away.</p>
+    <table class="t"><thead><tr><th>Host</th><th>CVE</th><th>NVD</th><th>Nuclei</th><th>OpenVAS</th><th>Default-cred</th><th>SBOM</th><th>Verdict</th></tr></thead><tbody>
+      <tr><td class="mono">172.30.0.10</td><td class="mono">CVE-2017-7921</td><td>✓ candidate</td><td>✓ behaviour match</td><td>—</td><td>—</td><td>—</td><td><span class="tag conf">CONVERGENCE</span> · two independent methods → confidence up</td></tr>
+      <tr><td class="mono">172.30.0.10</td><td class="mono">(no CVE)</td><td>—</td><td>—</td><td>—</td><td>✓ admin:12345</td><td>—</td><td><span class="tag conf">UNIQUE</span> · only direct-auth saw it; valid finding nonetheless</td></tr>
+      <tr><td class="mono">172.30.0.10</td><td class="mono">CVE-2021-36260</td><td>✓ candidate</td><td>— (no template)</td><td>disabled</td><td>—</td><td>—</td><td><span class="tag cand">UNIQUE</span> · NVD only · coverage gap on active corroboration</td></tr>
+      <tr><td class="mono">172.30.0.30</td><td class="mono">CVE-2018-15473</td><td>✓ candidate</td><td>—</td><td>—</td><td>—</td><td>✓ openssh@9.0 (patched)</td><td><span class="tag fp">CONTRADICTION</span> · NVD says vulnerable, SBOM says patched. <em>SBOM wins</em> per version-criteria rule (Q10). Suppressed as FP.</td></tr>
+      <tr><td class="mono">172.30.0.50</td><td class="mono">CVE-2022-30563 + 30564</td><td>✓ ✓ both branches</td><td>—</td><td>—</td><td>—</td><td>—</td><td><span class="tag cand">CONTRADICTION</span> · ambiguous Axis/Dahua identity · both candidate sets preserved (Q11)</td></tr>
+    </tbody></table>
+    <div class="aside-note"><strong>Q26 — when multiple methods agree, the engine takes the <em>maximum</em> evidence-strength score for the pair, not the sum.</strong> Three methods reporting the same CVE doesn't mean "triple-confirmed" in the prioritization formula — it means the strongest single evidence class wins, and the others provide audit-trail context.</div>
   </div>
 
   <div class="panel">
