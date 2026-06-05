@@ -19,6 +19,7 @@
   ],
   "views": {
     "overview":  { "hash": "#overview",  "features": [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25] },
+    "exercises": { "hash": "#exercises", "features": [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25], "exercises": [0,1,2,3,4,5,6,7,8,9,10,11,12,13] },
     "assets":    { "hash": "#assets",    "features": [1,5] },
     "methods":   { "hash": "#methods",   "features": [21,22,23,24] },
     "nvd":       { "hash": "#nvd",       "features": [1,2,3,4,5] },
@@ -56,6 +57,22 @@
     { "id": 23, "category": "coverage",  "name": "Progressive phase progress events (streaming / partials)","view": "#scanners",  "selector": "[data-feature~=\"23\"]", "expect_text": "partial" },
     { "id": 24, "category": "coverage",  "name": "Method-coverage states (completed/disabled/unavailable/failed)", "view": "#methods", "selector": "[data-feature~=\"24\"]", "expect_text": "coverage gap" },
     { "id": 25, "category": "safety",    "name": "Phase-1 refusal + ROE/RBAC gating before Phase-3",        "view": "#safety",    "selector": "[data-feature~=\"25\"]", "expect_text": "method.not_run" }
+  ],
+  "exercises": [
+    { "id":  0, "title": "Pre-Commitment Before Reading the Findings",    "deliverable": "Initial Vulnerability Hypotheses",                   "selector": "[data-exercise=\"0\"]"  },
+    { "id":  1, "title": "Compare Broad and Narrow CPE Strategies",      "deliverable": "CPE Precision-Recall Memo",                          "selector": "[data-exercise=\"1\"]"  },
+    { "id":  2, "title": "Read CVSS as Structure, Not Score",            "deliverable": "CVSS Comparison Table",                              "selector": "[data-exercise=\"2\"]"  },
+    { "id":  3, "title": "Compare Evidence Methods on One Host",         "deliverable": "Multi-Tool Evidence Comparison",                     "selector": "[data-exercise=\"3\"]"  },
+    { "id":  4, "title": "Diagnose a Weak or Empty CVE Result",          "deliverable": "Zero-Finding Diagnosis",                             "selector": "[data-exercise=\"4\"]"  },
+    { "id":  5, "title": "Default Credentials as High-Confidence Evidence", "deliverable": "Credential Finding Reflection",                   "selector": "[data-exercise=\"5\"]"  },
+    { "id":  6, "title": "False Positive Triage",                        "deliverable": "False Positive Triage Card",                         "selector": "[data-exercise=\"6\"]"  },
+    { "id":  7, "title": "Correlation and Convergence",                  "deliverable": "Tool Convergence Table",                             "selector": "[data-exercise=\"7\"]"  },
+    { "id":  8, "title": "Build a Prioritized Remediation Queue",        "deliverable": "Ranked Remediation Queue",                           "selector": "[data-exercise=\"8\"]"  },
+    { "id":  9, "title": "Default-Credentials Probe by Hand",            "deliverable": "Default-Credential Probe Table",                     "selector": "[data-exercise=\"9\"]"  },
+    { "id": 10, "title": "Probe a Known-Vulnerable Endpoint",            "deliverable": "Information Disclosure Verdict",                     "selector": "[data-exercise=\"10\"]" },
+    { "id": 11, "title": "Run nuclei Against One Host",                  "deliverable": "nuclei Coverage Note",                               "selector": "[data-exercise=\"11\"]" },
+    { "id": 12, "title": "Decompose a CVSS Vector by Hand",              "deliverable": "CVSS Vector Read",                                   "selector": "[data-exercise=\"12\"]" },
+    { "id": 13, "title": "Construct CPEs from Raw Evidence",             "deliverable": "Broad vs Narrow CPE Trade-off",                      "selector": "[data-exercise=\"13\"]" }
   ],
   "data_model": {
     "global": "window.LAB3",

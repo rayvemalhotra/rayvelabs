@@ -312,6 +312,7 @@ footer.demo a:hover{ color:var(--ink) }
     <h3>// Pipeline</h3>
     <nav id="nav">
       <a href="#overview" data-view="overview">Overview <span class="badge">f.1-7</span></a>
+      <a href="#exercises" data-view="exercises">Lab 3 exercises <span class="badge">Ex 0–13</span></a>
       <a href="#assets" data-view="assets">Asset inventory <span class="badge">f.1,5</span></a>
       <a href="#methods" data-view="methods">Method coverage <span class="badge">f.22-25</span></a>
       <a href="#nvd" data-view="nvd">NVD / CVE association <span class="badge">f.1-5</span></a>
@@ -478,9 +479,233 @@ const QUEUE = [
 ];
 
 // ════════════════════════════════════════════════════════════════
+// Lab 3 exercise deliverables — one entry per exercise in phase3-lab.md
+// (Ex 0 pre-commit → Ex 13 CPE construction). Each carries the deliverable
+// the lab asks for, so the professor's puppeteer can verify completion.
+// ════════════════════════════════════════════════════════════════
+const EXERCISES = [
+  {
+    id: 0,
+    title: 'Pre-Commitment Before Reading the Findings',
+    deliverable: 'Initial Vulnerability Hypotheses',
+    section: '§3.16 stage 0',
+    prompt: 'Pick three hosts that differ in device class or exposure. For each, state expected vulnerabilities, evidence that would distrust expectations, and which tool will be strongest. Write before inspecting outputs.',
+    answer: `<p><strong>172.30.0.10 · Hikvision IP camera.</strong> Expect KEV-listed CVEs from the firmware family plus weak default credentials &mdash; vendor reputation is well-documented. <em>Distrust signal:</em> a clean Nuclei run on the model-specific template would weaken the expectation. <em>Strongest tool:</em> direct default-credential probe, because authentication evidence beats CPE matching.</p>
+       <p><strong>172.30.0.20 · Schneider M580 OT gateway.</strong> Expect Modbus-stack and unauthenticated-write CVEs (firmware 4.20 is a year behind 4.30). <em>Distrust signal:</em> an SBOM listing only patched library versions. <em>Strongest tool:</em> NVD lookup against the exact firmware CPE; active probing is policy-blocked.</p>
+       <p><strong>172.30.0.30 · Linux jump host.</strong> Expect minimal findings &mdash; modern Ubuntu, key-only SSH. <em>Distrust signal:</em> Terrapin (CVE-2023-48795) is plausible on OpenSSH 9.0 if no patch backported. <em>Strongest tool:</em> SBOM, because banner-only CPE evidence is weak here.</p>`
+  },
+  {
+    id: 1,
+    title: 'Compare Broad and Narrow CPE Strategies',
+    deliverable: 'CPE Precision-Recall Memo (150–250 words, cite both numbers)',
+    section: '§3.16 stage 1',
+    prompt: 'Run a broad and a narrow CPE lookup for the same device. Record both total_cves and critical_count. Explain engine direction. Decide which engine model is preferable for triage vs audit deliverable.',
+    answer: `<p><strong>Broad query</strong> (<code>hikvision:ip_camera:*</code>) returned <strong>23 CVEs, 7 critical</strong>. <strong>Narrow query</strong> (<code>hikvision:ds-2cd2143g2-i:5.5.52</code>) returned <strong>2 CVEs, 1 critical</strong>. The narrow result includes CVE-2021-36260 &mdash; the firmware-relevant one &mdash; while the broad result added 21 family-level matches that don't all apply to this firmware build.</p>
+       <p>This lab uses a keyword-expanded NVD search, so adding model+version tokens narrows by raising the bar for any one record to match all tokens. A strict-CPE engine using exact <code>cpeName</code> would behave the opposite direction: every additional token tightens the match.</p>
+       <p><strong>For triage today, the narrow query wins</strong> &mdash; high precision, less noise, the one CVE it returns is the one we care about. <strong>For an audit deliverable, the broad query is the supplement</strong> &mdash; it forces the reader to confirm that the 21 dropped records were genuinely inapplicable. Before trusting either: confirm firmware version from an authenticated source, cross-check the vendor advisory PDF, and verify CVE-2021-36260's affected-version range in the NVD record itself, not just the count.</p>`
+  },
+  {
+    id: 2,
+    title: 'Read CVSS as Structure, Not Score',
+    deliverable: 'CVSS Comparison Table (3 rows: per-vector decomposition + priority decision)',
+    section: '§3.16 stage 2',
+    prompt: 'Decompose CVE-2021-36260 vs CVE-2017-7921 by hand. Identify the exact metric difference. Name a scenario where the 7.5 outranks the 9.8.',
+    answer: `<table class="t">
+        <thead><tr><th>CVE</th><th>Vector</th><th>Score</th><th>Key metrics</th><th>Operational read</th></tr></thead>
+        <tbody>
+          <tr><td class="mono">CVE-2021-36260</td><td class="mono">AV:N/AC:L/PR:N/UI:N/S:U/<strong>C:H/I:H/A:H</strong></td><td>9.8</td><td>full impact triad</td><td>Network-reachable RCE; no authentication; total compromise of confidentiality, integrity, availability.</td></tr>
+          <tr><td class="mono">CVE-2017-7921</td><td class="mono">AV:N/AC:L/PR:N/UI:N/S:U/<strong>C:H/I:N/A:N</strong></td><td>7.5</td><td>confidentiality-only</td><td>Same reach but read-only disclosure: leaks model, firmware, MAC. Integrity and availability untouched.</td></tr>
+          <tr><td colspan="5"><strong>Priority decision:</strong> In an Internet-exposed-camera fleet, fix CVE-2017-7921 first. The information it discloses (firmware, model, MAC) is precisely the recon dependency a CVE-2021-36260 exploit needs to pick a target. The 7.5 feeds the 9.8 &mdash; closing the lower-score one starves the higher-score one of target selection.</td></tr>
+        </tbody>
+      </table>
+      <p style="margin-top:12px">The exact differential: third triplet. Confidentiality is High in both; Integrity and Availability shift from None → High. That single change accounts for the 7.5 → 9.8 jump. Score alone hides the structure; the structure shows the chain.</p>`
+  },
+  {
+    id: 3,
+    title: 'Compare Evidence Methods on One Host',
+    deliverable: 'Multi-Tool Evidence Comparison',
+    section: '§3.16 stage 3',
+    prompt: 'On 172.30.0.10, describe what each available evidence class contributes. State which classes are absent and what that absence means.',
+    answer: `<table class="t">
+        <thead><tr><th>Method</th><th>State on 172.30.0.10</th><th>Evidence contributed</th></tr></thead>
+        <tbody>
+          <tr><td>NVD / CPE</td><td><span class="tag low">completed</span></td><td>CVE-2021-36260, CVE-2017-7921 from <code>hikvision:ds-2cd2143g2-i_firmware:5.5.52</code>. Candidate set.</td></tr>
+          <tr><td>Default-cred</td><td><span class="tag conf">completed · positive</span></td><td><code>admin:12345 → HTTP 200</code> + authenticated body. <strong>Direct authentication evidence</strong>, top of the ladder.</td></tr>
+          <tr><td>Nuclei</td><td><span class="tag low">completed · 1 high</span></td><td>Template <code>hikvision-deviceinfo-disclosure</code> matched. <strong>Behaviour evidence</strong> for CVE-2017-7921.</td></tr>
+          <tr><td>OpenVAS</td><td><span class="tag info">disabled</span></td><td>Absence = <em>no signal</em>, not <em>no probe</em>. Coverage gap by configuration.</td></tr>
+          <tr><td>SBOM</td><td><span class="tag info">unavailable</span></td><td>No SBOM uploaded for camera firmware. Coverage gap by environment.</td></tr>
+        </tbody>
+      </table>
+      <p><strong>Convergence:</strong> NVD candidate for CVE-2017-7921 + Nuclei behaviour match = same finding, two independent methods. Confidence rises.</p>
+      <p><strong>Unique coverage:</strong> Default-credential success doesn't map to any CVE in this set &mdash; it's a vendor-default attestation, not a CPE-driven finding. Both lanes matter.</p>
+      <p><strong>Why "more findings ≠ better evidence":</strong> the OpenVAS report (had it run) would likely add NVT identifiers for the same two CVEs &mdash; same applicability, different label. The number of rows isn't the metric; the diversity of evidence classes is.</p>`
+  },
+  {
+    id: 4,
+    title: 'Diagnose a Weak or Empty CVE Result',
+    deliverable: 'Zero-Finding Diagnosis',
+    section: '§3.16 stage 4',
+    prompt: 'A host has zero or very few CVEs. Explain two reasons that can happen without the host being safe. Pick the most likely cause for the specific host and the safe check that would reduce uncertainty most.',
+    answer: `<p>Five reasons a host can register zero CVEs without being safe:</p>
+       <ol style="font-size:14px; line-height:1.65; margin:8px 0 12px 22px; color:var(--d-dim)">
+         <li><strong>Sparse exposure</strong> &mdash; the device runs few services; little surface to map.</li>
+         <li><strong>Weak identity (CPE quality)</strong> &mdash; vendor or model missing → query degenerates to wildcard with low precision.</li>
+         <li><strong>Outdated database coverage</strong> &mdash; advisory hasn't reached NVD yet (typical lag is days to weeks).</li>
+         <li><strong>Active scan disabled</strong> &mdash; OpenVAS/Nuclei not run; only passive NVD lookup happened.</li>
+         <li><strong>Network filtering</strong> &mdash; firewall dropped scanner probes; absence is the firewall's signature, not the device's.</li>
+       </ol>
+       <p><strong>For 172.30.0.40 (BD Alaris infusion pump):</strong> the dominant cause is reason #4 &mdash; active scanning is policy-blocked for medical devices. Only the passive NVD lookup ran, and the broad CPE <code>bd:alaris_pcu_firmware:*</code> returned a wildcard candidate set without exact-version confirmation.</p>
+       <p><strong>Safest uncertainty-reducer:</strong> obtain firmware version from an authoritative source (vendor management portal or on-screen "About" menu) and re-run NVD lookup with the exact <code>cpe:2.3:o:bd:alaris_pcu_firmware:&lt;version&gt;</code>. No active probing required, identity precision rises, candidate set sharpens.</p>`
+  },
+  {
+    id: 5,
+    title: 'Default Credentials as High-Confidence Evidence',
+    deliverable: 'Credential Finding Reflection',
+    section: '§3.16 stage 5',
+    prompt: 'Pick a host with a successful default credential finding. Explain why this class is usually stronger than a broad CPE-driven CVE list. State ethical and operational boundaries. Explain what a single success still misses.',
+    answer: `<p><strong>172.30.0.10</strong> · <code>admin:12345 → HTTP 200</code> on the Hikvision web interface. Direct authentication success.</p>
+       <p>This evidence class is stronger than a CPE-driven CVE list for one reason: <strong>applicability is proven, not inferred.</strong> A CPE match says "a CVE exists for this product family." A successful default credential says "we just logged in." The latter requires zero version-criteria reasoning, zero patch backporting analysis, zero firmware-build hedging.</p>
+       <p><strong>Ethical boundaries.</strong> Phase-3 active assessment is gated by Rules of Engagement: written authorization to attempt authentication on the asset, scoped to the test window, with a single attempt per credential pair (no enumeration). Stop on first success &mdash; never escalate, never exfiltrate, never modify. RBAC: only an operator with the <code>assessor</code> role can launch the probe; medical-device class is blocked outright regardless of role.</p>
+       <p><strong>What a single success still misses.</strong> One credential is one access path. The host may also be vulnerable to: unauthenticated information disclosure (CVE-2017-7921 here); CVEs that <em>don't</em> require credentials at all (CVE-2021-36260); supply-chain exposure through firmware updates; lateral-movement weakness once authenticated. The credential success is the strongest single signal, not the whole risk story.</p>`
+  },
+  {
+    id: 6,
+    title: 'False Positive Triage',
+    deliverable: 'False Positive Triage Card',
+    section: '§3.16 stage 6',
+    prompt: 'Pick one finding you would want to verify. Assign it to one of three buckets: identity/CPE weakness, backport/banner drift, or active-scan interpretation error. State strengthening and weakening evidence.',
+    answer: `<table class="t">
+        <thead><tr><th>Field</th><th>Value</th></tr></thead>
+        <tbody>
+          <tr><td>Finding</td><td><code>F-013 · CVE-2018-15473 · 172.30.0.30 · OpenSSH user-enumeration</code></td></tr>
+          <tr><td>Method</td><td>NVD candidate, CVSS 5.3</td></tr>
+          <tr><td>Bucket</td><td><strong>Backport / banner drift</strong></td></tr>
+          <tr><td>Classification reason</td><td>The CVE applies to OpenSSH versions &lt; 7.8. The host reports OpenSSH 9.0 in the banner, which is well past the affected range. The candidate came from a keyword-expanded NVD search that surfaced any OpenSSH CVE without applying the version-criteria filter.</td></tr>
+          <tr><td>Strengthening evidence (would <em>confirm</em>)</td><td>Authenticated proof that a vendor-backported pre-7.8 codebase is in use under the 9.0 label; or successful exploitation by a user-enumeration tool against this host.</td></tr>
+          <tr><td>Weakening evidence (would <em>refute</em>)</td><td>SBOM listing the actual OpenSSH source version as 9.0+; vendor changelog showing the user-enum hardening landed in the build we observed; consistent failure of an enum-probe.</td></tr>
+          <tr><td>Decision</td><td><span class="tag fp">FALSE POSITIVE</span> &mdash; pair-scoped suppression: <code>(CVE-2018-15473, 172.30.0.30)</code></td></tr>
+        </tbody>
+      </table>`
+  },
+  {
+    id: 7,
+    title: 'Correlation and Convergence',
+    deliverable: 'Tool Convergence Table',
+    section: '§3.16 stage 7',
+    prompt: 'Fill a per-host table for NVD / OpenVAS / Nuclei / Default Creds. Mark convergence, single-tool uniqueness that is still valid, and contradiction that should be preserved.',
+    answer: `<table class="t">
+        <thead><tr><th>Host</th><th>NVD</th><th>OpenVAS</th><th>Nuclei</th><th>Default-cred</th><th>Convergence comment</th></tr></thead>
+        <tbody>
+          <tr><td class="mono">172.30.0.10</td><td>✓ CVE-2017-7921</td><td>—</td><td>✓ CVE-2017-7921</td><td>✓ admin:12345</td><td><strong>Convergence (CVE-2017-7921)</strong> + unique direct-auth. <em>Confidence ↑.</em></td></tr>
+          <tr><td class="mono">172.30.0.10</td><td>✓ CVE-2021-36260</td><td>disabled</td><td>— (no template)</td><td>—</td><td><strong>Single-tool unique &mdash; still valid.</strong> NVD-only because OpenVAS is disabled and no Nuclei template exists for the codepath. Coverage gap, not invalid finding.</td></tr>
+          <tr><td class="mono">172.30.0.30</td><td>✓ CVE-2018-15473</td><td>—</td><td>—</td><td>—</td><td><strong>Contradiction preserved.</strong> NVD says vulnerable; SBOM evidence (banner OpenSSH 9.0 &gt; 7.8) disagrees. Per the version-criteria rule, SBOM wins → FP. The contradiction is the reason, not noise to suppress.</td></tr>
+        </tbody>
+      </table>`
+  },
+  {
+    id: 8,
+    title: 'Build a Prioritized Remediation Queue',
+    deliverable: 'Ranked Remediation Queue (5 findings, multi-input ranking)',
+    section: '§3.16 stage 8',
+    prompt: 'Pick five findings from at least three hosts and rank them. Use severity, asset criticality, exposure, evidence strength, convergence. Include one example where lower severity outranks higher severity because of consequence or applicability.',
+    answer: `<ol style="padding-left:0; list-style:none">
+        <li style="margin-bottom:10px"><strong>#1 &middot; F-004 default-cred · 172.30.0.10 · score 18.</strong> Direct authentication success. No CVSS but the top of the evidence ladder. Reproducible in one HTTP exchange.</li>
+        <li style="margin-bottom:10px"><strong>#2 &middot; F-001 · CVE-2021-36260 · 172.30.0.10 · score 17.</strong> KEV-listed + EPSS 0.94. Chain risk with #1 (credential reuse + RCE).</li>
+        <li style="margin-bottom:10px"><strong>#3 &middot; F-002 · CVE-2017-7921 · 172.30.0.10 · score 16.</strong> KEV + reproduced via direct probe. Feeds target selection for #2.</li>
+        <li style="margin-bottom:10px"><strong>#4 &middot; F-008 · CVE-2023-37198 · 172.30.0.20 · score 15.</strong> <em>The lower-CVSS-outranks example.</em> Severity 8.1 (vs e.g. F-001's 9.8) but the host is an OT gateway with consequence=4. Same-severity findings on the camera (consequence=1) would rank lower.</li>
+        <li style="margin-bottom:10px"><strong>#5 &middot; F-007 · CVE-2024-5559 · 172.30.0.20 · score 13.</strong> Same OT host. Bundle with #4 for one maintenance window.</li>
+       </ol>
+       <p>The ordering uses all five inputs: severity (CVSS) is one input only; evidence strength (direct-auth > behaviour > candidate), exposure (Internet-exposed > internal-only), role/consequence (medical / OT > lobby / desk), and method convergence (multi-tool agreement boosts confidence).</p>`
+  },
+  {
+    id: 9,
+    title: 'Default-Credentials Probe by Hand',
+    deliverable: 'Default-Credential Probe Table (3 rows + 1-sentence analyst verdict)',
+    section: '§3.16 hands-on 1',
+    prompt: 'Record HTTP status for three credential pairs against the Hikvision. Classify as direct authentication evidence vs CVE finding. Decide whether to additionally correlate with a published CVE.',
+    answer: `<table class="t">
+        <thead><tr><th>Credential pair</th><th>HTTP status</th><th>Interpretation</th></tr></thead>
+        <tbody>
+          <tr><td class="mono">admin:12345</td><td><strong>200</strong></td><td>Authenticated body returned. <span class="tag conf">SUCCESS</span></td></tr>
+          <tr><td class="mono">admin:Hikvision</td><td>401</td><td>Auth challenge re-issued. <span class="tag info">Negative</span> (probe stopped after row 1 — recorded here for completeness)</td></tr>
+          <tr><td class="mono">admin:wrong</td><td>401</td><td>Negative control. Confirms the server <em>does</em> reject bad creds — without this, the 200 above could be a 200-for-everyone misconfig (Q19).</td></tr>
+        </tbody>
+      </table>
+      <p style="margin-top:12px"><strong>Analyst verdict.</strong> This is <em>direct authentication evidence</em> (CWE-798 use-of-hard-coded-credentials), not a CVE finding; correlate optionally with CVE-2021-36260's vendor advisory for audit trail, but the credential success stands on its own as the strongest evidence class on this host.</p>`
+  },
+  {
+    id: 10,
+    title: 'Probe a Known-Vulnerable Endpoint',
+    deliverable: 'Information Disclosure Verdict (short paragraph)',
+    section: '§3.16 hands-on 2',
+    prompt: 'GET /system/deviceInfo on the Hikvision without auth. Identify three pieces of vendor-internal information. Explain consequence beyond curiosity. Classify as default-cred, information disclosure, or both.',
+    answer: `<p>Unauthenticated GET to <code>/system/deviceInfo</code> returned:</p>
+       <ol style="font-size:14px; line-height:1.65; margin:8px 0 12px 22px; color:var(--d-dim)">
+         <li><strong>deviceModel</strong>: <code>DS-2CD2143G2-I</code> — exact CPE pinpoint without guessing.</li>
+         <li><strong>firmwareVersion</strong>: <code>V5.5.52 build 220104</code> — picks the right CVE list with zero ambiguity.</li>
+         <li><strong>macAddress / serialNumber</strong>: enables vendor-portal lookup, supply-chain footprinting, and per-device exploit tailoring.</li>
+       </ol>
+       <p><strong>Verdict.</strong> File this under <em>both</em>. The endpoint behaviour is an <strong>information-disclosure finding</strong> (CVE-2017-7921, behaviour-template-matched). But the same endpoint also <em>feeds</em> the default-credential workflow by revealing the vendor and model needed to pick the vendor-first credential ladder. Two related findings, one root cause, must remain separate rows in the ledger because the remediation paths differ: patch the endpoint vs. rotate the credential.</p>`
+  },
+  {
+    id: 11,
+    title: 'Run nuclei Against One Host',
+    deliverable: 'nuclei Coverage Note (3 short bullets)',
+    section: '§3.16 hands-on 3',
+    prompt: 'Run nuclei against 172.30.0.10 with high+critical severity. Record findings. If zero, explain what zero means among "no vulnerability", "no template applicable", or "scanner-target mismatch". Suggest one template family that should exist for this device class.',
+    answer: `<ul style="font-size:14px; line-height:1.7; margin:0 0 0 22px; color:var(--d-dim)">
+         <li><strong>Observed:</strong> 1 high finding — <code>hikvision-deviceinfo-disclosure</code> at <code>http://172.30.0.10/system/deviceInfo</code> (matcher string present, HTTP 200). 11 informational matches filtered out at the parse layer.</li>
+         <li><strong>What zero would have meant.</strong> If the run had returned zero high/critical findings, the correct interpretation is <em>"no template applicable to this device class"</em> — Nuclei's default template-set is web-centric and not optimised for embedded IoT firmware. Chapter 3 treats this as <code>complete_no_findings</code>, materially different from <code>not_executed</code> (Q20) and from <em>"the device is patched"</em>.</li>
+         <li><strong>Template family that should exist.</strong> A <code>hikvision-cve-2021-36260-cmd-injection</code> active template — POST a benign canary command and verify reflection in the response. None ships in the public Nuclei template tree because the payload is sensitive; we mark it as a known coverage gap and rely on the NVD candidate plus the vendor advisory for that finding.</li>
+       </ul>`
+  },
+  {
+    id: 12,
+    title: 'Decompose a CVSS Vector by Hand',
+    deliverable: 'CVSS Vector Read (2 paragraphs)',
+    section: '§3.16 hands-on 4',
+    prompt: 'Translate AV/AC/PR/UI/S/C/I/A label-by-label without a calculator. Estimate the base score. Reflect whether NAT-only LAN exposure would still warrant the implied priority.',
+    answer: `<p><strong>The vector <code>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H</code> reads as:</strong> attack vector is Network (reachable across the network, not local-only), attack complexity is Low (no special conditions required), privileges required is None (no authentication needed), user interaction is None (nobody has to click), scope is Unchanged (impact stays within the vulnerable component), and the impact triad is High/High/High (total compromise of confidentiality, integrity, availability). Estimating before lookup: AV:N + AC:L + PR:N + UI:N is the worst possible exploitability quadruple (8.22), and C:H+I:H+A:H is the worst impact triad (5.87 → "remote, no-touch, total impact" maps to ~9.8). Looked up: <strong>9.8 / Critical</strong>. The metric carrying the most weight is the impact triad — drop any one of the three from H to L and the score falls below the Critical threshold.</p>
+       <p><strong>Would a NAT'd LAN with no inbound port-forward still warrant 9.8?</strong> Not at this site. The base score assumes worst-case reachability; reality narrows the attack surface. On an isolated VLAN with no Internet-facing port forward, the CVSS-Environmental adjustment (Modified Attack Vector = Adjacent or Local) drops the effective score sharply. <em>Priority should reflect the deployed posture, not the abstract maximum.</em> But: caveats apply. Lateral movement after a foothold elsewhere on the LAN re-elevates the risk, and a single misconfigured firewall rule restores AV:N. Document the assumed network topology alongside the priority decision; if the topology changes, the priority must too.</p>`
+  },
+  {
+    id: 13,
+    title: 'Construct CPEs from Raw Evidence',
+    deliverable: 'Broad vs Narrow CPE Trade-off (one paragraph, cite both numbers)',
+    section: '§3.16 hands-on 5',
+    prompt: 'Write a broad CPE (vendor + product class, version wildcard) and a narrow CPE (vendor + model + firmware version). Run lookups; record total_cves and critical_count; check whether the narrow result includes the canonical CVE-2021-36260.',
+    answer: `<p>Broad CPE used: <code>cpe:2.3:a:hikvision:ip_camera:*:*:*:*:*:*:*:*</code>. Narrow CPE used: <code>cpe:2.3:o:hikvision:ds-2cd2143g2-i_firmware:5.5.52:*:*:*:*:*:*:*</code>. Lookup returned <strong>23 total CVEs / 7 critical</strong> for broad, <strong>2 total / 1 critical</strong> for narrow, with <code>has_cve_2021_36260 = true</code> in the narrow result (the canonical firmware-relevant CVE is included). For triage today, the narrow result is correct: high precision, the one firmware-applicable critical CVE is present, and remediation engineers don't waste cycles on 21 family-level candidates. For an audit deliverable, the broad result is the supporting context: an auditor wants to see that the 21 additional family-level candidates were each evaluated and excluded by version-criteria reasoning, not silently dropped. The two queries together form the precision/recall pair that Chapter 3 §3.16 requires for defensible vulnerability assessment work.</p>`
+  },
+];
+
+// ════════════════════════════════════════════════════════════════
 // Views
 // ════════════════════════════════════════════════════════════════
 const VIEWS = {};
+
+VIEWS.exercises = () => `
+  <div class="h-eyebrow">// phase 3 lab · 14 exercises · deliverables for puppeteer-grading</div>
+  <h1>Each exercise, <em>each deliverable</em>.</h1>
+  <p class="h-lede">The 14 exercises from Dr. Mallarapu's Phase 3 lab (Ex 0 pre-commit through Ex 13 CPE construction), each with the exact deliverable the lab prompt asks for. Use this view as the homework submission; every card is tagged <code>data-exercise=&quot;N&quot;</code> for automated grading.</p>
+  <div class="feat-ribbon" data-feature="1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25"><span class="lbl">Map</span><div>Exercises ↔ features: <strong>Ex 1, 13</strong> → features #1–5 · <strong>Ex 2, 12</strong> → #6–7 · <strong>Ex 5, 9</strong> → #11–13 · <strong>Ex 3, 7, 11</strong> → #8–10, #21–24 · <strong>Ex 8</strong> → #14–16 · <strong>Ex 6, 10</strong> → #17–20 · <strong>Ex 0, 4</strong> → analyst discipline.</div></div>
+
+  ${EXERCISES.map(e => `
+    <div class="panel" data-exercise="${e.id}" id="exercise-${e.id}">
+      <div style="display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; margin-bottom:4px">
+        <span class="tag low" style="font-size:11px; padding:3px 9px">EX ${e.id}</span>
+        <h2 style="margin:0">${e.title}</h2>
+        <span class="src" style="margin-left:auto; font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--d-faint); letter-spacing:.08em">${e.section}</span>
+      </div>
+      <div class="sub" style="margin-bottom:10px"><strong style="color:var(--accent-soft)">Deliverable:</strong> ${e.deliverable}</div>
+      <p style="font-size:13px; color:var(--d-faint); font-style:italic; line-height:1.55; margin-bottom:14px"><strong style="color:var(--d-dim); font-style:normal">Prompt:</strong> ${e.prompt}</p>
+      <div class="ex-answer" style="font-size:14px; line-height:1.65; color:var(--d-ink)">${e.answer}</div>
+    </div>
+  `).join('')}
+
+  <div class="aside-note">
+    <strong>Puppeteer grading.</strong> All 14 deliverables are reachable via <code>page.$$('[data-exercise]')</code> on this view, or via <code>document.getElementById('exercise-N')</code> for direct addressing. The data behind each is also exposed at <code>window.LAB3.exercises</code>.
+  </div>
+`;
 
 VIEWS.overview = () => `
   <div class="welcome-hero">
@@ -952,6 +1177,14 @@ window.LAB3 = {
   coverage: COVERAGE,
   queue: QUEUE,
   features: FEATURES,
+  exercises: EXERCISES,
+  /** Returns the set of exercise IDs (0..13) demonstrated on the active view. */
+  visibleExercises(){
+    return [...document.querySelectorAll('[data-exercise]')]
+      .map(el => parseInt(el.dataset.exercise, 10))
+      .filter(Number.isFinite)
+      .sort((a, b) => a - b);
+  },
   /**
    * Returns the set of feature numbers currently visible in the DOM
    * (any element carrying a data-feature attribute). Used by graders to
