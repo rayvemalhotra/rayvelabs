@@ -1,99 +1,9 @@
 {
-  "total": 4107,
+  "total": 3663,
   "recent": [
     {
-      "first_seen": "1822302",
-      "ioc": "91.92.241.80:8848",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.dcrat",
-      "malware_alias": "DarkCrystal RAT",
-      "malware_printable": "DCRat",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1822301",
-      "ioc": "82.23.246.160:8848",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.dcrat",
-      "malware_alias": "DarkCrystal RAT",
-      "malware_printable": "DCRat",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1822300",
-      "ioc": "206.238.68.33:8383",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "unknown",
-      "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1822299",
-      "ioc": "185.72.9.227:8848",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.dcrat",
-      "malware_alias": "DarkCrystal RAT",
-      "malware_printable": "DCRat",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1822298",
-      "ioc": "182.23.2.163:49002",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.remcos",
-      "malware_alias": "RemcosRAT",
-      "malware_printable": "Remvio",
-      "confidence": ""
-    },
-    {
-      "first_seen": "1822297",
-      "ioc": "172.238.15.96:9443",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.netsupportmanager_rat",
-      "malware_alias": "NetSupport",
-      "malware_printable": "NetSupportManager RAT",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1822296",
-      "ioc": "156.247.40.190:8848",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.dcrat",
-      "malware_alias": "DarkCrystal RAT",
-      "malware_printable": "DCRat",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1822295",
-      "ioc": "155.103.70.198:13408",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.remcos",
-      "malware_alias": "RemcosRAT",
-      "malware_printable": "Remvio",
-      "confidence": ""
-    },
-    {
-      "first_seen": "1822294",
-      "ioc": "140.235.16.223:7203",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.dcrat",
-      "malware_alias": "DarkCrystal RAT",
-      "malware_printable": "DCRat",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1822293",
-      "ioc": "ffeqlui.betrayon.casino",
+      "first_seen": "1822761",
+      "ioc": "edfwndp0.chloroquineser.com",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -102,8 +12,8 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1822292",
-      "ioc": "betrayon.casino",
+      "first_seen": "1822760",
+      "ioc": "b25s30n3.chloroquineser.com",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -112,14 +22,104 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1822291",
-      "ioc": "23.95.117.252:3001",
+      "first_seen": "1822759",
+      "ioc": "dnmjqvy.trmegapari.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1822758",
+      "ioc": "!z!.trmegapari.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1822757",
+      "ioc": "101.34.249.170:8085",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "win.remcos",
-      "malware_alias": "RemcosRAT",
-      "malware_printable": "Remvio",
-      "confidence": ""
+      "malware": "win.vshell",
+      "malware_alias": "None",
+      "malware_printable": "VShell",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1822756",
+      "ioc": "118.195.197.228:6651",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.vshell",
+      "malware_alias": "None",
+      "malware_printable": "VShell",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1822754",
+      "ioc": "192.210.215.182:3308",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.vshell",
+      "malware_alias": "None",
+      "malware_printable": "VShell",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1822755",
+      "ioc": "154.88.96.38:8884",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.vshell",
+      "malware_alias": "None",
+      "malware_printable": "VShell",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1822753",
+      "ioc": "3.36.117.91:81",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.vshell",
+      "malware_alias": "None",
+      "malware_printable": "VShell",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1822744",
+      "ioc": "giga.miraibotnet.su",
+      "ioc_type": "domain",
+      "threat_type": "botnet_cc",
+      "malware": "elf.mirai",
+      "malware_alias": "Katana",
+      "malware_printable": "Mirai",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1822745",
+      "ioc": "rep.miraibotnet.su",
+      "ioc_type": "domain",
+      "threat_type": "botnet_cc",
+      "malware": "elf.mirai",
+      "malware_alias": "Katana",
+      "malware_printable": "Mirai",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1822746",
+      "ioc": "srv.miraibotnet.su",
+      "ioc_type": "domain",
+      "threat_type": "botnet_cc",
+      "malware": "elf.mirai",
+      "malware_alias": "Katana",
+      "malware_printable": "Mirai",
+      "confidence": "False"
     }
   ]
 }

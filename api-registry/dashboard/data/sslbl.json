@@ -1,5 +1,5 @@
 {
-  "total_listings": 9856,
+  "total_listings": 9865,
   "by_reason": [
     {
       "reason": "AsyncRAT C&C",
@@ -11,11 +11,11 @@
     },
     {
       "reason": "QuasarRAT C&C",
-      "count": 682
+      "count": 683
     },
     {
       "reason": "Vidar C&C",
-      "count": 573
+      "count": 575
     },
     {
       "reason": "LummaStealer C&C",
@@ -24,54 +24,54 @@
   ],
   "recent": [
     {
-      "listing_date": "2026-06-04 08:30:43",
-      "sha1": "ff83fb186112903cb2e39578e268e1937cea9317",
-      "listing_reason": "LiberiumRAT C&C"
-    },
-    {
-      "listing_date": "2026-06-04 08:29:15",
-      "sha1": "f9f3f5ba3c746db5200118359cc83768d457e849",
+      "listing_date": "2026-06-05 05:40:02",
+      "sha1": "e1c32b52b297f07860e5c2ff0b0ef604d8d929fc",
       "listing_reason": "PureLogsStealer C&C"
     },
     {
-      "listing_date": "2026-06-04 08:27:15",
-      "sha1": "caff4adfa4b82c536fb487576f223a5ee64d4194",
-      "listing_reason": "PureLogsStealer C&C"
-    },
-    {
-      "listing_date": "2026-06-04 08:26:29",
-      "sha1": "f86f5e9268dc6dda71fc61ebb657feeaadb9cec9",
-      "listing_reason": "PureLogsStealer C&C"
-    },
-    {
-      "listing_date": "2026-06-04 08:19:06",
-      "sha1": "25cec5dfbffe744af691b5fe996769cc84244f78",
+      "listing_date": "2026-06-05 05:16:17",
+      "sha1": "ded6028ef62f0258e17121e6beece5d9b124d48f",
       "listing_reason": "ConnectWise C&C"
     },
     {
-      "listing_date": "2026-06-04 07:58:45",
-      "sha1": "73fd6642b1856961ecc5c484d64b8e4fdbc52938",
-      "listing_reason": "RatonRAT C&C"
+      "listing_date": "2026-06-05 05:15:27",
+      "sha1": "545e17b0c27640889044d9780ef0f3ad8825b55a",
+      "listing_reason": "ConnectWise C&C"
     },
     {
-      "listing_date": "2026-06-04 07:58:25",
-      "sha1": "bf26c599e3f5ea932f7b8c592138d42d49837713",
+      "listing_date": "2026-06-05 05:14:19",
+      "sha1": "12a50b5c46ccd3c1dc155c31eb30438cc2225e89",
+      "listing_reason": "CobaltStrike C&C"
+    },
+    {
+      "listing_date": "2026-06-05 05:12:46",
+      "sha1": "7cf0a3e58ceb76c0839efdd4adf64dd64fa6f6f2",
+      "listing_reason": "Vidar C&C"
+    },
+    {
+      "listing_date": "2026-06-05 05:06:59",
+      "sha1": "90e3298b9df7e2c9ba08cc32cab77dee09be4f30",
+      "listing_reason": "Vidar C&C"
+    },
+    {
+      "listing_date": "2026-06-04 18:12:37",
+      "sha1": "28c3106cd1cec9a5dfec7f2ba3b0dd7e70784429",
       "listing_reason": "QuasarRAT C&C"
     },
     {
-      "listing_date": "2026-06-04 07:58:11",
-      "sha1": "c03231e2f73ff60033ad62bb15825fe300250b40",
-      "listing_reason": "PureHVNC C&C"
+      "listing_date": "2026-06-04 17:57:47",
+      "sha1": "7162dcab7590a4a6080e97d04f49cf0939db039c",
+      "listing_reason": "KongTuke C&C"
     },
     {
-      "listing_date": "2026-06-04 07:58:00",
-      "sha1": "ae87b4dab40e1d42fe3558bab959204a915be547",
-      "listing_reason": "GhostPulse C&C"
+      "listing_date": "2026-06-04 14:32:26",
+      "sha1": "e42d598b3e6edb6b1899c5a72d03de435a82e4a3",
+      "listing_reason": "PureLogsStealer C&C"
     },
     {
-      "listing_date": "2026-06-04 07:57:34",
-      "sha1": "564b4902e12a0412bc9df5369f51cd6d273d5974",
-      "listing_reason": "Vidar C&C"
+      "listing_date": "2026-06-04 08:30:43",
+      "sha1": "ff83fb186112903cb2e39578e268e1937cea9317",
+      "listing_reason": "LiberiumRAT C&C"
     }
   ]
 }

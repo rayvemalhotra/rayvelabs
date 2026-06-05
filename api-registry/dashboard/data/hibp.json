@@ -1,6 +1,6 @@
 {
-  "total_breaches": 1001,
-  "total_records_exposed": 17599520521,
+  "total_breaches": 1002,
+  "total_records_exposed": 17599916834,
   "recent": [
     {
       "name": "AtlasMenu",
@@ -15,6 +15,24 @@
         "Passwords",
         "Support tickets",
         "Usernames"
+      ],
+      "verified": true
+    },
+    {
+      "name": "BCDTravel",
+      "title": "BCD Travel",
+      "domain": "bcdtravel.com",
+      "breach_date": "2026-05-29",
+      "added_date": "2026-06-05T06:53:15Z",
+      "pwn_count": 396313,
+      "data_classes": [
+        "Email addresses",
+        "Employers",
+        "Job titles",
+        "Names",
+        "Phone numbers",
+        "Physical addresses",
+        "Support tickets"
       ],
       "verified": true
     },
@@ -107,24 +125,6 @@
         "Email addresses",
         "Names",
         "Phone numbers"
-      ],
-      "verified": true
-    },
-    {
-      "name": "Udemy",
-      "title": "Udemy",
-      "domain": "udemy.com",
-      "breach_date": "2026-04-24",
-      "added_date": "2026-04-26T23:01:50Z",
-      "pwn_count": 1401259,
-      "data_classes": [
-        "Email addresses",
-        "Employers",
-        "Job titles",
-        "Names",
-        "Payment methods",
-        "Phone numbers",
-        "Physical addresses"
       ],
       "verified": true
     }

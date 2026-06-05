@@ -1,22 +1,21 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1201",
-    "name": "Password Policy Discovery",
-    "description": "Adversaries may attempt to access detailed information about the password policy used within an enterprise network or cloud environment. Password policies are a way to enforce complex passwords that are difficult to guess or crack through [Brute Force](https://attack.mitre.org/techniques/T1110). This information may help the adversary to create a list of common passwords and launch dictionary and/or brute force attacks which adheres to the policy (e.g. if the minimum password length should be 8, then not trying passwords such as 'pass123'; not checking for more than 3-4 passwords per account if the lockout is set to 6 as to not lock out accounts).",
+    "id": "T1546",
+    "name": "Event Triggered Execution",
+    "description": "Adversaries may establish persistence and/or elevate privileges using system mechanisms that trigger execution based on specific events. Various operating systems have means to monitor and subscribe to events such as logons or other user activity such as running specific applications/binaries. Cloud environments may also support various functions and services that monitor and can be invoked in response to specific cloud events.(Citation: Backdooring an AWS account)(Citation: Varonis Power Automate Data Exfiltration)(Citation: Microsoft DART Case Report 001)",
     "tactics": [
-      "discovery"
+      "privilege-escalation",
+      "persistence"
     ],
     "platforms": [
-      "Windows",
       "Linux",
       "macOS",
-      "IaaS",
-      "Network Devices",
-      "Identity Provider",
+      "Windows",
       "SaaS",
+      "IaaS",
       "Office Suite"
     ],
-    "url": "https://attack.mitre.org/techniques/T1201"
+    "url": "https://attack.mitre.org/techniques/T1546"
   }
 }
