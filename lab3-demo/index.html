@@ -530,7 +530,7 @@ VIEWS.assets = () => `
   <div class="h-eyebrow">// asset inventory</div>
   <h1>Six hosts. Five archetypes. <em>Every</em> finding lives on one of them.</h1>
   <p class="h-lede">The scenario network from the lab. Roles, CPEs, and exposure differ &mdash; that's the whole point. <strong>Applicability before action.</strong></p>
-  <div class="feat-ribbon"><span class="lbl">Features</span><div>Demonstrates <strong>#1</strong> CPE→CVE input + <strong>#5</strong> CPE precision control (exact vs wildcard). Asset <code>172.30.0.50</code> shows the conflicting-identity case — both candidate sets preserved with <em>conflict provenance</em>, per homework Q11.</div></div>
+  <div class="feat-ribbon" data-feature="1 5"><span class="lbl">Features</span><div>Demonstrates <strong>#1</strong> CPE→CVE input + <strong>#5</strong> CPE precision control (exact vs wildcard). Asset <code>172.30.0.50</code> shows the conflicting-identity case — both candidate sets preserved with <em>conflict provenance</em>, per homework Q11.</div></div>
   ${ASSETS.map(a => `
     <div class="asset-card">
       <span class="ip">${a.ip}</span><span class="role">· ${a.role}</span>
@@ -548,7 +548,7 @@ VIEWS.nvd = () => `
   <div class="h-eyebrow">// nvd / cve association</div>
   <h1>From a CPE string to a <em>candidate</em> CVE set.</h1>
   <p class="h-lede">Phase 3 starts here. The adapter asks NVD what CVEs apply &mdash; first by exact CPE, then by broader match if the first returns nothing. Every result is a <strong>candidate</strong>, never a confirmed weakness.</p>
-  <div class="feat-ribbon"><span class="lbl">Features 1–5</span><div>Exact <code>cpeName</code> → <code>virtualMatchString</code> fallback (#1, #2). Redis caching + cross-host CPE dedup + 24h TTL (#3). Exponential backoff on 429 (#4). Precision control: exact vs wildcard, OS-CPE excluded by default (#5).</div></div>
+  <div class="feat-ribbon" data-feature="1 2 3 4 5"><span class="lbl">Features 1–5</span><div>Exact <code>cpeName</code> → <code>virtualMatchString</code> fallback (#1, #2). Redis caching + cross-host CPE dedup + 24h TTL (#3). Exponential backoff on 429 (#4). Precision control: exact vs wildcard, OS-CPE excluded by default (#5).</div></div>
 
   <div class="panel">
     <h2>Adapter behaviour, observed</h2>
@@ -591,7 +591,7 @@ VIEWS.cvss = () => {
   <div class="h-eyebrow">// cvss · read structure, not score</div>
   <h1>9.8 isn't the answer. The <em>vector</em> is.</h1>
   <p class="h-lede">Two CVEs on the same camera. One is 9.8, one is 7.5. The score alone doesn't tell you which to fix first. Decompose the vector, ask what each metric means in your environment, then triage.</p>
-  <div class="feat-ribbon"><span class="lbl">Features 6–7</span><div>CVSS v3.1 → v3.0 → v2 parsing across AV / AC / PR / UI / S / C / I / A (#6). CWE extraction, affected-criteria, references, timestamps (#7). The same severity band ≠ the same priority.</div></div>
+  <div class="feat-ribbon" data-feature="6 7"><span class="lbl">Features 6–7</span><div>CVSS v3.1 → v3.0 → v2 parsing across AV / AC / PR / UI / S / C / I / A (#6). CWE extraction, affected-criteria, references, timestamps (#7). The same severity band ≠ the same priority.</div></div>
 
   <div class="panel">
     <h2>${f.cve} · CRITICAL</h2>
@@ -634,7 +634,7 @@ VIEWS.scanners = () => `
   <div class="h-eyebrow">// scanner adapters · authorized phase 3</div>
   <h1>Different scanners produce <em>different evidence</em>.</h1>
   <p class="h-lede">"More findings" is not "better evidence." Each adapter has its own life-cycle, its own failure mode, and its own evidence class. They corroborate each other only when they actually overlap.</p>
-  <div class="feat-ribbon"><span class="lbl">Features 8–10</span><div>OpenVAS/GMP full lifecycle: target → task → poll → report → cleanup, with feed-status + severity normalization (#8). Nuclei safe-template scan: JSONL parse, INFO filter, partial-on-timeout, port-aware target (#9). SBOM / vendor scanner import (#10).</div></div>
+  <div class="feat-ribbon" data-feature="8 9 10 23"><span class="lbl">Features 8–10</span><div>OpenVAS/GMP full lifecycle: target → task → poll → report → cleanup, with feed-status + severity normalization (#8). Nuclei safe-template scan: JSONL parse, INFO filter, partial-on-timeout, port-aware target (#9). SBOM / vendor scanner import (#10).</div></div>
 
   <div class="panel">
     <h2>OpenVAS / Greenbone GMP lifecycle</h2>
@@ -679,7 +679,7 @@ VIEWS.creds = () => `
   <div class="h-eyebrow">// default-credential probe · guardrailed</div>
   <h1>Direct authentication beats <em>every</em> CPE match.</h1>
   <p class="h-lede">A successful default login is the strongest single evidence class in Phase 3. The probe stops on first success (no enumeration), tries vendor defaults first, and compares authenticated vs unauthenticated response to avoid false positives.</p>
-  <div class="feat-ribbon"><span class="lbl">Features 11–13</span><div>Multi-protocol (HTTP / SSH / Telnet / RTSP / ONVIF) (#11). Vendor-first → generic fallback (#12). Guardrail: auth vs unauth response comparison, stop on first success (#13).</div></div>
+  <div class="feat-ribbon" data-feature="11 12 13"><span class="lbl">Features 11–13</span><div>Multi-protocol (HTTP / SSH / Telnet / RTSP / ONVIF) (#11). Vendor-first → generic fallback (#12). Guardrail: auth vs unauth response comparison, stop on first success (#13).</div></div>
 
   <div class="panel">
     <h2>Host 172.30.0.10 · Hikvision · HTTP</h2>
@@ -723,7 +723,7 @@ VIEWS.enrich = () => `
   <div class="h-eyebrow">// enrichment &amp; prioritization</div>
   <h1>Severity is one input. <em>Five</em> are required.</h1>
   <p class="h-lede">CVSS tells you how bad if exploited. EPSS estimates how likely. KEV tells you it already is. Add evidence strength, exposure, role, and consequence — that's the priority.</p>
-  <div class="feat-ribbon"><span class="lbl">Features 14–16</span><div>CISA KEV membership (#14). EPSS exploitation-probability (#15). Priority formula: <code>severity + EPSS overlay + KEV overlay + evidence + exposure + role + consequence</code> (#16). CVSS alone is insufficient — homework Q33, Q37, Q39.</div></div>
+  <div class="feat-ribbon" data-feature="14 15 16"><span class="lbl">Features 14–16</span><div>CISA KEV membership (#14). EPSS exploitation-probability (#15). Priority formula: <code>severity + EPSS overlay + KEV overlay + evidence + exposure + role + consequence</code> (#16). CVSS alone is insufficient — homework Q33, Q37, Q39.</div></div>
 
   <div class="panel">
     <h2>KEV + EPSS overlay on the candidate set</h2>
@@ -760,7 +760,7 @@ VIEWS.ledger = () => `
   <div class="h-eyebrow">// evidence ledger</div>
   <h1>Every finding ends up in <em>one of four</em> states.</h1>
   <p class="h-lede">A scanner finding is an observation, not the truth. Each row is classified as candidate, confirmed, false-positive, or risk-accepted — with owner, reason, evidence, and (for risk-accepted) an expiry date.</p>
-  <div class="feat-ribbon"><span class="lbl">Features 17–21</span><div>Core rule: scanner finding ≠ truth, applicability first (#17). Candidate vs confirmed (#18). Validation decisions: FP / confirmed / risk-accepted with owner/reason/evidence/expiry (#19). Pair-scoped suppression <code>(cve_id, device_ip)</code> + noisy-CVE aggregation (#20). Multi-method correlation preserves convergence, unique coverage, and contradiction (#21).</div></div>
+  <div class="feat-ribbon" data-feature="17 18 19 20"><span class="lbl">Features 17–21</span><div>Core rule: scanner finding ≠ truth, applicability first (#17). Candidate vs confirmed (#18). Validation decisions: FP / confirmed / risk-accepted with owner/reason/evidence/expiry (#19). Pair-scoped suppression <code>(cve_id, device_ip)</code> + noisy-CVE aggregation (#20). Multi-method correlation preserves convergence, unique coverage, and contradiction (#21).</div></div>
 
   ${FINDINGS.map(f => `
     <div class="ledger-entry ${f.status === 'confirmed' ? 'confirmed' : f.status === 'false-positive' ? 'fp' : f.status === 'risk-accepted' ? 'risk-acc' : ''}">
@@ -791,7 +791,7 @@ VIEWS.methods = () => `
   <div class="h-eyebrow">// method coverage matrix</div>
   <h1>Missing data is itself <em>evidence</em>.</h1>
   <p class="h-lede">Per-host, per-method, what ran and what didn't. Empty cells aren't safety — they're coverage gaps that need to be named.</p>
-  <div class="feat-ribbon"><span class="lbl">Features 22–24</span><div>Per-method provenance, confidence, safety posture (#22). Streaming phase progress events: state, errors, partials, cancellations (#23). Coverage states: <strong>completed / disabled / unavailable / failed</strong>; missing means coverage gap, not safety (#24).</div></div>
+  <div class="feat-ribbon" data-feature="21 22 23 24"><span class="lbl">Features 22–24</span><div>Per-method provenance, confidence, safety posture (#22). Streaming phase progress events: state, errors, partials, cancellations (#23). Coverage states: <strong>completed / disabled / unavailable / failed</strong>; missing means coverage gap, not safety (#24).</div></div>
 
   <div class="panel">
     <h2>Per-host coverage</h2>
@@ -847,7 +847,7 @@ VIEWS.queue = () => `
   <div class="h-eyebrow">// remediation queue</div>
   <h1>From findings to a <em>ranked list</em>.</h1>
   <p class="h-lede">Five findings across three hosts, ranked under consequence. Note: a higher-CVSS finding can sit below a lower-CVSS finding if the evidence is stronger or the consequence is greater — per Lab Exercise 8.</p>
-  <div class="feat-ribbon"><span class="lbl">Feature 16</span><div>Risk prioritization with <strong>all six inputs</strong> — severity, EPSS, KEV, evidence strength, exposure, device role, consequence. CVSS alone is not allowed to drive the order (Lab Exercise 8).</div></div>
+  <div class="feat-ribbon" data-feature="16"><span class="lbl">Feature 16</span><div>Risk prioritization with <strong>all six inputs</strong> — severity, EPSS, KEV, evidence strength, exposure, device role, consequence. CVSS alone is not allowed to drive the order (Lab Exercise 8).</div></div>
 
   ${QUEUE.map(q => `
     <div class="queue-item">
@@ -870,7 +870,7 @@ VIEWS.safety = () => `
   <div class="h-eyebrow">// safety posture · roe / rbac</div>
   <h1>Refusal is <em>evidence</em>, not failure.</h1>
   <p class="h-lede">Phase 1 is read-only. Phase 3 active assessment is gated by Rules of Engagement and RBAC. When the system refuses to scan a host, that's a record — not a missing one.</p>
-  <div class="feat-ribbon"><span class="lbl">Feature 25</span><div>Phase-1 scanner/credential refusal + ROE / RBAC gating before <strong>any</strong> Phase-3 active assessment. A blocked check is recorded as <code>not_run</code> with the policy that blocked it — never as a clean negative.</div></div>
+  <div class="feat-ribbon" data-feature="22 25"><span class="lbl">Feature 25</span><div>Phase-1 scanner/credential refusal + ROE / RBAC gating before <strong>any</strong> Phase-3 active assessment. A blocked check is recorded as <code>not_run</code> with the policy that blocked it — never as a clean negative.</div></div>
 
   <div class="panel">
     <h2>Active-assessment authorization log</h2>
@@ -904,15 +904,128 @@ VIEWS.safety = () => `
 `;
 
 // ════════════════════════════════════════════════════════════════
+// Feature catalog — exposed for puppeteer-driven grading
+// ════════════════════════════════════════════════════════════════
+const FEATURES = {
+  1:  { category:'nvd',      name:'CPE→CVE association via NVD exact cpeName',           view:'nvd'      },
+  2:  { category:'nvd',      name:'virtualMatchString fallback',                          view:'nvd'      },
+  3:  { category:'nvd',      name:'Redis caching + cross-host CPE dedup + TTL',           view:'nvd'      },
+  4:  { category:'nvd',      name:'NVD rate-limit exponential backoff (capped)',          view:'nvd'      },
+  5:  { category:'nvd',      name:'CPE precision control + OS-CPE exclusion',             view:'nvd'      },
+  6:  { category:'cvss',     name:'CVSS v3.1→v3.0→v2 parsing + severity bands',           view:'cvss'     },
+  7:  { category:'cvss',     name:'CWE extraction, affected criteria, references',         view:'cvss'     },
+  8:  { category:'scanner',  name:'OpenVAS / Greenbone GMP lifecycle',                    view:'scanners' },
+  9:  { category:'scanner',  name:'Nuclei safe-template scanning',                        view:'scanners' },
+ 10:  { category:'scanner',  name:'SBOM + commercial scanner import',                     view:'scanners' },
+ 11:  { category:'creds',    name:'Multi-protocol HTTP/SSH/Telnet/RTSP/ONVIF',            view:'creds'    },
+ 12:  { category:'creds',    name:'Vendor-first → generic credential selection',         view:'creds'    },
+ 13:  { category:'creds',    name:'False-positive guardrails (auth vs unauth, stop)',     view:'creds'    },
+ 14:  { category:'enrich',   name:'CISA KEV membership enrichment',                       view:'enrich'   },
+ 15:  { category:'enrich',   name:'EPSS exploitation-probability score',                  view:'enrich'   },
+ 16:  { category:'enrich',   name:'Risk prioritization (6+ inputs)',                      view:'queue'    },
+ 17:  { category:'evidence', name:'Scanner finding is observation, not truth',            view:'ledger'   },
+ 18:  { category:'evidence', name:'Candidate vs confirmed weakness',                      view:'ledger'   },
+ 19:  { category:'evidence', name:'Validation decisions (FP/confirmed/risk-accepted)',    view:'ledger'   },
+ 20:  { category:'evidence', name:'Pair-scoped suppression + noisy-CVE aggregation',      view:'ledger'   },
+ 21:  { category:'evidence', name:'Multi-method correlation (convergence/unique/contradiction)', view:'methods' },
+ 22:  { category:'coverage', name:'Per-method provenance + confidence + safety posture',  view:'methods'  },
+ 23:  { category:'coverage', name:'Progressive phase progress events',                    view:'scanners' },
+ 24:  { category:'coverage', name:'Method-coverage / completion states',                  view:'methods'  },
+ 25:  { category:'safety',   name:'Phase-1 refusal + ROE/RBAC gating',                    view:'safety'   },
+};
+
+// ════════════════════════════════════════════════════════════════
+// Expose data model for puppeteer / programmatic grading.
+// Example: await page.evaluate(() => window.LAB3.findings.filter(f => f.kev))
+// ════════════════════════════════════════════════════════════════
+window.LAB3 = {
+  version: '1.1',
+  course: 'SEAS-8414',
+  phase: 'Phase 3',
+  instructor: 'Dr. Mallarapu',
+  institution: 'The George Washington University',
+  implementer: 'Rayve Malhotra · RayveLabs',
+  source_url: 'https://8414.bwater.io',
+  demo_url: 'https://rayvelabs.com/lab3-demo/',
+  assets: ASSETS,
+  findings: FINDINGS,
+  coverage: COVERAGE,
+  queue: QUEUE,
+  features: FEATURES,
+  /**
+   * Returns the set of feature numbers currently visible in the DOM
+   * (any element carrying a data-feature attribute). Used by graders to
+   * verify which features are demonstrated on the active view.
+   */
+  visibleFeatures(){
+    const out = new Set();
+    document.querySelectorAll('[data-feature]').forEach(el => {
+      String(el.dataset.feature || '').split(/\s+/).forEach(n => {
+        const v = parseInt(n, 10);
+        if (Number.isFinite(v)) out.add(v);
+      });
+    });
+    return [...out].sort((a, b) => a - b);
+  },
+  /**
+   * Returns the union of features demonstrated across every view —
+   * by rendering each view into a detached element and collecting
+   * data-feature attributes. Pure read; does not mutate the page.
+   */
+  allFeatures(){
+    const out = new Set();
+    Object.keys(VIEWS).forEach(name => {
+      const tmp = document.createElement('div');
+      tmp.innerHTML = VIEWS[name]();
+      tmp.querySelectorAll('[data-feature]').forEach(el => {
+        String(el.dataset.feature || '').split(/\s+/).forEach(n => {
+          const v = parseInt(n, 10);
+          if (Number.isFinite(v)) out.add(v);
+        });
+      });
+    });
+    return [...out].sort((a, b) => a - b);
+  },
+  /** Convenience for graders: which views demonstrate feature N? */
+  viewsForFeature(n){
+    return Object.entries(FEATURES)
+      .filter(([id]) => parseInt(id, 10) === n)
+      .map(([, v]) => v.view);
+  },
+};
+
+// ════════════════════════════════════════════════════════════════
 // Router
 // ════════════════════════════════════════════════════════════════
+// Hash-based: #overview, #assets, #nvd, #cvss, ... each renders into <main>.
+// Query mode ?show=all renders every view concatenated for single-page
+// grading via puppeteer (one goto, one selector sweep).
 function render(){
+  const main = document.getElementById('main');
+  const params = new URLSearchParams(location.search);
+  if (params.get('show') === 'all') {
+    main.innerHTML = Object.keys(VIEWS).map(name =>
+      `<section id="view-${name}" data-view="${name}" style="border-bottom:2px solid var(--d-line-2); padding-bottom:48px; margin-bottom:48px">
+         ${VIEWS[name]()}
+       </section>`).join('');
+    document.querySelectorAll('#nav a').forEach(a => a.classList.remove('on'));
+    main.dataset.mode = 'all';
+    main.dataset.viewsCount = String(Object.keys(VIEWS).length);
+    window.scrollTo({ top:0, behavior:'instant' });
+    return;
+  }
   const view = (location.hash || '#overview').slice(1);
   const fn = VIEWS[view] || VIEWS.overview;
-  document.getElementById('main').innerHTML = fn();
+  main.innerHTML = `<section id="view-${view}" data-view="${view}">${fn()}</section>`;
+  main.dataset.mode = 'single';
+  main.dataset.view = view;
   document.querySelectorAll('#nav a').forEach(a => {
     a.classList.toggle('on', a.dataset.view === view);
   });
+  // Ready signal for puppeteer: dispatched after every render.
+  document.body.dataset.ready = 'true';
+  document.body.dataset.view = view;
+  window.dispatchEvent(new CustomEvent('lab3:rendered', { detail: { view } }));
   window.scrollTo({ top:0, behavior:'instant' });
 }
 window.addEventListener('hashchange', render);

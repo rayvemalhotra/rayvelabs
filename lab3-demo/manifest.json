@@ -1,0 +1,70 @@
+{
+  "$schema": "https://rayvelabs.com/lab3-demo/manifest.schema.json",
+  "title": "RayveLabs · Lab 3 Demo · Feature Manifest",
+  "course": "SEAS-8414",
+  "phase": "Phase 3 — Vulnerability Assessment, Correlation, and Prioritization",
+  "instructor": "Dr. Mallarapu",
+  "institution": "The George Washington University",
+  "implementer": "Rayve Malhotra (RayveLabs)",
+  "url": "https://rayvelabs.com/lab3-demo/",
+  "spa": true,
+  "router": "hash-based",
+  "deterministic": true,
+  "notes": [
+    "Single-page SPA. Each view is reached by changing the URL hash; the main element is re-rendered.",
+    "After navigating to a hash, query data-feature attributes on the main element to verify which features are demonstrated.",
+    "window.LAB3 exposes the full data model (assets, findings, coverage, queue, features) for direct JS evaluation.",
+    "Append ?show=all to render every view concatenated into a single DOM tree — useful for one-shot grading.",
+    "All findings, CVEs, CVSS vectors, KEV listings, and EPSS scores are real public data; the network is synthetic."
+  ],
+  "views": {
+    "overview":  { "hash": "#overview",  "features": [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25] },
+    "assets":    { "hash": "#assets",    "features": [1,5] },
+    "methods":   { "hash": "#methods",   "features": [21,22,23,24] },
+    "nvd":       { "hash": "#nvd",       "features": [1,2,3,4,5] },
+    "cvss":      { "hash": "#cvss",      "features": [6,7] },
+    "scanners":  { "hash": "#scanners",  "features": [8,9,10,23] },
+    "creds":     { "hash": "#creds",     "features": [11,12,13] },
+    "enrich":    { "hash": "#enrich",    "features": [14,15,16] },
+    "ledger":    { "hash": "#ledger",    "features": [17,18,19,20] },
+    "queue":     { "hash": "#queue",     "features": [16] },
+    "safety":    { "hash": "#safety",    "features": [22,25] }
+  },
+  "features": [
+    { "id": 1,  "category": "nvd",       "name": "CPE→CVE association via NVD exact cpeName",                "view": "#nvd",       "selector": "[data-feature~=\"1\"]",  "expect_text": "exact cpeName" },
+    { "id": 2,  "category": "nvd",       "name": "virtualMatchString fallback for broader matching",         "view": "#nvd",       "selector": "[data-feature~=\"2\"]",  "expect_text": "virtualMatchString" },
+    { "id": 3,  "category": "nvd",       "name": "Redis caching + cross-host CPE dedup + TTL",               "view": "#nvd",       "selector": "[data-feature~=\"3\"]",  "expect_text": "Cache age allowed" },
+    { "id": 4,  "category": "nvd",       "name": "NVD rate-limit exponential backoff (capped)",              "view": "#nvd",       "selector": "[data-feature~=\"4\"]",  "expect_text": "Exp backoff on 429" },
+    { "id": 5,  "category": "nvd",       "name": "CPE precision control + OS-CPE exclusion",                 "view": "#nvd",       "selector": "[data-feature~=\"5\"]",  "expect_text": "Excluded by default" },
+    { "id": 6,  "category": "cvss",      "name": "CVSS v3.1→v3.0→v2 parsing + severity bands",               "view": "#cvss",      "selector": "[data-feature~=\"6\"]",  "expect_text": "Vector-version fallback" },
+    { "id": 7,  "category": "cvss",      "name": "CWE extraction, affected criteria, references/timestamps", "view": "#cvss",      "selector": "[data-feature~=\"7\"]",  "expect_text": "CWE-78" },
+    { "id": 8,  "category": "scanner",   "name": "OpenVAS / Greenbone GMP lifecycle + feed status",          "view": "#scanners",  "selector": "[data-feature~=\"8\"]",  "expect_text": "create_target" },
+    { "id": 9,  "category": "scanner",   "name": "Nuclei safe-template scanning (JSONL/INFO/partial/port)",  "view": "#scanners",  "selector": "[data-feature~=\"9\"]",  "expect_text": "port-aware target" },
+    { "id": 10, "category": "scanner",   "name": "SBOM + commercial scanner import",                        "view": "#scanners",  "selector": "[data-feature~=\"10\"]", "expect_text": "CycloneDX" },
+    { "id": 11, "category": "creds",     "name": "Multi-protocol checks: HTTP / SSH / Telnet / RTSP / ONVIF","view": "#creds",     "selector": "[data-feature~=\"11\"]", "expect_text": "ONVIF" },
+    { "id": 12, "category": "creds",     "name": "Vendor-first → generic credential selection",             "view": "#creds",     "selector": "[data-feature~=\"12\"]", "expect_text": "Vendor-first" },
+    { "id": 13, "category": "creds",     "name": "False-positive guardrails (auth vs unauth, stop-on-first)","view": "#creds",     "selector": "[data-feature~=\"13\"]", "expect_text": "negative-control" },
+    { "id": 14, "category": "enrich",    "name": "CISA KEV membership enrichment",                          "view": "#enrich",    "selector": "[data-feature~=\"14\"]", "expect_text": "KEV" },
+    { "id": 15, "category": "enrich",    "name": "EPSS exploitation-probability score",                     "view": "#enrich",    "selector": "[data-feature~=\"15\"]", "expect_text": "EPSS" },
+    { "id": 16, "category": "enrich",    "name": "Risk prioritization: severity + EPSS + KEV + evidence + exposure + role + consequence", "view": "#queue", "selector": "[data-feature~=\"16\"]", "expect_text": "consequence" },
+    { "id": 17, "category": "evidence",  "name": "Scanner finding is observation, not truth",               "view": "#ledger",    "selector": "[data-feature~=\"17\"]", "expect_text": "applicability first" },
+    { "id": 18, "category": "evidence",  "name": "Candidate-vulnerability vs confirmed-weakness",            "view": "#ledger",    "selector": "[data-feature~=\"18\"]", "expect_text": "CANDIDATE" },
+    { "id": 19, "category": "evidence",  "name": "Validation decisions (FP / confirmed / risk-accepted)",   "view": "#ledger",    "selector": "[data-feature~=\"19\"]", "expect_text": "RISK ACCEPTED" },
+    { "id": 20, "category": "evidence",  "name": "Pair-scoped suppression + noisy-CVE aggregation",          "view": "#ledger",    "selector": "[data-feature~=\"20\"]", "expect_text": "pair-scoped" },
+    { "id": 21, "category": "evidence",  "name": "Multi-method correlation (convergence/unique/contradiction)", "view": "#methods", "selector": "[data-feature~=\"21\"]", "expect_text": "CONVERGENCE" },
+    { "id": 22, "category": "coverage",  "name": "Per-method provenance + confidence + safety posture",     "view": "#methods",   "selector": "[data-feature~=\"22\"]", "expect_text": "provenance" },
+    { "id": 23, "category": "coverage",  "name": "Progressive phase progress events (streaming / partials)","view": "#scanners",  "selector": "[data-feature~=\"23\"]", "expect_text": "partial" },
+    { "id": 24, "category": "coverage",  "name": "Method-coverage states (completed/disabled/unavailable/failed)", "view": "#methods", "selector": "[data-feature~=\"24\"]", "expect_text": "coverage gap" },
+    { "id": 25, "category": "safety",    "name": "Phase-1 refusal + ROE/RBAC gating before Phase-3",        "view": "#safety",    "selector": "[data-feature~=\"25\"]", "expect_text": "method.not_run" }
+  ],
+  "data_model": {
+    "global": "window.LAB3",
+    "shape": {
+      "assets":   "array of { ip, role, vendor, model, firmware, cpe_narrow, cpe_broad, services, consequence, exposure, roe_blocked?, cpe_conflict? }",
+      "findings": "array of { id, ip, cve, method, cvss, vector, cwe, kev, epss, status, evidence }",
+      "coverage": "object keyed by IP → { nvd, openvas, nuclei, creds, sbom } → completion state",
+      "queue":    "array of { rank, id, ip, score, reason, tags }",
+      "features": "array of { id, name, status: 'demonstrated' | 'partial' | 'pending' }"
+    }
+  }
+}
