@@ -1244,6 +1244,9 @@ function render(){
     document.querySelectorAll('#nav a').forEach(a => a.classList.remove('on'));
     main.dataset.mode = 'all';
     main.dataset.viewsCount = String(Object.keys(VIEWS).length);
+    document.body.dataset.ready = 'true';
+    document.body.dataset.view = 'all';
+    window.dispatchEvent(new CustomEvent('lab3:rendered', { detail: { view: 'all' } }));
     window.scrollTo({ top:0, behavior:'instant' });
     return;
   }
