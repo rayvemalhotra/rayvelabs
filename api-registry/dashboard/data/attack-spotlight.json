@@ -1,21 +1,15 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1546",
-    "name": "Event Triggered Execution",
-    "description": "Adversaries may establish persistence and/or elevate privileges using system mechanisms that trigger execution based on specific events. Various operating systems have means to monitor and subscribe to events such as logons or other user activity such as running specific applications/binaries. Cloud environments may also support various functions and services that monitor and can be invoked in response to specific cloud events.(Citation: Backdooring an AWS account)(Citation: Varonis Power Automate Data Exfiltration)(Citation: Microsoft DART Case Report 001)",
+    "id": "T1187",
+    "name": "Forced Authentication",
+    "description": "Adversaries may gather credential material by invoking or forcing a user to automatically provide authentication information through a mechanism in which they can intercept.",
     "tactics": [
-      "privilege-escalation",
-      "persistence"
+      "credential-access"
     ],
     "platforms": [
-      "Linux",
-      "macOS",
-      "Windows",
-      "SaaS",
-      "IaaS",
-      "Office Suite"
+      "Windows"
     ],
-    "url": "https://attack.mitre.org/techniques/T1546"
+    "url": "https://attack.mitre.org/techniques/T1187"
   }
 }

@@ -1,8 +1,17 @@
 {
-  "total": 1611,
-  "catalog_version": "2026.06.03",
-  "date_released": "2026-06-03T17:30:12.2205Z",
+  "total": 1612,
+  "catalog_version": "2026.06.05",
+  "date_released": "2026-06-05T17:00:14.652Z",
   "recent": [
+    {
+      "cve": "CVE-2026-28318",
+      "vendor": "SolarWinds",
+      "product": "Serv-U",
+      "name": "SolarWinds Serv-U Uncontrolled Resource Consumption Vulnerability",
+      "date_added": "2026-06-05",
+      "due_date": "2026-06-19",
+      "ransomware": false
+    },
     {
       "cve": "CVE-2026-45247",
       "vendor": "Mirasvit",
@@ -98,15 +107,6 @@
       "vendor": "Langflow",
       "product": "Langflow",
       "name": "Langflow Origin Validation Error Vulnerability",
-      "date_added": "2026-05-21",
-      "due_date": "2026-06-04",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-34926",
-      "vendor": "Trend Micro",
-      "product": "Apex One",
-      "name": "Trend Micro Apex One (On-Premise) Directory Traversal Vulnerability",
       "date_added": "2026-05-21",
       "due_date": "2026-06-04",
       "ransomware": false

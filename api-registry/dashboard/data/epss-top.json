@@ -1,10 +1,10 @@
 {
-  "total_cves_scored": 337650,
-  "model_metadata": "model_version:v2025.03.14,score_date:2026-06-04T12:55:00Z",
+  "total_cves_scored": 338274,
+  "model_metadata": "model_version:v2025.03.14,score_date:2026-06-05T12:55:00Z",
   "top": [
     {
       "cve": "CVE-2023-23752",
-      "epss": 0.9452,
+      "epss": 0.94522,
       "percentile": 1.0
     },
     {

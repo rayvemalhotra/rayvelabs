@@ -1,9 +1,39 @@
 {
-  "total": 3663,
+  "total": 3496,
   "recent": [
     {
-      "first_seen": "1822761",
-      "ioc": "edfwndp0.chloroquineser.com",
+      "first_seen": "1823971",
+      "ioc": "138.124.186.2:7000",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.snappy_client",
+      "malware_alias": "None",
+      "malware_printable": "SnappyClient",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1823970",
+      "ioc": "xzz.proxygrid.cc",
+      "ioc_type": "domain",
+      "threat_type": "botnet_cc",
+      "malware": "win.acr_stealer",
+      "malware_alias": "None",
+      "malware_printable": "ACR Stealer",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1823969",
+      "ioc": "172.245.95.9:7601",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "unknown_rat",
+      "malware_alias": "None",
+      "malware_printable": "Unknown RAT",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1823968",
+      "ioc": "ubzfosw.jamjahani.win",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -12,8 +42,8 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1822760",
-      "ioc": "b25s30n3.chloroquineser.com",
+      "first_seen": "1823967",
+      "ioc": "jamjahani.win",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -22,8 +52,38 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1822759",
-      "ioc": "dnmjqvy.trmegapari.com",
+      "first_seen": "1823966",
+      "ioc": "38.45.126.242:47788",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.quasar_rat",
+      "malware_alias": "CinaRAT",
+      "malware_printable": "QuasarRAT",
+      "confidence": ""
+    },
+    {
+      "first_seen": "1823964",
+      "ioc": "43.224.224.19:4782",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.quasar_rat",
+      "malware_alias": "CinaRAT",
+      "malware_printable": "QuasarRAT",
+      "confidence": ""
+    },
+    {
+      "first_seen": "1823965",
+      "ioc": "43.224.224.17:4782",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.quasar_rat",
+      "malware_alias": "CinaRAT",
+      "malware_printable": "QuasarRAT",
+      "confidence": ""
+    },
+    {
+      "first_seen": "1823963",
+      "ioc": "ofwbhuk.jamjahani.website",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -32,8 +92,8 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1822758",
-      "ioc": "!z!.trmegapari.com",
+      "first_seen": "1823962",
+      "ioc": "!k!.jamjahani.website",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -42,83 +102,23 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1822757",
-      "ioc": "101.34.249.170:8085",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.vshell",
-      "malware_alias": "None",
-      "malware_printable": "VShell",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1822756",
-      "ioc": "118.195.197.228:6651",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.vshell",
-      "malware_alias": "None",
-      "malware_printable": "VShell",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1822754",
-      "ioc": "192.210.215.182:3308",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.vshell",
-      "malware_alias": "None",
-      "malware_printable": "VShell",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1822755",
-      "ioc": "154.88.96.38:8884",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.vshell",
-      "malware_alias": "None",
-      "malware_printable": "VShell",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1822753",
-      "ioc": "3.36.117.91:81",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.vshell",
-      "malware_alias": "None",
-      "malware_printable": "VShell",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1822744",
-      "ioc": "giga.miraibotnet.su",
+      "first_seen": "1823961",
+      "ioc": "zxuq0oha.bord90.bet",
       "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "elf.mirai",
-      "malware_alias": "Katana",
-      "malware_printable": "Mirai",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
       "confidence": "False"
     },
     {
-      "first_seen": "1822745",
-      "ioc": "rep.miraibotnet.su",
+      "first_seen": "1823960",
+      "ioc": "6jcq2nrd.bord90.bet",
       "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "elf.mirai",
-      "malware_alias": "Katana",
-      "malware_printable": "Mirai",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1822746",
-      "ioc": "srv.miraibotnet.su",
-      "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "elf.mirai",
-      "malware_alias": "Katana",
-      "malware_printable": "Mirai",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
       "confidence": "False"
     }
   ]
