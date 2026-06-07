@@ -1,89 +1,79 @@
 {
-  "total": 3496,
+  "total": 3322,
   "recent": [
     {
-      "first_seen": "1823971",
-      "ioc": "138.124.186.2:7000",
+      "first_seen": "1824240",
+      "ioc": "bvnvrjx.kvbel.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1824238",
+      "ioc": "194.182.79.61:5038",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "win.snappy_client",
-      "malware_alias": "None",
-      "malware_printable": "SnappyClient",
-      "confidence": "False"
+      "malware": "win.dcrat",
+      "malware_alias": "DarkCrystal RAT",
+      "malware_printable": "DCRat",
+      "confidence": "True"
     },
     {
-      "first_seen": "1823970",
-      "ioc": "xzz.proxygrid.cc",
-      "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "win.acr_stealer",
-      "malware_alias": "None",
-      "malware_printable": "ACR Stealer",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1823969",
-      "ioc": "172.245.95.9:7601",
+      "first_seen": "1824239",
+      "ioc": "1.14.59.224:8888",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "unknown_rat",
-      "malware_alias": "None",
-      "malware_printable": "Unknown RAT",
-      "confidence": "False"
+      "malware": "win.dcrat",
+      "malware_alias": "DarkCrystal RAT",
+      "malware_printable": "DCRat",
+      "confidence": "True"
     },
     {
-      "first_seen": "1823968",
-      "ioc": "ubzfosw.jamjahani.win",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1823967",
-      "ioc": "jamjahani.win",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1823966",
-      "ioc": "38.45.126.242:47788",
+      "first_seen": "1824237",
+      "ioc": "69.167.11.229:443",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "win.quasar_rat",
-      "malware_alias": "CinaRAT",
-      "malware_printable": "QuasarRAT",
-      "confidence": ""
+      "malware": "win.dcrat",
+      "malware_alias": "DarkCrystal RAT",
+      "malware_printable": "DCRat",
+      "confidence": "True"
     },
     {
-      "first_seen": "1823964",
-      "ioc": "43.224.224.19:4782",
+      "first_seen": "1824236",
+      "ioc": "77.93.157.134:8081",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "win.quasar_rat",
-      "malware_alias": "CinaRAT",
-      "malware_printable": "QuasarRAT",
-      "confidence": ""
+      "malware": "win.vshell",
+      "malware_alias": "None",
+      "malware_printable": "VShell",
+      "confidence": "True"
     },
     {
-      "first_seen": "1823965",
-      "ioc": "43.224.224.17:4782",
+      "first_seen": "1824235",
+      "ioc": "70.39.203.7:8085",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "win.quasar_rat",
-      "malware_alias": "CinaRAT",
-      "malware_printable": "QuasarRAT",
-      "confidence": ""
+      "malware": "win.vshell",
+      "malware_alias": "None",
+      "malware_printable": "VShell",
+      "confidence": "True"
     },
     {
-      "first_seen": "1823963",
-      "ioc": "ofwbhuk.jamjahani.website",
+      "first_seen": "1824234",
+      "ioc": "207.56.119.59:777",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.valley_rat",
+      "malware_alias": "Winos",
+      "malware_printable": "ValleyRAT",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1824233",
+      "ioc": "hdkkxsm.kbshavanese.com",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -92,8 +82,28 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1823962",
-      "ioc": "!k!.jamjahani.website",
+      "first_seen": "1824231",
+      "ioc": "207.56.119.59:888",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.valley_rat",
+      "malware_alias": "Winos",
+      "malware_printable": "ValleyRAT",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1824232",
+      "ioc": "23.160.168.174:4444",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.raton_rat",
+      "malware_alias": "None",
+      "malware_printable": "RatonRAT",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1824230",
+      "ioc": "3mm5jtvt.mrbet90.com",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -102,23 +112,13 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1823961",
-      "ioc": "zxuq0oha.bord90.bet",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
+      "first_seen": "1824229",
+      "ioc": "http://inini.kesug.com/maith.php",
+      "ioc_type": "url",
+      "threat_type": "botnet_cc",
+      "malware": "win.kimsuky",
       "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1823960",
-      "ioc": "6jcq2nrd.bord90.bet",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
+      "malware_printable": "Kimsuky",
       "confidence": "False"
     }
   ]

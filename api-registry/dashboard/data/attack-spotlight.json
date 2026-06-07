@@ -1,15 +1,15 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1187",
-    "name": "Forced Authentication",
-    "description": "Adversaries may gather credential material by invoking or forcing a user to automatically provide authentication information through a mechanism in which they can intercept.",
+    "id": "T1599",
+    "name": "Network Boundary Bridging",
+    "description": "Adversaries may bridge network boundaries by compromising perimeter network devices or internal devices responsible for network segmentation. Breaching these devices may enable an adversary to bypass restrictions on traffic routing that otherwise separate trusted and untrusted networks.",
     "tactics": [
-      "credential-access"
+      "defense-impairment"
     ],
     "platforms": [
-      "Windows"
+      "Network Devices"
     ],
-    "url": "https://attack.mitre.org/techniques/T1187"
+    "url": "https://attack.mitre.org/techniques/T1599"
   }
 }

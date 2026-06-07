@@ -1,6 +1,6 @@
 {
-  "total_breaches": 1002,
-  "total_records_exposed": 17599916834,
+  "total_breaches": 1003,
+  "total_records_exposed": 17600019769,
   "recent": [
     {
       "name": "AtlasMenu",
@@ -29,6 +29,22 @@
         "Email addresses",
         "Employers",
         "Job titles",
+        "Names",
+        "Phone numbers",
+        "Physical addresses",
+        "Support tickets"
+      ],
+      "verified": true
+    },
+    {
+      "name": "BakerDistributing",
+      "title": "Baker Distributing",
+      "domain": "bakerdist.com",
+      "breach_date": "2026-05-23",
+      "added_date": "2026-06-07T06:16:36Z",
+      "pwn_count": 102935,
+      "data_classes": [
+        "Email addresses",
         "Names",
         "Phone numbers",
         "Physical addresses",
@@ -111,20 +127,6 @@
       "data_classes": [
         "Email addresses",
         "Names"
-      ],
-      "verified": true
-    },
-    {
-      "name": "CTT",
-      "title": "CTT",
-      "domain": "ctt.pt",
-      "breach_date": "2026-04-26",
-      "added_date": "2026-05-19T00:28:54Z",
-      "pwn_count": 468124,
-      "data_classes": [
-        "Email addresses",
-        "Names",
-        "Phone numbers"
       ],
       "verified": true
     }
