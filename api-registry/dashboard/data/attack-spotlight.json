@@ -1,15 +1,19 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1599",
-    "name": "Network Boundary Bridging",
-    "description": "Adversaries may bridge network boundaries by compromising perimeter network devices or internal devices responsible for network segmentation. Breaching these devices may enable an adversary to bypass restrictions on traffic routing that otherwise separate trusted and untrusted networks.",
+    "id": "T1486",
+    "name": "Data Encrypted for Impact",
+    "description": "Adversaries may encrypt data on target systems or on large numbers of systems in a network to interrupt availability to system and network resources. They can attempt to render stored data inaccessible by encrypting files or data on local and remote drives and withholding access to a decryption key. This may be done in order to extract monetary compensation from a victim in exchange for decryption or a decryption key (ransomware) or to render data permanently inaccessible in cases where the key is not saved or transmitted.(Citation: US-CERT Ransomware 2016)(Citation: FireEye WannaCry 2017)(Citation: US-CERT NotPetya 2017)(Citation: US-CERT SamSam 2018)",
     "tactics": [
-      "defense-impairment"
+      "impact"
     ],
     "platforms": [
-      "Network Devices"
+      "ESXi",
+      "IaaS",
+      "Linux",
+      "macOS",
+      "Windows"
     ],
-    "url": "https://attack.mitre.org/techniques/T1599"
+    "url": "https://attack.mitre.org/techniques/T1486"
   }
 }

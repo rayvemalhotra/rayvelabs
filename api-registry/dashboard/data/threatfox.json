@@ -1,9 +1,9 @@
 {
-  "total": 3322,
+  "total": 4154,
   "recent": [
     {
-      "first_seen": "1824240",
-      "ioc": "bvnvrjx.kvbel.com",
+      "first_seen": "1825043",
+      "ioc": "hjwaxur.kvbel.com",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -12,68 +12,8 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1824238",
-      "ioc": "194.182.79.61:5038",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.dcrat",
-      "malware_alias": "DarkCrystal RAT",
-      "malware_printable": "DCRat",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1824239",
-      "ioc": "1.14.59.224:8888",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.dcrat",
-      "malware_alias": "DarkCrystal RAT",
-      "malware_printable": "DCRat",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1824237",
-      "ioc": "69.167.11.229:443",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.dcrat",
-      "malware_alias": "DarkCrystal RAT",
-      "malware_printable": "DCRat",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1824236",
-      "ioc": "77.93.157.134:8081",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.vshell",
-      "malware_alias": "None",
-      "malware_printable": "VShell",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1824235",
-      "ioc": "70.39.203.7:8085",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.vshell",
-      "malware_alias": "None",
-      "malware_printable": "VShell",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1824234",
-      "ioc": "207.56.119.59:777",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.valley_rat",
-      "malware_alias": "Winos",
-      "malware_printable": "ValleyRAT",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1824233",
-      "ioc": "hdkkxsm.kbshavanese.com",
+      "first_seen": "1825042",
+      "ioc": "gwu729hw.parspoker.casino",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -82,28 +22,78 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1824231",
-      "ioc": "207.56.119.59:888",
+      "first_seen": "1824989",
+      "ioc": "168.222.97.59:2404",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "win.valley_rat",
-      "malware_alias": "Winos",
-      "malware_printable": "ValleyRAT",
-      "confidence": "False"
+      "malware": "win.remcos",
+      "malware_alias": "RemcosRAT",
+      "malware_printable": "Remvio",
+      "confidence": ""
     },
     {
-      "first_seen": "1824232",
-      "ioc": "23.160.168.174:4444",
+      "first_seen": "1824980",
+      "ioc": "45.61.163.145:80",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "win.raton_rat",
+      "malware": "win.cobalt_strike",
+      "malware_alias": "Agentemis",
+      "malware_printable": "BEACON",
+      "confidence": "Cobalt Strike"
+    },
+    {
+      "first_seen": "1824981",
+      "ioc": "45.61.163.145:443",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.cobalt_strike",
+      "malware_alias": "Agentemis",
+      "malware_printable": "BEACON",
+      "confidence": "Cobalt Strike"
+    },
+    {
+      "first_seen": "1824978",
+      "ioc": "63.250.47.156:443",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.havoc",
+      "malware_alias": "Havokiz",
+      "malware_printable": "Havoc",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1824979",
+      "ioc": "118.107.1.135:8848",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.dcrat",
+      "malware_alias": "DarkCrystal RAT",
+      "malware_printable": "DCRat",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1824977",
+      "ioc": "84.38.129.122:443",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.xworm",
       "malware_alias": "None",
-      "malware_printable": "RatonRAT",
+      "malware_printable": "XWorm",
       "confidence": "False"
     },
     {
-      "first_seen": "1824230",
-      "ioc": "3mm5jtvt.mrbet90.com",
+      "first_seen": "1824976",
+      "ioc": "192.3.45.8:5000",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.remcos",
+      "malware_alias": "RemcosRAT",
+      "malware_printable": "Remvio",
+      "confidence": ""
+    },
+    {
+      "first_seen": "1824975",
+      "ioc": "inmjycz.olabahiskayit.com",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -112,13 +102,23 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1824229",
-      "ioc": "http://inini.kesug.com/maith.php",
-      "ioc_type": "url",
+      "first_seen": "1824967",
+      "ioc": "135.181.224.79:443",
+      "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "win.kimsuky",
+      "malware": "win.vidar",
       "malware_alias": "None",
-      "malware_printable": "Kimsuky",
+      "malware_printable": "Vidar",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1824968",
+      "ioc": "65.21.96.131:443",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.vidar",
+      "malware_alias": "None",
+      "malware_printable": "Vidar",
       "confidence": "False"
     }
   ]
