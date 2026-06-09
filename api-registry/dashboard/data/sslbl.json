@@ -1,5 +1,5 @@
 {
-  "total_listings": 9876,
+  "total_listings": 9881,
   "by_reason": [
     {
       "reason": "AsyncRAT C&C",
@@ -15,7 +15,7 @@
     },
     {
       "reason": "Vidar C&C",
-      "count": 577
+      "count": 580
     },
     {
       "reason": "LummaStealer C&C",
@@ -23,6 +23,31 @@
     }
   ],
   "recent": [
+    {
+      "listing_date": "2026-06-09 06:05:44",
+      "sha1": "496d191aedf6be136391a1828962864b479bfec7",
+      "listing_reason": "Vidar C&C"
+    },
+    {
+      "listing_date": "2026-06-09 06:05:32",
+      "sha1": "cc060f5f00fde826f5252c47765f1f0a74e8cb1b",
+      "listing_reason": "Vidar C&C"
+    },
+    {
+      "listing_date": "2026-06-09 06:00:05",
+      "sha1": "5556255c430a2dff1a61bf266d7c3eaeedd885ab",
+      "listing_reason": "Vidar C&C"
+    },
+    {
+      "listing_date": "2026-06-08 19:01:42",
+      "sha1": "7a87b6d493b26e7a16255788436690996b49f273",
+      "listing_reason": "KongTuke C&C"
+    },
+    {
+      "listing_date": "2026-06-08 19:00:16",
+      "sha1": "a72f1227b88e5c8d436899f9f098a57504a1ef9e",
+      "listing_reason": "PureLogsStealer C&C"
+    },
     {
       "listing_date": "2026-06-07 07:24:38",
       "sha1": "454a92d16f440ad8f180e21da8ee6552b151c25c",
@@ -47,31 +72,6 @@
       "listing_date": "2026-06-06 07:03:14",
       "sha1": "44d317f1bdfcf7670d288c912cecd0737bc4cc1b",
       "listing_reason": "Vidar C&C"
-    },
-    {
-      "listing_date": "2026-06-06 07:02:21",
-      "sha1": "ae590545961e96de860ea7434c0e8c69b924de6f",
-      "listing_reason": "QuasarRAT C&C"
-    },
-    {
-      "listing_date": "2026-06-06 07:01:29",
-      "sha1": "839f5f87d73ca215f864886dc5852a55faf89287",
-      "listing_reason": "ConnectWise C&C"
-    },
-    {
-      "listing_date": "2026-06-06 07:00:42",
-      "sha1": "5d56416d22dff9c9c1fa6afa542760ffb799b627",
-      "listing_reason": "PureLogsStealer C&C"
-    },
-    {
-      "listing_date": "2026-06-06 06:59:38",
-      "sha1": "6fdf1f145d05c569111ae66cca64e713dc122150",
-      "listing_reason": "CobaltStrike C&C"
-    },
-    {
-      "listing_date": "2026-06-06 06:45:46",
-      "sha1": "1635aa6d937f44887d7871b10ce2ccbdf76d09f0",
-      "listing_reason": "KongTuke C&C"
     }
   ]
 }

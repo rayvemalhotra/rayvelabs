@@ -1,8 +1,26 @@
 {
-  "total": 1612,
-  "catalog_version": "2026.06.05",
-  "date_released": "2026-06-05T17:00:14.652Z",
+  "total": 1614,
+  "catalog_version": "2026.06.08",
+  "date_released": "2026-06-08T19:00:18.3481Z",
   "recent": [
+    {
+      "cve": "CVE-2026-42271",
+      "vendor": "BerriAI",
+      "product": "LiteLLM",
+      "name": "BerriAI LiteLLM Command Injection Vulnerability",
+      "date_added": "2026-06-08",
+      "due_date": "2026-06-22",
+      "ransomware": false
+    },
+    {
+      "cve": "CVE-2026-50751",
+      "vendor": "Check Point",
+      "product": "Security Gateway",
+      "name": "Check Point Security Gateway Improper Authentication Vulnerability",
+      "date_added": "2026-06-08",
+      "due_date": "2026-06-11",
+      "ransomware": false
+    },
     {
       "cve": "CVE-2026-28318",
       "vendor": "SolarWinds",
@@ -91,24 +109,6 @@
       "name": "LiteSpeed cPanel Plugin Privilege Escalation Vulnerability",
       "date_added": "2026-05-26",
       "due_date": "2026-05-29",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-9082",
-      "vendor": "Drupal",
-      "product": "Core",
-      "name": "Drupal Core SQL Injection Vulnerability",
-      "date_added": "2026-05-22",
-      "due_date": "2026-05-27",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2025-34291",
-      "vendor": "Langflow",
-      "product": "Langflow",
-      "name": "Langflow Origin Validation Error Vulnerability",
-      "date_added": "2026-05-21",
-      "due_date": "2026-06-04",
       "ransomware": false
     }
   ]

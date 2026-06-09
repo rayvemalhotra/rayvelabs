@@ -1,19 +1,19 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1486",
-    "name": "Data Encrypted for Impact",
-    "description": "Adversaries may encrypt data on target systems or on large numbers of systems in a network to interrupt availability to system and network resources. They can attempt to render stored data inaccessible by encrypting files or data on local and remote drives and withholding access to a decryption key. This may be done in order to extract monetary compensation from a victim in exchange for decryption or a decryption key (ransomware) or to render data permanently inaccessible in cases where the key is not saved or transmitted.(Citation: US-CERT Ransomware 2016)(Citation: FireEye WannaCry 2017)(Citation: US-CERT NotPetya 2017)(Citation: US-CERT SamSam 2018)",
+    "id": "T1690",
+    "name": "Prevent Command History Logging",
+    "description": "Adversaries may impair command history logging to hide commands they run on a compromised system. Various command interpreters keep track of the commands users type in their terminal so that users can retrace what they have done.",
     "tactics": [
-      "impact"
+      "defense-impairment"
     ],
     "platforms": [
       "ESXi",
-      "IaaS",
       "Linux",
       "macOS",
+      "Network Devices",
       "Windows"
     ],
-    "url": "https://attack.mitre.org/techniques/T1486"
+    "url": "https://attack.mitre.org/techniques/T1690"
   }
 }

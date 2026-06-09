@@ -1,140 +1,140 @@
 {
-  "total_recent": 18466,
+  "total_recent": 18198,
   "recent": [
     {
-      "id": "3860977",
-      "date_added": "2026-06-08 10:34:20",
-      "url": "http://175.174.123.246:45680/bin.sh",
+      "id": "3861657",
+      "date_added": "2026-06-09 09:34:14",
+      "url": "http://82.114.178.6:37193/bin.sh",
       "url_status": "online",
       "threat": "malware_download",
       "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3860977/"
+      "host": "https://urlhaus.abuse.ch/url/3861657/"
     },
     {
-      "id": "3860976",
-      "date_added": "2026-06-08 10:33:06",
-      "url": "https://gwu729hw.parspoker.casino/?ublib=c15e84fb-3a94-463e-81db-dc92976775a8",
+      "id": "3861656",
+      "date_added": "2026-06-09 09:28:08",
+      "url": "https://e3giv37r.pokerpars.poker/?ublib=4df9d346-ce49-486b-8b7a-4c2087cd8f89",
       "url_status": "offline",
       "threat": "malware_download",
       "tags": "ClearFake",
-      "host": "https://urlhaus.abuse.ch/url/3860976/"
+      "host": "https://urlhaus.abuse.ch/url/3861656/"
     },
     {
-      "id": "3860975",
-      "date_added": "2026-06-08 10:33:05",
-      "url": "https://hjwaxur.kvbel.com/ef24e2b2-6a69-4827-a2c8-1ecd9345b556",
+      "id": "3861655",
+      "date_added": "2026-06-09 09:25:28",
+      "url": "https://pub-340aa1a9ccc64f6b871a4c31ff93a5a6.r2.dev/DEDEwidth1234.png",
       "url_status": "offline",
       "threat": "malware_download",
-      "tags": "ClearFake",
-      "host": "https://urlhaus.abuse.ch/url/3860975/"
+      "tags": "None",
+      "host": "https://urlhaus.abuse.ch/url/3861655/"
     },
     {
-      "id": "3860973",
-      "date_added": "2026-06-08 10:29:06",
-      "url": "http://141.98.10.98/nc64.exe",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "141-98-10-98,exe,open-dir,ua-wget",
-      "host": "https://urlhaus.abuse.ch/url/3860973/"
-    },
-    {
-      "id": "3860974",
-      "date_added": "2026-06-08 10:29:06",
-      "url": "http://141.98.10.98/PrintSpoofer64.exe",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "141-98-10-98,exe,open-dir,ua-wget",
-      "host": "https://urlhaus.abuse.ch/url/3860974/"
-    },
-    {
-      "id": "3860972",
-      "date_added": "2026-06-08 10:17:17",
-      "url": "http://27.206.225.139:38203/i",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "32-bit,arm,elf,mirai,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3860972/"
-    },
-    {
-      "id": "3860971",
-      "date_added": "2026-06-08 10:02:11",
-      "url": "http://182.112.0.223:48251/i",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3860971/"
-    },
-    {
-      "id": "3860970",
-      "date_added": "2026-06-08 09:55:06",
-      "url": "https://inmjycz.olabahiskayit.com/df026e27-a7a1-4d3f-b289-e42b25ed4c1c",
+      "id": "3861653",
+      "date_added": "2026-06-09 09:25:21",
+      "url": "http://icy-lab-0431.guilherme-telecomunicacoes2024.workers.dev/HnDvE/",
       "url_status": "offline",
       "threat": "malware_download",
-      "tags": "ClearFake",
-      "host": "https://urlhaus.abuse.ch/url/3860970/"
+      "tags": "None",
+      "host": "https://urlhaus.abuse.ch/url/3861653/"
     },
     {
-      "id": "3860969",
-      "date_added": "2026-06-08 09:50:13",
-      "url": "http://108.168.0.60:51495/i",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3860969/"
-    },
-    {
-      "id": "3860968",
-      "date_added": "2026-06-08 09:49:33",
-      "url": "http://27.206.225.139:38203/bin.sh",
+      "id": "3861654",
+      "date_added": "2026-06-09 09:25:21",
+      "url": "https://dawn-bush-ddd1.yasminanthonyy.workers.dev/dNLRP",
       "url_status": "offline",
       "threat": "malware_download",
-      "tags": "32-bit,arm,elf,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3860968/"
+      "tags": "None",
+      "host": "https://urlhaus.abuse.ch/url/3861654/"
     },
     {
-      "id": "3860967",
-      "date_added": "2026-06-08 09:46:08",
-      "url": "https://vrdccbank.com/Favour1.exe",
+      "id": "3861652",
+      "date_added": "2026-06-09 09:25:16",
+      "url": "http://icy-lab-0431.guilherme-telecomunicacoes2024.workers.dev/pKTrG",
       "url_status": "online",
       "threat": "malware_download",
       "tags": "None",
-      "host": "https://urlhaus.abuse.ch/url/3860967/"
+      "host": "https://urlhaus.abuse.ch/url/3861652/"
     },
     {
-      "id": "3860966",
-      "date_added": "2026-06-08 09:45:08",
-      "url": "https://rykwhjt.winsportiran.com/bfc31803-6e1c-4ce6-a99f-44c75d4c0e0c",
-      "url_status": "offline",
-      "threat": "malware_download",
-      "tags": "ClearFake",
-      "host": "https://urlhaus.abuse.ch/url/3860966/"
-    },
-    {
-      "id": "3860965",
-      "date_added": "2026-06-08 09:41:11",
-      "url": "https://vrdccbank.com/Doppee12.exe",
+      "id": "3861650",
+      "date_added": "2026-06-09 09:25:13",
+      "url": "http://icy-lab-0431.guilherme-telecomunicacoes2024.workers.dev/mcslb",
       "url_status": "online",
       "threat": "malware_download",
-      "tags": "193.93.193.94,af6ad00a59545497b8ba0d91ddb0a6af",
-      "host": "https://urlhaus.abuse.ch/url/3860965/"
+      "tags": "None",
+      "host": "https://urlhaus.abuse.ch/url/3861650/"
     },
     {
-      "id": "3860964",
-      "date_added": "2026-06-08 09:39:07",
-      "url": "https://tviyhdt.winstone.casino/b40ac294-23e4-4e6a-a8de-1be679dcd172",
-      "url_status": "offline",
-      "threat": "malware_download",
-      "tags": "ClearFake",
-      "host": "https://urlhaus.abuse.ch/url/3860964/"
-    },
-    {
-      "id": "3860963",
-      "date_added": "2026-06-08 09:28:17",
-      "url": "http://115.63.39.65:34775/i",
+      "id": "3861651",
+      "date_added": "2026-06-09 09:25:13",
+      "url": "https://icy-lab-0431.guilherme-telecomunicacoes2024.workers.dev/jsPtG",
       "url_status": "online",
       "threat": "malware_download",
-      "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3860963/"
+      "tags": "None",
+      "host": "https://urlhaus.abuse.ch/url/3861651/"
+    },
+    {
+      "id": "3861649",
+      "date_added": "2026-06-09 09:25:12",
+      "url": "https://icy-lab-0431.guilherme-telecomunicacoes2024.workers.dev/xiykS",
+      "url_status": "online",
+      "threat": "malware_download",
+      "tags": "None",
+      "host": "https://urlhaus.abuse.ch/url/3861649/"
+    },
+    {
+      "id": "3861648",
+      "date_added": "2026-06-09 09:25:11",
+      "url": "http://104.168.70.165/22/img_102554.png",
+      "url_status": "online",
+      "threat": "malware_download",
+      "tags": "None",
+      "host": "https://urlhaus.abuse.ch/url/3861648/"
+    },
+    {
+      "id": "3861646",
+      "date_added": "2026-06-09 09:25:10",
+      "url": "http://31.77.57.234/180/img_185101.png",
+      "url_status": "online",
+      "threat": "malware_download",
+      "tags": "None",
+      "host": "https://urlhaus.abuse.ch/url/3861646/"
+    },
+    {
+      "id": "3861647",
+      "date_added": "2026-06-09 09:25:10",
+      "url": "https://icy-lab-0431.guilherme-telecomunicacoes2024.workers.dev/fWdrA",
+      "url_status": "online",
+      "threat": "malware_download",
+      "tags": "None",
+      "host": "https://urlhaus.abuse.ch/url/3861647/"
+    },
+    {
+      "id": "3861644",
+      "date_added": "2026-06-09 09:25:09",
+      "url": "https://getabre.com/NDYNuw",
+      "url_status": "offline",
+      "threat": "malware_download",
+      "tags": "None",
+      "host": "https://urlhaus.abuse.ch/url/3861644/"
+    },
+    {
+      "id": "3861645",
+      "date_added": "2026-06-09 09:25:09",
+      "url": "https://pub-e2490b2d81b147ac978f21eab73fe8c4.r2.dev/lasaas.png",
+      "url_status": "online",
+      "threat": "malware_download",
+      "tags": "None",
+      "host": "https://urlhaus.abuse.ch/url/3861645/"
+    },
+    {
+      "id": "3861642",
+      "date_added": "2026-06-09 09:25:07",
+      "url": "http://104.168.70.165/22/wedidbestthingswithbetterplaceformygirl.hta",
+      "url_status": "offline",
+      "threat": "malware_download",
+      "tags": "None",
+      "host": "https://urlhaus.abuse.ch/url/3861642/"
     }
   ]
 }
