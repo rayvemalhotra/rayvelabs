@@ -1,125 +1,125 @@
 {
-  "total": 4414,
+  "total": 3906,
   "recent": [
     {
-      "first_seen": "1825425",
-      "ioc": "e3giv37r.pokerpars.poker",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1825424",
-      "ioc": "pokerpars.poker",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1825423",
-      "ioc": "https://championscollision1.com/",
-      "ioc_type": "url",
-      "threat_type": "payload_delivery",
-      "malware": "win.vidar",
-      "malware_alias": "None",
-      "malware_printable": "Vidar",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1825422",
-      "ioc": "xwwitjs.rayonbet.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1825421",
-      "ioc": "rayonbet.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1825420",
-      "ioc": "demfmb.restaurantguideaarhus.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1825419",
-      "ioc": "https://nxx.glamisdunesrentals.com/",
-      "ioc_type": "url",
-      "threat_type": "botnet_cc",
-      "malware": "win.vidar",
-      "malware_alias": "None",
-      "malware_printable": "Vidar",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1825418",
-      "ioc": "nxx.glamisdunesrentals.com",
-      "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "win.vidar",
-      "malware_alias": "None",
-      "malware_printable": "Vidar",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1825417",
-      "ioc": "https://nxx.gagahsm188.top/",
-      "ioc_type": "url",
-      "threat_type": "botnet_cc",
-      "malware": "win.vidar",
-      "malware_alias": "None",
-      "malware_printable": "Vidar",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1825416",
-      "ioc": "nxx.gagahsm188.top",
-      "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "win.vidar",
-      "malware_alias": "None",
-      "malware_printable": "Vidar",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1825415",
-      "ioc": "8.145.44.217:443",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.cobalt_strike",
-      "malware_alias": "Agentemis",
-      "malware_printable": "BEACON",
-      "confidence": "Cobalt Strike"
-    },
-    {
-      "first_seen": "1825412",
-      "ioc": "101.200.234.195:80",
+      "first_seen": "1825867",
+      "ioc": "64.89.162.117:7443",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
       "malware": "unknown",
       "malware_alias": "None",
       "malware_printable": "Unknown malware",
-      "confidence": "True"
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1825866",
+      "ioc": "46.246.82.4:8848",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.dcrat",
+      "malware_alias": "DarkCrystal RAT",
+      "malware_printable": "DCRat",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1825865",
+      "ioc": "45.81.17.44:6606",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.asyncrat",
+      "malware_alias": "None",
+      "malware_printable": "AsyncRAT",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1825864",
+      "ioc": "45.147.28.58:42461",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.adaptix_c2",
+      "malware_alias": "None",
+      "malware_printable": "AdaptixC2",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1825863",
+      "ioc": "31.76.87.188:4034",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.remcos",
+      "malware_alias": "RemcosRAT",
+      "malware_printable": "Remvio",
+      "confidence": ""
+    },
+    {
+      "first_seen": "1825862",
+      "ioc": "23.95.220.192:43999",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.adaptix_c2",
+      "malware_alias": "None",
+      "malware_printable": "AdaptixC2",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1825860",
+      "ioc": "207.180.250.181:1111",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.asyncrat",
+      "malware_alias": "None",
+      "malware_printable": "AsyncRAT",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1825861",
+      "ioc": "207.180.250.181:6606",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.asyncrat",
+      "malware_alias": "None",
+      "malware_printable": "AsyncRAT",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1825858",
+      "ioc": "2.27.5.120:6448",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.remcos",
+      "malware_alias": "RemcosRAT",
+      "malware_printable": "Remvio",
+      "confidence": ""
+    },
+    {
+      "first_seen": "1825859",
+      "ioc": "2.27.5.236:1377",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.remcos",
+      "malware_alias": "RemcosRAT",
+      "malware_printable": "Remvio",
+      "confidence": ""
+    },
+    {
+      "first_seen": "1825857",
+      "ioc": "2.26.75.249:7312",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.remcos",
+      "malware_alias": "RemcosRAT",
+      "malware_printable": "Remvio",
+      "confidence": ""
+    },
+    {
+      "first_seen": "1825855",
+      "ioc": "198.23.177.222:14646",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.remcos",
+      "malware_alias": "RemcosRAT",
+      "malware_printable": "Remvio",
+      "confidence": ""
     }
   ]
 }
