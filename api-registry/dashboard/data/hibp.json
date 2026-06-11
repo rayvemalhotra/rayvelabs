@@ -1,7 +1,33 @@
 {
-  "total_breaches": 1003,
-  "total_records_exposed": 17600019769,
+  "total_breaches": 1004,
+  "total_records_exposed": 17600474404,
   "recent": [
+    {
+      "name": "UniversityOfNottingham",
+      "title": "University of Nottingham",
+      "domain": "nottingham.ac.uk",
+      "breach_date": "2026-06-09",
+      "added_date": "2026-06-10T22:13:31Z",
+      "pwn_count": 454635,
+      "data_classes": [
+        "Academic records",
+        "Citizenship statuses",
+        "Dates of birth",
+        "Disabilities",
+        "Email addresses",
+        "Ethnicities",
+        "Genders",
+        "IP addresses",
+        "Names",
+        "Passport numbers",
+        "Phone numbers",
+        "Physical addresses",
+        "Purchases",
+        "Salutations",
+        "Usernames"
+      ],
+      "verified": true
+    },
     {
       "name": "AtlasMenu",
       "title": "Atlas Menu",
@@ -114,19 +140,6 @@
       "data_classes": [
         "Email addresses",
         "IP addresses"
-      ],
-      "verified": true
-    },
-    {
-      "name": "Vimeo",
-      "title": "Vimeo",
-      "domain": "vimeo.com",
-      "breach_date": "2026-04-28",
-      "added_date": "2026-05-05T02:08:50Z",
-      "pwn_count": 119167,
-      "data_classes": [
-        "Email addresses",
-        "Names"
       ],
       "verified": true
     }

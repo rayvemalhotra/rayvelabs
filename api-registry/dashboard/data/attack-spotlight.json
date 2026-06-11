@@ -1,17 +1,19 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1553",
-    "name": "Subvert Trust Controls",
-    "description": "Adversaries may undermine security controls that will either warn users of untrusted activity or prevent execution of untrusted programs. Operating systems and security products may contain mechanisms to identify programs or websites as possessing some level of trust. Examples of such features would include a program being allowed to run because it is signed by a valid code signing certificate, a program prompting the user with a warning because it has an attribute set from being downloaded from the Internet, or getting an indication that you are about to connect to an untrusted site.",
+    "id": "T1573",
+    "name": "Encrypted Channel",
+    "description": "Adversaries may employ an encryption algorithm to conceal command and control traffic rather than relying on any inherent protections provided by a communication protocol. Despite the use of a secure algorithm, these implementations may be vulnerable to reverse engineering if secret keys are encoded and/or generated within malware samples/configuration files.",
     "tactics": [
-      "defense-impairment"
+      "command-and-control"
     ],
     "platforms": [
+      "ESXi",
       "Linux",
       "macOS",
+      "Network Devices",
       "Windows"
     ],
-    "url": "https://attack.mitre.org/techniques/T1553"
+    "url": "https://attack.mitre.org/techniques/T1573"
   }
 }
