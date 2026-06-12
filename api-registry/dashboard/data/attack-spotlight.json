@@ -1,19 +1,19 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1573",
-    "name": "Encrypted Channel",
-    "description": "Adversaries may employ an encryption algorithm to conceal command and control traffic rather than relying on any inherent protections provided by a communication protocol. Despite the use of a secure algorithm, these implementations may be vulnerable to reverse engineering if secret keys are encoded and/or generated within malware samples/configuration files.",
+    "id": "T1056",
+    "name": "Input Capture",
+    "description": "Adversaries may use methods of capturing user input to obtain credentials or collect information. During normal system usage, users often provide credentials to various different locations, such as login pages/portals or system dialog boxes. Input capture mechanisms may be transparent to the user (e.g. [Credential API Hooking](https://attack.mitre.org/techniques/T1056/004)) or rely on deceiving the user into providing input into what they believe to be a genuine service (e.g. [Web Portal Capture](https://attack.mitre.org/techniques/T1056/003)).",
     "tactics": [
-      "command-and-control"
+      "collection",
+      "credential-access"
     ],
     "platforms": [
-      "ESXi",
       "Linux",
       "macOS",
       "Network Devices",
       "Windows"
     ],
-    "url": "https://attack.mitre.org/techniques/T1573"
+    "url": "https://attack.mitre.org/techniques/T1056"
   }
 }

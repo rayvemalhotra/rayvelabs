@@ -1,19 +1,19 @@
 {
-  "total": 6261,
+  "total": 6537,
   "recent": [
     {
-      "first_seen": "1830185",
-      "ioc": "gimomouf.red90.casino",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
+      "first_seen": "1830858",
+      "ioc": "64.89.161.185:5566",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.nanocore",
+      "malware_alias": "Nancrat",
+      "malware_printable": "NanoCore",
+      "confidence": "100"
     },
     {
-      "first_seen": "1830055",
-      "ioc": "43.136.180.88:80",
+      "first_seen": "1830857",
+      "ioc": "1.13.141.229:8080",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
       "malware": "win.cobalt_strike",
@@ -22,8 +22,28 @@
       "confidence": "Cobalt Strike"
     },
     {
-      "first_seen": "1830054",
-      "ioc": "p5k42qtw.anodaz.co",
+      "first_seen": "1830856",
+      "ioc": "1.13.141.229:80",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.cobalt_strike",
+      "malware_alias": "Agentemis",
+      "malware_printable": "BEACON",
+      "confidence": "Cobalt Strike"
+    },
+    {
+      "first_seen": "1830855",
+      "ioc": "1.13.141.229:443",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.cobalt_strike",
+      "malware_alias": "Agentemis",
+      "malware_printable": "BEACON",
+      "confidence": "Cobalt Strike"
+    },
+    {
+      "first_seen": "1830854",
+      "ioc": "tfpvi.testranandegi.com",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -32,8 +52,28 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1830053",
-      "ioc": "206.81.21.156:4321",
+      "first_seen": "1830853",
+      "ioc": "cnurx.testranandegi.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1830852",
+      "ioc": "jebclxk.raftarsazmani.xyz",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1830851",
+      "ioc": "78.141.208.70:46337",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
       "malware": "win.adaptix_c2",
@@ -42,84 +82,44 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1830051",
-      "ioc": "182.23.2.163:4048",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.remcos",
-      "malware_alias": "RemcosRAT",
-      "malware_printable": "Remvio",
-      "confidence": ""
-    },
-    {
-      "first_seen": "1830052",
-      "ioc": "182.23.2.163:4814",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.remcos",
-      "malware_alias": "RemcosRAT",
-      "malware_printable": "Remvio",
-      "confidence": ""
-    },
-    {
-      "first_seen": "1830050",
-      "ioc": "182.23.2.163:1230",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.remcos",
-      "malware_alias": "RemcosRAT",
-      "malware_printable": "Remvio",
-      "confidence": ""
-    },
-    {
-      "first_seen": "1830049",
-      "ioc": "gwofphogw.differentialmamuli.store",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1830048",
-      "ioc": "qnjutqs.bet303.app",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1830047",
-      "ioc": "thisismine.asia",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "unknown",
-      "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1830046",
-      "ioc": "64.89.162.82:6606",
+      "first_seen": "1830850",
+      "ioc": "69.172.210.50:5333",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
       "malware": "win.asyncrat",
       "malware_alias": "None",
       "malware_printable": "AsyncRAT",
-      "confidence": "True"
+      "confidence": "False"
     },
     {
-      "first_seen": "1830045",
-      "ioc": "160.202.230.103:8080",
+      "first_seen": "1830848",
+      "ioc": "64.89.162.10:2404",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "win.cobalt_strike",
-      "malware_alias": "Agentemis",
-      "malware_printable": "BEACON",
-      "confidence": "Cobalt Strike"
+      "malware": "win.remcos",
+      "malware_alias": "RemcosRAT",
+      "malware_printable": "Remvio",
+      "confidence": ""
+    },
+    {
+      "first_seen": "1830849",
+      "ioc": "64.89.162.178:5903",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.remcos",
+      "malware_alias": "RemcosRAT",
+      "malware_printable": "Remvio",
+      "confidence": ""
+    },
+    {
+      "first_seen": "1830847",
+      "ioc": "61.158.61.134:8848",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.dcrat",
+      "malware_alias": "DarkCrystal RAT",
+      "malware_printable": "DCRat",
+      "confidence": "False"
     }
   ]
 }

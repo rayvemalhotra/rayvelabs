@@ -1,8 +1,17 @@
 {
-  "total": 1617,
-  "catalog_version": "2026.06.09",
-  "date_released": "2026-06-09T18:13:20.4395Z",
+  "total": 1618,
+  "catalog_version": "2026.06.11",
+  "date_released": "2026-06-11T19:02:08.0715Z",
   "recent": [
+    {
+      "cve": "CVE-2026-10520",
+      "vendor": "Ivanti",
+      "product": "Sentry",
+      "name": "Ivanti Sentry OS Command Injection Vulnerability",
+      "date_added": "2026-06-11",
+      "due_date": "2026-06-14",
+      "ransomware": false
+    },
     {
       "cve": "CVE-2026-11645",
       "vendor": "Google",
@@ -101,15 +110,6 @@
       "date_added": "2026-05-29",
       "due_date": "2026-06-01",
       "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-48027",
-      "vendor": "Nx",
-      "product": "Nx Console",
-      "name": "Nx Console Embedded Malicious Code Vulnerability",
-      "date_added": "2026-05-27",
-      "due_date": "2026-06-10",
-      "ransomware": true
     }
   ]
 }
