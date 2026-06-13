@@ -1,8 +1,17 @@
 {
-  "total": 1618,
-  "catalog_version": "2026.06.11",
-  "date_released": "2026-06-11T19:02:08.0715Z",
+  "total": 1619,
+  "catalog_version": "2026.06.12",
+  "date_released": "2026-06-12T16:46:48.0549Z",
   "recent": [
+    {
+      "cve": "CVE-2026-35273",
+      "vendor": "Oracle",
+      "product": " PeopleSoft Enterprise PeopleTools",
+      "name": "Oracle PeopleSoft Enterprise PeopleTools Missing Authentication for Critical Function Vulnerability",
+      "date_added": "2026-06-12",
+      "due_date": "2026-06-15",
+      "ransomware": true
+    },
     {
       "cve": "CVE-2026-10520",
       "vendor": "Ivanti",
@@ -100,15 +109,6 @@
       "name": "Oracle WebLogic Server Unspecified Vulnerability",
       "date_added": "2026-06-01",
       "due_date": "2026-06-04",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-0257",
-      "vendor": "Palo Alto Networks",
-      "product": "PAN-OS",
-      "name": "Palo Alto Networks PAN-OS Authentication Bypass Vulnerability",
-      "date_added": "2026-05-29",
-      "due_date": "2026-06-01",
       "ransomware": false
     }
   ]
