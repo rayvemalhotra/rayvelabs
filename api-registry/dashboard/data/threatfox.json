@@ -1,9 +1,9 @@
 {
-  "total": 5913,
+  "total": 3263,
   "recent": [
     {
-      "first_seen": "1831705",
-      "ioc": "alrwomdp.restaurantguideaarhus.com",
+      "first_seen": "1831982",
+      "ioc": "fnuqorvu.sazebetonarme.xyz",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -12,8 +12,8 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1831704",
-      "ioc": "45.156.87.226:8545",
+      "first_seen": "1831981",
+      "ioc": "209.99.185.96:9999",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
       "malware": "win.asyncrat",
@@ -22,8 +22,38 @@
       "confidence": "True"
     },
     {
-      "first_seen": "1831703",
-      "ioc": "obmhxqg.rocketbet.pro",
+      "first_seen": "1831979",
+      "ioc": "49.232.4.71:81",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.cobalt_strike",
+      "malware_alias": "Agentemis",
+      "malware_printable": "BEACON",
+      "confidence": "Cobalt Strike"
+    },
+    {
+      "first_seen": "1831980",
+      "ioc": "216.250.249.36:80",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.asyncrat",
+      "malware_alias": "None",
+      "malware_printable": "AsyncRAT",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1831978",
+      "ioc": "49.232.4.71:8080",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.cobalt_strike",
+      "malware_alias": "Agentemis",
+      "malware_printable": "BEACON",
+      "confidence": "Cobalt Strike"
+    },
+    {
+      "first_seen": "1831977",
+      "ioc": "irljgzvr.sanjeshvaandazegiri.shop",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -32,8 +62,8 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1831702",
-      "ioc": "ggcjxgov.fununetadris.shop",
+      "first_seen": "1831976",
+      "ioc": "zjkgepkj.sanjeshravani.shop",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -42,84 +72,54 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1831701",
-      "ioc": "v47e4385.fununetadris.shop",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
+      "first_seen": "1831975",
+      "ioc": "49.232.4.71:443",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.cobalt_strike",
+      "malware_alias": "Agentemis",
+      "malware_printable": "BEACON",
+      "confidence": "Cobalt Strike"
     },
     {
-      "first_seen": "1831700",
-      "ioc": "gsdzofat.winxbet.co",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
+      "first_seen": "1831974",
+      "ioc": "49.232.4.71:80",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.cobalt_strike",
+      "malware_alias": "Agentemis",
+      "malware_printable": "BEACON",
+      "confidence": "Cobalt Strike"
     },
     {
-      "first_seen": "1831699",
-      "ioc": "krigo.ecologyardakani.xyz",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
+      "first_seen": "1831973",
+      "ioc": "43.99.110.114:8081",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.cobalt_strike",
+      "malware_alias": "Agentemis",
+      "malware_printable": "BEACON",
+      "confidence": "Cobalt Strike"
     },
     {
-      "first_seen": "1831698",
-      "ioc": "aoeoelfz.hugugbime.xyz",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
+      "first_seen": "1831972",
+      "ioc": "204.194.54.54:80",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.vshell",
       "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
+      "malware_printable": "VShell",
+      "confidence": "True"
     },
     {
-      "first_seen": "1831696",
-      "ioc": "jyvartai.hugugdaryayi.xyz",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
+      "first_seen": "1831971",
+      "ioc": "124.222.69.132:8085",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.vshell",
       "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1831695",
-      "ioc": "kg0kdihy.gavaedfagahe.xyz",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1831694",
-      "ioc": "psmecdlr.hugugedari.xyz",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1831693",
-      "ioc": "dngzhceb.hugugmadani3.xyz",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
+      "malware_printable": "VShell",
+      "confidence": "True"
     }
   ]
 }

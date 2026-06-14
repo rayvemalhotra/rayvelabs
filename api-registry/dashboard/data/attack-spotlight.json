@@ -1,21 +1,17 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1685",
-    "name": "Disable or Modify Tools",
-    "description": "Adversaries may disable, degrade, or tamper with security tools or applications (e.g., endpoint detection and response (EDR) tools, intrusion detection systems (IDS), antivirus, logging agents, sensors, etc.) to impair or reduce visibility of defensive capabilities. This may include stopping specific services, killing processes, modifying or deleting tool configuration files and Registry keys, or preventing tools from updating. This may also include impairing defenses more broadly by disrupting preventative, detection, and response mechanisms across host, network, and cloud environments.(Citation: SCADAfence_ransomware) ",
+    "id": "T1203",
+    "name": "Exploitation for Client Execution",
+    "description": "Adversaries may exploit software vulnerabilities in client applications to execute code. Vulnerabilities can exist in software due to unsecure coding practices that can lead to unanticipated behavior. Adversaries can take advantage of certain vulnerabilities through targeted exploitation for the purpose of arbitrary code execution. Oftentimes the most valuable exploits to an offensive toolkit are those that can be used to obtain code execution on a remote system because they can be used to gain access to that system. Users will expect to see files related to the applications they commonly used to do work, so they are a useful target for exploit research and development because of their high utility.",
     "tactics": [
-      "defense-impairment"
+      "execution"
     ],
     "platforms": [
-      "Containers",
-      "ESXi",
-      "IaaS",
       "Linux",
       "macOS",
-      "Network Devices",
       "Windows"
     ],
-    "url": "https://attack.mitre.org/techniques/T1685"
+    "url": "https://attack.mitre.org/techniques/T1203"
   }
 }
