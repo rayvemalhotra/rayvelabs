@@ -1,17 +1,18 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1203",
-    "name": "Exploitation for Client Execution",
-    "description": "Adversaries may exploit software vulnerabilities in client applications to execute code. Vulnerabilities can exist in software due to unsecure coding practices that can lead to unanticipated behavior. Adversaries can take advantage of certain vulnerabilities through targeted exploitation for the purpose of arbitrary code execution. Oftentimes the most valuable exploits to an offensive toolkit are those that can be used to obtain code execution on a remote system because they can be used to gain access to that system. Users will expect to see files related to the applications they commonly used to do work, so they are a useful target for exploit research and development because of their high utility.",
+    "id": "T1667",
+    "name": "Email Bombing",
+    "description": "Adversaries may flood targeted email addresses with an overwhelming volume of messages. This may bury legitimate emails in a flood of spam and disrupt business operations.(Citation: sophos-bombing)(Citation: krebs-email-bombing)",
     "tactics": [
-      "execution"
+      "impact"
     ],
     "platforms": [
       "Linux",
-      "macOS",
-      "Windows"
+      "Office Suite",
+      "Windows",
+      "macOS"
     ],
-    "url": "https://attack.mitre.org/techniques/T1203"
+    "url": "https://attack.mitre.org/techniques/T1667"
   }
 }
