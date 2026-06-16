@@ -1,5 +1,5 @@
 {
-  "total_listings": 9932,
+  "total_listings": 9975,
   "by_reason": [
     {
       "reason": "AsyncRAT C&C",
@@ -15,63 +15,63 @@
     },
     {
       "reason": "Vidar C&C",
-      "count": 593
+      "count": 600
     },
     {
       "reason": "LummaStealer C&C",
-      "count": 553
+      "count": 555
     }
   ],
   "recent": [
     {
-      "listing_date": "2026-06-15 11:30:19",
-      "sha1": "328e281764aa6dec153e574ec0193af3c62b04e2",
+      "listing_date": "2026-06-16 09:18:15",
+      "sha1": "54fdaf6635064f8d7e6f84b1118eb60edcc697e8",
       "listing_reason": "Vidar C&C"
     },
     {
-      "listing_date": "2026-06-14 12:20:06",
-      "sha1": "a9f2914bb882008d0bb1bd515e4b5b289eba24a0",
-      "listing_reason": "PureLogsStealer C&C"
+      "listing_date": "2026-06-15 17:02:45",
+      "sha1": "22e028ce259e7584f4573e44594eced4214e6606",
+      "listing_reason": "DeerStealer C&C"
     },
     {
-      "listing_date": "2026-06-14 11:28:28",
-      "sha1": "d3cc58d42356a8c4436ae4c534058891f7aa4704",
+      "listing_date": "2026-06-15 16:34:38",
+      "sha1": "eb96b9eb03a776f21ad2937432c58fbc72efbabc",
       "listing_reason": "Vidar C&C"
     },
     {
-      "listing_date": "2026-06-14 11:25:32",
-      "sha1": "91277e257db81a1f95bfac515bf69523c78d1274",
-      "listing_reason": "Vidar C&C"
+      "listing_date": "2026-06-15 16:33:26",
+      "sha1": "c29edff70ee75b8d341d6d13dbcd40e63f30cfbe",
+      "listing_reason": "CobaltStrike C&C"
     },
     {
-      "listing_date": "2026-06-14 11:02:10",
-      "sha1": "bebfbdbe08ede143137c80c0e337e686f1698299",
-      "listing_reason": "Vidar C&C"
-    },
-    {
-      "listing_date": "2026-06-12 06:18:44",
-      "sha1": "e81bedd0d62805a9bcad2b1cd652435cd9a59bcc",
+      "listing_date": "2026-06-15 16:32:39",
+      "sha1": "cc2c6a3d1b7c955eeff33e6ae387dae90bce02b6",
       "listing_reason": "KongTuke C&C"
     },
     {
-      "listing_date": "2026-06-11 08:10:39",
-      "sha1": "48cf152a0f547ca2ee9668e57c7136e157ec96f5",
-      "listing_reason": "ConnectWise C&C"
+      "listing_date": "2026-06-15 16:32:36",
+      "sha1": "b6f62f51d751b564304a7dfddc1eefa21af87459",
+      "listing_reason": "Amadey C&C"
     },
     {
-      "listing_date": "2026-06-11 06:09:38",
-      "sha1": "78e36aa21e77cf60799204d1fb0bac1f063aec42",
-      "listing_reason": "PureLogsStealer C&C"
-    },
-    {
-      "listing_date": "2026-06-11 06:08:47",
-      "sha1": "e3c434a1fc0269f0ad0fb43cdf93494e726d2f68",
+      "listing_date": "2026-06-15 16:32:08",
+      "sha1": "9e21649650307360f41b165d054d97889620c3fa",
       "listing_reason": "Vidar C&C"
     },
     {
-      "listing_date": "2026-06-11 06:08:17",
-      "sha1": "a4f368e4e4c305b60212c016a4f1fa3a3a96a3de",
-      "listing_reason": "PureLogsStealer C&C"
+      "listing_date": "2026-06-15 16:31:50",
+      "sha1": "72d548ec5583927298e50ad46fba5ecd4145a04b",
+      "listing_reason": "ConnectWise C&C"
+    },
+    {
+      "listing_date": "2026-06-15 16:31:46",
+      "sha1": "8d79c837a2368109e8af602105399674c699fdcf",
+      "listing_reason": "ConnectWise C&C"
+    },
+    {
+      "listing_date": "2026-06-15 16:29:14",
+      "sha1": "c58e2e4f5b271eb8b1599a58ad883e3c2e333032",
+      "listing_reason": "KongTuke C&C"
     }
   ]
 }

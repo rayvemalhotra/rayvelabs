@@ -1,18 +1,18 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1667",
-    "name": "Email Bombing",
-    "description": "Adversaries may flood targeted email addresses with an overwhelming volume of messages. This may bury legitimate emails in a flood of spam and disrupt business operations.(Citation: sophos-bombing)(Citation: krebs-email-bombing)",
+    "id": "T1570",
+    "name": "Lateral Tool Transfer",
+    "description": "Adversaries may transfer tools or other files between systems in a compromised environment. Once brought into the victim environment (i.e., [Ingress Tool Transfer](https://attack.mitre.org/techniques/T1105)) files may then be copied from one system to another to stage adversary tools or other files over the course of an operation.",
     "tactics": [
-      "impact"
+      "lateral-movement"
     ],
     "platforms": [
+      "ESXi",
       "Linux",
-      "Office Suite",
-      "Windows",
-      "macOS"
+      "macOS",
+      "Windows"
     ],
-    "url": "https://attack.mitre.org/techniques/T1667"
+    "url": "https://attack.mitre.org/techniques/T1570"
   }
 }

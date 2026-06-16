@@ -1,8 +1,26 @@
 {
-  "total": 1619,
-  "catalog_version": "2026.06.12",
-  "date_released": "2026-06-12T16:46:48.0549Z",
+  "total": 1621,
+  "catalog_version": "2026.06.15",
+  "date_released": "2026-06-15T19:00:14.5797Z",
   "recent": [
+    {
+      "cve": "CVE-2026-54420",
+      "vendor": "LiteSpeed",
+      "product": "cPanel Plugin",
+      "name": "LiteSpeed cPanel Plugin UNIX Symbolic Link (Symlink) Following Vulnerability",
+      "date_added": "2026-06-15",
+      "due_date": "2026-06-18",
+      "ransomware": false
+    },
+    {
+      "cve": "CVE-2026-20262",
+      "vendor": "Cisco",
+      "product": "Catalyst SD-WAN Manager",
+      "name": "Cisco Catalyst SD-WAN Manager Directory or Path Traversal Vulnerability",
+      "date_added": "2026-06-15",
+      "due_date": "2026-06-29",
+      "ransomware": false
+    },
     {
       "cve": "CVE-2026-35273",
       "vendor": "Oracle",
@@ -91,24 +109,6 @@
       "name": "Linux Kernel Improper Authentication Vulnerability",
       "date_added": "2026-06-02",
       "due_date": "2026-06-05",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2025-48595",
-      "vendor": "Android",
-      "product": "Framework",
-      "name": "Android Framework Integer Overflow Vulnerability",
-      "date_added": "2026-06-02",
-      "due_date": "2026-06-05",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2024-21182",
-      "vendor": "Oracle",
-      "product": "WebLogic Server",
-      "name": "Oracle WebLogic Server Unspecified Vulnerability",
-      "date_added": "2026-06-01",
-      "due_date": "2026-06-04",
       "ransomware": false
     }
   ]
