@@ -1,8 +1,17 @@
 {
-  "total": 1621,
-  "catalog_version": "2026.06.15",
-  "date_released": "2026-06-15T19:00:14.5797Z",
+  "total": 1622,
+  "catalog_version": "2026.06.16",
+  "date_released": "2026-06-16T19:21:58.433Z",
   "recent": [
+    {
+      "cve": "CVE-2026-48907",
+      "vendor": "Widget Factory",
+      "product": "Joomla Content Editor ",
+      "name": "Widget Factory Joomla Content Editor Improper Access Control Vulnerability",
+      "date_added": "2026-06-16",
+      "due_date": "2026-06-19",
+      "ransomware": false
+    },
     {
       "cve": "CVE-2026-54420",
       "vendor": "LiteSpeed",
@@ -100,15 +109,6 @@
       "name": "Mirasvit Full Page Cache Warmer Deserialization of Untrusted Data Vulnerability",
       "date_added": "2026-06-03",
       "due_date": "2026-06-06",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2022-0492",
-      "vendor": "Linux",
-      "product": "Kernel",
-      "name": "Linux Kernel Improper Authentication Vulnerability",
-      "date_added": "2026-06-02",
-      "due_date": "2026-06-05",
       "ransomware": false
     }
   ]

@@ -1,18 +1,19 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1570",
-    "name": "Lateral Tool Transfer",
-    "description": "Adversaries may transfer tools or other files between systems in a compromised environment. Once brought into the victim environment (i.e., [Ingress Tool Transfer](https://attack.mitre.org/techniques/T1105)) files may then be copied from one system to another to stage adversary tools or other files over the course of an operation.",
+    "id": "T1095",
+    "name": "Non-Application Layer Protocol",
+    "description": "Adversaries may use an OSI non-application layer protocol for communication between host and C2 server or among infected hosts within a network. The list of possible protocols is extensive.(Citation: Wikipedia OSI) Specific examples include use of network layer protocols, such as the Internet Control Message Protocol (ICMP), transport layer protocols, such as the User Datagram Protocol (UDP), session layer protocols, such as Socket Secure (SOCKS), as well as redirected/tunneled protocols, such as Serial over LAN (SOL).",
     "tactics": [
-      "lateral-movement"
+      "command-and-control"
     ],
     "platforms": [
       "ESXi",
       "Linux",
       "macOS",
+      "Network Devices",
       "Windows"
     ],
-    "url": "https://attack.mitre.org/techniques/T1570"
+    "url": "https://attack.mitre.org/techniques/T1095"
   }
 }

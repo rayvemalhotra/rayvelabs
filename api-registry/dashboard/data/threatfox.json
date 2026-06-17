@@ -1,39 +1,69 @@
 {
-  "total": 3667,
+  "total": 3911,
   "recent": [
     {
-      "first_seen": "1832647",
-      "ioc": "39.106.205.6:80",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.cobalt_strike",
-      "malware_alias": "Agentemis",
-      "malware_printable": "BEACON",
-      "confidence": "Cobalt Strike"
+      "first_seen": "1833419",
+      "ioc": "hzvho.shartbandifootballkade.online",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
     },
     {
-      "first_seen": "1832648",
-      "ioc": "39.106.205.6:443",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.cobalt_strike",
-      "malware_alias": "Agentemis",
-      "malware_printable": "BEACON",
-      "confidence": "Cobalt Strike"
+      "first_seen": "1833418",
+      "ioc": "pvxvwrfu.sadreislam.xyz",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
     },
     {
-      "first_seen": "1832646",
-      "ioc": "43.131.240.236:8080",
+      "first_seen": "1833414",
+      "ioc": "192.210.186.212:5544",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "win.cobalt_strike",
-      "malware_alias": "Agentemis",
-      "malware_printable": "BEACON",
-      "confidence": "Cobalt Strike"
+      "malware": "win.remcos",
+      "malware_alias": "RemcosRAT",
+      "malware_printable": "Remvio",
+      "confidence": ""
     },
     {
-      "first_seen": "1832645",
-      "ioc": "139.199.76.207:9090",
+      "first_seen": "1833415",
+      "ioc": "192.210.186.212:5656",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.remcos",
+      "malware_alias": "RemcosRAT",
+      "malware_printable": "Remvio",
+      "confidence": ""
+    },
+    {
+      "first_seen": "1833416",
+      "ioc": "192.210.186.212:1343",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.remcos",
+      "malware_alias": "RemcosRAT",
+      "malware_printable": "Remvio",
+      "confidence": ""
+    },
+    {
+      "first_seen": "1833417",
+      "ioc": "192.210.186.212:4545",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.remcos",
+      "malware_alias": "RemcosRAT",
+      "malware_printable": "Remvio",
+      "confidence": ""
+    },
+    {
+      "first_seen": "1833411",
+      "ioc": "156.244.9.19:9090",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
       "malware": "win.vshell",
@@ -42,84 +72,54 @@
       "confidence": "True"
     },
     {
-      "first_seen": "1832644",
-      "ioc": "trwqprv.shartmag.bet",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1832643",
-      "ioc": "zgdpxwcq.sadreislam.xyz",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1832642",
-      "ioc": "cas.hanyasm188.top",
-      "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "win.vidar",
-      "malware_alias": "None",
-      "malware_printable": "Vidar",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1832641",
-      "ioc": "https://cas.hanyasm188.top/",
-      "ioc_type": "url",
-      "threat_type": "botnet_cc",
-      "malware": "win.vidar",
-      "malware_alias": "None",
-      "malware_printable": "Vidar",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1832640",
-      "ioc": "jyheezbl.questionsmotor.xyz",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1832638",
-      "ioc": "cas.rzrrent.com",
-      "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "win.vidar",
-      "malware_alias": "None",
-      "malware_printable": "Vidar",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1832639",
-      "ioc": "https://cas.rzrrent.com/",
-      "ioc_type": "url",
-      "threat_type": "botnet_cc",
-      "malware": "win.vidar",
-      "malware_alias": "None",
-      "malware_printable": "Vidar",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1832637",
-      "ioc": "43.131.240.236:80",
+      "first_seen": "1833412",
+      "ioc": "139.84.150.251:8084",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "win.cobalt_strike",
-      "malware_alias": "Agentemis",
-      "malware_printable": "BEACON",
-      "confidence": "Cobalt Strike"
+      "malware": "win.vshell",
+      "malware_alias": "None",
+      "malware_printable": "VShell",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1833413",
+      "ioc": "139.199.76.207:8080",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.vshell",
+      "malware_alias": "None",
+      "malware_printable": "VShell",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1833406",
+      "ioc": "bchvsotq.questionsmotor.xyz",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1833405",
+      "ioc": "98.191.176.222:8080",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.deimos_c2",
+      "malware_alias": "None",
+      "malware_printable": "DeimosC2",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1833404",
+      "ioc": "85.137.58.53:7443",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "unknown",
+      "malware_alias": "None",
+      "malware_printable": "Unknown malware",
+      "confidence": "False"
     }
   ]
 }
