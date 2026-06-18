@@ -1,124 +1,124 @@
 {
-  "total": 3911,
+  "total": 3893,
   "recent": [
     {
-      "first_seen": "1833419",
-      "ioc": "hzvho.shartbandifootballkade.online",
+      "first_seen": "1833759",
+      "ioc": "birdybird.rest",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
+      "malware": "unknown",
       "malware_alias": "None",
-      "malware_printable": "ClearFake",
+      "malware_printable": "Unknown malware",
       "confidence": "False"
     },
     {
-      "first_seen": "1833418",
-      "ioc": "pvxvwrfu.sadreislam.xyz",
+      "first_seen": "1833758",
+      "ioc": "codecerification.beer",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
+      "malware": "unknown",
       "malware_alias": "None",
-      "malware_printable": "ClearFake",
+      "malware_printable": "Unknown malware",
       "confidence": "False"
     },
     {
-      "first_seen": "1833414",
-      "ioc": "192.210.186.212:5544",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.remcos",
-      "malware_alias": "RemcosRAT",
-      "malware_printable": "Remvio",
-      "confidence": ""
-    },
-    {
-      "first_seen": "1833415",
-      "ioc": "192.210.186.212:5656",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.remcos",
-      "malware_alias": "RemcosRAT",
-      "malware_printable": "Remvio",
-      "confidence": ""
-    },
-    {
-      "first_seen": "1833416",
-      "ioc": "192.210.186.212:1343",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.remcos",
-      "malware_alias": "RemcosRAT",
-      "malware_printable": "Remvio",
-      "confidence": ""
-    },
-    {
-      "first_seen": "1833417",
-      "ioc": "192.210.186.212:4545",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.remcos",
-      "malware_alias": "RemcosRAT",
-      "malware_printable": "Remvio",
-      "confidence": ""
-    },
-    {
-      "first_seen": "1833411",
-      "ioc": "156.244.9.19:9090",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.vshell",
-      "malware_alias": "None",
-      "malware_printable": "VShell",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1833412",
-      "ioc": "139.84.150.251:8084",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.vshell",
-      "malware_alias": "None",
-      "malware_printable": "VShell",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1833413",
-      "ioc": "139.199.76.207:8080",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.vshell",
-      "malware_alias": "None",
-      "malware_printable": "VShell",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1833406",
-      "ioc": "bchvsotq.questionsmotor.xyz",
-      "ioc_type": "domain",
+      "first_seen": "1833745",
+      "ioc": "https://domokitw.lol/downloads",
+      "ioc_type": "url",
       "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
+      "malware": "unknown_stealer",
       "malware_alias": "None",
-      "malware_printable": "ClearFake",
+      "malware_printable": "Unknown Stealer",
       "confidence": "False"
     },
     {
-      "first_seen": "1833405",
-      "ioc": "98.191.176.222:8080",
+      "first_seen": "1833746",
+      "ioc": "https://voltix.gd/App/Voltix.zip",
+      "ioc_type": "url",
+      "threat_type": "payload_delivery",
+      "malware": "unknown_stealer",
+      "malware_alias": "None",
+      "malware_printable": "Unknown Stealer",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1833753",
+      "ioc": "98.142.241.170:31337",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "win.deimos_c2",
+      "malware": "win.sliver",
       "malware_alias": "None",
-      "malware_printable": "DeimosC2",
+      "malware_printable": "Sliver",
       "confidence": "False"
     },
     {
-      "first_seen": "1833404",
-      "ioc": "85.137.58.53:7443",
+      "first_seen": "1833754",
+      "ioc": "98.142.241.170:8443",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.sliver",
+      "malware_alias": "None",
+      "malware_printable": "Sliver",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1833752",
+      "ioc": "91.223.208.217:7443",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
       "malware": "unknown",
       "malware_alias": "None",
       "malware_printable": "Unknown malware",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1833751",
+      "ioc": "83.142.209.31:7829",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.asyncrat",
+      "malware_alias": "None",
+      "malware_printable": "AsyncRAT",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1833750",
+      "ioc": "54.38.94.225:8884",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.eye_pyramid",
+      "malware_alias": "None",
+      "malware_printable": "Eye Pyramid",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1833749",
+      "ioc": "35.254.198.45:80",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.asyncrat",
+      "malware_alias": "None",
+      "malware_printable": "AsyncRAT",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1833747",
+      "ioc": "31.77.168.220:3009",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.asyncrat",
+      "malware_alias": "None",
+      "malware_printable": "AsyncRAT",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1833748",
+      "ioc": "31.77.168.220:3010",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.asyncrat",
+      "malware_alias": "None",
+      "malware_printable": "AsyncRAT",
       "confidence": "False"
     }
   ]

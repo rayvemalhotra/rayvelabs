@@ -1,19 +1,16 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1095",
-    "name": "Non-Application Layer Protocol",
-    "description": "Adversaries may use an OSI non-application layer protocol for communication between host and C2 server or among infected hosts within a network. The list of possible protocols is extensive.(Citation: Wikipedia OSI) Specific examples include use of network layer protocols, such as the Internet Control Message Protocol (ICMP), transport layer protocols, such as the User Datagram Protocol (UDP), session layer protocols, such as Socket Secure (SOCKS), as well as redirected/tunneled protocols, such as Serial over LAN (SOL).",
+    "id": "T1671",
+    "name": "Cloud Application Integration",
+    "description": "Adversaries may achieve persistence by leveraging OAuth application integrations in a software-as-a-service environment. Adversaries may create a custom application, add a legitimate application into the environment, or even co-opt an existing integration to achieve malicious ends.(Citation: Push Security SaaS Persistence 2022)(Citation: SaaS Attacks GitHub Evil Twin Integrations)",
     "tactics": [
-      "command-and-control"
+      "persistence"
     ],
     "platforms": [
-      "ESXi",
-      "Linux",
-      "macOS",
-      "Network Devices",
-      "Windows"
+      "Office Suite",
+      "SaaS"
     ],
-    "url": "https://attack.mitre.org/techniques/T1095"
+    "url": "https://attack.mitre.org/techniques/T1671"
   }
 }
