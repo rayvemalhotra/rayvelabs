@@ -1,9 +1,49 @@
 {
-  "total": 3893,
+  "total": 3677,
   "recent": [
     {
-      "first_seen": "1833759",
-      "ioc": "birdybird.rest",
+      "first_seen": "1834078",
+      "ioc": "borb5c9q.megaparikade.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1834077",
+      "ioc": "http://flowmasterservices.com:4437",
+      "ioc_type": "url",
+      "threat_type": "botnet_cc",
+      "malware": "win.remus",
+      "malware_alias": "None",
+      "malware_printable": "Remus",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1834075",
+      "ioc": "106.75.137.168:8080",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.vshell",
+      "malware_alias": "None",
+      "malware_printable": "VShell",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1834076",
+      "ioc": "20.217.83.155:8080",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.quasar_rat",
+      "malware_alias": "CinaRAT",
+      "malware_printable": "QuasarRAT",
+      "confidence": ""
+    },
+    {
+      "first_seen": "1834073",
+      "ioc": "updateyoursoft.com",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "unknown",
@@ -12,8 +52,8 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1833758",
-      "ioc": "codecerification.beer",
+      "first_seen": "1834072",
+      "ioc": "freesoftupdater.com",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "unknown",
@@ -22,58 +62,48 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1833745",
-      "ioc": "https://domokitw.lol/downloads",
-      "ioc_type": "url",
+      "first_seen": "1834071",
+      "ioc": "holopebamiy.bond",
+      "ioc_type": "domain",
       "threat_type": "payload_delivery",
-      "malware": "unknown_stealer",
-      "malware_alias": "None",
-      "malware_printable": "Unknown Stealer",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1833746",
-      "ioc": "https://voltix.gd/App/Voltix.zip",
-      "ioc_type": "url",
-      "threat_type": "payload_delivery",
-      "malware": "unknown_stealer",
-      "malware_alias": "None",
-      "malware_printable": "Unknown Stealer",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1833753",
-      "ioc": "98.142.241.170:31337",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.sliver",
-      "malware_alias": "None",
-      "malware_printable": "Sliver",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1833754",
-      "ioc": "98.142.241.170:8443",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.sliver",
-      "malware_alias": "None",
-      "malware_printable": "Sliver",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1833752",
-      "ioc": "91.223.208.217:7443",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
       "malware": "unknown",
       "malware_alias": "None",
       "malware_printable": "Unknown malware",
       "confidence": "False"
     },
     {
-      "first_seen": "1833751",
-      "ioc": "83.142.209.31:7829",
+      "first_seen": "1834070",
+      "ioc": "mamamiadomio.cfd",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "unknown",
+      "malware_alias": "None",
+      "malware_printable": "Unknown malware",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1834069",
+      "ioc": "kongographics.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "unknown",
+      "malware_alias": "None",
+      "malware_printable": "Unknown malware",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1834068",
+      "ioc": "cdn.librarygrades.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "unknown",
+      "malware_alias": "None",
+      "malware_printable": "Unknown malware",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1834066",
+      "ioc": "91.92.242.67:7707",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
       "malware": "win.asyncrat",
@@ -82,43 +112,13 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1833750",
-      "ioc": "54.38.94.225:8884",
+      "first_seen": "1834063",
+      "ioc": "77.110.119.172:4321",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "win.eye_pyramid",
+      "malware": "win.adaptix_c2",
       "malware_alias": "None",
-      "malware_printable": "Eye Pyramid",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1833749",
-      "ioc": "35.254.198.45:80",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.asyncrat",
-      "malware_alias": "None",
-      "malware_printable": "AsyncRAT",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1833747",
-      "ioc": "31.77.168.220:3009",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.asyncrat",
-      "malware_alias": "None",
-      "malware_printable": "AsyncRAT",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1833748",
-      "ioc": "31.77.168.220:3010",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.asyncrat",
-      "malware_alias": "None",
-      "malware_printable": "AsyncRAT",
+      "malware_printable": "AdaptixC2",
       "confidence": "False"
     }
   ]

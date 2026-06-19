@@ -1,8 +1,17 @@
 {
-  "total": 1622,
-  "catalog_version": "2026.06.16",
-  "date_released": "2026-06-16T19:21:58.433Z",
+  "total": 1623,
+  "catalog_version": "2026.06.18",
+  "date_released": "2026-06-18T16:00:20.1905Z",
   "recent": [
+    {
+      "cve": "CVE-2026-20253",
+      "vendor": "Splunk",
+      "product": "Enterprise",
+      "name": "Splunk Enterprise Missing Authentication for Critical Function Vulnerability",
+      "date_added": "2026-06-18",
+      "due_date": "2026-06-21",
+      "ransomware": false
+    },
     {
       "cve": "CVE-2026-48907",
       "vendor": "Widget Factory",
@@ -100,15 +109,6 @@
       "name": "SolarWinds Serv-U Uncontrolled Resource Consumption Vulnerability",
       "date_added": "2026-06-05",
       "due_date": "2026-06-19",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-45247",
-      "vendor": "Mirasvit",
-      "product": "Mirasvit Full Page Cache Warmer",
-      "name": "Mirasvit Full Page Cache Warmer Deserialization of Untrusted Data Vulnerability",
-      "date_added": "2026-06-03",
-      "due_date": "2026-06-06",
       "ransomware": false
     }
   ]

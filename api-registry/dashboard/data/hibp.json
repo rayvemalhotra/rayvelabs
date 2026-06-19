@@ -1,7 +1,20 @@
 {
-  "total_breaches": 1008,
-  "total_records_exposed": 17657443375,
+  "total_breaches": 1010,
+  "total_records_exposed": 17657736805,
   "recent": [
+    {
+      "name": "OperationEndgame4",
+      "title": "Operation Endgame 4.0",
+      "domain": "",
+      "breach_date": "2026-06-18",
+      "added_date": "2026-06-18T20:08:06Z",
+      "pwn_count": 153527,
+      "data_classes": [
+        "Email addresses",
+        "Passwords"
+      ],
+      "verified": true
+    },
     {
       "name": "June2026StealerLogs",
       "title": "June 2026 Stealer Logs",
@@ -12,6 +25,22 @@
       "data_classes": [
         "Email addresses",
         "Passwords"
+      ],
+      "verified": true
+    },
+    {
+      "name": "RalphLauren",
+      "title": "Ralph Lauren",
+      "domain": "ralphlauren.com",
+      "breach_date": "2026-06-11",
+      "added_date": "2026-06-18T22:48:34Z",
+      "pwn_count": 139903,
+      "data_classes": [
+        "Age groups",
+        "Email addresses",
+        "Genders",
+        "Names",
+        "Phone numbers"
       ],
       "verified": true
     },
@@ -104,42 +133,6 @@
         "Names",
         "Phone numbers",
         "Physical addresses"
-      ],
-      "verified": true
-    },
-    {
-      "name": "DentaQuest",
-      "title": "DentaQuest",
-      "domain": "dentaquest.com",
-      "breach_date": "2026-05-23",
-      "added_date": "2026-06-03T22:56:30Z",
-      "pwn_count": 2553599,
-      "data_classes": [
-        "Dates of birth",
-        "Email addresses",
-        "Genders",
-        "Government issued IDs",
-        "Health insurance information",
-        "Names",
-        "Phone numbers",
-        "Physical addresses"
-      ],
-      "verified": true
-    },
-    {
-      "name": "CushmanWakefield",
-      "title": "Cushman & Wakefield",
-      "domain": "cushmanwakefield.com",
-      "breach_date": "2026-05-05",
-      "added_date": "2026-05-12T06:58:16Z",
-      "pwn_count": 310431,
-      "data_classes": [
-        "Email addresses",
-        "Job titles",
-        "Names",
-        "Phone numbers",
-        "Physical addresses",
-        "Salutations"
       ],
       "verified": true
     }

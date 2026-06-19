@@ -1,16 +1,15 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1671",
-    "name": "Cloud Application Integration",
-    "description": "Adversaries may achieve persistence by leveraging OAuth application integrations in a software-as-a-service environment. Adversaries may create a custom application, add a legitimate application into the environment, or even co-opt an existing integration to achieve malicious ends.(Citation: Push Security SaaS Persistence 2022)(Citation: SaaS Attacks GitHub Evil Twin Integrations)",
+    "id": "T1012",
+    "name": "Query Registry",
+    "description": "Adversaries may interact with the Windows Registry to gather information about the system, configuration, and installed software.",
     "tactics": [
-      "persistence"
+      "discovery"
     ],
     "platforms": [
-      "Office Suite",
-      "SaaS"
+      "Windows"
     ],
-    "url": "https://attack.mitre.org/techniques/T1671"
+    "url": "https://attack.mitre.org/techniques/T1012"
   }
 }
