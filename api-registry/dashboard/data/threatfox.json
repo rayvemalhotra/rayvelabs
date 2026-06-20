@@ -1,9 +1,29 @@
 {
-  "total": 3677,
+  "total": 3355,
   "recent": [
     {
-      "first_seen": "1834078",
-      "ioc": "borb5c9q.megaparikade.com",
+      "first_seen": "1834255",
+      "ioc": "193.23.160.213:443",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.cobalt_strike",
+      "malware_alias": "Agentemis",
+      "malware_printable": "BEACON",
+      "confidence": "Cobalt Strike"
+    },
+    {
+      "first_seen": "1834256",
+      "ioc": "193.23.160.213:80",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.cobalt_strike",
+      "malware_alias": "Agentemis",
+      "malware_printable": "BEACON",
+      "confidence": "Cobalt Strike"
+    },
+    {
+      "first_seen": "1834254",
+      "ioc": "7cj04th6.shartland.com",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -12,113 +32,93 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1834077",
-      "ioc": "http://flowmasterservices.com:4437",
-      "ioc_type": "url",
-      "threat_type": "botnet_cc",
-      "malware": "win.remus",
-      "malware_alias": "None",
-      "malware_printable": "Remus",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1834075",
-      "ioc": "106.75.137.168:8080",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.vshell",
-      "malware_alias": "None",
-      "malware_printable": "VShell",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1834076",
-      "ioc": "20.217.83.155:8080",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.quasar_rat",
-      "malware_alias": "CinaRAT",
-      "malware_printable": "QuasarRAT",
-      "confidence": ""
-    },
-    {
-      "first_seen": "1834073",
-      "ioc": "updateyoursoft.com",
+      "first_seen": "1834253",
+      "ioc": "v8xihekm.ramzfile.com",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
-      "malware": "unknown",
+      "malware": "js.clearfake",
       "malware_alias": "None",
-      "malware_printable": "Unknown malware",
+      "malware_printable": "ClearFake",
       "confidence": "False"
     },
     {
-      "first_seen": "1834072",
-      "ioc": "freesoftupdater.com",
+      "first_seen": "1834252",
+      "ioc": "13i466gp.shart303.com",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
-      "malware": "unknown",
+      "malware": "js.clearfake",
       "malware_alias": "None",
-      "malware_printable": "Unknown malware",
+      "malware_printable": "ClearFake",
       "confidence": "False"
     },
     {
-      "first_seen": "1834071",
-      "ioc": "holopebamiy.bond",
+      "first_seen": "1834251",
+      "ioc": "shart303.com",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
-      "malware": "unknown",
+      "malware": "js.clearfake",
       "malware_alias": "None",
-      "malware_printable": "Unknown malware",
+      "malware_printable": "ClearFake",
       "confidence": "False"
     },
     {
-      "first_seen": "1834070",
-      "ioc": "mamamiadomio.cfd",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "unknown",
-      "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1834069",
-      "ioc": "kongographics.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "unknown",
-      "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1834068",
-      "ioc": "cdn.librarygrades.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "unknown",
-      "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1834066",
-      "ioc": "91.92.242.67:7707",
+      "first_seen": "1834248",
+      "ioc": "13.62.76.12:9000",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
       "malware": "win.asyncrat",
       "malware_alias": "None",
       "malware_printable": "AsyncRAT",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1834249",
+      "ioc": "13.62.76.12:8000",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.asyncrat",
+      "malware_alias": "None",
+      "malware_printable": "AsyncRAT",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1834247",
+      "ioc": "book-imageport.info",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "unknown_loader",
+      "malware_alias": "None",
+      "malware_printable": "Unknown Loader",
       "confidence": "False"
     },
     {
-      "first_seen": "1834063",
-      "ioc": "77.110.119.172:4321",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.adaptix_c2",
+      "first_seen": "1834244",
+      "ioc": "http://103.186.77.95:49560/Mozi.a",
+      "ioc_type": "url",
+      "threat_type": "payload_delivery",
+      "malware": "elf.mozi",
       "malware_alias": "None",
-      "malware_printable": "AdaptixC2",
+      "malware_printable": "Mozi",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1834245",
+      "ioc": "http://72.255.3.39:41763/Mozi.m",
+      "ioc_type": "url",
+      "threat_type": "payload_delivery",
+      "malware": "elf.mozi",
+      "malware_alias": "None",
+      "malware_printable": "Mozi",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1834246",
+      "ioc": "http://153.117.13.227:34153/Mozi.m",
+      "ioc_type": "url",
+      "threat_type": "payload_delivery",
+      "malware": "elf.mozi",
+      "malware_alias": "None",
+      "malware_printable": "Mozi",
       "confidence": "False"
     }
   ]

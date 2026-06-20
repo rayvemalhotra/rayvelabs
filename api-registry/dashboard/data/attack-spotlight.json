@@ -1,15 +1,18 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1012",
-    "name": "Query Registry",
-    "description": "Adversaries may interact with the Windows Registry to gather information about the system, configuration, and installed software.",
+    "id": "T1030",
+    "name": "Data Transfer Size Limits",
+    "description": "An adversary may exfiltrate data in fixed size chunks instead of whole files or limit packet sizes below certain thresholds. This approach may be used to avoid triggering network data transfer threshold alerts.",
     "tactics": [
-      "discovery"
+      "exfiltration"
     ],
     "platforms": [
-      "Windows"
+      "Linux",
+      "macOS",
+      "Windows",
+      "ESXi"
     ],
-    "url": "https://attack.mitre.org/techniques/T1012"
+    "url": "https://attack.mitre.org/techniques/T1030"
   }
 }

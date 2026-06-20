@@ -1,6 +1,6 @@
 {
-  "total_breaches": 1010,
-  "total_records_exposed": 17657736805,
+  "total_breaches": 1011,
+  "total_records_exposed": 17658105223,
   "recent": [
     {
       "name": "OperationEndgame4",
@@ -25,6 +25,25 @@
       "data_classes": [
         "Email addresses",
         "Passwords"
+      ],
+      "verified": true
+    },
+    {
+      "name": "JCPenney",
+      "title": "JCPenney",
+      "domain": "jcpenny.com",
+      "breach_date": "2026-06-12",
+      "added_date": "2026-06-20T03:02:45Z",
+      "pwn_count": 368418,
+      "data_classes": [
+        "Dates of birth",
+        "Email addresses",
+        "Government issued IDs",
+        "Job titles",
+        "Names",
+        "Phone numbers",
+        "Physical addresses",
+        "Usernames"
       ],
       "verified": true
     },
@@ -117,22 +136,6 @@
         "Phone numbers",
         "Physical addresses",
         "Support tickets"
-      ],
-      "verified": true
-    },
-    {
-      "name": "Charter",
-      "title": "Charter",
-      "domain": "charter.com",
-      "breach_date": "2026-05-23",
-      "added_date": "2026-05-28T20:00:34Z",
-      "pwn_count": 4851517,
-      "data_classes": [
-        "Email addresses",
-        "Job titles",
-        "Names",
-        "Phone numbers",
-        "Physical addresses"
       ],
       "verified": true
     }
