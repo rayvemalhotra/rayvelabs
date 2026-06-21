@@ -1,18 +1,19 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1030",
-    "name": "Data Transfer Size Limits",
-    "description": "An adversary may exfiltrate data in fixed size chunks instead of whole files or limit packet sizes below certain thresholds. This approach may be used to avoid triggering network data transfer threshold alerts.",
+    "id": "T1499",
+    "name": "Endpoint Denial of Service",
+    "description": "Adversaries may perform Endpoint Denial of Service (DoS) attacks to degrade or block the availability of services to users. Endpoint DoS can be performed by exhausting the system resources those services are hosted on or exploiting the system to cause a persistent crash condition. Example services include websites, email services, DNS, and web-based applications. Adversaries have been observed conducting DoS attacks for political purposes(Citation: FireEye OpPoisonedHandover February 2016) and to support other malicious activities, including distraction(Citation: FSISAC FraudNetDoS September 2012), hacktivism, and extortion.(Citation: Symantec DDoS October 2014)",
     "tactics": [
-      "exfiltration"
+      "impact"
     ],
     "platforms": [
+      "Windows",
       "Linux",
       "macOS",
-      "Windows",
-      "ESXi"
+      "Containers",
+      "IaaS"
     ],
-    "url": "https://attack.mitre.org/techniques/T1030"
+    "url": "https://attack.mitre.org/techniques/T1499"
   }
 }
