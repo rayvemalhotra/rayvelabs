@@ -1,5 +1,5 @@
 {
-  "total": 20416,
+  "total": 20297,
   "recent": [
     {
       "asn": "137",
@@ -19,7 +19,7 @@
       "asn": "174",
       "as_name": "COGENT-174 - Cogent Communicat",
       "ip": "207.90.244.10",
-      "last_seen": "2026-06-20 20:45:34",
+      "last_seen": "2026-06-22 07:18:50",
       "category": "sshclient"
     },
     {
@@ -40,7 +40,7 @@
       "asn": "174",
       "as_name": "COGENT-174 - Cogent Communicat",
       "ip": "207.90.244.2",
-      "last_seen": "2026-06-20 04:47:54",
+      "last_seen": "2026-06-21 16:33:27",
       "category": "sshclient"
     },
     {
@@ -54,21 +54,21 @@
       "asn": "174",
       "as_name": "COGENT-174 - Cogent Communicat",
       "ip": "207.90.244.21",
-      "last_seen": "2026-06-19 06:12:57",
+      "last_seen": "2026-06-21 16:34:16",
       "category": "sshclient"
     },
     {
       "asn": "174",
       "as_name": "COGENT-174 - Cogent Communicat",
       "ip": "207.90.244.22",
-      "last_seen": "2026-06-20 20:45:46",
+      "last_seen": "2026-06-22 07:19:08",
       "category": "sshclient"
     },
     {
       "asn": "174",
       "as_name": "COGENT-174 - Cogent Communicat",
       "ip": "207.90.244.25",
-      "last_seen": "2026-06-20 04:52:03",
+      "last_seen": "2026-06-22 07:19:36",
       "category": "sshclient"
     },
     {
@@ -88,13 +88,6 @@
     {
       "asn": "174",
       "as_name": "COGENT-174 - Cogent Communicat",
-      "ip": "38.134.255.52",
-      "last_seen": "2026-06-14 18:26:59",
-      "category": "sshclient"
-    },
-    {
-      "asn": "174",
-      "as_name": "COGENT-174 - Cogent Communicat",
       "ip": "38.134.255.54",
       "last_seen": "2026-06-18 13:01:37",
       "category": "sshclient"
@@ -102,8 +95,15 @@
     {
       "asn": "174",
       "as_name": "COGENT-174 - Cogent Communicat",
+      "ip": "38.134.255.63",
+      "last_seen": "2026-06-21 13:59:42",
+      "category": "sshclient"
+    },
+    {
+      "asn": "174",
+      "as_name": "COGENT-174 - Cogent Communicat",
       "ip": "38.248.6.103",
-      "last_seen": "2026-06-21 05:38:41",
+      "last_seen": "2026-06-22 09:20:20",
       "category": "sshclient"
     }
   ]
