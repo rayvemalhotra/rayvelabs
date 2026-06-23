@@ -1,13 +1,6 @@
 {
-  "total": 20297,
+  "total": 20231,
   "recent": [
-    {
-      "asn": "137",
-      "as_name": "ASGARR Consortium GARR",
-      "ip": "90.147.142.187",
-      "last_seen": "2026-06-15 14:31:45",
-      "category": "sshclient"
-    },
     {
       "asn": "174",
       "as_name": "COGENT-174 - Cogent Communicat",
@@ -19,14 +12,14 @@
       "asn": "174",
       "as_name": "COGENT-174 - Cogent Communicat",
       "ip": "207.90.244.10",
-      "last_seen": "2026-06-22 07:18:50",
+      "last_seen": "2026-06-22 15:52:30",
       "category": "sshclient"
     },
     {
       "asn": "174",
       "as_name": "COGENT-174 - Cogent Communicat",
       "ip": "207.90.244.11",
-      "last_seen": "2026-06-17 09:03:48",
+      "last_seen": "2026-06-23 00:07:01",
       "category": "sshclient"
     },
     {
@@ -47,7 +40,7 @@
       "asn": "174",
       "as_name": "COGENT-174 - Cogent Communicat",
       "ip": "207.90.244.20",
-      "last_seen": "2026-06-20 20:45:35",
+      "last_seen": "2026-06-23 00:11:16",
       "category": "sshclient"
     },
     {
@@ -68,7 +61,7 @@
       "asn": "174",
       "as_name": "COGENT-174 - Cogent Communicat",
       "ip": "207.90.244.25",
-      "last_seen": "2026-06-22 07:19:36",
+      "last_seen": "2026-06-23 00:13:46",
       "category": "sshclient"
     },
     {
@@ -82,7 +75,7 @@
       "asn": "174",
       "as_name": "COGENT-174 - Cogent Communicat",
       "ip": "207.90.244.5",
-      "last_seen": "2026-06-18 10:10:54",
+      "last_seen": "2026-06-23 00:06:50",
       "category": "sshclient"
     },
     {
@@ -90,6 +83,13 @@
       "as_name": "COGENT-174 - Cogent Communicat",
       "ip": "38.134.255.54",
       "last_seen": "2026-06-18 13:01:37",
+      "category": "sshclient"
+    },
+    {
+      "asn": "174",
+      "as_name": "COGENT-174 - Cogent Communicat",
+      "ip": "38.134.255.58",
+      "last_seen": "2026-06-22 23:35:12",
       "category": "sshclient"
     },
     {
@@ -103,7 +103,7 @@
       "asn": "174",
       "as_name": "COGENT-174 - Cogent Communicat",
       "ip": "38.248.6.103",
-      "last_seen": "2026-06-22 09:20:20",
+      "last_seen": "2026-06-22 10:55:04",
       "category": "sshclient"
     }
   ]
