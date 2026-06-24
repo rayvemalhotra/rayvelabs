@@ -1,140 +1,140 @@
 {
-  "total_recent": 22538,
+  "total_recent": 22753,
   "recent": [
     {
-      "id": "3874829",
-      "date_added": "2026-06-23 09:11:08",
-      "url": "http://125.44.36.232:40399/i",
+      "id": "3875455",
+      "date_added": "2026-06-24 09:16:11",
+      "url": "https://securedisk.cfd/includes/taxii/edu.png",
       "url_status": "online",
       "threat": "malware_download",
-      "tags": "Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3874829/"
+      "tags": "xworm",
+      "host": "https://urlhaus.abuse.ch/url/3875455/"
     },
     {
-      "id": "3874828",
-      "date_added": "2026-06-23 09:11:07",
-      "url": "http://149.71.39.60:39004/i",
+      "id": "3875454",
+      "date_added": "2026-06-24 09:16:08",
+      "url": "https://solar-sanat.net/RoxanneIQ6.exe",
       "url_status": "online",
       "threat": "malware_download",
-      "tags": "Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3874828/"
+      "tags": "exe,PureLogsStealer",
+      "host": "https://urlhaus.abuse.ch/url/3875454/"
     },
     {
-      "id": "3874827",
-      "date_added": "2026-06-23 09:07:08",
-      "url": "http://125.44.36.232:40399/bin.sh",
+      "id": "3875453",
+      "date_added": "2026-06-24 09:16:07",
+      "url": "https://securedisk.cfd/includes/taxii/optim.png",
       "url_status": "online",
       "threat": "malware_download",
-      "tags": "Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3874827/"
+      "tags": "xworm",
+      "host": "https://urlhaus.abuse.ch/url/3875453/"
     },
     {
-      "id": "3874826",
-      "date_added": "2026-06-23 09:02:07",
-      "url": "http://185.233.94.151:33133/i",
+      "id": "3875452",
+      "date_added": "2026-06-24 09:15:28",
+      "url": "http://27.44.146.46:60944/i",
+      "url_status": "offline",
+      "threat": "malware_download",
+      "tags": "32-bit,elf,mips,Mozi",
+      "host": "https://urlhaus.abuse.ch/url/3875452/"
+    },
+    {
+      "id": "3875451",
+      "date_added": "2026-06-24 09:15:23",
+      "url": "https://blue-paper-f69f.acrypters.workers.dev/J0YH-KEUX-J9ID-2I7M/img_n0x6bn.png",
       "url_status": "online",
       "threat": "malware_download",
       "tags": "None",
-      "host": "https://urlhaus.abuse.ch/url/3874826/"
+      "host": "https://urlhaus.abuse.ch/url/3875451/"
     },
     {
-      "id": "3874825",
-      "date_added": "2026-06-23 08:52:08",
-      "url": "http://103.19.49.134:39495/i",
-      "url_status": "online",
+      "id": "3875449",
+      "date_added": "2026-06-24 09:15:09",
+      "url": "https://demo.alkhateeb.ae/yachted/sibling/",
+      "url_status": "offline",
       "threat": "malware_download",
-      "tags": "Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3874825/"
+      "tags": "powershell,vbs",
+      "host": "https://urlhaus.abuse.ch/url/3875449/"
     },
     {
-      "id": "3874824",
-      "date_added": "2026-06-23 08:49:15",
-      "url": "http://61.53.88.164:36449/i",
-      "url_status": "online",
+      "id": "3875450",
+      "date_added": "2026-06-24 09:15:09",
+      "url": "https://centrodeinfusaocuritiba.com.br/connatural/shortsighted",
+      "url_status": "offline",
       "threat": "malware_download",
-      "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3874824/"
+      "tags": "powershell,vbs",
+      "host": "https://urlhaus.abuse.ch/url/3875450/"
     },
     {
-      "id": "3874823",
-      "date_added": "2026-06-23 08:45:08",
-      "url": "https://ordiljgt.entegaljerm.xyz/?ublib=2ec2b287-b544-43d5-bb1c-5546e07d4fe0",
+      "id": "3875448",
+      "date_added": "2026-06-24 09:15:08",
+      "url": "https://doc.eagle-web-concept.fr/matin/rend",
+      "url_status": "offline",
+      "threat": "malware_download",
+      "tags": "powershell,vbs",
+      "host": "https://urlhaus.abuse.ch/url/3875448/"
+    },
+    {
+      "id": "3875447",
+      "date_added": "2026-06-24 09:13:07",
+      "url": "https://k9qxyqt8.jetbt8.online/?ublib=20b69ad2-ae8d-41c9-b843-b3d0f427c1be",
       "url_status": "offline",
       "threat": "malware_download",
       "tags": "ClearFake",
-      "host": "https://urlhaus.abuse.ch/url/3874823/"
+      "host": "https://urlhaus.abuse.ch/url/3875447/"
     },
     {
-      "id": "3874822",
-      "date_added": "2026-06-23 08:43:18",
-      "url": "http://42.235.53.14:42008/bin.sh",
+      "id": "3875446",
+      "date_added": "2026-06-24 08:55:15",
+      "url": "http://115.59.32.66:33229/i",
       "url_status": "online",
       "threat": "malware_download",
       "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3874822/"
+      "host": "https://urlhaus.abuse.ch/url/3875446/"
     },
     {
-      "id": "3874821",
-      "date_added": "2026-06-23 08:41:08",
-      "url": "http://196.190.11.194:33274/i",
+      "id": "3875445",
+      "date_added": "2026-06-24 08:47:09",
+      "url": "http://27.44.145.92:43421/i",
       "url_status": "online",
-      "threat": "malware_download",
-      "tags": "mirai",
-      "host": "https://urlhaus.abuse.ch/url/3874821/"
-    },
-    {
-      "id": "3874820",
-      "date_added": "2026-06-23 08:32:16",
-      "url": "http://27.202.44.80:58200/i",
-      "url_status": "offline",
-      "threat": "malware_download",
-      "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3874820/"
-    },
-    {
-      "id": "3874819",
-      "date_added": "2026-06-23 08:31:09",
-      "url": "http://27.202.44.80:58200/bin.sh",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3874819/"
-    },
-    {
-      "id": "3874817",
-      "date_added": "2026-06-23 08:24:10",
-      "url": "https://mamigummy.com/.well-known/stego_payload.png",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "opendir",
-      "host": "https://urlhaus.abuse.ch/url/3874817/"
-    },
-    {
-      "id": "3874818",
-      "date_added": "2026-06-23 08:24:10",
-      "url": "https://mamigummy.com/.well-known/usgh.png",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "opendir",
-      "host": "https://urlhaus.abuse.ch/url/3874818/"
-    },
-    {
-      "id": "3874816",
-      "date_added": "2026-06-23 08:24:08",
-      "url": "http://chayadip.com/bhtg.png",
-      "url_status": "offline",
       "threat": "malware_download",
       "tags": "None",
-      "host": "https://urlhaus.abuse.ch/url/3874816/"
+      "host": "https://urlhaus.abuse.ch/url/3875445/"
     },
     {
-      "id": "3874815",
-      "date_added": "2026-06-23 08:24:06",
-      "url": "https://tecmon.hr/logs/pdf.ps1",
+      "id": "3875444",
+      "date_added": "2026-06-24 08:37:09",
+      "url": "http://110.39.229.188:56274/i",
+      "url_status": "online",
+      "threat": "malware_download",
+      "tags": "32-bit,elf,mips,Mozi",
+      "host": "https://urlhaus.abuse.ch/url/3875444/"
+    },
+    {
+      "id": "3875443",
+      "date_added": "2026-06-24 08:34:22",
+      "url": "http://115.59.32.66:33229/bin.sh",
+      "url_status": "online",
+      "threat": "malware_download",
+      "tags": "32-bit,elf,mips,Mozi",
+      "host": "https://urlhaus.abuse.ch/url/3875443/"
+    },
+    {
+      "id": "3875442",
+      "date_added": "2026-06-24 08:26:58",
+      "url": "https://bonavol.xyz/Bonavol.zip?v=1782289272129&r=tdodhd",
+      "url_status": "online",
+      "threat": "malware_download",
+      "tags": "malware,stealer",
+      "host": "https://urlhaus.abuse.ch/url/3875442/"
+    },
+    {
+      "id": "3875441",
+      "date_added": "2026-06-24 08:24:09",
+      "url": "http://91.92.242.236/files-129312398/files/file_a2b567031aeb65f7.exe",
       "url_status": "offline",
       "threat": "malware_download",
-      "tags": "ascii,powershell,ps1",
-      "host": "https://urlhaus.abuse.ch/url/3874815/"
+      "tags": "c2-monitor-auto,dropped-by-amadey",
+      "host": "https://urlhaus.abuse.ch/url/3875441/"
     }
   ]
 }
