@@ -1,125 +1,125 @@
 {
-  "total": 4356,
+  "total": 4370,
   "recent": [
     {
-      "first_seen": "1836764",
-      "ioc": "5.101.84.223:4242",
+      "first_seen": "1837270",
+      "ioc": "87.251.66.118:2375",
+      "ioc_type": "ip:port",
+      "threat_type": "payload_delivery",
+      "malware": "elf.redtail",
+      "malware_alias": "None",
+      "malware_printable": "RedTail",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1837271",
+      "ioc": "135.136.39.69:2375",
+      "ioc_type": "ip:port",
+      "threat_type": "payload_delivery",
+      "malware": "elf.kinsing",
+      "malware_alias": "h2miner",
+      "malware_printable": "Kinsing",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1837272",
+      "ioc": "141.94.164.126:6379",
+      "ioc_type": "ip:port",
+      "threat_type": "payload_delivery",
+      "malware": "elf.xmrig",
+      "malware_alias": "None",
+      "malware_printable": "XMRIG",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1837273",
+      "ioc": "143.244.165.24:6379",
+      "ioc_type": "ip:port",
+      "threat_type": "payload_delivery",
+      "malware": "elf.xmrig",
+      "malware_alias": "None",
+      "malware_printable": "XMRIG",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1837265",
+      "ioc": "45.192.211.63:56001",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "win.purelogs",
+      "malware": "win.pure_rat",
+      "malware_alias": "PureHVNC",
+      "malware_printable": "ResolverRAT",
+      "confidence": "75"
+    },
+    {
+      "first_seen": "1837262",
+      "ioc": "picturesurprise.info",
+      "ioc_type": "domain",
+      "threat_type": "botnet_cc",
+      "malware": "unknown_loader",
       "malware_alias": "None",
-      "malware_printable": "PureLogs Stealer",
+      "malware_printable": "Unknown Loader",
       "confidence": "False"
     },
     {
-      "first_seen": "1836753",
-      "ioc": "http://109.104.153.60/bins/frosty.mips",
-      "ioc_type": "url",
-      "threat_type": "payload_delivery",
-      "malware": "elf.mirai",
-      "malware_alias": "Katana",
-      "malware_printable": "Mirai",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1836754",
-      "ioc": "http://89.32.41.16/bins/kla.sh",
-      "ioc_type": "url",
-      "threat_type": "payload_delivery",
-      "malware": "elf.mirai",
-      "malware_alias": "Katana",
-      "malware_printable": "Mirai",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1836755",
-      "ioc": "http://91.92.40.176:67/sonnet.x86",
-      "ioc_type": "url",
-      "threat_type": "payload_delivery",
-      "malware": "elf.mirai",
-      "malware_alias": "Katana",
-      "malware_printable": "Mirai",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1836760",
-      "ioc": "https://doc.eagle-web-concept.fr/matin/rend",
-      "ioc_type": "url",
-      "threat_type": "payload_delivery",
-      "malware": "unknown",
+      "first_seen": "1837263",
+      "ioc": "liquidbalance.info",
+      "ioc_type": "domain",
+      "threat_type": "botnet_cc",
+      "malware": "unknown_loader",
       "malware_alias": "None",
-      "malware_printable": "Unknown malware",
+      "malware_printable": "Unknown Loader",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1837261",
+      "ioc": "95.215.32.3:56001",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.pure_rat",
+      "malware_alias": "PureHVNC",
+      "malware_printable": "ResolverRAT",
+      "confidence": "75"
+    },
+    {
+      "first_seen": "1837260",
+      "ioc": "dentalfaxgate.vip",
+      "ioc_type": "domain",
+      "threat_type": "botnet_cc",
+      "malware": "unknown_rat",
+      "malware_alias": "None",
+      "malware_printable": "Unknown RAT",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1837259",
+      "ioc": "91.215.85.231:8040",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "unknown_rat",
+      "malware_alias": "None",
+      "malware_printable": "Unknown RAT",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1837258",
+      "ioc": "46.17.96.253:56001",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.pure_rat",
+      "malware_alias": "PureHVNC",
+      "malware_printable": "ResolverRAT",
+      "confidence": "75"
+    },
+    {
+      "first_seen": "1837256",
+      "ioc": "https://mrcleanandshine.co.uk/",
+      "ioc_type": "url",
+      "threat_type": "payload_delivery",
+      "malware": "win.vidar",
+      "malware_alias": "None",
+      "malware_printable": "Vidar",
       "confidence": "True"
-    },
-    {
-      "first_seen": "1836761",
-      "ioc": "https://www.campeggioletizialivigno.it/",
-      "ioc_type": "url",
-      "threat_type": "payload_delivery",
-      "malware": "unknown",
-      "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1836763",
-      "ioc": "k9qxyqt8.jetbt8.online",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1836762",
-      "ioc": "jetbt8.online",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1836759",
-      "ioc": "topclouddefence.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "unknown",
-      "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1836758",
-      "ioc": "gatekeepernet.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "unknown",
-      "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1836757",
-      "ioc": "captchadefence.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "unknown",
-      "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1836756",
-      "ioc": "personalprogrammupdater.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "unknown",
-      "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "False"
     }
   ]
 }

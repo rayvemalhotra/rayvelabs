@@ -1,6 +1,6 @@
 {
-  "total_breaches": 1011,
-  "total_records_exposed": 17658105223,
+  "total_breaches": 1012,
+  "total_records_exposed": 17671908953,
   "recent": [
     {
       "name": "OperationEndgame4",
@@ -8,7 +8,7 @@
       "domain": "",
       "breach_date": "2026-06-18",
       "added_date": "2026-06-18T20:08:06Z",
-      "pwn_count": 153527,
+      "pwn_count": 4160519,
       "data_classes": [
         "Email addresses",
         "Passwords"
@@ -90,6 +90,22 @@
       "verified": true
     },
     {
+      "name": "MadisonSquareGardenSports",
+      "title": "Madison Square Garden Sports",
+      "domain": "msgsports.com",
+      "breach_date": "2026-06-05",
+      "added_date": "2026-06-24T13:02:33Z",
+      "pwn_count": 9796738,
+      "data_classes": [
+        "Customer service records",
+        "Email addresses",
+        "Names",
+        "Phone numbers",
+        "Physical addresses"
+      ],
+      "verified": true
+    },
+    {
       "name": "AtlasMenu",
       "title": "Atlas Menu",
       "domain": "atlasmenu.net",
@@ -116,22 +132,6 @@
         "Email addresses",
         "Employers",
         "Job titles",
-        "Names",
-        "Phone numbers",
-        "Physical addresses",
-        "Support tickets"
-      ],
-      "verified": true
-    },
-    {
-      "name": "BakerDistributing",
-      "title": "Baker Distributing",
-      "domain": "bakerdist.com",
-      "breach_date": "2026-05-23",
-      "added_date": "2026-06-07T06:16:36Z",
-      "pwn_count": 102935,
-      "data_classes": [
-        "Email addresses",
         "Names",
         "Phone numbers",
         "Physical addresses",
