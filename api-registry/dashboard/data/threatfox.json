@@ -1,9 +1,99 @@
 {
-  "total": 4370,
+  "total": 4475,
   "recent": [
     {
-      "first_seen": "1837270",
-      "ioc": "87.251.66.118:2375",
+      "first_seen": "1837919",
+      "ioc": "66.42.41.148:8443",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.asyncrat",
+      "malware_alias": "None",
+      "malware_printable": "AsyncRAT",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1837920",
+      "ioc": "115.48.55.41:52311",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "elf.mozi",
+      "malware_alias": "None",
+      "malware_printable": "Mozi",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1837921",
+      "ioc": "201.71.24.73:9999",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "unknown",
+      "malware_alias": "None",
+      "malware_printable": "Unknown malware",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1837922",
+      "ioc": "139.59.67.197:6379",
+      "ioc_type": "ip:port",
+      "threat_type": "payload_delivery",
+      "malware": "elf.xmrig",
+      "malware_alias": "None",
+      "malware_printable": "XMRIG",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1837923",
+      "ioc": "158.69.201.163:6379",
+      "ioc_type": "ip:port",
+      "threat_type": "payload_delivery",
+      "malware": "elf.xmrig",
+      "malware_alias": "None",
+      "malware_printable": "XMRIG",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1837924",
+      "ioc": "47.243.208.30:6379",
+      "ioc_type": "ip:port",
+      "threat_type": "payload_delivery",
+      "malware": "elf.xmrig",
+      "malware_alias": "None",
+      "malware_printable": "XMRIG",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1837925",
+      "ioc": "64.227.164.38:6379",
+      "ioc_type": "ip:port",
+      "threat_type": "payload_delivery",
+      "malware": "elf.xmrig",
+      "malware_alias": "None",
+      "malware_printable": "XMRIG",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1837926",
+      "ioc": "211.234.111.116:5432",
+      "ioc_type": "ip:port",
+      "threat_type": "payload_delivery",
+      "malware": "elf.xmrig",
+      "malware_alias": "None",
+      "malware_printable": "XMRIG",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1837927",
+      "ioc": "77.90.185.248:5432",
+      "ioc_type": "ip:port",
+      "threat_type": "payload_delivery",
+      "malware": "elf.xmrig",
+      "malware_alias": "None",
+      "malware_printable": "XMRIG",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1837928",
+      "ioc": "176.65.139.43:2375",
       "ioc_type": "ip:port",
       "threat_type": "payload_delivery",
       "malware": "elf.redtail",
@@ -12,114 +102,24 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1837271",
-      "ioc": "135.136.39.69:2375",
+      "first_seen": "1837929",
+      "ioc": "18.97.5.108:2375",
       "ioc_type": "ip:port",
       "threat_type": "payload_delivery",
-      "malware": "elf.kinsing",
-      "malware_alias": "h2miner",
-      "malware_printable": "Kinsing",
+      "malware": "elf.redtail",
+      "malware_alias": "None",
+      "malware_printable": "RedTail",
       "confidence": "False"
     },
     {
-      "first_seen": "1837272",
-      "ioc": "141.94.164.126:6379",
+      "first_seen": "1837930",
+      "ioc": "183.81.169.76:2375",
       "ioc_type": "ip:port",
       "threat_type": "payload_delivery",
-      "malware": "elf.xmrig",
+      "malware": "elf.redtail",
       "malware_alias": "None",
-      "malware_printable": "XMRIG",
+      "malware_printable": "RedTail",
       "confidence": "False"
-    },
-    {
-      "first_seen": "1837273",
-      "ioc": "143.244.165.24:6379",
-      "ioc_type": "ip:port",
-      "threat_type": "payload_delivery",
-      "malware": "elf.xmrig",
-      "malware_alias": "None",
-      "malware_printable": "XMRIG",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1837265",
-      "ioc": "45.192.211.63:56001",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.pure_rat",
-      "malware_alias": "PureHVNC",
-      "malware_printable": "ResolverRAT",
-      "confidence": "75"
-    },
-    {
-      "first_seen": "1837262",
-      "ioc": "picturesurprise.info",
-      "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "unknown_loader",
-      "malware_alias": "None",
-      "malware_printable": "Unknown Loader",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1837263",
-      "ioc": "liquidbalance.info",
-      "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "unknown_loader",
-      "malware_alias": "None",
-      "malware_printable": "Unknown Loader",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1837261",
-      "ioc": "95.215.32.3:56001",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.pure_rat",
-      "malware_alias": "PureHVNC",
-      "malware_printable": "ResolverRAT",
-      "confidence": "75"
-    },
-    {
-      "first_seen": "1837260",
-      "ioc": "dentalfaxgate.vip",
-      "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "unknown_rat",
-      "malware_alias": "None",
-      "malware_printable": "Unknown RAT",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1837259",
-      "ioc": "91.215.85.231:8040",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "unknown_rat",
-      "malware_alias": "None",
-      "malware_printable": "Unknown RAT",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1837258",
-      "ioc": "46.17.96.253:56001",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.pure_rat",
-      "malware_alias": "PureHVNC",
-      "malware_printable": "ResolverRAT",
-      "confidence": "75"
-    },
-    {
-      "first_seen": "1837256",
-      "ioc": "https://mrcleanandshine.co.uk/",
-      "ioc_type": "url",
-      "threat_type": "payload_delivery",
-      "malware": "win.vidar",
-      "malware_alias": "None",
-      "malware_printable": "Vidar",
-      "confidence": "True"
     }
   ]
 }

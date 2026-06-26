@@ -1,5 +1,5 @@
 {
-  "total_listings": 10074,
+  "total_listings": 10080,
   "by_reason": [
     {
       "reason": "AsyncRAT C&C",
@@ -15,7 +15,7 @@
     },
     {
       "reason": "Vidar C&C",
-      "count": 618
+      "count": 619
     },
     {
       "reason": "LummaStealer C&C",
@@ -23,6 +23,36 @@
     }
   ],
   "recent": [
+    {
+      "listing_date": "2026-06-25 19:05:26",
+      "sha1": "35f7eb4f519f8878beb88a02587ce4d82df24ce6",
+      "listing_reason": "KongTuke C&C"
+    },
+    {
+      "listing_date": "2026-06-25 09:29:25",
+      "sha1": "4914d714908de0f52c22349b5b784f77442a27e6",
+      "listing_reason": "Vidar C&C"
+    },
+    {
+      "listing_date": "2026-06-25 08:58:47",
+      "sha1": "22254f34fc7bb27507295179034e621efba15cfe",
+      "listing_reason": "MaskGramStealer C&C"
+    },
+    {
+      "listing_date": "2026-06-25 08:58:46",
+      "sha1": "03574e3801865919645fe101df0b05cf1cd75859",
+      "listing_reason": "MaskGramStealer C&C"
+    },
+    {
+      "listing_date": "2026-06-25 08:58:45",
+      "sha1": "0de71d162acb75d41aa2573e75c211deaa50024e",
+      "listing_reason": "MaskGramStealer C&C"
+    },
+    {
+      "listing_date": "2026-06-25 08:57:02",
+      "sha1": "0133a9e8f0aa0adfee0fc928bb41866fb44c2357",
+      "listing_reason": "PureLogsStealer C&C"
+    },
     {
       "listing_date": "2026-06-25 08:53:52",
       "sha1": "7a3617f65c819903107db5cd1d08a9a636ee403e",
@@ -42,36 +72,6 @@
       "listing_date": "2026-06-25 08:21:19",
       "sha1": "cb3467ed8453ec11060a815fe90e0c37957a205e",
       "listing_reason": "Vidar C&C"
-    },
-    {
-      "listing_date": "2026-06-25 08:20:51",
-      "sha1": "3f375ff06978f0dbb1d44f9138061933b4316396",
-      "listing_reason": "PureHVNC C&C"
-    },
-    {
-      "listing_date": "2026-06-25 08:19:43",
-      "sha1": "fa1ffe8c35c3aab0195800f52cf831125eeb4698",
-      "listing_reason": "OffLoader C&C"
-    },
-    {
-      "listing_date": "2026-06-25 08:19:18",
-      "sha1": "29e911278a8f4291b3db0684b0ea6a31c6accc9a",
-      "listing_reason": "Vidar C&C"
-    },
-    {
-      "listing_date": "2026-06-25 08:18:46",
-      "sha1": "17f776729c65f4e74cda72d17bbca18c0e3ca75f",
-      "listing_reason": "PureHVNC C&C"
-    },
-    {
-      "listing_date": "2026-06-25 08:17:06",
-      "sha1": "1b8beb983ae4f4529d67b0ba404f9875b568f497",
-      "listing_reason": "ConnectWise C&C"
-    },
-    {
-      "listing_date": "2026-06-25 08:16:22",
-      "sha1": "63039683789cb152674c566e0f2f448514edef7c",
-      "listing_reason": "PureHVNC C&C"
     }
   ]
 }

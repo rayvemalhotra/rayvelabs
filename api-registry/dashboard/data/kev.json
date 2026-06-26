@@ -1,8 +1,26 @@
 {
-  "total": 1627,
-  "catalog_version": "2026.06.23",
-  "date_released": "2026-06-23T17:00:37.2944Z",
+  "total": 1629,
+  "catalog_version": "2026.06.25",
+  "date_released": "2026-06-25T19:03:21.8037Z",
   "recent": [
+    {
+      "cve": "CVE-2026-12569",
+      "vendor": "PTC",
+      "product": "Windchill and FlexPLM",
+      "name": "PTC Windchill and FlexPLM Improper Input Validation Vulnerability",
+      "date_added": "2026-06-25",
+      "due_date": "2026-06-28",
+      "ransomware": false
+    },
+    {
+      "cve": "CVE-2026-20230",
+      "vendor": "Cisco",
+      "product": "Unified Communications Manager",
+      "name": "Cisco Unified Communications Manager Server-Side Request Forgery (SSRF) Vulnerability",
+      "date_added": "2026-06-25",
+      "due_date": "2026-06-28",
+      "ransomware": false
+    },
     {
       "cve": "CVE-2025-67038",
       "vendor": "Lantronix",
@@ -91,24 +109,6 @@
       "name": "Ivanti Sentry OS Command Injection Vulnerability",
       "date_added": "2026-06-11",
       "due_date": "2026-06-14",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-11645",
-      "vendor": "Google",
-      "product": "Chromium V8",
-      "name": "Google Chromium V8 Out-of-Bounds Read and Write Vulnerability",
-      "date_added": "2026-06-09",
-      "due_date": "2026-06-23",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-7473",
-      "vendor": "Arista",
-      "product": "Extensible Operating System",
-      "name": "Arista Extensible Operating System Incomplete Comparison with Missing Factors Vulnerability",
-      "date_added": "2026-06-09",
-      "due_date": "2026-06-23",
       "ransomware": false
     }
   ]

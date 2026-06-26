@@ -1,6 +1,13 @@
 {
-  "total": 20650,
+  "total": 20636,
   "recent": [
+    {
+      "asn": "32",
+      "as_name": "STANFORD - Stanford University",
+      "ip": "171.67.70.152",
+      "last_seen": "2026-06-25 21:19:47",
+      "category": "sshclient"
+    },
     {
       "asn": "174",
       "as_name": "COGENT-174 - Cogent Communicat",
@@ -12,7 +19,7 @@
       "asn": "174",
       "as_name": "COGENT-174 - Cogent Communicat",
       "ip": "207.90.244.10",
-      "last_seen": "2026-06-22 15:52:30",
+      "last_seen": "2026-06-25 20:06:01",
       "category": "sshclient"
     },
     {
@@ -26,7 +33,7 @@
       "asn": "174",
       "as_name": "COGENT-174 - Cogent Communicat",
       "ip": "207.90.244.13",
-      "last_seen": "2026-06-20 20:46:01",
+      "last_seen": "2026-06-25 05:19:50",
       "category": "sshclient"
     },
     {
@@ -40,14 +47,14 @@
       "asn": "174",
       "as_name": "COGENT-174 - Cogent Communicat",
       "ip": "207.90.244.20",
-      "last_seen": "2026-06-23 23:31:21",
+      "last_seen": "2026-06-25 20:06:44",
       "category": "sshclient"
     },
     {
       "asn": "174",
       "as_name": "COGENT-174 - Cogent Communicat",
       "ip": "207.90.244.21",
-      "last_seen": "2026-06-24 19:15:45",
+      "last_seen": "2026-06-25 05:20:22",
       "category": "sshclient"
     },
     {
@@ -61,7 +68,7 @@
       "asn": "174",
       "as_name": "COGENT-174 - Cogent Communicat",
       "ip": "207.90.244.25",
-      "last_seen": "2026-06-24 19:20:04",
+      "last_seen": "2026-06-25 20:05:30",
       "category": "sshclient"
     },
     {
@@ -83,13 +90,6 @@
       "as_name": "COGENT-174 - Cogent Communicat",
       "ip": "207.90.244.5",
       "last_seen": "2026-06-23 00:06:50",
-      "category": "sshclient"
-    },
-    {
-      "asn": "174",
-      "as_name": "COGENT-174 - Cogent Communicat",
-      "ip": "38.134.255.54",
-      "last_seen": "2026-06-18 13:01:37",
       "category": "sshclient"
     },
     {

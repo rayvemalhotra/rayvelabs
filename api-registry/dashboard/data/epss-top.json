@@ -1,6 +1,6 @@
 {
-  "total_cves_scored": 342575,
-  "model_metadata": "model_version:v2026.06.15,score_date:2026-06-24T12:00:27Z",
+  "total_cves_scored": 343195,
+  "model_metadata": "model_version:v2026.06.15,score_date:2026-06-25T12:00:26Z",
   "top": [
     {
       "cve": "CVE-2014-0160",
@@ -25,7 +25,7 @@
     {
       "cve": "CVE-2017-5638",
       "epss": 0.99999,
-      "percentile": 0.99993
+      "percentile": 0.99994
     },
     {
       "cve": "CVE-2017-9841",

@@ -1,6 +1,6 @@
 {
-  "total_breaches": 1012,
-  "total_records_exposed": 17671908953,
+  "total_breaches": 1013,
+  "total_records_exposed": 17672125554,
   "recent": [
     {
       "name": "OperationEndgame4",
@@ -25,6 +25,22 @@
       "data_classes": [
         "Email addresses",
         "Passwords"
+      ],
+      "verified": true
+    },
+    {
+      "name": "AmericanTower",
+      "title": "American Tower",
+      "domain": "americantower.com",
+      "breach_date": "2026-06-12",
+      "added_date": "2026-06-26T07:17:23Z",
+      "pwn_count": 216601,
+      "data_classes": [
+        "Email addresses",
+        "Job titles",
+        "Names",
+        "Phone numbers",
+        "Physical addresses"
       ],
       "verified": true
     },
@@ -118,24 +134,6 @@
         "Passwords",
         "Support tickets",
         "Usernames"
-      ],
-      "verified": true
-    },
-    {
-      "name": "BCDTravel",
-      "title": "BCD Travel",
-      "domain": "bcdtravel.com",
-      "breach_date": "2026-05-29",
-      "added_date": "2026-06-05T06:53:15Z",
-      "pwn_count": 396313,
-      "data_classes": [
-        "Email addresses",
-        "Employers",
-        "Job titles",
-        "Names",
-        "Phone numbers",
-        "Physical addresses",
-        "Support tickets"
       ],
       "verified": true
     }

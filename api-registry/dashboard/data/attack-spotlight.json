@@ -1,18 +1,15 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1132",
-    "name": "Data Encoding",
-    "description": "Adversaries may encode data to make the content of command and control traffic more difficult to detect. Command and control (C2) information can be encoded using a standard data encoding system. Use of data encoding may adhere to existing protocol specifications and includes use of ASCII, Unicode, Base64, MIME, or other binary-to-text and character encoding systems.(Citation: Wikipedia Binary-to-text Encoding) (Citation: Wikipedia Character Encoding) Some data encoding systems may also result in data compression, such as gzip.",
+    "id": "T1598",
+    "name": "Phishing for Information",
+    "description": "Adversaries may send phishing messages to elicit sensitive information that can be used during targeting. Phishing for information is an attempt to trick targets into divulging information, frequently credentials or other actionable information. Phishing for information is different from [Phishing](https://attack.mitre.org/techniques/T1566) in that the objective is gathering data from the victim rather than executing malicious code.",
     "tactics": [
-      "command-and-control"
+      "reconnaissance"
     ],
     "platforms": [
-      "ESXi",
-      "Linux",
-      "macOS",
-      "Windows"
+      "PRE"
     ],
-    "url": "https://attack.mitre.org/techniques/T1132"
+    "url": "https://attack.mitre.org/techniques/T1598"
   }
 }
