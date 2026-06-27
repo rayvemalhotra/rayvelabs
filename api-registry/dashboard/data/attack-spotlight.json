@@ -1,15 +1,20 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1598",
-    "name": "Phishing for Information",
-    "description": "Adversaries may send phishing messages to elicit sensitive information that can be used during targeting. Phishing for information is an attempt to trick targets into divulging information, frequently credentials or other actionable information. Phishing for information is different from [Phishing](https://attack.mitre.org/techniques/T1566) in that the objective is gathering data from the victim rather than executing malicious code.",
+    "id": "T1496",
+    "name": "Resource Hijacking",
+    "description": "Adversaries may leverage the resources of co-opted systems to complete resource-intensive tasks, which may impact system and/or hosted service availability. ",
     "tactics": [
-      "reconnaissance"
+      "impact"
     ],
     "platforms": [
-      "PRE"
+      "Windows",
+      "IaaS",
+      "Linux",
+      "macOS",
+      "Containers",
+      "SaaS"
     ],
-    "url": "https://attack.mitre.org/techniques/T1598"
+    "url": "https://attack.mitre.org/techniques/T1496"
   }
 }

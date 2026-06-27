@@ -1,29 +1,59 @@
 {
-  "total": 4475,
+  "total": 4499,
   "recent": [
     {
-      "first_seen": "1837919",
-      "ioc": "66.42.41.148:8443",
+      "first_seen": "1838557",
+      "ioc": "https://smartpos.com.tr/",
+      "ioc_type": "url",
+      "threat_type": "payload_delivery",
+      "malware": "win.vidar",
+      "malware_alias": "None",
+      "malware_printable": "Vidar",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1838556",
+      "ioc": "108.165.20.135:8888",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "unknown",
+      "malware_alias": "None",
+      "malware_printable": "Unknown malware",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1838554",
+      "ioc": "128.90.141.159:4444",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
       "malware": "win.asyncrat",
       "malware_alias": "None",
       "malware_printable": "AsyncRAT",
-      "confidence": "False"
+      "confidence": "True"
     },
     {
-      "first_seen": "1837920",
-      "ioc": "115.48.55.41:52311",
+      "first_seen": "1838555",
+      "ioc": "188.212.158.4:8808",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "elf.mozi",
+      "malware": "win.asyncrat",
       "malware_alias": "None",
-      "malware_printable": "Mozi",
-      "confidence": "False"
+      "malware_printable": "AsyncRAT",
+      "confidence": "True"
     },
     {
-      "first_seen": "1837921",
-      "ioc": "201.71.24.73:9999",
+      "first_seen": "1838532",
+      "ioc": "8.152.212.104:443",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.cobalt_strike",
+      "malware_alias": "Agentemis",
+      "malware_printable": "BEACON",
+      "confidence": "Cobalt Strike"
+    },
+    {
+      "first_seen": "1838531",
+      "ioc": "185.242.3.43:5173",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
       "malware": "unknown",
@@ -32,94 +62,64 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1837922",
-      "ioc": "139.59.67.197:6379",
-      "ioc_type": "ip:port",
-      "threat_type": "payload_delivery",
-      "malware": "elf.xmrig",
+      "first_seen": "1838530",
+      "ioc": "http://185.194.175.132:8000/api/endpoint.php",
+      "ioc_type": "url",
+      "threat_type": "botnet_cc",
+      "malware": "unknown",
       "malware_alias": "None",
-      "malware_printable": "XMRIG",
+      "malware_printable": "Unknown malware",
       "confidence": "False"
     },
     {
-      "first_seen": "1837923",
-      "ioc": "158.69.201.163:6379",
+      "first_seen": "1838529",
+      "ioc": "198.37.119.51:5173",
       "ioc_type": "ip:port",
-      "threat_type": "payload_delivery",
-      "malware": "elf.xmrig",
+      "threat_type": "botnet_cc",
+      "malware": "win.overlord",
       "malware_alias": "None",
-      "malware_printable": "XMRIG",
+      "malware_printable": "Overlord RAT",
       "confidence": "False"
     },
     {
-      "first_seen": "1837924",
-      "ioc": "47.243.208.30:6379",
-      "ioc_type": "ip:port",
-      "threat_type": "payload_delivery",
-      "malware": "elf.xmrig",
+      "first_seen": "1838528",
+      "ioc": "icro-soft.com",
+      "ioc_type": "domain",
+      "threat_type": "botnet_cc",
+      "malware": "win.overlord",
       "malware_alias": "None",
-      "malware_printable": "XMRIG",
+      "malware_printable": "Overlord RAT",
       "confidence": "False"
     },
     {
-      "first_seen": "1837925",
-      "ioc": "64.227.164.38:6379",
-      "ioc_type": "ip:port",
+      "first_seen": "1838527",
+      "ioc": "hoteljune2026.blogspot.com",
+      "ioc_type": "domain",
       "threat_type": "payload_delivery",
-      "malware": "elf.xmrig",
+      "malware": "win.overlord",
       "malware_alias": "None",
-      "malware_printable": "XMRIG",
+      "malware_printable": "Overlord RAT",
       "confidence": "False"
     },
     {
-      "first_seen": "1837926",
-      "ioc": "211.234.111.116:5432",
+      "first_seen": "1838526",
+      "ioc": "162.141.92.192:14123",
       "ioc_type": "ip:port",
-      "threat_type": "payload_delivery",
-      "malware": "elf.xmrig",
+      "threat_type": "botnet_cc",
+      "malware": "elf.moobot",
       "malware_alias": "None",
-      "malware_printable": "XMRIG",
+      "malware_printable": "MooBot",
       "confidence": "False"
     },
     {
-      "first_seen": "1837927",
-      "ioc": "77.90.185.248:5432",
-      "ioc_type": "ip:port",
-      "threat_type": "payload_delivery",
-      "malware": "elf.xmrig",
-      "malware_alias": "None",
-      "malware_printable": "XMRIG",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1837928",
-      "ioc": "176.65.139.43:2375",
-      "ioc_type": "ip:port",
-      "threat_type": "payload_delivery",
-      "malware": "elf.redtail",
-      "malware_alias": "None",
-      "malware_printable": "RedTail",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1837929",
-      "ioc": "18.97.5.108:2375",
-      "ioc_type": "ip:port",
-      "threat_type": "payload_delivery",
-      "malware": "elf.redtail",
-      "malware_alias": "None",
-      "malware_printable": "RedTail",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1837930",
-      "ioc": "183.81.169.76:2375",
-      "ioc_type": "ip:port",
-      "threat_type": "payload_delivery",
-      "malware": "elf.redtail",
-      "malware_alias": "None",
-      "malware_printable": "RedTail",
-      "confidence": "False"
+      "first_seen": "1838525",
+      "ioc": "bukuru.duckdns.org",
+      "ioc_type": "domain",
+      "threat_type": "botnet_cc",
+      "malware": "win.remcos",
+      "malware_alias": "RemcosRAT",
+      "malware_printable": "Remvio",
+      "confidence": ""
     }
   ]
 }

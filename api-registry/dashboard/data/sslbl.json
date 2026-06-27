@@ -1,5 +1,5 @@
 {
-  "total_listings": 10080,
+  "total_listings": 10081,
   "by_reason": [
     {
       "reason": "AsyncRAT C&C",
@@ -15,7 +15,7 @@
     },
     {
       "reason": "Vidar C&C",
-      "count": 619
+      "count": 620
     },
     {
       "reason": "LummaStealer C&C",
@@ -23,6 +23,11 @@
     }
   ],
   "recent": [
+    {
+      "listing_date": "2026-06-27 06:45:40",
+      "sha1": "85725890743b16375132651911e3f692115128a8",
+      "listing_reason": "Vidar C&C"
+    },
     {
       "listing_date": "2026-06-25 19:05:26",
       "sha1": "35f7eb4f519f8878beb88a02587ce4d82df24ce6",
@@ -67,11 +72,6 @@
       "listing_date": "2026-06-25 08:24:15",
       "sha1": "9cf3852c0d23882e32f6a93a3562c86f3a67db75",
       "listing_reason": "KongTuke C&C"
-    },
-    {
-      "listing_date": "2026-06-25 08:21:19",
-      "sha1": "cb3467ed8453ec11060a815fe90e0c37957a205e",
-      "listing_reason": "Vidar C&C"
     }
   ]
 }
