@@ -1230,7 +1230,8 @@ html.loading{overflow:hidden}
 <div class="topnav" id="topnav">
   <a href="/" class="brand"><span class="dot"></span>RayveLabs</a>
   <nav>
-    <a href="#projects">Projects</a>
+    <a href="#labs">Labs</a>
+    <a href="#tools">Tools</a>
     <a href="#contact">Contact</a>
     <a href="rayvenet.html" class="cta">Open RayveNet</a>
   </nav>
@@ -1335,8 +1336,206 @@ html.loading{overflow:hidden}
     <p class="section-sub reveal d2">Everything we ship is something a curious person can open and use in their browser, on real data, on their own network. No accounts. No sign-ins. No upload.</p>
   </div>
 
+  <div class="section-head" id="labs" style="margin-top:56px">
+    <div class="section-label reveal">SEAS-8414 lab series</div>
+    <h2 class="section-title reveal d1" style="font-size:clamp(20px,3vw,30px)">Detective → Predictive → Simulation</h2>
+    <p class="section-sub reveal d2">Click-through teaching simulators that walk Dr. Mallarapu's GWU cyber-analytics pipeline, chapter by chapter, on a synthetic network with real CVE / ATT&amp;CK data. <i>Demonstration only · course material © Dr. Mallarapu / The George Washington University.</i></p>
+  </div>
+
   <div class="project-stage">
-    <div class="project-card reveal d3" id="rayvenetCard">
+    <div class="project-card reveal d2" id="lab3DemoCard">
+      <div>
+        <div class="p-head">
+          <div class="p-name">Lab 3 — Vulnerability Assessment</div>
+          <span class="p-status">Live</span>
+        </div>
+        <p class="p-desc">A teaching simulator for <b>Chapter 3 — Vulnerability Assessment, Correlation &amp; Prioritization</b>. Turn a scan into prioritized findings: NVD/CVE association, CVSS decomposition, multi-protocol default-credential probing, KEV + EPSS overlays, and an evidence ledger — all behind an ROE / RBAC safety boundary. Same network and CVEs as the official Lab 3.</p>
+        <div class="p-tags">
+          <span class="p-tag">Ch 3</span>
+          <span class="p-tag">25 features</span>
+          <span class="p-tag">Evidence ledger</span>
+          <span class="p-tag">KEV + EPSS</span>
+          <span class="p-tag">ROE / RBAC</span>
+        </div>
+        <a href="lab3-demo/" class="p-link">Open Lab 3 <span class="arrow">→</span></a>
+      </div>
+      <div class="p-preview">
+        <div class="p-tile">
+          <span class="tag">Asset</span>
+          <div class="tt">172.30.0.10 · Hikvision</div>
+          <pre>DS-2CD2143G2-I
+firmware 5.5.52
+KEV · CVE-2021-36260</pre>
+        </div>
+        <div class="p-tile">
+          <span class="tag">Evidence</span>
+          <div class="tt">admin:12345 → HTTP 200</div>
+          <pre>direct-auth success
+strongest evidence class
+stop on first success</pre>
+        </div>
+        <div class="p-tile">
+          <span class="tag">Priority</span>
+          <div class="tt">severity + 5 inputs</div>
+          <pre>+ EPSS + KEV
++ evidence + exposure
++ role + consequence</pre>
+        </div>
+        <div class="p-tile">
+          <span class="tag">Safety</span>
+          <div class="tt">ROE-blocked: 172.30.0.40</div>
+          <pre>medical / Alaris pump
+method.not_run
+not method.negative</pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card reveal d3" id="lab4DemoCard">
+      <div>
+        <div class="p-head">
+          <div class="p-name">Lab 4 — Attack Graph &amp; Risk Scoring</div>
+          <span class="p-status">Live</span>
+        </div>
+        <p class="p-desc">Why the lower-CVSS device is often the bigger risk. Build the <b>attack graph</b>, find the cheapest attacker paths (Yen's k-shortest), and score devices in context with the <b>Breakwater Risk Score</b> and a live SHAP-style attribution — then map findings to MITRE ATT&amp;CK ICS and export a STIX 2.1 bundle.</p>
+        <p class="p-desc" style="font-size:14px"><i>Demonstration only. Synthetic network, real CVE / ATT&amp;CK data. © Dr. Mallarapu / GWU.</i></p>
+        <div class="p-tags">
+          <span class="p-tag">Ch 4</span>
+          <span class="p-tag">Attack paths</span>
+          <span class="p-tag">BRS + SHAP</span>
+          <span class="p-tag">MITRE ICS</span>
+          <span class="p-tag">STIX export</span>
+        </div>
+        <a href="lab4-demo/" class="p-link">Open Lab 4 <span class="arrow">→</span></a>
+      </div>
+      <div class="p-preview">
+        <div class="p-tile">
+          <span class="tag">Graph</span>
+          <div class="tt">5 node · 8 edge types</div>
+          <pre>shares_credentials 0.1
+exploitable_via    0.3
+can_reach          1.0</pre>
+        </div>
+        <div class="p-tile">
+          <span class="tag">BRS</span>
+          <div class="tt">context &gt; CVSS</div>
+          <pre>0.2V + 0.2E + 0.2R
++ 0.15P + 0.05S − 0.2C</pre>
+        </div>
+        <div class="p-tile">
+          <span class="tag">MITRE</span>
+          <div class="tt">ATT&amp;CK ICS</div>
+          <pre>T0812 default creds
+T0836 modify param
+T0879 damage</pre>
+        </div>
+        <div class="p-tile">
+          <span class="tag">Export</span>
+          <div class="tt">STIX 2.1 bundle</div>
+          <pre>attack-pattern
+vulnerability
+observed-data</pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card reveal d4" id="lab6DemoCard">
+      <div>
+        <div class="p-head">
+          <div class="p-name">Lab 6 — Digital Twin &amp; Remediation</div>
+          <span class="p-status">Live</span>
+        </div>
+        <p class="p-desc">Test every fix against a <b>digital twin</b> before production — catch cascading failures, schedule patch waves, and prove zero-disruption against a strengthened definition. Then the real question: is the twin even trustworthy? The showpiece is a live <b>KL / Jensen-Shannon drift lab</b> with a Trust / Resync / Rebuild / Block verdict.</p>
+        <p class="p-desc" style="font-size:14px"><i>Demonstration only. Synthetic twin, real divergence math. © Dr. Mallarapu / GWU.</i></p>
+        <div class="p-tags">
+          <span class="p-tag">Ch 6</span>
+          <span class="p-tag">Twin fidelity</span>
+          <span class="p-tag">Cascades</span>
+          <span class="p-tag">Twin Authority</span>
+          <span class="p-tag">KL / JS drift</span>
+        </div>
+        <a href="lab6-demo/" class="p-link">Open Lab 6 <span class="arrow">→</span></a>
+      </div>
+      <div class="p-preview">
+        <div class="p-tile">
+          <span class="tag">Twin</span>
+          <div class="tt">profile fidelity</div>
+          <pre>Σ(conf) / devices
+refuse &lt; 0.60</pre>
+        </div>
+        <div class="p-tile">
+          <span class="tag">Cascade</span>
+          <div class="tt">rotate MQTT cred</div>
+          <pre>credential cascade
+.31 .32 .33 .34</pre>
+        </div>
+        <div class="p-tile">
+          <span class="tag">Zero-disrupt</span>
+          <div class="tt">8-point claim</div>
+          <pre>flag=true ≠ safe
+check 8 conditions</pre>
+        </div>
+        <div class="p-tile">
+          <span class="tag">Drift</span>
+          <div class="tt">KL / JS divergence</div>
+          <pre>firewall rule → JS≈0
+verdict: Block</pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card reveal d5" id="lab6ExtCard">
+      <div>
+        <div class="p-head">
+          <div class="p-name">Beyond Twin Authority</div>
+          <span class="p-status">Research</span>
+        </div>
+        <p class="p-desc">A RayveLabs original that picks up where Chapter 6 stops. Distributional drift (KL/JS) is blind to the targeted changes that actually invalidate a remediation — so this adds a <b>structural drift detector</b> (typed graph-edit distance + a path predicate) that catches 8/8 where KL/JS catch 2/8, plus a <b>value-of-information</b> rule that turns the authority checklist into a real Act / Resync / Block decision.</p>
+        <div class="p-tags">
+          <span class="p-tag">Original research</span>
+          <span class="p-tag">Graph-edit distance</span>
+          <span class="p-tag">Value of information</span>
+          <span class="p-tag">Per-decision validity</span>
+        </div>
+        <a href="lab6-ext/" class="p-link">Open the extension <span class="arrow">→</span></a>
+      </div>
+      <div class="p-preview">
+        <div class="p-tile">
+          <span class="tag">Gap</span>
+          <div class="tt">KL / JS detection</div>
+          <pre>2 / 8 material
+changes detected</pre>
+        </div>
+        <div class="p-tile">
+          <span class="tag">Detector</span>
+          <div class="tt">structural diff</div>
+          <pre>8 / 8 detected
++ path predicate</pre>
+        </div>
+        <div class="p-tile">
+          <span class="tag">Decision</span>
+          <div class="tt">value of information</div>
+          <pre>Act / Resync / Block
+min expected cost</pre>
+        </div>
+        <div class="p-tile">
+          <span class="tag">Result</span>
+          <div class="tt">per-decision validity</div>
+          <pre>authority = f(cost,
+measured error)</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-head" id="tools" style="margin-top:56px">
+    <div class="section-label reveal">Tools &amp; walkthroughs</div>
+    <h2 class="section-title reveal d1" style="font-size:clamp(20px,3vw,30px)">Use it now — paste something in, get an answer</h2>
+    <p class="section-sub reveal d2">No setup, no keys, no install. Open data and real feeds, entirely in your browser.</p>
+  </div>
+
+  <div class="project-stage">
+    <div class="project-card reveal d2" id="rayvenetCard">
       <div>
         <div class="p-head">
           <div class="p-name">RayveNet</div>
@@ -1385,64 +1584,14 @@ category-error spotter</pre>
       </div>
     </div>
 
-    <div class="project-card reveal d4" id="lab3DemoCard">
-      <div>
-        <div class="p-head">
-          <div class="p-name">Demo for Dr. Mallarapu</div>
-          <span class="p-status">Live</span>
-        </div>
-        <p class="p-desc">A teaching simulator that walks <b>Chapter 3 — Vulnerability Assessment, Correlation, and Prioritization</b> from Dr. Mallarapu's <b>SEAS-8414 course</b> at GWU. Same network as the official Lab 3 (Hikvision camera at 172.30.0.10, OT gateway, medical-device ROE block, ambiguous-identity host), same CVEs (CVE-2021-36260, CVE-2017-7921), same default-credentials and priority formula. Demonstrates <b>all 25 core features</b>: NVD/CVE association, CVSS decomposition, OpenVAS / Nuclei / SBOM adapters, multi-protocol default-credential probe, KEV + EPSS overlays, the evidence ledger (candidate / confirmed / false-positive / risk-accepted), per-method coverage states, and ROE / RBAC safety posture.</p>
-        <p class="p-desc" style="font-size:14px"><i>Demonstration only. Original course material © Dr. Mallarapu / The George Washington University. Synthetic network, real CVE data.</i></p>
-        <div class="p-tags">
-          <span class="p-tag">SEAS-8414</span>
-          <span class="p-tag">Chapter 3</span>
-          <span class="p-tag">25 features</span>
-          <span class="p-tag">Evidence ledger</span>
-          <span class="p-tag">KEV + EPSS</span>
-          <span class="p-tag">ROE / RBAC</span>
-        </div>
-        <a href="lab3-demo/" class="p-link">Open the Lab 3 demo <span class="arrow">→</span></a>
-      </div>
-      <div class="p-preview">
-        <div class="p-tile">
-          <span class="tag">Asset</span>
-          <div class="tt">172.30.0.10 · Hikvision</div>
-          <pre>DS-2CD2143G2-I
-firmware 5.5.52
-KEV · CVE-2021-36260</pre>
-        </div>
-        <div class="p-tile">
-          <span class="tag">Evidence</span>
-          <div class="tt">admin:12345 → HTTP 200</div>
-          <pre>direct-auth success
-strongest evidence class
-stop on first success</pre>
-        </div>
-        <div class="p-tile">
-          <span class="tag">Priority</span>
-          <div class="tt">severity + 5 inputs</div>
-          <pre>+ EPSS + KEV
-+ evidence + exposure
-+ role + consequence</pre>
-        </div>
-        <div class="p-tile">
-          <span class="tag">Safety</span>
-          <div class="tt">ROE-blocked: 172.30.0.40</div>
-          <pre>medical / Alaris pump
-method.not_run
-not method.negative</pre>
-        </div>
-      </div>
-    </div>
-
-    <div class="project-card reveal d4" id="cyberAtlasCard">
+    <div class="project-card reveal d3" id="cyberAtlasCard">
       <div>
         <div class="p-head">
           <div class="p-name">Open Cyber Atlas</div>
           <span class="p-status">Live</span>
         </div>
         <p class="p-desc">A public portal where anyone can <b>actually use the open cybersecurity data</b> — no sign-up, no API keys, no install. Paste an IP, domain, URL, hash, or CVE and the atlas checks <b>11 free feeds at once</b> (URLhaus, ThreatFox, Feodo, SSLBL, Spamhaus, Tor, DShield, DataPlane, KEV, EPSS, HIBP) and stitches the answer together. Plus a CVE explorer that joins KEV + EPSS + ATT&amp;CK in one view, and an interactive map of how the open security databases connect to each other. Daily-refreshed via GitHub Actions cron.</p>
-        <p class="p-desc" style="font-size:14.5px"><a href="api-registry/" style="color:inherit"><b>Companion file registry</b></a> with 41 catalogued datasets, citations, and one-click curl commands.</p>
+        <p class="p-desc" style="font-size:14.5px"><a href="api-registry/" style="color:inherit"><b>Companion open-data registry</b></a> with 41 catalogued datasets, citations, and one-click curl commands.</p>
         <div class="p-tags">
           <span class="p-tag">IoC lookup</span>
           <span class="p-tag">CVE explorer</span>

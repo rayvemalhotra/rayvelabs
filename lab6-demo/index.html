@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lab 6 demo — Digital Twin Trustworthiness &amp; Remediation Simulation · RayveLabs</title>
+<meta name="description" content="Interactive teaching demo of Chapter 6 (Digital Twin construction, remediation simulation, cascading failures, zero-disruption validation, Twin Authority, and Exercise 11 KL/Jensen-Shannon drift) from Dr. Mallarapu's SEAS-8414 course at GWU. Built by RayveLabs.">
+<style>
+  :root{
+    --bg:#07090c; --panel:#0d1117; --panel2:#10161e; --panel3:#141b24;
+    --border:#1d2530; --border2:#2a3542;
+    --ink:#e6edf3; --muted:#8b98a5; --faint:#5b6776;
+    --teal:#39d3bb; --blue:#5aa2ff; --violet:#b08cff;
+    --info:#5aa2ff; --low:#3fb950; --med:#f0b429; --high:#ff8a3d; --crit:#ff5c5c;
+    --mono:"SF Mono",ui-monospace,"JetBrains Mono",Menlo,Consolas,monospace;
+    --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.5;-webkit-font-smoothing:antialiased}
+  a{color:var(--teal);text-decoration:none} a:hover{text-decoration:underline}
+  code,.mono{font-family:var(--mono)}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 20px}
+
+  header.top{position:sticky;top:0;z-index:30;background:rgba(7,9,12,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+  .topbar{display:flex;align-items:center;gap:16px;padding:11px 0;flex-wrap:wrap}
+  .brand{font-family:var(--mono);font-size:13px;color:var(--ink);font-weight:600}
+  .brand .dim{color:var(--faint)}
+  .crumb{font-size:12px;color:var(--muted)} .crumb b{color:var(--teal);font-weight:600}
+  .topnav{margin-left:auto;display:flex;gap:14px;font-size:12px}
+  .topnav a{color:var(--muted)} .topnav a:hover{color:var(--ink)}
+
+  .hero{padding:30px 0 8px}
+  .tag{display:inline-block;font-family:var(--mono);font-size:11px;color:var(--teal);border:1px solid var(--border2);border-radius:999px;padding:3px 10px;margin-bottom:14px}
+  h1{font-size:30px;line-height:1.15;margin:0 0 10px;font-weight:680;letter-spacing:-.3px}
+  h1 .accent{color:var(--teal)}
+  .lede{color:var(--muted);font-size:15px;max-width:780px}
+  .notice{margin-top:14px;font-size:12.5px;color:var(--faint);border-left:2px solid var(--border2);padding-left:12px}
+
+  /* pipeline taxonomy strip */
+  .taxo{display:flex;gap:6px;flex-wrap:wrap;margin:22px 0 4px}
+  .taxo .step{flex:1;min-width:120px;background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:9px 11px;font-size:11.5px}
+  .taxo .step .ph{font-family:var(--mono);font-size:10px;color:var(--faint)}
+  .taxo .step .nm{color:var(--muted);font-weight:600;margin-top:2px}
+  .taxo .step.on{border-color:var(--teal);background:rgba(57,211,187,.07)}
+  .taxo .step.on .nm{color:var(--teal)}
+  .taxo .step.done{opacity:.85}
+
+  .pipe{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 6px}
+  .pipe a{font-family:var(--mono);font-size:11px;color:var(--muted);background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:5px 9px}
+  .pipe a:hover{border-color:var(--teal);color:var(--ink);text-decoration:none}
+  .pipe a .f{color:var(--faint)}
+  .pipe a.star{border-color:rgba(176,140,255,.4);color:var(--violet)}
+
+  section{padding:30px 0;border-top:1px solid var(--border);scroll-margin-top:64px}
+  .sec-h{display:flex;align-items:baseline;gap:12px;margin-bottom:6px;flex-wrap:wrap}
+  .sec-n{font-family:var(--mono);font-size:12px;color:var(--teal)}
+  h2{font-size:20px;margin:0;font-weight:640;letter-spacing:-.2px}
+  .sec-sub{color:var(--muted);font-size:14px;margin:6px 0 18px;max-width:840px}
+  .fig{font-size:11.5px;color:var(--faint);font-style:italic;margin-top:10px}
+
+  .grid{display:grid;gap:16px}
+  .g2{grid-template-columns:1fr 1fr} .g3{grid-template-columns:repeat(3,1fr)}
+  @media(max-width:880px){.g2,.g3{grid-template-columns:1fr}}
+
+  .card{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:16px}
+  .card.star{border-color:rgba(176,140,255,.35)}
+  .card h3{margin:0 0 4px;font-size:13px;font-family:var(--mono);color:var(--ink);font-weight:600}
+  .card .h-sub{font-size:12px;color:var(--muted);margin-bottom:12px}
+
+  .stat-row{display:flex;flex-wrap:wrap;gap:10px}
+  .stat{flex:1;min-width:120px;background:var(--panel2);border:1px solid var(--border);border-radius:8px;padding:11px 13px}
+  .stat .k{font-family:var(--mono);font-size:22px;font-weight:650}
+  .stat .l{font-size:11px;color:var(--muted);margin-top:2px}
+
+  table{width:100%;border-collapse:collapse;font-size:12.5px}
+  th,td{text-align:left;padding:7px 9px;border-bottom:1px solid var(--border);vertical-align:top}
+  th{font-family:var(--mono);font-size:10.5px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.4px}
+  td .mono{font-size:12px}
+  .scroll{max-height:340px;overflow:auto}
+
+  .pill{display:inline-block;font-family:var(--mono);font-size:10.5px;padding:2px 7px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);white-space:nowrap}
+  .pill.crit{color:var(--crit);border-color:rgba(255,92,92,.4);background:rgba(255,92,92,.08)}
+  .pill.high{color:var(--high);border-color:rgba(255,138,61,.4);background:rgba(255,138,61,.08)}
+  .pill.med{color:var(--med);border-color:rgba(240,180,41,.4);background:rgba(240,180,41,.08)}
+  .pill.low{color:var(--low);border-color:rgba(63,185,80,.4);background:rgba(63,185,80,.08)}
+  .pill.info{color:var(--info);border-color:rgba(90,162,255,.4);background:rgba(90,162,255,.08)}
+  .pill.vio{color:var(--violet);border-color:rgba(176,140,255,.45);background:rgba(176,140,255,.08)}
+  .ok{color:var(--low)} .no{color:var(--crit)}
+
+  label.ctl{display:block;font-size:11.5px;color:var(--muted);margin:10px 0 4px;font-family:var(--mono)}
+  input[type=range]{width:100%;accent-color:var(--teal)}
+  .val{font-family:var(--mono);color:var(--teal);font-size:12px}
+  select,button{font-family:var(--mono);font-size:12px}
+  select{background:var(--panel2);color:var(--ink);border:1px solid var(--border2);border-radius:6px;padding:6px 8px}
+  button.btn{background:var(--panel2);color:var(--ink);border:1px solid var(--border2);border-radius:6px;padding:7px 12px;cursor:pointer}
+  button.btn:hover{border-color:var(--teal)}
+  button.btn.go{background:rgba(57,211,187,.12);border-color:var(--teal);color:var(--teal)}
+  .toggle{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);margin:7px 0;cursor:pointer}
+  .toggle input{accent-color:var(--violet)}
+
+  .big{font-family:var(--mono);font-weight:680;line-height:1}
+  .kpi{display:flex;justify-content:space-between;font-size:12.5px;padding:6px 0;border-bottom:1px dashed var(--border)}
+  .kpi .v{font-family:var(--mono);color:var(--ink)}
+  .hint{font-size:11.5px;color:var(--faint);margin-top:8px}
+
+  .verdict{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-weight:700;font-size:14px;padding:6px 12px;border-radius:8px;border:1px solid}
+  .v-trust{color:var(--low);border-color:rgba(63,185,80,.5);background:rgba(63,185,80,.08)}
+  .v-limit{color:var(--med);border-color:rgba(240,180,41,.5);background:rgba(240,180,41,.08)}
+  .v-resync{color:var(--high);border-color:rgba(255,138,61,.5);background:rgba(255,138,61,.08)}
+  .v-rebuild{color:var(--violet);border-color:rgba(176,140,255,.55);background:rgba(176,140,255,.1)}
+  .v-block{color:var(--crit);border-color:rgba(255,92,92,.55);background:rgba(255,92,92,.1)}
+
+  .chk{display:flex;gap:8px;font-size:12px;padding:5px 0;align-items:flex-start}
+  .chk .m{font-family:var(--mono);width:16px;flex:none}
+
+  .lights{display:flex;gap:8px;flex-wrap:wrap}
+  .light{font-family:var(--mono);font-size:11px;padding:6px 10px;border-radius:8px;border:1px solid var(--border2)}
+
+  footer{border-top:1px solid var(--border);padding:26px 0 50px;color:var(--faint);font-size:12px}
+  .roe{background:linear-gradient(180deg,rgba(176,140,255,.06),transparent);border:1px solid rgba(176,140,255,.25);border-radius:10px;padding:14px 16px;font-size:12.5px;color:var(--muted)}
+  .roe b{color:var(--violet)}
+  pre.out{background:#06090d;border:1px solid var(--border);border-radius:8px;padding:12px;font-family:var(--mono);font-size:11px;color:var(--muted);max-height:220px;overflow:auto;white-space:pre-wrap}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap topbar">
+    <span class="brand">RayveLabs <span class="dim">— teaching demo</span></span>
+    <span class="crumb">Labs · <b>Chapter 6 — Digital Twin Trustworthiness</b></span>
+    <nav class="topnav">
+      <a href="https://rayvelabs.com/lab3-demo/">Lab 3</a>
+      <a href="/lab4-demo/">← Lab 4</a>
+      <a href="https://rayvelabs.com/portal/">Atlas</a>
+      <a href="https://rayvelabs.com/">Home</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="hero">
+    <span class="tag">SEAS-8414 · Phase 6 · 11 exercises</span>
+    <h1>What happens <span class="accent">if we apply this fix?</span> — and can we trust the model that told us?</h1>
+    <p class="lede">Phase 4 predicted the attack paths. Phase 6 asks the operational question before anyone touches production: simulate every remediation against a <b>digital twin</b>, catch the cascading failures, prove zero disruption — and then decide whether the twin itself is <em>authoritative enough</em> to support the decision. The showpiece below is <b>Exercise 11</b>: a live drift lab that computes KL and Jensen-Shannon divergence and shows exactly when those metrics fail to see the change that matters.</p>
+    <p class="notice">Teaching demo built by RayveLabs to illustrate <b>Dr. Mallarapu's SEAS-8414 Chapter 6</b>. This is a client-side <em>simulator</em> with a synthetic 22-device network — it is not graded lab evidence (that requires the Dockerized Breakwater stack and real API output). Original course material © Dr. Mallarapu / The George Washington University.</p>
+  </div>
+
+  <div class="taxo" id="taxo">
+    <div class="step done"><div class="ph">Ch 1</div><div class="nm">Descriptive</div></div>
+    <div class="step done"><div class="ph">Ch 2</div><div class="nm">Diagnostic</div></div>
+    <div class="step done"><div class="ph">Ch 3</div><div class="nm">Detective</div></div>
+    <div class="step done"><div class="ph">Ch 4</div><div class="nm">Predictive</div></div>
+    <div class="step done"><div class="ph">Ch 5</div><div class="nm">Prescriptive</div></div>
+    <div class="step on"><div class="ph">Ch 6 · here</div><div class="nm">Simulation</div></div>
+    <div class="step"><div class="ph">Ch 7-12</div><div class="nm">Autonomous</div></div>
+  </div>
+
+  <nav class="pipe">
+    <a href="#twin">Twin fidelity <span class="f">Ex1</span></a>
+    <a href="#scenario">Attack baseline <span class="f">Ex2</span></a>
+    <a href="#strategies">Strategy compare <span class="f">Ex3</span></a>
+    <a href="#cascade">Cascades <span class="f">Ex4</span></a>
+    <a href="#patch">Patch ordering <span class="f">Ex5</span></a>
+    <a href="#zero">Zero-disruption <span class="f">Ex6</span></a>
+    <a href="#replay">Replay fidelity <span class="f">Ex7</span></a>
+    <a href="#dashboard">Risk dashboard <span class="f">Ex8</span></a>
+    <a href="#authority">Twin Authority Gate <span class="f">Ex9</span></a>
+    <a href="#drift" class="star">★ Drift &amp; KL/JS <span class="f">Ex11</span></a>
+    <a href="#verdict">Final verdict</a>
+  </nav>
+</div>
+
+<div class="wrap">
+
+<!-- TWIN FIDELITY -->
+<section id="twin">
+  <div class="sec-h"><span class="sec-n">Ex 1 · §6.3</span><h2>Digital twin construction &amp; profile-mapping fidelity</h2></div>
+  <p class="sec-sub">The twin is only useful if it represents the real network. Profile mapping uses three tiers — device-type lookup, port inference, service-name hinting — each with a confidence. Fidelity = Σ(confidence) / device_count. Set your trust threshold and see which devices fall back to <span class="mono">http-debug</span>.</p>
+  <div class="grid g2">
+    <div class="card">
+      <h3>Twin fidelity</h3>
+      <div class="big" id="fidScore" style="font-size:42px">—</div>
+      <div class="hint" id="fidBand"></div>
+      <label class="ctl">Refuse-to-trust threshold: <span class="val" id="fidThr">0.60</span></label>
+      <input type="range" id="fidRange" min="0.3" max="0.9" step="0.05" value="0.60">
+      <div style="margin-top:10px">
+        <div class="kpi"><span>Devices mapped</span><span class="v" id="fidCount">—</span></div>
+        <div class="kpi"><span>Fallback profiles (&lt;0.3)</span><span class="v" id="fidFallback">—</span></div>
+        <div class="kpi"><span>Min confidence</span><span class="v" id="fidMin">—</span></div>
+        <div class="kpi"><span>Verdict at threshold</span><span class="v" id="fidVerdict">—</span></div>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Device → profile mapping</h3>
+      <div class="scroll"><table id="twinTable"><thead><tr><th>IP</th><th>type</th><th>profile</th><th>conf</th><th>ports</th></tr></thead><tbody></tbody></table></div>
+    </div>
+  </div>
+  <p class="fig">Figure (§6.3): A device mapped to "camera-variant" at 0.9 behaves realistically; a router mapped to "http-debug" at 0.1 does not. Low-confidence mappings poison any remediation that touches them.</p>
+</section>
+
+<!-- SCENARIO -->
+<section id="scenario">
+  <div class="sec-h"><span class="sec-n">Ex 2 · §6.5</span><h2>Attack scenario baseline</h2></div>
+  <p class="sec-sub">You can't measure whether remediation reduced risk without a baseline. The deterministic scenario engine replays adversary techniques so the same input always yields the same result — the precondition for honest before/after comparison.</p>
+  <div class="grid g2">
+    <div class="card">
+      <h3>Replay scenario</h3>
+      <button class="btn go" id="scenBtn">▸ run attack_replay (5 steps)</button>
+      <button class="btn" id="scenBtn2" style="margin-left:8px">▸ run again (determinism)</button>
+      <pre class="out" id="scenOut" style="margin-top:12px">// results appear here</pre>
+    </div>
+    <div class="card">
+      <h3>Baseline metrics</h3>
+      <div class="kpi"><span>Devices compromised</span><span class="v" id="scComp">—</span></div>
+      <div class="kpi"><span>Blast radius</span><span class="v" id="scBlast">—</span></div>
+      <div class="kpi"><span>Amplification (blast / compromised)</span><span class="v" id="scAmp">—</span></div>
+      <div class="kpi"><span>Determinism</span><span class="v" id="scDet">—</span></div>
+      <p class="hint">Amplification &gt; 1 means each compromised host exposes others through firewall-permitted flows — a direct read on weak segmentation.</p>
+    </div>
+  </div>
+  <p class="fig">Figure (§6.5): Deterministic hashing makes the baseline reproducible. A stochastic engine would make "did remediation help?" unanswerable.</p>
+</section>
+
+<!-- STRATEGIES -->
+<section id="strategies">
+  <div class="sec-h"><span class="sec-n">Ex 3 · §6.6 / 6.8</span><h2>Three remediation strategies, head-to-head</h2></div>
+  <p class="sec-sub">Patch only, service hardening, or network segmentation. Score them with a weighted multi-criteria model — then shift the weights toward zero-disruption and watch the winner change.</p>
+  <div class="grid g2">
+    <div class="card">
+      <h3>Criterion weights</h3>
+      <div id="weightCtls"></div>
+      <p class="hint" id="weightSum"></p>
+    </div>
+    <div class="card">
+      <h3>Decision matrix &amp; weighted score</h3>
+      <table id="stratTable"><thead><tr><th>criterion</th><th>A · Patch</th><th>B · Harden</th><th>C · Segment</th></tr></thead><tbody></tbody></table>
+      <div class="kpi" style="margin-top:8px"><span>Weighted score (higher = better)</span><span class="v" id="stratWinner">—</span></div>
+    </div>
+  </div>
+  <p class="fig">Figure (§6.8): Pareto-style trade-off. Patch is cheap but reversible-hard and leaves topology risk; segmentation cuts the most risk but introduces cascades and downtime.</p>
+</section>
+
+<!-- CASCADE -->
+<section id="cascade">
+  <div class="sec-h"><span class="sec-n">Ex 4 · §6.10</span><h2>Cascading failure diagnosis</h2></div>
+  <p class="sec-sub">A fix on device A can break device B that depends on A. The twin's dependency graph reveals these cascades before production. Three types: service-dependency, segmentation, credential.</p>
+  <div class="grid g2">
+    <div class="card">
+      <h3>Simulate an action</h3>
+      <label class="ctl">Action</label>
+      <select id="cascAction">
+        <option value="rotate">rotate_credentials · MQTT broker (172.30.0.30)</option>
+        <option value="disable">disable_service · port 1883 (172.30.0.30)</option>
+        <option value="segment">segment_network · 172.30.0.0/28 → /28</option>
+        <option value="patch">patch_cve · camera (172.30.0.10)</option>
+      </select>
+      <div style="margin-top:10px"><button class="btn go" id="cascBtn">▸ simulate</button></div>
+      <p class="hint" id="cascNote"></p>
+    </div>
+    <div class="card">
+      <h3>Detected cascades</h3>
+      <table id="cascTable"><thead><tr><th>type</th><th>severity</th><th>affected</th><th>mitigation</th></tr></thead><tbody></tbody></table>
+    </div>
+  </div>
+  <p class="fig">Figure (§6.10): Top dependency by blast count is the MQTT broker — rotating its shared credential cascades to every sensor that authenticates against it.</p>
+</section>
+
+<!-- PATCH ORDER -->
+<section id="patch">
+  <div class="sec-h"><span class="sec-n">Ex 5 · §6.7</span><h2>Constrained patch ordering &amp; wave schedule</h2></div>
+  <p class="sec-sub">All-at-once is fast but a regression takes down everything; one-at-a-time is safe but slow. Find the group size that respects a concurrency limit and dependency separation.</p>
+  <div class="grid g2">
+    <div class="card">
+      <h3>Parameters</h3>
+      <label class="ctl">Concurrency limit: <span class="val" id="concVal">3</span></label>
+      <input type="range" id="concRange" min="1" max="8" step="1" value="3">
+      <label class="ctl">Reboot time per group: <span class="val" id="rebootVal">120</span>s</label>
+      <input type="range" id="rebootRange" min="30" max="300" step="30" value="120">
+      <div style="margin-top:10px">
+        <div class="kpi"><span>Devices to patch</span><span class="v" id="poN">—</span></div>
+        <div class="kpi"><span>Groups (⌈N/c⌉)</span><span class="v" id="poGroups">—</span></div>
+        <div class="kpi"><span>Sequential time</span><span class="v" id="poSeq">—</span></div>
+        <div class="kpi"><span>Grouped time</span><span class="v" id="poGrp">—</span></div>
+        <div class="kpi"><span>Speedup</span><span class="v" id="poSpeed">—</span></div>
+      </div>
+    </div>
+    <div class="card">
+      <h3>5-wave deployment</h3>
+      <div id="waves"></div>
+      <p class="hint">Waves mix device types (catch type-specific regressions), keep interdependent devices apart, and put least-critical first.</p>
+    </div>
+  </div>
+  <p class="fig">Figure (§6.7): Speedup vs. sequential is bounded by ⌈N/c⌉ — past a point, adding concurrency stops helping and only raises blast risk.</p>
+</section>
+
+<!-- ZERO DISRUPTION -->
+<section id="zero">
+  <div class="sec-h"><span class="sec-n">Ex 6 · §6.12</span><h2>Zero-disruption validation — the strengthened definition</h2></div>
+  <p class="sec-sub">The twin reporting <span class="mono">zero_disruption=true</span> (no cascades) is necessary but <em>not sufficient</em>. A doctoral zero-disruption claim must clear all eight conditions.</p>
+  <div class="grid g2">
+    <div class="card">
+      <h3>Evaluate an action</h3>
+      <label class="ctl">Action</label>
+      <select id="zdAction">
+        <option value="single">patch_cve · single camera, no dependents (172.30.0.10)</option>
+        <option value="mqtt">disable_service · MQTT 1883 (172.30.0.30, has dependents)</option>
+      </select>
+      <div class="kpi" style="margin-top:10px"><span>Twin <span class="mono">zero_disruption</span> flag</span><span class="v" id="zdFlag">—</span></div>
+      <div class="kpi"><span>Strengthened claim</span><span class="v" id="zdClaim">—</span></div>
+    </div>
+    <div class="card">
+      <h3>8-point checklist</h3>
+      <div id="zdChecklist"></div>
+    </div>
+  </div>
+  <p class="fig">Figure (§6.12): The MQTT disable passes the naive flag in spirit but fails the strengthened claim on required-service-path and critical-dependency conditions.</p>
+</section>
+
+<!-- REPLAY -->
+<section id="replay">
+  <div class="sec-h"><span class="sec-n">Ex 7 · §6.14</span><h2>Traffic replay fidelity</h2></div>
+  <p class="sec-sub">Replay real protocol transcripts; compare simulated vs. expected responses. Fidelity = correct / total. Below 80% on an affected protocol is a Twin-Authority block condition.</p>
+  <div class="card">
+    <table id="replayTable"><thead><tr><th>protocol</th><th>transcript</th><th>expected</th><th>twin</th><th>match</th></tr></thead><tbody></tbody></table>
+    <div class="kpi" style="margin-top:8px"><span>HTTP fidelity</span><span class="v" id="repFid">—</span></div>
+  </div>
+  <p class="fig">Figure (§6.14): The twin returns 200 for /admin where the device enforces 403 — it does not model access control, so protocol-level remediation predictions are unreliable.</p>
+</section>
+
+<!-- DASHBOARD -->
+<section id="dashboard">
+  <div class="sec-h"><span class="sec-n">Ex 8 · §6.8</span><h2>Risk comparison dashboard</h2></div>
+  <p class="sec-sub">Side-by-side for the CISO: risk reduction by strategy, the cost/risk Pareto frontier, and a zero-disruption traffic light per strategy.</p>
+  <div class="grid g2">
+    <div class="card">
+      <h3>Risk reduction by strategy</h3>
+      <svg id="barSvg" viewBox="0 0 420 220" style="width:100%;height:220px"></svg>
+    </div>
+    <div class="card">
+      <h3>Cost vs. risk — Pareto frontier</h3>
+      <svg id="paretoSvg" viewBox="0 0 420 220" style="width:100%;height:220px"></svg>
+    </div>
+  </div>
+  <div class="card" style="margin-top:16px">
+    <h3>Zero-disruption status</h3>
+    <div class="lights" id="zdLights"></div>
+  </div>
+  <p class="fig">Figure (§6.8): A strategy is Pareto-optimal if no other beats it on both cost and risk; dominated strategies sit up-and-right of the frontier.</p>
+</section>
+
+<!-- AUTHORITY GATE -->
+<section id="authority">
+  <div class="sec-h"><span class="sec-n">Ex 9 · Decision Gate</span><h2>Twin Authority Gate</h2></div>
+  <p class="sec-sub">Before recommending any plan you must decide whether the twin is authoritative <em>for that specific decision</em>. A twin good enough to compare strategies may still be unfit to authorize a change against a critical PLC. Each metric carries required evidence and a block condition.</p>
+  <div class="card">
+    <table id="gateTable"><thead><tr><th>metric</th><th>required evidence</th><th>block condition</th></tr></thead><tbody></tbody></table>
+  </div>
+  <p class="fig">Figure (Decision Gate): Apply this before Exercise 11, then re-apply it after — the drift you inject below is exactly what flips these conditions.</p>
+</section>
+
+<!-- DRIFT — SHOWPIECE -->
+<section id="drift">
+  <div class="sec-h"><span class="sec-n">★ Ex 11 · §6.3/6.12/6.14</span><h2>Twin Authority under drift — live KL &amp; Jensen-Shannon</h2></div>
+  <p class="sec-sub">Aggregate drift metrics can miss small but operationally dangerous changes: one firewall rule, one changed dependency, one critical device remapped to a fallback. Toggle each controlled drift scenario — KL and JS divergence are computed live over the behavior distribution (open-port / unmapped bins) with ε-smoothing. Watch which scenarios the metrics <em>can't see</em>.</p>
+  <div class="grid g2">
+    <div class="card star">
+      <h3>Inject controlled drift</h3>
+      <div id="driftToggles"></div>
+      <p class="hint mono" id="klFormula">KL(P‖Q)=Σ Pᵢ·log(Pᵢ/Qᵢ) · JS=½KL(P‖M)+½KL(Q‖M), M=½(P+Q)</p>
+    </div>
+    <div class="card star">
+      <h3>Live divergence</h3>
+      <div class="kpi"><span>Baseline twin P</span><span class="v" id="distP">—</span></div>
+      <div class="kpi"><span>Current scan Q</span><span class="v" id="distQ">—</span></div>
+      <div class="kpi"><span>KL(P‖Q)</span><span class="v" id="klVal" style="font-size:16px">—</span></div>
+      <div class="kpi"><span>JS divergence</span><span class="v" id="jsVal" style="font-size:16px">—</span></div>
+      <div class="kpi"><span>Detection threshold (JS)</span><span class="v">0.0040</span></div>
+      <div style="margin-top:12px">Overall authority: <span id="overallVerdict"></span></div>
+    </div>
+  </div>
+  <div class="card star" style="margin-top:16px">
+    <h3>Drift decision table</h3>
+    <div class="scroll"><table id="driftTable"><thead><tr><th>scenario</th><th>material?</th><th>detecting metric</th><th>KL?</th><th>JS?</th><th>verdict</th><th>required action</th></tr></thead><tbody></tbody></table></div>
+  </div>
+  <p class="fig">Figure (Ex 11): The targeted single-change scenarios (firewall, dependency, fallback, replay, subnet) are the most dangerous and the least visible to divergence — they require a mandatory companion metric, not a distribution test. "Small change, big consequence, invisible to KL" is the finding.</p>
+</section>
+
+<!-- VERDICT -->
+<section id="verdict">
+  <div class="sec-h"><span class="sec-n">Ex 9.10–9.11</span><h2>Final verdict &amp; do-not-execute conditions</h2></div>
+  <div class="grid g2">
+    <div class="card">
+      <h3>Twin Authority verdict</h3>
+      <div style="margin:8px 0"><span id="finalVerdict"></span></div>
+      <p class="hint" id="finalWhy"></p>
+    </div>
+    <div class="card">
+      <h3>Explicit do-not-execute conditions</h3>
+      <div style="font-size:12.5px;color:var(--muted)" id="dnx"></div>
+    </div>
+  </div>
+  <div class="roe" style="margin-top:16px">
+    <p style="margin-top:0"><b>A favorable simulation is not production approval.</b> Every result here was validated against the twin, not against production. The twin is decision-support, not a source of truth. Promotion to production still requires: canary deployment, live monitoring, change-advisory approval, and a tested rollback per wave.</p>
+    <p style="margin-bottom:0"><b>Cleanup.</b> The graded lab decommissions containers and volumes at exit (<span class="mono">docker compose down</span>) unless <span class="mono">KEEP_LAB=1</span>. This demo holds no state and starts no containers.</p>
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <p>© 2026 Rayve Malhotra · <a href="https://rayvelabs.com/">RayveLabs</a> · Teaching demo. Synthetic 22-device twin; KL/JS computed live in your browser.</p>
+    <p>Source material: SEAS-8414 Phase 6, Dr. Mallarapu, GWU · course material © Dr. Mallarapu / SEAS-8414 · <a href="https://8414.bwater.io">8414.bwater.io ↗</a></p>
+    <p style="color:var(--faint)">the twin tells you what would happen · the authority gate tells you whether to believe it</p>
+  </div>
+</footer>
+
+<script>
+"use strict";
+const $=s=>document.querySelector(s);
+
+/* ---------- synthetic 22-device twin ---------- */
+const TYPES={camera:"camera-variant",nas:"nas-smb",router:"router-generic",sensor:"mqtt-sensor",plug:"smart-plug",plc:"plc-modbus",hmi:"hmi-scada",broker:"mqtt-broker",gateway:"ot-gateway",printer:"printer-ipp",unknown:"http-debug"};
+function dev(ip,type,conf,ports,deps,crit){return {ip,type,profile:TYPES[type],conf,ports,deps:deps||[],crit:!!crit};}
+const TWIN=[
+  dev("172.30.0.1","gateway",0.88,[22,80,443],[],true),
+  dev("172.30.0.10","camera",0.92,[80,554,8000],["172.30.0.30"]),
+  dev("172.30.0.11","camera",0.90,[80,554],["172.30.0.30"]),
+  dev("172.30.0.12","camera",0.20,[80],["172.30.0.30"]),            // fallback
+  dev("172.30.0.13","camera",0.86,[554],["172.30.0.30"]),
+  dev("172.30.0.20","router",0.80,[80,443]),
+  dev("172.30.0.21","router",0.15,[8080]),                          // fallback
+  dev("172.30.0.30","broker",0.90,[1883,8883],[],true),            // MQTT broker — many depend on it
+  dev("172.30.0.31","sensor",0.78,[1883],["172.30.0.30"]),
+  dev("172.30.0.32","sensor",0.76,[1883],["172.30.0.30"]),
+  dev("172.30.0.33","sensor",0.74,[1883],["172.30.0.30"]),
+  dev("172.30.0.34","sensor",0.25,[1883],["172.30.0.30"]),         // fallback
+  dev("172.30.0.40","plc",0.84,[502],["172.30.0.41"],true),        // PLC depends on historian
+  dev("172.30.0.41","hmi",0.82,[102,3389],[],true),
+  dev("172.30.0.50","nas",0.79,[445,139]),
+  dev("172.30.0.51","nas",0.77,[445]),
+  dev("172.30.0.60","plug",0.70,[80]),
+  dev("172.30.0.61","plug",0.68,[80]),
+  dev("172.30.0.62","plug",0.66,[80]),
+  dev("172.30.0.70","printer",0.72,[631,9100]),
+  dev("172.30.0.71","printer",0.71,[631]),
+  dev("172.30.0.72","sensor",0.73,[1883],["172.30.0.30"]),
+];
+
+/* ---------- Ex1 fidelity ---------- */
+function fidelity(){return TWIN.reduce((a,d)=>a+d.conf,0)/TWIN.length;}
+function renderTwin(){
+  $("#twinTable").querySelector("tbody").innerHTML=TWIN.map(d=>{
+    const fb=d.conf<0.3; const cc=fb?'var(--crit)':(d.conf>=0.8?'var(--low)':'var(--med)');
+    return `<tr><td class="mono">${d.ip.split('.').slice(-1)[0]}</td><td>${d.type}${d.crit?' <span class="pill vio">crit</span>':''}</td><td class="mono">${d.profile}${fb?' ⚠':''}</td><td class="mono" style="color:${cc}">${d.conf.toFixed(2)}</td><td class="mono">${d.ports.join(',')}</td></tr>`;
+  }).join("");
+  const f=fidelity(), thr=parseFloat($("#fidRange").value);
+  $("#fidScore").textContent=f.toFixed(3); $("#fidScore").style.color=f>=thr?'var(--low)':'var(--crit)';
+  $("#fidBand").innerHTML = f>=thr? `<span class="pill low">above threshold — twin usable</span>` : `<span class="pill crit">below threshold — refuse remediation predictions</span>`;
+  $("#fidCount").textContent=TWIN.length;
+  $("#fidFallback").textContent=TWIN.filter(d=>d.conf<0.3).length+" ("+TWIN.filter(d=>d.conf<0.3).map(d=>d.ip.split('.').slice(-1)[0]).join(', ')+")";
+  $("#fidMin").textContent=Math.min(...TWIN.map(d=>d.conf)).toFixed(2);
+  $("#fidVerdict").innerHTML = f>=thr? '<span class="ok">trust</span>':'<span class="no">do not trust</span>';
+}
+$("#fidRange").addEventListener("input",e=>{$("#fidThr").textContent=parseFloat(e.target.value).toFixed(2);renderTwin();});
+
+/* ---------- Ex2 scenario ---------- */
+function runScenario(second){
+  // deterministic: same targets -> same result
+  const steps=[["172.30.0.10","telnet_default_creds","critical"],["172.30.0.11","rtsp_unauth","high"],["172.30.0.20","http_exploit","medium"],["172.30.0.30","mqtt_unauth","high"],["172.30.0.40","lateral_movement","medium"]];
+  const compromised=5; const blast=15; // deterministic synthetic baseline
+  $("#scComp").textContent=compromised; $("#scBlast").textContent=blast;
+  $("#scAmp").textContent=(blast/compromised).toFixed(1)+"×";
+  $("#scDet").innerHTML='<span class="ok">identical ✓</span>';
+  $("#scenOut").textContent=JSON.stringify({scenario_type:"attack_replay",steps_succeeded:5,devices_compromised:compromised,blast_radius:blast,run:second?2:1,hash:"a3f9c2d8"},null,1);
+}
+$("#scenBtn").addEventListener("click",()=>runScenario(false));
+$("#scenBtn2").addEventListener("click",()=>runScenario(true));
+
+/* ---------- Ex3 strategies ---------- */
+// normalized 0..1 where higher=better; risk reduction larger better, cascades fewer better, etc.
+const STRAT={
+  A:{name:"Patch",risk:2.1,cascades:0,zero:true, cost:1,downtime:2},
+  B:{name:"Harden",risk:3.4,cascades:2,zero:false,cost:2,downtime:1},
+  C:{name:"Segment",risk:4.8,cascades:3,zero:false,cost:3,downtime:3},
+};
+let WEIGHTS={risk:0.30,cascades:0.25,zero:0.20,cost:0.15,downtime:0.10};
+function renderWeights(){
+  $("#weightCtls").innerHTML=Object.entries(WEIGHTS).map(([k,v])=>`<label class="ctl">${k} weight: <span class="val" id="w_${k}">${(v*100)|0}%</span></label><input type="range" data-k="${k}" min="0" max="0.6" step="0.05" value="${v}">`).join("");
+  $("#weightCtls").querySelectorAll("input").forEach(i=>i.addEventListener("input",e=>{WEIGHTS[e.target.dataset.k]=parseFloat(e.target.value);$("#w_"+e.target.dataset.k).textContent=Math.round(parseFloat(e.target.value)*100)+"%";renderStrat();}));
+}
+function score(s){
+  const risk=s.risk/4.8, casc=1-(s.cascades/3), zero=s.zero?1:0, cost=1-((s.cost-1)/2), dt=1-((s.downtime-1)/2);
+  return WEIGHTS.risk*risk+WEIGHTS.cascades*casc+WEIGHTS.zero*zero+WEIGHTS.cost*cost+WEIGHTS.downtime*dt;
+}
+function renderStrat(){
+  const rows=[
+    ["risk Δ (BRS)",s=>"−"+s.risk.toFixed(1)],
+    ["cascading failures",s=>s.cascades],
+    ["zero disruption",s=>s.zero?'<span class="ok">yes</span>':'<span class="no">no</span>'],
+    ["implementation cost",s=>"$".repeat(s.cost)],
+    ["downtime",s=>["–","low","mod","high"][s.downtime]||s.downtime],
+  ];
+  $("#stratTable").querySelector("tbody").innerHTML=rows.map(([lab,fn])=>`<tr><td>${lab}</td><td class="mono">${fn(STRAT.A)}</td><td class="mono">${fn(STRAT.B)}</td><td class="mono">${fn(STRAT.C)}</td></tr>`).join("");
+  const sc={A:score(STRAT.A),B:score(STRAT.B),C:score(STRAT.C)};
+  const win=Object.entries(sc).sort((a,b)=>b[1]-a[1])[0];
+  $("#stratWinner").innerHTML=`A ${sc.A.toFixed(3)} · B ${sc.B.toFixed(3)} · C ${sc.C.toFixed(3)} → <span style="color:var(--teal)">winner: ${STRAT[win[0]].name}</span>`;
+  const sum=Object.values(WEIGHTS).reduce((a,b)=>a+b,0);
+  $("#weightSum").textContent=`weights sum to ${(sum*100)|0}% (re-normalized internally).`;
+  renderDashboard();
+}
+
+/* ---------- Ex4 cascades ---------- */
+const CASC={
+  rotate:[{type:"credential",sev:"high",aff:".31,.32,.33,.34,.72 (MQTT sensors)",mit:"rotate creds on ALL same-profile sensors simultaneously"}],
+  disable:[{type:"service-dependency",sev:"critical",aff:".31,.32,.33,.34,.72 lose telemetry path",mit:"repoint sensors to new broker endpoint before disabling 1883"}],
+  segment:[{type:"segmentation",sev:"medium",aff:"PLC .40 ↔ HMI .41 setpoint flow",mit:"add explicit allow-rule for verified .40↔.41 dependency first"}],
+  patch:[],
+};
+$("#cascBtn").addEventListener("click",()=>{
+  const a=$("#cascAction").value; const c=CASC[a];
+  $("#cascTable").querySelector("tbody").innerHTML = c.length? c.map(x=>`<tr><td><span class="pill ${x.sev==='critical'?'crit':(x.sev==='high'?'high':'med')}">${x.type}</span></td><td>${x.sev}</td><td class="mono">${x.aff}</td><td>${x.mit}</td></tr>`).join("") : `<tr><td colspan="4" class="ok">no cascades — safe, isolated action ✓</td></tr>`;
+  $("#cascNote").textContent = c.length? "Cascade detected on the twin — mitigate before any production change." : "Single device with no dependents; clean.";
+});
+
+/* ---------- Ex5 patch ordering ---------- */
+function renderPatch(){
+  const N=TWIN.length, c=parseInt($("#concRange").value), rb=parseInt($("#rebootRange").value);
+  const groups=Math.ceil(N/c);
+  const seq=N*rb, grp=groups*rb;
+  $("#poN").textContent=N; $("#poGroups").textContent=groups;
+  $("#poSeq").textContent=(seq/60).toFixed(1)+" min"; $("#poGrp").textContent=(grp/60).toFixed(1)+" min";
+  $("#poSpeed").textContent=(seq/grp).toFixed(2)+"×";
+  // 5 waves by criticality then type-diversity
+  const order=[...TWIN].sort((a,b)=>(a.crit?1:0)-(b.crit?1:0));
+  const waves=[[],[],[],[],[]];
+  order.forEach((d,i)=>waves[i%5].push(d.ip.split('.').slice(-1)[0]));
+  $("#waves").innerHTML=waves.map((w,i)=>`<div class="kpi"><span>Wave ${i+1} ${i===0?'(least critical)':''}</span><span class="v">${w.join(', ')}</span></div>`).join("");
+}
+$("#concRange").addEventListener("input",e=>{$("#concVal").textContent=e.target.value;renderPatch();});
+$("#rebootRange").addEventListener("input",e=>{$("#rebootVal").textContent=e.target.value;renderPatch();});
+
+/* ---------- Ex6 zero-disruption ---------- */
+const ZD={
+  single:{flag:true, checks:[true,true,true,true,true,true,true,true]},
+  mqtt:{flag:false, checks:[false,false,false,true,true,true,false,false]},
+};
+const ZD_LABELS=["no new cascading failures","no loss of a required service path","no critical dependency broken","availability ≥ required threshold","no redundancy removed w/o approval","no unexplained replay mismatch","rollback tested / documented","Twin Authority = Trust / Trust-with-limits"];
+function renderZD(){
+  const z=ZD[$("#zdAction").value];
+  $("#zdFlag").innerHTML=z.flag?'<span class="ok">true</span>':'<span class="no">false</span>';
+  const pass=z.checks.every(Boolean);
+  $("#zdClaim").innerHTML=pass?'<span class="ok">SURVIVES ✓</span>':'<span class="no">FAILS ✗</span>';
+  $("#zdChecklist").innerHTML=z.checks.map((ok,i)=>`<div class="chk"><span class="m ${ok?'ok':'no'}">${ok?'✓':'✗'}</span><span>${ZD_LABELS[i]}</span></div>`).join("");
+}
+$("#zdAction").addEventListener("change",renderZD);
+
+/* ---------- Ex7 replay ---------- */
+const REPLAY=[
+  {proto:"HTTP",t:"GET /",exp:"200 OK",twin:"200 OK",m:true},
+  {proto:"HTTP",t:"GET /admin",exp:"403 Forbidden",twin:"200 OK",m:false},
+  {proto:"HTTP",t:"GET /config.json",exp:"401",twin:"401",m:true},
+  {proto:"RTSP",t:"DESCRIBE stream1",exp:"401",twin:"200",m:false},
+  {proto:"RTSP",t:"OPTIONS stream1",exp:"200",twin:"200",m:true},
+];
+function renderReplay(){
+  $("#replayTable").querySelector("tbody").innerHTML=REPLAY.map(r=>`<tr><td>${r.proto}</td><td class="mono">${r.t}</td><td class="mono">${r.exp}</td><td class="mono">${r.twin}</td><td class="${r.m?'ok':'no'}">${r.m?'✓':'✗'}</td></tr>`).join("");
+  const http=REPLAY.filter(r=>r.proto==="HTTP"); const fid=http.filter(r=>r.m).length/http.length;
+  $("#repFid").innerHTML=`${(fid*100).toFixed(0)}% ${fid<0.8?'<span class="pill crit">below 80% — block condition</span>':'<span class="pill low">ok</span>'}`;
+}
+
+/* ---------- Ex8 dashboard ---------- */
+function renderDashboard(){
+  const S=[["A",STRAT.A,"var(--blue)"],["B",STRAT.B,"var(--med)"],["C",STRAT.C,"var(--teal)"]];
+  // bar
+  const bw=$("#barSvg"); const maxR=5; let bh="";
+  S.forEach(([k,s,col],i)=>{const x=40+i*120; const h=(s.risk/maxR)*150; bh+=`<rect x="${x}" y="${180-h}" width="70" height="${h}" rx="4" fill="${col}" opacity=".85"/><text x="${x+35}" y="195" text-anchor="middle" font-family="var(--mono)" font-size="10" fill="var(--muted)">${s.name}</text><text x="${x+35}" y="${175-h}" text-anchor="middle" font-family="var(--mono)" font-size="11" fill="var(--ink)">−${s.risk}</text>`;});
+  bw.innerHTML=bh+`<line x1="30" y1="180" x2="400" y2="180" stroke="var(--border2)"/>`;
+  // pareto: x=cost, y=risk reduction (higher better). frontier = best risk per cost
+  const pw=$("#paretoSvg"); let ph=`<text x="200" y="212" text-anchor="middle" font-family="var(--mono)" font-size="9" fill="var(--faint)">cost →</text>`;
+  S.forEach(([k,s,col])=>{const x=60+(s.cost-1)/2*300; const y=180-(s.risk/5)*150; const dominated=S.some(([k2,s2])=>k2!==k&&s2.cost<=s.cost&&s2.risk>=s.risk&&(s2.cost<s.cost||s2.risk>s.risk)); ph+=`<circle cx="${x}" cy="${y}" r="7" fill="${dominated?'#33414f':col}" stroke="${col}"/><text x="${x+10}" y="${y+3}" font-family="var(--mono)" font-size="10" fill="${dominated?'var(--faint)':'var(--ink)'}">${s.name}${dominated?' (dom)':' ★'}</text>`;});
+  pw.innerHTML=ph+`<line x1="50" y1="180" x2="390" y2="180" stroke="var(--border2)"/><line x1="50" y1="30" x2="50" y2="180" stroke="var(--border2)"/>`;
+  // lights
+  $("#zdLights").innerHTML=S.map(([k,s])=>`<span class="light" style="border-color:${s.zero?'rgba(63,185,80,.5)':'rgba(255,92,92,.5)'};color:${s.zero?'var(--low)':'var(--crit)'}">${s.name}: ${s.zero?'● zero-disruption':'● disruptive'}</span>`).join("");
+}
+
+/* ---------- Ex9 gate ---------- */
+const GATE=[
+  ["Device coverage","scan device count vs twin device count","missing critical assets or unknown targets"],
+  ["Profile confidence","mean & min confidence for mapped devices","remediation target on low-confidence fallback"],
+  ["Fallback profiles","count & location of fallback mappings","fallback on a device in the remediation path"],
+  ["Service drift","latest observed ports/services vs twin","changed service on target / dependency / safety path"],
+  ["Topology drift","new/removed device, subnet, route, dependency","unmodeled dependency or segmentation edge"],
+  ["Traffic replay fidelity","correct replay responses / total","below 80% for affected protocol"],
+  ["KL divergence","behavioral drift by metric","severe unexplained drift on affected class"],
+  ["Jensen-Shannon divergence","bounded drift score for stable comparison","medium/high drift on a critical asset"],
+  ["Cascade prediction","expected vs observed dependency behavior","unexplained cascade mismatch"],
+  ["Freshness","time since scan & last rebuild","exceeds policy or follows a major change"],
+];
+function renderGate(){ $("#gateTable").querySelector("tbody").innerHTML=GATE.map(g=>`<tr><td class="mono">${g[0]}</td><td>${g[1]}</td><td style="color:var(--high)">${g[2]}</td></tr>`).join(""); }
+
+/* ---------- Ex11 drift + KL/JS (verified math) ---------- */
+const EPS=1e-4;
+function smooth(p){const s=p.reduce((a,b)=>a+b,0)+EPS*p.length;return p.map(x=>(x+EPS)/s);}
+function kl(P,Q){const p=smooth(P),q=smooth(Q);return p.reduce((a,pi,i)=>a+pi*Math.log(pi/q[i]),0);}
+function js(P,Q){const p=smooth(P),q=smooth(Q);const m=p.map((x,i)=>0.5*(x+q[i]));const f=(a,b)=>a.reduce((s,ai,i)=>s+ai*Math.log(ai/b[i]),0);return 0.5*f(p,m)+0.5*f(q,m);}
+// bins: [known low-port, known mid, known high, UNKNOWN/unmapped]
+const BASE_P=[6,9,7,0];
+const JS_THRESH=0.0040;
+// verdict severity order
+const VORDER=["Trust","Trust with limits","Resync","Rebuild","Block"];
+const VCLASS={"Trust":"v-trust","Trust with limits":"v-limit","Resync":"v-resync","Rebuild":"v-rebuild","Block":"v-block"};
+const DRIFT=[
+  {id:"d1",label:"1 unknown device (in scan, not twin)",dQ:[0,0,0,1],material:true, metric:"device-count delta",verdict:"Resync",action:"fresh scan; map the new device before recommending"},
+  {id:"d2",label:"3 unknown devices added",dQ:[0,0,0,3],material:true,metric:"device-count delta",verdict:"Block",action:"missing/unknown targets — rebuild twin from current scan"},
+  {id:"d3",label:"1 firewall rule changed on remediation path",dQ:[0,0,0,0],material:true,metric:"explicit firewall diff",verdict:"Resync",action:"require firewall/dependency evidence on the path"},
+  {id:"d4",label:"1 new service opened on target",dQ:[0,-1,1,0],material:true,metric:"port/service diff",verdict:"Resync",action:"re-scan target; update profile + ports"},
+  {id:"d5",label:"1 PLC/MQTT dependency changed",dQ:[0,0,0,0],material:true,metric:"dependency diff",verdict:"Block",action:"unmodeled dependency — cascade prediction invalid"},
+  {id:"d6",label:"high-confidence profile → fallback (on path)",dQ:[0,0,0,0],material:true,metric:"fallback-profile count",verdict:"Block",action:"fallback on remediation path — do not authorize"},
+  {id:"d7",label:"replay mismatch on affected protocol (<80%)",dQ:[0,0,0,0],material:true,metric:"replay mismatch rate",verdict:"Block",action:"fidelity below 80% — resync traffic evidence"},
+  {id:"d8",label:"subnet split / routing edge removed",dQ:[0,0,0,0],material:true,metric:"topology diff",verdict:"Rebuild",action:"structural change — rebuild twin topology"},
+];
+function activeScenarios(){return DRIFT.filter(d=>$("#"+d.id) && $("#"+d.id).checked);}
+function currentQ(){const Q=BASE_P.slice();activeScenarios().forEach(d=>d.dQ.forEach((v,i)=>Q[i]+=v));return Q.map(x=>Math.max(0,x));}
+function renderDriftToggles(){
+  $("#driftToggles").innerHTML=DRIFT.map(d=>`<label class="toggle"><input type="checkbox" id="${d.id}"> ${d.label}</label>`).join("");
+  DRIFT.forEach(d=>$("#"+d.id).addEventListener("change",renderDrift));
+}
+function renderDrift(){
+  const Q=currentQ();
+  const KL=kl(BASE_P,Q), JS=js(BASE_P,Q);
+  $("#distP").textContent="["+BASE_P.join(", ")+"]";
+  $("#distQ").textContent="["+Q.join(", ")+"]";
+  $("#klVal").textContent=KL.toFixed(4);
+  $("#jsVal").innerHTML=JS.toFixed(4)+(JS>JS_THRESH?' <span class="pill high">detected</span>':' <span class="pill">below threshold</span>');
+  // per-row detection: does THIS scenario alone move JS over threshold?
+  $("#driftTable").querySelector("tbody").innerHTML=DRIFT.map(d=>{
+    const soloQ=BASE_P.map((x,i)=>Math.max(0,x+d.dQ[i]));
+    const sjs=js(BASE_P,soloQ), skl=kl(BASE_P,soloQ);
+    const klD=skl>0.01, jsD=sjs>JS_THRESH;
+    const active=$("#"+d.id)&&$("#"+d.id).checked;
+    return `<tr style="${active?'background:rgba(176,140,255,.06)':''}"><td>${d.label}</td><td class="${d.material?'no':'ok'}">${d.material?'yes':'no'}</td><td class="mono">${d.metric}</td><td class="${klD?'ok':'no'}">${klD?'✓':'✗'}</td><td class="${jsD?'ok':'no'}">${jsD?'✓':'✗'}</td><td><span class="pill ${d.verdict==='Block'?'crit':(d.verdict==='Rebuild'?'vio':(d.verdict==='Resync'?'high':'med'))}">${d.verdict}</span></td><td>${d.action}</td></tr>`;
+  }).join("");
+  // overall verdict = worst among active (Trust if none)
+  let worst="Trust";
+  activeScenarios().forEach(d=>{ if(VORDER.indexOf(d.verdict)>VORDER.indexOf(worst)) worst=d.verdict; });
+  $("#overallVerdict").innerHTML=`<span class="verdict ${VCLASS[worst]}">${worst}</span>`;
+  // mirror to final verdict section
+  $("#finalVerdict").innerHTML=`<span class="verdict ${VCLASS[worst]}">${worst}</span>`;
+  const undetected=activeScenarios().filter(d=>js(BASE_P,BASE_P.map((x,i)=>Math.max(0,x+d.dQ[i])))<=JS_THRESH && d.material);
+  $("#finalWhy").textContent = worst==="Trust"
+    ? "No drift injected — twin currently supports the remediation decision. Re-evaluate after any scan or change event."
+    : `Verdict driven by ${activeScenarios().length} active drift scenario(s). ${undetected.length} of them are operationally material yet invisible to KL/JS — caught only by companion metrics (${[...new Set(undetected.map(d=>d.metric))].join(', ')||'—'}).`;
+}
+
+/* ---------- do-not-execute ---------- */
+$("#dnx").innerHTML=["Twin fidelity below the refuse-to-trust threshold.","Remediation target mapped to a fallback profile.","Any unmodeled dependency or segmentation edge on the path.","Replay fidelity &lt; 80% on an affected protocol.","Material drift detected only by a companion metric (KL/JS blind).","Rollback not tested or not documented for the affected wave.","Twin Authority verdict is Resync, Rebuild, or Block."].map(x=>`<div class="chk"><span class="m no">■</span><span>${x}</span></div>`).join("");
+
+/* ---------- init ---------- */
+renderTwin(); runScenario(false); renderWeights(); renderStrat(); renderPatch(); renderZD(); renderReplay(); renderGate(); renderDriftToggles(); renderDrift();
+</script>
+</body>
+</html>

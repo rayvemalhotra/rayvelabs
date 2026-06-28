@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lab 4 demo — Attack Graph Analytics &amp; Risk Scoring · RayveLabs</title>
+<meta name="description" content="An interactive teaching demo of Chapter 4 (Attack Graph Analytics, Breakwater Risk Score, MITRE ATT&CK ICS mapping, STIX export) of Dr. Mallarapu's SEAS-8414 course at GWU. Built by RayveLabs as a public learning aid.">
+<style>
+  :root{
+    --bg:#07090c; --panel:#0d1117; --panel2:#10161e; --panel3:#141b24;
+    --border:#1d2530; --border2:#2a3542;
+    --ink:#e6edf3; --muted:#8b98a5; --faint:#5b6776;
+    --teal:#39d3bb; --blue:#5aa2ff; --violet:#b08cff;
+    --info:#5aa2ff; --low:#3fb950; --med:#f0b429; --high:#ff8a3d; --crit:#ff5c5c;
+    --mono:"SF Mono",ui-monospace,"JetBrains Mono",Menlo,Consolas,monospace;
+    --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.5;-webkit-font-smoothing:antialiased}
+  a{color:var(--teal);text-decoration:none}
+  a:hover{text-decoration:underline}
+  code,.mono{font-family:var(--mono)}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 20px}
+
+  header.top{position:sticky;top:0;z-index:30;background:rgba(7,9,12,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+  .topbar{display:flex;align-items:center;gap:16px;padding:11px 0;flex-wrap:wrap}
+  .brand{font-family:var(--mono);font-size:13px;color:var(--ink);font-weight:600;letter-spacing:.2px}
+  .brand .dim{color:var(--faint)}
+  .crumb{font-size:12px;color:var(--muted)}
+  .crumb b{color:var(--teal);font-weight:600}
+  .topnav{margin-left:auto;display:flex;gap:14px;font-size:12px}
+  .topnav a{color:var(--muted)}
+  .topnav a:hover{color:var(--ink)}
+
+  .hero{padding:30px 0 8px}
+  .tag{display:inline-block;font-family:var(--mono);font-size:11px;color:var(--teal);border:1px solid var(--border2);border-radius:999px;padding:3px 10px;margin-bottom:14px}
+  h1{font-size:30px;line-height:1.15;margin:0 0 10px;font-weight:680;letter-spacing:-.3px}
+  h1 .accent{color:var(--teal)}
+  .lede{color:var(--muted);font-size:15px;max-width:760px}
+  .notice{margin-top:14px;font-size:12.5px;color:var(--faint);border-left:2px solid var(--border2);padding-left:12px}
+
+  .pipe{display:flex;flex-wrap:wrap;gap:6px;margin:22px 0 6px}
+  .pipe a{font-family:var(--mono);font-size:11px;color:var(--muted);background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:5px 9px}
+  .pipe a:hover{border-color:var(--teal);color:var(--ink);text-decoration:none}
+  .pipe a .f{color:var(--faint)}
+
+  section{padding:30px 0;border-top:1px solid var(--border);scroll-margin-top:64px}
+  .sec-h{display:flex;align-items:baseline;gap:12px;margin-bottom:6px}
+  .sec-n{font-family:var(--mono);font-size:12px;color:var(--teal)}
+  h2{font-size:20px;margin:0;font-weight:640;letter-spacing:-.2px}
+  .sec-sub{color:var(--muted);font-size:14px;margin:6px 0 18px;max-width:820px}
+  .fig{font-size:11.5px;color:var(--faint);font-style:italic;margin-top:10px}
+
+  .grid{display:grid;gap:16px}
+  .g2{grid-template-columns:1fr 1fr}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  @media(max-width:880px){.g2,.g3{grid-template-columns:1fr}}
+
+  .card{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:16px}
+  .card h3{margin:0 0 4px;font-size:13px;font-family:var(--mono);color:var(--ink);font-weight:600}
+  .card .h-sub{font-size:12px;color:var(--muted);margin-bottom:12px}
+
+  .stat-row{display:flex;flex-wrap:wrap;gap:10px}
+  .stat{flex:1;min-width:120px;background:var(--panel2);border:1px solid var(--border);border-radius:8px;padding:11px 13px}
+  .stat .k{font-family:var(--mono);font-size:22px;font-weight:650;color:var(--ink)}
+  .stat .l{font-size:11px;color:var(--muted);margin-top:2px}
+
+  /* graph */
+  .graphwrap{position:relative;background:radial-gradient(circle at 30% 20%,#0c141d,#080b0f);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+  svg.graph{display:block;width:100%;height:440px}
+  .legend{display:flex;flex-wrap:wrap;gap:12px;margin-top:12px;font-size:11.5px;color:var(--muted)}
+  .legend .it{display:flex;align-items:center;gap:6px}
+  .swatch{width:11px;height:11px;border-radius:3px;display:inline-block}
+  .node{cursor:pointer}
+  .node text{font-family:var(--mono);font-size:9.5px;fill:var(--muted);pointer-events:none}
+  .node:hover text{fill:var(--ink)}
+  .node.sel circle,.node.sel rect{stroke:var(--teal);stroke-width:2.5}
+  .edge{stroke-width:1.2;fill:none;opacity:.55}
+  .edge.path{stroke:var(--crit);stroke-width:2.6;opacity:.95}
+  .edge.blast{stroke:var(--high);stroke-width:2;opacity:.9}
+  .edge-w{font-family:var(--mono);font-size:8px;fill:var(--faint)}
+
+  table{width:100%;border-collapse:collapse;font-size:12.5px}
+  th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--border)}
+  th{font-family:var(--mono);font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.4px}
+  td .mono{font-size:12px}
+  tr.click{cursor:pointer}
+  tr.click:hover td{background:var(--panel2)}
+  tr.active td{background:rgba(57,211,187,.08)}
+
+  .pill{display:inline-block;font-family:var(--mono);font-size:10.5px;padding:2px 7px;border-radius:999px;border:1px solid var(--border2);color:var(--muted)}
+  .pill.crit{color:var(--crit);border-color:rgba(255,92,92,.4);background:rgba(255,92,92,.08)}
+  .pill.high{color:var(--high);border-color:rgba(255,138,61,.4);background:rgba(255,138,61,.08)}
+  .pill.med{color:var(--med);border-color:rgba(240,180,41,.4);background:rgba(240,180,41,.08)}
+  .pill.low{color:var(--low);border-color:rgba(63,185,80,.4);background:rgba(63,185,80,.08)}
+  .pill.info{color:var(--info);border-color:rgba(90,162,255,.4);background:rgba(90,162,255,.08)}
+  .pill.roe{color:var(--violet);border-color:rgba(176,140,255,.45);background:rgba(176,140,255,.08)}
+
+  label.ctl{display:block;font-size:11.5px;color:var(--muted);margin:10px 0 4px;font-family:var(--mono)}
+  input[type=range]{width:100%;accent-color:var(--teal)}
+  .val{font-family:var(--mono);color:var(--teal);font-size:12px}
+  select,button{font-family:var(--mono);font-size:12px}
+  select{background:var(--panel2);color:var(--ink);border:1px solid var(--border2);border-radius:6px;padding:6px 8px}
+  button.btn{background:var(--panel2);color:var(--ink);border:1px solid var(--border2);border-radius:6px;padding:7px 12px;cursor:pointer}
+  button.btn:hover{border-color:var(--teal)}
+  button.btn.go{background:rgba(57,211,187,.12);border-color:var(--teal);color:var(--teal)}
+  .toggle{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);margin:6px 0;cursor:pointer}
+  .toggle input{accent-color:var(--teal)}
+
+  .brs-big{font-family:var(--mono);font-size:46px;font-weight:680;line-height:1}
+  .brs-band{font-family:var(--mono);font-size:12px;margin-top:4px}
+
+  .waterfall .bar{height:22px;border-radius:3px;display:flex;align-items:center;padding:0 7px;font-family:var(--mono);font-size:10.5px;color:#08110e;font-weight:600;white-space:nowrap}
+  .wf-row{display:grid;grid-template-columns:130px 1fr 56px;align-items:center;gap:8px;margin:5px 0;font-size:11.5px}
+  .wf-row .lab{font-family:var(--mono);color:var(--muted)}
+  .wf-row .amt{font-family:var(--mono);text-align:right}
+
+  .kpi{display:flex;justify-content:space-between;font-size:12.5px;padding:6px 0;border-bottom:1px dashed var(--border)}
+  .kpi .v{font-family:var(--mono);color:var(--ink)}
+  .delta-pos{color:var(--low)} .delta-neg{color:var(--crit)}
+
+  pre.out{background:#06090d;border:1px solid var(--border);border-radius:8px;padding:12px;font-family:var(--mono);font-size:11px;color:var(--muted);max-height:240px;overflow:auto;white-space:pre-wrap;word-break:break-word}
+
+  .matrix{display:grid;grid-template-columns:repeat(11,1fr);gap:3px;margin-top:8px}
+  .mc{aspect-ratio:1;border-radius:4px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:10px;border:1px solid var(--border)}
+  .mc .t{position:absolute}
+  .mcell-label{font-family:var(--mono);font-size:8.5px;color:var(--faint);text-align:center;margin-top:3px;height:28px;line-height:1.1}
+
+  footer{border-top:1px solid var(--border);padding:26px 0 50px;color:var(--faint);font-size:12px}
+  .roe{background:linear-gradient(180deg,rgba(176,140,255,.06),transparent);border:1px solid rgba(176,140,255,.25);border-radius:10px;padding:14px 16px;font-size:12.5px;color:var(--muted)}
+  .roe b{color:var(--violet)}
+  .hint{font-size:11.5px;color:var(--faint);margin-top:8px}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap topbar">
+    <span class="brand">RayveLabs <span class="dim">— teaching demo</span></span>
+    <span class="crumb">Labs · <b>Chapter 4 — Attack Graph Analytics &amp; Risk Scoring</b></span>
+    <nav class="topnav">
+      <a href="https://rayvelabs.com/lab3-demo/">← Lab 3</a>
+      <a href="https://rayvelabs.com/rayvenet.html">RayveNet</a>
+      <a href="https://rayvelabs.com/portal/">Atlas</a>
+      <a href="https://rayvelabs.com/">Home</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="hero">
+    <span class="tag">SEAS-8414 · Phase 4 · 24 features</span>
+    <h1>From findings to an <span class="accent">attack graph</span>, a risk score, and a sharable threat bundle.</h1>
+    <p class="lede">Lab 3 told us <em>what</em> is broken on the network. Chapter 4 asks the operational question: <em>what does it mean in context?</em> This demo turns the same SEAS-8414 scan into a directed attack graph, finds the cheapest attacker paths, computes the <b>Breakwater Risk Score</b> with SHAP-style attribution, maps findings to MITRE ATT&amp;CK ICS, simulates remediations, and exports a STIX 2.1 bundle — then goes further with the cross-phase <b>HYDRA</b> score, GNN augmentation, and a risk-timeline forecast.</p>
+    <p class="notice">Demo built by RayveLabs to illustrate <b>Dr. Mallarapu's SEAS-8414 Chapter 4</b>, continuing the same teaching network as Lab 3 (172.30.0.0/24; Hikvision camera, OT gateway, PLC/HMI, medical-device ROE block). Original course material © Dr. Mallarapu / The George Washington University. Synthetic network, real CVE / ATT&amp;CK data.</p>
+  </div>
+
+  <nav class="pipe">
+    <a href="#overview">Overview <span class="f">4.1</span></a>
+    <a href="#graph">Attack graph <span class="f">4.2</span></a>
+    <a href="#paths">K-shortest paths <span class="f">4.3</span></a>
+    <a href="#brs">Breakwater Risk Score <span class="f">4.4</span></a>
+    <a href="#shap">SHAP attribution <span class="f">4.4.4</span></a>
+    <a href="#intel">Threat intel <span class="f">4.6</span></a>
+    <a href="#simulate">What-if simulation <span class="f">4.7</span></a>
+    <a href="#mitre">ATT&amp;CK ICS <span class="f">4.8</span></a>
+    <a href="#stix">STIX 2.1 export <span class="f">4.9</span></a>
+    <a href="#hydra">HYDRA + GNN <span class="f">4.10</span></a>
+    <a href="#segblast">Segmentation / blast <span class="f">4.11-12</span></a>
+    <a href="#timeline">Risk timeline <span class="f">4.13</span></a>
+    <a href="#safety">Safety posture <span class="f">4.16</span></a>
+  </nav>
+</div>
+
+<div class="wrap">
+
+<!-- OVERVIEW -->
+<section id="overview">
+  <div class="sec-h"><span class="sec-n">4.1</span><h2>Analytics context — moving from detective to predictive</h2></div>
+  <p class="sec-sub">Discovery (Ch.1) is descriptive, enrichment (Ch.2) is diagnostic, vulnerability assessment (Ch.3) is detective. Attack-graph analytics is the first <em>predictive</em> phase: it reasons about how an attacker would move and which device matters most, not just which CVE scores highest.</p>
+  <div class="stat-row" id="overviewStats"></div>
+  <p class="fig">Figure 4.1: Live scan summary for the Lab 3 → Lab 4 teaching network. Stats recompute as you apply remediations below.</p>
+</section>
+
+<!-- GRAPH -->
+<section id="graph">
+  <div class="sec-h"><span class="sec-n">4.2</span><h2>Attack graph construction</h2></div>
+  <p class="sec-sub">Five node types (device, service, subnet, entry point, physical process) and eight edge types whose weights encode attacker effort — lower weight = easier traversal. Click any device to drive the risk panels below.</p>
+  <div class="grid g2">
+    <div class="graphwrap">
+      <svg class="graph" id="graphSvg" viewBox="0 0 560 440" preserveAspectRatio="xMidYMid meet"></svg>
+    </div>
+    <div class="card">
+      <h3>Edge weights <span style="color:var(--faint)">· Table 4.3</span></h3>
+      <div class="h-sub">Selected: <span class="val" id="selName">— click a node —</span></div>
+      <table id="edgeTable">
+        <thead><tr><th>edge type</th><th>weight</th><th>meaning</th></tr></thead>
+        <tbody>
+          <tr><td class="mono">shares_credentials</td><td class="mono" style="color:var(--low)">0.1</td><td>trivial lateral movement</td></tr>
+          <tr><td class="mono">exploitable_via</td><td class="mono">0.1–0.4</td><td>known CVE (by severity)</td></tr>
+          <tr><td class="mono">same_firmware</td><td class="mono">0.4</td><td>one exploit chains to both</td></tr>
+          <tr><td class="mono">same_subnet</td><td class="mono">0.5</td><td>L2 / ARP adjacency</td></tr>
+          <tr><td class="mono">runs_service</td><td class="mono">0.7</td><td>exposed attack surface</td></tr>
+          <tr><td class="mono">communicates_with</td><td class="mono">0.7</td><td>observed comms</td></tr>
+          <tr><td class="mono">controls_process</td><td class="mono">0.8</td><td>physical-process target</td></tr>
+          <tr><td class="mono">can_reach</td><td class="mono" style="color:var(--crit)">1.0</td><td>L3 routed reachability</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="legend">
+    <span class="it"><span class="swatch" style="background:var(--blue)"></span>entry point</span>
+    <span class="it"><span class="swatch" style="background:#6f7e8c"></span>device (IT)</span>
+    <span class="it"><span class="swatch" style="background:var(--med)"></span>camera / NVR</span>
+    <span class="it"><span class="swatch" style="background:var(--crit)"></span>OT / PLC / SCADA</span>
+    <span class="it"><span class="swatch" style="background:var(--violet)"></span>medical (ROE-blocked)</span>
+    <span class="it"><span class="swatch" style="border-radius:50%;background:var(--teal)"></span>physical process</span>
+  </div>
+  <p class="fig">Figure 4.2–4.5: Directed attack graph built from scan results. Edges drawn between devices reflect credential reuse, shared firmware, subnet adjacency and routed reachability from the entry point.</p>
+</section>
+
+<!-- PATHS -->
+<section id="paths">
+  <div class="sec-h"><span class="sec-n">4.3</span><h2>Attack path analysis — Yen's K-shortest paths</h2></div>
+  <p class="sec-sub">The cheapest weighted path from an entry point to a high-value target is the route an attacker is most likely to take. Path cost maps to an ordinal probability and a rough time-to-traverse estimate.</p>
+  <div class="grid g2">
+    <div class="card">
+      <h3>Compute attack paths</h3>
+      <label class="ctl">Entry point</label>
+      <select id="pathSrc"></select>
+      <label class="ctl">Target (high-value)</label>
+      <select id="pathDst"></select>
+      <label class="ctl">K (paths to enumerate): <span class="val" id="kVal">3</span></label>
+      <input type="range" id="kRange" min="1" max="5" step="1" value="3">
+      <div style="margin-top:12px"><button class="btn go" id="pathBtn">▸ find paths</button></div>
+      <p class="hint">Path is highlighted in red on the graph above.</p>
+    </div>
+    <div class="card">
+      <h3>Ranked paths</h3>
+      <table id="pathTable"><thead><tr><th>#</th><th>route</th><th>cost</th><th>prob</th><th>~time</th></tr></thead><tbody></tbody></table>
+    </div>
+  </div>
+  <p class="fig">Figure 4.6–4.9: Yen's k-shortest-paths over the weighted graph. Probability is a reciprocal-of-cost ordinal ranking (planning evidence, not a calibrated field probability); time is a weight-scaled estimate.</p>
+</section>
+
+<!-- BRS -->
+<section id="brs">
+  <div class="sec-h"><span class="sec-n">4.4</span><h2>Breakwater Risk Score</h2></div>
+  <p class="sec-sub">CVSS scores a CVE in isolation; BRS scores a <em>device in its operational context</em>: <span class="mono">BRS = 0.20·V + 0.20·E + 0.20·R + 0.15·P + 0.05·S − 0.20·C</span>, clamped to 0–10. Pick a device, then move the factor sliders to see the score and rating band react live.</p>
+  <div class="grid g2">
+    <div class="card">
+      <h3>Device factors</h3>
+      <label class="ctl">Device</label>
+      <select id="brsDevice"></select>
+      <div id="brsSliders"></div>
+      <div style="margin-top:10px"><button class="btn" id="brsReset">↺ reset to scan values</button></div>
+    </div>
+    <div class="card">
+      <h3>Score</h3>
+      <div class="brs-big" id="brsScore">—</div>
+      <div class="brs-band" id="brsBand"></div>
+      <div style="margin-top:14px">
+        <div class="kpi"><span>Vulnerability surface (V)</span><span class="v" id="kV">—</span></div>
+        <div class="kpi"><span>Exploitability (E)</span><span class="v" id="kE">—</span></div>
+        <div class="kpi"><span>Reachability (R)</span><span class="v" id="kR">—</span></div>
+        <div class="kpi"><span>Physical consequence (P)</span><span class="v" id="kP">—</span></div>
+        <div class="kpi"><span>Supply chain (S)</span><span class="v" id="kS">—</span></div>
+        <div class="kpi"><span>Compensating controls (C)</span><span class="v" id="kC">—</span></div>
+      </div>
+      <p class="hint" id="brsExplain"></p>
+    </div>
+  </div>
+  <p class="fig">Figure 4.10–4.12: BRS decomposition and rating thresholds. Try the camera vs. thermostat lesson — the device with the lower CVSS often carries the higher BRS once reachability and physical consequence are included.</p>
+</section>
+
+<!-- SHAP -->
+<section id="shap">
+  <div class="sec-h"><span class="sec-n">4.4.4</span><h2>SHAP-style factor attribution</h2></div>
+  <p class="sec-sub">A score is only actionable if you can see <em>why</em>. Each bar is a factor's contribution (weight × score); positives raise risk, the compensating-controls bar pulls it back down. The longest movable bar is usually your highest-leverage fix.</p>
+  <div class="card">
+    <h3>BRS waterfall — <span class="val" id="shapDev">—</span></h3>
+    <div class="waterfall" id="waterfall" style="margin-top:10px"></div>
+    <p class="hint" id="shapAdvice"></p>
+  </div>
+  <p class="fig">Figure 4.13: SHAP-style waterfall. Where reachability + low controls dominate, segmentation is the lever; where V + E dominate, patch.</p>
+</section>
+
+<!-- INTEL -->
+<section id="intel">
+  <div class="sec-h"><span class="sec-n">4.6</span><h2>Threat intelligence integration</h2></div>
+  <p class="sec-sub">External feeds (CISA KEV, abuse.ch, STIX/TAXII) are correlated against scan findings. A KEV match pins exploitability to confirmed in-the-wild activity and raises the device's E factor.</p>
+  <div class="card">
+    <table id="intelTable"><thead><tr><th>device</th><th>CVE</th><th>CVSS</th><th>feed match</th><th>effect on E</th></tr></thead><tbody></tbody></table>
+  </div>
+  <p class="fig">Figure (4.6): Indicator correlation. KEV entries score E=9.0; default credentials override to E=10.0 (no exploit development required).</p>
+</section>
+
+<!-- SIMULATE -->
+<section id="simulate">
+  <div class="sec-h"><span class="sec-n">4.7</span><h2>What-if remediation simulation</h2></div>
+  <p class="sec-sub">Clone the graph, apply candidate remediations, re-score, and read the predicted ΔBRS <em>before</em> touching production. Efficiency ranks each action by risk reduced per cost unit.</p>
+  <div class="grid g2">
+    <div class="card">
+      <h3>Candidate actions <span style="color:var(--faint)">· network-wide</span></h3>
+      <label class="toggle"><input type="checkbox" id="rmSeg"> Segment OT devices into a dedicated VLAN <span style="color:var(--faint)">(cost 8)</span></label>
+      <label class="toggle"><input type="checkbox" id="rmCreds"> Rotate all default credentials <span style="color:var(--faint)">(cost 2)</span></label>
+      <label class="toggle"><input type="checkbox" id="rmPatch"> Patch KEV / critical CVEs <span style="color:var(--faint)">(cost 5)</span></label>
+      <label class="toggle"><input type="checkbox" id="rmFw"> Update firmware to current <span style="color:var(--faint)">(cost 4)</span></label>
+      <p class="hint">Changes flow through every panel on the page (graph, BRS, paths, scores).</p>
+    </div>
+    <div class="card">
+      <h3>Predicted impact</h3>
+      <div class="kpi"><span>Mean BRS — baseline</span><span class="v" id="simBase">—</span></div>
+      <div class="kpi"><span>Mean BRS — simulated</span><span class="v" id="simNew">—</span></div>
+      <div class="kpi"><span>ΔBRS (network)</span><span class="v" id="simDelta">—</span></div>
+      <div class="kpi"><span>Total cost</span><span class="v" id="simCost">—</span></div>
+      <div class="kpi"><span>Efficiency (Δ / cost)</span><span class="v" id="simEff">—</span></div>
+      <p class="hint" id="simNote"></p>
+    </div>
+  </div>
+  <p class="fig">Figure 4.14–4.15: What-if pipeline + remediation efficiency. The highest-yield action is not always the most expensive — credential rotation is cheap and often moves the needle most.</p>
+</section>
+
+<!-- MITRE -->
+<section id="mitre">
+  <div class="sec-h"><span class="sec-n">4.8</span><h2>MITRE ATT&amp;CK ICS mapping</h2></div>
+  <p class="sec-sub">A CVE says what is broken; ATT&amp;CK says how an adversary uses it. Findings map to techniques three ways — finding-type (conf 0.8–1.0), CWE-based (0.7), device-type (0.5) — and aggregate into tactic coverage.</p>
+  <div class="grid g2">
+    <div class="card">
+      <h3>Technique mappings</h3>
+      <table id="mitreTable"><thead><tr><th>device</th><th>technique</th><th>tactic</th><th>via</th><th>conf</th></tr></thead><tbody></tbody></table>
+    </div>
+    <div class="card">
+      <h3>Tactic coverage <span style="color:var(--faint)">· Table 4.10</span></h3>
+      <div id="tacticCov"></div>
+      <p class="hint">Coverage spanning Initial Access → Lateral Movement → Impair Process Control → Impact is the classic ICS kill chain; gaps tell you where this network is <em>not</em> currently exposed.</p>
+    </div>
+  </div>
+  <p class="fig">Figure 4.16: Mapping strategies and their confidence. Finding-type mappings rest on direct observation; device-type mappings are inferred.</p>
+</section>
+
+<!-- STIX -->
+<section id="stix">
+  <div class="sec-h"><span class="sec-n">4.9</span><h2>STIX 2.1 export</h2></div>
+  <p class="sec-sub">Package the scan as a standards-compliant STIX 2.1 bundle — identity, observed-data, vulnerability, attack-pattern and relationship objects, plus a report — ready for an ISAC, a SIEM, or CRA / NIST CSF evidence.</p>
+  <div class="card">
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+      <button class="btn go" id="stixBtn">▸ generate bundle</button>
+      <button class="btn" id="stixDl" disabled>⬇ download .json</button>
+      <span class="hint" id="stixMeta"></span>
+    </div>
+    <pre class="out" id="stixOut" style="margin-top:12px">// bundle preview will appear here</pre>
+  </div>
+  <p class="fig">Figure 4.17: STIX 2.1 bundle structure — identities, collected data, vulnerabilities, attack patterns, relationships, and a report object as one shareable artifact.</p>
+</section>
+
+<!-- HYDRA -->
+<section id="hydra">
+  <div class="sec-h"><span class="sec-n">4.10</span><h2>Beyond Chapter 4 — HYDRA cross-phase score + GNN</h2></div>
+  <p class="sec-sub">This is the "and more." HYDRA extends six factors to eight by pulling in <b>Q</b> (quantum exposure, Ch.7) and <b>D</b> (deception intelligence, Ch.10), then optionally blends a topology-aware GNN estimate (70% GNN / 30% rule) so structurally similar devices get similar scores.</p>
+  <div class="grid g2">
+    <div class="card">
+      <h3>Cross-phase inputs — <span class="val" id="hydraDev">—</span></h3>
+      <label class="ctl">Q · Quantum vulnerability (RSA/ECC exposure): <span class="val" id="qVal">0.0</span></label>
+      <input type="range" id="qRange" min="0" max="10" step="0.5" value="0">
+      <label class="ctl">D · Deception intelligence (honeypot interactions nearby): <span class="val" id="dVal">0.0</span></label>
+      <input type="range" id="dRange" min="0" max="10" step="0.5" value="0">
+      <label class="toggle"><input type="checkbox" id="gnnTog"> Blend GNN-augmented scoring (70/30)</label>
+      <p class="hint mono">BRS_HYDRA = .18V+.18E+.15R+.14P+.05S+.05Q+.05D − .20C</p>
+    </div>
+    <div class="card">
+      <h3>HYDRA score</h3>
+      <div class="kpi"><span>Rule-based BRS</span><span class="v" id="hRule">—</span></div>
+      <div class="kpi"><span>+ Q / D streams</span><span class="v" id="hQD">—</span></div>
+      <div class="kpi"><span>GNN-blended</span><span class="v" id="hGnn">—</span></div>
+      <div class="kpi"><span>BRS_HYDRA</span><span class="v" id="hFinal" style="font-size:18px">—</span></div>
+      <p class="hint">HYDRA normalizes streams and applies a 70/30 exponential moving average against history, so the score evolves across scans rather than resetting.</p>
+    </div>
+  </div>
+  <p class="fig">Figure 4.18–4.20: HYDRA formula, EMA blending, and the GAT-based GNN architecture that learns from five heterogeneous edge types.</p>
+</section>
+
+<!-- SEG / BLAST -->
+<section id="segblast">
+  <div class="sec-h"><span class="sec-n">4.11–4.12</span><h2>Segmentation score &amp; blast radius</h2></div>
+  <div class="grid g2">
+    <div class="card">
+      <h3>Network segmentation score</h3>
+      <div class="brs-big" id="segScore" style="font-size:38px">—</div>
+      <div class="brs-band" id="segBand"></div>
+      <p class="hint">10·(1 − cross-subnet device-edge ratio). Low score → prioritise segmentation projects over per-device patching. Toggle "Segment OT devices" above to watch it climb.</p>
+    </div>
+    <div class="card">
+      <h3>Blast radius <span style="color:var(--faint)">· descendants()</span></h3>
+      <label class="ctl">If this device is compromised…</label>
+      <select id="blastDev"></select>
+      <div class="brs-big" id="blastN" style="font-size:38px">—</div>
+      <div class="brs-band">devices reachable downstream</div>
+      <p class="hint" id="blastList"></p>
+    </div>
+  </div>
+  <p class="fig">Figure 4.21–4.22: Compromising a high-connectivity gateway exposes far more of the network than an isolated sensor — blast radius highlighted in orange on the graph.</p>
+</section>
+
+<!-- TIMELINE -->
+<section id="timeline">
+  <div class="sec-h"><span class="sec-n">4.13</span><h2>Risk timeline &amp; trend forecast</h2></div>
+  <p class="sec-sub">Given a device's current BRS, HYDRA projects forward with logistic growth — slow, then accelerating as unpatched vulns age, then saturating. A "patching window" is flagged when projected BRS crosses the high band within 90 days.</p>
+  <div class="card">
+    <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:8px">
+      <label class="ctl" style="margin:0">Device</label>
+      <select id="tlDev"></select>
+    </div>
+    <svg id="tlSvg" viewBox="0 0 720 240" style="width:100%;height:240px"></svg>
+  </div>
+  <p class="fig">Figure 4.19: Bounded logistic forecast over 365 days. The dashed line is the High (7.0) threshold; the marker is the projected crossing.</p>
+</section>
+
+<!-- SAFETY -->
+<section id="safety">
+  <div class="sec-h"><span class="sec-n">4.16</span><h2>Safety posture &amp; rules of engagement</h2></div>
+  <div class="roe">
+    <p><b>ROE — Rules of Engagement.</b> Active analysis permitted on <span class="mono">172.30.0.0/24</span> except <span class="mono">172.30.0.40</span> (Alaris infusion pump — policy-blocked). The pump appears in the graph and risk model as <span class="pill roe">ROE-blocked</span>: it is <em>scored</em> for context but never <em>probed</em>, and any path that would require touching it is reported as <span class="mono">method.not_run</span>, not <span class="mono">method.negative</span>.</p>
+    <p style="margin-bottom:0">Attack-graph analytics is read-only by construction — it reasons over already-collected scan data. The destructive surface (what-if simulation) operates on a graph <em>clone</em> and never mutates the live model, mirroring the plan/approve/execute safety gate that Chapter 12 formalises.</p>
+  </div>
+  <div class="stat-row" style="margin-top:16px">
+    <div class="stat"><div class="k" id="safeScored">—</div><div class="l">devices scored</div></div>
+    <div class="stat"><div class="k" id="safeBlocked">1</div><div class="l">ROE-blocked (not probed)</div></div>
+    <div class="stat"><div class="k mono" style="color:var(--violet)">clone</div><div class="l">simulation isolation</div></div>
+    <div class="stat"><div class="k mono" style="color:var(--teal)">read-only</div><div class="l">graph analytics mode</div></div>
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <p>© 2026 Rayve Malhotra · <a href="https://rayvelabs.com/">RayveLabs</a> · Demonstration only. Synthetic network, real CVE / MITRE ATT&amp;CK data.</p>
+    <p>Source material: SEAS-8414 Phase 4, Dr. Mallarapu, GWU · course material © Dr. Mallarapu / SEAS-8414 · <a href="https://8414.bwater.io">8414.bwater.io ↗</a></p>
+    <p style="color:var(--faint)">existence ≠ identity · a CVE is what; the attack graph is how; BRS is how much it matters.</p>
+  </div>
+</footer>
+
+<script>
+"use strict";
+/* ============================================================
+   SEAS-8414 Lab 4 — Attack Graph Analytics & Risk Scoring
+   All computation client-side. No accounts, no upload.
+   ============================================================ */
+
+// ---- Physical-consequence lookup (Table, §4.4.3) ----
+const P_LOOKUP = {plc:10, scada:10, rtu:10, fire:9, elevator:9, medical:9, hvac:8, access:8, ups:7, pdu:7, camera:6, nvr:6, smart:4, it:0};
+
+// ---- Teaching network (continues Lab 3: 172.30.0.0/24) ----
+// baseline = immutable scan values; live = working copy mutated by what-if
+function baseDevices(){return [
+  {id:"gw",  ip:"172.30.0.1",  name:"OT gateway / router", type:"it",      ports:["22","80","443"], cves:[], creds:false, fw:true,  seg:false, sbom:0, entry:true,  process:null, roe:false},
+  {id:"cam", ip:"172.30.0.10", name:"Hikvision camera",    type:"camera",  ports:["80","554","8000"], cves:[{id:"CVE-2021-36260",cvss:9.8,kev:true},{id:"CVE-2017-7921",cvss:8.8,kev:false}], creds:true, fw:false, seg:false, sbom:1, entry:true, process:null, roe:false},
+  {id:"nvr", ip:"172.30.0.30", name:"Hikvision NVR",       type:"nvr",     ports:["80","554"], cves:[{id:"CVE-2017-7921",cvss:8.8,kev:false}], creds:true, fw:false, seg:false, sbom:1, entry:false, process:null, roe:false},
+  {id:"plc", ip:"172.30.0.20", name:"PLC (Modbus)",        type:"plc",     ports:["502"], cves:[{id:"CVE-2022-31814",cvss:7.5,kev:false}], creds:false, fw:false, seg:false, sbom:2, entry:false, process:"HVAC", roe:false},
+  {id:"hmi", ip:"172.30.0.25", name:"SCADA / HMI station",  type:"scada",   ports:["80","3389","102"], cves:[{id:"CVE-2021-22779",cvss:8.1,kev:false}], creds:true, fw:false, seg:false, sbom:1, entry:false, process:"HVAC", roe:false},
+  {id:"eng", ip:"172.30.0.5",  name:"Engineering WS",       type:"it",      ports:["445","3389"], cves:[{id:"CVE-2020-1472",cvss:10.0,kev:true}], creds:true, fw:false, seg:false, sbom:0, entry:false, process:null, roe:false},
+  {id:"pump",ip:"172.30.0.40", name:"Alaris infusion pump", type:"medical", ports:["80"], cves:[{id:"CVE-2021-33886",cvss:7.5,kev:false}], creds:false, fw:false, seg:false, sbom:1, entry:false, process:"MED", roe:true},
+  {id:"amb", ip:"172.30.0.50", name:"Ambiguous host",      type:"it",      ports:["80","8080"], cves:[], creds:false, fw:true, seg:false, sbom:0, entry:false, process:null, roe:false},
+];}
+
+let LIVE = baseDevices();
+const byId = id => LIVE.find(d=>d.id===id);
+
+// ---- Edge builder (§4.2.3) ----
+const SUBNET = "subnet";
+function buildEdges(devs){
+  const E = []; // {a,b,type,w,dir? }
+  const add=(a,b,type,w)=>E.push({a,b,type,w});
+  // entry -> can_reach devices (1.0), via subnet adjacency
+  devs.forEach(d=>{
+    if(!d.seg) add(SUBNET,d.id,"same_subnet",0.5);
+  });
+  // entry points anchor the subnet (can_reach 1.0)
+  devs.filter(d=>d.entry).forEach(e=> add(e.id,SUBNET,"can_reach",1.0));
+  // shares_credentials between devices with default creds (cred reuse) 0.1
+  const credDevs = devs.filter(d=>d.creds && !d.seg);
+  for(let i=0;i<credDevs.length;i++)for(let j=i+1;j<credDevs.length;j++) add(credDevs[i].id,credDevs[j].id,"shares_credentials",0.1);
+  // same_firmware: Hikvision family
+  const fwFam=[["cam","nvr"]];
+  fwFam.forEach(([a,b])=>{const A=byId(a),B=byId(b); if(A&&B&&!A.seg&&!B.seg&&!A.fw&&!B.fw) add(a,b,"same_firmware",0.4);});
+  // communicates_with: hmi<->plc, eng<->hmi
+  [["hmi","plc"],["eng","hmi"],["gw","cam"]].forEach(([a,b])=>{const A=byId(a),B=byId(b); if(A&&B&&!A.seg&&!B.seg) add(a,b,"communicates_with",0.7);});
+  // controls_process
+  devs.filter(d=>d.process&&d.process!=="MED").forEach(d=> add(d.id,"proc_"+d.process,"controls_process",0.8));
+  byId("pump") && add("pump","proc_MED","controls_process",0.8);
+  return E;
+}
+
+// Undirected adjacency for shortest path (attacker can traverse either way)
+function adjacency(edges){
+  const g={};
+  const push=(a,b,w)=>{(g[a]=g[a]||[]).push({n:b,w});};
+  edges.forEach(e=>{ if(e.type==="controls_process") {push(e.a,e.b,e.w); return;} push(e.a,e.b,e.w); push(e.b,e.a,e.w); });
+  return g;
+}
+
+// Dijkstra
+function dijkstra(adj,src){
+  const dist={},prev={},seen={};
+  Object.keys(adj).forEach(k=>dist[k]=Infinity);
+  dist[src]=0; const pq=[[0,src]];
+  while(pq.length){
+    pq.sort((a,b)=>a[0]-b[0]); const [d,u]=pq.shift();
+    if(seen[u])continue; seen[u]=true;
+    (adj[u]||[]).forEach(({n,w})=>{ if(d+w<(dist[n]??Infinity)){dist[n]=d+w;prev[n]=u;pq.push([dist[n],n]);}});
+  }
+  return {dist,prev};
+}
+function pathFrom(prev,src,dst){const p=[];let u=dst;while(u!==undefined&&u!==null){p.unshift(u);if(u===src)break;u=prev[u];}return p[0]===src?p:[];}
+
+// shortest weighted path length from ANY entry point to a device
+function reachLength(devs,id){
+  const edges=buildEdges(devs); const adj=adjacency(edges);
+  const entries=devs.filter(d=>d.entry).map(d=>d.id);
+  let best=Infinity;
+  entries.forEach(src=>{ if(src===id){best=Math.min(best,0.0);return;} const {dist}=dijkstra(adj,src); if(dist[id]<best)best=dist[id]; });
+  return best;
+}
+
+// ---- BRS factor scoring (§4.4.3) ----
+function factorV(d){ if(!d.cves.length)return 0; const mx=Math.max(...d.cves.map(c=>c.cvss)); const vf=Math.min(1+d.cves.length*0.05,2); return Math.min(10, mx*vf/2 + mx/2); }
+function factorE(d){ if(d.creds)return 10; if(d.cves.some(c=>c.kev))return 9; const mx=d.cves.length?Math.max(...d.cves.map(c=>c.cvss)):0; if(mx>=9)return 8; if(mx>=7)return 6; if(mx>0)return 4; return 0; }
+function factorR(d,devs){ if(d.entry)return 9.2; const L=reachLength(devs,d.id); if(!isFinite(L))return 0; return Math.max(2.0, 10.0 - L*0.8); }
+function factorP(d){ return P_LOOKUP[d.type] ?? 0; }
+function factorS(d){ return Math.min(10, d.sbom*2); }
+function factorC(d){ let c=0; if(d.seg)c+=3; if(d.fw)c+=2; if(!d.creds)c+=1; if(d.ports.length<=2)c+=1; return Math.min(10,c); }
+
+function brsFactors(d,devs){ return {V:factorV(d),E:factorE(d),R:factorR(d,devs),P:factorP(d),S:factorS(d),C:factorC(d)}; }
+function brsScore(f){ const s=0.20*f.V+0.20*f.E+0.20*f.R+0.15*f.P+0.05*f.S-0.20*f.C; return Math.max(0,Math.min(10,s)); }
+function band(s){ if(s>=9)return["Critical","crit"]; if(s>=7)return["High","high"]; if(s>=4)return["Medium","med"]; if(s>=2)return["Low","low"]; return["Info","info"]; }
+const bandColor={crit:'var(--crit)',high:'var(--high)',med:'var(--med)',low:'var(--low)',info:'var(--info)'};
+
+// ============================================================
+//  RENDER
+// ============================================================
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+let SEL = "cam"; // selected device id
+
+// node positions for the graph (manual layout)
+const POS={
+  gw:{x:90,y:60}, SUBNET:{x:280,y:120},
+  cam:{x:120,y:200}, nvr:{x:120,y:300},
+  eng:{x:300,y:280}, hmi:{x:430,y:230}, plc:{x:470,y:340}, pump:{x:300,y:390}, amb:{x:460,y:90},
+  proc_HVAC:{x:560,y:300}, proc_MED:{x:200,y:430}
+};
+function nodeColor(id){
+  if(id===SUBNET) return "#2a3542";
+  if(id.startsWith("proc_")) return "var(--teal)";
+  const d=byId(id); if(!d)return "#6f7e8c";
+  if(d.roe)return "var(--violet)";
+  if(["plc","scada","rtu"].includes(d.type))return "var(--crit)";
+  if(["camera","nvr"].includes(d.type))return "var(--med)";
+  if(d.entry)return "var(--blue)";
+  return "#6f7e8c";
+}
+
+let curPath=[], curBlast=new Set();
+function renderGraph(){
+  const svg=$("#graphSvg"); const devs=LIVE; const edges=buildEdges(devs);
+  let h="";
+  // edges
+  edges.forEach(e=>{
+    const A=POS[e.a],B=POS[e.b]; if(!A||!B)return;
+    const inPath = curPath.length>1 && curPath.some((n,i)=> i<curPath.length-1 && ((curPath[i]===e.a&&curPath[i+1]===e.b)||(curPath[i]===e.b&&curPath[i+1]===e.a)));
+    const inBlast = curBlast.has(e.a)&&curBlast.has(e.b);
+    const cls = inPath?"edge path":(inBlast?"edge blast":"edge");
+    const col = inPath?"var(--crit)":(inBlast?"var(--high)":"#33414f");
+    h+=`<line class="${cls}" x1="${A.x}" y1="${A.y}" x2="${B.x}" y2="${B.y}" stroke="${col}"/>`;
+    const mx=(A.x+B.x)/2,my=(A.y+B.y)/2;
+    h+=`<text class="edge-w" x="${mx}" y="${my-2}">${e.w}</text>`;
+  });
+  // nodes
+  Object.keys(POS).forEach(id=>{
+    const p=POS[id]; const col=nodeColor(id); const sel=id===SEL?"sel":"";
+    let label=id, shape="";
+    if(id===SUBNET){label="/24"; shape=`<rect x="${p.x-26}" y="${p.y-12}" width="52" height="24" rx="5" fill="#10161e" stroke="${col}"/>`;}
+    else if(id.startsWith("proc_")){label=id.replace("proc_",""); shape=`<circle cx="${p.x}" cy="${p.y}" r="13" fill="#0c1620" stroke="${col}"/>`;}
+    else { const d=byId(id); label=d?d.ip.split(".").slice(-1)[0]:id; const r=d&&d.entry?15:12; shape=`<circle cx="${p.x}" cy="${p.y}" r="${r}" fill="#0c141d" stroke="${col}" stroke-width="1.6"/>`;}
+    const name = id===SUBNET?"subnet 172.30.0.0/24":(id.startsWith("proc_")?("process: "+label):(byId(id)?byId(id).name:id));
+    h+=`<g class="node ${sel}" data-id="${id}" data-name="${name}">${shape}<text x="${p.x}" y="${p.y+ (id.startsWith('proc_')?26:( byId(id)&&byId(id).entry?30:26))}" text-anchor="middle">${label}</text></g>`;
+  });
+  svg.innerHTML=h;
+  svg.querySelectorAll(".node").forEach(n=> n.addEventListener("click",()=>{
+    const id=n.getAttribute("data-id");
+    if(id===SUBNET||id.startsWith("proc_")){ $("#selName").textContent=n.getAttribute("data-name"); return; }
+    SEL=id; selectDevice(id);
+  }));
+}
+
+function selectDevice(id){
+  SEL=id;
+  $("#selName").textContent = byId(id).name+" ("+byId(id).ip+")";
+  $("#brsDevice").value=id; $("#blastDev").value=id; $("#tlDev").value=id; $("#hydraDev").textContent=byId(id).ip;
+  renderGraph(); renderBRS(); renderSHAP(); renderHydra(); renderBlast(); renderTimeline();
+}
+
+// ---- option lists ----
+function fillSelectors(){
+  const opts = LIVE.map(d=>`<option value="${d.id}">${d.ip} · ${d.name}</option>`).join("");
+  ["#brsDevice","#blastDev","#tlDev"].forEach(s=>$(s).innerHTML=opts);
+  $("#pathDst").innerHTML = LIVE.filter(d=>!d.entry).map(d=>`<option value="${d.id}">${d.ip} · ${d.name}</option>`).join("");
+  $("#pathSrc").innerHTML = LIVE.filter(d=>d.entry).map(d=>`<option value="${d.id}">${d.ip} · ${d.name}</option>`).join("");
+  $("#pathDst").value="plc"; $("#pathSrc").value="gw";
+  $("#brsDevice").value=SEL; $("#blastDev").value=SEL; $("#tlDev").value=SEL;
+}
+
+// ---- overview stats ----
+function renderOverview(){
+  const devs=LIVE; const edges=buildEdges(devs);
+  const scored=devs.length;
+  const scores=devs.map(d=>brsScore(brsFactors(d,devs)));
+  const crit=scores.filter(s=>s>=7).length;
+  const nodes=Object.keys(POS).length;
+  $("#overviewStats").innerHTML=`
+    <div class="stat"><div class="k">${nodes}</div><div class="l">graph nodes</div></div>
+    <div class="stat"><div class="k">${edges.length}</div><div class="l">edges</div></div>
+    <div class="stat"><div class="k">${scored}</div><div class="l">devices scored</div></div>
+    <div class="stat"><div class="k" style="color:var(--high)">${crit}</div><div class="l">High/Critical BRS</div></div>
+    <div class="stat"><div class="k">${devs.reduce((a,d)=>a+d.cves.length,0)}</div><div class="l">CVEs correlated</div></div>`;
+  $("#safeScored").textContent=scored;
+}
+
+// ---- BRS panel ----
+let SLID={}; // current slider factor overrides for SEL
+function renderBRSsliders(){
+  const d=byId(SEL); const f=brsFactors(d,LIVE);
+  SLID=Object.assign({},f);
+  const rows=[["V","Vulnerability surface"],["E","Exploitability"],["R","Reachability"],["P","Physical consequence"],["S","Supply chain"],["C","Compensating controls"]];
+  $("#brsSliders").innerHTML=rows.map(([k,lab])=>`
+    <label class="ctl">${lab} (${k}): <span class="val" id="sl_${k}">${f[k].toFixed(1)}</span></label>
+    <input type="range" id="rng_${k}" min="0" max="10" step="0.1" value="${f[k]}">`).join("");
+  rows.forEach(([k])=>{ $("#rng_"+k).addEventListener("input",e=>{ SLID[k]=parseFloat(e.target.value); $("#sl_"+k).textContent=SLID[k].toFixed(1); paintBRS(); }); });
+}
+function paintBRS(){
+  const f=SLID; const s=brsScore(f); const [bn,bc]=band(s);
+  $("#brsScore").textContent=s.toFixed(2); $("#brsScore").style.color=bandColor[bc];
+  $("#brsBand").innerHTML=`<span class="pill ${bc}">${bn}</span>`;
+  $("#kV").textContent=f.V.toFixed(1);$("#kE").textContent=f.E.toFixed(1);$("#kR").textContent=f.R.toFixed(1);
+  $("#kP").textContent=f.P.toFixed(1);$("#kS").textContent=f.S.toFixed(1);$("#kC").textContent=f.C.toFixed(1);
+  // explanation
+  const contrib={V:0.2*f.V,E:0.2*f.E,R:0.2*f.R,P:0.15*f.P,C:0.2*f.C};
+  let lead=Object.entries({V:contrib.V,E:contrib.E,R:contrib.R,P:contrib.P}).sort((a,b)=>b[1]-a[1])[0][0];
+  const map={V:"vulnerability surface",E:"exploitability",R:"reachability",P:"physical consequence"};
+  $("#brsExplain").textContent = f.C<2 ? `Dominant driver: ${map[lead]}. Compensating controls are near zero — segmentation/credential hygiene is the highest-leverage move here.` : `Dominant driver: ${map[lead]}. Controls already subtract ${(0.2*f.C).toFixed(2)} from the score.`;
+  renderSHAP();
+}
+function renderBRS(){ renderBRSsliders(); $("#brsDevice").value=SEL; paintBRS(); }
+
+// ---- SHAP waterfall ----
+function renderSHAP(){
+  const f=SLID&&Object.keys(SLID).length?SLID:brsFactors(byId(SEL),LIVE);
+  $("#shapDev").textContent=byId(SEL).name;
+  const parts=[
+    ["Vulnerability (V)",0.2*f.V,"var(--high)"],
+    ["Exploitability (E)",0.2*f.E,"var(--crit)"],
+    ["Reachability (R)",0.2*f.R,"var(--med)"],
+    ["Physical (P)",0.15*f.P,"var(--violet)"],
+    ["Supply chain (S)",0.05*f.S,"var(--blue)"],
+    ["Controls (C)",-0.2*f.C,"var(--low)"],
+  ];
+  const maxAbs=Math.max(...parts.map(p=>Math.abs(p[1])),0.1);
+  let h="";
+  parts.forEach(([lab,amt,col])=>{
+    const wpct=Math.max(2,Math.abs(amt)/maxAbs*100);
+    h+=`<div class="wf-row"><span class="lab">${lab}</span>
+      <div style="display:flex;justify-content:${amt<0?'flex-end':'flex-start'}">
+        <div class="bar" style="width:${wpct}%;background:${col};color:#08110e">${amt>=0?'+':''}${amt.toFixed(2)}</div></div>
+      <span class="amt" style="color:${amt<0?'var(--low)':'var(--ink)'}">${amt>=0?'+':''}${amt.toFixed(2)}</span></div>`;
+  });
+  const s=brsScore(f);
+  h+=`<div class="wf-row" style="border-top:1px solid var(--border);padding-top:6px;margin-top:6px"><span class="lab" style="color:var(--ink)">= BRS</span><div></div><span class="amt" style="color:${bandColor[band(s)[1]]};font-weight:700">${s.toFixed(2)}</span></div>`;
+  $("#waterfall").innerHTML=h;
+  const rPart=0.2*f.R, cPart=0.2*f.C, vPart=0.2*f.V, ePart=0.2*f.E;
+  $("#shapAdvice").textContent = (rPart>1.5 && cPart<1) ? "→ Reachability is high and controls are absent: add network segmentation — it cuts R and adds to C simultaneously." : ((vPart+ePart)>2.5 ? "→ V+E dominate: patch the critical/KEV CVE; it collapses two factors at once." : "→ Mixed profile — use the what-if simulator to compare segmentation vs. patching by efficiency.");
+}
+
+// ---- threat intel ----
+function renderIntel(){
+  const rows=[];
+  LIVE.forEach(d=> d.cves.forEach(c=>{
+    let match = c.kev? "CISA KEV ✓":"—"; let eff="";
+    if(d.creds) eff="E→10.0 (default creds)"; else if(c.kev) eff="E→9.0 (confirmed exploited)"; else eff="—";
+    rows.push(`<tr><td class="mono">${d.ip}</td><td class="mono">${c.id}</td><td class="mono">${c.cvss}</td><td>${c.kev?'<span class="pill crit">'+match+'</span>':'<span class="pill">none</span>'}</td><td class="mono">${eff}</td></tr>`);
+  }));
+  $("#intelTable").querySelector("tbody").innerHTML=rows.join("");
+}
+
+// ---- paths (Yen's) ----
+function yenKShortest(adj,src,dst,K){
+  const {dist:d0,prev:p0}=dijkstra(adj,src); const first=pathFrom(p0,src,dst);
+  if(!first.length) return [];
+  const cost=p=>{let c=0;for(let i=0;i<p.length-1;i++){const e=(adj[p[i]]||[]).find(x=>x.n===p[i+1]); c+= e?e.w:Infinity;} return c;};
+  const A=[{path:first,cost:cost(first)}]; const B=[];
+  for(let k=1;k<K;k++){
+    const prev=A[k-1].path;
+    for(let i=0;i<prev.length-1;i++){
+      const spur=prev[i]; const root=prev.slice(0,i+1);
+      const removed=[];
+      A.forEach(p=>{ if(p.path.length>i && JSON.stringify(p.path.slice(0,i+1))===JSON.stringify(root)){ const u=p.path[i],v=p.path[i+1]; const arr=adj[u]; const idx=arr?arr.findIndex(x=>x.n===v):-1; if(idx>=0){removed.push([u,arr[idx]]); arr.splice(idx,1);} }});
+      const sub=JSON.parse(JSON.stringify(adj));
+      root.slice(0,-1).forEach(n=>{ delete sub[n]; Object.keys(sub).forEach(k2=> sub[k2]=sub[k2].filter(x=>x.n!==n)); });
+      const {prev:sp}=dijkstra(sub,spur); const spurPath=pathFrom(sp,spur,dst);
+      removed.forEach(([u,e])=>adj[u].push(e));
+      if(spurPath.length){ const total=root.slice(0,-1).concat(spurPath); if(!A.some(p=>JSON.stringify(p.path)===JSON.stringify(total))&&!B.some(p=>JSON.stringify(p.path)===JSON.stringify(total))) B.push({path:total,cost:cost(total)}); }
+    }
+    if(!B.length)break; B.sort((a,b)=>a.cost-b.cost); A.push(B.shift());
+  }
+  return A;
+}
+function runPaths(){
+  const src=$("#pathSrc").value,dst=$("#pathDst").value,K=parseInt($("#kRange").value);
+  const adj=adjacency(buildEdges(LIVE));
+  if(byId(dst).seg){ $("#pathTable").querySelector("tbody").innerHTML=`<tr><td colspan="5" style="color:var(--low)">Target is segmented onto its own VLAN — no path from entry point (R=0). That is the point of segmentation.</td></tr>`; curPath=[]; renderGraph(); return; }
+  const paths=yenKShortest(adj,src,dst,K);
+  if(!paths.length){ $("#pathTable").querySelector("tbody").innerHTML=`<tr><td colspan="5">No path found.</td></tr>`; curPath=[]; renderGraph(); return;}
+  curPath=paths[0].path;
+  const nm=id=> id===SUBNET?"/24":(id.startsWith("proc_")?id.replace("proc_",""):byId(id).ip.split(".").slice(-1)[0]);
+  $("#pathTable").querySelector("tbody").innerHTML = paths.map((p,i)=>{
+    const prob=(1/(1+p.cost)).toFixed(2); const t=Math.round(p.cost*45+10);
+    return `<tr class="${i===0?'active':''}"><td class="mono">${i+1}</td><td class="mono">${p.path.map(nm).join(" → ")}</td><td class="mono">${p.cost.toFixed(2)}</td><td class="mono">${prob}</td><td class="mono">${t}m</td></tr>`;
+  }).join("");
+  renderGraph();
+}
+
+// ---- what-if simulation ----
+function applySim(){
+  LIVE = baseDevices();
+  const seg=$("#rmSeg").checked, creds=$("#rmCreds").checked, patch=$("#rmPatch").checked, fw=$("#rmFw").checked;
+  LIVE.forEach(d=>{
+    if(seg && (["plc","scada","rtu"].includes(d.type)||d.process)) d.seg=true;
+    if(creds) d.creds=false;
+    if(patch) d.cves=d.cves.filter(c=>!(c.kev||c.cvss>=9));
+    if(fw) d.fw=true;
+  });
+  const baseMean = mean(baseDevices().map(d=>brsScore(brsFactors(d,baseDevices()))));
+  const newMean = mean(LIVE.map(d=>brsScore(brsFactors(d,LIVE))));
+  const cost=(seg?8:0)+(creds?2:0)+(patch?5:0)+(fw?4:0);
+  const delta=baseMean-newMean;
+  $("#simBase").textContent=baseMean.toFixed(2);
+  $("#simNew").textContent=newMean.toFixed(2);
+  $("#simDelta").innerHTML=`<span class="${delta>=0?'delta-pos':'delta-neg'}">${delta>=0?'−':'+'}${Math.abs(delta).toFixed(2)}</span>`;
+  $("#simCost").textContent=cost||"—";
+  $("#simEff").textContent= cost? (delta/cost).toFixed(3)+" / unit" : "—";
+  $("#simNote").textContent = cost? (creds&&!seg&&!patch&&!fw? "Credential rotation alone is the cheapest high-yield action — note the efficiency number." : "Compare efficiency across combinations; the most expensive bundle is rarely the most efficient.") : "Toggle actions to simulate.";
+  // refresh everything
+  curPath=[]; curBlast.clear();
+  fillSelectors(); if(!byId(SEL))SEL="cam"; selectDeviceSilent(SEL);
+  renderOverview(); renderGraph(); renderBRS(); renderIntel(); renderMitre(); renderSeg(); renderBlast(); renderTimeline(); renderHydra();
+}
+function selectDeviceSilent(id){ SEL=id; $("#selName").textContent=byId(id).name+" ("+byId(id).ip+")"; }
+const mean=a=>a.reduce((x,y)=>x+y,0)/a.length;
+
+// ---- MITRE ATT&CK ICS ----
+const TACTICS=["initial_access","execution","persistence","evasion","discovery","lateral_movement","collection","command_and_control","inhibit_response","impair_process","impact"];
+const TACTIC_LABEL={initial_access:"Initial Access",execution:"Execution",persistence:"Persistence",evasion:"Evasion",discovery:"Discovery",lateral_movement:"Lateral Mvmt",collection:"Collection",command_and_control:"C2",inhibit_response:"Inhibit Resp",impair_process:"Impair Proc",impact:"Impact"};
+function mapDevice(d){
+  const m=[];
+  if(d.creds) m.push({t:"T0812",name:"Default Credentials",tac:"lateral_movement",via:"finding",conf:1.0});
+  d.cves.forEach(c=>{
+    if(c.cvss>=9||c.kev) m.push({t:"T0819",name:"Exploit Public-Facing App",tac:"initial_access",via:"CWE",conf:0.7});
+  });
+  if(["plc","scada","rtu"].includes(d.type)){ m.push({t:"T0836",name:"Modify Parameter",tac:"impair_process",via:"device",conf:0.5}); m.push({t:"T0879",name:"Damage to Property",tac:"impact",via:"device",conf:0.5}); }
+  if(["camera","nvr"].includes(d.type)){ m.push({t:"T0801",name:"Monitor Process State",tac:"collection",via:"device",conf:0.5}); }
+  if(d.ports.includes("3389")||d.ports.includes("445")) m.push({t:"T0859",name:"Valid Accounts",tac:"lateral_movement",via:"finding",conf:0.8});
+  if(d.process) m.push({t:"T0804",name:"Block Reporting Message",tac:"inhibit_response",via:"device",conf:0.5});
+  return m;
+}
+function renderMitre(){
+  const rows=[]; const tacticHits={};
+  LIVE.filter(d=>!d.roe).forEach(d=> mapDevice(d).forEach(m=>{
+    rows.push(`<tr><td class="mono">${d.ip.split('.').slice(-1)[0]}</td><td class="mono">${m.t} ${m.name}</td><td>${TACTIC_LABEL[m.tac]||m.tac}</td><td><span class="pill ${m.via==='finding'?'low':(m.via==='CWE'?'med':'')}">${m.via}</span></td><td class="mono">${m.conf.toFixed(1)}</td></tr>`);
+    tacticHits[m.tac]=(tacticHits[m.tac]||0)+1;
+  }));
+  $("#mitreTable").querySelector("tbody").innerHTML=rows.join("");
+  // tactic coverage matrix
+  const max=Math.max(1,...Object.values(tacticHits));
+  $("#tacticCov").innerHTML=`<div class="matrix">`+TACTICS.map(t=>{
+    const n=tacticHits[t]||0; const intensity=n/max;
+    const col = n? `rgba(57,211,187,${0.15+intensity*0.75})` : "var(--panel2)";
+    return `<div><div class="mc" style="background:${col};border-color:${n?'var(--teal)':'var(--border)'}">${n||""}</div><div class="mcell-label">${TACTIC_LABEL[t]}</div></div>`;
+  }).join("")+`</div>`;
+}
+
+// ---- STIX export ----
+function buildStix(){
+  const now=new Date().toISOString();
+  const uid=()=> "x"+Math.random().toString(16).slice(2,10)+Math.random().toString(16).slice(2,6);
+  const objs=[];
+  const identity={type:"identity",spec_version:"2.1",id:"identity--"+uid(),created:now,modified:now,name:"RayveLabs Breakwater Scanner",identity_class:"system"};
+  objs.push(identity);
+  const techSet=new Set();
+  LIVE.filter(d=>!d.roe).forEach(d=>{
+    objs.push({type:"observed-data",spec_version:"2.1",id:"observed-data--"+uid(),created:now,modified:now,first_observed:now,last_observed:now,number_observed:1,
+      x_breakwater_ip:d.ip,x_breakwater_device_type:d.type,x_breakwater_brs:+brsScore(brsFactors(d,LIVE)).toFixed(2)});
+    d.cves.forEach(c=> objs.push({type:"vulnerability",spec_version:"2.1",id:"vulnerability--"+uid(),created:now,modified:now,name:c.id,
+      external_references:[{source_name:"cve",external_id:c.id},{source_name:"cvss",description:"v3.1 base "+c.cvss}]}));
+    mapDevice(d).forEach(m=>{ if(!techSet.has(m.t)){techSet.add(m.t);
+      objs.push({type:"attack-pattern",spec_version:"2.1",id:"attack-pattern--"+uid(),created:now,modified:now,name:m.name,
+        external_references:[{source_name:"mitre-attack-ics",external_id:m.t,url:"https://attack.mitre.org/techniques/"+m.t}],
+        kill_chain_phases:[{kill_chain_name:"mitre-attack-ics",phase_name:m.tac}]}); }});
+  });
+  const report={type:"report",spec_version:"2.1",id:"report--"+uid(),created:now,modified:now,name:"SEAS-8414 Lab 4 attack-graph scan",
+    report_types:["vulnerability"],published:now,object_refs:objs.map(o=>o.id)};
+  objs.push(report);
+  return {type:"bundle",id:"bundle--"+uid(),objects:objs};
+}
+let lastBundle=null;
+function genStix(){
+  lastBundle=buildStix();
+  const counts=lastBundle.objects.reduce((a,o)=>{a[o.type]=(a[o.type]||0)+1;return a;},{});
+  $("#stixMeta").textContent=`${lastBundle.objects.length} objects · `+Object.entries(counts).map(([k,v])=>`${v} ${k}`).join(", ");
+  $("#stixOut").textContent=JSON.stringify(lastBundle,null,2).slice(0,4000);
+  $("#stixDl").disabled=false;
+}
+function dlStix(){
+  if(!lastBundle)return;
+  const blob=new Blob([JSON.stringify(lastBundle,null,2)],{type:"application/json"});
+  const a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download="seas8414-lab4-stix-bundle.json"; a.click(); URL.revokeObjectURL(a.href);
+}
+
+// ---- HYDRA + GNN ----
+function renderHydra(){
+  const d=byId(SEL); const f=brsFactors(d,LIVE);
+  const Q=parseFloat($("#qRange").value), D=parseFloat($("#dRange").value);
+  $("#qVal").textContent=Q.toFixed(1); $("#dVal").textContent=D.toFixed(1);
+  const rule=brsScore(f);
+  const hydra=Math.max(0,Math.min(10, 0.18*f.V+0.18*f.E+0.15*f.R+0.14*f.P+0.05*f.S+0.05*Q+0.05*D-0.20*f.C));
+  // GNN: blend toward neighbour mean (topology similarity)
+  const edges=buildEdges(LIVE); const nbrs=new Set();
+  edges.forEach(e=>{ if(e.a===d.id&&byId(e.b))nbrs.add(e.b); if(e.b===d.id&&byId(e.a))nbrs.add(e.a); });
+  const nbrScores=[...nbrs].map(id=>brsScore(brsFactors(byId(id),LIVE)));
+  const nbrMean=nbrScores.length?mean(nbrScores):hydra;
+  const gnnEst=0.6*hydra+0.4*nbrMean;
+  const blended=$("#gnnTog").checked? (0.7*gnnEst+0.3*hydra) : hydra;
+  $("#hRule").textContent=rule.toFixed(2);
+  $("#hQD").textContent=`Q ${Q.toFixed(1)} · D ${D.toFixed(1)}`;
+  $("#hGnn").textContent=$("#gnnTog").checked? gnnEst.toFixed(2)+" (nbr mean "+nbrMean.toFixed(2)+")":"off";
+  const [bn,bc]=band(blended);
+  $("#hFinal").innerHTML=`${blended.toFixed(2)} <span class="pill ${bc}">${bn}</span>`;
+}
+
+// ---- segmentation + blast ----
+function renderSeg(){
+  const edges=buildEdges(LIVE).filter(e=>byId(e.a)&&byId(e.b)); // device-device only
+  const total=edges.length||1;
+  const segGroup=id=> byId(id).seg? id : "main";
+  const cross=edges.filter(e=> segGroup(e.a)!==segGroup(e.b)).length;
+  const score=10*(1-cross/total);
+  const [bn,bc]=segBand(score);
+  $("#segScore").textContent=score.toFixed(1); $("#segScore").style.color=bandColor[bc];
+  $("#segBand").innerHTML=`<span class="pill ${bc}">${bn}</span> · ${cross}/${total} cross-segment device edges`;
+}
+function segBand(s){ if(s>=8)return["Strongly segmented","low"]; if(s>=4)return["Partially segmented","med"]; return["Flat / unsegmented","crit"]; }
+
+function descendants(start){
+  const edges=buildEdges(LIVE);
+  const adj={};
+  edges.forEach(e=>{ if(byId(e.a)&&byId(e.b)){ (adj[e.a]=adj[e.a]||[]).push(e.b); (adj[e.b]=adj[e.b]||[]).push(e.a);} });
+  const seen=new Set([start]); const q=[start];
+  while(q.length){ const u=q.shift(); (adj[u]||[]).forEach(v=>{ if(!seen.has(v)){seen.add(v);q.push(v);} }); }
+  seen.delete(start); return seen;
+}
+function renderBlast(){
+  const id=$("#blastDev").value||SEL;
+  const reach=descendants(id);
+  curBlast=new Set([id,...reach]);
+  $("#blastN").textContent=reach.size;
+  $("#blastList").textContent="Reaches: "+[...reach].map(x=>byId(x)?byId(x).ip.split('.').slice(-1)[0]:x).join(", ");
+  renderGraph();
+}
+
+// ---- risk timeline (logistic) ----
+function renderTimeline(){
+  const d=byId($("#tlDev").value||SEL); const f=brsFactors(d,LIVE); const cur=brsScore(f);
+  const svg=$("#tlSvg"); const W=720,H=240,pad=36;
+  const x=t=> pad + (t/365)*(W-pad*2);
+  const y=v=> H-pad - (v/10)*(H-pad*2 - 6);
+  // logistic growth from cur toward 10
+  const k=0.012; const t0= cur>=7? -30 : (cur<2? 220 : (10-cur)*22);
+  const f_t=t=> cur + (10-cur)/(1+Math.exp(-k*(t-t0)));
+  let pts=""; let crossT=null;
+  for(let t=0;t<=365;t+=7){ const v=Math.min(10,f_t(t)); pts+=`${x(t)},${y(v)} `; if(crossT===null&&v>=7) crossT=t; }
+  let h="";
+  // grid + threshold
+  [0,2.5,5,7.5,10].forEach(v=> h+=`<line x1="${pad}" y1="${y(v)}" x2="${W-pad}" y2="${y(v)}" stroke="#1b232d"/><text x="6" y="${y(v)+3}" font-family="var(--mono)" font-size="9" fill="#5b6776">${v}</text>`);
+  h+=`<line x1="${pad}" y1="${y(7)}" x2="${W-pad}" y2="${y(7)}" stroke="var(--high)" stroke-dasharray="4 4" opacity=".7"/><text x="${W-pad-70}" y="${y(7)-4}" font-family="var(--mono)" font-size="9" fill="var(--high)">High = 7.0</text>`;
+  [0,90,180,270,365].forEach(t=> h+=`<text x="${x(t)-6}" y="${H-12}" font-family="var(--mono)" font-size="9" fill="#5b6776">${t}d</text>`);
+  h+=`<polyline points="${pts}" fill="none" stroke="var(--teal)" stroke-width="2"/>`;
+  h+=`<circle cx="${x(0)}" cy="${y(cur)}" r="4" fill="var(--teal)"/><text x="${x(0)+8}" y="${y(cur)-6}" font-family="var(--mono)" font-size="9" fill="var(--ink)">now ${cur.toFixed(1)}</text>`;
+  if(crossT!==null && crossT>0){ h+=`<circle cx="${x(crossT)}" cy="${y(7)}" r="4" fill="var(--high)"/><text x="${x(crossT)-10}" y="${y(7)+16}" font-family="var(--mono)" font-size="9" fill="var(--high)">~${crossT}d</text>`; }
+  const win = crossT!==null && crossT<=90;
+  svg.innerHTML=h+`<text x="${pad}" y="18" font-family="var(--mono)" font-size="11" fill="${win?'var(--high)':'var(--muted)'}">${win?'⚠ patching window: crosses High within 90 days':'projected trajectory (no remediation)'}</text>`;
+}
+
+// ============================================================
+//  WIRE UP
+// ============================================================
+fillSelectors();
+renderOverview(); renderGraph(); renderBRS(); renderIntel(); renderMitre(); renderSeg(); renderBlast(); renderTimeline(); renderHydra();
+runPaths(); applySimDisplayInit();
+
+function applySimDisplayInit(){ $("#simBase").textContent=mean(baseDevices().map(d=>brsScore(brsFactors(d,baseDevices())))).toFixed(2); $("#simNew").textContent="—"; }
+
+$("#brsDevice").addEventListener("change",e=>selectDevice(e.target.value));
+$("#blastDev").addEventListener("change",renderBlast);
+$("#tlDev").addEventListener("change",renderTimeline);
+$("#brsReset").addEventListener("click",()=>{ renderBRSsliders(); paintBRS(); });
+$("#kRange").addEventListener("input",e=>$("#kVal").textContent=e.target.value);
+$("#pathBtn").addEventListener("click",runPaths);
+["#rmSeg","#rmCreds","#rmPatch","#rmFw"].forEach(s=>$(s).addEventListener("change",applySim));
+$("#stixBtn").addEventListener("click",genStix);
+$("#stixDl").addEventListener("click",dlStix);
+["#qRange","#dRange"].forEach(s=>$(s).addEventListener("input",renderHydra));
+$("#gnnTog").addEventListener("change",renderHydra);
+selectDevice("cam");
+</script>
+</body>
+</html>

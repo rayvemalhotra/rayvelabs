@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beyond Twin Authority — Structural Drift &amp; Value-of-Information · RayveLabs</title>
+<meta name="description" content="A RayveLabs research extension to SEAS-8414 Chapter 6: a structural typed graph-edit-distance drift detector that catches the targeted changes KL/JS divergence misses, and a value-of-information authority rule (Act / Resync / Block) that replaces the heuristic Twin Authority Gate.">
+<style>
+  :root{
+    --bg:#07090c;--panel:#0d1117;--panel2:#10161e;--border:#1d2530;--border2:#2a3542;
+    --ink:#e6edf3;--muted:#8b98a5;--faint:#5b6776;
+    --teal:#39d3bb;--blue:#5aa2ff;--violet:#b08cff;--low:#3fb950;--med:#f0b429;--high:#ff8a3d;--crit:#ff5c5c;
+    --mono:"SF Mono",ui-monospace,"JetBrains Mono",Menlo,Consolas,monospace;
+    --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.5;-webkit-font-smoothing:antialiased}
+  a{color:var(--teal);text-decoration:none} a:hover{text-decoration:underline}
+  code,.mono{font-family:var(--mono)}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+  header.top{position:sticky;top:0;z-index:30;background:rgba(7,9,12,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+  .topbar{display:flex;align-items:center;gap:16px;padding:11px 0;flex-wrap:wrap}
+  .brand{font-family:var(--mono);font-size:13px;font-weight:600} .brand .dim{color:var(--faint)}
+  .crumb{font-size:12px;color:var(--muted)} .crumb b{color:var(--violet);font-weight:600}
+  .topnav{margin-left:auto;display:flex;gap:14px;font-size:12px}
+  .topnav a{color:var(--muted)} .topnav a:hover{color:var(--ink)}
+
+  .hero{padding:30px 0 8px}
+  .tag{display:inline-block;font-family:var(--mono);font-size:11px;color:var(--violet);border:1px solid rgba(176,140,255,.4);border-radius:999px;padding:3px 10px;margin-bottom:14px}
+  h1{font-size:30px;line-height:1.16;margin:0 0 10px;font-weight:680;letter-spacing:-.3px}
+  h1 .accent{color:var(--violet)}
+  .lede{color:var(--muted);font-size:15px;max-width:780px}
+  .notice{margin-top:14px;font-size:12.5px;color:var(--faint);border-left:2px solid rgba(176,140,255,.35);padding-left:12px}
+
+  section{padding:30px 0;border-top:1px solid var(--border);scroll-margin-top:64px}
+  .sec-h{display:flex;align-items:baseline;gap:12px;margin-bottom:6px;flex-wrap:wrap}
+  .sec-n{font-family:var(--mono);font-size:12px;color:var(--violet)}
+  h2{font-size:21px;margin:0;font-weight:640;letter-spacing:-.2px}
+  .sec-sub{color:var(--muted);font-size:14px;margin:6px 0 18px;max-width:840px}
+  .fig{font-size:11.5px;color:var(--faint);font-style:italic;margin-top:10px}
+
+  .grid{display:grid;gap:16px}.g2{grid-template-columns:1fr 1fr}
+  @media(max-width:860px){.g2{grid-template-columns:1fr}}
+  .card{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:16px}
+  .card h3{margin:0 0 4px;font-size:13px;font-family:var(--mono);font-weight:600}
+
+  .scoreboard{display:flex;gap:12px;flex-wrap:wrap;margin:4px 0 2px}
+  .score{flex:1;min-width:200px;border-radius:10px;padding:14px 16px;border:1px solid var(--border2)}
+  .score .lab{font-family:var(--mono);font-size:11px;color:var(--muted)}
+  .score .big{font-family:var(--mono);font-size:32px;font-weight:700;margin-top:4px}
+  .score.bad{border-color:rgba(255,92,92,.4);background:rgba(255,92,92,.06)}
+  .score.good{border-color:rgba(63,185,80,.45);background:rgba(63,185,80,.06)}
+
+  table{width:100%;border-collapse:collapse;font-size:12.5px}
+  th,td{text-align:left;padding:7px 9px;border-bottom:1px solid var(--border);vertical-align:top}
+  th{font-family:var(--mono);font-size:10.5px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.4px}
+  .ok{color:var(--low)} .no{color:var(--crit)}
+  .pill{display:inline-block;font-family:var(--mono);font-size:10.5px;padding:2px 7px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);white-space:nowrap}
+  .pill.crit{color:var(--crit);border-color:rgba(255,92,92,.4);background:rgba(255,92,92,.08)}
+  .pill.high{color:var(--high);border-color:rgba(255,138,61,.4);background:rgba(255,138,61,.08)}
+  .pill.vio{color:var(--violet);border-color:rgba(176,140,255,.45);background:rgba(176,140,255,.08)}
+  .pill.low{color:var(--low);border-color:rgba(63,185,80,.4);background:rgba(63,185,80,.08)}
+
+  .toggle{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);margin:7px 0;cursor:pointer}
+  .toggle input{accent-color:var(--violet)}
+  label.ctl{display:block;font-size:11.5px;color:var(--muted);margin:12px 0 4px;font-family:var(--mono)}
+  input[type=range]{width:100%;accent-color:var(--teal)}
+  .val{font-family:var(--mono);color:var(--teal)}
+  .kpi{display:flex;justify-content:space-between;font-size:12.5px;padding:6px 0;border-bottom:1px dashed var(--border)}
+  .kpi .v{font-family:var(--mono)}
+  .hint{font-size:11.5px;color:var(--faint);margin-top:8px}
+
+  .verdict{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-weight:700;font-size:15px;padding:7px 14px;border-radius:8px;border:1px solid}
+  .v-trust{color:var(--low);border-color:rgba(63,185,80,.5);background:rgba(63,185,80,.08)}
+  .v-limit{color:var(--med);border-color:rgba(240,180,41,.5);background:rgba(240,180,41,.08)}
+  .v-resync{color:var(--high);border-color:rgba(255,138,61,.5);background:rgba(255,138,61,.08)}
+  .v-rebuild{color:var(--violet);border-color:rgba(176,140,255,.55);background:rgba(176,140,255,.1)}
+  .v-block{color:var(--crit);border-color:rgba(255,92,92,.55);background:rgba(255,92,92,.1)}
+
+  svg.dep{display:block;width:100%;height:240px;background:radial-gradient(circle at 30% 20%,#0c141d,#080b0f);border:1px solid var(--border);border-radius:10px}
+  .nlab{font-family:var(--mono);font-size:9px;fill:var(--muted)}
+  footer{border-top:1px solid var(--border);padding:26px 0 50px;color:var(--faint);font-size:12px}
+  .callout{background:linear-gradient(180deg,rgba(176,140,255,.06),transparent);border:1px solid rgba(176,140,255,.25);border-radius:10px;padding:14px 16px;font-size:13px;color:var(--muted)}
+  .callout b{color:var(--violet)}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap topbar">
+    <span class="brand">RayveLabs <span class="dim">— research extension</span></span>
+    <span class="crumb">Lab 6 · <b>Beyond Twin Authority</b></span>
+    <nav class="topnav">
+      <a href="/lab6-demo/">← Lab 6 demo</a>
+      <a href="https://8414.bwater.io/chapters/chapter-06-digital-twin">Ch 6</a>
+      <a href="https://rayvelabs.com/">Home</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="hero">
+    <span class="tag">RayveLabs original · extends SEAS-8414 Ch 6 Ex 11</span>
+    <h1>His Exercise 11 ends on a finding. <span class="accent">This closes it.</span></h1>
+    <p class="lede">Chapter 6 proves that KL and Jensen-Shannon divergence are blind to the small, targeted changes that actually invalidate a remediation decision — and stops there. Two contributions pick it up: a <b>structural drift detector</b> that catches every material change divergence misses, and a <b>value-of-information authority rule</b> that replaces the heuristic Twin Authority Gate with an explicit Act / Resync / Block decision under uncertainty.</p>
+    <p class="notice">RayveLabs teaching + research demo, fully client-side, synthetic dependency graph. Builds on Dr. Mallarapu's SEAS-8414 Chapter 6 (© Dr. Mallarapu / GWU) — it does not reproduce it.</p>
+  </div>
+</div>
+
+<div class="wrap">
+
+<!-- A: the gap -->
+<section id="gap">
+  <div class="sec-h"><span class="sec-n">The gap</span><h2>Why divergence fails — and what kind of metric won't</h2></div>
+  <p class="sec-sub">KL/JS measure the <em>magnitude of a distribution shift</em>. A single firewall rule, one swapped dependency, or one profile downgrade changes almost no aggregate distribution — so divergence reads ~0 while the decision is now unsafe. The fix is not a better distribution test; it is a metric over <em>structure and evidence</em>: a typed diff of the twin's dependency graph plus a predicate for "does the change touch the remediation path or a safety-critical asset?" That metric is never zero for a real change.</p>
+  <div class="scoreboard">
+    <div class="score bad"><div class="lab">Distributional (KL / JS) — his Ex 11</div><div class="big" id="sbDist">—</div><div class="hint">material changes detected, of 8</div></div>
+    <div class="score good"><div class="lab">Structural + evidence — this work</div><div class="big" id="sbStruct">—</div><div class="hint">material changes detected, of 8</div></div>
+  </div>
+</section>
+
+<!-- B: structural detector -->
+<section id="detector">
+  <div class="sec-h"><span class="sec-n">Contribution 1</span><h2>Structural drift detector (typed graph-edit-distance + path predicate)</h2></div>
+  <p class="sec-sub">Inject the same eight controlled drift scenarios from Exercise 11. For each, compare what distributional divergence sees against the structural score (weighted typed graph edits: node ±3, edge ±2, attribute/firewall/service ±1) and the decisive path/critical-touch predicate.</p>
+  <div class="grid g2">
+    <div class="card">
+      <h3>Inject drift</h3>
+      <div id="toggles"></div>
+    </div>
+    <div class="card">
+      <h3>Dependency graph — remediation path in <span style="color:var(--teal)">teal</span>, critical in <span style="color:var(--violet)">violet</span></h3>
+      <svg class="dep" id="depSvg" viewBox="0 0 460 240"></svg>
+      <p class="hint" id="depNote">No drift injected — twin matches scan.</p>
+    </div>
+  </div>
+  <div class="card" style="margin-top:16px">
+    <h3>Detection comparison</h3>
+    <div style="overflow:auto"><table id="detTable"><thead><tr><th>drift scenario</th><th>JS</th><th>KL/JS detect?</th><th>struct Δ (GED)</th><th>touches path?</th><th>companion metric</th><th>detector verdict</th></tr></thead><tbody></tbody></table></div>
+  </div>
+  <p class="fig">Figure (RayveLabs): The structural score is small for targeted changes — but small ≠ zero, and the path predicate makes materiality explicit. "Small change, big consequence" becomes visible.</p>
+</section>
+
+<!-- C: VoI authority -->
+<section id="voi">
+  <div class="sec-h"><span class="sec-n">Contribution 2</span><h2>Value-of-Information authority — replace the checklist with a decision</h2></div>
+  <p class="sec-sub">The Twin Authority Gate is a heuristic table. Make it a decision under uncertainty: choose the action that minimises expected cost. Let <span class="mono">p</span> = probability the twin is wrong for <em>this</em> decision (raised automatically by the structural detector above). Then compare acting now, blocking, and resyncing to buy evidence.</p>
+  <div class="grid g2">
+    <div class="card">
+      <h3>Cost model</h3>
+      <label class="ctl">Cost of acting on a wrong twin (outage) C_wrong: <span class="val" id="vCw">500</span></label>
+      <input type="range" id="cw" min="100" max="1000" step="50" value="500">
+      <label class="ctl">Cost of delaying the fix (exposure) C_delay: <span class="val" id="vCd">60</span></label>
+      <input type="range" id="cd" min="0" max="300" step="10" value="60">
+      <label class="ctl">Cost of resync (scan + replay evidence) C_resync: <span class="val" id="vCr">25</span></label>
+      <input type="range" id="cr" min="0" max="200" step="5" value="25">
+      <label class="ctl">Residual error after resync (evidence quality): <span class="val" id="vRes">0.25</span></label>
+      <input type="range" id="res" min="0.05" max="0.8" step="0.05" value="0.25">
+      <label class="ctl">Baseline twin error p₀ (1 − fidelity): <span class="val" id="vP0">0.10</span></label>
+      <input type="range" id="p0" min="0" max="0.5" step="0.02" value="0.10">
+    </div>
+    <div class="card">
+      <h3>Decision</h3>
+      <div class="kpi"><span>p (twin wrong for this decision)</span><span class="v" id="pOut" style="font-size:16px">—</span></div>
+      <div class="kpi"><span>E[Act now] = p·C_wrong</span><span class="v" id="eAct">—</span></div>
+      <div class="kpi"><span>E[Resync] = C_resync + p′·C_wrong</span><span class="v" id="eRes">—</span></div>
+      <div class="kpi"><span>E[Block] = C_delay</span><span class="v" id="eBlk">—</span></div>
+      <svg id="voiBar" viewBox="0 0 420 90" style="width:100%;height:90px;margin-top:8px"></svg>
+      <div style="margin-top:10px">Recommended: <span id="voiRec"></span></div>
+      <div style="margin-top:8px">Mapped to his verdict: <span id="voiMap"></span></div>
+      <p class="hint" id="voiWhy"></p>
+    </div>
+  </div>
+  <p class="fig">Figure (RayveLabs): As p rises, the rule crosses Act → Resync → Block. Resync wins only when information is cheap relative to the error it removes — a formal expression of "buy evidence before you act."</p>
+</section>
+
+<!-- D: how it upgrades -->
+<section id="upgrade">
+  <div class="sec-h"><span class="sec-n">Summary</span><h2>How this upgrades Chapter 6</h2></div>
+  <div class="card">
+    <table>
+      <thead><tr><th>Chapter 6 (as taught)</th><th>This extension</th><th>What students gain</th></tr></thead>
+      <tbody>
+        <tr><td>KL/JS divergence flags drift</td><td>Typed structural diff + path/critical predicate</td><td>Catches the 6/8 targeted changes divergence misses</td></tr>
+        <tr><td>Twin Authority Gate (checklist)</td><td>Value-of-information decision rule</td><td>A defensible Act/Resync/Block, not "use judgment"</td></tr>
+        <tr><td>"Drift can be invisible" (finding)</td><td>"Here is the metric that sees it" (contribution)</td><td>Turns a critique into a method</td></tr>
+        <tr><td>Verdict stated qualitatively</td><td>Verdict derived from cost + measured error</td><td>Sensitivity analysis: when does the verdict flip?</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout" style="margin-top:16px">
+    <b>Research seed.</b> The structural detector + VoI rule is a small, real paper: "Distributional drift metrics are insufficient for digital-twin remediation authority; a typed structural detector with a value-of-information stopping rule provides per-decision validity." Synthetic-graph results here; the next step is evaluating it against real Breakwater twin logs.
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <p>© 2026 Rayve Malhotra · <a href="https://rayvelabs.com/">RayveLabs</a> · Original extension to SEAS-8414 Chapter 6. Synthetic dependency graph; all computation client-side.</p>
+    <p style="color:var(--faint)">divergence measures how much the distribution moved · authority depends on whether the right edge moved</p>
+  </div>
+</footer>
+
+<script>
+"use strict";
+const $=s=>document.querySelector(s);
+
+/* KL/JS (verified) */
+const EPS=1e-4;
+const smooth=p=>{const s=p.reduce((a,b)=>a+b,0)+EPS*p.length;return p.map(x=>(x+EPS)/s);};
+const kl=(P,Q)=>{const p=smooth(P),q=smooth(Q);return p.reduce((a,pi,i)=>a+pi*Math.log(pi/q[i]),0);};
+const js=(P,Q)=>{const p=smooth(P),q=smooth(Q);const m=p.map((x,i)=>0.5*(x+q[i]));const f=(a,b)=>a.reduce((s,ai,i)=>s+ai*Math.log(ai/b[i]),0);return 0.5*f(p,m)+0.5*f(q,m);};
+const BASE=[6,9,7,0], JT=0.004;
+
+/* scenarios: distDelta, GED, touchesPath, touchesCritical, evidenceFlag, companion, verdict, touchedNodes */
+const SCEN=[
+ {id:"s1",label:"1 unknown device (scan, not twin)",dQ:[0,0,0,1],ged:3,path:false,crit:false,ev:false,comp:"device-count delta",verdict:"Resync",nodes:["ghost"]},
+ {id:"s2",label:"3 unknown devices added",dQ:[0,0,0,3],ged:9,path:false,crit:false,ev:false,comp:"device-count delta",verdict:"Rebuild",nodes:["ghost"]},
+ {id:"s3",label:"firewall rule changed on remediation path",dQ:[0,0,0,0],ged:1,path:true,crit:false,ev:false,comp:"firewall diff",verdict:"Resync",nodes:["gw","broker"]},
+ {id:"s4",label:"new service opened on target",dQ:[0,-1,1,0],ged:2,path:true,crit:false,ev:false,comp:"port/service diff",verdict:"Resync",nodes:["cam10"]},
+ {id:"s5",label:"PLC/MQTT dependency changed",dQ:[0,0,0,0],ged:1,path:true,crit:true,ev:false,comp:"dependency diff",verdict:"Block",nodes:["s31","broker"]},
+ {id:"s6",label:"high-confidence profile → fallback (on path)",dQ:[0,0,0,0],ged:2,path:true,crit:false,ev:false,comp:"fallback-profile count",verdict:"Block",nodes:["s32"]},
+ {id:"s7",label:"replay mismatch on affected protocol (<80%)",dQ:[0,0,0,0],ged:0,path:true,crit:false,ev:true,comp:"replay mismatch rate",verdict:"Block",nodes:["cam10"]},
+ {id:"s8",label:"subnet split / routing edge removed",dQ:[0,0,0,0],ged:2,path:true,crit:false,ev:false,comp:"topology diff",verdict:"Rebuild",nodes:["gw"]},
+];
+const VORDER=["Trust","Trust with limits","Resync","Rebuild","Block"];
+const VCLASS={"Trust":"v-trust","Trust with limits":"v-limit","Resync":"v-resync","Rebuild":"v-rebuild","Block":"v-block"};
+
+const active=()=>SCEN.filter(s=>$("#"+s.id)&&$("#"+s.id).checked);
+const structDetect=s=> (s.ged>0)||s.ev||s.path;   // structural diff OR evidence OR path-touch
+const distDetect=s=> js(BASE,BASE.map((x,i)=>Math.max(0,x+s.dQ[i])))>JT;
+
+function renderToggles(){
+  $("#toggles").innerHTML=SCEN.map(s=>`<label class="toggle"><input type="checkbox" id="${s.id}"> ${s.label}</label>`).join("");
+  SCEN.forEach(s=>$("#"+s.id).addEventListener("change",renderAll));
+}
+
+function renderTable(){
+  $("#detTable").querySelector("tbody").innerHTML=SCEN.map(s=>{
+    const J=js(BASE,BASE.map((x,i)=>Math.max(0,x+s.dQ[i])));
+    const dd=distDetect(s), sd=structDetect(s), on=$("#"+s.id)&&$("#"+s.id).checked;
+    return `<tr style="${on?'background:rgba(176,140,255,.06)':''}"><td>${s.label}</td><td class="mono">${J.toFixed(4)}</td><td class="${dd?'ok':'no'}">${dd?'✓ seen':'✗ blind'}</td><td class="mono">${s.ged}</td><td class="${s.path?'no':''}">${s.path?'✓':'–'}</td><td class="mono">${s.comp}</td><td><span class="pill ${s.verdict==='Block'?'crit':(s.verdict==='Rebuild'?'vio':'high')}">${sd?s.verdict:'—'}</span></td></tr>`;
+  }).join("");
+  // scoreboard counts over all 8 (material = every scenario here is material)
+  $("#sbDist").textContent=SCEN.filter(distDetect).length+" / 8";
+  $("#sbStruct").textContent=SCEN.filter(structDetect).length+" / 8";
+}
+
+/* dependency graph */
+const NODES={gw:{x:60,y:120,l:"gw .1",c:"var(--blue)"},cam10:{x:170,y:50,l:"cam .10",c:"var(--teal)"},cam11:{x:170,y:120,l:"cam .11",c:"#6f7e8c"},broker:{x:280,y:120,l:"broker .30",c:"var(--violet)"},s31:{x:390,y:55,l:"s .31",c:"var(--teal)"},s32:{x:400,y:120,l:"s .32",c:"var(--teal)"},plc40:{x:300,y:200,l:"plc .40",c:"var(--violet)"},hmi41:{x:410,y:195,l:"hmi .41",c:"var(--violet)"}};
+const EDGES=[["gw","cam10"],["gw","cam11"],["gw","broker"],["cam10","broker"],["cam11","broker"],["broker","s31"],["broker","s32"],["plc40","hmi41"],["broker","plc40"]];
+const PATH=new Set(["broker","s31","s32","cam10"]);
+function renderGraph(){
+  const touched=new Set(); active().forEach(s=>s.nodes.forEach(n=>touched.add(n)));
+  let h="";
+  EDGES.forEach(([a,b])=>{const A=NODES[a],B=NODES[b];const onp=PATH.has(a)&&PATH.has(b);const tt=touched.has(a)&&touched.has(b);h+=`<line x1="${A.x}" y1="${A.y}" x2="${B.x}" y2="${B.y}" stroke="${tt?'var(--crit)':(onp?'var(--teal)':'#33414f')}" stroke-width="${tt?2.6:(onp?2:1.1)}" opacity="${tt?.95:.6}"/>`;});
+  Object.entries(NODES).forEach(([k,n])=>{const tt=touched.has(k);h+=`<circle cx="${n.x}" cy="${n.y}" r="11" fill="#0c141d" stroke="${n.c}" stroke-width="1.6"/>${tt?`<circle cx="${n.x}" cy="${n.y}" r="15" fill="none" stroke="var(--crit)" stroke-width="2"/>`:''}<text class="nlab" x="${n.x}" y="${n.y+24}" text-anchor="middle">${n.l}</text>`;});
+  if(touched.has("ghost")){h+=`<circle cx="120" cy="200" r="11" fill="#0c141d" stroke="var(--crit)" stroke-dasharray="3 3"/><text class="nlab" x="120" y="224" text-anchor="middle" fill="var(--crit)">unknown</text>`;}
+  $("#depSvg").innerHTML=h;
+  const a=active();
+  $("#depNote").textContent=a.length? `${a.length} drift scenario(s) active · ${a.filter(s=>s.path).length} touch the remediation path` : "No drift injected — twin matches scan.";
+}
+
+/* VoI */
+function p_value(){
+  const p0=parseFloat($("#p0").value);
+  const a=active();
+  const pathTouch=a.filter(s=>s.path).length, other=a.filter(s=>!s.path).length;
+  return Math.min(0.98, p0 + 0.16*pathTouch + 0.04*other);
+}
+function renderVoI(){
+  const Cw=+$("#cw").value, Cd=+$("#cd").value, Cr=+$("#cr").value, resid=+$("#res").value;
+  $("#vCw").textContent=Cw;$("#vCd").textContent=Cd;$("#vCr").textContent=Cr;$("#vRes").textContent=resid.toFixed(2);$("#vP0").textContent=parseFloat($("#p0").value).toFixed(2);
+  const p=p_value();
+  const Eact=p*Cw, Eres=Cr+p*resid*Cw, Eblk=Cd;
+  $("#pOut").textContent=p.toFixed(3);
+  $("#eAct").textContent=Eact.toFixed(0);$("#eRes").textContent=Eres.toFixed(0);$("#eBlk").textContent=Eblk.toFixed(0);
+  const opts=[["Act now",Eact],["Resync",Eres],["Block",Eblk]].sort((a,b)=>a[1]-b[1]);
+  const rec=opts[0][0];
+  // bars
+  const mx=Math.max(Eact,Eres,Eblk,1); const bars=[["Act",Eact,"var(--blue)"],["Resync",Eres,"var(--high)"],["Block",Eblk,"var(--crit)"]];
+  $("#voiBar").innerHTML=bars.map(([l,v,c],i)=>{const w=v/mx*300;const y=i*28;return `<text x="0" y="${y+14}" font-family="var(--mono)" font-size="10" fill="var(--muted)">${l}</text><rect x="60" y="${y+4}" width="${w}" height="16" rx="3" fill="${c}" opacity="${l.toLowerCase().startsWith(rec.toLowerCase().slice(0,3))?'1':'.4'}"/><text x="${66+w}" y="${y+16}" font-family="var(--mono)" font-size="10" fill="var(--ink)">${v.toFixed(0)}</text>`;}).join("");
+  // map to his verdict
+  let verdict;
+  const a=active();
+  if(rec==="Act now") verdict = a.some(s=>!s.path&&structDetect(s))?"Trust with limits":"Trust";
+  else if(rec==="Resync") verdict="Resync";
+  else { // Block recommended — but if structural change is topological/dependency, it's Rebuild
+    verdict = a.some(s=>["s2","s5","s8"].includes(s.id))?"Rebuild":"Block";
+  }
+  $("#voiRec").innerHTML=`<span class="verdict ${rec==='Act now'?'v-trust':(rec==='Resync'?'v-resync':'v-block')}">${rec}</span>`;
+  $("#voiMap").innerHTML=`<span class="verdict ${VCLASS[verdict]}">${verdict}</span>`;
+  $("#voiWhy").textContent = rec==="Resync"
+    ? "Information is cheap relative to the error it removes — buy evidence (fresh scan/replay) before acting."
+    : (rec==="Block"
+      ? "Expected cost of acting on a possibly-wrong twin exceeds the exposure cost of waiting — do not approve."
+      : "Twin error is low enough that acting now has the lowest expected cost.");
+}
+
+function renderAll(){ renderTable(); renderGraph(); renderVoI(); }
+["cw","cd","cr","res","p0"].forEach(id=>$("#"+id).addEventListener("input",renderVoI));
+renderToggles(); renderAll();
+</script>
+</body>
+</html>
