@@ -1,5 +1,5 @@
 {
-  "total_listings": 10081,
+  "total_listings": 10082,
   "by_reason": [
     {
       "reason": "AsyncRAT C&C",
@@ -23,6 +23,11 @@
     }
   ],
   "recent": [
+    {
+      "listing_date": "2026-06-28 08:04:50",
+      "sha1": "078541bcc8ca1f620034dc2b29cbd968faf02ea6",
+      "listing_reason": "KongTuke C&C"
+    },
     {
       "listing_date": "2026-06-27 06:45:40",
       "sha1": "85725890743b16375132651911e3f692115128a8",
@@ -66,11 +71,6 @@
     {
       "listing_date": "2026-06-25 08:24:27",
       "sha1": "1af505dcbb86a7689c237f93e2208efeb9073e18",
-      "listing_reason": "KongTuke C&C"
-    },
-    {
-      "listing_date": "2026-06-25 08:24:15",
-      "sha1": "9cf3852c0d23882e32f6a93a3562c86f3a67db75",
       "listing_reason": "KongTuke C&C"
     }
   ]
