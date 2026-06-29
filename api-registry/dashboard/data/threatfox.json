@@ -1,124 +1,124 @@
 {
-  "total": 4001,
+  "total": 3584,
   "recent": [
     {
-      "first_seen": "1838743",
-      "ioc": "45.88.186.141:443",
-      "ioc_type": "ip:port",
+      "first_seen": "1839234",
+      "ioc": "https://jiy.psgiran.news/",
+      "ioc_type": "url",
       "threat_type": "botnet_cc",
-      "malware": "win.netsupportmanager_rat",
-      "malware_alias": "NetSupport",
-      "malware_printable": "NetSupportManager RAT",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1838742",
-      "ioc": "160.202.238.114:8002",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.vshell",
+      "malware": "win.vidar",
       "malware_alias": "None",
-      "malware_printable": "VShell",
+      "malware_printable": "Vidar",
       "confidence": "True"
     },
     {
-      "first_seen": "1838741",
-      "ioc": "101.43.94.240:8084",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.vshell",
-      "malware_alias": "None",
-      "malware_printable": "VShell",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1838740",
-      "ioc": "176.125.243.228:443",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.cobalt_strike",
-      "malware_alias": "Agentemis",
-      "malware_printable": "BEACON",
-      "confidence": "Cobalt Strike"
-    },
-    {
-      "first_seen": "1838739",
-      "ioc": "103.253.212.175:6868",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "elf.mirai",
-      "malware_alias": "Katana",
-      "malware_printable": "Mirai",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1838738",
-      "ioc": "nzr.narxzz.biz.id",
+      "first_seen": "1839233",
+      "ioc": "jiy.psgiran.news",
       "ioc_type": "domain",
       "threat_type": "botnet_cc",
-      "malware": "elf.mirai",
-      "malware_alias": "Katana",
-      "malware_printable": "Mirai",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1838624",
-      "ioc": "https://thespeedyhomeoffer.com/",
-      "ioc_type": "url",
-      "threat_type": "payload_delivery",
-      "malware": "unknown",
+      "malware": "win.vidar",
       "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "False"
+      "malware_printable": "Vidar",
+      "confidence": "True"
     },
     {
-      "first_seen": "1838625",
-      "ioc": "https://hollytree-transport.co.uk/",
+      "first_seen": "1839232",
+      "ioc": "https://jiy.jangkarsm188.top/",
       "ioc_type": "url",
-      "threat_type": "payload_delivery",
-      "malware": "unknown",
+      "threat_type": "botnet_cc",
+      "malware": "win.vidar",
       "malware_alias": "None",
-      "malware_printable": "Unknown malware",
+      "malware_printable": "Vidar",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1839231",
+      "ioc": "jiy.jangkarsm188.top",
+      "ioc_type": "domain",
+      "threat_type": "botnet_cc",
+      "malware": "win.vidar",
+      "malware_alias": "None",
+      "malware_printable": "Vidar",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1839230",
+      "ioc": "39p49guo.mokatebatedari.xyz",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
       "confidence": "False"
     },
     {
-      "first_seen": "1838626",
-      "ioc": "https://emdgroupe.com/",
-      "ioc_type": "url",
-      "threat_type": "payload_delivery",
-      "malware": "unknown",
-      "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1838627",
-      "ioc": "https://cgain.net/",
-      "ioc_type": "url",
-      "threat_type": "payload_delivery",
-      "malware": "unknown",
-      "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1838630",
-      "ioc": "https://purplebandage.org.za/",
-      "ioc_type": "url",
-      "threat_type": "payload_delivery",
-      "malware": "unknown",
-      "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1838635",
-      "ioc": "147.182.140.2:12345",
+      "first_seen": "1839222",
+      "ioc": "178.104.119.162:443",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "elf.aisuru",
+      "malware": "win.vidar",
       "malware_alias": "None",
-      "malware_printable": "Aisuru",
+      "malware_printable": "Vidar",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1839223",
+      "ioc": "77.42.88.66:443",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.vidar",
+      "malware_alias": "None",
+      "malware_printable": "Vidar",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1839224",
+      "ioc": "167.233.114.81:443",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.vidar",
+      "malware_alias": "None",
+      "malware_printable": "Vidar",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1839225",
+      "ioc": "167.233.207.52:443",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.vidar",
+      "malware_alias": "None",
+      "malware_printable": "Vidar",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1839226",
+      "ioc": "167.233.193.229:443",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.vidar",
+      "malware_alias": "None",
+      "malware_printable": "Vidar",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1839227",
+      "ioc": "91.98.87.85:443",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.vidar",
+      "malware_alias": "None",
+      "malware_printable": "Vidar",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1839228",
+      "ioc": "167.233.198.35:443",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.vidar",
+      "malware_alias": "None",
+      "malware_printable": "Vidar",
       "confidence": "False"
     }
   ]

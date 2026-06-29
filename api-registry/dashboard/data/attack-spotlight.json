@@ -1,15 +1,15 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1585",
-    "name": "Establish Accounts",
-    "description": "Adversaries may create and cultivate accounts with services that can be used during targeting. Adversaries can create accounts that can be used to build a persona to further operations. Persona development consists of the development of public information, presence, history and appropriate affiliations. This development could be applied to social media, website, or other publicly available information that could be referenced and scrutinized for legitimacy over the course of an operation using that persona or identity.(Citation: NEWSCASTER2014)(Citation: BlackHatRobinSage)",
+    "id": "T1588",
+    "name": "Obtain Capabilities",
+    "description": "Adversaries may buy and/or steal capabilities that can be used during targeting. Rather than developing their own capabilities in-house, adversaries may purchase, freely download, or steal them. Activities may include the acquisition of malware, software (including licenses), exploits, certificates, and information relating to vulnerabilities. Adversaries may obtain capabilities to support their operations throughout numerous phases of the adversary lifecycle.",
     "tactics": [
       "resource-development"
     ],
     "platforms": [
       "PRE"
     ],
-    "url": "https://attack.mitre.org/techniques/T1585"
+    "url": "https://attack.mitre.org/techniques/T1588"
   }
 }
