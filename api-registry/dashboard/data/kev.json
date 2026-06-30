@@ -1,8 +1,17 @@
 {
-  "total": 1629,
-  "catalog_version": "2026.06.25",
-  "date_released": "2026-06-25T19:03:21.8037Z",
+  "total": 1630,
+  "catalog_version": "2026.06.29",
+  "date_released": "2026-06-29T18:57:01.4113Z",
   "recent": [
+    {
+      "cve": "CVE-2026-48558",
+      "vendor": "SimpleHelp ",
+      "product": "SimpleHelp",
+      "name": "SimpleHelp Authentication Bypass Vulnerability",
+      "date_added": "2026-06-29",
+      "due_date": "2026-07-02",
+      "ransomware": false
+    },
     {
       "cve": "CVE-2026-12569",
       "vendor": "PTC",
@@ -101,15 +110,6 @@
       "date_added": "2026-06-12",
       "due_date": "2026-06-15",
       "ransomware": true
-    },
-    {
-      "cve": "CVE-2026-10520",
-      "vendor": "Ivanti",
-      "product": "Sentry",
-      "name": "Ivanti Sentry OS Command Injection Vulnerability",
-      "date_added": "2026-06-11",
-      "due_date": "2026-06-14",
-      "ransomware": false
     }
   ]
 }

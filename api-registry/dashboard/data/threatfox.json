@@ -1,49 +1,19 @@
 {
-  "total": 3584,
+  "total": 4584,
   "recent": [
     {
-      "first_seen": "1839234",
-      "ioc": "https://jiy.psgiran.news/",
-      "ioc_type": "url",
+      "first_seen": "1840238",
+      "ioc": "134.122.187.85:443",
+      "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "win.vidar",
-      "malware_alias": "None",
-      "malware_printable": "Vidar",
-      "confidence": "True"
+      "malware": "win.cobalt_strike",
+      "malware_alias": "Agentemis",
+      "malware_printable": "BEACON",
+      "confidence": "Cobalt Strike"
     },
     {
-      "first_seen": "1839233",
-      "ioc": "jiy.psgiran.news",
-      "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "win.vidar",
-      "malware_alias": "None",
-      "malware_printable": "Vidar",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1839232",
-      "ioc": "https://jiy.jangkarsm188.top/",
-      "ioc_type": "url",
-      "threat_type": "botnet_cc",
-      "malware": "win.vidar",
-      "malware_alias": "None",
-      "malware_printable": "Vidar",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1839231",
-      "ioc": "jiy.jangkarsm188.top",
-      "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "win.vidar",
-      "malware_alias": "None",
-      "malware_printable": "Vidar",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1839230",
-      "ioc": "39p49guo.mokatebatedari.xyz",
+      "first_seen": "1840237",
+      "ioc": "kdf.betbacklink.com",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -52,73 +22,103 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1839222",
-      "ioc": "178.104.119.162:443",
+      "first_seen": "1840233",
+      "ioc": "115.190.80.27:18085",
       "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.vshell",
+      "malware_alias": "None",
+      "malware_printable": "VShell",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1840232",
+      "ioc": "134.122.187.85:9999",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.cobalt_strike",
+      "malware_alias": "Agentemis",
+      "malware_printable": "BEACON",
+      "confidence": "Cobalt Strike"
+    },
+    {
+      "first_seen": "1840229",
+      "ioc": "https://scp.jangkarsm188.top/",
+      "ioc_type": "url",
       "threat_type": "botnet_cc",
       "malware": "win.vidar",
       "malware_alias": "None",
       "malware_printable": "Vidar",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1840230",
+      "ioc": "scp.psgiran.news",
+      "ioc_type": "domain",
+      "threat_type": "botnet_cc",
+      "malware": "win.vidar",
+      "malware_alias": "None",
+      "malware_printable": "Vidar",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1840231",
+      "ioc": "https://scp.psgiran.news/",
+      "ioc_type": "url",
+      "threat_type": "botnet_cc",
+      "malware": "win.vidar",
+      "malware_alias": "None",
+      "malware_printable": "Vidar",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1840228",
+      "ioc": "scp.jangkarsm188.top",
+      "ioc_type": "domain",
+      "threat_type": "botnet_cc",
+      "malware": "win.vidar",
+      "malware_alias": "None",
+      "malware_printable": "Vidar",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1840224",
+      "ioc": "i5sofk6r.xbetone.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
       "confidence": "False"
     },
     {
-      "first_seen": "1839223",
-      "ioc": "77.42.88.66:443",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.vidar",
+      "first_seen": "1840218",
+      "ioc": "imohoo.com.br",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
       "malware_alias": "None",
-      "malware_printable": "Vidar",
+      "malware_printable": "ClearFake",
       "confidence": "False"
     },
     {
-      "first_seen": "1839224",
-      "ioc": "167.233.114.81:443",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.vidar",
+      "first_seen": "1840219",
+      "ioc": "unspanel.rs",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
       "malware_alias": "None",
-      "malware_printable": "Vidar",
+      "malware_printable": "ClearFake",
       "confidence": "False"
     },
     {
-      "first_seen": "1839225",
-      "ioc": "167.233.207.52:443",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.vidar",
+      "first_seen": "1840220",
+      "ioc": "fearlesshomemaker.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
       "malware_alias": "None",
-      "malware_printable": "Vidar",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1839226",
-      "ioc": "167.233.193.229:443",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.vidar",
-      "malware_alias": "None",
-      "malware_printable": "Vidar",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1839227",
-      "ioc": "91.98.87.85:443",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.vidar",
-      "malware_alias": "None",
-      "malware_printable": "Vidar",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1839228",
-      "ioc": "167.233.198.35:443",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.vidar",
-      "malware_alias": "None",
-      "malware_printable": "Vidar",
+      "malware_printable": "ClearFake",
       "confidence": "False"
     }
   ]
