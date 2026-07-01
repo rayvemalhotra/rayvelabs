@@ -1,17 +1,15 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1569",
-    "name": "System Services",
-    "description": "Adversaries may abuse system services or daemons to execute commands or programs. Adversaries can execute malicious content by interacting with or creating services either locally or remotely. Many services are set to run at boot, which can aid in achieving persistence ([Create or Modify System Process](https://attack.mitre.org/techniques/T1543)), but adversaries can also abuse services for one-time or temporary execution.",
+    "id": "T1650",
+    "name": "Acquire Access",
+    "description": "Adversaries may purchase or otherwise acquire an existing access to a target system or network. A variety of online services and initial access broker networks are available to sell access to previously compromised systems.(Citation: Microsoft Ransomware as a Service)(Citation: CrowdStrike Access Brokers)(Citation: Krebs Access Brokers Fortune 500) In some cases, adversary groups may form partnerships to share compromised systems with each other.(Citation: CISA Karakurt 2022)",
     "tactics": [
-      "execution"
+      "resource-development"
     ],
     "platforms": [
-      "Windows",
-      "macOS",
-      "Linux"
+      "PRE"
     ],
-    "url": "https://attack.mitre.org/techniques/T1569"
+    "url": "https://attack.mitre.org/techniques/T1650"
   }
 }
