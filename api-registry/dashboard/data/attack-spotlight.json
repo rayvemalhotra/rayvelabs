@@ -1,15 +1,20 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1650",
-    "name": "Acquire Access",
-    "description": "Adversaries may purchase or otherwise acquire an existing access to a target system or network. A variety of online services and initial access broker networks are available to sell access to previously compromised systems.(Citation: Microsoft Ransomware as a Service)(Citation: CrowdStrike Access Brokers)(Citation: Krebs Access Brokers Fortune 500) In some cases, adversary groups may form partnerships to share compromised systems with each other.(Citation: CISA Karakurt 2022)",
+    "id": "T1213",
+    "name": "Data from Information Repositories",
+    "description": "Adversaries may leverage information repositories to mine valuable information. Information repositories are tools that allow for storage of information, typically to facilitate collaboration or information sharing between users, and can store a wide variety of data that may aid adversaries in further objectives, such as Credential Access, Lateral Movement, or Defense Evasion, or direct access to the target information. Adversaries may also abuse external sharing features to share sensitive documents with recipients outside of the organization (i.e., [Transfer Data to Cloud Account](https://attack.mitre.org/techniques/T1537)). ",
     "tactics": [
-      "resource-development"
+      "collection"
     ],
     "platforms": [
-      "PRE"
+      "Linux",
+      "Windows",
+      "macOS",
+      "SaaS",
+      "IaaS",
+      "Office Suite"
     ],
-    "url": "https://attack.mitre.org/techniques/T1650"
+    "url": "https://attack.mitre.org/techniques/T1213"
   }
 }

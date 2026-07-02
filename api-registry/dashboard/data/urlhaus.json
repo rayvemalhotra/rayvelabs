@@ -1,140 +1,140 @@
 {
-  "total_recent": 21850,
+  "total_recent": 21631,
   "recent": [
     {
-      "id": "3878850",
-      "date_added": "2026-07-01 09:33:41",
-      "url": "http://112.248.6.136:55486/bin.sh",
-      "url_status": "online",
+      "id": "3879239",
+      "date_added": "2026-07-02 08:42:08",
+      "url": "https://fzkx5dg3.estekhdam.online/?ublib=21b76d5c-fd5a-4d37-b920-ca63a234606b",
+      "url_status": "offline",
       "threat": "malware_download",
-      "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3878850/"
+      "tags": "ClearFake,mac-0xfb64,macOS",
+      "host": "https://urlhaus.abuse.ch/url/3879239/"
     },
     {
-      "id": "3878849",
-      "date_added": "2026-07-01 09:32:09",
-      "url": "http://115.50.220.128:59661/i",
+      "id": "3879238",
+      "date_added": "2026-07-02 08:41:11",
+      "url": "http://91.92.242.236/files-129312398/files/file_81f4790593aec5b4.exe",
+      "url_status": "online",
+      "threat": "malware_download",
+      "tags": "54e64e,dropped-by-amadey,MaskGramStealer",
+      "host": "https://urlhaus.abuse.ch/url/3879238/"
+    },
+    {
+      "id": "3879237",
+      "date_added": "2026-07-02 08:41:10",
+      "url": "http://212.164.115.235:55869/i",
       "url_status": "online",
       "threat": "malware_download",
       "tags": "None",
-      "host": "https://urlhaus.abuse.ch/url/3878849/"
+      "host": "https://urlhaus.abuse.ch/url/3879237/"
     },
     {
-      "id": "3878848",
-      "date_added": "2026-07-01 09:25:13",
-      "url": "http://201.149.107.50:39048/bin.sh",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "32-bit,arm,elf,mirai,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3878848/"
-    },
-    {
-      "id": "3878847",
-      "date_added": "2026-07-01 09:12:16",
-      "url": "http://222.133.125.171:42470/bin.sh",
+      "id": "3879236",
+      "date_added": "2026-07-02 08:40:26",
+      "url": "http://39.90.178.76:33468/i",
       "url_status": "online",
       "threat": "malware_download",
       "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3878847/"
+      "host": "https://urlhaus.abuse.ch/url/3879236/"
     },
     {
-      "id": "3878846",
-      "date_added": "2026-07-01 09:06:25",
-      "url": "http://125.41.225.17:40569/bin.sh",
+      "id": "3879235",
+      "date_added": "2026-07-02 08:38:33",
+      "url": "http://27.44.146.241:41434/bin.sh",
+      "url_status": "offline",
+      "threat": "malware_download",
+      "tags": "32-bit,elf,mips,Mozi",
+      "host": "https://urlhaus.abuse.ch/url/3879235/"
+    },
+    {
+      "id": "3879234",
+      "date_added": "2026-07-02 08:36:23",
+      "url": "http://103.24.110.240:56640/i",
       "url_status": "online",
       "threat": "malware_download",
       "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3878846/"
+      "host": "https://urlhaus.abuse.ch/url/3879234/"
     },
     {
-      "id": "3878845",
-      "date_added": "2026-07-01 08:52:17",
-      "url": "http://110.37.53.25:58088/i",
+      "id": "3879233",
+      "date_added": "2026-07-02 08:35:25",
+      "url": "http://46.163.134.250:44332/i",
       "url_status": "online",
       "threat": "malware_download",
       "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3878845/"
+      "host": "https://urlhaus.abuse.ch/url/3879233/"
     },
     {
-      "id": "3878844",
-      "date_added": "2026-07-01 08:44:12",
-      "url": "https://jim-s.com/ab/Zoom_meeting/Meeting%20Invite%20HTML/downloads/windows/aboki/Zoom%2016.vbs",
-      "url_status": "offline",
+      "id": "3879232",
+      "date_added": "2026-07-02 08:28:26",
+      "url": "http://46.163.134.250:44332/bin.sh",
+      "url_status": "online",
       "threat": "malware_download",
-      "tags": "vbs",
-      "host": "https://urlhaus.abuse.ch/url/3878844/"
+      "tags": "32-bit,elf,mips,Mozi",
+      "host": "https://urlhaus.abuse.ch/url/3879232/"
     },
     {
-      "id": "3878843",
-      "date_added": "2026-07-01 08:44:11",
-      "url": "https://jim-s.com/ab/Zoom_meeting/Meeting%20Invite%20HTML/downloads/windows/aboki/Zoom%2011.vbs",
-      "url_status": "offline",
+      "id": "3879231",
+      "date_added": "2026-07-02 08:24:29",
+      "url": "http://110.39.232.190:60500/i",
+      "url_status": "online",
       "threat": "malware_download",
-      "tags": "vbs",
-      "host": "https://urlhaus.abuse.ch/url/3878843/"
+      "tags": "32-bit,elf,mips,Mozi",
+      "host": "https://urlhaus.abuse.ch/url/3879231/"
     },
     {
-      "id": "3878842",
-      "date_added": "2026-07-01 08:44:10",
-      "url": "https://jim-s.com/ab/Zoom_meeting/Meeting%20Invite%20HTML/downloads/windows/aboki/Zoom%2023.vbs",
-      "url_status": "offline",
+      "id": "3879229",
+      "date_added": "2026-07-02 08:17:08",
+      "url": "http://110.37.53.25:58088/bin.sh",
+      "url_status": "online",
       "threat": "malware_download",
-      "tags": "vbs",
-      "host": "https://urlhaus.abuse.ch/url/3878842/"
+      "tags": "Mozi",
+      "host": "https://urlhaus.abuse.ch/url/3879229/"
     },
     {
-      "id": "3878839",
-      "date_added": "2026-07-01 08:44:09",
-      "url": "https://jim-s.com/ab/Zoom_meeting/Meeting%20Invite%20HTML/downloads/windows/aboki/Zoom%2010.vbs",
-      "url_status": "offline",
+      "id": "3879230",
+      "date_added": "2026-07-02 08:17:08",
+      "url": "http://115.55.51.220:54353/i",
+      "url_status": "online",
       "threat": "malware_download",
-      "tags": "vbs",
-      "host": "https://urlhaus.abuse.ch/url/3878839/"
+      "tags": "None",
+      "host": "https://urlhaus.abuse.ch/url/3879230/"
     },
     {
-      "id": "3878840",
-      "date_added": "2026-07-01 08:44:09",
-      "url": "https://jim-s.com/ab/Zoom_meeting/Meeting%20Invite%20HTML/downloads/windows/aboki/Zoom%2020.vbs",
-      "url_status": "offline",
+      "id": "3879228",
+      "date_added": "2026-07-02 08:15:26",
+      "url": "http://39.90.178.76:33468/bin.sh",
+      "url_status": "online",
       "threat": "malware_download",
-      "tags": "vbs",
-      "host": "https://urlhaus.abuse.ch/url/3878840/"
+      "tags": "32-bit,elf,mips,Mozi",
+      "host": "https://urlhaus.abuse.ch/url/3879228/"
     },
     {
-      "id": "3878841",
-      "date_added": "2026-07-01 08:44:09",
-      "url": "https://jim-s.com/ab/Zoom_meeting/Meeting%20Invite%20HTML/downloads/windows/aboki/Zoom%2025.vbs",
-      "url_status": "offline",
+      "id": "3879227",
+      "date_added": "2026-07-02 08:13:10",
+      "url": "http://110.39.232.190:60500/bin.sh",
+      "url_status": "online",
       "threat": "malware_download",
-      "tags": "vbs",
-      "host": "https://urlhaus.abuse.ch/url/3878841/"
+      "tags": "32-bit,elf,mips,Mozi",
+      "host": "https://urlhaus.abuse.ch/url/3879227/"
     },
     {
-      "id": "3878837",
-      "date_added": "2026-07-01 08:44:08",
-      "url": "https://jim-s.com/ab/Zoom_meeting/Meeting%20Invite%20HTML/downloads/windows/aboki/Zoom%2015.vbs",
-      "url_status": "offline",
+      "id": "3879226",
+      "date_added": "2026-07-02 08:12:22",
+      "url": "http://103.24.110.240:56640/bin.sh",
+      "url_status": "online",
       "threat": "malware_download",
-      "tags": "vbs",
-      "host": "https://urlhaus.abuse.ch/url/3878837/"
+      "tags": "32-bit,elf,mips,Mozi",
+      "host": "https://urlhaus.abuse.ch/url/3879226/"
     },
     {
-      "id": "3878838",
-      "date_added": "2026-07-01 08:44:08",
-      "url": "https://jim-s.com/ab/Zoom_meeting/Meeting%20Invite%20HTML/downloads/windows/aboki/Zoom%2018.vbs",
-      "url_status": "offline",
+      "id": "3879225",
+      "date_added": "2026-07-02 08:06:06",
+      "url": "http://212.164.115.235:55869/bin.sh",
+      "url_status": "online",
       "threat": "malware_download",
-      "tags": "vbs",
-      "host": "https://urlhaus.abuse.ch/url/3878838/"
-    },
-    {
-      "id": "3878828",
-      "date_added": "2026-07-01 08:44:06",
-      "url": "https://jim-s.com/ab/Zoom_meeting/Meeting%20Invite%20HTML/downloads/windows/aboki/Zoom%2021.vbs",
-      "url_status": "offline",
-      "threat": "malware_download",
-      "tags": "vbs",
-      "host": "https://urlhaus.abuse.ch/url/3878828/"
+      "tags": "None",
+      "host": "https://urlhaus.abuse.ch/url/3879225/"
     }
   ]
 }

@@ -1,8 +1,17 @@
 {
-  "total": 1630,
-  "catalog_version": "2026.06.29",
-  "date_released": "2026-06-29T18:57:01.4113Z",
+  "total": 1631,
+  "catalog_version": "2026.07.01",
+  "date_released": "2026-07-01T19:00:06.9016Z",
   "recent": [
+    {
+      "cve": "CVE-2026-45659",
+      "vendor": "Microsoft",
+      "product": "SharePoint Server",
+      "name": "Microsoft SharePoint Server Deserialization of Untrusted Data Vulnerability",
+      "date_added": "2026-07-01",
+      "due_date": "2026-07-04",
+      "ransomware": false
+    },
     {
       "cve": "CVE-2026-48558",
       "vendor": "SimpleHelp ",
@@ -101,15 +110,6 @@
       "date_added": "2026-06-15",
       "due_date": "2026-06-29",
       "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-35273",
-      "vendor": "Oracle",
-      "product": " PeopleSoft Enterprise PeopleTools",
-      "name": "Oracle PeopleSoft Enterprise PeopleTools Missing Authentication for Critical Function Vulnerability",
-      "date_added": "2026-06-12",
-      "due_date": "2026-06-15",
-      "ransomware": true
     }
   ]
 }
