@@ -1,5 +1,5 @@
 {
-  "total_listings": 10088,
+  "total_listings": 10097,
   "by_reason": [
     {
       "reason": "AsyncRAT C&C",
@@ -11,11 +11,11 @@
     },
     {
       "reason": "QuasarRAT C&C",
-      "count": 685
+      "count": 686
     },
     {
       "reason": "Vidar C&C",
-      "count": 626
+      "count": 627
     },
     {
       "reason": "LummaStealer C&C",
@@ -24,53 +24,53 @@
   ],
   "recent": [
     {
+      "listing_date": "2026-07-03 07:17:53",
+      "sha1": "fa925f013a4c8ed98cda12d1d8f06ef638b11301",
+      "listing_reason": "PureRAT C&C"
+    },
+    {
+      "listing_date": "2026-07-03 07:17:37",
+      "sha1": "6617b3218632fe78cd223bfae98ae55ef69c13c2",
+      "listing_reason": "OffLoader C&C"
+    },
+    {
+      "listing_date": "2026-07-03 07:16:51",
+      "sha1": "0d9b7493086b8a7b2687ee21026ed1cb8eac55e5",
+      "listing_reason": "Vidar C&C"
+    },
+    {
+      "listing_date": "2026-07-03 07:16:38",
+      "sha1": "adee7459752a33ec85d89a1837d84e9e75f8ac6e",
+      "listing_reason": "OffLoader C&C"
+    },
+    {
+      "listing_date": "2026-07-03 07:15:08",
+      "sha1": "ac563907d31a21443760cee92a98b50bba6152aa",
+      "listing_reason": "QuasarRAT C&C"
+    },
+    {
+      "listing_date": "2026-07-03 07:15:06",
+      "sha1": "c7e0ca50174d919b1026d232418e208969a4d818",
+      "listing_reason": "KongTuke C&C"
+    },
+    {
+      "listing_date": "2026-07-03 07:14:21",
+      "sha1": "cdccad6e6ef6dc82ff5cfb3cb15d71bfb4df7d1a",
+      "listing_reason": "RatonRAT C&C"
+    },
+    {
+      "listing_date": "2026-07-03 06:41:59",
+      "sha1": "a3f065adb1d37aa01e6632753e8db17fb392d558",
+      "listing_reason": "KongTuke C&C"
+    },
+    {
+      "listing_date": "2026-07-02 12:18:29",
+      "sha1": "c165baaa2bb8cd1021237ebda0b2cfee01d71177",
+      "listing_reason": "RatonRAT C&C"
+    },
+    {
       "listing_date": "2026-07-02 07:22:45",
       "sha1": "9970ddeb7d0e2dd711bc2af3646b417b201bfdf2",
-      "listing_reason": "Vidar C&C"
-    },
-    {
-      "listing_date": "2026-07-02 07:22:31",
-      "sha1": "5ce60656e1fb7c3a46a0d6f4380613ff856f9f9d",
-      "listing_reason": "Vidar C&C"
-    },
-    {
-      "listing_date": "2026-07-02 07:22:08",
-      "sha1": "2431ed7de8a7c0d747bbcdef2ed5b06fa31fd63d",
-      "listing_reason": "Vidar C&C"
-    },
-    {
-      "listing_date": "2026-07-02 07:22:07",
-      "sha1": "e047a0eefddb594af79bfff22f28a7148729b007",
-      "listing_reason": "Vidar C&C"
-    },
-    {
-      "listing_date": "2026-07-02 06:22:44",
-      "sha1": "022705f793dd54eb9aa5c4b1e1d5717c8a6d1831",
-      "listing_reason": "Vidar C&C"
-    },
-    {
-      "listing_date": "2026-07-02 06:18:02",
-      "sha1": "fe953073145cd029ffb7408e5161aace4e903c6d",
-      "listing_reason": "Vidar C&C"
-    },
-    {
-      "listing_date": "2026-06-28 08:04:50",
-      "sha1": "078541bcc8ca1f620034dc2b29cbd968faf02ea6",
-      "listing_reason": "KongTuke C&C"
-    },
-    {
-      "listing_date": "2026-06-27 06:45:40",
-      "sha1": "85725890743b16375132651911e3f692115128a8",
-      "listing_reason": "Vidar C&C"
-    },
-    {
-      "listing_date": "2026-06-25 19:05:26",
-      "sha1": "35f7eb4f519f8878beb88a02587ce4d82df24ce6",
-      "listing_reason": "KongTuke C&C"
-    },
-    {
-      "listing_date": "2026-06-25 09:29:25",
-      "sha1": "4914d714908de0f52c22349b5b784f77442a27e6",
       "listing_reason": "Vidar C&C"
     }
   ]

@@ -1,20 +1,17 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1213",
-    "name": "Data from Information Repositories",
-    "description": "Adversaries may leverage information repositories to mine valuable information. Information repositories are tools that allow for storage of information, typically to facilitate collaboration or information sharing between users, and can store a wide variety of data that may aid adversaries in further objectives, such as Credential Access, Lateral Movement, or Defense Evasion, or direct access to the target information. Adversaries may also abuse external sharing features to share sensitive documents with recipients outside of the organization (i.e., [Transfer Data to Cloud Account](https://attack.mitre.org/techniques/T1537)). ",
+    "id": "T1200",
+    "name": "Hardware Additions",
+    "description": "Adversaries may physically introduce computer accessories, networking hardware, or other computing devices into a system or network that can be used as a vector to gain access. Rather than just connecting and distributing payloads via removable storage (i.e. [Replication Through Removable Media](https://attack.mitre.org/techniques/T1091)), more robust hardware additions can be used to introduce new functionalities and/or features into a system that can then be abused.",
     "tactics": [
-      "collection"
+      "initial-access"
     ],
     "platforms": [
-      "Linux",
       "Windows",
-      "macOS",
-      "SaaS",
-      "IaaS",
-      "Office Suite"
+      "Linux",
+      "macOS"
     ],
-    "url": "https://attack.mitre.org/techniques/T1213"
+    "url": "https://attack.mitre.org/techniques/T1200"
   }
 }

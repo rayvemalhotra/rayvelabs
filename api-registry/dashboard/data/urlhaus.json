@@ -1,140 +1,140 @@
 {
-  "total_recent": 21631,
+  "total_recent": 21915,
   "recent": [
     {
-      "id": "3879239",
-      "date_added": "2026-07-02 08:42:08",
-      "url": "https://fzkx5dg3.estekhdam.online/?ublib=21b76d5c-fd5a-4d37-b920-ca63a234606b",
+      "id": "3880130",
+      "date_added": "2026-07-03 09:06:21",
+      "url": "http://39.74.0.246:56363/i",
+      "url_status": "online",
+      "threat": "malware_download",
+      "tags": "32-bit,elf,mips,Mozi",
+      "host": "https://urlhaus.abuse.ch/url/3880130/"
+    },
+    {
+      "id": "3880129",
+      "date_added": "2026-07-03 09:06:08",
+      "url": "https://fnd9555t.ligabfa.com/?ublib=a5761cd7-be72-4803-b8d7-9bc0ec15b75b",
       "url_status": "offline",
       "threat": "malware_download",
-      "tags": "ClearFake,mac-0xfb64,macOS",
-      "host": "https://urlhaus.abuse.ch/url/3879239/"
+      "tags": "ClearFake,mac-0x68dc,macOS",
+      "host": "https://urlhaus.abuse.ch/url/3880129/"
     },
     {
-      "id": "3879238",
-      "date_added": "2026-07-02 08:41:11",
-      "url": "http://91.92.242.236/files-129312398/files/file_81f4790593aec5b4.exe",
+      "id": "3880128",
+      "date_added": "2026-07-03 08:59:20",
+      "url": "http://221.15.145.214:39615/i",
       "url_status": "online",
       "threat": "malware_download",
-      "tags": "54e64e,dropped-by-amadey,MaskGramStealer",
-      "host": "https://urlhaus.abuse.ch/url/3879238/"
+      "tags": "32-bit,arm,elf,mirai,Mozi",
+      "host": "https://urlhaus.abuse.ch/url/3880128/"
     },
     {
-      "id": "3879237",
-      "date_added": "2026-07-02 08:41:10",
-      "url": "http://212.164.115.235:55869/i",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "None",
-      "host": "https://urlhaus.abuse.ch/url/3879237/"
-    },
-    {
-      "id": "3879236",
-      "date_added": "2026-07-02 08:40:26",
-      "url": "http://39.90.178.76:33468/i",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3879236/"
-    },
-    {
-      "id": "3879235",
-      "date_added": "2026-07-02 08:38:33",
-      "url": "http://27.44.146.241:41434/bin.sh",
-      "url_status": "offline",
-      "threat": "malware_download",
-      "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3879235/"
-    },
-    {
-      "id": "3879234",
-      "date_added": "2026-07-02 08:36:23",
-      "url": "http://103.24.110.240:56640/i",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3879234/"
-    },
-    {
-      "id": "3879233",
-      "date_added": "2026-07-02 08:35:25",
-      "url": "http://46.163.134.250:44332/i",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3879233/"
-    },
-    {
-      "id": "3879232",
-      "date_added": "2026-07-02 08:28:26",
-      "url": "http://46.163.134.250:44332/bin.sh",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3879232/"
-    },
-    {
-      "id": "3879231",
-      "date_added": "2026-07-02 08:24:29",
-      "url": "http://110.39.232.190:60500/i",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3879231/"
-    },
-    {
-      "id": "3879229",
-      "date_added": "2026-07-02 08:17:08",
-      "url": "http://110.37.53.25:58088/bin.sh",
+      "id": "3880127",
+      "date_added": "2026-07-03 08:52:09",
+      "url": "http://182.116.12.154:55908/bin.sh",
       "url_status": "online",
       "threat": "malware_download",
       "tags": "Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3879229/"
+      "host": "https://urlhaus.abuse.ch/url/3880127/"
     },
     {
-      "id": "3879230",
-      "date_added": "2026-07-02 08:17:08",
-      "url": "http://115.55.51.220:54353/i",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "None",
-      "host": "https://urlhaus.abuse.ch/url/3879230/"
-    },
-    {
-      "id": "3879228",
-      "date_added": "2026-07-02 08:15:26",
-      "url": "http://39.90.178.76:33468/bin.sh",
+      "id": "3880126",
+      "date_added": "2026-07-03 08:50:21",
+      "url": "http://110.36.80.166:60321/i",
       "url_status": "online",
       "threat": "malware_download",
       "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3879228/"
+      "host": "https://urlhaus.abuse.ch/url/3880126/"
     },
     {
-      "id": "3879227",
-      "date_added": "2026-07-02 08:13:10",
-      "url": "http://110.39.232.190:60500/bin.sh",
+      "id": "3880125",
+      "date_added": "2026-07-03 08:46:22",
+      "url": "http://60.18.9.243:54601/i",
       "url_status": "online",
       "threat": "malware_download",
       "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3879227/"
+      "host": "https://urlhaus.abuse.ch/url/3880125/"
     },
     {
-      "id": "3879226",
-      "date_added": "2026-07-02 08:12:22",
-      "url": "http://103.24.110.240:56640/bin.sh",
+      "id": "3880124",
+      "date_added": "2026-07-03 08:44:24",
+      "url": "http://182.119.179.36:59445/i",
       "url_status": "online",
       "threat": "malware_download",
       "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3879226/"
+      "host": "https://urlhaus.abuse.ch/url/3880124/"
     },
     {
-      "id": "3879225",
-      "date_added": "2026-07-02 08:06:06",
-      "url": "http://212.164.115.235:55869/bin.sh",
+      "id": "3880123",
+      "date_added": "2026-07-03 08:41:20",
+      "url": "http://39.74.0.246:56363/bin.sh",
       "url_status": "online",
       "threat": "malware_download",
-      "tags": "None",
-      "host": "https://urlhaus.abuse.ch/url/3879225/"
+      "tags": "32-bit,elf,mips,Mozi",
+      "host": "https://urlhaus.abuse.ch/url/3880123/"
+    },
+    {
+      "id": "3880122",
+      "date_added": "2026-07-03 08:38:24",
+      "url": "http://110.36.80.166:60321/bin.sh",
+      "url_status": "online",
+      "threat": "malware_download",
+      "tags": "32-bit,elf,mips,Mozi",
+      "host": "https://urlhaus.abuse.ch/url/3880122/"
+    },
+    {
+      "id": "3880121",
+      "date_added": "2026-07-03 08:36:10",
+      "url": "http://27.44.147.40:37399/i",
+      "url_status": "online",
+      "threat": "malware_download",
+      "tags": "32-bit,elf,mips,Mozi",
+      "host": "https://urlhaus.abuse.ch/url/3880121/"
+    },
+    {
+      "id": "3880120",
+      "date_added": "2026-07-03 08:22:22",
+      "url": "http://60.18.9.243:54601/bin.sh",
+      "url_status": "online",
+      "threat": "malware_download",
+      "tags": "32-bit,elf,mips,Mozi",
+      "host": "https://urlhaus.abuse.ch/url/3880120/"
+    },
+    {
+      "id": "3880119",
+      "date_added": "2026-07-03 08:05:26",
+      "url": "http://27.44.147.40:37399/bin.sh",
+      "url_status": "online",
+      "threat": "malware_download",
+      "tags": "32-bit,elf,mips,Mozi",
+      "host": "https://urlhaus.abuse.ch/url/3880119/"
+    },
+    {
+      "id": "3880118",
+      "date_added": "2026-07-03 07:58:35",
+      "url": "http://222.139.35.92:50019/i",
+      "url_status": "online",
+      "threat": "malware_download",
+      "tags": "32-bit,elf,mips,Mozi",
+      "host": "https://urlhaus.abuse.ch/url/3880118/"
+    },
+    {
+      "id": "3880117",
+      "date_added": "2026-07-03 07:33:21",
+      "url": "http://59.103.116.68:50760/i",
+      "url_status": "online",
+      "threat": "malware_download",
+      "tags": "32-bit,elf,mips,Mozi",
+      "host": "https://urlhaus.abuse.ch/url/3880117/"
+    },
+    {
+      "id": "3880116",
+      "date_added": "2026-07-03 07:32:10",
+      "url": "http://220.184.94.118:57971/i",
+      "url_status": "online",
+      "threat": "malware_download",
+      "tags": "mirai",
+      "host": "https://urlhaus.abuse.ch/url/3880116/"
     }
   ]
 }
