@@ -1,6 +1,6 @@
 {
-  "total_breaches": 1014,
-  "total_records_exposed": 17674817406,
+  "total_breaches": 1015,
+  "total_records_exposed": 17677120822,
   "recent": [
     {
       "name": "OperationEndgame4",
@@ -25,6 +25,24 @@
       "data_classes": [
         "Email addresses",
         "Passwords"
+      ],
+      "verified": true
+    },
+    {
+      "name": "MoodyBibleInstitute",
+      "title": "Moody Bible Institute",
+      "domain": "moody.edu",
+      "breach_date": "2026-06-15",
+      "added_date": "2026-07-03T16:03:25Z",
+      "pwn_count": 2303416,
+      "data_classes": [
+        "Dates of birth",
+        "Email addresses",
+        "Genders",
+        "Marital statuses",
+        "Names",
+        "Phone numbers",
+        "Physical addresses"
       ],
       "verified": true
     },
@@ -121,22 +139,6 @@
         "Purchases",
         "Salutations",
         "Usernames"
-      ],
-      "verified": true
-    },
-    {
-      "name": "MadisonSquareGardenSports",
-      "title": "Madison Square Garden Sports",
-      "domain": "msgsports.com",
-      "breach_date": "2026-06-05",
-      "added_date": "2026-06-24T13:02:33Z",
-      "pwn_count": 9796738,
-      "data_classes": [
-        "Customer service records",
-        "Email addresses",
-        "Names",
-        "Phone numbers",
-        "Physical addresses"
       ],
       "verified": true
     }

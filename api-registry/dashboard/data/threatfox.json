@@ -1,19 +1,69 @@
 {
-  "total": 3905,
+  "total": 4087,
   "recent": [
     {
-      "first_seen": "1843947",
-      "ioc": "pasoor.net",
+      "first_seen": "1844455",
+      "ioc": "47.116.57.211:8888",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.cobalt_strike",
+      "malware_alias": "Agentemis",
+      "malware_printable": "BEACON",
+      "confidence": "Cobalt Strike"
+    },
+    {
+      "first_seen": "1844454",
+      "ioc": "176.121.49.1:8086",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.cobalt_strike",
+      "malware_alias": "Agentemis",
+      "malware_printable": "BEACON",
+      "confidence": "Cobalt Strike"
+    },
+    {
+      "first_seen": "1844453",
+      "ioc": "119.29.91.172:5555",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.cobalt_strike",
+      "malware_alias": "Agentemis",
+      "malware_printable": "BEACON",
+      "confidence": "Cobalt Strike"
+    },
+    {
+      "first_seen": "1844450",
+      "ioc": "www.ardmorehp.org",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
+      "malware": "win.strelastealer",
       "malware_alias": "None",
-      "malware_printable": "ClearFake",
+      "malware_printable": "StrelaStealer",
       "confidence": "True"
     },
     {
-      "first_seen": "1843946",
-      "ioc": "fnd9555t.ligabfa.com",
+      "first_seen": "1844451",
+      "ioc": "realhair.com.tr",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "win.strelastealer",
+      "malware_alias": "None",
+      "malware_printable": "StrelaStealer",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1844452",
+      "ioc": "157.20.182.17:4442",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.asyncrat",
+      "malware_alias": "None",
+      "malware_printable": "AsyncRAT",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1844449",
+      "ioc": "frfjuzh.btyek.cloud",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -22,103 +72,53 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1843944",
-      "ioc": "154.220.123.186:8888",
-      "ioc_type": "ip:port",
+      "first_seen": "1844448",
+      "ioc": "https://eyuboglutv.com/nfront.php",
+      "ioc_type": "url",
       "threat_type": "botnet_cc",
-      "malware": "unknown",
-      "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "True"
+      "malware": "win.satacom",
+      "malware_alias": "CurlyGate",
+      "malware_printable": "LegionLoader",
+      "confidence": ""
     },
     {
-      "first_seen": "1843945",
-      "ioc": "154.220.123.187:8888",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "unknown",
-      "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1843942",
-      "ioc": "154.220.123.178:8888",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "unknown",
-      "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1843943",
-      "ioc": "154.220.123.185:8888",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "unknown",
-      "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1843941",
-      "ioc": "154.220.123.177:8888",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "unknown",
-      "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1843940",
-      "ioc": "ligabfa.com",
+      "first_seen": "1844447",
+      "ioc": "eyuboglutv.com",
       "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
+      "threat_type": "botnet_cc",
+      "malware": "win.satacom",
+      "malware_alias": "CurlyGate",
+      "malware_printable": "LegionLoader",
+      "confidence": ""
+    },
+    {
+      "first_seen": "1844446",
+      "ioc": "154.194.99.166:63973",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "unknown_loader",
       "malware_alias": "None",
-      "malware_printable": "ClearFake",
+      "malware_printable": "Unknown Loader",
       "confidence": "False"
     },
     {
-      "first_seen": "1843939",
-      "ioc": "estekhdam.download",
+      "first_seen": "1844129",
+      "ioc": "13espacioarte.com",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
+      "malware": "win.strelastealer",
       "malware_alias": "None",
-      "malware_printable": "ClearFake",
+      "malware_printable": "StrelaStealer",
       "confidence": "True"
     },
     {
-      "first_seen": "1843938",
-      "ioc": "digish.art",
+      "first_seen": "1844130",
+      "ioc": "abasket.it",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
+      "malware": "win.strelastealer",
       "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1843935",
-      "ioc": "chizbet.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1843934",
-      "ioc": "1xpin.cash",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
+      "malware_printable": "StrelaStealer",
       "confidence": "True"
     }
   ]

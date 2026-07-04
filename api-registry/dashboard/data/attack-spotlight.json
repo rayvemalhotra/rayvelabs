@@ -1,17 +1,19 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1200",
-    "name": "Hardware Additions",
-    "description": "Adversaries may physically introduce computer accessories, networking hardware, or other computing devices into a system or network that can be used as a vector to gain access. Rather than just connecting and distributing payloads via removable storage (i.e. [Replication Through Removable Media](https://attack.mitre.org/techniques/T1091)), more robust hardware additions can be used to introduce new functionalities and/or features into a system that can then be abused.",
+    "id": "T1505",
+    "name": "Server Software Component",
+    "description": "Adversaries may abuse legitimate extensible development features of servers to establish persistent access to systems. Enterprise server applications may include features that allow developers to write and install software or scripts to extend the functionality of the main application. Adversaries may install malicious components to extend and abuse server applications.(Citation: volexity_0day_sophos_FW)",
     "tactics": [
-      "initial-access"
+      "persistence"
     ],
     "platforms": [
       "Windows",
       "Linux",
-      "macOS"
+      "macOS",
+      "Network Devices",
+      "ESXi"
     ],
-    "url": "https://attack.mitre.org/techniques/T1200"
+    "url": "https://attack.mitre.org/techniques/T1505"
   }
 }

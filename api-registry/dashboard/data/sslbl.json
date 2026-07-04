@@ -1,5 +1,5 @@
 {
-  "total_listings": 10097,
+  "total_listings": 10100,
   "by_reason": [
     {
       "reason": "AsyncRAT C&C",
@@ -15,7 +15,7 @@
     },
     {
       "reason": "Vidar C&C",
-      "count": 627
+      "count": 628
     },
     {
       "reason": "LummaStealer C&C",
@@ -23,6 +23,21 @@
     }
   ],
   "recent": [
+    {
+      "listing_date": "2026-07-04 07:16:41",
+      "sha1": "b87dc4ee057f64c6592d11ed074e03caf92e2851",
+      "listing_reason": "Vidar C&C"
+    },
+    {
+      "listing_date": "2026-07-03 12:22:09",
+      "sha1": "988bb7e571418b2800a0cc2d33a794ecf1eb42a7",
+      "listing_reason": "Malware C&C"
+    },
+    {
+      "listing_date": "2026-07-03 09:24:03",
+      "sha1": "a37d8c8b3e427201148b485e4b23a59067fd3812",
+      "listing_reason": "PureLogsStealer C&C"
+    },
     {
       "listing_date": "2026-07-03 07:17:53",
       "sha1": "fa925f013a4c8ed98cda12d1d8f06ef638b11301",
@@ -57,21 +72,6 @@
       "listing_date": "2026-07-03 07:14:21",
       "sha1": "cdccad6e6ef6dc82ff5cfb3cb15d71bfb4df7d1a",
       "listing_reason": "RatonRAT C&C"
-    },
-    {
-      "listing_date": "2026-07-03 06:41:59",
-      "sha1": "a3f065adb1d37aa01e6632753e8db17fb392d558",
-      "listing_reason": "KongTuke C&C"
-    },
-    {
-      "listing_date": "2026-07-02 12:18:29",
-      "sha1": "c165baaa2bb8cd1021237ebda0b2cfee01d71177",
-      "listing_reason": "RatonRAT C&C"
-    },
-    {
-      "listing_date": "2026-07-02 07:22:45",
-      "sha1": "9970ddeb7d0e2dd711bc2af3646b417b201bfdf2",
-      "listing_reason": "Vidar C&C"
     }
   ]
 }
