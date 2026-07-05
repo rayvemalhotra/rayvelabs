@@ -1,19 +1,20 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1505",
-    "name": "Server Software Component",
-    "description": "Adversaries may abuse legitimate extensible development features of servers to establish persistent access to systems. Enterprise server applications may include features that allow developers to write and install software or scripts to extend the functionality of the main application. Adversaries may install malicious components to extend and abuse server applications.(Citation: volexity_0day_sophos_FW)",
+    "id": "T1485",
+    "name": "Data Destruction",
+    "description": "Adversaries may destroy data and files on specific systems or in large numbers on a network to interrupt availability to systems, services, and network resources. Data destruction is likely to render stored data irrecoverable by forensic techniques through overwriting files or data on local and remote drives.(Citation: Symantec Shamoon 2012)(Citation: FireEye Shamoon Nov 2016)(Citation: Palo Alto Shamoon Nov 2016)(Citation: Kaspersky StoneDrill 2017)(Citation: Unit 42 Shamoon3 2018)(Citation: Talos Olympic Destroyer 2018) Common operating system file deletion commands such as <code>del</code> and <code>rm</code> often only remove pointers to files without wiping the contents of the files themselves, making the files recoverable by proper forensic methodology. This behavior is distinct from",
     "tactics": [
-      "persistence"
+      "impact"
     ],
     "platforms": [
-      "Windows",
+      "Containers",
+      "ESXi",
+      "IaaS",
       "Linux",
       "macOS",
-      "Network Devices",
-      "ESXi"
+      "Windows"
     ],
-    "url": "https://attack.mitre.org/techniques/T1505"
+    "url": "https://attack.mitre.org/techniques/T1485"
   }
 }

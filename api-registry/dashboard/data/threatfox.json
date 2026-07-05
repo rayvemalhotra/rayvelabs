@@ -1,69 +1,9 @@
 {
-  "total": 4087,
+  "total": 3972,
   "recent": [
     {
-      "first_seen": "1844455",
-      "ioc": "47.116.57.211:8888",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.cobalt_strike",
-      "malware_alias": "Agentemis",
-      "malware_printable": "BEACON",
-      "confidence": "Cobalt Strike"
-    },
-    {
-      "first_seen": "1844454",
-      "ioc": "176.121.49.1:8086",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.cobalt_strike",
-      "malware_alias": "Agentemis",
-      "malware_printable": "BEACON",
-      "confidence": "Cobalt Strike"
-    },
-    {
-      "first_seen": "1844453",
-      "ioc": "119.29.91.172:5555",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.cobalt_strike",
-      "malware_alias": "Agentemis",
-      "malware_printable": "BEACON",
-      "confidence": "Cobalt Strike"
-    },
-    {
-      "first_seen": "1844450",
-      "ioc": "www.ardmorehp.org",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "win.strelastealer",
-      "malware_alias": "None",
-      "malware_printable": "StrelaStealer",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1844451",
-      "ioc": "realhair.com.tr",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "win.strelastealer",
-      "malware_alias": "None",
-      "malware_printable": "StrelaStealer",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1844452",
-      "ioc": "157.20.182.17:4442",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.asyncrat",
-      "malware_alias": "None",
-      "malware_printable": "AsyncRAT",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1844449",
-      "ioc": "frfjuzh.btyek.cloud",
+      "first_seen": "1844936",
+      "ioc": "vcrjfnwa.ketab.blog",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -72,54 +12,114 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1844448",
-      "ioc": "https://eyuboglutv.com/nfront.php",
-      "ioc_type": "url",
-      "threat_type": "botnet_cc",
-      "malware": "win.satacom",
-      "malware_alias": "CurlyGate",
-      "malware_printable": "LegionLoader",
-      "confidence": ""
-    },
-    {
-      "first_seen": "1844447",
-      "ioc": "eyuboglutv.com",
+      "first_seen": "1844935",
+      "ioc": "ketab.blog",
       "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "win.satacom",
-      "malware_alias": "CurlyGate",
-      "malware_printable": "LegionLoader",
-      "confidence": ""
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "True"
     },
     {
-      "first_seen": "1844446",
-      "ioc": "154.194.99.166:63973",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "unknown_loader",
+      "first_seen": "1844934",
+      "ioc": "pzioeui.bet303.poker",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
       "malware_alias": "None",
-      "malware_printable": "Unknown Loader",
+      "malware_printable": "ClearFake",
       "confidence": "False"
     },
     {
-      "first_seen": "1844129",
-      "ioc": "13espacioarte.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "win.strelastealer",
+      "first_seen": "1844932",
+      "ioc": "154.220.122.103:8888",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "unknown",
       "malware_alias": "None",
-      "malware_printable": "StrelaStealer",
+      "malware_printable": "Unknown malware",
       "confidence": "True"
     },
     {
-      "first_seen": "1844130",
-      "ioc": "abasket.it",
+      "first_seen": "1844933",
+      "ioc": "154.220.122.104:8888",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "unknown",
+      "malware_alias": "None",
+      "malware_printable": "Unknown malware",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1844931",
+      "ioc": "154.220.122.101:8888",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "unknown",
+      "malware_alias": "None",
+      "malware_printable": "Unknown malware",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1844930",
+      "ioc": "154.220.121.62:8888",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "unknown",
+      "malware_alias": "None",
+      "malware_printable": "Unknown malware",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1844929",
+      "ioc": "cho4uj96.bet303iran.org",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
-      "malware": "win.strelastealer",
+      "malware": "js.clearfake",
       "malware_alias": "None",
-      "malware_printable": "StrelaStealer",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1844928",
+      "ioc": "bet303iran.org",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
       "confidence": "True"
+    },
+    {
+      "first_seen": "1844927",
+      "ioc": "czpcvew.bet1xiraq.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1844926",
+      "ioc": "ifdj62v9.thevallartasrestaurants.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1844925",
+      "ioc": "btqtgvs.bet1xiraq.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
     }
   ]
 }
