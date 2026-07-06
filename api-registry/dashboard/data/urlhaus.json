@@ -1,140 +1,140 @@
 {
-  "total_recent": 21972,
+  "total_recent": 21741,
   "recent": [
     {
-      "id": "3881205",
-      "date_added": "2026-07-05 08:45:10",
-      "url": "http://42.227.239.205:36382/i",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3881205/"
-    },
-    {
-      "id": "3881204",
-      "date_added": "2026-07-05 08:32:15",
-      "url": "http://182.126.125.226:45639/i",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3881204/"
-    },
-    {
-      "id": "3881203",
-      "date_added": "2026-07-05 08:32:06",
-      "url": "https://vcrjfnwa.ketab.blog/499acc6c-f432-4ef7-bca4-cde01a6ec12d",
-      "url_status": "offline",
-      "threat": "malware_download",
-      "tags": "ClearFake,win-0xa770,windows",
-      "host": "https://urlhaus.abuse.ch/url/3881203/"
-    },
-    {
-      "id": "3881202",
-      "date_added": "2026-07-05 08:26:06",
-      "url": "http://196.190.1.39:39487/i",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "mirai",
-      "host": "https://urlhaus.abuse.ch/url/3881202/"
-    },
-    {
-      "id": "3881201",
-      "date_added": "2026-07-05 08:14:09",
-      "url": "http://182.126.125.226:45639/bin.sh",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3881201/"
-    },
-    {
-      "id": "3881200",
-      "date_added": "2026-07-05 08:12:06",
-      "url": "https://pzioeui.bet303.poker/3da9c1b6-9fae-4018-ba95-efa3be2e0873",
+      "id": "3881568",
+      "date_added": "2026-07-06 10:06:07",
+      "url": "https://jshreqm.arayeshkhas.ir/389aaf62-a0c7-4f04-8397-40b3def1ae80",
       "url_status": "offline",
       "threat": "malware_download",
       "tags": "ClearFake,win-0x4679,windows",
-      "host": "https://urlhaus.abuse.ch/url/3881200/"
+      "host": "https://urlhaus.abuse.ch/url/3881568/"
     },
     {
-      "id": "3881199",
-      "date_added": "2026-07-05 08:06:06",
-      "url": "http://196.190.1.39:39487/bin.sh",
+      "id": "3881565",
+      "date_added": "2026-07-06 09:52:24",
+      "url": "http://144.31.151.138/main_arm5",
       "url_status": "online",
       "threat": "malware_download",
-      "tags": "mirai",
-      "host": "https://urlhaus.abuse.ch/url/3881199/"
+      "tags": "144-31-151-138,elf,mirai",
+      "host": "https://urlhaus.abuse.ch/url/3881565/"
     },
     {
-      "id": "3881198",
-      "date_added": "2026-07-05 07:51:08",
-      "url": "http://115.61.118.160:40467/i",
+      "id": "3881566",
+      "date_added": "2026-07-06 09:52:24",
+      "url": "http://144.31.151.138/main_arm",
       "url_status": "online",
       "threat": "malware_download",
-      "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3881198/"
+      "tags": "144-31-151-138,elf,mirai",
+      "host": "https://urlhaus.abuse.ch/url/3881566/"
     },
     {
-      "id": "3881197",
-      "date_added": "2026-07-05 07:48:12",
-      "url": "http://42.235.96.8:33141/bin.sh",
+      "id": "3881567",
+      "date_added": "2026-07-06 09:52:24",
+      "url": "http://144.31.151.138/main_arm6",
       "url_status": "online",
       "threat": "malware_download",
-      "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3881197/"
+      "tags": "144-31-151-138,elf,mirai",
+      "host": "https://urlhaus.abuse.ch/url/3881567/"
     },
     {
-      "id": "3881196",
-      "date_added": "2026-07-05 07:45:08",
-      "url": "https://cho4uj96.bet303iran.org/?ublib=ffa25ef5-2961-4bc9-8ddc-088ca42438c4",
-      "url_status": "offline",
-      "threat": "malware_download",
-      "tags": "ClearFake,mac-0xfb64,macOS",
-      "host": "https://urlhaus.abuse.ch/url/3881196/"
-    },
-    {
-      "id": "3881195",
-      "date_added": "2026-07-05 07:43:18",
-      "url": "http://119.179.252.34:45658/i",
+      "id": "3881564",
+      "date_added": "2026-07-06 09:52:08",
+      "url": "http://42.229.160.104:58096/i",
       "url_status": "online",
       "threat": "malware_download",
-      "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3881195/"
+      "tags": "None",
+      "host": "https://urlhaus.abuse.ch/url/3881564/"
     },
     {
-      "id": "3881194",
-      "date_added": "2026-07-05 07:33:15",
-      "url": "http://141.11.88.113/a-r.m-5.Sakura",
+      "id": "3881563",
+      "date_added": "2026-07-06 09:51:24",
+      "url": "http://144.31.151.138/main_sh4",
       "url_status": "online",
       "threat": "malware_download",
-      "tags": "elf,gafgyt,ua-wget",
-      "host": "https://urlhaus.abuse.ch/url/3881194/"
+      "tags": "144-31-151-138,elf,mirai",
+      "host": "https://urlhaus.abuse.ch/url/3881563/"
     },
     {
-      "id": "3881193",
-      "date_added": "2026-07-05 07:25:06",
-      "url": "https://czpcvew.bet1xiraq.com/11cc34b2-ae8e-416b-b6c5-14f8fd3ad045",
-      "url_status": "offline",
+      "id": "3881562",
+      "date_added": "2026-07-06 09:50:20",
+      "url": "http://144.31.151.138/main_arm7",
+      "url_status": "online",
       "threat": "malware_download",
-      "tags": "ClearFake,win-0x4679,windows",
-      "host": "https://urlhaus.abuse.ch/url/3881193/"
+      "tags": "144-31-151-138,elf,mirai",
+      "host": "https://urlhaus.abuse.ch/url/3881562/"
     },
     {
-      "id": "3881192",
-      "date_added": "2026-07-05 07:24:11",
-      "url": "https://ifdj62v9.thevallartasrestaurants.com/?ublib=fc64f8ff-eaea-4ca0-acc1-644d8bc7c56b",
-      "url_status": "offline",
+      "id": "3881557",
+      "date_added": "2026-07-06 09:49:30",
+      "url": "http://144.31.151.138/main_ppc",
+      "url_status": "online",
       "threat": "malware_download",
-      "tags": "ClearFake,mac-0x76c7,macOS",
-      "host": "https://urlhaus.abuse.ch/url/3881192/"
+      "tags": "144-31-151-138,elf,mirai",
+      "host": "https://urlhaus.abuse.ch/url/3881557/"
     },
     {
-      "id": "3881191",
-      "date_added": "2026-07-05 07:14:11",
-      "url": "https://us5fm2lg.ace90bet.bet/?ublib=fbdcd952-147c-4ec2-b81a-40fe6019ce13",
+      "id": "3881558",
+      "date_added": "2026-07-06 09:49:30",
+      "url": "http://144.31.151.138/main_mpsl",
+      "url_status": "online",
+      "threat": "malware_download",
+      "tags": "144-31-151-138,elf,mirai",
+      "host": "https://urlhaus.abuse.ch/url/3881558/"
+    },
+    {
+      "id": "3881559",
+      "date_added": "2026-07-06 09:49:30",
+      "url": "http://144.31.151.138/main_m68k",
+      "url_status": "online",
+      "threat": "malware_download",
+      "tags": "144-31-151-138,elf,mirai",
+      "host": "https://urlhaus.abuse.ch/url/3881559/"
+    },
+    {
+      "id": "3881560",
+      "date_added": "2026-07-06 09:49:30",
+      "url": "http://144.31.151.138/main_mips",
+      "url_status": "online",
+      "threat": "malware_download",
+      "tags": "144-31-151-138,elf,mirai",
+      "host": "https://urlhaus.abuse.ch/url/3881560/"
+    },
+    {
+      "id": "3881561",
+      "date_added": "2026-07-06 09:49:30",
+      "url": "http://144.31.151.138/main_x86_64",
+      "url_status": "online",
+      "threat": "malware_download",
+      "tags": "144-31-151-138,elf,mirai",
+      "host": "https://urlhaus.abuse.ch/url/3881561/"
+    },
+    {
+      "id": "3881556",
+      "date_added": "2026-07-06 09:49:21",
+      "url": "http://144.31.151.138/main_x86",
+      "url_status": "online",
+      "threat": "malware_download",
+      "tags": "144-31-151-138,elf,mirai",
+      "host": "https://urlhaus.abuse.ch/url/3881556/"
+    },
+    {
+      "id": "3881555",
+      "date_added": "2026-07-06 09:37:08",
+      "url": "https://foxo8ujn.prozhe.net/?ublib=6df96a9e-7a49-4c7e-9ed7-907acd4d986a",
       "url_status": "offline",
       "threat": "malware_download",
       "tags": "ClearFake,mac-0x68dc,macOS",
-      "host": "https://urlhaus.abuse.ch/url/3881191/"
+      "host": "https://urlhaus.abuse.ch/url/3881555/"
+    },
+    {
+      "id": "3881554",
+      "date_added": "2026-07-06 09:27:30",
+      "url": "http://178.16.54.93:8080/adb.sh",
+      "url_status": "offline",
+      "threat": "malware_download",
+      "tags": "178-16-54-93-8080,sh",
+      "host": "https://urlhaus.abuse.ch/url/3881554/"
     }
   ]
 }
