@@ -1,17 +1,18 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1537",
-    "name": "Transfer Data to Cloud Account",
-    "description": "Adversaries may exfiltrate data by transferring the data, including through sharing/syncing and creating backups of cloud environments, to another cloud account they control on the same service.",
+    "id": "T1189",
+    "name": "Drive-by Compromise",
+    "description": "Adversaries may gain access to a system through a user visiting a website over the normal course of browsing. Multiple ways of delivering exploit code to a browser exist (i.e., [Drive-by Target](https://attack.mitre.org/techniques/T1608/004)), including:",
     "tactics": [
-      "exfiltration"
+      "initial-access"
     ],
     "platforms": [
-      "IaaS",
-      "Office Suite",
-      "SaaS"
+      "Identity Provider",
+      "Linux",
+      "macOS",
+      "Windows"
     ],
-    "url": "https://attack.mitre.org/techniques/T1537"
+    "url": "https://attack.mitre.org/techniques/T1189"
   }
 }

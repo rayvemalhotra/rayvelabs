@@ -1,9 +1,59 @@
 {
-  "total": 4175,
+  "total": 4048,
   "recent": [
     {
-      "first_seen": "1845585",
-      "ioc": "poundbahis.com",
+      "first_seen": "1845994",
+      "ioc": "rtzixna.site-shartbandi.christmas",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1845993",
+      "ioc": "site-shartbandi.christmas",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1845992",
+      "ioc": "authorization-cdn-press-enter.info",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "unknown",
+      "malware_alias": "None",
+      "malware_printable": "Unknown malware",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1845984",
+      "ioc": "vgip5uas.1xgame.casino",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1845983",
+      "ioc": "8omeu821.1xpin.casino",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1845982",
+      "ioc": "1xpin.casino",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -12,8 +62,18 @@
       "confidence": "True"
     },
     {
-      "first_seen": "1845584",
-      "ioc": "pokerbahis.app",
+      "first_seen": "1845981",
+      "ioc": "dbfzqcjz.site-enfejar-hazarat.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1845980",
+      "ioc": "1xgame.casino",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -22,18 +82,8 @@
       "confidence": "True"
     },
     {
-      "first_seen": "1845583",
-      "ioc": "jshreqm.arayeshkhas.ir",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1845582",
-      "ioc": "arayeshkhas.ir",
+      "first_seen": "1845978",
+      "ioc": "site-enfejar-hazarat.com",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -42,83 +92,33 @@
       "confidence": "True"
     },
     {
-      "first_seen": "1845577",
-      "ioc": "xml.alfatransportes.site",
+      "first_seen": "1845977",
+      "ioc": "qnjanmb.bet1forward.com",
       "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "unknown_loader",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
       "malware_alias": "None",
-      "malware_printable": "Unknown Loader",
+      "malware_printable": "ClearFake",
       "confidence": "False"
     },
     {
-      "first_seen": "1845578",
-      "ioc": "xml.emissaofiscal.com",
-      "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "unknown_loader",
+      "first_seen": "1845976",
+      "ioc": "107.175.89.136:9009",
+      "ioc_type": "ip:port",
+      "threat_type": "payload_delivery",
+      "malware": "elf.xmrig",
       "malware_alias": "None",
-      "malware_printable": "Unknown Loader",
+      "malware_printable": "XMRIG",
       "confidence": "False"
     },
     {
-      "first_seen": "1845579",
-      "ioc": "xml.nfe-online.com",
+      "first_seen": "1845975",
+      "ioc": "wrnnouy.bet1forward.com",
       "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "unknown_loader",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
       "malware_alias": "None",
-      "malware_printable": "Unknown Loader",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1845580",
-      "ioc": "xml.transalfa.online",
-      "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "unknown_loader",
-      "malware_alias": "None",
-      "malware_printable": "Unknown Loader",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1845581",
-      "ioc": "zf-adobe.lat",
-      "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "unknown_loader",
-      "malware_alias": "None",
-      "malware_printable": "Unknown Loader",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1845564",
-      "ioc": "regularizaeuro.portal-nota.sbs",
-      "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "unknown_loader",
-      "malware_alias": "None",
-      "malware_printable": "Unknown Loader",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1845565",
-      "ioc": "restricaofede.com",
-      "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "unknown_loader",
-      "malware_alias": "None",
-      "malware_printable": "Unknown Loader",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1845566",
-      "ioc": "sarhartu.com",
-      "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "unknown_loader",
-      "malware_alias": "None",
-      "malware_printable": "Unknown Loader",
+      "malware_printable": "ClearFake",
       "confidence": "False"
     }
   ]
