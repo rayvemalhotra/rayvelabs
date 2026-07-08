@@ -1,140 +1,140 @@
 {
-  "total_recent": 22099,
+  "total_recent": 22396,
   "recent": [
     {
-      "id": "3882878",
-      "date_added": "2026-07-07 09:21:20",
-      "url": "http://222.136.102.188:51298/i",
+      "id": "3883885",
+      "date_added": "2026-07-08 08:17:24",
+      "url": "http://163.142.93.90:45440/bin.sh",
       "url_status": "online",
       "threat": "malware_download",
       "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3882878/"
+      "host": "https://urlhaus.abuse.ch/url/3883885/"
     },
     {
-      "id": "3882877",
-      "date_added": "2026-07-07 09:19:06",
-      "url": "https://rtzixna.site-shartbandi.christmas/ce0180a8-fe46-4bb4-b3d0-bcc4d1a13645",
+      "id": "3883884",
+      "date_added": "2026-07-08 07:57:30",
+      "url": "http://187.121.141.137:59432/i",
+      "url_status": "online",
+      "threat": "malware_download",
+      "tags": "32-bit,arm,elf,mirai,Mozi",
+      "host": "https://urlhaus.abuse.ch/url/3883884/"
+    },
+    {
+      "id": "3883883",
+      "date_added": "2026-07-08 07:56:06",
+      "url": "https://fezk.polbaz.bet/48d045e7-7562-43ed-a88a-ea1e6d5a6f9d",
       "url_status": "offline",
       "threat": "malware_download",
       "tags": "ClearFake,win-0x4679,windows",
-      "host": "https://urlhaus.abuse.ch/url/3882877/"
+      "host": "https://urlhaus.abuse.ch/url/3883883/"
     },
     {
-      "id": "3882875",
-      "date_added": "2026-07-07 09:10:33",
-      "url": "http://141.11.88.114/arm/",
-      "url_status": "offline",
-      "threat": "malware_download",
-      "tags": "elf,ua-wget",
-      "host": "https://urlhaus.abuse.ch/url/3882875/"
-    },
-    {
-      "id": "3882876",
-      "date_added": "2026-07-07 09:10:33",
-      "url": "http://141.11.88.114/x86",
-      "url_status": "offline",
-      "threat": "malware_download",
-      "tags": "elf,ua-wget",
-      "host": "https://urlhaus.abuse.ch/url/3882876/"
-    },
-    {
-      "id": "3882869",
-      "date_added": "2026-07-07 09:10:32",
-      "url": "http://141.11.88.114/arm6",
-      "url_status": "offline",
-      "threat": "malware_download",
-      "tags": "elf,ua-wget",
-      "host": "https://urlhaus.abuse.ch/url/3882869/"
-    },
-    {
-      "id": "3882870",
-      "date_added": "2026-07-07 09:10:32",
-      "url": "http://141.11.88.114/sh4",
-      "url_status": "offline",
-      "threat": "malware_download",
-      "tags": "elf,ua-wget",
-      "host": "https://urlhaus.abuse.ch/url/3882870/"
-    },
-    {
-      "id": "3882871",
-      "date_added": "2026-07-07 09:10:32",
-      "url": "http://141.11.88.114/mips",
-      "url_status": "offline",
-      "threat": "malware_download",
-      "tags": "elf,ua-wget",
-      "host": "https://urlhaus.abuse.ch/url/3882871/"
-    },
-    {
-      "id": "3882872",
-      "date_added": "2026-07-07 09:10:32",
-      "url": "http://141.11.88.114/mpsl",
-      "url_status": "offline",
-      "threat": "malware_download",
-      "tags": "elf,ua-wget",
-      "host": "https://urlhaus.abuse.ch/url/3882872/"
-    },
-    {
-      "id": "3882873",
-      "date_added": "2026-07-07 09:10:32",
-      "url": "http://141.11.88.114/spc",
-      "url_status": "offline",
-      "threat": "malware_download",
-      "tags": "elf,ua-wget",
-      "host": "https://urlhaus.abuse.ch/url/3882873/"
-    },
-    {
-      "id": "3882874",
-      "date_added": "2026-07-07 09:10:32",
-      "url": "http://141.11.88.114/ppc",
-      "url_status": "offline",
-      "threat": "malware_download",
-      "tags": "elf,ua-wget",
-      "host": "https://urlhaus.abuse.ch/url/3882874/"
-    },
-    {
-      "id": "3882868",
-      "date_added": "2026-07-07 09:10:31",
-      "url": "http://141.11.88.114/x86_64",
-      "url_status": "offline",
-      "threat": "malware_download",
-      "tags": "elf,ua-wget",
-      "host": "https://urlhaus.abuse.ch/url/3882868/"
-    },
-    {
-      "id": "3882867",
-      "date_added": "2026-07-07 09:01:41",
-      "url": "http://94.154.43.42/atomic/komaru.x86",
+      "id": "3883882",
+      "date_added": "2026-07-08 07:50:29",
+      "url": "http://77.247.88.83:46373/bin.sh",
       "url_status": "online",
       "threat": "malware_download",
-      "tags": "elf,mirai,ua-wget",
-      "host": "https://urlhaus.abuse.ch/url/3882867/"
+      "tags": "32-bit,arm,elf,mirai,Mozi",
+      "host": "https://urlhaus.abuse.ch/url/3883882/"
     },
     {
-      "id": "3882866",
-      "date_added": "2026-07-07 09:01:37",
-      "url": "http://94.154.43.42/bins/femboy.x86_64",
+      "id": "3883881",
+      "date_added": "2026-07-08 07:43:34",
+      "url": "http://219.156.60.141:46448/i",
       "url_status": "online",
       "threat": "malware_download",
-      "tags": "elf,mirai,ua-wget",
-      "host": "https://urlhaus.abuse.ch/url/3882866/"
+      "tags": "32-bit,elf,mips,Mozi",
+      "host": "https://urlhaus.abuse.ch/url/3883881/"
     },
     {
-      "id": "3882861",
-      "date_added": "2026-07-07 09:01:34",
-      "url": "http://94.154.43.42/bin/px86",
-      "url_status": "online",
+      "id": "3883880",
+      "date_added": "2026-07-08 07:15:22",
+      "url": "http://83.219.1.198:42561/i",
+      "url_status": "offline",
       "threat": "malware_download",
-      "tags": "elf,mirai,ua-wget",
-      "host": "https://urlhaus.abuse.ch/url/3882861/"
+      "tags": "32-bit,elf,mips,Mozi",
+      "host": "https://urlhaus.abuse.ch/url/3883880/"
     },
     {
-      "id": "3882862",
-      "date_added": "2026-07-07 09:01:34",
-      "url": "http://94.154.43.42/pelerberjembudpeler/vanilla.x86",
+      "id": "3883879",
+      "date_added": "2026-07-08 07:13:06",
+      "url": "https://tiduflxx.farsi1xbet.shop/8d25635e-11c6-43b3-9d66-4a95eb45e11c",
+      "url_status": "offline",
+      "threat": "malware_download",
+      "tags": "ClearFake,win-0x0cd5,windows",
+      "host": "https://urlhaus.abuse.ch/url/3883879/"
+    },
+    {
+      "id": "3883878",
+      "date_added": "2026-07-08 07:09:26",
+      "url": "http://110.39.239.253:40635/i",
       "url_status": "online",
       "threat": "malware_download",
-      "tags": "elf,mirai,ua-wget",
-      "host": "https://urlhaus.abuse.ch/url/3882862/"
+      "tags": "32-bit,elf,mips,Mozi",
+      "host": "https://urlhaus.abuse.ch/url/3883878/"
+    },
+    {
+      "id": "3883877",
+      "date_added": "2026-07-08 07:00:07",
+      "url": "https://srgq.icebet90.com/5c2f6eef-2d2d-4cc8-b668-0d8549e18eb9",
+      "url_status": "offline",
+      "threat": "malware_download",
+      "tags": "ClearFake,win-0x4679,windows",
+      "host": "https://urlhaus.abuse.ch/url/3883877/"
+    },
+    {
+      "id": "3883876",
+      "date_added": "2026-07-08 06:56:29",
+      "url": "http://91.92.40.118/init.sh",
+      "url_status": "online",
+      "threat": "malware_download",
+      "tags": "gafgyt,sh,ua-wget",
+      "host": "https://urlhaus.abuse.ch/url/3883876/"
+    },
+    {
+      "id": "3883872",
+      "date_added": "2026-07-08 06:56:06",
+      "url": "http://91.92.242.236/files-129312398/files/file_150a4c9b22b37ebe.ps1",
+      "url_status": "offline",
+      "threat": "malware_download",
+      "tags": "c2-monitor-auto,dropped-by-amadey",
+      "host": "https://urlhaus.abuse.ch/url/3883872/"
+    },
+    {
+      "id": "3883873",
+      "date_added": "2026-07-08 06:56:06",
+      "url": "http://91.92.242.236/files-129312398/files/file_6d9d8fc309228ece.exe",
+      "url_status": "offline",
+      "threat": "malware_download",
+      "tags": "c2-monitor-auto,dropped-by-amadey",
+      "host": "https://urlhaus.abuse.ch/url/3883873/"
+    },
+    {
+      "id": "3883874",
+      "date_added": "2026-07-08 06:56:06",
+      "url": "http://91.92.242.236/files-129312398/files/file_a3af4669c51aa82d.exe",
+      "url_status": "offline",
+      "threat": "malware_download",
+      "tags": "c2-monitor-auto,dropped-by-amadey",
+      "host": "https://urlhaus.abuse.ch/url/3883874/"
+    },
+    {
+      "id": "3883875",
+      "date_added": "2026-07-08 06:56:06",
+      "url": "http://91.92.242.236/files-129312398/files/file_3e7393fd5c99d55c.exe",
+      "url_status": "offline",
+      "threat": "malware_download",
+      "tags": "c2-monitor-auto,dropped-by-amadey",
+      "host": "https://urlhaus.abuse.ch/url/3883875/"
+    },
+    {
+      "id": "3883870",
+      "date_added": "2026-07-08 06:55:11",
+      "url": "https://pub-61124cd6b14a43ab85c051bf3b7bf33f.r2.dev/Semoklu.msi",
+      "url_status": "online",
+      "threat": "malware_download",
+      "tags": "NetSupport",
+      "host": "https://urlhaus.abuse.ch/url/3883870/"
     }
   ]
 }

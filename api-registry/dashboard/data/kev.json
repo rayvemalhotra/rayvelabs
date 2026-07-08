@@ -1,8 +1,44 @@
 {
-  "total": 1631,
-  "catalog_version": "2026.07.01",
-  "date_released": "2026-07-01T19:00:06.9016Z",
+  "total": 1635,
+  "catalog_version": "2026.07.07",
+  "date_released": "2026-07-07T18:28:17.8926Z",
   "recent": [
+    {
+      "cve": "CVE-2026-48908",
+      "vendor": "JoomShaper",
+      "product": "SP Page Builder",
+      "name": "JoomShaper SP Page Builder Unrestricted Upload of File with Dangerous Type Vulnerability",
+      "date_added": "2026-07-07",
+      "due_date": "2026-07-10",
+      "ransomware": false
+    },
+    {
+      "cve": "CVE-2026-55255",
+      "vendor": "Langflow",
+      "product": "Langflow",
+      "name": "Langflow Authorization Bypass Through User-Controlled Key Vulnerability",
+      "date_added": "2026-07-07",
+      "due_date": "2026-07-10",
+      "ransomware": false
+    },
+    {
+      "cve": "CVE-2026-56290",
+      "vendor": "Joomlack",
+      "product": "Page Builder",
+      "name": "Joomlack Page Builder Improper Access Control Vulnerability",
+      "date_added": "2026-07-07",
+      "due_date": "2026-07-10",
+      "ransomware": false
+    },
+    {
+      "cve": "CVE-2026-48282",
+      "vendor": "Adobe",
+      "product": "ColdFusion",
+      "name": "Adobe ColdFusion Path Traversal Vulnerability",
+      "date_added": "2026-07-07",
+      "due_date": "2026-07-10",
+      "ransomware": false
+    },
     {
       "cve": "CVE-2026-45659",
       "vendor": "Microsoft",
@@ -73,42 +109,6 @@
       "name": "Ubiquiti UniFi OS Improper Access Control Vulnerability",
       "date_added": "2026-06-23",
       "due_date": "2026-06-26",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-20253",
-      "vendor": "Splunk",
-      "product": "Enterprise",
-      "name": "Splunk Enterprise Missing Authentication for Critical Function Vulnerability",
-      "date_added": "2026-06-18",
-      "due_date": "2026-06-21",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-48907",
-      "vendor": "Widget Factory",
-      "product": "Joomla Content Editor ",
-      "name": "Widget Factory Joomla Content Editor Improper Access Control Vulnerability",
-      "date_added": "2026-06-16",
-      "due_date": "2026-06-19",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-54420",
-      "vendor": "LiteSpeed",
-      "product": "cPanel Plugin",
-      "name": "LiteSpeed cPanel Plugin UNIX Symbolic Link (Symlink) Following Vulnerability",
-      "date_added": "2026-06-15",
-      "due_date": "2026-06-18",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-20262",
-      "vendor": "Cisco",
-      "product": "Catalyst SD-WAN Manager",
-      "name": "Cisco Catalyst SD-WAN Manager Directory or Path Traversal Vulnerability",
-      "date_added": "2026-06-15",
-      "due_date": "2026-06-29",
       "ransomware": false
     }
   ]

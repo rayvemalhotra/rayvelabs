@@ -1,5 +1,5 @@
 {
-  "total_listings": 10125,
+  "total_listings": 10127,
   "by_reason": [
     {
       "reason": "AsyncRAT C&C",
@@ -23,6 +23,16 @@
     }
   ],
   "recent": [
+    {
+      "listing_date": "2026-07-08 07:40:07",
+      "sha1": "2d83749ee793d5dd905aebcee10c1898c7ce8110",
+      "listing_reason": "KongTuke C&C"
+    },
+    {
+      "listing_date": "2026-07-07 14:20:28",
+      "sha1": "bca627ea4b11ce235879ac54bcf5ca2121a6ed0c",
+      "listing_reason": "MSDuckStealer C&C"
+    },
     {
       "listing_date": "2026-07-07 06:25:25",
       "sha1": "400866dbd7d2f51fbab5f7f73e98f60df8e0d798",
@@ -62,16 +72,6 @@
       "listing_date": "2026-07-07 06:04:44",
       "sha1": "72a2354f33ff1d38b31cb19209b4b90acafaf46d",
       "listing_reason": "Vidar C&C"
-    },
-    {
-      "listing_date": "2026-07-07 06:00:52",
-      "sha1": "038b7aa733f138f1a074c137fbb0430ea8f7b092",
-      "listing_reason": "KongTuke C&C"
-    },
-    {
-      "listing_date": "2026-07-06 08:54:51",
-      "sha1": "59658d5b08a31b31941b598ef4287fecf26a5e54",
-      "listing_reason": "PureLogsStealer C&C"
     }
   ]
 }

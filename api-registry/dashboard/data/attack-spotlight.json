@@ -1,18 +1,19 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1189",
-    "name": "Drive-by Compromise",
-    "description": "Adversaries may gain access to a system through a user visiting a website over the normal course of browsing. Multiple ways of delivering exploit code to a browser exist (i.e., [Drive-by Target](https://attack.mitre.org/techniques/T1608/004)), including:",
+    "id": "T1498",
+    "name": "Network Denial of Service",
+    "description": "Adversaries may perform Network Denial of Service (DoS) attacks to degrade or block the availability of targeted resources to users. Network DoS can be performed by exhausting the network bandwidth services rely on. Example resources include specific websites, email services, DNS, and web-based applications. Adversaries have been observed conducting network DoS attacks for political purposes(Citation: FireEye OpPoisonedHandover February 2016) and to support other malicious activities, including distraction(Citation: FSISAC FraudNetDoS September 2012), hacktivism, and extortion.(Citation: Symantec DDoS October 2014)",
     "tactics": [
-      "initial-access"
+      "impact"
     ],
     "platforms": [
-      "Identity Provider",
+      "Windows",
+      "IaaS",
       "Linux",
       "macOS",
-      "Windows"
+      "Containers"
     ],
-    "url": "https://attack.mitre.org/techniques/T1189"
+    "url": "https://attack.mitre.org/techniques/T1498"
   }
 }

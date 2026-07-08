@@ -1,125 +1,125 @@
 {
-  "total": 4048,
+  "total": 4106,
   "recent": [
     {
-      "first_seen": "1845994",
-      "ioc": "rtzixna.site-shartbandi.christmas",
+      "first_seen": "1846436",
+      "ioc": "football7.football",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
       "malware_alias": "None",
       "malware_printable": "ClearFake",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1846427",
+      "ioc": "5f319c7e83b8daa6836b8ae674c8e0e6",
+      "ioc_type": "md5_hash",
+      "threat_type": "payload",
+      "malware": "win.gentlemen",
+      "malware_alias": "None",
+      "malware_printable": "Gentlemen",
       "confidence": "False"
     },
     {
-      "first_seen": "1845993",
-      "ioc": "site-shartbandi.christmas",
+      "first_seen": "1846428",
+      "ioc": "6add66a89721e2b7d817ba0d0f0d660e",
+      "ioc_type": "md5_hash",
+      "threat_type": "payload",
+      "malware": "win.gentlemen",
+      "malware_alias": "None",
+      "malware_printable": "Gentlemen",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1846429",
+      "ioc": "55adc1b1cd21895765d8aff36d894382",
+      "ioc_type": "md5_hash",
+      "threat_type": "payload",
+      "malware": "win.gentlemen",
+      "malware_alias": "None",
+      "malware_printable": "Gentlemen",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1846430",
+      "ioc": "15ced19102f80a843c22480e362c8811",
+      "ioc_type": "md5_hash",
+      "threat_type": "payload",
+      "malware": "win.gentlemen",
+      "malware_alias": "None",
+      "malware_printable": "Gentlemen",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1846431",
+      "ioc": "50d6a53992cb7d6eb09bc71294e5a68f",
+      "ioc_type": "md5_hash",
+      "threat_type": "payload",
+      "malware": "win.gentlemen",
+      "malware_alias": "None",
+      "malware_printable": "Gentlemen",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1846432",
+      "ioc": "71f152d84b2928c6163724de1cb6fae3",
+      "ioc_type": "md5_hash",
+      "threat_type": "payload",
+      "malware": "win.gentlemen",
+      "malware_alias": "None",
+      "malware_printable": "Gentlemen",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1846433",
+      "ioc": "4a9837dd830f8db27380836ef3a6adec",
+      "ioc_type": "md5_hash",
+      "threat_type": "payload",
+      "malware": "win.gentlemen",
+      "malware_alias": "None",
+      "malware_printable": "Gentlemen",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1846434",
+      "ioc": "f3c6ca1ba97b7f94ab52584dc62ea691",
+      "ioc_type": "md5_hash",
+      "threat_type": "payload",
+      "malware": "win.gentlemen",
+      "malware_alias": "None",
+      "malware_printable": "Gentlemen",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1846435",
+      "ioc": "football360.football",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
       "malware_alias": "None",
       "malware_printable": "ClearFake",
-      "confidence": "False"
+      "confidence": "True"
     },
     {
-      "first_seen": "1845992",
-      "ioc": "authorization-cdn-press-enter.info",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
+      "first_seen": "1846426",
+      "ioc": "43.143.128.126:443",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
       "malware": "unknown",
       "malware_alias": "None",
       "malware_printable": "Unknown malware",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1845984",
-      "ioc": "vgip5uas.1xgame.casino",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1845983",
-      "ioc": "8omeu821.1xpin.casino",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1845982",
-      "ioc": "1xpin.casino",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
       "confidence": "True"
     },
     {
-      "first_seen": "1845981",
-      "ioc": "dbfzqcjz.site-enfejar-hazarat.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1845980",
-      "ioc": "1xgame.casino",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1845978",
-      "ioc": "site-enfejar-hazarat.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1845977",
-      "ioc": "qnjanmb.bet1forward.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1845976",
-      "ioc": "107.175.89.136:9009",
+      "first_seen": "1846425",
+      "ioc": "160.20.109.75:80",
       "ioc_type": "ip:port",
-      "threat_type": "payload_delivery",
-      "malware": "elf.xmrig",
+      "threat_type": "botnet_cc",
+      "malware": "win.stealc",
       "malware_alias": "None",
-      "malware_printable": "XMRIG",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1845975",
-      "ioc": "wrnnouy.bet1forward.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
+      "malware_printable": "Stealc",
+      "confidence": "True"
     }
   ]
 }
