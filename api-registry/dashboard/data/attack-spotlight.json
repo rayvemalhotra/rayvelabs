@@ -1,19 +1,15 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1498",
-    "name": "Network Denial of Service",
-    "description": "Adversaries may perform Network Denial of Service (DoS) attacks to degrade or block the availability of targeted resources to users. Network DoS can be performed by exhausting the network bandwidth services rely on. Example resources include specific websites, email services, DNS, and web-based applications. Adversaries have been observed conducting network DoS attacks for political purposes(Citation: FireEye OpPoisonedHandover February 2016) and to support other malicious activities, including distraction(Citation: FSISAC FraudNetDoS September 2012), hacktivism, and extortion.(Citation: Symantec DDoS October 2014)",
+    "id": "T1651",
+    "name": "Cloud Administration Command",
+    "description": "Adversaries may abuse cloud management services to execute commands within virtual machines. Resources such as AWS Systems Manager, Azure RunCommand, and Runbooks allow users to remotely run scripts in virtual machines by leveraging installed virtual machine agents. (Citation: AWS Systems Manager Run Command)(Citation: Microsoft Run Command)",
     "tactics": [
-      "impact"
+      "execution"
     ],
     "platforms": [
-      "Windows",
-      "IaaS",
-      "Linux",
-      "macOS",
-      "Containers"
+      "IaaS"
     ],
-    "url": "https://attack.mitre.org/techniques/T1498"
+    "url": "https://attack.mitre.org/techniques/T1651"
   }
 }

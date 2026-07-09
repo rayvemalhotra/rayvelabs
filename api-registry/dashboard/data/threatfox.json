@@ -1,9 +1,29 @@
 {
-  "total": 4106,
+  "total": 4198,
   "recent": [
     {
-      "first_seen": "1846436",
-      "ioc": "football7.football",
+      "first_seen": "1846967",
+      "ioc": "duqvs764.likesport.ir",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1846966",
+      "ioc": "173.231.53.193:4242",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.purelogs",
+      "malware_alias": "None",
+      "malware_printable": "PureLogs Stealer",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1846965",
+      "ioc": "likesport.ir",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -12,114 +32,94 @@
       "confidence": "True"
     },
     {
-      "first_seen": "1846427",
-      "ioc": "5f319c7e83b8daa6836b8ae674c8e0e6",
-      "ioc_type": "md5_hash",
-      "threat_type": "payload",
-      "malware": "win.gentlemen",
-      "malware_alias": "None",
-      "malware_printable": "Gentlemen",
-      "confidence": "False"
+      "first_seen": "1846964",
+      "ioc": "ftp.altatsradgez.com",
+      "ioc_type": "domain",
+      "threat_type": "botnet_cc",
+      "malware": "win.agent_tesla",
+      "malware_alias": "AgenTesla",
+      "malware_printable": "AgentTesla",
+      "confidence": ""
     },
     {
-      "first_seen": "1846428",
-      "ioc": "6add66a89721e2b7d817ba0d0f0d660e",
-      "ioc_type": "md5_hash",
-      "threat_type": "payload",
-      "malware": "win.gentlemen",
-      "malware_alias": "None",
-      "malware_printable": "Gentlemen",
-      "confidence": "False"
+      "first_seen": "1846963",
+      "ioc": "209.99.191.60:56001",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.pure_rat",
+      "malware_alias": "PureHVNC",
+      "malware_printable": "ResolverRAT",
+      "confidence": "75"
     },
     {
-      "first_seen": "1846429",
-      "ioc": "55adc1b1cd21895765d8aff36d894382",
-      "ioc_type": "md5_hash",
-      "threat_type": "payload",
-      "malware": "win.gentlemen",
-      "malware_alias": "None",
-      "malware_printable": "Gentlemen",
-      "confidence": "False"
+      "first_seen": "1846961",
+      "ioc": "39.106.113.249:443",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.cobalt_strike",
+      "malware_alias": "Agentemis",
+      "malware_printable": "BEACON",
+      "confidence": "Cobalt Strike"
     },
     {
-      "first_seen": "1846430",
-      "ioc": "15ced19102f80a843c22480e362c8811",
-      "ioc_type": "md5_hash",
-      "threat_type": "payload",
-      "malware": "win.gentlemen",
-      "malware_alias": "None",
-      "malware_printable": "Gentlemen",
-      "confidence": "False"
+      "first_seen": "1846962",
+      "ioc": "39.106.113.249:8080",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.cobalt_strike",
+      "malware_alias": "Agentemis",
+      "malware_printable": "BEACON",
+      "confidence": "Cobalt Strike"
     },
     {
-      "first_seen": "1846431",
-      "ioc": "50d6a53992cb7d6eb09bc71294e5a68f",
-      "ioc_type": "md5_hash",
-      "threat_type": "payload",
-      "malware": "win.gentlemen",
-      "malware_alias": "None",
-      "malware_printable": "Gentlemen",
-      "confidence": "False"
+      "first_seen": "1846960",
+      "ioc": "152.32.202.240:80",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.cobalt_strike",
+      "malware_alias": "Agentemis",
+      "malware_printable": "BEACON",
+      "confidence": "Cobalt Strike"
     },
     {
-      "first_seen": "1846432",
-      "ioc": "71f152d84b2928c6163724de1cb6fae3",
-      "ioc_type": "md5_hash",
-      "threat_type": "payload",
-      "malware": "win.gentlemen",
-      "malware_alias": "None",
-      "malware_printable": "Gentlemen",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1846433",
-      "ioc": "4a9837dd830f8db27380836ef3a6adec",
-      "ioc_type": "md5_hash",
-      "threat_type": "payload",
-      "malware": "win.gentlemen",
-      "malware_alias": "None",
-      "malware_printable": "Gentlemen",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1846434",
-      "ioc": "f3c6ca1ba97b7f94ab52584dc62ea691",
-      "ioc_type": "md5_hash",
-      "threat_type": "payload",
-      "malware": "win.gentlemen",
-      "malware_alias": "None",
-      "malware_printable": "Gentlemen",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1846435",
-      "ioc": "football360.football",
+      "first_seen": "1846959",
+      "ioc": "q8nw6zme.fileboroo.com",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
       "malware_alias": "None",
       "malware_printable": "ClearFake",
-      "confidence": "True"
+      "confidence": "False"
     },
     {
-      "first_seen": "1846426",
-      "ioc": "43.143.128.126:443",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "unknown",
+      "first_seen": "1846958",
+      "ioc": "uuh7n2c4.fileboroo.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
       "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "True"
+      "malware_printable": "ClearFake",
+      "confidence": "False"
     },
     {
-      "first_seen": "1846425",
-      "ioc": "160.20.109.75:80",
+      "first_seen": "1846957",
+      "ioc": "178.173.244.189:62435",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "win.stealc",
-      "malware_alias": "None",
-      "malware_printable": "Stealc",
-      "confidence": "True"
+      "malware": "win.ave_maria",
+      "malware_alias": "AVE_MARIA",
+      "malware_printable": "AveMariaRAT",
+      "confidence": "avemaria"
+    },
+    {
+      "first_seen": "1846956",
+      "ioc": "morefunds.ddns.net",
+      "ioc_type": "domain",
+      "threat_type": "botnet_cc",
+      "malware": "win.ave_maria",
+      "malware_alias": "AVE_MARIA",
+      "malware_printable": "AveMariaRAT",
+      "confidence": "avemaria"
     }
   ]
 }
