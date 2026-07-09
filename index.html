@@ -533,7 +533,7 @@ h1.title em::after{
 }
 .section-sub{font-size:17px;color:var(--dim);max-width:640px}
 
-.project-stage{max-width:1080px;margin:0 auto;perspective:1400px}
+.project-stage{max-width:1080px;margin:0 auto;perspective:1400px;display:flex;flex-direction:column;gap:32px}
 
 .project-card{
   position:relative;
@@ -1337,12 +1337,101 @@ html.loading{overflow:hidden}
   </div>
 
   <div class="section-head" id="labs" style="margin-top:56px">
-    <div class="section-label reveal">SEAS-8414 lab series</div>
-    <h2 class="section-title reveal d1" style="font-size:clamp(20px,3vw,30px)">Detective → Predictive → Simulation</h2>
-    <p class="section-sub reveal d2">Click-through teaching simulators that walk Dr. Mallarapu's GWU cyber-analytics pipeline, chapter by chapter, on a synthetic network with real CVE / ATT&amp;CK data. <i>Demonstration only · course material © Dr. Mallarapu / The George Washington University.</i></p>
+    <div class="section-label reveal">SEAS-8414 lab series · Dr. Ravi Mallarapu</div>
+    <h2 class="section-title reveal d1" style="font-size:clamp(20px,3vw,30px)">The cyber-analytics pipeline, Labs 1 → 6</h2>
+    <p class="section-sub reveal d2">Six click-through teaching simulators that walk Dr. Ravi Mallarapu's GWU cyber-analytics pipeline, chapter by chapter — <b>Descriptive → Diagnostic → Detective → Predictive → Prescriptive → Simulation</b> — on a synthetic network with real CVE / ATT&amp;CK data. <i>Demonstration only · course material © Dr. Ravi Mallarapu / The George Washington University.</i></p>
   </div>
 
   <div class="project-stage">
+    <div class="project-card reveal d1" id="lab1DemoCard">
+      <div>
+        <div class="p-head">
+          <div class="p-name">Lab 1 — Network Discovery</div>
+          <span class="p-status">In RayveNet</span>
+        </div>
+        <p class="p-desc">The descriptive layer — <b>what actually exists on the network?</b> Build an asset inventory from ARP, mDNS, SSDP, SNMP and a TCP pilot, then reason about the three things that make an inventory trustworthy: <b>vantage point</b>, <b>existence vs. identity</b>, and <b>completeness vs. soundness</b> — measured against a known ground-truth network.</p>
+        <div class="p-tags">
+          <span class="p-tag">Ch 1</span>
+          <span class="p-tag">Descriptive</span>
+          <span class="p-tag">Asset inventory</span>
+          <span class="p-tag">Ground-truth</span>
+          <span class="p-tag">In RayveNet</span>
+        </div>
+        <a href="rayvenet.html" class="p-link">Open in RayveNet <span class="arrow">→</span></a>
+      </div>
+      <div class="p-preview">
+        <div class="p-tile">
+          <span class="tag">Vantage</span>
+          <div class="tt">where you scan from</div>
+          <pre>same-VLAN vs routed
+changes what you see</pre>
+        </div>
+        <div class="p-tile">
+          <span class="tag">Evidence</span>
+          <div class="tt">5 discovery methods</div>
+          <pre>ARP · mDNS · SSDP
+SNMP · TCP pilot</pre>
+        </div>
+        <div class="p-tile">
+          <span class="tag">Identity</span>
+          <div class="tt">existence ≠ identity</div>
+          <pre>a host answering ≠
+knowing what it is</pre>
+        </div>
+        <div class="p-tile">
+          <span class="tag">Quality</span>
+          <div class="tt">complete vs sound</div>
+          <pre>missed hosts vs
+false inventory rows</pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card reveal d2" id="lab2DemoCard">
+      <div>
+        <div class="p-head">
+          <div class="p-name">Lab 2 — Service Enrichment &amp; Fingerprinting</div>
+          <span class="p-status">In RayveNet</span>
+        </div>
+        <p class="p-desc">The diagnostic layer — <b>what are these devices?</b> Fingerprint each host through a cascade of independent evidence (OUI → banner → realm → RTSP), build a CPE, and score confidence with an honest ceiling. Four self-service tools and a difficulty-graded detective game with adversarial flips.</p>
+        <div class="p-tags">
+          <span class="p-tag">Ch 2</span>
+          <span class="p-tag">Diagnostic</span>
+          <span class="p-tag">OUI / banner / realm</span>
+          <span class="p-tag">CPE builder</span>
+          <span class="p-tag">In RayveNet</span>
+        </div>
+        <a href="rayvenet.html" class="p-link">Open in RayveNet <span class="arrow">→</span></a>
+      </div>
+      <div class="p-preview">
+        <div class="p-tile">
+          <span class="tag">Cascade</span>
+          <div class="tt">stacked evidence</div>
+          <pre>OUI   → Hikvision .40
+realm → Hik      .70
+RTSP  → Webs/8.13 .75</pre>
+        </div>
+        <div class="p-tile">
+          <span class="tag">CPE</span>
+          <div class="tt">structured identity</div>
+          <pre>cpe:2.3:o:hikvision
+firmware 5.5.52</pre>
+        </div>
+        <div class="p-tile">
+          <span class="tag">Confidence</span>
+          <div class="tt">honest ceiling</div>
+          <pre>independent signals
+raise the ceiling</pre>
+        </div>
+        <div class="p-tile">
+          <span class="tag">Adversary</span>
+          <div class="tt">flip cards</div>
+          <pre>a spoofed banner
+breaks naive ID</pre>
+        </div>
+      </div>
+    </div>
+
     <div class="project-card reveal d2" id="lab3DemoCard">
       <div>
         <div class="p-head">
@@ -1435,6 +1524,50 @@ T0879 damage</pre>
           <pre>attack-pattern
 vulnerability
 observed-data</pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card reveal d3" id="lab5DemoCard">
+      <div>
+        <div class="p-head">
+          <div class="p-name">Lab 5 — Offensive Validation</div>
+          <span class="p-status">In progress</span>
+        </div>
+        <p class="p-desc">The prescriptive layer — <b>which offensive tests should we actually run, and are they safe?</b> Turn Lab 4's attack paths into a ranked, ROE-bounded validation plan: what to test, in what order, and where the rules of engagement say stop. Interactive demo in progress.</p>
+        <div class="p-tags">
+          <span class="p-tag">Ch 5</span>
+          <span class="p-tag">Prescriptive</span>
+          <span class="p-tag">Validation plan</span>
+          <span class="p-tag">ROE-bounded</span>
+          <span class="p-tag">In progress</span>
+        </div>
+        <span class="p-link" style="opacity:.5;cursor:default">Demo in progress</span>
+      </div>
+      <div class="p-preview">
+        <div class="p-tile">
+          <span class="tag">Input</span>
+          <div class="tt">Lab 4 attack paths</div>
+          <pre>cheapest paths
+ranked by BRS</pre>
+        </div>
+        <div class="p-tile">
+          <span class="tag">Plan</span>
+          <div class="tt">what to test first</div>
+          <pre>most risk-reduction
+per test, first</pre>
+        </div>
+        <div class="p-tile">
+          <span class="tag">Safety</span>
+          <div class="tt">ROE boundary</div>
+          <pre>medical / OT →
+no active test</pre>
+        </div>
+        <div class="p-tile">
+          <span class="tag">Output</span>
+          <div class="tt">validation runbook</div>
+          <pre>ordered, bounded
+approver-gated</pre>
         </div>
       </div>
     </div>
