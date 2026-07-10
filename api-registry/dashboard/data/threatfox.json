@@ -1,9 +1,9 @@
 {
-  "total": 4198,
+  "total": 4757,
   "recent": [
     {
-      "first_seen": "1846967",
-      "ioc": "duqvs764.likesport.ir",
+      "first_seen": "1847948",
+      "ioc": "oria.radioshartbandi.bet",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -12,78 +12,28 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1846966",
-      "ioc": "173.231.53.193:4242",
+      "first_seen": "1847947",
+      "ioc": "137.220.194.138:8888",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "win.purelogs",
+      "malware": "unknown",
       "malware_alias": "None",
-      "malware_printable": "PureLogs Stealer",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1846965",
-      "ioc": "likesport.ir",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
+      "malware_printable": "Unknown malware",
       "confidence": "True"
     },
     {
-      "first_seen": "1846964",
-      "ioc": "ftp.altatsradgez.com",
-      "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "win.agent_tesla",
-      "malware_alias": "AgenTesla",
-      "malware_printable": "AgentTesla",
-      "confidence": ""
-    },
-    {
-      "first_seen": "1846963",
-      "ioc": "209.99.191.60:56001",
+      "first_seen": "1847946",
+      "ioc": "13.53.169.83:5000",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "win.pure_rat",
-      "malware_alias": "PureHVNC",
-      "malware_printable": "ResolverRAT",
-      "confidence": "75"
+      "malware": "win.asyncrat",
+      "malware_alias": "None",
+      "malware_printable": "AsyncRAT",
+      "confidence": "True"
     },
     {
-      "first_seen": "1846961",
-      "ioc": "39.106.113.249:443",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.cobalt_strike",
-      "malware_alias": "Agentemis",
-      "malware_printable": "BEACON",
-      "confidence": "Cobalt Strike"
-    },
-    {
-      "first_seen": "1846962",
-      "ioc": "39.106.113.249:8080",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.cobalt_strike",
-      "malware_alias": "Agentemis",
-      "malware_printable": "BEACON",
-      "confidence": "Cobalt Strike"
-    },
-    {
-      "first_seen": "1846960",
-      "ioc": "152.32.202.240:80",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.cobalt_strike",
-      "malware_alias": "Agentemis",
-      "malware_printable": "BEACON",
-      "confidence": "Cobalt Strike"
-    },
-    {
-      "first_seen": "1846959",
-      "ioc": "q8nw6zme.fileboroo.com",
+      "first_seen": "1847945",
+      "ioc": "x53ini6v.winnerbaz.bet",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -92,8 +42,8 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1846958",
-      "ioc": "uuh7n2c4.fileboroo.com",
+      "first_seen": "1847944",
+      "ioc": "aonwiltw.irantop.bet",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -102,24 +52,74 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1846957",
-      "ioc": "178.173.244.189:62435",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.ave_maria",
-      "malware_alias": "AVE_MARIA",
-      "malware_printable": "AveMariaRAT",
-      "confidence": "avemaria"
+      "first_seen": "1847943",
+      "ioc": "huy9e25g.winnerbaz.bet",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
     },
     {
-      "first_seen": "1846956",
-      "ioc": "morefunds.ddns.net",
+      "first_seen": "1847942",
+      "ioc": "ddsmolcn.irantop.bet",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1847940",
+      "ioc": "kzdccycs.irantop.bet",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1847939",
+      "ioc": "gjuqzxwz.irantop.bet",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1847938",
+      "ioc": "tdfdekwf.hazzaratbet.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1847937",
+      "ioc": "base4openwald.dexispointnexus.garden",
       "ioc_type": "domain",
       "threat_type": "botnet_cc",
-      "malware": "win.ave_maria",
-      "malware_alias": "AVE_MARIA",
-      "malware_printable": "AveMariaRAT",
-      "confidence": "avemaria"
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1847936",
+      "ioc": "abkp.site-shartbandi-khareji.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
     }
   ]
 }
