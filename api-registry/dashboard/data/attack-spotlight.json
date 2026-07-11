@@ -1,15 +1,16 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1221",
-    "name": "Template Injection",
-    "description": "Adversaries may create or modify references in user document templates to conceal malicious code or force authentication attempts. For example, Microsoft\u2019s Office Open XML (OOXML) specification defines an XML-based format for Office documents (.docx, xlsx, .pptx) to replace older binary formats (.doc, .xls, .ppt). OOXML files are packed together ZIP archives compromised of various XML files, referred to as parts, containing properties that collectively define how a document is rendered.(Citation: Microsoft Open XML July 2017)",
+    "id": "T1134",
+    "name": "Access Token Manipulation",
+    "description": "Adversaries may modify access tokens to operate under a different user or system security context to perform actions and bypass access controls. Windows uses access tokens to determine the ownership of a running process. A user can manipulate access tokens to make a running process appear as though it is the child of a different process or belongs to someone other than the user that started the process. When this occurs, the process also takes on the security context associated with the new token.",
     "tactics": [
-      "stealth"
+      "stealth",
+      "privilege-escalation"
     ],
     "platforms": [
       "Windows"
     ],
-    "url": "https://attack.mitre.org/techniques/T1221"
+    "url": "https://attack.mitre.org/techniques/T1134"
   }
 }
