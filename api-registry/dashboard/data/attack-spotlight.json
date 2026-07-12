@@ -1,16 +1,17 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1134",
-    "name": "Access Token Manipulation",
-    "description": "Adversaries may modify access tokens to operate under a different user or system security context to perform actions and bypass access controls. Windows uses access tokens to determine the ownership of a running process. A user can manipulate access tokens to make a running process appear as though it is the child of a different process or belongs to someone other than the user that started the process. When this occurs, the process also takes on the security context associated with the new token.",
+    "id": "T1111",
+    "name": "Multi-Factor Authentication Interception",
+    "description": "Adversaries may target multi-factor authentication (MFA) mechanisms, (i.e., smart cards, token generators, etc.) to gain access to credentials that can be used to access systems, services, and network resources. Use of MFA is recommended and provides a higher level of security than usernames and passwords alone, but organizations should be aware of techniques that could be used to intercept and bypass these security mechanisms. ",
     "tactics": [
-      "stealth",
-      "privilege-escalation"
+      "credential-access"
     ],
     "platforms": [
+      "Linux",
+      "macOS",
       "Windows"
     ],
-    "url": "https://attack.mitre.org/techniques/T1134"
+    "url": "https://attack.mitre.org/techniques/T1111"
   }
 }

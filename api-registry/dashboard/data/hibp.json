@@ -1,6 +1,6 @@
 {
-  "total_breaches": 1015,
-  "total_records_exposed": 17677120822,
+  "total_breaches": 1016,
+  "total_records_exposed": 17677914747,
   "recent": [
     {
       "name": "OperationEndgame4",
@@ -12,6 +12,25 @@
       "data_classes": [
         "Email addresses",
         "Passwords"
+      ],
+      "verified": true
+    },
+    {
+      "name": "GlendaleCommunityCollege",
+      "title": "Glendale Community College",
+      "domain": "glendale.edu",
+      "breach_date": "2026-06-15",
+      "added_date": "2026-07-11T10:40:09Z",
+      "pwn_count": 793925,
+      "data_classes": [
+        "Academic records",
+        "Dates of birth",
+        "Email addresses",
+        "Genders",
+        "Government issued IDs",
+        "Names",
+        "Phone numbers",
+        "Physical addresses"
       ],
       "verified": true
     },
@@ -113,32 +132,6 @@
         "Genders",
         "Names",
         "Phone numbers"
-      ],
-      "verified": true
-    },
-    {
-      "name": "UniversityOfNottingham",
-      "title": "University of Nottingham",
-      "domain": "nottingham.ac.uk",
-      "breach_date": "2026-06-09",
-      "added_date": "2026-06-10T22:13:31Z",
-      "pwn_count": 454635,
-      "data_classes": [
-        "Academic records",
-        "Citizenship statuses",
-        "Dates of birth",
-        "Disabilities",
-        "Email addresses",
-        "Ethnicities",
-        "Genders",
-        "IP addresses",
-        "Names",
-        "Passport numbers",
-        "Phone numbers",
-        "Physical addresses",
-        "Purchases",
-        "Salutations",
-        "Usernames"
       ],
       "verified": true
     }

@@ -1,9 +1,9 @@
 {
-  "total": 5015,
+  "total": 4259,
   "recent": [
     {
-      "first_seen": "1848533",
-      "ioc": "ggnytlvj.betnef.bet",
+      "first_seen": "1848916",
+      "ioc": "tetz.site-shartbandi-khareji.com",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -12,8 +12,78 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1848532",
-      "ioc": "betnef.bet",
+      "first_seen": "1848915",
+      "ioc": "htro.site-shartbandi-khareji.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1848914",
+      "ioc": "154.88.99.48:8885",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.vshell",
+      "malware_alias": "None",
+      "malware_printable": "VShell",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1848913",
+      "ioc": "154.88.99.43:8885",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.vshell",
+      "malware_alias": "None",
+      "malware_printable": "VShell",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1848911",
+      "ioc": "154.88.99.40:8885",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.vshell",
+      "malware_alias": "None",
+      "malware_printable": "VShell",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1848912",
+      "ioc": "154.88.99.41:8885",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.vshell",
+      "malware_alias": "None",
+      "malware_printable": "VShell",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1848910",
+      "ioc": "154.88.96.47:8885",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.vshell",
+      "malware_alias": "None",
+      "malware_printable": "VShell",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1848909",
+      "ioc": "kokkpxut.jadoobet.vip",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1848908",
+      "ioc": "jadoobet.vip",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -22,103 +92,33 @@
       "confidence": "True"
     },
     {
-      "first_seen": "1848531",
-      "ioc": "lokb.bekabet.casino",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1848530",
-      "ioc": "rntb.bekabet.casino",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1848529",
-      "ioc": "betmel.coupons",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1848528",
-      "ioc": "py01df9v.bettilt90.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1848527",
-      "ioc": "6cyzeu86.bettilt90.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1848525",
-      "ioc": "open.citadelsquishyhumvee.in.net",
+      "first_seen": "1848904",
+      "ioc": "ceranet.goliath.st",
       "ioc_type": "domain",
       "threat_type": "botnet_cc",
-      "malware": "unknown",
+      "malware": "elf.aisuru",
       "malware_alias": "None",
-      "malware_printable": "Unknown malware",
+      "malware_printable": "Aisuru",
       "confidence": "False"
     },
     {
-      "first_seen": "1848526",
-      "ioc": "hp.citadelsquishyhumvee.in.net",
+      "first_seen": "1848903",
+      "ioc": "5748.reformuk.st",
       "ioc_type": "domain",
       "threat_type": "botnet_cc",
-      "malware": "unknown",
+      "malware": "elf.aisuru",
       "malware_alias": "None",
-      "malware_printable": "Unknown malware",
+      "malware_printable": "Aisuru",
       "confidence": "False"
     },
     {
-      "first_seen": "1848524",
-      "ioc": "gw.portallbridge.cc",
+      "first_seen": "1848905",
+      "ioc": "s.goliath.st",
       "ioc_type": "domain",
       "threat_type": "botnet_cc",
-      "malware": "win.acr_stealer",
+      "malware": "elf.aisuru",
       "malware_alias": "None",
-      "malware_printable": "ACR Stealer",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1848522",
-      "ioc": "operationsframework.cc",
-      "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "win.acr_stealer",
-      "malware_alias": "None",
-      "malware_printable": "ACR Stealer",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1848523",
-      "ioc": "account.operationsframework.cc",
-      "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "win.acr_stealer",
-      "malware_alias": "None",
-      "malware_printable": "ACR Stealer",
+      "malware_printable": "Aisuru",
       "confidence": "False"
     }
   ]
