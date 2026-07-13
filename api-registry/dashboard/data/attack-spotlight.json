@@ -1,17 +1,17 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1111",
-    "name": "Multi-Factor Authentication Interception",
-    "description": "Adversaries may target multi-factor authentication (MFA) mechanisms, (i.e., smart cards, token generators, etc.) to gain access to credentials that can be used to access systems, services, and network resources. Use of MFA is recommended and provides a higher level of security than usernames and passwords alone, but organizations should be aware of techniques that could be used to intercept and bypass these security mechanisms. ",
+    "id": "T1668",
+    "name": "Exclusive Control",
+    "description": "Adversaries who successfully compromise a system may attempt to maintain persistence by \u201cclosing the door\u201d behind them  \u2013 in other words, by preventing other threat actors from initially accessing or maintaining a foothold on the same system. ",
     "tactics": [
-      "credential-access"
+      "persistence"
     ],
     "platforms": [
       "Linux",
       "macOS",
       "Windows"
     ],
-    "url": "https://attack.mitre.org/techniques/T1111"
+    "url": "https://attack.mitre.org/techniques/T1668"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "total_listings": 10163,
+  "total_listings": 10166,
   "by_reason": [
     {
       "reason": "AsyncRAT C&C",
@@ -15,7 +15,7 @@
     },
     {
       "reason": "Vidar C&C",
-      "count": 640
+      "count": 641
     },
     {
       "reason": "LummaStealer C&C",
@@ -23,6 +23,21 @@
     }
   ],
   "recent": [
+    {
+      "listing_date": "2026-07-13 06:11:28",
+      "sha1": "7ddfe490347dc28f3e39de9be9d61940b6b98526",
+      "listing_reason": "ACRStealer C&C"
+    },
+    {
+      "listing_date": "2026-07-13 06:10:27",
+      "sha1": "25b12b6623c85699b128e0b49fab305fa6b53291",
+      "listing_reason": "ACRStealer C&C"
+    },
+    {
+      "listing_date": "2026-07-12 08:12:14",
+      "sha1": "7a8f361d188e552651fea1204d5399d889312da2",
+      "listing_reason": "Vidar C&C"
+    },
     {
       "listing_date": "2026-07-11 07:17:27",
       "sha1": "a133ce088d9ead15855e1343b8e643736d47d7d9",
@@ -57,21 +72,6 @@
       "listing_date": "2026-07-11 06:52:00",
       "sha1": "b0e16234706cee8e6f50f6397b88aab1d6ee4345",
       "listing_reason": "ZigClipper C&C"
-    },
-    {
-      "listing_date": "2026-07-11 06:51:52",
-      "sha1": "6852cc75937e2d30455d30257da88d19e57d5ef2",
-      "listing_reason": "Malware distribution"
-    },
-    {
-      "listing_date": "2026-07-11 06:51:33",
-      "sha1": "ee36218aaa01a8d8f352e02bc851092fbcf1f1a2",
-      "listing_reason": "Vidar C&C"
-    },
-    {
-      "listing_date": "2026-07-09 19:06:11",
-      "sha1": "23267256640f8285cc77767082fe17ac0b8d23b0",
-      "listing_reason": "ACRStealer C&C"
     }
   ]
 }

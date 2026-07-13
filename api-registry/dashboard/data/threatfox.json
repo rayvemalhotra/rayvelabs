@@ -1,9 +1,89 @@
 {
-  "total": 4259,
+  "total": 4182,
   "recent": [
     {
-      "first_seen": "1848916",
-      "ioc": "tetz.site-shartbandi-khareji.com",
+      "first_seen": "1849644",
+      "ioc": "151.239.24.33:9090",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.cobalt_strike",
+      "malware_alias": "Agentemis",
+      "malware_printable": "BEACON",
+      "confidence": "Cobalt Strike"
+    },
+    {
+      "first_seen": "1849643",
+      "ioc": "64.90.13.61:80",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.cobalt_strike",
+      "malware_alias": "Agentemis",
+      "malware_printable": "BEACON",
+      "confidence": "Cobalt Strike"
+    },
+    {
+      "first_seen": "1849642",
+      "ioc": "106.54.44.181:81",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.cobalt_strike",
+      "malware_alias": "Agentemis",
+      "malware_printable": "BEACON",
+      "confidence": "Cobalt Strike"
+    },
+    {
+      "first_seen": "1849640",
+      "ioc": "154.88.99.47:8885",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.vshell",
+      "malware_alias": "None",
+      "malware_printable": "VShell",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1849641",
+      "ioc": "154.88.99.49:8885",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.vshell",
+      "malware_alias": "None",
+      "malware_printable": "VShell",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1849638",
+      "ioc": "154.88.99.42:8885",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.vshell",
+      "malware_alias": "None",
+      "malware_printable": "VShell",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1849639",
+      "ioc": "154.88.99.44:8885",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.vshell",
+      "malware_alias": "None",
+      "malware_printable": "VShell",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1849637",
+      "ioc": "154.88.99.37:8885",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.vshell",
+      "malware_alias": "None",
+      "malware_printable": "VShell",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1849636",
+      "ioc": "zjyozhki.jadoou.space",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -12,8 +92,8 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1848915",
-      "ioc": "htro.site-shartbandi-khareji.com",
+      "first_seen": "1849635",
+      "ioc": "rdywfklo.jadoou.space",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -22,58 +102,8 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1848914",
-      "ioc": "154.88.99.48:8885",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.vshell",
-      "malware_alias": "None",
-      "malware_printable": "VShell",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1848913",
-      "ioc": "154.88.99.43:8885",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.vshell",
-      "malware_alias": "None",
-      "malware_printable": "VShell",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1848911",
-      "ioc": "154.88.99.40:8885",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.vshell",
-      "malware_alias": "None",
-      "malware_printable": "VShell",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1848912",
-      "ioc": "154.88.99.41:8885",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.vshell",
-      "malware_alias": "None",
-      "malware_printable": "VShell",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1848910",
-      "ioc": "154.88.96.47:8885",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.vshell",
-      "malware_alias": "None",
-      "malware_printable": "VShell",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1848909",
-      "ioc": "kokkpxut.jadoobet.vip",
+      "first_seen": "1849634",
+      "ioc": "gcyp.jadoou.monster",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -82,43 +112,13 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1848908",
-      "ioc": "jadoobet.vip",
+      "first_seen": "1849633",
+      "ioc": "23euhdso.deryuga-sablist.garden",
       "ioc_type": "domain",
-      "threat_type": "payload_delivery",
+      "threat_type": "botnet_cc",
       "malware": "js.clearfake",
       "malware_alias": "None",
       "malware_printable": "ClearFake",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1848904",
-      "ioc": "ceranet.goliath.st",
-      "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "elf.aisuru",
-      "malware_alias": "None",
-      "malware_printable": "Aisuru",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1848903",
-      "ioc": "5748.reformuk.st",
-      "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "elf.aisuru",
-      "malware_alias": "None",
-      "malware_printable": "Aisuru",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1848905",
-      "ioc": "s.goliath.st",
-      "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "elf.aisuru",
-      "malware_alias": "None",
-      "malware_printable": "Aisuru",
       "confidence": "False"
     }
   ]
