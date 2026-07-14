@@ -1,140 +1,140 @@
 {
-  "total_recent": 21129,
+  "total_recent": 21139,
   "recent": [
     {
-      "id": "3885823",
-      "date_added": "2026-07-13 09:12:13",
-      "url": "http://93.177.151.72:41198/i",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "None",
-      "host": "https://urlhaus.abuse.ch/url/3885823/"
-    },
-    {
-      "id": "3885822",
-      "date_added": "2026-07-13 09:11:17",
-      "url": "http://182.121.105.160:39775/bin.sh",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3885822/"
-    },
-    {
-      "id": "3885821",
-      "date_added": "2026-07-13 09:08:30",
-      "url": "http://115.61.114.107:37210/i",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3885821/"
-    },
-    {
-      "id": "3885820",
-      "date_added": "2026-07-13 08:56:13",
-      "url": "http://125.41.3.43:57288/bin.sh",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3885820/"
-    },
-    {
-      "id": "3885819",
-      "date_added": "2026-07-13 08:55:12",
-      "url": "https://zjyozhki.jadoou.space/47db3ff9-a24b-4fcc-8a59-e2aff502acaf",
-      "url_status": "offline",
-      "threat": "malware_download",
-      "tags": "ClearFake,win-0x4679,windows",
-      "host": "https://urlhaus.abuse.ch/url/3885819/"
-    },
-    {
-      "id": "3885818",
-      "date_added": "2026-07-13 08:47:27",
-      "url": "http://105.184.236.156:52227/i",
+      "id": "3886228",
+      "date_added": "2026-07-14 07:46:30",
+      "url": "http://183.92.205.84:44151/bin.sh",
       "url_status": "online",
       "threat": "malware_download",
       "tags": "32-bit,arm,elf,mirai,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3885818/"
+      "host": "https://urlhaus.abuse.ch/url/3886228/"
     },
     {
-      "id": "3885817",
-      "date_added": "2026-07-13 08:43:27",
-      "url": "http://115.61.114.107:37210/bin.sh",
+      "id": "3886227",
+      "date_added": "2026-07-14 07:46:26",
+      "url": "http://221.1.227.114:56696/i",
       "url_status": "online",
       "threat": "malware_download",
       "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3885817/"
+      "host": "https://urlhaus.abuse.ch/url/3886227/"
     },
     {
-      "id": "3885816",
-      "date_added": "2026-07-13 08:43:21",
-      "url": "http://85.15.119.53:44457/i",
+      "id": "3886225",
+      "date_added": "2026-07-14 07:45:33",
+      "url": "http://endpoint.project0.cc/f/m/libcommon.so_x86_64",
+      "url_status": "online",
+      "threat": "malware_download",
+      "tags": "elf,project0,rootkit",
+      "host": "https://urlhaus.abuse.ch/url/3886225/"
+    },
+    {
+      "id": "3886226",
+      "date_added": "2026-07-14 07:45:33",
+      "url": "http://endpoint.project0.cc/f/m/.X0-lock_x86_64",
+      "url_status": "online",
+      "threat": "malware_download",
+      "tags": "elf,etchash,project0,xmrig",
+      "host": "https://urlhaus.abuse.ch/url/3886226/"
+    },
+    {
+      "id": "3886224",
+      "date_added": "2026-07-14 07:45:31",
+      "url": "http://endpoint.project0.cc/f/init.cfg",
+      "url_status": "offline",
+      "threat": "malware_download",
+      "tags": "CryptoMiner,elf,etchash,gpu-hunter,project0",
+      "host": "https://urlhaus.abuse.ch/url/3886224/"
+    },
+    {
+      "id": "3886223",
+      "date_added": "2026-07-14 07:43:29",
+      "url": "http://119.117.156.106:43300/i",
       "url_status": "online",
       "threat": "malware_download",
       "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3885816/"
+      "host": "https://urlhaus.abuse.ch/url/3886223/"
     },
     {
-      "id": "3885815",
-      "date_added": "2026-07-13 08:36:16",
-      "url": "http://123.148.225.193:43983/i",
+      "id": "3886222",
+      "date_added": "2026-07-14 07:36:27",
+      "url": "http://125.43.144.188:45792/bin.sh",
       "url_status": "online",
       "threat": "malware_download",
-      "tags": "mirai",
-      "host": "https://urlhaus.abuse.ch/url/3885815/"
+      "tags": "32-bit,elf,mips,Mozi",
+      "host": "https://urlhaus.abuse.ch/url/3886222/"
     },
     {
-      "id": "3885814",
-      "date_added": "2026-07-13 08:36:13",
-      "url": "https://gcyp.jadoou.monster/063f81aa-2266-4040-a7e0-a4272a0022cc",
+      "id": "3886221",
+      "date_added": "2026-07-14 07:34:24",
+      "url": "http://222.191.203.156:35202/bin.sh",
+      "url_status": "online",
+      "threat": "malware_download",
+      "tags": "32-bit,elf,mips,Mozi",
+      "host": "https://urlhaus.abuse.ch/url/3886221/"
+    },
+    {
+      "id": "3886220",
+      "date_added": "2026-07-14 07:31:16",
+      "url": "http://125.44.56.240:34717/bin.sh",
+      "url_status": "online",
+      "threat": "malware_download",
+      "tags": "Mozi",
+      "host": "https://urlhaus.abuse.ch/url/3886220/"
+    },
+    {
+      "id": "3886219",
+      "date_added": "2026-07-14 07:23:15",
+      "url": "https://zrul.bahigo90bet.com/763701f2-b6eb-4e01-a48c-57ae58864b9b",
       "url_status": "offline",
       "threat": "malware_download",
       "tags": "ClearFake,win-0x0cd5,windows",
-      "host": "https://urlhaus.abuse.ch/url/3885814/"
+      "host": "https://urlhaus.abuse.ch/url/3886219/"
     },
     {
-      "id": "3885813",
-      "date_added": "2026-07-13 08:00:17",
-      "url": "https://cacbvgql.jadoou.skin/11ef4ad0-d374-4c42-b3de-78edbed055bb",
+      "id": "3886218",
+      "date_added": "2026-07-14 07:20:41",
+      "url": "http://110.37.49.20:36149/i",
+      "url_status": "online",
+      "threat": "malware_download",
+      "tags": "32-bit,elf,mips,Mozi",
+      "host": "https://urlhaus.abuse.ch/url/3886218/"
+    },
+    {
+      "id": "3886217",
+      "date_added": "2026-07-14 07:18:33",
+      "url": "http://119.117.156.106:43300/bin.sh",
+      "url_status": "online",
+      "threat": "malware_download",
+      "tags": "32-bit,elf,mips,Mozi",
+      "host": "https://urlhaus.abuse.ch/url/3886217/"
+    },
+    {
+      "id": "3886216",
+      "date_added": "2026-07-14 07:15:32",
+      "url": "http://61.52.72.136:50524/i",
+      "url_status": "offline",
+      "threat": "malware_download",
+      "tags": "32-bit,elf,mips,Mozi",
+      "host": "https://urlhaus.abuse.ch/url/3886216/"
+    },
+    {
+      "id": "3886215",
+      "date_added": "2026-07-14 07:15:16",
+      "url": "https://zwtocirl.site-shartbandi-farsi.com/9fef95fb-a1ac-4c14-8713-41f950bf3587",
       "url_status": "offline",
       "threat": "malware_download",
       "tags": "ClearFake,win-0x4679,windows",
-      "host": "https://urlhaus.abuse.ch/url/3885813/"
+      "host": "https://urlhaus.abuse.ch/url/3886215/"
     },
     {
-      "id": "3885812",
-      "date_added": "2026-07-13 07:55:12",
-      "url": "http://91.92.242.236/files-129312398/files/file_84ca8e9dc36d005a.exe",
-      "url_status": "offline",
-      "threat": "malware_download",
-      "tags": "c2-monitor-auto,dropped-by-amadey",
-      "host": "https://urlhaus.abuse.ch/url/3885812/"
-    },
-    {
-      "id": "3885811",
-      "date_added": "2026-07-13 07:54:26",
-      "url": "http://205.237.110.232/proxy/mips",
+      "id": "3886214",
+      "date_added": "2026-07-14 07:12:29",
+      "url": "http://123.5.172.173:34251/i",
       "url_status": "online",
       "threat": "malware_download",
-      "tags": "elf,mirai,ua-wget",
-      "host": "https://urlhaus.abuse.ch/url/3885811/"
-    },
-    {
-      "id": "3885810",
-      "date_added": "2026-07-13 07:53:31",
-      "url": "http://205.237.110.232/proxy/mpsl",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "elf,mirai,ua-wget",
-      "host": "https://urlhaus.abuse.ch/url/3885810/"
-    },
-    {
-      "id": "3885806",
-      "date_added": "2026-07-13 07:53:29",
-      "url": "http://205.237.110.232/proxyarm",
-      "url_status": "offline",
-      "threat": "malware_download",
-      "tags": "elf,ua-wget",
-      "host": "https://urlhaus.abuse.ch/url/3885806/"
+      "tags": "32-bit,elf,mips,Mozi",
+      "host": "https://urlhaus.abuse.ch/url/3886214/"
     }
   ]
 }

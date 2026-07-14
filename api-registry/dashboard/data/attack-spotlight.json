@@ -1,17 +1,24 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1668",
-    "name": "Exclusive Control",
-    "description": "Adversaries who successfully compromise a system may attempt to maintain persistence by \u201cclosing the door\u201d behind them  \u2013 in other words, by preventing other threat actors from initially accessing or maintaining a foothold on the same system. ",
+    "id": "T1136",
+    "name": "Create Account",
+    "description": "Adversaries may create an account to maintain access to victim systems.(Citation: Symantec WastedLocker June 2020) With a sufficient level of access, creating such accounts may be used to establish secondary credentialed access that do not require persistent remote access tools to be deployed on the system.",
     "tactics": [
       "persistence"
     ],
     "platforms": [
+      "Windows",
+      "IaaS",
       "Linux",
       "macOS",
-      "Windows"
+      "Network Devices",
+      "Containers",
+      "SaaS",
+      "Office Suite",
+      "Identity Provider",
+      "ESXi"
     ],
-    "url": "https://attack.mitre.org/techniques/T1668"
+    "url": "https://attack.mitre.org/techniques/T1136"
   }
 }

@@ -1,9 +1,9 @@
 {
-  "total_listings": 10166,
+  "total_listings": 10190,
   "by_reason": [
     {
       "reason": "AsyncRAT C&C",
-      "count": 1422
+      "count": 1426
     },
     {
       "reason": "Dridex C&C",
@@ -11,67 +11,67 @@
     },
     {
       "reason": "QuasarRAT C&C",
-      "count": 689
+      "count": 690
     },
     {
       "reason": "Vidar C&C",
-      "count": 641
+      "count": 646
     },
     {
       "reason": "LummaStealer C&C",
-      "count": 555
+      "count": 556
     }
   ],
   "recent": [
     {
-      "listing_date": "2026-07-13 06:11:28",
-      "sha1": "7ddfe490347dc28f3e39de9be9d61940b6b98526",
+      "listing_date": "2026-07-14 07:49:41",
+      "sha1": "d75206e1bb0d0ab79c93e78178e102f6ef071732",
+      "listing_reason": "OffLoader C&C"
+    },
+    {
+      "listing_date": "2026-07-14 07:45:14",
+      "sha1": "aa813482114409b8a5f198a39d02a77d492f7911",
       "listing_reason": "ACRStealer C&C"
     },
     {
-      "listing_date": "2026-07-13 06:10:27",
-      "sha1": "25b12b6623c85699b128e0b49fab305fa6b53291",
-      "listing_reason": "ACRStealer C&C"
+      "listing_date": "2026-07-14 07:05:13",
+      "sha1": "39977fc471c8a241dbe54f09ba2caaca0261710f",
+      "listing_reason": "ConnectWise C&C"
     },
     {
-      "listing_date": "2026-07-12 08:12:14",
-      "sha1": "7a8f361d188e552651fea1204d5399d889312da2",
-      "listing_reason": "Vidar C&C"
+      "listing_date": "2026-07-14 07:04:57",
+      "sha1": "fd3af93a62968dfbe18556ec5dd6f9a208c5a294",
+      "listing_reason": "ConnectWise C&C"
     },
     {
-      "listing_date": "2026-07-11 07:17:27",
-      "sha1": "a133ce088d9ead15855e1343b8e643736d47d7d9",
-      "listing_reason": "ACRStealer C&C"
-    },
-    {
-      "listing_date": "2026-07-11 06:54:46",
-      "sha1": "dcbc383f1a16d4b8baa7bfca1bb023f7f65c36f7",
-      "listing_reason": "Vidar C&C"
-    },
-    {
-      "listing_date": "2026-07-11 06:54:09",
-      "sha1": "22cb3cb6d7b5b158d2156b1bd4018db8b5433ea7",
-      "listing_reason": "Vidar C&C"
-    },
-    {
-      "listing_date": "2026-07-11 06:53:57",
-      "sha1": "1199461c382373b4645960ca6875028d7c96ce16",
+      "listing_date": "2026-07-14 07:04:09",
+      "sha1": "7403dde12ab9b1c61109441a97fcda78ef197155",
       "listing_reason": "PureRAT C&C"
     },
     {
-      "listing_date": "2026-07-11 06:52:13",
-      "sha1": "2516492455c882b6a07fbcb076f31a06b2a71963",
+      "listing_date": "2026-07-14 07:03:38",
+      "sha1": "2b05df2a2d8cc657ebb0dce94b5c2914ee21d801",
+      "listing_reason": "PureRAT C&C"
+    },
+    {
+      "listing_date": "2026-07-14 07:02:11",
+      "sha1": "824d7a319b89b78f79a191f8c34bcfcd0a69abff",
+      "listing_reason": "PureLogsStealer C&C"
+    },
+    {
+      "listing_date": "2026-07-13 21:19:17",
+      "sha1": "3403986d256e4ce608c0b4e9648d867a373ff6cc",
       "listing_reason": "Vidar C&C"
     },
     {
-      "listing_date": "2026-07-11 06:52:02",
-      "sha1": "8b6153391f8b6caaad5e0c11054a98ff35e4b605",
-      "listing_reason": "ZigClipper C&C"
+      "listing_date": "2026-07-13 17:07:02",
+      "sha1": "659379b480f2d3448f8946b0961115e00bfdbce0",
+      "listing_reason": "OffLoader C&C"
     },
     {
-      "listing_date": "2026-07-11 06:52:00",
-      "sha1": "b0e16234706cee8e6f50f6397b88aab1d6ee4345",
-      "listing_reason": "ZigClipper C&C"
+      "listing_date": "2026-07-13 17:06:22",
+      "sha1": "34ba6ed6fdcf11e71f689efe8e8bb5d723339125",
+      "listing_reason": "AsyncRAT C&C"
     }
   ]
 }

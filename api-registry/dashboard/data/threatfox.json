@@ -1,89 +1,69 @@
 {
-  "total": 4182,
+  "total": 4487,
   "recent": [
     {
-      "first_seen": "1849644",
-      "ioc": "151.239.24.33:9090",
-      "ioc_type": "ip:port",
+      "first_seen": "1850156",
+      "ioc": "woolstem.xyz",
+      "ioc_type": "domain",
       "threat_type": "botnet_cc",
-      "malware": "win.cobalt_strike",
-      "malware_alias": "Agentemis",
-      "malware_printable": "BEACON",
-      "confidence": "Cobalt Strike"
-    },
-    {
-      "first_seen": "1849643",
-      "ioc": "64.90.13.61:80",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.cobalt_strike",
-      "malware_alias": "Agentemis",
-      "malware_printable": "BEACON",
-      "confidence": "Cobalt Strike"
-    },
-    {
-      "first_seen": "1849642",
-      "ioc": "106.54.44.181:81",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.cobalt_strike",
-      "malware_alias": "Agentemis",
-      "malware_printable": "BEACON",
-      "confidence": "Cobalt Strike"
-    },
-    {
-      "first_seen": "1849640",
-      "ioc": "154.88.99.47:8885",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.vshell",
+      "malware": "unknown_loader",
       "malware_alias": "None",
-      "malware_printable": "VShell",
-      "confidence": "True"
+      "malware_printable": "Unknown Loader",
+      "confidence": "False"
     },
     {
-      "first_seen": "1849641",
-      "ioc": "154.88.99.49:8885",
+      "first_seen": "1850155",
+      "ioc": "moonshadowforge.top",
+      "ioc_type": "domain",
+      "threat_type": "cc_skimming",
+      "malware": "js.magecart",
+      "malware_alias": "None",
+      "malware_printable": "magecart",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1850151",
+      "ioc": "endpoint.project0.cc",
+      "ioc_type": "domain",
+      "threat_type": "botnet_cc",
+      "malware": "elf.xmrig",
+      "malware_alias": "None",
+      "malware_printable": "XMRIG",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1850152",
+      "ioc": "5.189.149.171:80",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "win.vshell",
+      "malware": "elf.xmrig",
       "malware_alias": "None",
-      "malware_printable": "VShell",
-      "confidence": "True"
+      "malware_printable": "XMRIG",
+      "confidence": "False"
     },
     {
-      "first_seen": "1849638",
-      "ioc": "154.88.99.42:8885",
+      "first_seen": "1850153",
+      "ioc": "5.189.149.171:1010",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "win.vshell",
+      "malware": "elf.xmrig",
       "malware_alias": "None",
-      "malware_printable": "VShell",
-      "confidence": "True"
+      "malware_printable": "XMRIG",
+      "confidence": "False"
     },
     {
-      "first_seen": "1849639",
-      "ioc": "154.88.99.44:8885",
-      "ioc_type": "ip:port",
+      "first_seen": "1850154",
+      "ioc": "ftp.fibrasanchez.com",
+      "ioc_type": "domain",
       "threat_type": "botnet_cc",
-      "malware": "win.vshell",
-      "malware_alias": "None",
-      "malware_printable": "VShell",
-      "confidence": "True"
+      "malware": "win.agent_tesla",
+      "malware_alias": "AgenTesla",
+      "malware_printable": "AgentTesla",
+      "confidence": ""
     },
     {
-      "first_seen": "1849637",
-      "ioc": "154.88.99.37:8885",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.vshell",
-      "malware_alias": "None",
-      "malware_printable": "VShell",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1849636",
-      "ioc": "zjyozhki.jadoou.space",
+      "first_seen": "1850150",
+      "ioc": "zrul.bahigo90bet.com",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -92,8 +72,8 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1849635",
-      "ioc": "rdywfklo.jadoou.space",
+      "first_seen": "1850149",
+      "ioc": "ydfa.bahigo90bet.com",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -102,8 +82,8 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1849634",
-      "ioc": "gcyp.jadoou.monster",
+      "first_seen": "1850148",
+      "ioc": "zwtocirl.site-shartbandi-farsi.com",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -112,14 +92,34 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1849633",
-      "ioc": "23euhdso.deryuga-sablist.garden",
+      "first_seen": "1850147",
+      "ioc": "pkspkyrf.site-shartbandi-farsi.com",
       "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1850146",
+      "ioc": "45.88.186.125:443",
+      "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "js.clearfake",
+      "malware": "unknown_rat",
       "malware_alias": "None",
-      "malware_printable": "ClearFake",
+      "malware_printable": "Unknown RAT",
       "confidence": "False"
+    },
+    {
+      "first_seen": "1850145",
+      "ioc": "47.251.241.59:443",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.havoc",
+      "malware_alias": "Havokiz",
+      "malware_printable": "Havoc",
+      "confidence": "True"
     }
   ]
 }

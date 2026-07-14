@@ -1,8 +1,17 @@
 {
-  "total": 1637,
-  "catalog_version": "2026.07.10",
-  "date_released": "2026-07-10T17:00:25.7327Z",
+  "total": 1638,
+  "catalog_version": "2026.07.13",
+  "date_released": "2026-07-13T17:00:17.965Z",
   "recent": [
+    {
+      "cve": "CVE-2008-4128",
+      "vendor": "Cisco",
+      "product": "IOS",
+      "name": "Cisco IOS Cross-Site Request Forgery Vulnerability",
+      "date_added": "2026-07-13",
+      "due_date": "2026-07-16",
+      "ransomware": false
+    },
     {
       "cve": "CVE-2026-56291",
       "vendor": "Balbooa",
@@ -98,15 +107,6 @@
       "vendor": "Lantronix",
       "product": "EDS5000",
       "name": "Lantronix EDS5000 Code Injection Vulnerability",
-      "date_added": "2026-06-23",
-      "due_date": "2026-06-26",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-34910",
-      "vendor": "Ubiquiti",
-      "product": "UniFi OS",
-      "name": "Ubiquiti UniFi OS Improper Input Validation Vulnerability",
       "date_added": "2026-06-23",
       "due_date": "2026-06-26",
       "ransomware": false
