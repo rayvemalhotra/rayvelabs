@@ -1,7 +1,24 @@
 {
-  "total_breaches": 1016,
-  "total_records_exposed": 17677914747,
+  "total_breaches": 1018,
+  "total_records_exposed": 17685309968,
   "recent": [
+    {
+      "name": "Fluke",
+      "title": "Fluke",
+      "domain": "fluke.com",
+      "breach_date": "2026-07-01",
+      "added_date": "2026-07-15T08:01:04Z",
+      "pwn_count": 821100,
+      "data_classes": [
+        "Email addresses",
+        "Employers",
+        "Job titles",
+        "Names",
+        "Physical addresses",
+        "Support tickets"
+      ],
+      "verified": true
+    },
     {
       "name": "OperationEndgame4",
       "title": "Operation Endgame 4.0",
@@ -116,22 +133,6 @@
         "Phone numbers",
         "Physical addresses",
         "Usernames"
-      ],
-      "verified": true
-    },
-    {
-      "name": "RalphLauren",
-      "title": "Ralph Lauren",
-      "domain": "ralphlauren.com",
-      "breach_date": "2026-06-11",
-      "added_date": "2026-06-18T22:48:34Z",
-      "pwn_count": 139903,
-      "data_classes": [
-        "Age groups",
-        "Email addresses",
-        "Genders",
-        "Names",
-        "Phone numbers"
       ],
       "verified": true
     }

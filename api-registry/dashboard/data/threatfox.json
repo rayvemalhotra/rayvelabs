@@ -1,109 +1,29 @@
 {
-  "total": 4487,
+  "total": 4579,
   "recent": [
     {
-      "first_seen": "1850156",
-      "ioc": "woolstem.xyz",
+      "first_seen": "1850911",
+      "ioc": "wxxlppea.onjabet1.com",
       "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "unknown_loader",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
       "malware_alias": "None",
-      "malware_printable": "Unknown Loader",
+      "malware_printable": "ClearFake",
       "confidence": "False"
     },
     {
-      "first_seen": "1850155",
-      "ioc": "moonshadowforge.top",
-      "ioc_type": "domain",
-      "threat_type": "cc_skimming",
-      "malware": "js.magecart",
-      "malware_alias": "None",
-      "malware_printable": "magecart",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1850151",
-      "ioc": "endpoint.project0.cc",
-      "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "elf.xmrig",
-      "malware_alias": "None",
-      "malware_printable": "XMRIG",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1850152",
-      "ioc": "5.189.149.171:80",
+      "first_seen": "1850910",
+      "ioc": "5.101.81.172:8443",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "elf.xmrig",
+      "malware": "win.purelogs",
       "malware_alias": "None",
-      "malware_printable": "XMRIG",
+      "malware_printable": "PureLogs Stealer",
       "confidence": "False"
     },
     {
-      "first_seen": "1850153",
-      "ioc": "5.189.149.171:1010",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "elf.xmrig",
-      "malware_alias": "None",
-      "malware_printable": "XMRIG",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1850154",
-      "ioc": "ftp.fibrasanchez.com",
-      "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "win.agent_tesla",
-      "malware_alias": "AgenTesla",
-      "malware_printable": "AgentTesla",
-      "confidence": ""
-    },
-    {
-      "first_seen": "1850150",
-      "ioc": "zrul.bahigo90bet.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1850149",
-      "ioc": "ydfa.bahigo90bet.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1850148",
-      "ioc": "zwtocirl.site-shartbandi-farsi.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1850147",
-      "ioc": "pkspkyrf.site-shartbandi-farsi.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1850146",
-      "ioc": "45.88.186.125:443",
+      "first_seen": "1850909",
+      "ioc": "133.18.107.191:4449",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
       "malware": "unknown_rat",
@@ -112,14 +32,94 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1850145",
-      "ioc": "47.251.241.59:443",
+      "first_seen": "1850908",
+      "ioc": "106.54.44.181:801",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "win.havoc",
-      "malware_alias": "Havokiz",
-      "malware_printable": "Havoc",
-      "confidence": "True"
+      "malware": "win.cobalt_strike",
+      "malware_alias": "Agentemis",
+      "malware_printable": "BEACON",
+      "confidence": "Cobalt Strike"
+    },
+    {
+      "first_seen": "1850907",
+      "ioc": "116.11.4.167:10443",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.cobalt_strike",
+      "malware_alias": "Agentemis",
+      "malware_printable": "BEACON",
+      "confidence": "Cobalt Strike"
+    },
+    {
+      "first_seen": "1850906",
+      "ioc": "118.89.69.45:80",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.cobalt_strike",
+      "malware_alias": "Agentemis",
+      "malware_printable": "BEACON",
+      "confidence": "Cobalt Strike"
+    },
+    {
+      "first_seen": "1850905",
+      "ioc": "pajp.oragh8kaso1.com",
+      "ioc_type": "domain",
+      "threat_type": "botnet_cc",
+      "malware": "win.remcos",
+      "malware_alias": "RemcosRAT",
+      "malware_printable": "Remvio",
+      "confidence": ""
+    },
+    {
+      "first_seen": "1850902",
+      "ioc": "gros59kalmso1.duckdns.org",
+      "ioc_type": "domain",
+      "threat_type": "botnet_cc",
+      "malware": "win.remcos",
+      "malware_alias": "RemcosRAT",
+      "malware_printable": "Remvio",
+      "confidence": ""
+    },
+    {
+      "first_seen": "1850903",
+      "ioc": "gros59kalmso2.duckdns.org",
+      "ioc_type": "domain",
+      "threat_type": "botnet_cc",
+      "malware": "win.remcos",
+      "malware_alias": "RemcosRAT",
+      "malware_printable": "Remvio",
+      "confidence": ""
+    },
+    {
+      "first_seen": "1850904",
+      "ioc": "metromachine.4nmn.com",
+      "ioc_type": "domain",
+      "threat_type": "botnet_cc",
+      "malware": "win.remcos",
+      "malware_alias": "RemcosRAT",
+      "malware_printable": "Remvio",
+      "confidence": ""
+    },
+    {
+      "first_seen": "1850900",
+      "ioc": "armcobarriersuppliers.duckdns.org",
+      "ioc_type": "domain",
+      "threat_type": "botnet_cc",
+      "malware": "win.remcos",
+      "malware_alias": "RemcosRAT",
+      "malware_printable": "Remvio",
+      "confidence": ""
+    },
+    {
+      "first_seen": "1850901",
+      "ioc": "armcobarriersuppliersbk.duckdns.org",
+      "ioc_type": "domain",
+      "threat_type": "botnet_cc",
+      "malware": "win.remcos",
+      "malware_alias": "RemcosRAT",
+      "malware_printable": "Remvio",
+      "confidence": ""
     }
   ]
 }

@@ -1,24 +1,18 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1136",
-    "name": "Create Account",
-    "description": "Adversaries may create an account to maintain access to victim systems.(Citation: Symantec WastedLocker June 2020) With a sufficient level of access, creating such accounts may be used to establish secondary credentialed access that do not require persistent remote access tools to be deployed on the system.",
+    "id": "T1526",
+    "name": "Cloud Service Discovery",
+    "description": "An adversary may attempt to enumerate the cloud services running on a system after gaining access. These methods can differ from platform-as-a-service (PaaS), to infrastructure-as-a-service (IaaS), or software-as-a-service (SaaS). Many services exist throughout the various cloud providers and can include Continuous Integration and Continuous Delivery (CI/CD), Lambda Functions, Entra ID, etc. They may also include security services, such as AWS GuardDuty and Microsoft Defender for Cloud, and logging services, such as AWS CloudTrail and Google Cloud Audit Logs.",
     "tactics": [
-      "persistence"
+      "discovery"
     ],
     "platforms": [
-      "Windows",
       "IaaS",
-      "Linux",
-      "macOS",
-      "Network Devices",
-      "Containers",
-      "SaaS",
-      "Office Suite",
       "Identity Provider",
-      "ESXi"
+      "Office Suite",
+      "SaaS"
     ],
-    "url": "https://attack.mitre.org/techniques/T1136"
+    "url": "https://attack.mitre.org/techniques/T1526"
   }
 }
