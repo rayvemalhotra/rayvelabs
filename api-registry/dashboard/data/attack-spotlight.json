@@ -1,18 +1,19 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1526",
-    "name": "Cloud Service Discovery",
-    "description": "An adversary may attempt to enumerate the cloud services running on a system after gaining access. These methods can differ from platform-as-a-service (PaaS), to infrastructure-as-a-service (IaaS), or software-as-a-service (SaaS). Many services exist throughout the various cloud providers and can include Continuous Integration and Continuous Delivery (CI/CD), Lambda Functions, Entra ID, etc. They may also include security services, such as AWS GuardDuty and Microsoft Defender for Cloud, and logging services, such as AWS CloudTrail and Google Cloud Audit Logs.",
+    "id": "T1018",
+    "name": "Remote System Discovery",
+    "description": "Adversaries may attempt to get a listing of other systems by IP address, hostname, or other logical identifier on a network that may be used for Lateral Movement from the current system. Functionality could exist within remote access tools to enable this, but utilities available on the operating system could also be used such as  [Ping](https://attack.mitre.org/software/S0097), <code>net view</code> using [Net](https://attack.mitre.org/software/S0039), or, on ESXi servers, `esxcli network diag ping`.",
     "tactics": [
       "discovery"
     ],
     "platforms": [
-      "IaaS",
-      "Identity Provider",
-      "Office Suite",
-      "SaaS"
+      "ESXi",
+      "Linux",
+      "macOS",
+      "Network Devices",
+      "Windows"
     ],
-    "url": "https://attack.mitre.org/techniques/T1526"
+    "url": "https://attack.mitre.org/techniques/T1018"
   }
 }

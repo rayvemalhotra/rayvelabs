@@ -1,6 +1,6 @@
 {
-  "total_cves_scored": 347639,
-  "model_metadata": "model_version:v2026.06.15,score_date:2026-07-14T12:03:54Z",
+  "total_cves_scored": 348601,
+  "model_metadata": "model_version:v2026.06.15,score_date:2026-07-15T12:00:34Z",
   "top": [
     {
       "cve": "CVE-2014-0160",
@@ -95,7 +95,7 @@
     {
       "cve": "CVE-2021-35464",
       "epss": 0.99999,
-      "percentile": 0.99993
+      "percentile": 0.99994
     },
     {
       "cve": "CVE-2021-40438",
@@ -115,7 +115,7 @@
     {
       "cve": "CVE-2022-26134",
       "epss": 0.99999,
-      "percentile": 0.99994
+      "percentile": 0.99993
     },
     {
       "cve": "CVE-2022-29464",

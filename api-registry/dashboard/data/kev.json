@@ -1,8 +1,26 @@
 {
-  "total": 1642,
-  "catalog_version": "2026.07.14",
-  "date_released": "2026-07-14T19:00:56.1389Z",
+  "total": 1644,
+  "catalog_version": "2026.07.15",
+  "date_released": "2026-07-15T16:42:14.8261Z",
   "recent": [
+    {
+      "cve": "CVE-2026-46817",
+      "vendor": "Oracle",
+      "product": "E-Business Suite",
+      "name": "Oracle E-Business Suite Improper Privilege Management Vulnerability",
+      "date_added": "2026-07-15",
+      "due_date": "2026-07-18",
+      "ransomware": false
+    },
+    {
+      "cve": "CVE-2023-4346",
+      "vendor": "KNX Association",
+      "product": "KNX Protocol Connection Authorization Option 1",
+      "name": "KNX Association KNX Protocol Connection Authorization Option 1 Overly Restrictive Account Lockout Mechanism Vulnerability",
+      "date_added": "2026-07-15",
+      "due_date": "2026-07-29",
+      "ransomware": false
+    },
     {
       "cve": "CVE-2026-56155",
       "vendor": "Microsoft",
@@ -91,24 +109,6 @@
       "name": "Joomlack Page Builder Improper Access Control Vulnerability",
       "date_added": "2026-07-07",
       "due_date": "2026-07-10",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-48282",
-      "vendor": "Adobe",
-      "product": "ColdFusion",
-      "name": "Adobe ColdFusion Path Traversal Vulnerability",
-      "date_added": "2026-07-07",
-      "due_date": "2026-07-10",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-45659",
-      "vendor": "Microsoft",
-      "product": "SharePoint Server",
-      "name": "Microsoft SharePoint Server Deserialization of Untrusted Data Vulnerability",
-      "date_added": "2026-07-01",
-      "due_date": "2026-07-04",
       "ransomware": false
     }
   ]
