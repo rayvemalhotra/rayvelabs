@@ -1,8 +1,35 @@
 {
-  "total": 1644,
-  "catalog_version": "2026.07.15",
-  "date_released": "2026-07-15T16:42:14.8261Z",
+  "total": 1647,
+  "catalog_version": "2026.07.16",
+  "date_released": "2026-07-16T17:00:15.6845Z",
   "recent": [
+    {
+      "cve": "CVE-2026-58644",
+      "vendor": "Microsoft",
+      "product": "SharePoint",
+      "name": "Microsoft SharePoint Deserialization of Untrusted Data Vulnerability",
+      "date_added": "2026-07-16",
+      "due_date": "2026-07-19",
+      "ransomware": false
+    },
+    {
+      "cve": "CVE-2026-25089",
+      "vendor": "Fortinet",
+      "product": "FortiSandbox",
+      "name": "Fortinet FortiSandbox OS Command Injection Vulnerability",
+      "date_added": "2026-07-16",
+      "due_date": "2026-07-19",
+      "ransomware": false
+    },
+    {
+      "cve": "CVE-2026-39808",
+      "vendor": "Fortinet",
+      "product": "FortiSandbox",
+      "name": "Fortinet FortiSandbox OS Command Injection Vulnerability",
+      "date_added": "2026-07-16",
+      "due_date": "2026-07-19",
+      "ransomware": false
+    },
     {
       "cve": "CVE-2026-46817",
       "vendor": "Oracle",
@@ -82,33 +109,6 @@
       "name": "iCagenda Unrestricted Upload of File with Dangerous Type Vulnerability",
       "date_added": "2026-07-10",
       "due_date": "2026-07-13",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-48908",
-      "vendor": "JoomShaper",
-      "product": "SP Page Builder",
-      "name": "JoomShaper SP Page Builder Unrestricted Upload of File with Dangerous Type Vulnerability",
-      "date_added": "2026-07-07",
-      "due_date": "2026-07-10",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-55255",
-      "vendor": "Langflow",
-      "product": "Langflow",
-      "name": "Langflow Authorization Bypass Through User-Controlled Key Vulnerability",
-      "date_added": "2026-07-07",
-      "due_date": "2026-07-10",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-56290",
-      "vendor": "Joomlack",
-      "product": "Page Builder",
-      "name": "Joomlack Page Builder Improper Access Control Vulnerability",
-      "date_added": "2026-07-07",
-      "due_date": "2026-07-10",
       "ransomware": false
     }
   ]

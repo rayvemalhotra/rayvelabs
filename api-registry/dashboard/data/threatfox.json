@@ -1,39 +1,19 @@
 {
-  "total": 5339,
+  "total": 4967,
   "recent": [
     {
-      "first_seen": "1852446",
-      "ioc": "shadowemberstrike.top",
-      "ioc_type": "domain",
-      "threat_type": "cc_skimming",
-      "malware": "js.magecart",
-      "malware_alias": "None",
-      "malware_printable": "magecart",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1852445",
-      "ioc": "http://ct607808.tw1.ru/L1nc0In.php",
-      "ioc_type": "url",
-      "threat_type": "botnet_cc",
-      "malware": "win.dcrat",
-      "malware_alias": "DarkCrystal RAT",
-      "malware_printable": "DCRat",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1852444",
-      "ioc": "5.56.25.178:7019",
+      "first_seen": "1852759",
+      "ioc": "185.236.203.99:58798",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "win.asyncrat",
-      "malware_alias": "None",
-      "malware_printable": "AsyncRAT",
-      "confidence": "False"
+      "malware": "win.remcos",
+      "malware_alias": "RemcosRAT",
+      "malware_printable": "Remvio",
+      "confidence": ""
     },
     {
-      "first_seen": "1852443",
-      "ioc": "mukmnvwls.101motorsports.net",
+      "first_seen": "1852758",
+      "ioc": "bgtnaqoc.fileboroo.com",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -42,84 +22,104 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1852436",
-      "ioc": "2d4e5f6-7a8b-4c2d-9e1f-3b5a7c8d9e0fc.s3.us-east-1.amazonaws.com",
+      "first_seen": "1852757",
+      "ioc": "football-attraction.pro",
       "ioc_type": "domain",
       "threat_type": "botnet_cc",
-      "malware": "unknown",
+      "malware": "unknown_stealer",
       "malware_alias": "None",
-      "malware_printable": "Unknown malware",
+      "malware_printable": "Unknown Stealer",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1852756",
+      "ioc": "aefauhqwk.irani-music.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1852755",
+      "ioc": "iodz0i3f.behtarin-site-shartbandi-football.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1852753",
+      "ioc": "198.46.175.153:9090",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.cobalt_strike",
+      "malware_alias": "Agentemis",
+      "malware_printable": "BEACON",
+      "confidence": "Cobalt Strike"
+    },
+    {
+      "first_seen": "1852754",
+      "ioc": "8.141.121.30:9999",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.cobalt_strike",
+      "malware_alias": "Agentemis",
+      "malware_printable": "BEACON",
+      "confidence": "Cobalt Strike"
+    },
+    {
+      "first_seen": "1852752",
+      "ioc": "103.43.18.230:80",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.cobalt_strike",
+      "malware_alias": "Agentemis",
+      "malware_printable": "BEACON",
+      "confidence": "Cobalt Strike"
+    },
+    {
+      "first_seen": "1852751",
+      "ioc": "arvujwijm.irani-music.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1852749",
+      "ioc": "23.227.203.190:14888",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.adaptix_c2",
+      "malware_alias": "None",
+      "malware_printable": "AdaptixC2",
       "confidence": "True"
     },
     {
-      "first_seen": "1852439",
-      "ioc": "159.89.132.240:12345",
+      "first_seen": "1852750",
+      "ioc": "23.227.203.190:6579",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "elf.aisuru",
+      "malware": "win.adaptix_c2",
       "malware_alias": "None",
-      "malware_printable": "Aisuru",
-      "confidence": "False"
+      "malware_printable": "AdaptixC2",
+      "confidence": "True"
     },
     {
-      "first_seen": "1852441",
-      "ioc": "https://teambluewhitezuerich.ch/",
-      "ioc_type": "url",
-      "threat_type": "payload_delivery",
-      "malware": "unknown",
-      "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1852442",
-      "ioc": "102.220.160.143:5010",
+      "first_seen": "1852748",
+      "ioc": "217.60.97.3:80",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "win.xworm",
+      "malware": "win.adaptix_c2",
       "malware_alias": "None",
-      "malware_printable": "XWorm",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1852440",
-      "ioc": "64.89.161.16:1470",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.xworm",
-      "malware_alias": "None",
-      "malware_printable": "XWorm",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1852438",
-      "ioc": "gals.kleenghjah.com",
-      "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "unknown_rat",
-      "malware_alias": "None",
-      "malware_printable": "Unknown RAT",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1852437",
-      "ioc": "38.255.40.44:4747",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "unknown_rat",
-      "malware_alias": "None",
-      "malware_printable": "Unknown RAT",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1852435",
-      "ioc": "103.186.64.138:2404",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.remcos",
-      "malware_alias": "RemcosRAT",
-      "malware_printable": "Remvio",
-      "confidence": ""
+      "malware_printable": "AdaptixC2",
+      "confidence": "True"
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "total_listings": 10219,
+  "total_listings": 10220,
   "by_reason": [
     {
       "reason": "AsyncRAT C&C",
@@ -23,6 +23,11 @@
     }
   ],
   "recent": [
+    {
+      "listing_date": "2026-07-17 06:43:23",
+      "sha1": "573ff46149f8feb36cd0dbf80427b88aa156ed7b",
+      "listing_reason": "KongTuke C&C"
+    },
     {
       "listing_date": "2026-07-16 07:15:54",
       "sha1": "d490abc2eba705abb1b6391b9be0a12f1e75331b",
@@ -67,11 +72,6 @@
       "listing_date": "2026-07-15 09:19:00",
       "sha1": "47a42b7e960e081fb973d80964554f4dea813c9d",
       "listing_reason": "PureLogsStealer C&C"
-    },
-    {
-      "listing_date": "2026-07-15 07:30:50",
-      "sha1": "8ef5bc8cb7d00d8b89bacbd4f9405f402d1a002e",
-      "listing_reason": "SheetRAT C&C"
     }
   ]
 }
