@@ -1,9 +1,9 @@
 {
-  "total_listings": 10220,
+  "total_listings": 10226,
   "by_reason": [
     {
       "reason": "AsyncRAT C&C",
-      "count": 1429
+      "count": 1430
     },
     {
       "reason": "Dridex C&C",
@@ -24,6 +24,36 @@
   ],
   "recent": [
     {
+      "listing_date": "2026-07-17 13:34:18",
+      "sha1": "a6df6eca49e13a8c5ebba1f86ca4c5766b1c1b97",
+      "listing_reason": "KongTuke C&C"
+    },
+    {
+      "listing_date": "2026-07-17 10:53:35",
+      "sha1": "3cf6a282d22b606bce0ba5ad74526257eff4cf81",
+      "listing_reason": "PureRAT C&C"
+    },
+    {
+      "listing_date": "2026-07-17 10:53:02",
+      "sha1": "3fb1dbcabe3bab0eb06fefe295821bff1007fb25",
+      "listing_reason": "PureRAT C&C"
+    },
+    {
+      "listing_date": "2026-07-17 10:52:54",
+      "sha1": "50cad154b9d5fdd19c3f67162257de03d3a6afcd",
+      "listing_reason": "OffLoader C&C"
+    },
+    {
+      "listing_date": "2026-07-17 10:52:07",
+      "sha1": "f9a55e7a59b0fcbd7df9f5a445475480368598ce",
+      "listing_reason": "PureLogsStealer C&C"
+    },
+    {
+      "listing_date": "2026-07-17 10:52:01",
+      "sha1": "c31650da58712771ad83fd5c6cef97905a255cc5",
+      "listing_reason": "AsyncRAT C&C"
+    },
+    {
       "listing_date": "2026-07-17 06:43:23",
       "sha1": "573ff46149f8feb36cd0dbf80427b88aa156ed7b",
       "listing_reason": "KongTuke C&C"
@@ -42,36 +72,6 @@
       "listing_date": "2026-07-16 06:46:02",
       "sha1": "c4e9396a3a0543fa79cc0a8f23395f90a15e03b0",
       "listing_reason": "AsyncRAT C&C"
-    },
-    {
-      "listing_date": "2026-07-16 06:45:48",
-      "sha1": "83424f01b8b7262f3a3cd61048d3337afdcca58a",
-      "listing_reason": "KongTuke C&C"
-    },
-    {
-      "listing_date": "2026-07-16 06:43:46",
-      "sha1": "1db0412338ca7c2407e54aeb6791beeedd146c4c",
-      "listing_reason": "PureRAT C&C"
-    },
-    {
-      "listing_date": "2026-07-16 06:42:33",
-      "sha1": "4264b1c47eac055ce604ef3509d23cd7e3bd584b",
-      "listing_reason": "Vidar C&C"
-    },
-    {
-      "listing_date": "2026-07-16 06:41:44",
-      "sha1": "dfefdeb13f78e83fe980b5f8cea29436df4d7ade",
-      "listing_reason": "SheetRAT C&C"
-    },
-    {
-      "listing_date": "2026-07-16 06:34:06",
-      "sha1": "4b75d1218c87bc4192b6be37dbd990c11859fef8",
-      "listing_reason": "Metasploit C&C"
-    },
-    {
-      "listing_date": "2026-07-15 09:19:00",
-      "sha1": "47a42b7e960e081fb973d80964554f4dea813c9d",
-      "listing_reason": "PureLogsStealer C&C"
     }
   ]
 }

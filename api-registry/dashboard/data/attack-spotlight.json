@@ -1,20 +1,19 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1046",
-    "name": "Network Service Discovery",
-    "description": "Adversaries may attempt to get a listing of services running on remote hosts and local network infrastructure devices, including those that may be vulnerable to remote software exploitation. Common methods to acquire this information include port, vulnerability, and/or wordlist scans using tools that are brought onto a system.(Citation: CISA AR21-126A FIVEHANDS May 2021)   ",
+    "id": "T1518",
+    "name": "Software Discovery",
+    "description": "Adversaries may attempt to get a listing of software and software versions that are installed on a system or in a cloud environment. Adversaries may use the information from [Software Discovery](https://attack.mitre.org/techniques/T1518) during automated discovery to shape follow-on behaviors, including whether or not the adversary fully infects the target and/or attempts specific actions.",
     "tactics": [
       "discovery"
     ],
     "platforms": [
-      "Containers",
+      "ESXi",
       "IaaS",
       "Linux",
       "macOS",
-      "Network Devices",
       "Windows"
     ],
-    "url": "https://attack.mitre.org/techniques/T1046"
+    "url": "https://attack.mitre.org/techniques/T1518"
   }
 }
