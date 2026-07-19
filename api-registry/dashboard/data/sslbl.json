@@ -1,5 +1,5 @@
 {
-  "total_listings": 10226,
+  "total_listings": 10228,
   "by_reason": [
     {
       "reason": "AsyncRAT C&C",
@@ -23,6 +23,16 @@
     }
   ],
   "recent": [
+    {
+      "listing_date": "2026-07-18 18:09:52",
+      "sha1": "1e5253b44aa68a4b31f0dfc07df48b31798debca",
+      "listing_reason": "ACRStealer C&C"
+    },
+    {
+      "listing_date": "2026-07-18 17:51:37",
+      "sha1": "7f563e6df9b87f615f2d492ba68d5df373a6ca26",
+      "listing_reason": "ACRStealer C&C"
+    },
     {
       "listing_date": "2026-07-17 13:34:18",
       "sha1": "a6df6eca49e13a8c5ebba1f86ca4c5766b1c1b97",
@@ -62,16 +72,6 @@
       "listing_date": "2026-07-16 07:15:54",
       "sha1": "d490abc2eba705abb1b6391b9be0a12f1e75331b",
       "listing_reason": "PureLogsStealer C&C"
-    },
-    {
-      "listing_date": "2026-07-16 06:49:28",
-      "sha1": "e86cb30b97c8af13b305fa5cdc7357e23f633447",
-      "listing_reason": "AsyncRAT C&C"
-    },
-    {
-      "listing_date": "2026-07-16 06:46:02",
-      "sha1": "c4e9396a3a0543fa79cc0a8f23395f90a15e03b0",
-      "listing_reason": "AsyncRAT C&C"
     }
   ]
 }

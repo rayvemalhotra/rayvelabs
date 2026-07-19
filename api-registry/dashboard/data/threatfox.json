@@ -1,9 +1,9 @@
 {
-  "total": 4005,
+  "total": 3998,
   "recent": [
     {
-      "first_seen": "1853303",
-      "ioc": "111.229.144.163:18789",
+      "first_seen": "1853694",
+      "ioc": "85.137.240.26:8888",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
       "malware": "unknown",
@@ -12,8 +12,8 @@
       "confidence": "True"
     },
     {
-      "first_seen": "1853302",
-      "ioc": "111.229.144.163:3306",
+      "first_seen": "1853695",
+      "ioc": "85.137.240.26:1080",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
       "malware": "unknown",
@@ -22,18 +22,8 @@
       "confidence": "True"
     },
     {
-      "first_seen": "1853301",
-      "ioc": "47.101.51.235:1099",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.cobalt_strike",
-      "malware_alias": "Agentemis",
-      "malware_printable": "BEACON",
-      "confidence": "Cobalt Strike"
-    },
-    {
-      "first_seen": "1853300",
-      "ioc": "208.87.201.226:4369",
+      "first_seen": "1853692",
+      "ioc": "47.86.97.42:8911",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
       "malware": "unknown",
@@ -42,58 +32,28 @@
       "confidence": "True"
     },
     {
-      "first_seen": "1853299",
-      "ioc": "mpuwd.deepspaceparker.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
+      "first_seen": "1853693",
+      "ioc": "85.137.240.26:7500",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "unknown",
       "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1853298",
-      "ioc": "uvxzsajar.lion1bet.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1853297",
-      "ioc": "atqfb.calirayalake.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1853296",
-      "ioc": "jppxuuhae.imagederm.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1853295",
-      "ioc": "https://targe.in/",
-      "ioc_type": "url",
-      "threat_type": "payload_delivery",
-      "malware": "win.vidar",
-      "malware_alias": "None",
-      "malware_printable": "Vidar",
+      "malware_printable": "Unknown malware",
       "confidence": "True"
     },
     {
-      "first_seen": "1853294",
-      "ioc": "5ipju606.venus90bet.com",
+      "first_seen": "1853691",
+      "ioc": "8.138.179.29:10022",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "unknown",
+      "malware_alias": "None",
+      "malware_printable": "Unknown malware",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1853690",
+      "ioc": "bzeg.bikertlane.com",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -102,24 +62,64 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1853292",
-      "ioc": "47.101.51.235:8000",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.cobalt_strike",
-      "malware_alias": "Agentemis",
-      "malware_printable": "BEACON",
-      "confidence": "Cobalt Strike"
+      "first_seen": "1853689",
+      "ioc": "m4jpiubh.royaldoorsspringdale.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
     },
     {
-      "first_seen": "1853293",
-      "ioc": "47.101.51.235:8888",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.cobalt_strike",
-      "malware_alias": "Agentemis",
-      "malware_printable": "BEACON",
-      "confidence": "Cobalt Strike"
+      "first_seen": "1853688",
+      "ioc": "bikertlane.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1853687",
+      "ioc": "royaldoorsspringdale.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1853686",
+      "ioc": "4yl6u62i.pdfbama.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1853685",
+      "ioc": "otcgf.christorem.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1853684",
+      "ioc": "christorem.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
     }
   ]
 }

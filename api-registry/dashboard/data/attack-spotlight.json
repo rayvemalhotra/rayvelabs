@@ -1,19 +1,18 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1518",
-    "name": "Software Discovery",
-    "description": "Adversaries may attempt to get a listing of software and software versions that are installed on a system or in a cloud environment. Adversaries may use the information from [Software Discovery](https://attack.mitre.org/techniques/T1518) during automated discovery to shape follow-on behaviors, including whether or not the adversary fully infects the target and/or attempts specific actions.",
+    "id": "T1538",
+    "name": "Cloud Service Dashboard",
+    "description": "An adversary may use a cloud service dashboard GUI with stolen credentials to gain useful information from an operational cloud environment, such as specific services, resources, and features. For example, the GCP Command Center can be used to view all assets, review findings of potential security risks, and run additional queries, such as finding public IP addresses and open ports.(Citation: Google Command Center Dashboard)",
     "tactics": [
       "discovery"
     ],
     "platforms": [
-      "ESXi",
       "IaaS",
-      "Linux",
-      "macOS",
-      "Windows"
+      "SaaS",
+      "Office Suite",
+      "Identity Provider"
     ],
-    "url": "https://attack.mitre.org/techniques/T1518"
+    "url": "https://attack.mitre.org/techniques/T1538"
   }
 }
