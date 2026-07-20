@@ -1,140 +1,140 @@
 {
-  "total_recent": 20604,
+  "total_recent": 20350,
   "recent": [
     {
-      "id": "3888572",
-      "date_added": "2026-07-19 08:02:15",
-      "url": "https://bzeg.bikertlane.com/34a038b6-b6ed-454b-817e-22730ead4dbc",
-      "url_status": "offline",
-      "threat": "malware_download",
-      "tags": "ClearFake,win-0x0cd5,windows",
-      "host": "https://urlhaus.abuse.ch/url/3888572/"
-    },
-    {
-      "id": "3888570",
-      "date_added": "2026-07-19 08:01:15",
-      "url": "http://101.21.20.154:59328/i",
+      "id": "3889056",
+      "date_added": "2026-07-20 08:46:19",
+      "url": "http://183.92.205.45:55257/bin.sh",
       "url_status": "online",
       "threat": "malware_download",
       "tags": "None",
-      "host": "https://urlhaus.abuse.ch/url/3888570/"
+      "host": "https://urlhaus.abuse.ch/url/3889056/"
     },
     {
-      "id": "3888571",
-      "date_added": "2026-07-19 08:01:15",
-      "url": "http://105.186.198.55:41311/bin.sh",
+      "id": "3889057",
+      "date_added": "2026-07-20 08:46:19",
+      "url": "http://115.49.2.134:37786/i",
       "url_status": "online",
       "threat": "malware_download",
       "tags": "None",
-      "host": "https://urlhaus.abuse.ch/url/3888571/"
+      "host": "https://urlhaus.abuse.ch/url/3889057/"
     },
     {
-      "id": "3888569",
-      "date_added": "2026-07-19 08:01:14",
-      "url": "https://m4jpiubh.royaldoorsspringdale.com/?ublib=85b3fe11-4a50-432f-8b23-ac138e4f85e4",
-      "url_status": "offline",
-      "threat": "malware_download",
-      "tags": "ClearFake,mac-0x68dc,macOS",
-      "host": "https://urlhaus.abuse.ch/url/3888569/"
-    },
-    {
-      "id": "3888568",
-      "date_added": "2026-07-19 07:59:15",
-      "url": "https://4yl6u62i.pdfbama.com/?ublib=fd9f4cee-541f-49bf-8dc2-b8a07559cc06",
-      "url_status": "offline",
-      "threat": "malware_download",
-      "tags": "ClearFake,mac-0x76c7,macOS",
-      "host": "https://urlhaus.abuse.ch/url/3888568/"
-    },
-    {
-      "id": "3888567",
-      "date_added": "2026-07-19 07:57:15",
-      "url": "https://otcgf.christorem.com/dbb18cc6-cebb-446b-8ce8-3f7ba6e70600",
+      "id": "3889055",
+      "date_added": "2026-07-20 08:46:18",
+      "url": "https://jsthk.jademckenzieco.com/767003a7-808a-44f3-96a8-06b1aefb8529",
       "url_status": "offline",
       "threat": "malware_download",
       "tags": "ClearFake,win-0x4679,windows",
-      "host": "https://urlhaus.abuse.ch/url/3888567/"
+      "host": "https://urlhaus.abuse.ch/url/3889055/"
     },
     {
-      "id": "3888566",
-      "date_added": "2026-07-19 07:56:23",
-      "url": "http://123.9.197.25:60228/bin.sh",
-      "url_status": "online",
+      "id": "3889054",
+      "date_added": "2026-07-20 08:46:17",
+      "url": "https://cyki.hayleymarienorman.com/b3e609f1-7db6-4646-9c1c-e6ff8e560403",
+      "url_status": "offline",
       "threat": "malware_download",
-      "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3888566/"
+      "tags": "ClearFake,win-0x0cd5,windows",
+      "host": "https://urlhaus.abuse.ch/url/3889054/"
     },
     {
-      "id": "3888565",
-      "date_added": "2026-07-19 07:55:31",
-      "url": "http://123.129.130.29:38181/bin.sh",
-      "url_status": "online",
+      "id": "3889053",
+      "date_added": "2026-07-20 08:44:56",
+      "url": "http://183.23.137.161:53767/i",
+      "url_status": "offline",
       "threat": "malware_download",
-      "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3888565/"
+      "tags": "32-bit,arm,elf,Mozi",
+      "host": "https://urlhaus.abuse.ch/url/3889053/"
     },
     {
-      "id": "3888564",
-      "date_added": "2026-07-19 07:54:26",
-      "url": "http://120.28.119.54:58459/i",
+      "id": "3889052",
+      "date_added": "2026-07-20 08:38:26",
+      "url": "http://183.23.140.107:35951/bin.sh",
       "url_status": "online",
       "threat": "malware_download",
       "tags": "32-bit,arm,elf,mirai,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3888564/"
+      "host": "https://urlhaus.abuse.ch/url/3889052/"
     },
     {
-      "id": "3888563",
-      "date_added": "2026-07-19 07:48:37",
-      "url": "http://182.113.4.149:57963/i",
+      "id": "3889051",
+      "date_added": "2026-07-20 08:38:21",
+      "url": "http://42.226.90.121:52905/bin.sh",
+      "url_status": "online",
+      "threat": "malware_download",
+      "tags": "Mozi",
+      "host": "https://urlhaus.abuse.ch/url/3889051/"
+    },
+    {
+      "id": "3889050",
+      "date_added": "2026-07-20 08:38:07",
+      "url": "http://183.23.137.161:53767/bin.sh",
+      "url_status": "offline",
+      "threat": "malware_download",
+      "tags": "32-bit,arm,elf,Mozi",
+      "host": "https://urlhaus.abuse.ch/url/3889050/"
+    },
+    {
+      "id": "3889049",
+      "date_added": "2026-07-20 08:33:34",
+      "url": "http://115.61.114.194:42977/bin.sh",
       "url_status": "online",
       "threat": "malware_download",
       "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3888563/"
+      "host": "https://urlhaus.abuse.ch/url/3889049/"
     },
     {
-      "id": "3888562",
-      "date_added": "2026-07-19 07:46:18",
-      "url": "http://105.224.50.234:45151/bin.sh",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "mirai",
-      "host": "https://urlhaus.abuse.ch/url/3888562/"
-    },
-    {
-      "id": "3888561",
-      "date_added": "2026-07-19 07:36:18",
-      "url": "http://101.21.20.154:59328/bin.sh",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "mirai",
-      "host": "https://urlhaus.abuse.ch/url/3888561/"
-    },
-    {
-      "id": "3888560",
-      "date_added": "2026-07-19 07:33:18",
-      "url": "https://natural-health-news.com/Verify.msi?I",
+      "id": "3889048",
+      "date_added": "2026-07-20 08:31:42",
+      "url": "https://159.89.119.69/mig",
       "url_status": "offline",
       "threat": "malware_download",
-      "tags": "ClickFix",
-      "host": "https://urlhaus.abuse.ch/url/3888560/"
+      "tags": "159-89-119-69,elf",
+      "host": "https://urlhaus.abuse.ch/url/3889048/"
     },
     {
-      "id": "3888559",
-      "date_added": "2026-07-19 07:31:38",
-      "url": "http://110.85.110.124:41787/i",
+      "id": "3889045",
+      "date_added": "2026-07-20 08:31:31",
+      "url": "http://161.35.71.130/1.sh",
       "url_status": "online",
       "threat": "malware_download",
-      "tags": "32-bit,arm,elf,mirai,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3888559/"
+      "tags": "161-35-71-130,sh",
+      "host": "https://urlhaus.abuse.ch/url/3889045/"
     },
     {
-      "id": "3888558",
-      "date_added": "2026-07-19 07:31:29",
-      "url": "http://95.164.53.214:5554/d.bat",
-      "url_status": "offline",
+      "id": "3889046",
+      "date_added": "2026-07-20 08:31:31",
+      "url": "http://161.35.71.130/sshd",
+      "url_status": "online",
       "threat": "malware_download",
-      "tags": "ClickFix",
-      "host": "https://urlhaus.abuse.ch/url/3888558/"
+      "tags": "161-35-71-130,elf",
+      "host": "https://urlhaus.abuse.ch/url/3889046/"
+    },
+    {
+      "id": "3889047",
+      "date_added": "2026-07-20 08:31:31",
+      "url": "http://161.35.71.130/cache",
+      "url_status": "online",
+      "threat": "malware_download",
+      "tags": "161-35-71-130,elf",
+      "host": "https://urlhaus.abuse.ch/url/3889047/"
+    },
+    {
+      "id": "3889044",
+      "date_added": "2026-07-20 08:31:22",
+      "url": "http://164.90.210.228/app.exe",
+      "url_status": "online",
+      "threat": "malware_download",
+      "tags": "164-90-210-228,exe",
+      "host": "https://urlhaus.abuse.ch/url/3889044/"
+    },
+    {
+      "id": "3889043",
+      "date_added": "2026-07-20 08:28:34",
+      "url": "http://123.4.159.180:56374/i",
+      "url_status": "online",
+      "threat": "malware_download",
+      "tags": "32-bit,elf,mips,Mozi",
+      "host": "https://urlhaus.abuse.ch/url/3889043/"
     }
   ]
 }
