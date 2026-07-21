@@ -1,79 +1,9 @@
 {
-  "total": 3950,
+  "total": 4166,
   "recent": [
     {
-      "first_seen": "1854175",
-      "ioc": "cyki.hayleymarienorman.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1854174",
-      "ioc": "jsthk.jademckenzieco.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1854173",
-      "ioc": "swift7tasknet.mistbriar.garden",
-      "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1854172",
-      "ioc": "hayleymarienorman.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1854171",
-      "ioc": "jademckenzieco.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1854170",
-      "ioc": "twyd6y14.elizabethspizzadenton.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1854169",
-      "ioc": "01ejjpa2.behtarin-site-shartbandi.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1854168",
-      "ioc": "152.42.185.244:5678",
+      "first_seen": "1854848",
+      "ioc": "47.108.140.10:20881",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
       "malware": "unknown",
@@ -82,43 +12,113 @@
       "confidence": "True"
     },
     {
-      "first_seen": "1854166",
-      "ioc": "122.51.215.90:111",
+      "first_seen": "1854787",
+      "ioc": "gbgl.kafekarachi.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1854786",
+      "ioc": "qbmuv.loganlooneyresume.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1854785",
+      "ioc": "loganlooneyresume.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1854784",
+      "ioc": "94.26.83.138:56003",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "unknown",
+      "malware": "win.pure_rat",
+      "malware_alias": "PureHVNC",
+      "malware_printable": "ResolverRAT",
+      "confidence": "75"
+    },
+    {
+      "first_seen": "1854782",
+      "ioc": "94.26.83.138:56001",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.pure_rat",
+      "malware_alias": "PureHVNC",
+      "malware_printable": "ResolverRAT",
+      "confidence": "75"
+    },
+    {
+      "first_seen": "1854783",
+      "ioc": "94.26.83.138:56002",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.pure_rat",
+      "malware_alias": "PureHVNC",
+      "malware_printable": "ResolverRAT",
+      "confidence": "75"
+    },
+    {
+      "first_seen": "1854781",
+      "ioc": "https://ets.luckyturbo88.top/",
+      "ioc_type": "url",
+      "threat_type": "botnet_cc",
+      "malware": "win.vidar",
       "malware_alias": "None",
-      "malware_printable": "Unknown malware",
+      "malware_printable": "Vidar",
       "confidence": "True"
     },
     {
-      "first_seen": "1854167",
-      "ioc": "122.51.215.90:6379",
-      "ioc_type": "ip:port",
+      "first_seen": "1854780",
+      "ioc": "ets.luckyturbo88.top",
+      "ioc_type": "domain",
       "threat_type": "botnet_cc",
-      "malware": "unknown",
+      "malware": "win.vidar",
       "malware_alias": "None",
-      "malware_printable": "Unknown malware",
+      "malware_printable": "Vidar",
       "confidence": "True"
     },
     {
-      "first_seen": "1854164",
-      "ioc": "106.52.255.211:8444",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "unknown",
+      "first_seen": "1854779",
+      "ioc": "tmnpc.lnlsealcoating.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
       "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "True"
+      "malware_printable": "ClearFake",
+      "confidence": "False"
     },
     {
-      "first_seen": "1854165",
-      "ioc": "122.51.215.90:5672",
+      "first_seen": "1854778",
+      "ioc": "94.198.96.165:63921",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "unknown",
+      "malware": "unknown_rat",
       "malware_alias": "None",
-      "malware_printable": "Unknown malware",
+      "malware_printable": "Unknown RAT",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1854777",
+      "ioc": "lnlsealcoating.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
       "confidence": "True"
     }
   ]
