@@ -1,8 +1,44 @@
 {
-  "total": 1647,
-  "catalog_version": "2026.07.16",
-  "date_released": "2026-07-16T17:00:15.6845Z",
+  "total": 1651,
+  "catalog_version": "2026.07.21",
+  "date_released": "2026-07-21T15:12:01.557Z",
   "recent": [
+    {
+      "cve": "CVE-2026-60137",
+      "vendor": "WordPress",
+      "product": "Core",
+      "name": "WordPress Core SQL Injection Vulnerability",
+      "date_added": "2026-07-21",
+      "due_date": "2026-08-04",
+      "ransomware": false
+    },
+    {
+      "cve": "CVE-2026-63030",
+      "vendor": "WordPress",
+      "product": "Core",
+      "name": "WordPress Core Interpretation Conflict Vulnerability",
+      "date_added": "2026-07-21",
+      "due_date": "2026-07-24",
+      "ransomware": false
+    },
+    {
+      "cve": "CVE-2026-0770",
+      "vendor": "Langflow",
+      "product": "Langflow",
+      "name": "Langflow Inclusion of Functionality from Untrusted Control Sphere Vulnerability",
+      "date_added": "2026-07-21",
+      "due_date": "2026-07-24",
+      "ransomware": false
+    },
+    {
+      "cve": "CVE-2021-27137",
+      "vendor": "DD-WRT",
+      "product": "DD-WRT",
+      "name": "DD-WRT Stack-Based Buffer Overflow Vulnerability",
+      "date_added": "2026-07-21",
+      "due_date": "2026-07-24",
+      "ransomware": false
+    },
     {
       "cve": "CVE-2026-58644",
       "vendor": "Microsoft",
@@ -73,42 +109,6 @@
       "name": "SonicWall SMA1000 Appliances Server-Side Request Forgery Vulnerability",
       "date_added": "2026-07-14",
       "due_date": "2026-07-17",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-15410",
-      "vendor": "SonicWall",
-      "product": "SMA1000 Appliances",
-      "name": "SonicWall SMA1000 Appliances Code Injection Vulnerability",
-      "date_added": "2026-07-14",
-      "due_date": "2026-07-17",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2008-4128",
-      "vendor": "Cisco",
-      "product": "IOS",
-      "name": "Cisco IOS Cross-Site Request Forgery Vulnerability",
-      "date_added": "2026-07-13",
-      "due_date": "2026-07-16",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-56291",
-      "vendor": "Balbooa",
-      "product": "Forms",
-      "name": "Balbooa Forms Unrestricted Upload of File with Dangerous Type Vulnerability",
-      "date_added": "2026-07-10",
-      "due_date": "2026-07-13",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-48939",
-      "vendor": "iCagenda",
-      "product": "iCagenda",
-      "name": "iCagenda Unrestricted Upload of File with Dangerous Type Vulnerability",
-      "date_added": "2026-07-10",
-      "due_date": "2026-07-13",
       "ransomware": false
     }
   ]

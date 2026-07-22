@@ -1,17 +1,19 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1052",
-    "name": "Exfiltration Over Physical Medium",
-    "description": "Adversaries may attempt to exfiltrate data via a physical medium, such as a removable drive. In certain circumstances, such as an air-gapped network compromise, exfiltration could occur via a physical medium or device introduced by a user. Such media could be an external hard drive, USB drive, cellular phone, MP3 player, or other removable storage and processing device. The physical medium or device could be used as the final exfiltration point or to hop between otherwise disconnected systems.",
+    "id": "T1105",
+    "name": "Ingress Tool Transfer",
+    "description": "Adversaries may transfer tools or other files from an external system into a compromised environment. Tools or files may be copied from an external adversary-controlled system to the victim network through the command and control channel or through alternate protocols such as [ftp](https://attack.mitre.org/software/S0095). Once present, adversaries may also transfer/spread tools between victim devices within a compromised environment (i.e. [Lateral Tool Transfer](https://attack.mitre.org/techniques/T1570)). ",
     "tactics": [
-      "exfiltration"
+      "command-and-control"
     ],
     "platforms": [
+      "ESXi",
       "Linux",
       "macOS",
+      "Network Devices",
       "Windows"
     ],
-    "url": "https://attack.mitre.org/techniques/T1052"
+    "url": "https://attack.mitre.org/techniques/T1105"
   }
 }

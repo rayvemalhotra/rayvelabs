@@ -1,5 +1,5 @@
 {
-  "total_listings": 10237,
+  "total_listings": 10240,
   "by_reason": [
     {
       "reason": "AsyncRAT C&C",
@@ -15,7 +15,7 @@
     },
     {
       "reason": "Vidar C&C",
-      "count": 650
+      "count": 651
     },
     {
       "reason": "LummaStealer C&C",
@@ -23,6 +23,21 @@
     }
   ],
   "recent": [
+    {
+      "listing_date": "2026-07-22 07:30:49",
+      "sha1": "cfce3aaff2ad3eae49b37a60d606984bd1492e16",
+      "listing_reason": "PureLogsStealer C&C"
+    },
+    {
+      "listing_date": "2026-07-21 12:29:18",
+      "sha1": "b8b339de5ea80d17fb5ce2eb144d7ba28b33337a",
+      "listing_reason": "RatonRAT C&C"
+    },
+    {
+      "listing_date": "2026-07-21 12:29:16",
+      "sha1": "9000e46cabc64219fb1447d59d5443afcb412e36",
+      "listing_reason": "Vidar C&C"
+    },
     {
       "listing_date": "2026-07-21 06:09:26",
       "sha1": "632061b26a93455e9c4f0ac413deae710c920216",
@@ -57,21 +72,6 @@
       "listing_date": "2026-07-21 05:46:08",
       "sha1": "ca49f3e687d1e1559ffcd877d6292f9997d7782b",
       "listing_reason": "Malware C&C"
-    },
-    {
-      "listing_date": "2026-07-21 05:42:59",
-      "sha1": "5dc598df9a1f9cf893ce86b54f8be517475d1ff9",
-      "listing_reason": "OffLoader C&C"
-    },
-    {
-      "listing_date": "2026-07-21 05:41:12",
-      "sha1": "e05145a93b7b5def1ca6c0e356cc4cdba3cbed9f",
-      "listing_reason": "Vidar C&C"
-    },
-    {
-      "listing_date": "2026-07-18 18:09:52",
-      "sha1": "1e5253b44aa68a4b31f0dfc07df48b31798debca",
-      "listing_reason": "ACRStealer C&C"
     }
   ]
 }
