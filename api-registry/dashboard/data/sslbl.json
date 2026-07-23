@@ -1,5 +1,5 @@
 {
-  "total_listings": 10240,
+  "total_listings": 10241,
   "by_reason": [
     {
       "reason": "AsyncRAT C&C",
@@ -23,6 +23,11 @@
     }
   ],
   "recent": [
+    {
+      "listing_date": "2026-07-23 05:31:41",
+      "sha1": "6ca71f241dad148aaee6ea4a345e1ef1adaa0ffb",
+      "listing_reason": "KongTuke C&C"
+    },
     {
       "listing_date": "2026-07-22 07:30:49",
       "sha1": "cfce3aaff2ad3eae49b37a60d606984bd1492e16",
@@ -67,11 +72,6 @@
       "listing_date": "2026-07-21 05:47:29",
       "sha1": "b7c2e44b35ac1ac31efad28747f2bc44f5d28de8",
       "listing_reason": "PureRAT C&C"
-    },
-    {
-      "listing_date": "2026-07-21 05:46:08",
-      "sha1": "ca49f3e687d1e1559ffcd877d6292f9997d7782b",
-      "listing_reason": "Malware C&C"
     }
   ]
 }

@@ -1,19 +1,17 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1105",
-    "name": "Ingress Tool Transfer",
-    "description": "Adversaries may transfer tools or other files from an external system into a compromised environment. Tools or files may be copied from an external adversary-controlled system to the victim network through the command and control channel or through alternate protocols such as [ftp](https://attack.mitre.org/software/S0095). Once present, adversaries may also transfer/spread tools between victim devices within a compromised environment (i.e. [Lateral Tool Transfer](https://attack.mitre.org/techniques/T1570)). ",
+    "id": "T1648",
+    "name": "Serverless Execution",
+    "description": "Adversaries may abuse serverless computing, integration, and automation services to execute arbitrary code in cloud environments. Many cloud providers offer a variety of serverless resources, including compute engines, application integration services, and web servers. ",
     "tactics": [
-      "command-and-control"
+      "execution"
     ],
     "platforms": [
-      "ESXi",
-      "Linux",
-      "macOS",
-      "Network Devices",
-      "Windows"
+      "SaaS",
+      "IaaS",
+      "Office Suite"
     ],
-    "url": "https://attack.mitre.org/techniques/T1105"
+    "url": "https://attack.mitre.org/techniques/T1648"
   }
 }

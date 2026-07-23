@@ -1,8 +1,26 @@
 {
-  "total": 1651,
-  "catalog_version": "2026.07.21",
-  "date_released": "2026-07-21T15:12:01.557Z",
+  "total": 1653,
+  "catalog_version": "2026.07.22",
+  "date_released": "2026-07-22T19:00:21.8524Z",
   "recent": [
+    {
+      "cve": "CVE-2026-16232",
+      "vendor": "Check Point",
+      "product": "SmartConsole",
+      "name": "Check Point SmartConsole Improper Authentication Vulnerability",
+      "date_added": "2026-07-22",
+      "due_date": "2026-07-25",
+      "ransomware": false
+    },
+    {
+      "cve": "CVE-2026-50522",
+      "vendor": "Microsoft",
+      "product": "SharePoint",
+      "name": "Microsoft SharePoint Deserialization of Untrusted Data Vulnerability ",
+      "date_added": "2026-07-22",
+      "due_date": "2026-07-25",
+      "ransomware": false
+    },
     {
       "cve": "CVE-2026-60137",
       "vendor": "WordPress",
@@ -91,24 +109,6 @@
       "name": "Microsoft Active Directory Federation Services Insufficient Granularity of Access Control Vulnerability ",
       "date_added": "2026-07-14",
       "due_date": "2026-07-28",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-56164",
-      "vendor": "Microsoft",
-      "product": "SharePoint Server",
-      "name": "Microsoft SharePoint Server Missing Authentication for Critical Function Vulnerability",
-      "date_added": "2026-07-14",
-      "due_date": "2026-07-17",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-15409",
-      "vendor": "SonicWall",
-      "product": "SMA1000 Appliances",
-      "name": "SonicWall SMA1000 Appliances Server-Side Request Forgery Vulnerability",
-      "date_added": "2026-07-14",
-      "due_date": "2026-07-17",
       "ransomware": false
     }
   ]
