@@ -1,17 +1,18 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1648",
-    "name": "Serverless Execution",
-    "description": "Adversaries may abuse serverless computing, integration, and automation services to execute arbitrary code in cloud environments. Many cloud providers offer a variety of serverless resources, including compute engines, application integration services, and web servers. ",
+    "id": "T1653",
+    "name": "Power Settings",
+    "description": "Adversaries may impair a system's ability to hibernate, reboot, or shut down in order to extend access to infected machines. When a computer enters a dormant state, some or all software and hardware may cease to operate which can disrupt malicious activity.(Citation: Sleep, shut down, hibernate)",
     "tactics": [
-      "execution"
+      "persistence"
     ],
     "platforms": [
-      "SaaS",
-      "IaaS",
-      "Office Suite"
+      "Windows",
+      "Linux",
+      "macOS",
+      "Network Devices"
     ],
-    "url": "https://attack.mitre.org/techniques/T1648"
+    "url": "https://attack.mitre.org/techniques/T1653"
   }
 }
