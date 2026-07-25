@@ -1,140 +1,140 @@
 {
-  "total_recent": 15210,
+  "total_recent": 14907,
   "recent": [
     {
-      "id": "3891149",
-      "date_added": "2026-07-24 08:15:19",
-      "url": "http://219.155.17.245:57142/i",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "None",
-      "host": "https://urlhaus.abuse.ch/url/3891149/"
-    },
-    {
-      "id": "3891148",
-      "date_added": "2026-07-24 08:05:17",
-      "url": "http://125.41.4.249:60482/bin.sh",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3891148/"
-    },
-    {
-      "id": "3891147",
-      "date_added": "2026-07-24 08:05:15",
-      "url": "http://62.60.226.140/files/8847994138/mkgO5wr.exe",
+      "id": "3891390",
+      "date_added": "2026-07-25 05:37:19",
+      "url": "http://222.140.182.83:51928/i",
       "url_status": "offline",
       "threat": "malware_download",
-      "tags": "d52f85,dropped-by-amadey",
-      "host": "https://urlhaus.abuse.ch/url/3891147/"
+      "tags": "None",
+      "host": "https://urlhaus.abuse.ch/url/3891390/"
     },
     {
-      "id": "3891146",
-      "date_added": "2026-07-24 08:03:32",
-      "url": "http://193.31.201.20:53638/i",
-      "url_status": "online",
+      "id": "3891389",
+      "date_added": "2026-07-25 05:16:09",
+      "url": "http://222.140.182.83:51928/bin.sh",
+      "url_status": "offline",
       "threat": "malware_download",
-      "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3891146/"
+      "tags": "Mozi",
+      "host": "https://urlhaus.abuse.ch/url/3891389/"
     },
     {
-      "id": "3891145",
-      "date_added": "2026-07-24 07:49:37",
-      "url": "http://67.197.195.125:58613/i",
-      "url_status": "online",
+      "id": "3891388",
+      "date_added": "2026-07-25 05:15:24",
+      "url": "http://45.177.32.104:48133/bin.sh",
+      "url_status": "offline",
       "threat": "malware_download",
       "tags": "32-bit,arm,elf,mirai,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3891145/"
+      "host": "https://urlhaus.abuse.ch/url/3891388/"
     },
     {
-      "id": "3891144",
-      "date_added": "2026-07-24 07:49:32",
-      "url": "http://93.157.253.209:45451/i",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3891144/"
-    },
-    {
-      "id": "3891143",
-      "date_added": "2026-07-24 07:12:07",
-      "url": "http://125.44.220.50:54584/i",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3891143/"
-    },
-    {
-      "id": "3891142",
-      "date_added": "2026-07-24 07:10:27",
-      "url": "http://182.123.247.79:42733/i",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3891142/"
-    },
-    {
-      "id": "3891141",
-      "date_added": "2026-07-24 07:03:28",
-      "url": "http://125.43.225.123:44975/i",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3891141/"
-    },
-    {
-      "id": "3891140",
-      "date_added": "2026-07-24 06:57:24",
-      "url": "http://125.43.225.123:44975/bin.sh",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3891140/"
-    },
-    {
-      "id": "3891139",
-      "date_added": "2026-07-24 06:54:21",
-      "url": "http://27.193.63.212:38756/i",
+      "id": "3891387",
+      "date_added": "2026-07-25 05:04:12",
+      "url": "http://182.117.32.243:40434/i",
       "url_status": "offline",
       "threat": "malware_download",
       "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3891139/"
+      "host": "https://urlhaus.abuse.ch/url/3891387/"
     },
     {
-      "id": "3891138",
-      "date_added": "2026-07-24 06:53:09",
-      "url": "https://hypercorevector9.lol/load/KLHdfs.exe",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "ACRStealer,exe",
-      "host": "https://urlhaus.abuse.ch/url/3891138/"
-    },
-    {
-      "id": "3891136",
-      "date_added": "2026-07-24 06:53:08",
-      "url": "http://119.116.239.44:35093/i",
+      "id": "3891386",
+      "date_added": "2026-07-25 05:02:08",
+      "url": "http://125.45.48.19:38849/i",
       "url_status": "online",
       "threat": "malware_download",
       "tags": "None",
-      "host": "https://urlhaus.abuse.ch/url/3891136/"
+      "host": "https://urlhaus.abuse.ch/url/3891386/"
     },
     {
-      "id": "3891137",
-      "date_added": "2026-07-24 06:53:08",
-      "url": "http://119.116.239.44:35093/bin.sh",
-      "url_status": "online",
+      "id": "3891385",
+      "date_added": "2026-07-25 05:00:24",
+      "url": "http://42.232.30.250:60656/i",
+      "url_status": "offline",
       "threat": "malware_download",
-      "tags": "None",
-      "host": "https://urlhaus.abuse.ch/url/3891137/"
+      "tags": "32-bit,elf,mips,Mozi",
+      "host": "https://urlhaus.abuse.ch/url/3891385/"
     },
     {
-      "id": "3891135",
-      "date_added": "2026-07-24 06:53:07",
-      "url": "https://always-undetected.com/launches/XXM9V3ZP2EEOROO/a11ede7be1bb7732ffe370c06c2449f94f05b37f.exe",
+      "id": "3891384",
+      "date_added": "2026-07-25 04:58:16",
+      "url": "http://110.37.74.205:55589/i",
+      "url_status": "offline",
+      "threat": "malware_download",
+      "tags": "32-bit,arm,elf,mirai,Mozi",
+      "host": "https://urlhaus.abuse.ch/url/3891384/"
+    },
+    {
+      "id": "3891383",
+      "date_added": "2026-07-25 04:47:07",
+      "url": "http://180.125.200.33:44678/i",
       "url_status": "online",
       "threat": "malware_download",
-      "tags": "None",
-      "host": "https://urlhaus.abuse.ch/url/3891135/"
+      "tags": "mirai",
+      "host": "https://urlhaus.abuse.ch/url/3891383/"
+    },
+    {
+      "id": "3891382",
+      "date_added": "2026-07-25 04:42:38",
+      "url": "http://112.247.255.36:59436/i",
+      "url_status": "offline",
+      "threat": "malware_download",
+      "tags": "32-bit,arm,elf,mirai,Mozi",
+      "host": "https://urlhaus.abuse.ch/url/3891382/"
+    },
+    {
+      "id": "3891381",
+      "date_added": "2026-07-25 04:42:21",
+      "url": "http://219.154.190.15:39243/i",
+      "url_status": "offline",
+      "threat": "malware_download",
+      "tags": "32-bit,elf,mips,Mozi",
+      "host": "https://urlhaus.abuse.ch/url/3891381/"
+    },
+    {
+      "id": "3891380",
+      "date_added": "2026-07-25 04:39:15",
+      "url": "http://182.117.32.243:40434/bin.sh",
+      "url_status": "offline",
+      "threat": "malware_download",
+      "tags": "32-bit,elf,mips,Mozi",
+      "host": "https://urlhaus.abuse.ch/url/3891380/"
+    },
+    {
+      "id": "3891379",
+      "date_added": "2026-07-25 04:21:08",
+      "url": "http://180.125.200.33:44678/bin.sh",
+      "url_status": "online",
+      "threat": "malware_download",
+      "tags": "mirai",
+      "host": "https://urlhaus.abuse.ch/url/3891379/"
+    },
+    {
+      "id": "3891378",
+      "date_added": "2026-07-25 04:21:07",
+      "url": "http://221.207.225.97:36850/i",
+      "url_status": "online",
+      "threat": "malware_download",
+      "tags": "mirai",
+      "host": "https://urlhaus.abuse.ch/url/3891378/"
+    },
+    {
+      "id": "3891377",
+      "date_added": "2026-07-25 03:57:22",
+      "url": "http://221.207.225.97:36850/bin.sh",
+      "url_status": "offline",
+      "threat": "malware_download",
+      "tags": "mirai",
+      "host": "https://urlhaus.abuse.ch/url/3891377/"
+    },
+    {
+      "id": "3891376",
+      "date_added": "2026-07-25 03:57:08",
+      "url": "http://45.172.218.181:40632/bin.sh",
+      "url_status": "online",
+      "threat": "malware_download",
+      "tags": "mirai",
+      "host": "https://urlhaus.abuse.ch/url/3891376/"
     }
   ]
 }

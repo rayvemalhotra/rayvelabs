@@ -1,18 +1,19 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1653",
-    "name": "Power Settings",
-    "description": "Adversaries may impair a system's ability to hibernate, reboot, or shut down in order to extend access to infected machines. When a computer enters a dormant state, some or all software and hardware may cease to operate which can disrupt malicious activity.(Citation: Sleep, shut down, hibernate)",
+    "id": "T1665",
+    "name": "Hide Infrastructure",
+    "description": "Adversaries may manipulate network traffic in order to hide and evade detection of their C2 infrastructure. This can be accomplished by identifying and filtering traffic from defensive tools,(Citation: TA571) masking malicious domains to obfuscate the true destination from both automated scanning tools and security researchers,(Citation: Schema-abuse)(Citation: Facad1ng)(Citation: Browser-updates) and otherwise hiding malicious artifacts to delay discovery and prolong the effectiveness of adversary infrastructure that could otherwise be identified, blocked, or taken down entirely.",
     "tactics": [
-      "persistence"
+      "command-and-control"
     ],
     "platforms": [
-      "Windows",
+      "ESXi",
       "Linux",
       "macOS",
-      "Network Devices"
+      "Network Devices",
+      "Windows"
     ],
-    "url": "https://attack.mitre.org/techniques/T1653"
+    "url": "https://attack.mitre.org/techniques/T1665"
   }
 }
