@@ -1,19 +1,17 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1665",
-    "name": "Hide Infrastructure",
-    "description": "Adversaries may manipulate network traffic in order to hide and evade detection of their C2 infrastructure. This can be accomplished by identifying and filtering traffic from defensive tools,(Citation: TA571) masking malicious domains to obfuscate the true destination from both automated scanning tools and security researchers,(Citation: Schema-abuse)(Citation: Facad1ng)(Citation: Browser-updates) and otherwise hiding malicious artifacts to delay discovery and prolong the effectiveness of adversary infrastructure that could otherwise be identified, blocked, or taken down entirely.",
+    "id": "T1484",
+    "name": "Domain or Tenant Policy Modification",
+    "description": "Adversaries may modify the configuration settings of a domain or identity tenant to evade defenses and/or escalate privileges in centrally managed environments. Such services provide a centralized means of managing identity resources such as devices and accounts, and often include configuration settings that may apply between domains or tenants such as trust relationships, identity syncing, or identity federation.",
     "tactics": [
-      "command-and-control"
+      "defense-impairment",
+      "privilege-escalation"
     ],
     "platforms": [
-      "ESXi",
-      "Linux",
-      "macOS",
-      "Network Devices",
-      "Windows"
+      "Windows",
+      "Identity Provider"
     ],
-    "url": "https://attack.mitre.org/techniques/T1665"
+    "url": "https://attack.mitre.org/techniques/T1484"
   }
 }

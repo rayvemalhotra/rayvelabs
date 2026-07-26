@@ -1,125 +1,125 @@
 {
-  "total": 4295,
+  "total": 4362,
   "recent": [
     {
-      "first_seen": "1857281",
-      "ioc": "eu959ilm.eandrconstructionllc.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1857280",
-      "ioc": "https://pol.1000boger.com/",
-      "ioc_type": "url",
-      "threat_type": "payload_delivery",
+      "first_seen": "1858165",
+      "ioc": "103.233.8.46:8000",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
       "malware": "unknown",
       "malware_alias": "None",
       "malware_printable": "Unknown malware",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1857279",
-      "ioc": "itpysxfajhrtpnfwacr.herbscutsandolives.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1857278",
-      "ioc": "herbscutsandolives.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1857277",
-      "ioc": "3rb3eyir.ewagajewskamd.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1857276",
-      "ioc": "149.62.46.110:8085",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.vshell",
-      "malware_alias": "None",
-      "malware_printable": "VShell",
       "confidence": "True"
     },
     {
-      "first_seen": "1857273",
-      "ioc": "114.55.96.192:5003",
+      "first_seen": "1858164",
+      "ioc": "20.2.161.33:8001",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "win.cobalt_strike",
-      "malware_alias": "Agentemis",
-      "malware_printable": "BEACON",
-      "confidence": "Cobalt Strike"
-    },
-    {
-      "first_seen": "1857274",
-      "ioc": "2.50.171.117:8808",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.asyncrat",
+      "malware": "unknown",
       "malware_alias": "None",
-      "malware_printable": "AsyncRAT",
+      "malware_printable": "Unknown malware",
       "confidence": "True"
     },
     {
-      "first_seen": "1857275",
-      "ioc": "114.132.89.132:3389",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.cobalt_strike",
-      "malware_alias": "Agentemis",
-      "malware_printable": "BEACON",
-      "confidence": "Cobalt Strike"
-    },
-    {
-      "first_seen": "1857272",
-      "ioc": "58.96.75.176:15151",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.remcos",
-      "malware_alias": "RemcosRAT",
-      "malware_printable": "Remvio",
-      "confidence": ""
-    },
-    {
-      "first_seen": "1857271",
-      "ioc": "pol.1000boger.com",
-      "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1857270",
-      "ioc": "wninxnvywnwkijlyypj.heavenlybeautysupplyca.com",
+      "first_seen": "1858163",
+      "ioc": "nvwhch.yummiquickway.com",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
       "malware_alias": "None",
       "malware_printable": "ClearFake",
       "confidence": "False"
+    },
+    {
+      "first_seen": "1858118",
+      "ioc": "20.2.161.33:80",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "unknown",
+      "malware_alias": "None",
+      "malware_printable": "Unknown malware",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1858117",
+      "ioc": "20.196.147.118:3232",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "unknown",
+      "malware_alias": "None",
+      "malware_printable": "Unknown malware",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1858115",
+      "ioc": "107.175.227.55:8888",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "unknown",
+      "malware_alias": "None",
+      "malware_printable": "Unknown malware",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1858116",
+      "ioc": "20.196.147.118:22",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "unknown",
+      "malware_alias": "None",
+      "malware_printable": "Unknown malware",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1858114",
+      "ioc": "70.34.215.48:22",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.havoc",
+      "malware_alias": "Havokiz",
+      "malware_printable": "Havoc",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1858113",
+      "ioc": "extranet-helpdesk15.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.tonrat",
+      "malware_alias": "TONResolver",
+      "malware_printable": "TonRAT",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1858112",
+      "ioc": "ealzou.ushealthlaboratories.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1858105",
+      "ioc": "107.175.227.55:22",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "unknown",
+      "malware_alias": "None",
+      "malware_printable": "Unknown malware",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1858106",
+      "ioc": "107.175.227.55:3232",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "unknown",
+      "malware_alias": "None",
+      "malware_printable": "Unknown malware",
+      "confidence": "True"
     }
   ]
 }

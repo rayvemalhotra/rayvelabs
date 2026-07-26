@@ -1,6 +1,6 @@
 {
   "total_breaches": 1020,
-  "total_records_exposed": 17763864959,
+  "total_records_exposed": 17764052966,
   "recent": [
     {
       "name": "Fluke",
@@ -25,7 +25,7 @@
       "domain": "",
       "breach_date": "2026-06-18",
       "added_date": "2026-06-18T20:08:06Z",
-      "pwn_count": 4160519,
+      "pwn_count": 4348526,
       "data_classes": [
         "Email addresses",
         "Passwords"
