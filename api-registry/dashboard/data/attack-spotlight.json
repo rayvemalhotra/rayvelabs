@@ -1,17 +1,15 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1484",
-    "name": "Domain or Tenant Policy Modification",
-    "description": "Adversaries may modify the configuration settings of a domain or identity tenant to evade defenses and/or escalate privileges in centrally managed environments. Such services provide a centralized means of managing identity resources such as devices and accounts, and often include configuration settings that may apply between domains or tenants such as trust relationships, identity syncing, or identity federation.",
+    "id": "T1220",
+    "name": "XSL Script Processing",
+    "description": "Adversaries may bypass application control and obscure execution of code by embedding scripts inside XSL files. Extensible Stylesheet Language (XSL) files are commonly used to describe the processing and rendering of data within XML files. To support complex operations, the XSL standard includes support for embedded scripting in various languages. (Citation: Microsoft XSLT Script Mar 2017)",
     "tactics": [
-      "defense-impairment",
-      "privilege-escalation"
+      "stealth"
     ],
     "platforms": [
-      "Windows",
-      "Identity Provider"
+      "Windows"
     ],
-    "url": "https://attack.mitre.org/techniques/T1484"
+    "url": "https://attack.mitre.org/techniques/T1220"
   }
 }

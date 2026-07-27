@@ -1,5 +1,5 @@
 {
-  "total_listings": 10261,
+  "total_listings": 10264,
   "by_reason": [
     {
       "reason": "AsyncRAT C&C",
@@ -23,6 +23,21 @@
     }
   ],
   "recent": [
+    {
+      "listing_date": "2026-07-27 08:30:02",
+      "sha1": "283042355c89f2c59e260246d1488a73a8bef7b2",
+      "listing_reason": "PureLogsStealer C&C"
+    },
+    {
+      "listing_date": "2026-07-27 07:00:32",
+      "sha1": "e6cc4eebe2d73c7174be4be73bc00d4642122ac4",
+      "listing_reason": "ACRStealer C&C"
+    },
+    {
+      "listing_date": "2026-07-26 11:17:38",
+      "sha1": "131d534087149d0095a326dcb33e77afcbec308c",
+      "listing_reason": "AnimateClipper C&C"
+    },
     {
       "listing_date": "2026-07-25 12:04:12",
       "sha1": "45bbc5ebc131cca9663c35c95459564007049d07",
@@ -57,21 +72,6 @@
       "listing_date": "2026-07-23 18:53:03",
       "sha1": "cd07a2a4c9a93703dc8d1d4e72a12e1cec7f41c7",
       "listing_reason": "ACRStealer C&C"
-    },
-    {
-      "listing_date": "2026-07-23 18:52:39",
-      "sha1": "73202d8d2ac9a9e04c2bdefa6ea8db2860d779a9",
-      "listing_reason": "Vidar C&C"
-    },
-    {
-      "listing_date": "2026-07-23 18:52:07",
-      "sha1": "80c36e681125d92c8edfbf7adce71d3bda48d1f9",
-      "listing_reason": "Malware distribution"
-    },
-    {
-      "listing_date": "2026-07-23 18:50:13",
-      "sha1": "12b3a868314cd43aa8d304a7e529bbd498ee74ee",
-      "listing_reason": "Vidar C&C"
     }
   ]
 }

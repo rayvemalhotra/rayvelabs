@@ -1,29 +1,59 @@
 {
-  "total": 4362,
+  "total": 6078,
   "recent": [
     {
-      "first_seen": "1858165",
-      "ioc": "103.233.8.46:8000",
+      "first_seen": "1860087",
+      "ioc": "204.44.69.230:6606",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.asyncrat",
+      "malware_alias": "None",
+      "malware_printable": "AsyncRAT",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1860086",
+      "ioc": "2.26.26.153:43216",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.adaptix_c2",
+      "malware_alias": "None",
+      "malware_printable": "AdaptixC2",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1860085",
+      "ioc": "194.233.80.96:4321",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.adaptix_c2",
+      "malware_alias": "None",
+      "malware_printable": "AdaptixC2",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1860084",
+      "ioc": "172.245.232.49:7443",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
       "malware": "unknown",
       "malware_alias": "None",
       "malware_printable": "Unknown malware",
-      "confidence": "True"
+      "confidence": "False"
     },
     {
-      "first_seen": "1858164",
-      "ioc": "20.2.161.33:8001",
+      "first_seen": "1860083",
+      "ioc": "130.12.182.184:1339",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "unknown",
+      "malware": "win.adaptix_c2",
       "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "True"
+      "malware_printable": "AdaptixC2",
+      "confidence": "False"
     },
     {
-      "first_seen": "1858163",
-      "ioc": "nvwhch.yummiquickway.com",
+      "first_seen": "1860082",
+      "ioc": "xiajme.spingamehub.com",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -32,68 +62,8 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1858118",
-      "ioc": "20.2.161.33:80",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "unknown",
-      "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1858117",
-      "ioc": "20.196.147.118:3232",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "unknown",
-      "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1858115",
-      "ioc": "107.175.227.55:8888",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "unknown",
-      "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1858116",
-      "ioc": "20.196.147.118:22",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "unknown",
-      "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1858114",
-      "ioc": "70.34.215.48:22",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.havoc",
-      "malware_alias": "Havokiz",
-      "malware_printable": "Havoc",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1858113",
-      "ioc": "extranet-helpdesk15.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.tonrat",
-      "malware_alias": "TONResolver",
-      "malware_printable": "TonRAT",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1858112",
-      "ioc": "ealzou.ushealthlaboratories.com",
+      "first_seen": "1860081",
+      "ioc": "spingamehub.com",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -102,8 +72,8 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1858105",
-      "ioc": "107.175.227.55:22",
+      "first_seen": "1860079",
+      "ioc": "24.144.93.255:4444",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
       "malware": "unknown",
@@ -112,8 +82,38 @@
       "confidence": "True"
     },
     {
-      "first_seen": "1858106",
-      "ioc": "107.175.227.55:3232",
+      "first_seen": "1860077",
+      "ioc": "24.144.93.255:8888",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "unknown",
+      "malware_alias": "None",
+      "malware_printable": "Unknown malware",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1860078",
+      "ioc": "24.144.93.255:22",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "unknown",
+      "malware_alias": "None",
+      "malware_printable": "Unknown malware",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1860076",
+      "ioc": "8.218.120.126:44322",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "unknown",
+      "malware_alias": "None",
+      "malware_printable": "Unknown malware",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1860075",
+      "ioc": "83.147.15.95:22",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
       "malware": "unknown",
