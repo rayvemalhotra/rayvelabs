@@ -1,8 +1,26 @@
 {
-  "total": 1653,
-  "catalog_version": "2026.07.24",
-  "date_released": "2026-07-24T17:40:56.0086Z",
+  "total": 1655,
+  "catalog_version": "2026.07.27",
+  "date_released": "2026-07-27T19:00:15.8632Z",
   "recent": [
+    {
+      "cve": "CVE-2025-68686",
+      "vendor": "Fortinet",
+      "product": "FortiOS",
+      "name": "Fortinet FortiOS Exposure of Sensitive Information to an Unauthorized Actor Vulnerability",
+      "date_added": "2026-07-27",
+      "due_date": "2026-08-10",
+      "ransomware": false
+    },
+    {
+      "cve": "CVE-2026-16812",
+      "vendor": "Arista",
+      "product": "VeloCloud Orchestrator",
+      "name": "Arista VeloCloud Orchestrator On-Prem OS Command Injection Vulnerability",
+      "date_added": "2026-07-27",
+      "due_date": "2026-07-30",
+      "ransomware": false
+    },
     {
       "cve": "CVE-2026-16232",
       "vendor": "Check Point",
@@ -91,24 +109,6 @@
       "name": "Oracle E-Business Suite Improper Privilege Management Vulnerability",
       "date_added": "2026-07-15",
       "due_date": "2026-07-18",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2023-4346",
-      "vendor": "KNX Association",
-      "product": "KNX Protocol Connection Authorization Option 1",
-      "name": "KNX Association KNX Protocol Connection Authorization Option 1 Overly Restrictive Account Lockout Mechanism Vulnerability",
-      "date_added": "2026-07-15",
-      "due_date": "2026-07-29",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-56155",
-      "vendor": "Microsoft",
-      "product": "Active Directory Federation Services",
-      "name": "Microsoft Active Directory Federation Services Insufficient Granularity of Access Control Vulnerability ",
-      "date_added": "2026-07-14",
-      "due_date": "2026-07-28",
       "ransomware": false
     }
   ]

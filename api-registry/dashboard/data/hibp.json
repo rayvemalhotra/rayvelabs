@@ -1,6 +1,6 @@
 {
-  "total_breaches": 1020,
-  "total_records_exposed": 17764052966,
+  "total_breaches": 1021,
+  "total_records_exposed": 17764884608,
   "recent": [
     {
       "name": "Fluke",
@@ -29,6 +29,25 @@
       "data_classes": [
         "Email addresses",
         "Passwords"
+      ],
+      "verified": true
+    },
+    {
+      "name": "HoustonCityCollege",
+      "title": "Houston City College",
+      "domain": "hccs.edu",
+      "breach_date": "2026-06-16",
+      "added_date": "2026-07-28T06:05:24Z",
+      "pwn_count": 831642,
+      "data_classes": [
+        "Academic records",
+        "Citizenship statuses",
+        "Dates of birth",
+        "Email addresses",
+        "Genders",
+        "Names",
+        "Phone numbers",
+        "Physical addresses"
       ],
       "verified": true
     },
@@ -114,25 +133,6 @@
         "Names",
         "Phone numbers",
         "Physical addresses"
-      ],
-      "verified": true
-    },
-    {
-      "name": "JCPenney",
-      "title": "JCPenney",
-      "domain": "jcpenny.com",
-      "breach_date": "2026-06-12",
-      "added_date": "2026-06-20T03:02:45Z",
-      "pwn_count": 368418,
-      "data_classes": [
-        "Dates of birth",
-        "Email addresses",
-        "Government issued IDs",
-        "Job titles",
-        "Names",
-        "Phone numbers",
-        "Physical addresses",
-        "Usernames"
       ],
       "verified": true
     }

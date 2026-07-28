@@ -1,15 +1,15 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1220",
-    "name": "XSL Script Processing",
-    "description": "Adversaries may bypass application control and obscure execution of code by embedding scripts inside XSL files. Extensible Stylesheet Language (XSL) files are commonly used to describe the processing and rendering of data within XML files. To support complex operations, the XSL standard includes support for embedded scripting in various languages. (Citation: Microsoft XSLT Script Mar 2017)",
+    "id": "T1587",
+    "name": "Develop Capabilities",
+    "description": "Adversaries may build capabilities that can be used during targeting. Rather than purchasing, freely downloading, or stealing capabilities, adversaries may develop their own capabilities in-house. This is the process of identifying development requirements and building solutions such as malware, exploits, and self-signed certificates. Adversaries may develop capabilities to support their operations throughout numerous phases of the adversary lifecycle.(Citation: Mandiant APT1)(Citation: Kaspersky Sofacy)(Citation: Bitdefender StrongPity June 2020)(Citation: Talos Promethium June 2020)",
     "tactics": [
-      "stealth"
+      "resource-development"
     ],
     "platforms": [
-      "Windows"
+      "PRE"
     ],
-    "url": "https://attack.mitre.org/techniques/T1220"
+    "url": "https://attack.mitre.org/techniques/T1587"
   }
 }
