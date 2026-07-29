@@ -1,15 +1,19 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1587",
-    "name": "Develop Capabilities",
-    "description": "Adversaries may build capabilities that can be used during targeting. Rather than purchasing, freely downloading, or stealing capabilities, adversaries may develop their own capabilities in-house. This is the process of identifying development requirements and building solutions such as malware, exploits, and self-signed certificates. Adversaries may develop capabilities to support their operations throughout numerous phases of the adversary lifecycle.(Citation: Mandiant APT1)(Citation: Kaspersky Sofacy)(Citation: Bitdefender StrongPity June 2020)(Citation: Talos Promethium June 2020)",
+    "id": "T1686",
+    "name": "Disable or Modify System Firewall",
+    "description": "Adversaries may disable or modify host-based or network firewalls to impair defensive mechanisms and enable further action. Once an adversary has gathered sufficient privileges, they can tamper with firewall services, policies, or rule sets to remove restrictions on inbound or outbound traffic. For example, this may include turning off firewall profiles, altering existing rules to permit previously blocked ports or protocols, or adding new rules that create covert communication paths (e.g., adding a new firewall rule for a well-known protocol (such as RDP) using a non-traditional and potentially less securitized port.(Citation: change_rdp_port_conti)",
     "tactics": [
-      "resource-development"
+      "defense-impairment"
     ],
     "platforms": [
-      "PRE"
+      "ESXi",
+      "Linux",
+      "macOS",
+      "Network Devices",
+      "Windows"
     ],
-    "url": "https://attack.mitre.org/techniques/T1587"
+    "url": "https://attack.mitre.org/techniques/T1686"
   }
 }
