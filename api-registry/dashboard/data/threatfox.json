@@ -1,69 +1,29 @@
 {
-  "total": 5744,
+  "total": 6036,
   "recent": [
     {
-      "first_seen": "1862638",
-      "ioc": "155.103.69.213:6767",
+      "first_seen": "1864477",
+      "ioc": "47.100.16.83:8080",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "win.asyncrat",
-      "malware_alias": "None",
-      "malware_printable": "AsyncRAT",
-      "confidence": "False"
+      "malware": "win.cobalt_strike",
+      "malware_alias": "Agentemis",
+      "malware_printable": "BEACON",
+      "confidence": "Cobalt Strike"
     },
     {
-      "first_seen": "1862637",
-      "ioc": "xsdxey.westpacifichomefashions.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1862636",
-      "ioc": "shpu1xz9.gdcpemasaranbekasi.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1862635",
-      "ioc": "westpacifichomefashions.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1862634",
-      "ioc": "westicbyfatima.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1862631",
-      "ioc": "8.130.89.132:22",
+      "first_seen": "1864478",
+      "ioc": "64.89.161.183:27015",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "unknown",
-      "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "True"
+      "malware": "win.cobalt_strike",
+      "malware_alias": "Agentemis",
+      "malware_printable": "BEACON",
+      "confidence": "Cobalt Strike"
     },
     {
-      "first_seen": "1862632",
-      "ioc": "139.155.42.198:8084",
+      "first_seen": "1864476",
+      "ioc": "198.23.209.201:8089",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
       "malware": "win.vshell",
@@ -72,28 +32,8 @@
       "confidence": "True"
     },
     {
-      "first_seen": "1862633",
-      "ioc": "149.28.135.144:8083",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.vshell",
-      "malware_alias": "None",
-      "malware_printable": "VShell",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1862630",
-      "ioc": "199.30.90.240:54321",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "unknown",
-      "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1862629",
-      "ioc": "rzbcftp.yorubapriestess.com",
+      "first_seen": "1864475",
+      "ioc": "1cxzkjf3.krautodetailing.com",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -102,8 +42,8 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1862628",
-      "ioc": "yorubapriestess.com",
+      "first_seen": "1864474",
+      "ioc": "ydmkrr.southwestkustoms.com",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -112,13 +52,73 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1862627",
-      "ioc": "bmguom.weisfeedbacksurvey.com",
+      "first_seen": "1864473",
+      "ioc": "southwestkustoms.com",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
       "malware_alias": "None",
       "malware_printable": "ClearFake",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1864472",
+      "ioc": "spkxslb.surestayplussanantoniotx.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1864471",
+      "ioc": "4z4tzb9w.portman-photos.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1864470",
+      "ioc": "da.dojiner.at",
+      "ioc_type": "domain",
+      "threat_type": "botnet_cc",
+      "malware": "unknown_stealer",
+      "malware_alias": "None",
+      "malware_printable": "Unknown Stealer",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1864469",
+      "ioc": "ph.dojiner.at",
+      "ioc_type": "domain",
+      "threat_type": "botnet_cc",
+      "malware": "unknown_stealer",
+      "malware_alias": "None",
+      "malware_printable": "Unknown Stealer",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1864467",
+      "ioc": "196.251.121.186:80",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "unknown_stealer",
+      "malware_alias": "None",
+      "malware_printable": "Unknown Stealer",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1864468",
+      "ioc": "64.89.160.67:80",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "unknown_stealer",
+      "malware_alias": "None",
+      "malware_printable": "Unknown Stealer",
       "confidence": "False"
     }
   ]

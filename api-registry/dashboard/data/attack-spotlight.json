@@ -1,19 +1,18 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1686",
-    "name": "Disable or Modify System Firewall",
-    "description": "Adversaries may disable or modify host-based or network firewalls to impair defensive mechanisms and enable further action. Once an adversary has gathered sufficient privileges, they can tamper with firewall services, policies, or rule sets to remove restrictions on inbound or outbound traffic. For example, this may include turning off firewall profiles, altering existing rules to permit previously blocked ports or protocols, or adding new rules that create covert communication paths (e.g., adding a new firewall rule for a well-known protocol (such as RDP) using a non-traditional and potentially less securitized port.(Citation: change_rdp_port_conti)",
+    "id": "T1008",
+    "name": "Fallback Channels",
+    "description": "Adversaries may use fallback or alternate communication channels if the primary channel is compromised or inaccessible in order to maintain reliable command and control and to avoid data transfer thresholds.",
     "tactics": [
-      "defense-impairment"
+      "command-and-control"
     ],
     "platforms": [
       "ESXi",
       "Linux",
       "macOS",
-      "Network Devices",
       "Windows"
     ],
-    "url": "https://attack.mitre.org/techniques/T1686"
+    "url": "https://attack.mitre.org/techniques/T1008"
   }
 }

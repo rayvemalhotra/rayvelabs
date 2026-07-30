@@ -1,8 +1,17 @@
 {
-  "total": 1655,
-  "catalog_version": "2026.07.27",
-  "date_released": "2026-07-27T19:00:15.8632Z",
+  "total": 1656,
+  "catalog_version": "2026.07.29",
+  "date_released": "2026-07-29T18:45:59.5809Z",
   "recent": [
+    {
+      "cve": "CVE-2026-20316",
+      "vendor": "Cisco",
+      "product": "Secure Firewall Management Center (FMC)",
+      "name": "Cisco Secure Firewall Management Center Use of Hard-coded Password Vulnerability",
+      "date_added": "2026-07-29",
+      "due_date": "2026-08-01",
+      "ransomware": false
+    },
     {
       "cve": "CVE-2025-68686",
       "vendor": "Fortinet",
@@ -100,15 +109,6 @@
       "name": "Fortinet FortiSandbox OS Command Injection Vulnerability",
       "date_added": "2026-07-16",
       "due_date": "2026-07-19",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-46817",
-      "vendor": "Oracle",
-      "product": "E-Business Suite",
-      "name": "Oracle E-Business Suite Improper Privilege Management Vulnerability",
-      "date_added": "2026-07-15",
-      "due_date": "2026-07-18",
       "ransomware": false
     }
   ]
