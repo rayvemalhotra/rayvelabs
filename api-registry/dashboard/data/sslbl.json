@@ -1,5 +1,5 @@
 {
-  "total_listings": 10267,
+  "total_listings": 10273,
   "by_reason": [
     {
       "reason": "AsyncRAT C&C",
@@ -15,7 +15,7 @@
     },
     {
       "reason": "Vidar C&C",
-      "count": 656
+      "count": 660
     },
     {
       "reason": "LummaStealer C&C",
@@ -23,6 +23,36 @@
     }
   ],
   "recent": [
+    {
+      "listing_date": "2026-07-30 19:52:58",
+      "sha1": "014d51d79c5a5c80042abedb35231581ff07c2e7",
+      "listing_reason": "Vidar C&C"
+    },
+    {
+      "listing_date": "2026-07-30 19:50:33",
+      "sha1": "ed0d4b2a9c090b6af6c99fd5b899831da206d835",
+      "listing_reason": "Vidar C&C"
+    },
+    {
+      "listing_date": "2026-07-30 19:36:27",
+      "sha1": "7767913e33fac1ed9c448460267ca0e6cbe627b4",
+      "listing_reason": "Vidar C&C"
+    },
+    {
+      "listing_date": "2026-07-30 19:36:25",
+      "sha1": "fe50e363165e3e8d789daf4dc378f50a70f35a8a",
+      "listing_reason": "Vidar C&C"
+    },
+    {
+      "listing_date": "2026-07-30 16:35:07",
+      "sha1": "16fbb45457a2d8e67c556db46e051893917e2104",
+      "listing_reason": "KongTuke C&C"
+    },
+    {
+      "listing_date": "2026-07-30 16:34:07",
+      "sha1": "1727143583fd38bc4b6b5986f5c7b2c919f885af",
+      "listing_reason": "KongTuke C&C"
+    },
     {
       "listing_date": "2026-07-29 08:12:44",
       "sha1": "0b260881d660a14c3c0b2e61a6685839c8053bc9",
@@ -42,36 +72,6 @@
       "listing_date": "2026-07-27 08:30:02",
       "sha1": "283042355c89f2c59e260246d1488a73a8bef7b2",
       "listing_reason": "PureLogsStealer C&C"
-    },
-    {
-      "listing_date": "2026-07-27 07:00:32",
-      "sha1": "e6cc4eebe2d73c7174be4be73bc00d4642122ac4",
-      "listing_reason": "ACRStealer C&C"
-    },
-    {
-      "listing_date": "2026-07-26 11:17:38",
-      "sha1": "131d534087149d0095a326dcb33e77afcbec308c",
-      "listing_reason": "AnimateClipper C&C"
-    },
-    {
-      "listing_date": "2026-07-25 12:04:12",
-      "sha1": "45bbc5ebc131cca9663c35c95459564007049d07",
-      "listing_reason": "Vidar C&C"
-    },
-    {
-      "listing_date": "2026-07-24 06:41:26",
-      "sha1": "7b5604ee44715ba0b4e92c2281f30c5a3416ca41",
-      "listing_reason": "ACRStealer C&C"
-    },
-    {
-      "listing_date": "2026-07-24 06:40:18",
-      "sha1": "d08e16884011f6910fe8087a74dac507ff7d2a6a",
-      "listing_reason": "ACRStealer C&C"
-    },
-    {
-      "listing_date": "2026-07-23 19:10:41",
-      "sha1": "8f0de55e89d97b4f3581f77805955a2b719563b8",
-      "listing_reason": "PureRAT C&C"
     }
   ]
 }

@@ -1,18 +1,19 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1008",
-    "name": "Fallback Channels",
-    "description": "Adversaries may use fallback or alternate communication channels if the primary channel is compromised or inaccessible in order to maintain reliable command and control and to avoid data transfer thresholds.",
+    "id": "T1680",
+    "name": "Local Storage Discovery",
+    "description": "Adversaries may enumerate local drives, disks, and/or volumes and their attributes like total or free space and volume serial number. This can be done to prepare for ransomware-related encryption, to perform [Lateral Movement](https://attack.mitre.org/tactics/TA0109), or as a precursor to [Direct Volume Access](https://attack.mitre.org/techniques/T1006). ",
     "tactics": [
-      "command-and-control"
+      "discovery"
     ],
     "platforms": [
       "ESXi",
+      "IaaS",
       "Linux",
       "macOS",
       "Windows"
     ],
-    "url": "https://attack.mitre.org/techniques/T1008"
+    "url": "https://attack.mitre.org/techniques/T1680"
   }
 }

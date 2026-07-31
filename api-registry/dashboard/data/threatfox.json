@@ -1,39 +1,9 @@
 {
-  "total": 6036,
+  "total": 6484,
   "recent": [
     {
-      "first_seen": "1864477",
-      "ioc": "47.100.16.83:8080",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.cobalt_strike",
-      "malware_alias": "Agentemis",
-      "malware_printable": "BEACON",
-      "confidence": "Cobalt Strike"
-    },
-    {
-      "first_seen": "1864478",
-      "ioc": "64.89.161.183:27015",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.cobalt_strike",
-      "malware_alias": "Agentemis",
-      "malware_printable": "BEACON",
-      "confidence": "Cobalt Strike"
-    },
-    {
-      "first_seen": "1864476",
-      "ioc": "198.23.209.201:8089",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.vshell",
-      "malware_alias": "None",
-      "malware_printable": "VShell",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1864475",
-      "ioc": "1cxzkjf3.krautodetailing.com",
+      "first_seen": "1865991",
+      "ioc": "lbsmduw.certifiedairbalanceinlosangelesca.com",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -42,8 +12,8 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1864474",
-      "ioc": "ydmkrr.southwestkustoms.com",
+      "first_seen": "1865990",
+      "ioc": "certifiedairbalanceinlosangelesca.com",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -52,8 +22,18 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1864473",
-      "ioc": "southwestkustoms.com",
+      "first_seen": "1865989",
+      "ioc": "zsupeg.angelnailsphenix.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1865988",
+      "ioc": "angelnailsphenix.com",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -62,64 +42,84 @@
       "confidence": "True"
     },
     {
-      "first_seen": "1864472",
-      "ioc": "spkxslb.surestayplussanantoniotx.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1864471",
-      "ioc": "4z4tzb9w.portman-photos.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1864470",
-      "ioc": "da.dojiner.at",
-      "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "unknown_stealer",
-      "malware_alias": "None",
-      "malware_printable": "Unknown Stealer",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1864469",
-      "ioc": "ph.dojiner.at",
-      "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "unknown_stealer",
-      "malware_alias": "None",
-      "malware_printable": "Unknown Stealer",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1864467",
-      "ioc": "196.251.121.186:80",
+      "first_seen": "1865972",
+      "ioc": "217.60.195.127:7249",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "unknown_stealer",
-      "malware_alias": "None",
-      "malware_printable": "Unknown Stealer",
+      "malware": "elf.mirai",
+      "malware_alias": "Katana",
+      "malware_printable": "Mirai",
       "confidence": "False"
     },
     {
-      "first_seen": "1864468",
-      "ioc": "64.89.160.67:80",
+      "first_seen": "1865984",
+      "ioc": "fosterandfunnel.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "unknown",
+      "malware_alias": "None",
+      "malware_printable": "Unknown malware",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1865985",
+      "ioc": "awantunai.co.id",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "unknown",
+      "malware_alias": "None",
+      "malware_printable": "Unknown malware",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1865986",
+      "ioc": "92.38.167.76:34245",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "unknown_stealer",
-      "malware_alias": "None",
-      "malware_printable": "Unknown Stealer",
+      "malware": "elf.mirai",
+      "malware_alias": "Katana",
+      "malware_printable": "Mirai",
       "confidence": "False"
+    },
+    {
+      "first_seen": "1865987",
+      "ioc": "185.237.205.252:4837",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "elf.mirai",
+      "malware_alias": "Katana",
+      "malware_printable": "Mirai",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1865982",
+      "ioc": "114.66.58.253:3232",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "unknown",
+      "malware_alias": "None",
+      "malware_printable": "Unknown malware",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1865983",
+      "ioc": "114.66.58.253:8889",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "unknown",
+      "malware_alias": "None",
+      "malware_printable": "Unknown malware",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1865980",
+      "ioc": "114.66.58.253:22",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "unknown",
+      "malware_alias": "None",
+      "malware_printable": "Unknown malware",
+      "confidence": "True"
     }
   ]
 }
