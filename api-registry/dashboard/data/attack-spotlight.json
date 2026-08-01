@@ -1,19 +1,19 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1680",
-    "name": "Local Storage Discovery",
-    "description": "Adversaries may enumerate local drives, disks, and/or volumes and their attributes like total or free space and volume serial number. This can be done to prepare for ransomware-related encryption, to perform [Lateral Movement](https://attack.mitre.org/tactics/TA0109), or as a precursor to [Direct Volume Access](https://attack.mitre.org/techniques/T1006). ",
+    "id": "T1124",
+    "name": "System Time Discovery",
+    "description": "An adversary may gather the system time and/or time zone settings from a local or remote system. The system time is set and stored by services, such as the Windows Time Service on Windows or <code>systemsetup</code> on macOS.(Citation: MSDN System Time)(Citation: Technet Windows Time Service)(Citation: systemsetup mac time) These time settings may also be synchronized between systems and services in an enterprise network, typically accomplished with a network time server within a domain.(Citation: Mac Time Sync)(Citation: linux system time)",
     "tactics": [
       "discovery"
     ],
     "platforms": [
       "ESXi",
-      "IaaS",
       "Linux",
       "macOS",
+      "Network Devices",
       "Windows"
     ],
-    "url": "https://attack.mitre.org/techniques/T1680"
+    "url": "https://attack.mitre.org/techniques/T1124"
   }
 }

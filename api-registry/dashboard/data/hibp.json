@@ -1,7 +1,23 @@
 {
-  "total_breaches": 1021,
-  "total_records_exposed": 17764884608,
+  "total_breaches": 1022,
+  "total_records_exposed": 17765749944,
   "recent": [
+    {
+      "name": "SplitVPN",
+      "title": "SplitVPN",
+      "domain": "splitvpn.io",
+      "breach_date": "2026-07-21",
+      "added_date": "2026-08-01T05:29:26Z",
+      "pwn_count": 865336,
+      "data_classes": [
+        "Device information",
+        "Email addresses",
+        "Geographic locations",
+        "IP addresses",
+        "Partial credit card data"
+      ],
+      "verified": true
+    },
     {
       "name": "Fluke",
       "title": "Fluke",
@@ -117,22 +133,6 @@
         "Phone numbers",
         "Physical addresses",
         "Usernames"
-      ],
-      "verified": true
-    },
-    {
-      "name": "AmericanTower",
-      "title": "American Tower",
-      "domain": "americantower.com",
-      "breach_date": "2026-06-12",
-      "added_date": "2026-06-26T07:17:23Z",
-      "pwn_count": 216601,
-      "data_classes": [
-        "Email addresses",
-        "Job titles",
-        "Names",
-        "Phone numbers",
-        "Physical addresses"
       ],
       "verified": true
     }
