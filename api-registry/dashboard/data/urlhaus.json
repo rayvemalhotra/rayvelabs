@@ -1,140 +1,140 @@
 {
-  "total_recent": 15416,
+  "total_recent": 14888,
   "recent": [
     {
-      "id": "3894985",
-      "date_added": "2026-08-01 08:05:35",
-      "url": "http://115.63.231.224:44855/bin.sh",
+      "id": "3895351",
+      "date_added": "2026-08-02 07:58:28",
+      "url": "http://221.15.226.183:56588/bin.sh",
       "url_status": "online",
       "threat": "malware_download",
       "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3894985/"
+      "host": "https://urlhaus.abuse.ch/url/3895351/"
     },
     {
-      "id": "3894984",
-      "date_added": "2026-08-01 07:56:26",
-      "url": "http://160.30.142.2:59486/i",
+      "id": "3895350",
+      "date_added": "2026-08-02 07:53:12",
+      "url": "https://svo-poiskrat.vercel.app/?download=1",
+      "url_status": "online",
+      "threat": "malware_download",
+      "tags": "apk ,mamont",
+      "host": "https://urlhaus.abuse.ch/url/3895350/"
+    },
+    {
+      "id": "3895349",
+      "date_added": "2026-08-02 07:53:05",
+      "url": "http://91.92.242.236/files-129312398/files/file_27c28b4831967d60.exe",
+      "url_status": "offline",
+      "threat": "malware_download",
+      "tags": "c2-monitor-auto,dropped-by-amadey",
+      "host": "https://urlhaus.abuse.ch/url/3895349/"
+    },
+    {
+      "id": "3895348",
+      "date_added": "2026-08-02 07:41:39",
+      "url": "http://42.231.67.69:60846/i",
       "url_status": "online",
       "threat": "malware_download",
       "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3894984/"
+      "host": "https://urlhaus.abuse.ch/url/3895348/"
     },
     {
-      "id": "3894983",
-      "date_added": "2026-08-01 07:52:06",
-      "url": "http://42.224.123.145:51281/i",
+      "id": "3895347",
+      "date_added": "2026-08-02 07:36:26",
+      "url": "http://42.231.67.69:60846/bin.sh",
+      "url_status": "online",
+      "threat": "malware_download",
+      "tags": "32-bit,elf,mips,Mozi",
+      "host": "https://urlhaus.abuse.ch/url/3895347/"
+    },
+    {
+      "id": "3895346",
+      "date_added": "2026-08-02 07:27:08",
+      "url": "http://115.56.150.63:52973/bin.sh",
       "url_status": "online",
       "threat": "malware_download",
       "tags": "Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3894983/"
+      "host": "https://urlhaus.abuse.ch/url/3895346/"
     },
     {
-      "id": "3894982",
-      "date_added": "2026-08-01 07:43:33",
-      "url": "http://105.225.135.114:54011/i",
+      "id": "3895345",
+      "date_added": "2026-08-02 07:19:28",
+      "url": "http://105.186.248.213:50161/i",
       "url_status": "online",
       "threat": "malware_download",
       "tags": "32-bit,arm,elf,mirai,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3894982/"
+      "host": "https://urlhaus.abuse.ch/url/3895345/"
     },
     {
-      "id": "3894981",
-      "date_added": "2026-08-01 07:42:26",
-      "url": "http://108.170.136.155:39745/i",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3894981/"
-    },
-    {
-      "id": "3894980",
-      "date_added": "2026-08-01 07:27:09",
-      "url": "http://42.224.123.145:51281/bin.sh",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3894980/"
-    },
-    {
-      "id": "3894979",
-      "date_added": "2026-08-01 07:26:26",
-      "url": "http://160.30.142.2:59486/bin.sh",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3894979/"
-    },
-    {
-      "id": "3894978",
-      "date_added": "2026-08-01 07:18:21",
-      "url": "http://123.172.49.26:50679/bin.sh",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "32-bit,arm,elf,mirai,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3894978/"
-    },
-    {
-      "id": "3894977",
-      "date_added": "2026-08-01 07:05:27",
-      "url": "http://221.15.14.66:42121/i",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3894977/"
-    },
-    {
-      "id": "3894976",
-      "date_added": "2026-08-01 06:59:21",
-      "url": "http://51.75.118.165/loader.sh",
+      "id": "3895344",
+      "date_added": "2026-08-02 07:08:20",
+      "url": "http://61.52.36.63:54993/i",
       "url_status": "offline",
       "threat": "malware_download",
-      "tags": "ascii,bash,sh,ua-wget",
-      "host": "https://urlhaus.abuse.ch/url/3894976/"
+      "tags": "32-bit,arm,elf,Mozi",
+      "host": "https://urlhaus.abuse.ch/url/3895344/"
     },
     {
-      "id": "3894975",
-      "date_added": "2026-08-01 06:58:32",
-      "url": "http://51.75.118.165/dl/BlahajNet.riscv32",
-      "url_status": "offline",
-      "threat": "malware_download",
-      "tags": "elf,ua-wget",
-      "host": "https://urlhaus.abuse.ch/url/3894975/"
-    },
-    {
-      "id": "3894961",
-      "date_added": "2026-08-01 06:58:25",
-      "url": "http://162.249.125.141/mpsl",
+      "id": "3895343",
+      "date_added": "2026-08-02 07:03:25",
+      "url": "http://91.92.242.236/files-129312398/files/file_a0497afdd457f5f8.exe",
       "url_status": "online",
       "threat": "malware_download",
-      "tags": "elf,ua-wget",
-      "host": "https://urlhaus.abuse.ch/url/3894961/"
+      "tags": "54e64e,dropped-by-amadey",
+      "host": "https://urlhaus.abuse.ch/url/3895343/"
     },
     {
-      "id": "3894962",
-      "date_added": "2026-08-01 06:58:25",
-      "url": "http://51.75.118.165/dl/BlahajNet.sh4",
-      "url_status": "offline",
+      "id": "3895342",
+      "date_added": "2026-08-02 06:54:27",
+      "url": "http://113.221.58.195:45339/Mozi.m",
+      "url_status": "online",
       "threat": "malware_download",
-      "tags": "elf,ua-wget",
-      "host": "https://urlhaus.abuse.ch/url/3894962/"
+      "tags": "elf,iot,mirai,Mozi",
+      "host": "https://urlhaus.abuse.ch/url/3895342/"
     },
     {
-      "id": "3894963",
-      "date_added": "2026-08-01 06:58:25",
-      "url": "http://51.75.118.165/dl/BlahajNet.powerpc",
+      "id": "3895340",
+      "date_added": "2026-08-02 06:54:05",
+      "url": "http://91.92.242.236/files-129312398/files/file_60d2bd674d037b28.exe",
       "url_status": "offline",
       "threat": "malware_download",
-      "tags": "elf,ua-wget",
-      "host": "https://urlhaus.abuse.ch/url/3894963/"
+      "tags": "c2-monitor-auto,dropped-by-amadey",
+      "host": "https://urlhaus.abuse.ch/url/3895340/"
     },
     {
-      "id": "3894964",
-      "date_added": "2026-08-01 06:58:25",
-      "url": "http://51.75.118.165/dl/BlahajNet.csky",
+      "id": "3895341",
+      "date_added": "2026-08-02 06:54:05",
+      "url": "http://91.92.242.236/files-129312398/files/file_383a5ee68e302d41.exe",
       "url_status": "offline",
       "threat": "malware_download",
-      "tags": "elf,ua-wget",
-      "host": "https://urlhaus.abuse.ch/url/3894964/"
+      "tags": "c2-monitor-auto,dropped-by-amadey",
+      "host": "https://urlhaus.abuse.ch/url/3895341/"
+    },
+    {
+      "id": "3895339",
+      "date_added": "2026-08-02 06:53:19",
+      "url": "http://45.196.97.80:6677/femboy.sh",
+      "url_status": "offline",
+      "threat": "malware_download",
+      "tags": "ascii",
+      "host": "https://urlhaus.abuse.ch/url/3895339/"
+    },
+    {
+      "id": "3895338",
+      "date_added": "2026-08-02 06:53:14",
+      "url": "http://193.25.217.70/arm7",
+      "url_status": "online",
+      "threat": "malware_download",
+      "tags": "elf,iot,mirai",
+      "host": "https://urlhaus.abuse.ch/url/3895338/"
+    },
+    {
+      "id": "3895335",
+      "date_added": "2026-08-02 06:53:05",
+      "url": "http://91.92.242.236/files-129312398/files/file_58065cc2507519e8.exe",
+      "url_status": "offline",
+      "threat": "malware_download",
+      "tags": "c2-monitor-auto,dropped-by-amadey",
+      "host": "https://urlhaus.abuse.ch/url/3895335/"
     }
   ]
 }

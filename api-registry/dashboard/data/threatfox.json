@@ -1,9 +1,9 @@
 {
-  "total": 6000,
+  "total": 4507,
   "recent": [
     {
-      "first_seen": "1866584",
-      "ioc": "ee0xfh5z.certifiedairbalanceinlosangelesca.com",
+      "first_seen": "1867228",
+      "ioc": "ozswcwq.earnmoneyfx.com",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -12,8 +12,8 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1866582",
-      "ioc": "117.72.199.102:8080",
+      "first_seen": "1867227",
+      "ioc": "156.224.18.21:110",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
       "malware": "win.cobalt_strike",
@@ -22,8 +22,8 @@
       "confidence": "Cobalt Strike"
     },
     {
-      "first_seen": "1866583",
-      "ioc": "117.72.199.102:22",
+      "first_seen": "1867226",
+      "ioc": "124.222.145.172:3306",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
       "malware": "win.cobalt_strike",
@@ -32,8 +32,18 @@
       "confidence": "Cobalt Strike"
     },
     {
-      "first_seen": "1866581",
-      "ioc": "117.72.199.102:443",
+      "first_seen": "1867224",
+      "ioc": "43.161.234.96:23",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "unknown",
+      "malware_alias": "None",
+      "malware_printable": "Unknown malware",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1867225",
+      "ioc": "111.170.148.141:81",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
       "malware": "win.cobalt_strike",
@@ -42,8 +52,18 @@
       "confidence": "Cobalt Strike"
     },
     {
-      "first_seen": "1866580",
-      "ioc": "159.75.159.217:443",
+      "first_seen": "1867223",
+      "ioc": "kryfgu.finkfamilyautomotive.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1867221",
+      "ioc": "116.212.123.164:8443",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
       "malware": "win.cobalt_strike",
@@ -52,8 +72,8 @@
       "confidence": "Cobalt Strike"
     },
     {
-      "first_seen": "1866579",
-      "ioc": "108.165.147.244:4444",
+      "first_seen": "1867222",
+      "ioc": "116.212.123.164:2095",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
       "malware": "win.cobalt_strike",
@@ -62,58 +82,38 @@
       "confidence": "Cobalt Strike"
     },
     {
-      "first_seen": "1866577",
-      "ioc": "47.108.77.36:8080",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.cobalt_strike",
-      "malware_alias": "Agentemis",
-      "malware_printable": "BEACON",
-      "confidence": "Cobalt Strike"
+      "first_seen": "1867220",
+      "ioc": "yyjiyeo.drubenginecologo.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
     },
     {
-      "first_seen": "1866578",
-      "ioc": "151.244.243.42:8080",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.cobalt_strike",
-      "malware_alias": "Agentemis",
-      "malware_printable": "BEACON",
-      "confidence": "Cobalt Strike"
+      "first_seen": "1867219",
+      "ioc": "wuvghp.highdesertarchers.org",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
     },
     {
-      "first_seen": "1866574",
-      "ioc": "193.112.95.180:8899",
+      "first_seen": "1867218",
+      "ioc": "185.157.46.242:8808",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "win.cobalt_strike",
-      "malware_alias": "Agentemis",
-      "malware_printable": "BEACON",
-      "confidence": "Cobalt Strike"
+      "malware": "win.asyncrat",
+      "malware_alias": "None",
+      "malware_printable": "AsyncRAT",
+      "confidence": "True"
     },
     {
-      "first_seen": "1866575",
-      "ioc": "39.106.183.67:443",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.cobalt_strike",
-      "malware_alias": "Agentemis",
-      "malware_printable": "BEACON",
-      "confidence": "Cobalt Strike"
-    },
-    {
-      "first_seen": "1866576",
-      "ioc": "83.229.123.185:8443",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.cobalt_strike",
-      "malware_alias": "Agentemis",
-      "malware_printable": "BEACON",
-      "confidence": "Cobalt Strike"
-    },
-    {
-      "first_seen": "1866573",
-      "ioc": "83.229.123.185:5555",
+      "first_seen": "1867217",
+      "ioc": "43.166.246.26:110",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
       "malware": "win.cobalt_strike",
