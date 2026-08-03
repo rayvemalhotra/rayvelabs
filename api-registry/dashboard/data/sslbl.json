@@ -1,5 +1,5 @@
 {
-  "total_listings": 10273,
+  "total_listings": 10274,
   "by_reason": [
     {
       "reason": "AsyncRAT C&C",
@@ -15,7 +15,7 @@
     },
     {
       "reason": "Vidar C&C",
-      "count": 660
+      "count": 661
     },
     {
       "reason": "LummaStealer C&C",
@@ -23,6 +23,11 @@
     }
   ],
   "recent": [
+    {
+      "listing_date": "2026-08-02 14:35:50",
+      "sha1": "05ba9d18bc4c00bec6bb5ed461fd889259929709",
+      "listing_reason": "Vidar C&C"
+    },
     {
       "listing_date": "2026-07-30 19:52:58",
       "sha1": "014d51d79c5a5c80042abedb35231581ff07c2e7",
@@ -67,11 +72,6 @@
       "listing_date": "2026-07-29 07:48:05",
       "sha1": "e15c7bdeb747a9fff47c514a10229a2a59d1157d",
       "listing_reason": "AnimateClipper C&C"
-    },
-    {
-      "listing_date": "2026-07-27 08:30:02",
-      "sha1": "283042355c89f2c59e260246d1488a73a8bef7b2",
-      "listing_reason": "PureLogsStealer C&C"
     }
   ]
 }
