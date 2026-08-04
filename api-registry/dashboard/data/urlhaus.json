@@ -1,140 +1,140 @@
 {
-  "total_recent": 15012,
+  "total_recent": 15071,
   "recent": [
     {
-      "id": "3895896",
-      "date_added": "2026-08-03 09:26:32",
-      "url": "http://151.233.179.226:35297/Mozi.7",
+      "id": "3896693",
+      "date_added": "2026-08-04 08:00:17",
+      "url": "http://176.124.207.93:9999/x.sh",
+      "url_status": "online",
+      "threat": "malware_download",
+      "tags": "176-124-207-93-9999,sh",
+      "host": "https://urlhaus.abuse.ch/url/3896693/"
+    },
+    {
+      "id": "3896694",
+      "date_added": "2026-08-04 08:00:17",
+      "url": "http://176.124.207.93:9999/pearl-miner",
+      "url_status": "online",
+      "threat": "malware_download",
+      "tags": "176-124-207-93-9999,elf",
+      "host": "https://urlhaus.abuse.ch/url/3896694/"
+    },
+    {
+      "id": "3896692",
+      "date_added": "2026-08-04 07:53:06",
+      "url": "http://213.165.78.201/9876567890/crypted.ps1",
       "url_status": "offline",
       "threat": "malware_download",
-      "tags": "elf,iot,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3895896/"
+      "tags": "ps1",
+      "host": "https://urlhaus.abuse.ch/url/3896692/"
     },
     {
-      "id": "3895895",
-      "date_added": "2026-08-03 09:26:23",
-      "url": "http://221.15.190.47:44407/bin.sh",
+      "id": "3896691",
+      "date_added": "2026-08-04 07:52:05",
+      "url": "http://217.154.188.255/36/ecc/iwantsomethingbetterformegetbackgoodthings.vbe",
+      "url_status": "offline",
+      "threat": "malware_download",
+      "tags": "vbe",
+      "host": "https://urlhaus.abuse.ch/url/3896691/"
+    },
+    {
+      "id": "3896686",
+      "date_added": "2026-08-04 07:46:06",
+      "url": "http://129.121.114.124/rOY",
+      "url_status": "offline",
+      "threat": "malware_download",
+      "tags": "ua-wget",
+      "host": "https://urlhaus.abuse.ch/url/3896686/"
+    },
+    {
+      "id": "3896687",
+      "date_added": "2026-08-04 07:46:06",
+      "url": "http://129.121.114.124/fUE0",
+      "url_status": "offline",
+      "threat": "malware_download",
+      "tags": "ua-wget",
+      "host": "https://urlhaus.abuse.ch/url/3896687/"
+    },
+    {
+      "id": "3896688",
+      "date_added": "2026-08-04 07:46:06",
+      "url": "http://129.121.114.124/oI5j",
+      "url_status": "offline",
+      "threat": "malware_download",
+      "tags": "ua-wget",
+      "host": "https://urlhaus.abuse.ch/url/3896688/"
+    },
+    {
+      "id": "3896689",
+      "date_added": "2026-08-04 07:46:06",
+      "url": "http://129.121.114.124/RKY",
+      "url_status": "offline",
+      "threat": "malware_download",
+      "tags": "ua-wget",
+      "host": "https://urlhaus.abuse.ch/url/3896689/"
+    },
+    {
+      "id": "3896690",
+      "date_added": "2026-08-04 07:46:06",
+      "url": "http://129.121.114.124/Yu9",
+      "url_status": "offline",
+      "threat": "malware_download",
+      "tags": "ua-wget",
+      "host": "https://urlhaus.abuse.ch/url/3896690/"
+    },
+    {
+      "id": "3896685",
+      "date_added": "2026-08-04 07:43:09",
+      "url": "http://172.245.95.62/ph/velogs.exe",
       "url_status": "online",
       "threat": "malware_download",
-      "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3895895/"
+      "tags": "exe,PhantomStealer",
+      "host": "https://urlhaus.abuse.ch/url/3896685/"
     },
     {
-      "id": "3895894",
-      "date_added": "2026-08-03 09:26:22",
-      "url": "http://64.89.163.22/check3.sh",
-      "url_status": "online",
+      "id": "3896683",
+      "date_added": "2026-08-04 07:39:06",
+      "url": "http://213.165.78.201/semberrt/crypted.ps1",
+      "url_status": "offline",
       "threat": "malware_download",
-      "tags": "elf,iot",
-      "host": "https://urlhaus.abuse.ch/url/3895894/"
+      "tags": "None",
+      "host": "https://urlhaus.abuse.ch/url/3896683/"
     },
     {
-      "id": "3895893",
-      "date_added": "2026-08-03 09:26:17",
-      "url": "https://dn-pdflite.lat/files/a3asesor.lat/c61de16702ab9449/CegidPrimavera-8HQN9M.zip",
+      "id": "3896684",
+      "date_added": "2026-08-04 07:39:06",
+      "url": "http://217.154.188.255/35/eas/niceworking.vbe",
+      "url_status": "offline",
+      "threat": "malware_download",
+      "tags": "None",
+      "host": "https://urlhaus.abuse.ch/url/3896684/"
+    },
+    {
+      "id": "3896681",
+      "date_added": "2026-08-04 07:34:07",
+      "url": "http://2.27.160.29/cloudflare",
+      "url_status": "offline",
+      "threat": "malware_download",
+      "tags": "ascii,powershell,ps1,ua-ps",
+      "host": "https://urlhaus.abuse.ch/url/3896681/"
+    },
+    {
+      "id": "3896682",
+      "date_added": "2026-08-04 07:34:07",
+      "url": "http://2.27.160.29/app/039f4a65f430/hurma.ps1",
+      "url_status": "offline",
+      "threat": "malware_download",
+      "tags": "ascii,powershell,ps1,ua-ps",
+      "host": "https://urlhaus.abuse.ch/url/3896682/"
+    },
+    {
+      "id": "3896680",
+      "date_added": "2026-08-04 07:32:08",
+      "url": "http://119.115.177.84:57490/i",
       "url_status": "online",
       "threat": "malware_download",
       "tags": "None",
-      "host": "https://urlhaus.abuse.ch/url/3895893/"
-    },
-    {
-      "id": "3895890",
-      "date_added": "2026-08-03 09:26:16",
-      "url": "https://dn-pdflite.lat/files/a3asesor.lat/c02ced092e010c51/A3asesor-T86OZ7.lnk",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "None",
-      "host": "https://urlhaus.abuse.ch/url/3895890/"
-    },
-    {
-      "id": "3895891",
-      "date_added": "2026-08-03 09:26:16",
-      "url": "https://dn-pdflite.lat/files/a3asesor.lat/e9fe5bde9bc2a799/A3asesor-PM13M1.lnk",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "None",
-      "host": "https://urlhaus.abuse.ch/url/3895891/"
-    },
-    {
-      "id": "3895892",
-      "date_added": "2026-08-03 09:26:16",
-      "url": "https://dn-pdflite.lat/files/dn-pdflite.lat/fcd598f9c282fd5b/DOC-U8PIZA.zip",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "None",
-      "host": "https://urlhaus.abuse.ch/url/3895892/"
-    },
-    {
-      "id": "3895882",
-      "date_added": "2026-08-03 09:26:15",
-      "url": "https://dn-pdflite.lat/files/a3asesor.lat/e4c235c651c6378b/A3asesor-W4RQEI.lnk",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "None",
-      "host": "https://urlhaus.abuse.ch/url/3895882/"
-    },
-    {
-      "id": "3895883",
-      "date_added": "2026-08-03 09:26:15",
-      "url": "https://dn-pdflite.lat/files/a3asesor.lat/c5b9487eac6fd723/A3asesor-4GGQE6.lnk",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "None",
-      "host": "https://urlhaus.abuse.ch/url/3895883/"
-    },
-    {
-      "id": "3895884",
-      "date_added": "2026-08-03 09:26:15",
-      "url": "https://dn-pdflite.lat/files/a3asesor.lat/c7c23c49b700933d/CegidPrimavera-JRF75B.zip",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "None",
-      "host": "https://urlhaus.abuse.ch/url/3895884/"
-    },
-    {
-      "id": "3895885",
-      "date_added": "2026-08-03 09:26:15",
-      "url": "https://dn-pdflite.lat/files/a3asesor.lat/d317f208e1bacab6/A3asesor-6HLMNM.zip",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "None",
-      "host": "https://urlhaus.abuse.ch/url/3895885/"
-    },
-    {
-      "id": "3895886",
-      "date_added": "2026-08-03 09:26:15",
-      "url": "https://dn-pdflite.lat/files/a3asesor.lat/bdafe1912b525a67/A3asesor-HDVLOT.lnk",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "None",
-      "host": "https://urlhaus.abuse.ch/url/3895886/"
-    },
-    {
-      "id": "3895887",
-      "date_added": "2026-08-03 09:26:15",
-      "url": "https://dn-pdflite.lat/files/a3asesor.lat/f777a74094f7ff21/A3asesor-JV5LPE.lnk",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "None",
-      "host": "https://urlhaus.abuse.ch/url/3895887/"
-    },
-    {
-      "id": "3895888",
-      "date_added": "2026-08-03 09:26:15",
-      "url": "https://dn-pdflite.lat/files/a3asesor.lat/f7c553a1e8d54f47/A3asesor-HI1R9Y.lnk",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "None",
-      "host": "https://urlhaus.abuse.ch/url/3895888/"
-    },
-    {
-      "id": "3895889",
-      "date_added": "2026-08-03 09:26:15",
-      "url": "https://dn-pdflite.lat/files/a3asesor.lat/eba123fa8f2735f7/CegidPrimavera-V8XDLB.zip",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "None",
-      "host": "https://urlhaus.abuse.ch/url/3895889/"
+      "host": "https://urlhaus.abuse.ch/url/3896680/"
     }
   ]
 }

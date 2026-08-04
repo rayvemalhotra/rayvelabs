@@ -1,8 +1,17 @@
 {
-  "total": 1656,
-  "catalog_version": "2026.07.29",
-  "date_released": "2026-07-29T18:45:59.5809Z",
+  "total": 1657,
+  "catalog_version": "2026.08.03",
+  "date_released": "2026-08-03T18:55:09.067Z",
   "recent": [
+    {
+      "cve": "CVE-2026-18577",
+      "vendor": "N-able",
+      "product": "N-central",
+      "name": "N-able N-central Authentication Bypass Using an Alternate Path or Channel Vulnerability",
+      "date_added": "2026-08-03",
+      "due_date": "2026-08-06",
+      "ransomware": false
+    },
     {
       "cve": "CVE-2026-20316",
       "vendor": "Cisco",
@@ -95,15 +104,6 @@
     },
     {
       "cve": "CVE-2026-25089",
-      "vendor": "Fortinet",
-      "product": "FortiSandbox",
-      "name": "Fortinet FortiSandbox OS Command Injection Vulnerability",
-      "date_added": "2026-07-16",
-      "due_date": "2026-07-19",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-39808",
       "vendor": "Fortinet",
       "product": "FortiSandbox",
       "name": "Fortinet FortiSandbox OS Command Injection Vulnerability",

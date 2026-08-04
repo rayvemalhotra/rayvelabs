@@ -1,9 +1,59 @@
 {
-  "total": 4272,
+  "total": 4185,
   "recent": [
     {
-      "first_seen": "1867775",
-      "ioc": "pvxvsil.lawnmowinglawrenceville.com",
+      "first_seen": "1868187",
+      "ioc": "http://196.251.107.186/svbia/post.php",
+      "ioc_type": "url",
+      "threat_type": "botnet_cc",
+      "malware": "win.svcstealer",
+      "malware_alias": "None",
+      "malware_printable": "SVCStealer",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1868176",
+      "ioc": "synergytms.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "unknown",
+      "malware_alias": "None",
+      "malware_printable": "Unknown malware",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1868179",
+      "ioc": "ubiqueags.org",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "unknown",
+      "malware_alias": "None",
+      "malware_printable": "Unknown malware",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1868181",
+      "ioc": "thetayf.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "unknown",
+      "malware_alias": "None",
+      "malware_printable": "Unknown malware",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1868186",
+      "ioc": "http://62.60.226.232/zpzp/get.php",
+      "ioc_type": "url",
+      "threat_type": "botnet_cc",
+      "malware": "win.svcstealer",
+      "malware_alias": "None",
+      "malware_printable": "SVCStealer",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1868185",
+      "ioc": "js5po212.kaarenorge.com",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -12,114 +62,64 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1867774",
-      "ioc": "lawnmowinglawrenceville.com",
+      "first_seen": "1868184",
+      "ioc": "https://doc.nfe-online.com/h/estagio1.php",
+      "ioc_type": "url",
+      "threat_type": "botnet_cc",
+      "malware": "unknown",
+      "malware_alias": "None",
+      "malware_printable": "Unknown malware",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1868183",
+      "ioc": "doc.nfiscais.com",
       "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
+      "threat_type": "botnet_cc",
+      "malware": "unknown",
       "malware_alias": "None",
-      "malware_printable": "ClearFake",
+      "malware_printable": "Unknown malware",
       "confidence": "False"
     },
     {
-      "first_seen": "1867773",
-      "ioc": "pzbwmi.lakerealestatetn.com",
+      "first_seen": "1868182",
+      "ioc": "217.60.195.161:443",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "unknown",
+      "malware_alias": "None",
+      "malware_printable": "Unknown malware",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1868180",
+      "ioc": "doc.nfe-online.com",
       "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
+      "threat_type": "botnet_cc",
+      "malware": "unknown",
       "malware_alias": "None",
-      "malware_printable": "ClearFake",
+      "malware_printable": "Unknown malware",
       "confidence": "False"
     },
     {
-      "first_seen": "1867772",
-      "ioc": "62.238.55.102:443",
+      "first_seen": "1868178",
+      "ioc": "182.92.83.146:8080",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "win.vidar",
-      "malware_alias": "None",
-      "malware_printable": "Vidar",
-      "confidence": "False"
+      "malware": "win.cobalt_strike",
+      "malware_alias": "Agentemis",
+      "malware_printable": "BEACON",
+      "confidence": "Cobalt Strike"
     },
     {
-      "first_seen": "1867767",
-      "ioc": "65.108.82.108:443",
+      "first_seen": "1868177",
+      "ioc": "206.238.42.153:4433",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "win.vidar",
-      "malware_alias": "None",
-      "malware_printable": "Vidar",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1867768",
-      "ioc": "157.180.35.166:443",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.vidar",
-      "malware_alias": "None",
-      "malware_printable": "Vidar",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1867769",
-      "ioc": "2.28.15.55:443",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.vidar",
-      "malware_alias": "None",
-      "malware_printable": "Vidar",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1867770",
-      "ioc": "65.108.201.76:443",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.vidar",
-      "malware_alias": "None",
-      "malware_printable": "Vidar",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1867771",
-      "ioc": "176.9.118.53:443",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.vidar",
-      "malware_alias": "None",
-      "malware_printable": "Vidar",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1867761",
-      "ioc": "37.27.197.184:443",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.vidar",
-      "malware_alias": "None",
-      "malware_printable": "Vidar",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1867762",
-      "ioc": "37.27.194.103:443",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.vidar",
-      "malware_alias": "None",
-      "malware_printable": "Vidar",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1867763",
-      "ioc": "167.233.215.136:443",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.vidar",
-      "malware_alias": "None",
-      "malware_printable": "Vidar",
-      "confidence": "False"
+      "malware": "win.cobalt_strike",
+      "malware_alias": "Agentemis",
+      "malware_printable": "BEACON",
+      "confidence": "Cobalt Strike"
     }
   ]
 }
