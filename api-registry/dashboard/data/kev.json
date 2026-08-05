@@ -1,8 +1,35 @@
 {
-  "total": 1657,
-  "catalog_version": "2026.08.03",
-  "date_released": "2026-08-03T18:55:09.067Z",
+  "total": 1660,
+  "catalog_version": "2026.08.04",
+  "date_released": "2026-08-04T16:45:52.0783Z",
   "recent": [
+    {
+      "cve": "CVE-2026-18556",
+      "vendor": "N-able",
+      "product": "N-central",
+      "name": "N-able N-central Authentication Bypass Using an Alternate Path or Channel Vulnerability",
+      "date_added": "2026-08-04",
+      "due_date": "2026-08-07",
+      "ransomware": false
+    },
+    {
+      "cve": "CVE-2026-34486",
+      "vendor": "Apache",
+      "product": "Tomcat",
+      "name": "Apache Tomcat Missing Encryption of Sensitive Data Vulnerability",
+      "date_added": "2026-08-04",
+      "due_date": "2026-08-07",
+      "ransomware": false
+    },
+    {
+      "cve": "CVE-2026-9198",
+      "vendor": "IBM",
+      "product": "Langflow",
+      "name": "IBM Langflow Code Injection Vulnerability",
+      "date_added": "2026-08-04",
+      "due_date": "2026-08-07",
+      "ransomware": false
+    },
     {
       "cve": "CVE-2026-18577",
       "vendor": "N-able",
@@ -82,33 +109,6 @@
       "name": "Langflow Inclusion of Functionality from Untrusted Control Sphere Vulnerability",
       "date_added": "2026-07-21",
       "due_date": "2026-07-24",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2021-27137",
-      "vendor": "DD-WRT",
-      "product": "DD-WRT",
-      "name": "DD-WRT Stack-Based Buffer Overflow Vulnerability",
-      "date_added": "2026-07-21",
-      "due_date": "2026-07-24",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-58644",
-      "vendor": "Microsoft",
-      "product": "SharePoint",
-      "name": "Microsoft SharePoint Deserialization of Untrusted Data Vulnerability",
-      "date_added": "2026-07-16",
-      "due_date": "2026-07-19",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-25089",
-      "vendor": "Fortinet",
-      "product": "FortiSandbox",
-      "name": "Fortinet FortiSandbox OS Command Injection Vulnerability",
-      "date_added": "2026-07-16",
-      "due_date": "2026-07-19",
       "ransomware": false
     }
   ]

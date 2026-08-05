@@ -1,21 +1,15 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1490",
-    "name": "Inhibit System Recovery",
-    "description": "Adversaries may delete or remove built-in data and turn off services designed to aid in the recovery of a corrupted system to prevent recovery.(Citation: Talos Olympic Destroyer 2018)(Citation: FireEye WannaCry 2017) This may deny access to available backups and recovery options.",
+    "id": "T1216",
+    "name": "System Script Proxy Execution",
+    "description": "Adversaries may use trusted scripts, often signed with certificates, to proxy the execution of malicious files. Several Microsoft signed scripts that have been downloaded from Microsoft or are default on Windows installations can be used to proxy execution of other files.(Citation: LOLBAS Project) This behavior may be abused by adversaries to execute malicious files that could bypass application control and signature validation on systems.(Citation: GitHub Ultimate AppLocker Bypass List)",
     "tactics": [
-      "impact"
+      "stealth"
     ],
     "platforms": [
-      "Containers",
-      "ESXi",
-      "IaaS",
-      "Linux",
-      "macOS",
-      "Network Devices",
       "Windows"
     ],
-    "url": "https://attack.mitre.org/techniques/T1490"
+    "url": "https://attack.mitre.org/techniques/T1216"
   }
 }

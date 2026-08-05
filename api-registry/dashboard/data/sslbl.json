@@ -1,5 +1,5 @@
 {
-  "total_listings": 10304,
+  "total_listings": 10312,
   "by_reason": [
     {
       "reason": "AsyncRAT C&C",
@@ -15,7 +15,7 @@
     },
     {
       "reason": "Vidar C&C",
-      "count": 664
+      "count": 667
     },
     {
       "reason": "LummaStealer C&C",
@@ -24,6 +24,46 @@
   ],
   "recent": [
     {
+      "listing_date": "2026-08-05 07:38:46",
+      "sha1": "ded1fe95801f3c3fd8a1c73360fbaef6697bcf34",
+      "listing_reason": "Malware distribution"
+    },
+    {
+      "listing_date": "2026-08-05 07:38:07",
+      "sha1": "30ae51f106a573be769968e15c0a6f56a2878a16",
+      "listing_reason": "Vidar C&C"
+    },
+    {
+      "listing_date": "2026-08-05 07:36:48",
+      "sha1": "c2826e64fffde42b99ba86c30055eb2dbd064319",
+      "listing_reason": "OffLoader C&C"
+    },
+    {
+      "listing_date": "2026-08-05 07:34:31",
+      "sha1": "97dd1d6a2bc5769af6e0a7999bfaf2aeaf5452a1",
+      "listing_reason": "Vidar C&C"
+    },
+    {
+      "listing_date": "2026-08-05 07:33:41",
+      "sha1": "964d86f575c50b29d2b7157331d556859dd43e5e",
+      "listing_reason": "Vidar C&C"
+    },
+    {
+      "listing_date": "2026-08-04 12:41:40",
+      "sha1": "ca9e642c1028f3a7fa79947493c34a981705a05d",
+      "listing_reason": "DonutLoader C&C"
+    },
+    {
+      "listing_date": "2026-08-04 12:40:05",
+      "sha1": "f5c8ee530b1fd817432a4bafad12126d1ae744d4",
+      "listing_reason": "PureLogsStealer C&C"
+    },
+    {
+      "listing_date": "2026-08-04 09:36:35",
+      "sha1": "92bebc09af464e669c68d95052916e76f989e043",
+      "listing_reason": "Malware C&C"
+    },
+    {
       "listing_date": "2026-08-04 08:24:56",
       "sha1": "9b5e0b2f2acb07fb226b8805b3a5fb5a28035e6e",
       "listing_reason": "PureLogsStealer C&C"
@@ -31,46 +71,6 @@
     {
       "listing_date": "2026-08-04 08:24:26",
       "sha1": "942c595db95914eb4987a1e7ddd6f728fbc674ec",
-      "listing_reason": "PureLogsStealer C&C"
-    },
-    {
-      "listing_date": "2026-08-04 08:21:43",
-      "sha1": "361864879b9712b391b7d1af733e24168f67c419",
-      "listing_reason": "Malware C&C"
-    },
-    {
-      "listing_date": "2026-08-04 08:19:18",
-      "sha1": "2b7ffb92a05fe5f22a0f26d9c76a3155f04fdd45",
-      "listing_reason": "PureLogsStealer C&C"
-    },
-    {
-      "listing_date": "2026-08-04 08:05:59",
-      "sha1": "db767b560efd2f6811b4c4adf2b0fdaee18fdad5",
-      "listing_reason": "PureLogsStealer C&C"
-    },
-    {
-      "listing_date": "2026-08-04 08:05:49",
-      "sha1": "0141dfae0d4426123aa2fbdd759162fa82d0f8e1",
-      "listing_reason": "PureLogsStealer C&C"
-    },
-    {
-      "listing_date": "2026-08-04 08:05:45",
-      "sha1": "b8b347f5d18be90876c3d3a5458b6e60598246bd",
-      "listing_reason": "PureLogsStealer C&C"
-    },
-    {
-      "listing_date": "2026-08-04 08:04:36",
-      "sha1": "a1146ac98390794517ff821a3377458555100eb3",
-      "listing_reason": "PureLogsStealer C&C"
-    },
-    {
-      "listing_date": "2026-08-04 07:44:16",
-      "sha1": "ef771150284da548676c603f5a4e1cd2763fd27f",
-      "listing_reason": "PureLogsStealer C&C"
-    },
-    {
-      "listing_date": "2026-08-04 07:38:53",
-      "sha1": "d7c3d38e27ab758c908f81b72a6fea1cd1af7369",
       "listing_reason": "PureLogsStealer C&C"
     }
   ]
