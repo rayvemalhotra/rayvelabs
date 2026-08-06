@@ -1,6 +1,6 @@
 {
-  "total_breaches": 1022,
-  "total_records_exposed": 17765749944,
+  "total_breaches": 1023,
+  "total_records_exposed": 17766026058,
   "recent": [
     {
       "name": "SplitVPN",
@@ -32,6 +32,23 @@
         "Names",
         "Physical addresses",
         "Support tickets"
+      ],
+      "verified": true
+    },
+    {
+      "name": "InterConSecurity",
+      "title": "Inter-Con Security",
+      "domain": "icsecurity.com",
+      "breach_date": "2026-06-18",
+      "added_date": "2026-08-05T23:39:01Z",
+      "pwn_count": 276114,
+      "data_classes": [
+        "Email addresses",
+        "Employers",
+        "Job titles",
+        "Names",
+        "Phone numbers",
+        "Physical addresses"
       ],
       "verified": true
     },
@@ -114,25 +131,6 @@
         "Names",
         "Phone numbers",
         "Physical addresses"
-      ],
-      "verified": true
-    },
-    {
-      "name": "Sysco",
-      "title": "Sysco",
-      "domain": "sysco.com",
-      "breach_date": "2026-06-15",
-      "added_date": "2026-06-28T15:57:29Z",
-      "pwn_count": 2691852,
-      "data_classes": [
-        "Customer feedback",
-        "Email addresses",
-        "Employers",
-        "Job titles",
-        "Names",
-        "Phone numbers",
-        "Physical addresses",
-        "Usernames"
       ],
       "verified": true
     }

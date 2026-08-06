@@ -1,5 +1,5 @@
 {
-  "total_listings": 10312,
+  "total_listings": 10327,
   "by_reason": [
     {
       "reason": "AsyncRAT C&C",
@@ -24,54 +24,54 @@
   ],
   "recent": [
     {
-      "listing_date": "2026-08-05 07:38:46",
-      "sha1": "ded1fe95801f3c3fd8a1c73360fbaef6697bcf34",
-      "listing_reason": "Malware distribution"
-    },
-    {
-      "listing_date": "2026-08-05 07:38:07",
-      "sha1": "30ae51f106a573be769968e15c0a6f56a2878a16",
-      "listing_reason": "Vidar C&C"
-    },
-    {
-      "listing_date": "2026-08-05 07:36:48",
-      "sha1": "c2826e64fffde42b99ba86c30055eb2dbd064319",
-      "listing_reason": "OffLoader C&C"
-    },
-    {
-      "listing_date": "2026-08-05 07:34:31",
-      "sha1": "97dd1d6a2bc5769af6e0a7999bfaf2aeaf5452a1",
-      "listing_reason": "Vidar C&C"
-    },
-    {
-      "listing_date": "2026-08-05 07:33:41",
-      "sha1": "964d86f575c50b29d2b7157331d556859dd43e5e",
-      "listing_reason": "Vidar C&C"
-    },
-    {
-      "listing_date": "2026-08-04 12:41:40",
-      "sha1": "ca9e642c1028f3a7fa79947493c34a981705a05d",
-      "listing_reason": "DonutLoader C&C"
-    },
-    {
-      "listing_date": "2026-08-04 12:40:05",
-      "sha1": "f5c8ee530b1fd817432a4bafad12126d1ae744d4",
+      "listing_date": "2026-08-06 08:09:15",
+      "sha1": "448bf34943609cd5dcadf4b1dc58512df0718e57",
       "listing_reason": "PureLogsStealer C&C"
     },
     {
-      "listing_date": "2026-08-04 09:36:35",
-      "sha1": "92bebc09af464e669c68d95052916e76f989e043",
+      "listing_date": "2026-08-06 07:24:20",
+      "sha1": "28db945e3beaf15a6f6d7fdf2dfc06a5f0319fc3",
       "listing_reason": "Malware C&C"
     },
     {
-      "listing_date": "2026-08-04 08:24:56",
-      "sha1": "9b5e0b2f2acb07fb226b8805b3a5fb5a28035e6e",
+      "listing_date": "2026-08-06 05:57:00",
+      "sha1": "22bedd3b6ea141fbe9b50681baa395909e014ad0",
       "listing_reason": "PureLogsStealer C&C"
     },
     {
-      "listing_date": "2026-08-04 08:24:26",
-      "sha1": "942c595db95914eb4987a1e7ddd6f728fbc674ec",
+      "listing_date": "2026-08-06 05:55:30",
+      "sha1": "059e425acfe2753d135e1b7ba39e30f0b00dbbb3",
       "listing_reason": "PureLogsStealer C&C"
+    },
+    {
+      "listing_date": "2026-08-06 05:54:38",
+      "sha1": "ef74c5ab92e15e7226ba84cce3a45522c74ba902",
+      "listing_reason": "PureLogsStealer C&C"
+    },
+    {
+      "listing_date": "2026-08-06 05:53:27",
+      "sha1": "b8b410c62bcb320c20cfee554f472df3fa5734e4",
+      "listing_reason": "PureLogsStealer C&C"
+    },
+    {
+      "listing_date": "2026-08-06 05:49:31",
+      "sha1": "6e64e6fafd7922f1100ce4f5334fef6dd75b2e66",
+      "listing_reason": "PureLogsStealer C&C"
+    },
+    {
+      "listing_date": "2026-08-06 05:48:45",
+      "sha1": "9b1d8ac99d61fbc0ba58655538c457db69c459e7",
+      "listing_reason": "PureLogsStealer C&C"
+    },
+    {
+      "listing_date": "2026-08-06 05:38:46",
+      "sha1": "29e434f384fe91188ce4c8a3f607a781e5c5e5d1",
+      "listing_reason": "PureRAT C&C"
+    },
+    {
+      "listing_date": "2026-08-06 05:34:05",
+      "sha1": "d35b4be8b535918a0656df6b58c8ed8fb23692e0",
+      "listing_reason": "PureRAT C&C"
     }
   ]
 }

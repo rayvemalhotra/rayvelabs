@@ -1,8 +1,17 @@
 {
-  "total": 1660,
-  "catalog_version": "2026.08.04",
-  "date_released": "2026-08-04T16:45:52.0783Z",
+  "total": 1661,
+  "catalog_version": "2026.08.05",
+  "date_released": "2026-08-05T16:50:38.6458Z",
   "recent": [
+    {
+      "cve": "CVE-2026-63077",
+      "vendor": "JetBrains",
+      "product": "TeamCity",
+      "name": "JetBrains TeamCity Deserialization of Untrusted Data Vulnerability",
+      "date_added": "2026-08-05",
+      "due_date": "2026-08-08",
+      "ransomware": false
+    },
     {
       "cve": "CVE-2026-18556",
       "vendor": "N-able",
@@ -98,15 +107,6 @@
       "vendor": "WordPress",
       "product": "Core",
       "name": "WordPress Core Interpretation Conflict Vulnerability",
-      "date_added": "2026-07-21",
-      "due_date": "2026-07-24",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-0770",
-      "vendor": "Langflow",
-      "product": "Langflow",
-      "name": "Langflow Inclusion of Functionality from Untrusted Control Sphere Vulnerability",
       "date_added": "2026-07-21",
       "due_date": "2026-07-24",
       "ransomware": false

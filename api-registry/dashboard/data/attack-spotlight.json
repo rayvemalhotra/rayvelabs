@@ -1,15 +1,18 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1216",
-    "name": "System Script Proxy Execution",
-    "description": "Adversaries may use trusted scripts, often signed with certificates, to proxy the execution of malicious files. Several Microsoft signed scripts that have been downloaded from Microsoft or are default on Windows installations can be used to proxy execution of other files.(Citation: LOLBAS Project) This behavior may be abused by adversaries to execute malicious files that could bypass application control and signature validation on systems.(Citation: GitHub Ultimate AppLocker Bypass List)",
+    "id": "T1669",
+    "name": "Wi-Fi Networks",
+    "description": "Adversaries may gain initial access to target systems by connecting to wireless networks. They may accomplish this by exploiting open Wi-Fi networks used by target devices or by accessing secured Wi-Fi networks \u2014 requiring [Valid Accounts](https://attack.mitre.org/techniques/T1078) \u2014 belonging to a target organization.(Citation: DOJ GRU Charges 2018)(Citation: Nearest Neighbor Volexity) Establishing a connection to a Wi-Fi access point requires a certain level of proximity to both discover and maintain a stable network connection. ",
     "tactics": [
-      "stealth"
+      "initial-access"
     ],
     "platforms": [
-      "Windows"
+      "Linux",
+      "Network Devices",
+      "Windows",
+      "macOS"
     ],
-    "url": "https://attack.mitre.org/techniques/T1216"
+    "url": "https://attack.mitre.org/techniques/T1669"
   }
 }

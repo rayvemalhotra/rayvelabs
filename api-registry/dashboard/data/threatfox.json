@@ -1,109 +1,69 @@
 {
-  "total": 4257,
+  "total": 4437,
   "recent": [
     {
-      "first_seen": "1868699",
-      "ioc": "bapak178.org",
-      "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1868698",
-      "ioc": "80.76.49.76:7004",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.xworm",
-      "malware_alias": "None",
-      "malware_printable": "XWorm",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1868697",
-      "ioc": "155.103.69.171:1122",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.xworm",
-      "malware_alias": "None",
-      "malware_printable": "XWorm",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1868696",
-      "ioc": "104.128.191.103:8823",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.xworm",
-      "malware_alias": "None",
-      "malware_printable": "XWorm",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1868695",
-      "ioc": "DB8BpRrp2ygCQJsT8RLuZA==",
-      "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "win.xworm",
-      "malware_alias": "None",
-      "malware_printable": "XWorm",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1868694",
-      "ioc": "31.56.209.61:443",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.xworm",
-      "malware_alias": "None",
-      "malware_printable": "XWorm",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1868693",
-      "ioc": "130.12.182.59:2026",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.xworm",
-      "malware_alias": "None",
-      "malware_printable": "XWorm",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1868692",
-      "ioc": "kyvqgkidufinrkdprb.oakdalerodeogrounds.com",
+      "first_seen": "1869301",
+      "ioc": "vmi3467394.contaboserver.net",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
+      "malware": "unknown",
       "malware_alias": "None",
-      "malware_printable": "ClearFake",
+      "malware_printable": "Unknown malware",
       "confidence": "False"
     },
     {
-      "first_seen": "1868691",
-      "ioc": "oakdalerodeogrounds.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
+      "first_seen": "1869300",
+      "ioc": "46.151.182.172:8443",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.purelogs",
       "malware_alias": "None",
-      "malware_printable": "ClearFake",
+      "malware_printable": "PureLogs Stealer",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1869299",
+      "ioc": "150.158.109.234:80",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.vshell",
+      "malware_alias": "None",
+      "malware_printable": "VShell",
       "confidence": "True"
     },
     {
-      "first_seen": "1868689",
-      "ioc": "ftp.zetrocom.my",
-      "ioc_type": "domain",
+      "first_seen": "1869297",
+      "ioc": "117.72.202.93:3232",
+      "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "win.agent_tesla",
-      "malware_alias": "AgenTesla",
-      "malware_printable": "AgentTesla",
-      "confidence": ""
+      "malware": "unknown",
+      "malware_alias": "None",
+      "malware_printable": "Unknown malware",
+      "confidence": "True"
     },
     {
-      "first_seen": "1868688",
-      "ioc": "yyqfta.pureglamlb.com",
+      "first_seen": "1869298",
+      "ioc": "103.142.147.18:28554",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "unknown",
+      "malware_alias": "None",
+      "malware_printable": "Unknown malware",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1869296",
+      "ioc": "64.89.161.65:4444",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.dcrat",
+      "malware_alias": "DarkCrystal RAT",
+      "malware_printable": "DCRat",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1869295",
+      "ioc": "isqacg.streamsurge.site",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -112,8 +72,48 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1868687",
-      "ioc": "ihlnvrv.abcdbro.com",
+      "first_seen": "1869294",
+      "ioc": "streamsurge.site",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1869291",
+      "ioc": "http://2.26.252.48:8080/gate/handshake",
+      "ioc_type": "url",
+      "threat_type": "botnet_cc",
+      "malware": "unknown",
+      "malware_alias": "None",
+      "malware_printable": "Unknown malware",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1869292",
+      "ioc": "http://2.26.252.48:8080/gate/complete",
+      "ioc_type": "url",
+      "threat_type": "botnet_cc",
+      "malware": "unknown",
+      "malware_alias": "None",
+      "malware_printable": "Unknown malware",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1869293",
+      "ioc": "http://2.26.252.48:8080/gate/chunk",
+      "ioc_type": "url",
+      "threat_type": "botnet_cc",
+      "malware": "unknown",
+      "malware_alias": "None",
+      "malware_printable": "Unknown malware",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1869290",
+      "ioc": "sribcag.starfishdancestudio.com",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
