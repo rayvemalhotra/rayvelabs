@@ -1,29 +1,109 @@
 {
-  "total": 4437,
+  "total": 4523,
   "recent": [
     {
-      "first_seen": "1869301",
-      "ioc": "vmi3467394.contaboserver.net",
+      "first_seen": "1869697",
+      "ioc": "pdubvw.vitalmarkings.net",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
-      "malware": "unknown",
+      "malware": "js.clearfake",
       "malware_alias": "None",
-      "malware_printable": "Unknown malware",
+      "malware_printable": "ClearFake",
       "confidence": "False"
     },
     {
-      "first_seen": "1869300",
-      "ioc": "46.151.182.172:8443",
+      "first_seen": "1869696",
+      "ioc": "rxgpfyy.vonshiprock.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1869695",
+      "ioc": "6710ekqg.specialtypopupevents.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1869694",
+      "ioc": "rdduwa.vistapropertyllc.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1869693",
+      "ioc": "vkebuqp.uplandmealsonwheels.org",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1869691",
+      "ioc": "130.12.182.39:5222",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "win.purelogs",
+      "malware": "win.asyncrat",
       "malware_alias": "None",
-      "malware_printable": "PureLogs Stealer",
+      "malware_printable": "AsyncRAT",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1869692",
+      "ioc": "159.203.69.210:8088",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.asyncrat",
+      "malware_alias": "None",
+      "malware_printable": "AsyncRAT",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1869685",
+      "ioc": "yedwwl.turbo-course.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
       "confidence": "False"
     },
     {
-      "first_seen": "1869299",
-      "ioc": "150.158.109.234:80",
+      "first_seen": "1869684",
+      "ioc": "tcrmynh.univchristianchurch.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1869670",
+      "ioc": "154.12.94.16:3389",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.cobalt_strike",
+      "malware_alias": "Agentemis",
+      "malware_printable": "BEACON",
+      "confidence": "Cobalt Strike"
+    },
+    {
+      "first_seen": "1869669",
+      "ioc": "106.38.201.117:8090",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
       "malware": "win.vshell",
@@ -32,94 +112,14 @@
       "confidence": "True"
     },
     {
-      "first_seen": "1869297",
-      "ioc": "117.72.202.93:3232",
+      "first_seen": "1869668",
+      "ioc": "139.212.143.218:8080",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
       "malware": "unknown",
       "malware_alias": "None",
       "malware_printable": "Unknown malware",
       "confidence": "True"
-    },
-    {
-      "first_seen": "1869298",
-      "ioc": "103.142.147.18:28554",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "unknown",
-      "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1869296",
-      "ioc": "64.89.161.65:4444",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.dcrat",
-      "malware_alias": "DarkCrystal RAT",
-      "malware_printable": "DCRat",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1869295",
-      "ioc": "isqacg.streamsurge.site",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1869294",
-      "ioc": "streamsurge.site",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1869291",
-      "ioc": "http://2.26.252.48:8080/gate/handshake",
-      "ioc_type": "url",
-      "threat_type": "botnet_cc",
-      "malware": "unknown",
-      "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1869292",
-      "ioc": "http://2.26.252.48:8080/gate/complete",
-      "ioc_type": "url",
-      "threat_type": "botnet_cc",
-      "malware": "unknown",
-      "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1869293",
-      "ioc": "http://2.26.252.48:8080/gate/chunk",
-      "ioc_type": "url",
-      "threat_type": "botnet_cc",
-      "malware": "unknown",
-      "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1869290",
-      "ioc": "sribcag.starfishdancestudio.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
     }
   ]
 }

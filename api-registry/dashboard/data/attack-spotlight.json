@@ -1,18 +1,19 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1669",
-    "name": "Wi-Fi Networks",
-    "description": "Adversaries may gain initial access to target systems by connecting to wireless networks. They may accomplish this by exploiting open Wi-Fi networks used by target devices or by accessing secured Wi-Fi networks \u2014 requiring [Valid Accounts](https://attack.mitre.org/techniques/T1078) \u2014 belonging to a target organization.(Citation: DOJ GRU Charges 2018)(Citation: Nearest Neighbor Volexity) Establishing a connection to a Wi-Fi access point requires a certain level of proximity to both discover and maintain a stable network connection. ",
+    "id": "T1211",
+    "name": "Exploitation for Stealth",
+    "description": "Adversaries may exploit vulnerabilities to evade detection by hiding activity, suppressing logging, or operating within trusted or unmonitored components. ",
     "tactics": [
-      "initial-access"
+      "stealth"
     ],
     "platforms": [
       "Linux",
-      "Network Devices",
       "Windows",
-      "macOS"
+      "macOS",
+      "SaaS",
+      "IaaS"
     ],
-    "url": "https://attack.mitre.org/techniques/T1669"
+    "url": "https://attack.mitre.org/techniques/T1211"
   }
 }

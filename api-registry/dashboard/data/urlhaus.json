@@ -1,140 +1,140 @@
 {
-  "total_recent": 15432,
+  "total_recent": 14633,
   "recent": [
     {
-      "id": "3897688",
-      "date_added": "2026-08-06 08:24:24",
-      "url": "https://www.mediafire.com/file/8cn8u1bn3jb5gep/file",
+      "id": "3898357",
+      "date_added": "2026-08-07 06:47:08",
+      "url": "https://195.177.94.245/bin/support.client.exe",
       "url_status": "online",
       "threat": "malware_download",
-      "tags": "iso",
-      "host": "https://urlhaus.abuse.ch/url/3897688/"
+      "tags": "195-177-94-245,connectwise,exe",
+      "host": "https://urlhaus.abuse.ch/url/3898357/"
     },
     {
-      "id": "3897687",
-      "date_added": "2026-08-06 08:21:17",
-      "url": "http://210.208.110.221:58109/i",
+      "id": "3898358",
+      "date_added": "2026-08-07 06:47:08",
+      "url": "https://195.177.94.245/Bin/ScreenConnect.ClientSetup.exe",
       "url_status": "online",
       "threat": "malware_download",
-      "tags": "None",
-      "host": "https://urlhaus.abuse.ch/url/3897687/"
+      "tags": "195-177-94-245,connectwise,exe",
+      "host": "https://urlhaus.abuse.ch/url/3898358/"
     },
     {
-      "id": "3897686",
-      "date_added": "2026-08-06 08:20:33",
-      "url": "http://45.194.25.221:51620/bin.sh",
+      "id": "3898356",
+      "date_added": "2026-08-07 06:43:09",
+      "url": "https://217.217.97.36/Bin/ScreenConnect.ClientSetup.exe",
       "url_status": "online",
       "threat": "malware_download",
-      "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3897686/"
+      "tags": "217-217-97-36,connectwise,exe",
+      "host": "https://urlhaus.abuse.ch/url/3898356/"
     },
     {
-      "id": "3897685",
-      "date_added": "2026-08-06 08:13:31",
-      "url": "http://5.182.210.174/b5a50f",
+      "id": "3898355",
+      "date_added": "2026-08-07 06:43:07",
+      "url": "https://217.217.97.36/bin/support.client.exe",
       "url_status": "online",
       "threat": "malware_download",
-      "tags": "elf,mirai,ua-wget",
-      "host": "https://urlhaus.abuse.ch/url/3897685/"
+      "tags": "217-217-97-36,connectwise,exe",
+      "host": "https://urlhaus.abuse.ch/url/3898355/"
     },
     {
-      "id": "3897680",
-      "date_added": "2026-08-06 08:12:26",
-      "url": "http://5.182.210.174/ef4188",
+      "id": "3898352",
+      "date_added": "2026-08-07 05:55:08",
+      "url": "http://156.246.95.231/sys/A/EC_puller.vbs",
       "url_status": "online",
       "threat": "malware_download",
-      "tags": "elf,mirai,ua-wget",
-      "host": "https://urlhaus.abuse.ch/url/3897680/"
+      "tags": "156-246-95-231,vbs",
+      "host": "https://urlhaus.abuse.ch/url/3898352/"
     },
     {
-      "id": "3897681",
-      "date_added": "2026-08-06 08:12:26",
-      "url": "http://5.182.210.174/efaa9e",
+      "id": "3898353",
+      "date_added": "2026-08-07 05:55:08",
+      "url": "http://156.246.95.231/sys/A/test.exe",
       "url_status": "online",
       "threat": "malware_download",
-      "tags": "elf,mirai,ua-wget",
-      "host": "https://urlhaus.abuse.ch/url/3897681/"
+      "tags": "156-246-95-231,exe",
+      "host": "https://urlhaus.abuse.ch/url/3898353/"
     },
     {
-      "id": "3897682",
-      "date_added": "2026-08-06 08:12:26",
-      "url": "http://5.182.210.174/bb4476",
+      "id": "3898354",
+      "date_added": "2026-08-07 05:55:08",
+      "url": "http://156.246.95.231/sys/A/34534.exe",
       "url_status": "online",
       "threat": "malware_download",
-      "tags": "elf,mirai,ua-wget",
-      "host": "https://urlhaus.abuse.ch/url/3897682/"
+      "tags": "156-246-95-231,exe",
+      "host": "https://urlhaus.abuse.ch/url/3898354/"
     },
     {
-      "id": "3897683",
-      "date_added": "2026-08-06 08:12:26",
-      "url": "http://5.182.210.174/126b61",
-      "url_status": "online",
+      "id": "3898351",
+      "date_added": "2026-08-07 05:55:07",
+      "url": "http://156.246.95.231/sys/A/white_notepad_rcdata.vbs",
+      "url_status": "offline",
       "threat": "malware_download",
-      "tags": "elf,mirai,ua-wget",
-      "host": "https://urlhaus.abuse.ch/url/3897683/"
+      "tags": "156-246-95-231,vbs",
+      "host": "https://urlhaus.abuse.ch/url/3898351/"
     },
     {
-      "id": "3897684",
-      "date_added": "2026-08-06 08:12:26",
-      "url": "http://5.182.210.174/c61c40",
+      "id": "3898350",
+      "date_added": "2026-08-07 01:13:07",
+      "url": "https://hindustanagency.com/666.exe",
       "url_status": "online",
       "threat": "malware_download",
-      "tags": "elf,mirai,ua-wget",
-      "host": "https://urlhaus.abuse.ch/url/3897684/"
+      "tags": "197b1ec4b9644da7b43669fd4f0ed73f,dropped-by-remus",
+      "host": "https://urlhaus.abuse.ch/url/3898350/"
     },
     {
-      "id": "3897676",
-      "date_added": "2026-08-06 08:12:22",
-      "url": "http://5.182.210.174/911f2d",
+      "id": "3898349",
+      "date_added": "2026-08-06 21:45:24",
+      "url": "http://85.137.245.141:9001/1.exe",
       "url_status": "online",
       "threat": "malware_download",
-      "tags": "elf,mirai,ua-wget",
-      "host": "https://urlhaus.abuse.ch/url/3897676/"
+      "tags": "85-137-245-141-9001",
+      "host": "https://urlhaus.abuse.ch/url/3898349/"
     },
     {
-      "id": "3897677",
-      "date_added": "2026-08-06 08:12:22",
-      "url": "http://5.182.210.174/90a07f",
+      "id": "3898348",
+      "date_added": "2026-08-06 21:45:22",
+      "url": "http://85.137.245.141:9001/2.exe",
       "url_status": "online",
       "threat": "malware_download",
-      "tags": "elf,mirai,ua-wget",
-      "host": "https://urlhaus.abuse.ch/url/3897677/"
+      "tags": "85-137-245-141-9001",
+      "host": "https://urlhaus.abuse.ch/url/3898348/"
     },
     {
-      "id": "3897678",
-      "date_added": "2026-08-06 08:12:22",
-      "url": "http://5.182.210.174/d237c8",
+      "id": "3898332",
+      "date_added": "2026-08-06 21:10:35",
+      "url": "http://94.154.43.44/bins/bin.armv4eb",
       "url_status": "online",
       "threat": "malware_download",
-      "tags": "elf,mirai,ua-wget",
-      "host": "https://urlhaus.abuse.ch/url/3897678/"
+      "tags": "94-154-43-44,DEU,elf,geofenced,mirai",
+      "host": "https://urlhaus.abuse.ch/url/3898332/"
     },
     {
-      "id": "3897679",
-      "date_added": "2026-08-06 08:12:22",
-      "url": "http://5.182.210.174/1cbba3",
+      "id": "3898333",
+      "date_added": "2026-08-06 21:10:35",
+      "url": "http://94.154.43.44/bins/bin.armv6l",
       "url_status": "online",
       "threat": "malware_download",
-      "tags": "elf,mirai,ua-wget",
-      "host": "https://urlhaus.abuse.ch/url/3897679/"
+      "tags": "94-154-43-44,DEU,elf,geofenced,mirai",
+      "host": "https://urlhaus.abuse.ch/url/3898333/"
     },
     {
-      "id": "3897674",
-      "date_added": "2026-08-06 08:12:21",
-      "url": "http://5.182.210.174/ca05d7",
+      "id": "3898334",
+      "date_added": "2026-08-06 21:10:35",
+      "url": "http://94.154.43.44/bins/bin.x86_64",
       "url_status": "online",
       "threat": "malware_download",
-      "tags": "elf,mirai,ua-wget",
-      "host": "https://urlhaus.abuse.ch/url/3897674/"
+      "tags": "94-154-43-44,DEU,elf,geofenced,mirai",
+      "host": "https://urlhaus.abuse.ch/url/3898334/"
     },
     {
-      "id": "3897675",
-      "date_added": "2026-08-06 08:12:21",
-      "url": "http://5.182.210.174/1de3f3",
+      "id": "3898335",
+      "date_added": "2026-08-06 21:10:35",
+      "url": "http://94.154.43.44/bins/bin.i586",
       "url_status": "online",
       "threat": "malware_download",
-      "tags": "elf,mirai,ua-wget",
-      "host": "https://urlhaus.abuse.ch/url/3897675/"
+      "tags": "94-154-43-44,DEU,elf,geofenced,mirai",
+      "host": "https://urlhaus.abuse.ch/url/3898335/"
     }
   ]
 }

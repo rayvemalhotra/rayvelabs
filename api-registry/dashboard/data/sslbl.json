@@ -1,5 +1,5 @@
 {
-  "total_listings": 10327,
+  "total_listings": 10329,
   "by_reason": [
     {
       "reason": "AsyncRAT C&C",
@@ -11,11 +11,11 @@
     },
     {
       "reason": "QuasarRAT C&C",
-      "count": 691
+      "count": 692
     },
     {
       "reason": "Vidar C&C",
-      "count": 667
+      "count": 668
     },
     {
       "reason": "LummaStealer C&C",
@@ -23,6 +23,16 @@
     }
   ],
   "recent": [
+    {
+      "listing_date": "2026-08-06 14:20:21",
+      "sha1": "ece1b6bdc8e62d35188aab274bdb0be28d84c43f",
+      "listing_reason": "QuasarRAT C&C"
+    },
+    {
+      "listing_date": "2026-08-06 14:19:07",
+      "sha1": "a9ebd28ce7e4ac020e6d263e228b8547e1914bfa",
+      "listing_reason": "Vidar C&C"
+    },
     {
       "listing_date": "2026-08-06 08:09:15",
       "sha1": "448bf34943609cd5dcadf4b1dc58512df0718e57",
@@ -62,16 +72,6 @@
       "listing_date": "2026-08-06 05:48:45",
       "sha1": "9b1d8ac99d61fbc0ba58655538c457db69c459e7",
       "listing_reason": "PureLogsStealer C&C"
-    },
-    {
-      "listing_date": "2026-08-06 05:38:46",
-      "sha1": "29e434f384fe91188ce4c8a3f607a781e5c5e5d1",
-      "listing_reason": "PureRAT C&C"
-    },
-    {
-      "listing_date": "2026-08-06 05:34:05",
-      "sha1": "d35b4be8b535918a0656df6b58c8ed8fb23692e0",
-      "listing_reason": "PureRAT C&C"
     }
   ]
 }

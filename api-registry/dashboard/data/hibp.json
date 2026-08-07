@@ -1,6 +1,6 @@
 {
-  "total_breaches": 1023,
-  "total_records_exposed": 17766026058,
+  "total_breaches": 1024,
+  "total_records_exposed": 17776895601,
   "recent": [
     {
       "name": "SplitVPN",
@@ -15,6 +15,24 @@
         "Geographic locations",
         "IP addresses",
         "Partial credit card data"
+      ],
+      "verified": true
+    },
+    {
+      "name": "ExactSciences",
+      "title": "Exact Sciences",
+      "domain": "exactsciences.com",
+      "breach_date": "2026-07-15",
+      "added_date": "2026-08-07T06:17:56Z",
+      "pwn_count": 10869543,
+      "data_classes": [
+        "Dates of birth",
+        "Email addresses",
+        "Genders",
+        "Names",
+        "Personal health data",
+        "Phone numbers",
+        "Physical addresses"
       ],
       "verified": true
     },
@@ -113,24 +131,6 @@
       "data_classes": [
         "Email addresses",
         "Passwords"
-      ],
-      "verified": true
-    },
-    {
-      "name": "MoodyBibleInstitute",
-      "title": "Moody Bible Institute",
-      "domain": "moody.edu",
-      "breach_date": "2026-06-15",
-      "added_date": "2026-07-03T16:03:25Z",
-      "pwn_count": 2303416,
-      "data_classes": [
-        "Dates of birth",
-        "Email addresses",
-        "Genders",
-        "Marital statuses",
-        "Names",
-        "Phone numbers",
-        "Physical addresses"
       ],
       "verified": true
     }
