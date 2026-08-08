@@ -1,125 +1,125 @@
 {
-  "total": 4523,
+  "total": 4988,
   "recent": [
     {
-      "first_seen": "1869697",
-      "ioc": "pdubvw.vitalmarkings.net",
+      "first_seen": "1870229",
+      "ioc": "bstocks.netlify.app",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1869696",
-      "ioc": "rxgpfyy.vonshiprock.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1869695",
-      "ioc": "6710ekqg.specialtypopupevents.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1869694",
-      "ioc": "rdduwa.vistapropertyllc.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1869693",
-      "ioc": "vkebuqp.uplandmealsonwheels.org",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1869691",
-      "ioc": "130.12.182.39:5222",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.asyncrat",
-      "malware_alias": "None",
-      "malware_printable": "AsyncRAT",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1869692",
-      "ioc": "159.203.69.210:8088",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.asyncrat",
-      "malware_alias": "None",
-      "malware_printable": "AsyncRAT",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1869685",
-      "ioc": "yedwwl.turbo-course.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1869684",
-      "ioc": "tcrmynh.univchristianchurch.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1869670",
-      "ioc": "154.12.94.16:3389",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.cobalt_strike",
-      "malware_alias": "Agentemis",
-      "malware_printable": "BEACON",
-      "confidence": "Cobalt Strike"
-    },
-    {
-      "first_seen": "1869669",
-      "ioc": "106.38.201.117:8090",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.vshell",
-      "malware_alias": "None",
-      "malware_printable": "VShell",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1869668",
-      "ioc": "139.212.143.218:8080",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
       "malware": "unknown",
       "malware_alias": "None",
       "malware_printable": "Unknown malware",
       "confidence": "True"
+    },
+    {
+      "first_seen": "1870476",
+      "ioc": "89.163.242.204:2993",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.remus",
+      "malware_alias": "None",
+      "malware_printable": "Remus",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1870481",
+      "ioc": "https://set.turbo88galaxy.top",
+      "ioc_type": "url",
+      "threat_type": "botnet_cc",
+      "malware": "win.vidar",
+      "malware_alias": "None",
+      "malware_printable": "Vidar",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1870482",
+      "ioc": "https://yeni.lol/mods/api/log-download",
+      "ioc_type": "url",
+      "threat_type": "botnet_cc",
+      "malware": "unknown_rat",
+      "malware_alias": "None",
+      "malware_printable": "Unknown RAT",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1870483",
+      "ioc": "https://yeni.lol/ws",
+      "ioc_type": "url",
+      "threat_type": "botnet_cc",
+      "malware": "unknown_rat",
+      "malware_alias": "None",
+      "malware_printable": "Unknown RAT",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1870484",
+      "ioc": "https://yeni.lol/?p=",
+      "ioc_type": "url",
+      "threat_type": "botnet_cc",
+      "malware": "unknown_rat",
+      "malware_alias": "None",
+      "malware_printable": "Unknown RAT",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1870486",
+      "ioc": "https://yeni.lol/babayla/zor/yarisirlar/",
+      "ioc_type": "url",
+      "threat_type": "botnet_cc",
+      "malware": "unknown_rat",
+      "malware_alias": "None",
+      "malware_printable": "Unknown RAT",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1870485",
+      "ioc": "https://yeni.lol/get/config",
+      "ioc_type": "url",
+      "threat_type": "botnet_cc",
+      "malware": "unknown_rat",
+      "malware_alias": "None",
+      "malware_printable": "Unknown RAT",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1870487",
+      "ioc": "yeni.lol",
+      "ioc_type": "domain",
+      "threat_type": "botnet_cc",
+      "malware": "unknown_rat",
+      "malware_alias": "None",
+      "malware_printable": "Unknown RAT",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1870494",
+      "ioc": "aiplaymate.xyz",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "unknown",
+      "malware_alias": "None",
+      "malware_printable": "Unknown malware",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1870495",
+      "ioc": "assholesgonewild.info",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "unknown",
+      "malware_alias": "None",
+      "malware_printable": "Unknown malware",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1870496",
+      "ioc": "captainpepe.org",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "unknown",
+      "malware_alias": "None",
+      "malware_printable": "Unknown malware",
+      "confidence": "False"
     }
   ]
 }

@@ -1,19 +1,16 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1211",
-    "name": "Exploitation for Stealth",
-    "description": "Adversaries may exploit vulnerabilities to evade detection by hiding activity, suppressing logging, or operating within trusted or unmonitored components. ",
+    "id": "T1127",
+    "name": "Trusted Developer Utilities Proxy Execution",
+    "description": "Adversaries may take advantage of trusted developer utilities to proxy execution of malicious payloads. There are many utilities used for software development related tasks that can be used to execute code in various forms to assist in development, debugging, and reverse engineering.(Citation: engima0x3 DNX Bypass)(Citation: engima0x3 RCSI Bypass)(Citation: Exploit Monday WinDbg)(Citation: LOLBAS Tracker) These utilities may often be signed with legitimate certificates that allow them to execute on a system and proxy execution of malicious code through a trusted process that effectively bypasses application control solutions.",
     "tactics": [
-      "stealth"
+      "stealth",
+      "execution"
     ],
     "platforms": [
-      "Linux",
-      "Windows",
-      "macOS",
-      "SaaS",
-      "IaaS"
+      "Windows"
     ],
-    "url": "https://attack.mitre.org/techniques/T1211"
+    "url": "https://attack.mitre.org/techniques/T1127"
   }
 }

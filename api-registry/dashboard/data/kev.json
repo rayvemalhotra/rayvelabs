@@ -1,8 +1,17 @@
 {
-  "total": 1661,
-  "catalog_version": "2026.08.06",
-  "date_released": "2026-08-06T18:15:23.8295Z",
+  "total": 1662,
+  "catalog_version": "2026.08.07",
+  "date_released": "2026-08-07T16:45:47.0648Z",
   "recent": [
+    {
+      "cve": "CVE-2026-8037",
+      "vendor": "Progress",
+      "product": "LoadMaster",
+      "name": "Progress LoadMaster Command Injection Vulnerability",
+      "date_added": "2026-08-07",
+      "due_date": "2026-08-10",
+      "ransomware": false
+    },
     {
       "cve": "CVE-2026-63077",
       "vendor": "JetBrains",
@@ -100,15 +109,6 @@
       "name": "WordPress Core SQL Injection Vulnerability",
       "date_added": "2026-07-21",
       "due_date": "2026-08-04",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-63030",
-      "vendor": "WordPress",
-      "product": "Core",
-      "name": "WordPress Core Interpretation Conflict Vulnerability",
-      "date_added": "2026-07-21",
-      "due_date": "2026-07-24",
       "ransomware": false
     }
   ]
