@@ -1,19 +1,19 @@
 {
-  "total": 4988,
+  "total": 5038,
   "recent": [
     {
-      "first_seen": "1870229",
-      "ioc": "bstocks.netlify.app",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "unknown",
+      "first_seen": "1871150",
+      "ioc": "159.203.172.232:37215",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "elf.aisuru",
       "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "True"
+      "malware_printable": "Aisuru",
+      "confidence": "False"
     },
     {
-      "first_seen": "1870476",
-      "ioc": "89.163.242.204:2993",
+      "first_seen": "1871154",
+      "ioc": "191.252.159.33:8539",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
       "malware": "win.remus",
@@ -22,103 +22,103 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1870481",
-      "ioc": "https://set.turbo88galaxy.top",
-      "ioc_type": "url",
-      "threat_type": "botnet_cc",
-      "malware": "win.vidar",
-      "malware_alias": "None",
-      "malware_printable": "Vidar",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1870482",
-      "ioc": "https://yeni.lol/mods/api/log-download",
-      "ioc_type": "url",
-      "threat_type": "botnet_cc",
-      "malware": "unknown_rat",
-      "malware_alias": "None",
-      "malware_printable": "Unknown RAT",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1870483",
-      "ioc": "https://yeni.lol/ws",
-      "ioc_type": "url",
-      "threat_type": "botnet_cc",
-      "malware": "unknown_rat",
-      "malware_alias": "None",
-      "malware_printable": "Unknown RAT",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1870484",
-      "ioc": "https://yeni.lol/?p=",
-      "ioc_type": "url",
-      "threat_type": "botnet_cc",
-      "malware": "unknown_rat",
-      "malware_alias": "None",
-      "malware_printable": "Unknown RAT",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1870486",
-      "ioc": "https://yeni.lol/babayla/zor/yarisirlar/",
-      "ioc_type": "url",
-      "threat_type": "botnet_cc",
-      "malware": "unknown_rat",
-      "malware_alias": "None",
-      "malware_printable": "Unknown RAT",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1870485",
-      "ioc": "https://yeni.lol/get/config",
-      "ioc_type": "url",
-      "threat_type": "botnet_cc",
-      "malware": "unknown_rat",
-      "malware_alias": "None",
-      "malware_printable": "Unknown RAT",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1870487",
-      "ioc": "yeni.lol",
+      "first_seen": "1871166",
+      "ioc": "mail.coping.ink",
       "ioc_type": "domain",
       "threat_type": "botnet_cc",
-      "malware": "unknown_rat",
-      "malware_alias": "None",
-      "malware_printable": "Unknown RAT",
+      "malware": "elf.mirai",
+      "malware_alias": "Katana",
+      "malware_printable": "Mirai",
       "confidence": "False"
     },
     {
-      "first_seen": "1870494",
-      "ioc": "aiplaymate.xyz",
+      "first_seen": "1871167",
+      "ioc": "79.143.191.7:8082",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "elf.mirai",
+      "malware_alias": "Katana",
+      "malware_printable": "Mirai",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1871169",
+      "ioc": "ui-portal.mekebibsolomonlaw.com",
       "ioc_type": "domain",
+      "threat_type": "botnet_cc",
+      "malware": "js.fakeupdates",
+      "malware_alias": "FakeUpdate",
+      "malware_printable": "GhoLoader",
+      "confidence": ""
+    },
+    {
+      "first_seen": "1871170",
+      "ioc": "http://153.117.9.227:35316/Mozi.m",
+      "ioc_type": "url",
       "threat_type": "payload_delivery",
-      "malware": "unknown",
+      "malware": "elf.mozi",
       "malware_alias": "None",
-      "malware_printable": "Unknown malware",
+      "malware_printable": "Mozi",
       "confidence": "False"
     },
     {
-      "first_seen": "1870495",
-      "ioc": "assholesgonewild.info",
-      "ioc_type": "domain",
+      "first_seen": "1871171",
+      "ioc": "http://202.141.104.249:60065/Mozi.m",
+      "ioc_type": "url",
       "threat_type": "payload_delivery",
-      "malware": "unknown",
+      "malware": "elf.mozi",
       "malware_alias": "None",
-      "malware_printable": "Unknown malware",
+      "malware_printable": "Mozi",
       "confidence": "False"
     },
     {
-      "first_seen": "1870496",
-      "ioc": "captainpepe.org",
-      "ioc_type": "domain",
+      "first_seen": "1871172",
+      "ioc": "http://223.123.126.147:40242/Mozi.m",
+      "ioc_type": "url",
       "threat_type": "payload_delivery",
-      "malware": "unknown",
+      "malware": "elf.mozi",
       "malware_alias": "None",
-      "malware_printable": "Unknown malware",
+      "malware_printable": "Mozi",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1871173",
+      "ioc": "http://101.53.225.7:52865/Mozi.m",
+      "ioc_type": "url",
+      "threat_type": "payload_delivery",
+      "malware": "elf.mozi",
+      "malware_alias": "None",
+      "malware_printable": "Mozi",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1871174",
+      "ioc": "fashion-chicken.com",
+      "ioc_type": "domain",
+      "threat_type": "botnet_cc",
+      "malware": "unknown_loader",
+      "malware_alias": "None",
+      "malware_printable": "Unknown Loader",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1871180",
+      "ioc": "smtp.coping.ink",
+      "ioc_type": "domain",
+      "threat_type": "botnet_cc",
+      "malware": "elf.mirai",
+      "malware_alias": "Katana",
+      "malware_printable": "Mirai",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1871184",
+      "ioc": "94.154.43.87:8082",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "elf.mirai",
+      "malware_alias": "Katana",
+      "malware_printable": "Mirai",
       "confidence": "False"
     }
   ]
