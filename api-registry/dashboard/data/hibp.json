@@ -1,7 +1,22 @@
 {
-  "total_breaches": 1025,
-  "total_records_exposed": 17777627763,
+  "total_breaches": 1026,
+  "total_records_exposed": 17777846158,
   "recent": [
+    {
+      "name": "Alcon",
+      "title": "Alcon",
+      "domain": "alcon.com",
+      "breach_date": "2026-08-01",
+      "added_date": "2026-08-09T10:04:34Z",
+      "pwn_count": 218395,
+      "data_classes": [
+        "Email addresses",
+        "Names",
+        "Phone numbers",
+        "Physical addresses"
+      ],
+      "verified": true
+    },
     {
       "name": "SplitVPN",
       "title": "SplitVPN",
@@ -114,25 +129,6 @@
         "Dates of birth",
         "Email addresses",
         "Genders",
-        "Names",
-        "Phone numbers",
-        "Physical addresses"
-      ],
-      "verified": true
-    },
-    {
-      "name": "GlendaleCommunityCollege",
-      "title": "Glendale Community College",
-      "domain": "glendale.edu",
-      "breach_date": "2026-06-15",
-      "added_date": "2026-07-11T10:40:09Z",
-      "pwn_count": 793925,
-      "data_classes": [
-        "Academic records",
-        "Dates of birth",
-        "Email addresses",
-        "Genders",
-        "Government issued IDs",
         "Names",
         "Phone numbers",
         "Physical addresses"

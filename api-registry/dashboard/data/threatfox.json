@@ -1,125 +1,125 @@
 {
-  "total": 5038,
+  "total": 4106,
   "recent": [
     {
-      "first_seen": "1871150",
-      "ioc": "159.203.172.232:37215",
-      "ioc_type": "ip:port",
+      "first_seen": "1871483",
+      "ioc": "https://babacan.lol/mods/api/log-download",
+      "ioc_type": "url",
       "threat_type": "botnet_cc",
-      "malware": "elf.aisuru",
+      "malware": "unknown_rat",
       "malware_alias": "None",
-      "malware_printable": "Aisuru",
+      "malware_printable": "Unknown RAT",
       "confidence": "False"
     },
     {
-      "first_seen": "1871154",
-      "ioc": "191.252.159.33:8539",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.remus",
-      "malware_alias": "None",
-      "malware_printable": "Remus",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1871166",
-      "ioc": "mail.coping.ink",
+      "first_seen": "1871471",
+      "ioc": "babacan.lol",
       "ioc_type": "domain",
       "threat_type": "botnet_cc",
-      "malware": "elf.mirai",
-      "malware_alias": "Katana",
-      "malware_printable": "Mirai",
+      "malware": "unknown_stealer",
+      "malware_alias": "None",
+      "malware_printable": "Unknown Stealer",
       "confidence": "False"
     },
     {
-      "first_seen": "1871167",
-      "ioc": "79.143.191.7:8082",
+      "first_seen": "1871472",
+      "ioc": "http://72.255.19.251:56706/Mozi.m",
+      "ioc_type": "url",
+      "threat_type": "payload_delivery",
+      "malware": "elf.mozi",
+      "malware_alias": "None",
+      "malware_printable": "Mozi",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1871484",
+      "ioc": "https://babacan.lol/ws",
+      "ioc_type": "url",
+      "threat_type": "botnet_cc",
+      "malware": "unknown_rat",
+      "malware_alias": "None",
+      "malware_printable": "Unknown RAT",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1871485",
+      "ioc": "https://babacan.lol/?p=",
+      "ioc_type": "url",
+      "threat_type": "botnet_cc",
+      "malware": "unknown_rat",
+      "malware_alias": "None",
+      "malware_printable": "Unknown RAT",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1871486",
+      "ioc": "https://babacan.lol/get/config",
+      "ioc_type": "url",
+      "threat_type": "botnet_cc",
+      "malware": "unknown_rat",
+      "malware_alias": "None",
+      "malware_printable": "Unknown RAT",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1871487",
+      "ioc": "https://babacan.lol/babayla/zor/yarisirlar/",
+      "ioc_type": "url",
+      "threat_type": "botnet_cc",
+      "malware": "unknown_rat",
+      "malware_alias": "None",
+      "malware_printable": "Unknown RAT",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1871488",
+      "ioc": "http://cc602316.tw1.ru/L1nc0In.php",
+      "ioc_type": "url",
+      "threat_type": "botnet_cc",
+      "malware": "win.dcrat",
+      "malware_alias": "DarkCrystal RAT",
+      "malware_printable": "DCRat",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1871482",
+      "ioc": "64.89.161.78:2817",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "elf.mirai",
-      "malware_alias": "Katana",
-      "malware_printable": "Mirai",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1871169",
-      "ioc": "ui-portal.mekebibsolomonlaw.com",
-      "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "js.fakeupdates",
-      "malware_alias": "FakeUpdate",
-      "malware_printable": "GhoLoader",
+      "malware": "win.remcos",
+      "malware_alias": "RemcosRAT",
+      "malware_printable": "Remvio",
       "confidence": ""
     },
     {
-      "first_seen": "1871170",
-      "ioc": "http://153.117.9.227:35316/Mozi.m",
-      "ioc_type": "url",
-      "threat_type": "payload_delivery",
-      "malware": "elf.mozi",
-      "malware_alias": "None",
-      "malware_printable": "Mozi",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1871171",
-      "ioc": "http://202.141.104.249:60065/Mozi.m",
-      "ioc_type": "url",
-      "threat_type": "payload_delivery",
-      "malware": "elf.mozi",
-      "malware_alias": "None",
-      "malware_printable": "Mozi",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1871172",
-      "ioc": "http://223.123.126.147:40242/Mozi.m",
-      "ioc_type": "url",
-      "threat_type": "payload_delivery",
-      "malware": "elf.mozi",
-      "malware_alias": "None",
-      "malware_printable": "Mozi",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1871173",
-      "ioc": "http://101.53.225.7:52865/Mozi.m",
-      "ioc_type": "url",
-      "threat_type": "payload_delivery",
-      "malware": "elf.mozi",
-      "malware_alias": "None",
-      "malware_printable": "Mozi",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1871174",
-      "ioc": "fashion-chicken.com",
+      "first_seen": "1871481",
+      "ioc": "4i3lqas7.en-us-en-prostawive.com",
       "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "unknown_loader",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
       "malware_alias": "None",
-      "malware_printable": "Unknown Loader",
+      "malware_printable": "ClearFake",
       "confidence": "False"
     },
     {
-      "first_seen": "1871180",
-      "ioc": "smtp.coping.ink",
+      "first_seen": "1871480",
+      "ioc": "lahtbx.shop-digestistart.com",
       "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "elf.mirai",
-      "malware_alias": "Katana",
-      "malware_printable": "Mirai",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
       "confidence": "False"
     },
     {
-      "first_seen": "1871184",
-      "ioc": "94.154.43.87:8082",
+      "first_seen": "1871477",
+      "ioc": "106.75.178.185:80",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "elf.mirai",
-      "malware_alias": "Katana",
-      "malware_printable": "Mirai",
-      "confidence": "False"
+      "malware": "win.vshell",
+      "malware_alias": "None",
+      "malware_printable": "VShell",
+      "confidence": "True"
     }
   ]
 }
