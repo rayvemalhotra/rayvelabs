@@ -1,89 +1,9 @@
 {
-  "total": 4106,
+  "total": 4128,
   "recent": [
     {
-      "first_seen": "1871483",
-      "ioc": "https://babacan.lol/mods/api/log-download",
-      "ioc_type": "url",
-      "threat_type": "botnet_cc",
-      "malware": "unknown_rat",
-      "malware_alias": "None",
-      "malware_printable": "Unknown RAT",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1871471",
-      "ioc": "babacan.lol",
-      "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "unknown_stealer",
-      "malware_alias": "None",
-      "malware_printable": "Unknown Stealer",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1871472",
-      "ioc": "http://72.255.19.251:56706/Mozi.m",
-      "ioc_type": "url",
-      "threat_type": "payload_delivery",
-      "malware": "elf.mozi",
-      "malware_alias": "None",
-      "malware_printable": "Mozi",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1871484",
-      "ioc": "https://babacan.lol/ws",
-      "ioc_type": "url",
-      "threat_type": "botnet_cc",
-      "malware": "unknown_rat",
-      "malware_alias": "None",
-      "malware_printable": "Unknown RAT",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1871485",
-      "ioc": "https://babacan.lol/?p=",
-      "ioc_type": "url",
-      "threat_type": "botnet_cc",
-      "malware": "unknown_rat",
-      "malware_alias": "None",
-      "malware_printable": "Unknown RAT",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1871486",
-      "ioc": "https://babacan.lol/get/config",
-      "ioc_type": "url",
-      "threat_type": "botnet_cc",
-      "malware": "unknown_rat",
-      "malware_alias": "None",
-      "malware_printable": "Unknown RAT",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1871487",
-      "ioc": "https://babacan.lol/babayla/zor/yarisirlar/",
-      "ioc_type": "url",
-      "threat_type": "botnet_cc",
-      "malware": "unknown_rat",
-      "malware_alias": "None",
-      "malware_printable": "Unknown RAT",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1871488",
-      "ioc": "http://cc602316.tw1.ru/L1nc0In.php",
-      "ioc_type": "url",
-      "threat_type": "botnet_cc",
-      "malware": "win.dcrat",
-      "malware_alias": "DarkCrystal RAT",
-      "malware_printable": "DCRat",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1871482",
-      "ioc": "64.89.161.78:2817",
+      "first_seen": "1872079",
+      "ioc": "155.103.70.232:14554",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
       "malware": "win.remcos",
@@ -92,8 +12,8 @@
       "confidence": ""
     },
     {
-      "first_seen": "1871481",
-      "ioc": "4i3lqas7.en-us-en-prostawive.com",
+      "first_seen": "1872078",
+      "ioc": "derovj.us-en-us-neuroxen.com",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -102,24 +22,104 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1871480",
-      "ioc": "lahtbx.shop-digestistart.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1871477",
-      "ioc": "106.75.178.185:80",
+      "first_seen": "1872076",
+      "ioc": "82.23.163.207:10128",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "win.vshell",
+      "malware": "win.coinminer",
       "malware_alias": "None",
-      "malware_printable": "VShell",
-      "confidence": "True"
+      "malware_printable": "Coinminer",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1872075",
+      "ioc": "dqjxvqn.gut--drops.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1872074",
+      "ioc": "gut--drops.com!s!",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1872073",
+      "ioc": "structuredolls.xyz",
+      "ioc_type": "domain",
+      "threat_type": "botnet_cc",
+      "malware": "unknown_loader",
+      "malware_alias": "None",
+      "malware_printable": "Unknown Loader",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1872072",
+      "ioc": "technocalfindersda.bounceme.net",
+      "ioc_type": "domain",
+      "threat_type": "botnet_cc",
+      "malware": "win.xworm",
+      "malware_alias": "None",
+      "malware_printable": "XWorm",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1872071",
+      "ioc": "http://46.151.182.189/",
+      "ioc_type": "url",
+      "threat_type": "botnet_cc",
+      "malware": "win.stealc",
+      "malware_alias": "None",
+      "malware_printable": "Stealc",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1872070",
+      "ioc": "wss.infrastructurecore.cc",
+      "ioc_type": "domain",
+      "threat_type": "botnet_cc",
+      "malware": "win.acr_stealer",
+      "malware_alias": "None",
+      "malware_printable": "ACR Stealer",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1872069",
+      "ioc": "infrastructurecore.cc",
+      "ioc_type": "domain",
+      "threat_type": "botnet_cc",
+      "malware": "win.acr_stealer",
+      "malware_alias": "None",
+      "malware_printable": "ACR Stealer",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1872068",
+      "ioc": "217.60.241.91:443",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "unknown_rat",
+      "malware_alias": "None",
+      "malware_printable": "Unknown RAT",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1872067",
+      "ioc": "94.154.32.228:443",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "unknown_rat",
+      "malware_alias": "None",
+      "malware_printable": "Unknown RAT",
+      "confidence": "False"
     }
   ]
 }

@@ -1,15 +1,19 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1047",
-    "name": "Windows Management Instrumentation",
-    "description": "Adversaries may abuse Windows Management Instrumentation (WMI) to execute malicious commands and payloads. WMI is designed for programmers and is the infrastructure for management data and operations on Windows systems.(Citation: WMI 1-3) WMI is an administration feature that provides a uniform environment to access Windows system components.",
+    "id": "T1687",
+    "name": "Exploitation for Defense Impairment",
+    "description": "Adversaries may exploit vulnerabilities in security software, infrastructure, or defensive components to degrade, disable, or otherwise continue to impair their ability to prevent, detect, or respond to malicious activity. \n \nAdversaries may exploit a system or application vulnerability to directly interfere with defensive mechanisms. Exploitation occurs when an adversary takes advantage of a programming error in software, services, or the operating system to execute adversary-controlled code, often with the goal of weakening or disabling protections. ",
     "tactics": [
-      "execution"
+      "defense-impairment"
     ],
     "platforms": [
+      "IaaS",
+      "Linux",
+      "macOS",
+      "SaaS",
       "Windows"
     ],
-    "url": "https://attack.mitre.org/techniques/T1047"
+    "url": "https://attack.mitre.org/techniques/T1687"
   }
 }
