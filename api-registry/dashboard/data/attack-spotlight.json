@@ -1,19 +1,17 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1687",
-    "name": "Exploitation for Defense Impairment",
-    "description": "Adversaries may exploit vulnerabilities in security software, infrastructure, or defensive components to degrade, disable, or otherwise continue to impair their ability to prevent, detect, or respond to malicious activity. \n \nAdversaries may exploit a system or application vulnerability to directly interfere with defensive mechanisms. Exploitation occurs when an adversary takes advantage of a programming error in software, services, or the operating system to execute adversary-controlled code, often with the goal of weakening or disabling protections. ",
+    "id": "T1113",
+    "name": "Screen Capture",
+    "description": "Adversaries may attempt to take screen captures of the desktop to gather information over the course of an operation. Screen capturing functionality may be included as a feature of a remote access tool used in post-compromise operations. Taking a screenshot is also typically possible through native utilities or API calls, such as <code>CopyFromScreen</code>, <code>xwd</code>, or <code>screencapture</code>.(Citation: CopyFromScreen .NET)(Citation: Antiquated Mac Malware)\n",
     "tactics": [
-      "defense-impairment"
+      "collection"
     ],
     "platforms": [
-      "IaaS",
       "Linux",
       "macOS",
-      "SaaS",
       "Windows"
     ],
-    "url": "https://attack.mitre.org/techniques/T1687"
+    "url": "https://attack.mitre.org/techniques/T1113"
   }
 }

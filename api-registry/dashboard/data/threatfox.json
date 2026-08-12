@@ -1,19 +1,9 @@
 {
-  "total": 4128,
+  "total": 4437,
   "recent": [
     {
-      "first_seen": "1872079",
-      "ioc": "155.103.70.232:14554",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.remcos",
-      "malware_alias": "RemcosRAT",
-      "malware_printable": "Remvio",
-      "confidence": ""
-    },
-    {
-      "first_seen": "1872078",
-      "ioc": "derovj.us-en-us-neuroxen.com",
+      "first_seen": "1872615",
+      "ioc": "shop-sugarmute.com",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -22,18 +12,48 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1872076",
-      "ioc": "82.23.163.207:10128",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.coinminer",
+      "first_seen": "1872614",
+      "ioc": "analysis-id-fmd.info",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.iclickfix",
       "malware_alias": "None",
-      "malware_printable": "Coinminer",
+      "malware_printable": "IClickFix",
       "confidence": "False"
     },
     {
-      "first_seen": "1872075",
-      "ioc": "dqjxvqn.gut--drops.com",
+      "first_seen": "1872613",
+      "ioc": "maletosr.world",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.iclickfix",
+      "malware_alias": "None",
+      "malware_printable": "IClickFix",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1872612",
+      "ioc": "brusketaa.lol",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.iclickfix",
+      "malware_alias": "None",
+      "malware_printable": "IClickFix",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1872611",
+      "ioc": "thu-ipad-02.cfd",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "unknown",
+      "malware_alias": "None",
+      "malware_printable": "Unknown malware",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1872610",
+      "ioc": "jllzheu.shop-keyslimdrops.com",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -42,48 +62,8 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1872074",
-      "ioc": "gut--drops.com!s!",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1872073",
-      "ioc": "structuredolls.xyz",
-      "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "unknown_loader",
-      "malware_alias": "None",
-      "malware_printable": "Unknown Loader",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1872072",
-      "ioc": "technocalfindersda.bounceme.net",
-      "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "win.xworm",
-      "malware_alias": "None",
-      "malware_printable": "XWorm",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1872071",
-      "ioc": "http://46.151.182.189/",
-      "ioc_type": "url",
-      "threat_type": "botnet_cc",
-      "malware": "win.stealc",
-      "malware_alias": "None",
-      "malware_printable": "Stealc",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1872070",
-      "ioc": "wss.infrastructurecore.cc",
+      "first_seen": "1872609",
+      "ioc": "dist.binarypilot.cc",
       "ioc_type": "domain",
       "threat_type": "botnet_cc",
       "malware": "win.acr_stealer",
@@ -92,34 +72,54 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1872069",
-      "ioc": "infrastructurecore.cc",
+      "first_seen": "1872608",
+      "ioc": "shop-keyslimdrops.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1872607",
+      "ioc": "217.144.187.85:3334",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.snappy_client",
+      "malware_alias": "SilabRAT",
+      "malware_printable": "SnappyClient",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1872606",
+      "ioc": "yoda-gd1.shop",
       "ioc_type": "domain",
       "threat_type": "botnet_cc",
-      "malware": "win.acr_stealer",
+      "malware": "win.vidar",
       "malware_alias": "None",
-      "malware_printable": "ACR Stealer",
+      "malware_printable": "Vidar",
       "confidence": "False"
     },
     {
-      "first_seen": "1872068",
-      "ioc": "217.60.241.91:443",
+      "first_seen": "1872605",
+      "ioc": "43.225.157.17:3970",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "unknown_rat",
-      "malware_alias": "None",
-      "malware_printable": "Unknown RAT",
-      "confidence": "False"
+      "malware": "win.cobalt_strike",
+      "malware_alias": "Agentemis",
+      "malware_printable": "BEACON",
+      "confidence": "Cobalt Strike"
     },
     {
-      "first_seen": "1872067",
-      "ioc": "94.154.32.228:443",
+      "first_seen": "1872604",
+      "ioc": "43.225.157.17:3000",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "unknown_rat",
-      "malware_alias": "None",
-      "malware_printable": "Unknown RAT",
-      "confidence": "False"
+      "malware": "win.cobalt_strike",
+      "malware_alias": "Agentemis",
+      "malware_printable": "BEACON",
+      "confidence": "Cobalt Strike"
     }
   ]
 }
