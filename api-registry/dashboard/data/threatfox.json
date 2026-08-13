@@ -1,9 +1,9 @@
 {
-  "total": 4437,
+  "total": 4742,
   "recent": [
     {
-      "first_seen": "1872615",
-      "ioc": "shop-sugarmute.com",
+      "first_seen": "1873483",
+      "ioc": "whmakm.synaptigen-usa.com",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -12,114 +12,114 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1872614",
-      "ioc": "analysis-id-fmd.info",
+      "first_seen": "1873482",
+      "ioc": "vthaoip.get-sightfresh.com",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
-      "malware": "js.iclickfix",
+      "malware": "js.clearfake",
       "malware_alias": "None",
-      "malware_printable": "IClickFix",
+      "malware_printable": "ClearFake",
       "confidence": "False"
     },
     {
-      "first_seen": "1872613",
-      "ioc": "maletosr.world",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.iclickfix",
-      "malware_alias": "None",
-      "malware_printable": "IClickFix",
-      "confidence": "False"
+      "first_seen": "1873480",
+      "ioc": "156.239.47.245:80",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.cobalt_strike",
+      "malware_alias": "Agentemis",
+      "malware_printable": "BEACON",
+      "confidence": "Cobalt Strike"
     },
     {
-      "first_seen": "1872612",
-      "ioc": "brusketaa.lol",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.iclickfix",
-      "malware_alias": "None",
-      "malware_printable": "IClickFix",
-      "confidence": "False"
+      "first_seen": "1873481",
+      "ioc": "156.239.47.245:8080",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.cobalt_strike",
+      "malware_alias": "Agentemis",
+      "malware_printable": "BEACON",
+      "confidence": "Cobalt Strike"
     },
     {
-      "first_seen": "1872611",
-      "ioc": "thu-ipad-02.cfd",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
+      "first_seen": "1873478",
+      "ioc": "139.196.231.194:8080",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
       "malware": "unknown",
       "malware_alias": "None",
       "malware_printable": "Unknown malware",
-      "confidence": "False"
+      "confidence": "True"
     },
     {
-      "first_seen": "1872610",
-      "ioc": "jllzheu.shop-keyslimdrops.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1872609",
-      "ioc": "dist.binarypilot.cc",
-      "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "win.acr_stealer",
-      "malware_alias": "None",
-      "malware_printable": "ACR Stealer",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1872608",
-      "ioc": "shop-keyslimdrops.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1872607",
-      "ioc": "217.144.187.85:3334",
+      "first_seen": "1873479",
+      "ioc": "139.196.231.194:60000",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "win.snappy_client",
-      "malware_alias": "SilabRAT",
-      "malware_printable": "SnappyClient",
+      "malware": "unknown",
+      "malware_alias": "None",
+      "malware_printable": "Unknown malware",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1873477",
+      "ioc": "192.30.241.253:8041",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "unknown_rat",
+      "malware_alias": "None",
+      "malware_printable": "Unknown RAT",
       "confidence": "False"
     },
     {
-      "first_seen": "1872606",
-      "ioc": "yoda-gd1.shop",
+      "first_seen": "1873476",
+      "ioc": "maguire.top",
       "ioc_type": "domain",
       "threat_type": "botnet_cc",
-      "malware": "win.vidar",
+      "malware": "unknown_rat",
       "malware_alias": "None",
-      "malware_printable": "Vidar",
+      "malware_printable": "Unknown RAT",
       "confidence": "False"
     },
     {
-      "first_seen": "1872605",
-      "ioc": "43.225.157.17:3970",
+      "first_seen": "1873475",
+      "ioc": "161.248.14.213:443",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "win.cobalt_strike",
-      "malware_alias": "Agentemis",
-      "malware_printable": "BEACON",
-      "confidence": "Cobalt Strike"
+      "malware": "win.valley_rat",
+      "malware_alias": "Winos",
+      "malware_printable": "ValleyRAT",
+      "confidence": "False"
     },
     {
-      "first_seen": "1872604",
-      "ioc": "43.225.157.17:3000",
+      "first_seen": "1873474",
+      "ioc": "http://vexdico.shop:8539/reports",
+      "ioc_type": "url",
+      "threat_type": "botnet_cc",
+      "malware": "win.remus",
+      "malware_alias": "None",
+      "malware_printable": "Remus",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1873473",
+      "ioc": "http://shkpiva.shop:5627/images",
+      "ioc_type": "url",
+      "threat_type": "botnet_cc",
+      "malware": "win.remus",
+      "malware_alias": "None",
+      "malware_printable": "Remus",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1873472",
+      "ioc": "72.62.195.74:8932",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "win.cobalt_strike",
-      "malware_alias": "Agentemis",
-      "malware_printable": "BEACON",
-      "confidence": "Cobalt Strike"
+      "malware": "win.remus",
+      "malware_alias": "None",
+      "malware_printable": "Remus",
+      "confidence": "False"
     }
   ]
 }

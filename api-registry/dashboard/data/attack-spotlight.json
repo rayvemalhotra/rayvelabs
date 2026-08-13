@@ -1,17 +1,20 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1113",
-    "name": "Screen Capture",
-    "description": "Adversaries may attempt to take screen captures of the desktop to gather information over the course of an operation. Screen capturing functionality may be included as a feature of a remote access tool used in post-compromise operations. Taking a screenshot is also typically possible through native utilities or API calls, such as <code>CopyFromScreen</code>, <code>xwd</code>, or <code>screencapture</code>.(Citation: CopyFromScreen .NET)(Citation: Antiquated Mac Malware)\n",
+    "id": "T1037",
+    "name": "Boot or Logon Initialization Scripts",
+    "description": "Adversaries may use scripts automatically executed at boot or logon initialization to establish persistence.(Citation: Mandiant APT29 Eye Spy Email Nov 22)(Citation: Anomali Rocke March 2019) Initialization scripts can be used to perform administrative functions, which may often execute other programs or send information to an internal logging server. These scripts can vary based on operating system and whether applied locally or remotely.  ",
     "tactics": [
-      "collection"
+      "persistence",
+      "privilege-escalation"
     ],
     "platforms": [
+      "ESXi",
       "Linux",
       "macOS",
+      "Network Devices",
       "Windows"
     ],
-    "url": "https://attack.mitre.org/techniques/T1113"
+    "url": "https://attack.mitre.org/techniques/T1037"
   }
 }
