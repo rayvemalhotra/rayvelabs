@@ -1,10 +1,10 @@
 {
-  "total": 4742,
+  "total": 5132,
   "recent": [
     {
-      "first_seen": "1873483",
-      "ioc": "whmakm.synaptigen-usa.com",
-      "ioc_type": "domain",
+      "first_seen": "1874268",
+      "ioc": "https://cdn.jsdelivr.net/gh/kud-981/kirby-s1@3859d64/kk-w7",
+      "ioc_type": "url",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
       "malware_alias": "None",
@@ -12,18 +12,78 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1873482",
-      "ioc": "vthaoip.get-sightfresh.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
+      "first_seen": "1874267",
+      "ioc": "https://dallasbackstage.com/nfront.php",
+      "ioc_type": "url",
+      "threat_type": "botnet_cc",
+      "malware": "win.satacom",
+      "malware_alias": "CurlyGate",
+      "malware_printable": "LegionLoader",
+      "confidence": ""
     },
     {
-      "first_seen": "1873480",
-      "ioc": "156.239.47.245:80",
+      "first_seen": "1874257",
+      "ioc": "photohub-vault.info",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.tonrat",
+      "malware_alias": "TONResolver",
+      "malware_printable": "TonRAT",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1874258",
+      "ioc": "photosafe-docs.info",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.tonrat",
+      "malware_alias": "TONResolver",
+      "malware_printable": "TonRAT",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1874259",
+      "ioc": "safevisa-hub.info",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.tonrat",
+      "malware_alias": "TONResolver",
+      "malware_printable": "TonRAT",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1874260",
+      "ioc": "secure-picstore.info",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.tonrat",
+      "malware_alias": "TONResolver",
+      "malware_printable": "TonRAT",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1874261",
+      "ioc": "securehub-4pics.info",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.tonrat",
+      "malware_alias": "TONResolver",
+      "malware_printable": "TonRAT",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1874262",
+      "ioc": "vault-picstore.info",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.tonrat",
+      "malware_alias": "TONResolver",
+      "malware_printable": "TonRAT",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1874256",
+      "ioc": "47.79.98.75:443",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
       "malware": "win.cobalt_strike",
@@ -32,8 +92,8 @@
       "confidence": "Cobalt Strike"
     },
     {
-      "first_seen": "1873481",
-      "ioc": "156.239.47.245:8080",
+      "first_seen": "1874254",
+      "ioc": "212.87.199.197:8080",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
       "malware": "win.cobalt_strike",
@@ -42,83 +102,23 @@
       "confidence": "Cobalt Strike"
     },
     {
-      "first_seen": "1873478",
-      "ioc": "139.196.231.194:8080",
+      "first_seen": "1874255",
+      "ioc": "47.79.98.75:22",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "unknown",
-      "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "True"
+      "malware": "win.cobalt_strike",
+      "malware_alias": "Agentemis",
+      "malware_printable": "BEACON",
+      "confidence": "Cobalt Strike"
     },
     {
-      "first_seen": "1873479",
-      "ioc": "139.196.231.194:60000",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "unknown",
-      "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1873477",
-      "ioc": "192.30.241.253:8041",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "unknown_rat",
-      "malware_alias": "None",
-      "malware_printable": "Unknown RAT",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1873476",
-      "ioc": "maguire.top",
-      "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "unknown_rat",
-      "malware_alias": "None",
-      "malware_printable": "Unknown RAT",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1873475",
-      "ioc": "161.248.14.213:443",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.valley_rat",
-      "malware_alias": "Winos",
-      "malware_printable": "ValleyRAT",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1873474",
-      "ioc": "http://vexdico.shop:8539/reports",
+      "first_seen": "1874253",
+      "ioc": "https://46.62.249.147",
       "ioc_type": "url",
       "threat_type": "botnet_cc",
-      "malware": "win.remus",
+      "malware": "win.vidar",
       "malware_alias": "None",
-      "malware_printable": "Remus",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1873473",
-      "ioc": "http://shkpiva.shop:5627/images",
-      "ioc_type": "url",
-      "threat_type": "botnet_cc",
-      "malware": "win.remus",
-      "malware_alias": "None",
-      "malware_printable": "Remus",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1873472",
-      "ioc": "72.62.195.74:8932",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.remus",
-      "malware_alias": "None",
-      "malware_printable": "Remus",
+      "malware_printable": "Vidar",
       "confidence": "False"
     }
   ]

@@ -1,20 +1,19 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1037",
-    "name": "Boot or Logon Initialization Scripts",
-    "description": "Adversaries may use scripts automatically executed at boot or logon initialization to establish persistence.(Citation: Mandiant APT29 Eye Spy Email Nov 22)(Citation: Anomali Rocke March 2019) Initialization scripts can be used to perform administrative functions, which may often execute other programs or send information to an internal logging server. These scripts can vary based on operating system and whether applied locally or remotely.  ",
+    "id": "T1557",
+    "name": "Adversary-in-the-Middle",
+    "description": "Adversaries may attempt to position themselves between two or more networked devices using an adversary-in-the-middle (AiTM) technique to support follow-on behaviors such as [Network Sniffing](https://attack.mitre.org/techniques/T1040), [Transmitted Data Manipulation](https://attack.mitre.org/techniques/T1565/002), or replay attacks ([Exploitation for Credential Access](https://attack.mitre.org/techniques/T1212)). By abusing features of common networking protocols that can determine the flow of network traffic (e.g. ARP, DNS, LLMNR, etc.), adversaries may force a device to communicate through an adversary controlled system so they can collect information or perform additional actions.(Citation: Rapid7 MiTM Basics)",
     "tactics": [
-      "persistence",
-      "privilege-escalation"
+      "credential-access",
+      "collection"
     ],
     "platforms": [
-      "ESXi",
       "Linux",
       "macOS",
       "Network Devices",
       "Windows"
     ],
-    "url": "https://attack.mitre.org/techniques/T1037"
+    "url": "https://attack.mitre.org/techniques/T1557"
   }
 }

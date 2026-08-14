@@ -1,6 +1,6 @@
 {
-  "total_breaches": 1026,
-  "total_records_exposed": 17777846158,
+  "total_breaches": 1027,
+  "total_records_exposed": 17779442648,
   "recent": [
     {
       "name": "Alcon",
@@ -9,6 +9,21 @@
       "breach_date": "2026-08-01",
       "added_date": "2026-08-09T10:04:34Z",
       "pwn_count": 218395,
+      "data_classes": [
+        "Email addresses",
+        "Names",
+        "Phone numbers",
+        "Physical addresses"
+      ],
+      "verified": true
+    },
+    {
+      "name": "RingCentral",
+      "title": "RingCentral",
+      "domain": "ringcentral.com",
+      "breach_date": "2026-07-27",
+      "added_date": "2026-08-13T10:54:40Z",
+      "pwn_count": 1596490,
       "data_classes": [
         "Email addresses",
         "Names",
@@ -113,25 +128,6 @@
       "data_classes": [
         "Email addresses",
         "Passwords"
-      ],
-      "verified": true
-    },
-    {
-      "name": "HoustonCityCollege",
-      "title": "Houston City College",
-      "domain": "hccs.edu",
-      "breach_date": "2026-06-16",
-      "added_date": "2026-07-28T06:05:24Z",
-      "pwn_count": 831642,
-      "data_classes": [
-        "Academic records",
-        "Citizenship statuses",
-        "Dates of birth",
-        "Email addresses",
-        "Genders",
-        "Names",
-        "Phone numbers",
-        "Physical addresses"
       ],
       "verified": true
     }
