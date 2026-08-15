@@ -1,10 +1,50 @@
 {
-  "total": 5132,
+  "total": 5396,
   "recent": [
     {
-      "first_seen": "1874268",
-      "ioc": "https://cdn.jsdelivr.net/gh/kud-981/kirby-s1@3859d64/kk-w7",
-      "ioc_type": "url",
+      "first_seen": "1876237",
+      "ioc": "47.95.222.141:10443",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.vshell",
+      "malware_alias": "None",
+      "malware_printable": "VShell",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1876236",
+      "ioc": "39.96.3.65:8888",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.vshell",
+      "malware_alias": "None",
+      "malware_printable": "VShell",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1876234",
+      "ioc": "nickanto.info",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "unknown",
+      "malware_alias": "None",
+      "malware_printable": "Unknown malware",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1876235",
+      "ioc": "mvb.rs",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "unknown",
+      "malware_alias": "None",
+      "malware_printable": "Unknown malware",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1876233",
+      "ioc": "bvm9kxn7.gut--drops.com",
+      "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
       "malware_alias": "None",
@@ -12,113 +52,73 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1874267",
-      "ioc": "https://dallasbackstage.com/nfront.php",
-      "ioc_type": "url",
-      "threat_type": "botnet_cc",
-      "malware": "win.satacom",
-      "malware_alias": "CurlyGate",
-      "malware_printable": "LegionLoader",
-      "confidence": ""
-    },
-    {
-      "first_seen": "1874257",
-      "ioc": "photohub-vault.info",
+      "first_seen": "1876231",
+      "ioc": "gtmdura4.en-us-slimsplits.com",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
-      "malware": "js.tonrat",
-      "malware_alias": "TONResolver",
-      "malware_printable": "TonRAT",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1874258",
-      "ioc": "photosafe-docs.info",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.tonrat",
-      "malware_alias": "TONResolver",
-      "malware_printable": "TonRAT",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1874259",
-      "ioc": "safevisa-hub.info",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.tonrat",
-      "malware_alias": "TONResolver",
-      "malware_printable": "TonRAT",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1874260",
-      "ioc": "secure-picstore.info",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.tonrat",
-      "malware_alias": "TONResolver",
-      "malware_printable": "TonRAT",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1874261",
-      "ioc": "securehub-4pics.info",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.tonrat",
-      "malware_alias": "TONResolver",
-      "malware_printable": "TonRAT",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1874262",
-      "ioc": "vault-picstore.info",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.tonrat",
-      "malware_alias": "TONResolver",
-      "malware_printable": "TonRAT",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1874256",
-      "ioc": "47.79.98.75:443",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.cobalt_strike",
-      "malware_alias": "Agentemis",
-      "malware_printable": "BEACON",
-      "confidence": "Cobalt Strike"
-    },
-    {
-      "first_seen": "1874254",
-      "ioc": "212.87.199.197:8080",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.cobalt_strike",
-      "malware_alias": "Agentemis",
-      "malware_printable": "BEACON",
-      "confidence": "Cobalt Strike"
-    },
-    {
-      "first_seen": "1874255",
-      "ioc": "47.79.98.75:22",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.cobalt_strike",
-      "malware_alias": "Agentemis",
-      "malware_printable": "BEACON",
-      "confidence": "Cobalt Strike"
-    },
-    {
-      "first_seen": "1874253",
-      "ioc": "https://46.62.249.147",
-      "ioc_type": "url",
-      "threat_type": "botnet_cc",
-      "malware": "win.vidar",
+      "malware": "js.clearfake",
       "malware_alias": "None",
-      "malware_printable": "Vidar",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1876230",
+      "ioc": "90uk7unu.eachway-multiplier.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1876229",
+      "ioc": "allinmental.ch",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1876227",
+      "ioc": "13.248.243.5:443",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.nanocore",
+      "malware_alias": "Nancrat",
+      "malware_printable": "NanoCore",
+      "confidence": "100"
+    },
+    {
+      "first_seen": "1876226",
+      "ioc": "https://blaze-x.com/",
+      "ioc_type": "url",
+      "threat_type": "payload_delivery",
+      "malware": "unknown",
+      "malware_alias": "None",
+      "malware_printable": "Unknown malware",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1876225",
+      "ioc": "v22eqt8a.drubenginecologo.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1876224",
+      "ioc": "milpl8xr.eng-neuroxen.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
       "confidence": "False"
     }
   ]
