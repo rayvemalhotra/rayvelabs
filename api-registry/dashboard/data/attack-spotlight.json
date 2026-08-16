@@ -1,18 +1,15 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1033",
-    "name": "System Owner/User Discovery",
-    "description": "Adversaries may attempt to identify the primary user, currently logged in user, set of users that commonly uses a system, or whether a user is actively using the system. They may do this, for example, by retrieving account usernames or by using [OS Credential Dumping](https://attack.mitre.org/techniques/T1003). The information may be collected in a number of different ways using other Discovery techniques, because user and username details are prevalent throughout a system and include running process ownership, file/directory ownership, session information, and system logs. Adversaries may use the information from [System Owner/User Discovery](https://attack.mitre.org/techniques/T1033) during automated discovery to shape follow-on behaviors, including whether or not the adversary fully inf",
+    "id": "T1583",
+    "name": "Acquire Infrastructure",
+    "description": "Adversaries may buy, lease, rent, or obtain infrastructure that can be used during targeting. A wide variety of infrastructure exists for hosting and orchestrating adversary operations. Infrastructure solutions include physical or cloud servers, domains, and third-party web services.(Citation: TrendmicroHideoutsLease) Some infrastructure providers offer free trial periods, enabling infrastructure acquisition at limited to no cost.(Citation: Free Trial PurpleUrchin) Additionally, botnets are available for rent or purchase.",
     "tactics": [
-      "discovery"
+      "resource-development"
     ],
     "platforms": [
-      "Linux",
-      "macOS",
-      "Network Devices",
-      "Windows"
+      "PRE"
     ],
-    "url": "https://attack.mitre.org/techniques/T1033"
+    "url": "https://attack.mitre.org/techniques/T1583"
   }
 }

@@ -1,49 +1,109 @@
 {
-  "total": 5396,
+  "total": 6513,
   "recent": [
     {
-      "first_seen": "1876237",
-      "ioc": "47.95.222.141:10443",
+      "first_seen": "1877015",
+      "ioc": "hempartindonesia.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1877014",
+      "ioc": "kinderpsycholooghetgooi.nl",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1877010",
+      "ioc": "kilimanjaromavens.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1877011",
+      "ioc": "jh-athletics.de",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1877009",
+      "ioc": "ladaco.net",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1877008",
+      "ioc": "108.165.147.244:8081",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "win.vshell",
+      "malware": "win.cobalt_strike",
+      "malware_alias": "Agentemis",
+      "malware_printable": "BEACON",
+      "confidence": "Cobalt Strike"
+    },
+    {
+      "first_seen": "1877007",
+      "ioc": "kreiles-kreativwerkstatt.de",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
       "malware_alias": "None",
-      "malware_printable": "VShell",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1877006",
+      "ioc": "juristice.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1877004",
+      "ioc": "101.42.255.92:8001",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.cobalt_strike",
+      "malware_alias": "Agentemis",
+      "malware_printable": "BEACON",
+      "confidence": "Cobalt Strike"
+    },
+    {
+      "first_seen": "1877003",
+      "ioc": "2.27.63.244:443",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "unknown",
+      "malware_alias": "None",
+      "malware_printable": "Unknown malware",
       "confidence": "True"
     },
     {
-      "first_seen": "1876236",
-      "ioc": "39.96.3.65:8888",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.vshell",
-      "malware_alias": "None",
-      "malware_printable": "VShell",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1876234",
-      "ioc": "nickanto.info",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "unknown",
-      "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1876235",
-      "ioc": "mvb.rs",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "unknown",
-      "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1876233",
-      "ioc": "bvm9kxn7.gut--drops.com",
+      "first_seen": "1877002",
+      "ioc": "p4wao0pc.americaneaglependant.net",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -52,68 +112,8 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1876231",
-      "ioc": "gtmdura4.en-us-slimsplits.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1876230",
-      "ioc": "90uk7unu.eachway-multiplier.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1876229",
-      "ioc": "allinmental.ch",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1876227",
-      "ioc": "13.248.243.5:443",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.nanocore",
-      "malware_alias": "Nancrat",
-      "malware_printable": "NanoCore",
-      "confidence": "100"
-    },
-    {
-      "first_seen": "1876226",
-      "ioc": "https://blaze-x.com/",
-      "ioc_type": "url",
-      "threat_type": "payload_delivery",
-      "malware": "unknown",
-      "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1876225",
-      "ioc": "v22eqt8a.drubenginecologo.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1876224",
-      "ioc": "milpl8xr.eng-neuroxen.com",
+      "first_seen": "1877001",
+      "ioc": "americaneaglependant.net",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",

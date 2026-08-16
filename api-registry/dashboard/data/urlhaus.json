@@ -1,140 +1,140 @@
 {
-  "total_recent": 16856,
+  "total_recent": 16714,
   "recent": [
     {
-      "id": "3903877",
-      "date_added": "2026-08-15 06:26:18",
-      "url": "http://115.48.148.23:42173/i",
+      "id": "3904186",
+      "date_added": "2026-08-16 06:29:20",
+      "url": "http://182.113.43.152:53485/i",
       "url_status": "online",
       "threat": "malware_download",
       "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3903877/"
+      "host": "https://urlhaus.abuse.ch/url/3904186/"
     },
     {
-      "id": "3903876",
-      "date_added": "2026-08-15 06:13:17",
-      "url": "http://222.141.143.158:55288/i",
+      "id": "3904185",
+      "date_added": "2026-08-16 06:18:25",
+      "url": "http://112.239.122.112:54204/bin.sh",
       "url_status": "online",
       "threat": "malware_download",
       "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3903876/"
+      "host": "https://urlhaus.abuse.ch/url/3904185/"
     },
     {
-      "id": "3903875",
-      "date_added": "2026-08-15 06:02:21",
-      "url": "http://115.48.148.23:42173/bin.sh",
+      "id": "3904184",
+      "date_added": "2026-08-16 06:10:21",
+      "url": "http://182.118.246.94:39103/i",
       "url_status": "online",
       "threat": "malware_download",
       "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3903875/"
+      "host": "https://urlhaus.abuse.ch/url/3904184/"
     },
     {
-      "id": "3903874",
-      "date_added": "2026-08-15 05:57:07",
-      "url": "http://180.191.228.111:60353/i",
+      "id": "3904183",
+      "date_added": "2026-08-16 06:05:08",
+      "url": "http://112.198.193.5:33801/i",
       "url_status": "online",
       "threat": "malware_download",
-      "tags": "mirai",
-      "host": "https://urlhaus.abuse.ch/url/3903874/"
+      "tags": "32-bit,arm,elf,mirai,Mozi",
+      "host": "https://urlhaus.abuse.ch/url/3904183/"
     },
     {
-      "id": "3903873",
-      "date_added": "2026-08-15 05:53:18",
-      "url": "http://182.119.29.169:56430/i",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3903873/"
-    },
-    {
-      "id": "3903872",
-      "date_added": "2026-08-15 05:52:19",
-      "url": "http://115.57.248.80:32935/bin.sh",
+      "id": "3904182",
+      "date_added": "2026-08-16 05:55:16",
+      "url": "http://42.239.188.2:43535/i",
       "url_status": "online",
       "threat": "malware_download",
       "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3903872/"
+      "host": "https://urlhaus.abuse.ch/url/3904182/"
     },
     {
-      "id": "3903871",
-      "date_added": "2026-08-15 05:46:07",
-      "url": "http://180.191.228.111:60353/bin.sh",
+      "id": "3904181",
+      "date_added": "2026-08-16 05:52:09",
+      "url": "http://217.60.241.248/Bin/ScreenConnect.ClientSetup.exe",
       "url_status": "online",
       "threat": "malware_download",
-      "tags": "mirai",
-      "host": "https://urlhaus.abuse.ch/url/3903871/"
+      "tags": "217-60-241-248,exe,ua-wget",
+      "host": "https://urlhaus.abuse.ch/url/3904181/"
     },
     {
-      "id": "3903869",
-      "date_added": "2026-08-15 05:42:06",
-      "url": "http://115.57.249.167:38186/i",
+      "id": "3904180",
+      "date_added": "2026-08-16 05:52:08",
+      "url": "http://217.60.241.248/bin/support.client.exe",
       "url_status": "online",
       "threat": "malware_download",
-      "tags": "Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3903869/"
+      "tags": "217-60-241-248,exe,ua-wget",
+      "host": "https://urlhaus.abuse.ch/url/3904180/"
     },
     {
-      "id": "3903870",
-      "date_added": "2026-08-15 05:42:06",
-      "url": "http://115.57.249.167:38186/bin.sh",
+      "id": "3904179",
+      "date_added": "2026-08-16 05:50:12",
+      "url": "http://217.60.241.142/Bin/ScreenConnect.ClientSetup.exe",
       "url_status": "online",
       "threat": "malware_download",
-      "tags": "Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3903870/"
+      "tags": "217-60-241-142,exe,ua-wget",
+      "host": "https://urlhaus.abuse.ch/url/3904179/"
     },
     {
-      "id": "3903868",
-      "date_added": "2026-08-15 05:41:18",
-      "url": "http://219.157.215.95:55907/i",
+      "id": "3904178",
+      "date_added": "2026-08-16 05:50:08",
+      "url": "http://217.60.241.142/bin/support.client.exe",
+      "url_status": "online",
+      "threat": "malware_download",
+      "tags": "217-60-241-142,exe,ua-wget",
+      "host": "https://urlhaus.abuse.ch/url/3904178/"
+    },
+    {
+      "id": "3904176",
+      "date_added": "2026-08-16 05:48:09",
+      "url": "http://77.83.39.9/bin/support.client.exe",
+      "url_status": "online",
+      "threat": "malware_download",
+      "tags": "77-83-39-9,exe,ua-wget",
+      "host": "https://urlhaus.abuse.ch/url/3904176/"
+    },
+    {
+      "id": "3904177",
+      "date_added": "2026-08-16 05:48:09",
+      "url": "http://77.83.39.9/Bin/ScreenConnect.ClientSetup.exe",
+      "url_status": "online",
+      "threat": "malware_download",
+      "tags": "77-83-39-9,exe,ua-wget",
+      "host": "https://urlhaus.abuse.ch/url/3904177/"
+    },
+    {
+      "id": "3904175",
+      "date_added": "2026-08-16 05:45:09",
+      "url": "https://77.83.39.66/Bin/ScreenConnect.ClientSetup.exe",
+      "url_status": "online",
+      "threat": "malware_download",
+      "tags": "77-83-39-66,exe,ua-wget",
+      "host": "https://urlhaus.abuse.ch/url/3904175/"
+    },
+    {
+      "id": "3904174",
+      "date_added": "2026-08-16 05:36:26",
+      "url": "http://112.198.193.5:33801/bin.sh",
+      "url_status": "online",
+      "threat": "malware_download",
+      "tags": "32-bit,arm,elf,mirai,Mozi",
+      "host": "https://urlhaus.abuse.ch/url/3904174/"
+    },
+    {
+      "id": "3904173",
+      "date_added": "2026-08-16 05:32:26",
+      "url": "http://115.52.190.59:42242/i",
       "url_status": "online",
       "threat": "malware_download",
       "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3903868/"
+      "host": "https://urlhaus.abuse.ch/url/3904173/"
     },
     {
-      "id": "3903867",
-      "date_added": "2026-08-15 05:40:19",
-      "url": "http://182.119.29.169:56430/bin.sh",
+      "id": "3904172",
+      "date_added": "2026-08-16 05:31:24",
+      "url": "http://42.239.188.2:43535/bin.sh",
       "url_status": "online",
       "threat": "malware_download",
       "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3903867/"
-    },
-    {
-      "id": "3903866",
-      "date_added": "2026-08-15 05:34:19",
-      "url": "http://222.141.143.158:55288/bin.sh",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3903866/"
-    },
-    {
-      "id": "3903865",
-      "date_added": "2026-08-15 05:17:28",
-      "url": "http://219.157.215.95:55907/bin.sh",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3903865/"
-    },
-    {
-      "id": "3903864",
-      "date_added": "2026-08-15 05:15:24",
-      "url": "http://182.121.141.211:58754/i",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3903864/"
-    },
-    {
-      "id": "3903863",
-      "date_added": "2026-08-15 05:10:19",
-      "url": "http://125.44.32.162:44822/i",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3903863/"
+      "host": "https://urlhaus.abuse.ch/url/3904172/"
     }
   ]
 }
