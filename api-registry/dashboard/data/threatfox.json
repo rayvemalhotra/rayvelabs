@@ -1,99 +1,59 @@
 {
-  "total": 6513,
+  "total": 5073,
   "recent": [
     {
-      "first_seen": "1877015",
-      "ioc": "hempartindonesia.com",
+      "first_seen": "1877672",
+      "ioc": "glaube.li",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
+      "malware": "unknown",
       "malware_alias": "None",
-      "malware_printable": "ClearFake",
+      "malware_printable": "Unknown malware",
       "confidence": "False"
     },
     {
-      "first_seen": "1877014",
-      "ioc": "kinderpsycholooghetgooi.nl",
+      "first_seen": "1877668",
+      "ioc": "babmalo.pro",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
+      "malware": "js.iclickfix",
       "malware_alias": "None",
-      "malware_printable": "ClearFake",
+      "malware_printable": "IClickFix",
       "confidence": "False"
     },
     {
-      "first_seen": "1877010",
-      "ioc": "kilimanjaromavens.com",
+      "first_seen": "1877667",
+      "ioc": "cem.mesoptik.com",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
+      "malware": "js.iclickfix",
       "malware_alias": "None",
-      "malware_printable": "ClearFake",
+      "malware_printable": "IClickFix",
       "confidence": "False"
     },
     {
-      "first_seen": "1877011",
-      "ioc": "jh-athletics.de",
+      "first_seen": "1877666",
+      "ioc": "loepaord.xyz",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
+      "malware": "js.iclickfix",
       "malware_alias": "None",
-      "malware_printable": "ClearFake",
+      "malware_printable": "IClickFix",
       "confidence": "False"
     },
     {
-      "first_seen": "1877009",
-      "ioc": "ladaco.net",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1877008",
-      "ioc": "108.165.147.244:8081",
+      "first_seen": "1877665",
+      "ioc": "185.34.147.32:80",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "win.cobalt_strike",
-      "malware_alias": "Agentemis",
-      "malware_printable": "BEACON",
-      "confidence": "Cobalt Strike"
-    },
-    {
-      "first_seen": "1877007",
-      "ioc": "kreiles-kreativwerkstatt.de",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
+      "malware": "win.asyncrat",
       "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
+      "malware_printable": "AsyncRAT",
+      "confidence": "True"
     },
     {
-      "first_seen": "1877006",
-      "ioc": "juristice.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1877004",
-      "ioc": "101.42.255.92:8001",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.cobalt_strike",
-      "malware_alias": "Agentemis",
-      "malware_printable": "BEACON",
-      "confidence": "Cobalt Strike"
-    },
-    {
-      "first_seen": "1877003",
-      "ioc": "2.27.63.244:443",
+      "first_seen": "1877664",
+      "ioc": "34.150.91.139:443",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
       "malware": "unknown",
@@ -102,8 +62,18 @@
       "confidence": "True"
     },
     {
-      "first_seen": "1877002",
-      "ioc": "p4wao0pc.americaneaglependant.net",
+      "first_seen": "1877338",
+      "ioc": "allmobiletools.net",
+      "ioc_type": "domain",
+      "threat_type": "cc_skimming",
+      "malware": "js.magecart",
+      "malware_alias": "None",
+      "malware_printable": "magecart",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1877663",
+      "ioc": "s570wlpz.us-us-us-goldalign.com",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -112,13 +82,43 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1877001",
-      "ioc": "americaneaglependant.net",
+      "first_seen": "1877146",
+      "ioc": "43.129.180.120:9034",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "elf.aisuru",
+      "malware_alias": "None",
+      "malware_printable": "Aisuru",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1877290",
+      "ioc": "coldformat.info",
       "ioc_type": "domain",
-      "threat_type": "payload_delivery",
+      "threat_type": "botnet_cc",
+      "malware": "unknown_loader",
+      "malware_alias": "None",
+      "malware_printable": "Unknown Loader",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1877269",
+      "ioc": "bimba.anix-to.com",
+      "ioc_type": "domain",
+      "threat_type": "botnet_cc",
       "malware": "js.clearfake",
       "malware_alias": "None",
       "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1877291",
+      "ioc": "https://coldformat.info/usa",
+      "ioc_type": "url",
+      "threat_type": "botnet_cc",
+      "malware": "unknown_loader",
+      "malware_alias": "None",
+      "malware_printable": "Unknown Loader",
       "confidence": "False"
     }
   ]
