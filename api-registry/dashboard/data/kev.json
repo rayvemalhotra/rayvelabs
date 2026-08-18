@@ -1,8 +1,17 @@
 {
-  "total": 1665,
-  "catalog_version": "2026.08.14",
-  "date_released": "2026-08-14T16:34:49.0391Z",
+  "total": 1666,
+  "catalog_version": "2026.08.17",
+  "date_released": "2026-08-17T17:00:24.7655Z",
   "recent": [
+    {
+      "cve": "CVE-2025-62593",
+      "vendor": "Ray-Project",
+      "product": "Ray",
+      "name": "Ray-Project Ray Code Injection Vulnerability",
+      "date_added": "2026-08-17",
+      "due_date": "2026-08-20",
+      "ransomware": false
+    },
     {
       "cve": "CVE-2026-20349",
       "vendor": "Cisco",
@@ -100,15 +109,6 @@
       "name": "Fortinet FortiOS Exposure of Sensitive Information to an Unauthorized Actor Vulnerability",
       "date_added": "2026-07-27",
       "due_date": "2026-08-10",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-16812",
-      "vendor": "Arista",
-      "product": "VeloCloud Orchestrator",
-      "name": "Arista VeloCloud Orchestrator On-Prem OS Command Injection Vulnerability",
-      "date_added": "2026-07-27",
-      "due_date": "2026-07-30",
       "ransomware": false
     }
   ]

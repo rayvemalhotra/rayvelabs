@@ -1,15 +1,15 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1613",
-    "name": "Container and Resource Discovery",
-    "description": "Adversaries may attempt to discover containers and other resources that are available within a containers environment. Other resources may include images, deployments, pods, nodes, and other information such as the status of a cluster.",
+    "id": "T1592",
+    "name": "Gather Victim Host Information",
+    "description": "Adversaries may gather information about the victim's hosts that can be used during targeting. Information about hosts may include a variety of details, including administrative data (ex: name, assigned IP, functionality, etc.) as well as specifics regarding its configuration (ex: operating system, language, etc.).",
     "tactics": [
-      "discovery"
+      "reconnaissance"
     ],
     "platforms": [
-      "Containers"
+      "PRE"
     ],
-    "url": "https://attack.mitre.org/techniques/T1613"
+    "url": "https://attack.mitre.org/techniques/T1592"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "total_listings": 10442,
+  "total_listings": 10448,
   "by_reason": [
     {
       "reason": "AsyncRAT C&C",
@@ -11,7 +11,7 @@
     },
     {
       "reason": "Vidar C&C",
-      "count": 708
+      "count": 713
     },
     {
       "reason": "QuasarRAT C&C",
@@ -23,6 +23,36 @@
     }
   ],
   "recent": [
+    {
+      "listing_date": "2026-08-17 09:55:55",
+      "sha1": "abe57abc8722c69494113060260ba340cd897744",
+      "listing_reason": "ShellterLoader C&C"
+    },
+    {
+      "listing_date": "2026-08-17 07:50:14",
+      "sha1": "89bbec947a91917d4676037abb417ceb72770851",
+      "listing_reason": "Vidar C&C"
+    },
+    {
+      "listing_date": "2026-08-17 07:48:17",
+      "sha1": "b26d3f583556acab11cbfa864f596c143b15f32d",
+      "listing_reason": "Vidar C&C"
+    },
+    {
+      "listing_date": "2026-08-17 07:47:55",
+      "sha1": "fc5d9dddb01c263a67e7c485e04277afa82fbabf",
+      "listing_reason": "Vidar C&C"
+    },
+    {
+      "listing_date": "2026-08-17 07:46:46",
+      "sha1": "a6268e092f3de555c67dac2f9e52eae979b3d8e3",
+      "listing_reason": "Vidar C&C"
+    },
+    {
+      "listing_date": "2026-08-17 07:45:17",
+      "sha1": "40d55bdf808d31690157cc7865a3161d6f44f073",
+      "listing_reason": "Vidar C&C"
+    },
     {
       "listing_date": "2026-08-15 15:52:47",
       "sha1": "057b2084f877c8737e60de6c07ad829ea411b9c6",
@@ -42,36 +72,6 @@
       "listing_date": "2026-08-14 07:35:32",
       "sha1": "a45080c92a0b2314966517a4643ebf280e88a11b",
       "listing_reason": "LummaStealer C&C"
-    },
-    {
-      "listing_date": "2026-08-14 07:34:46",
-      "sha1": "3141245c066d71ef08936296ffea7ea15082f7fd",
-      "listing_reason": "ConnectWise C&C"
-    },
-    {
-      "listing_date": "2026-08-14 07:33:54",
-      "sha1": "46a2a90c5813eda22263c058742902faf1def5a6",
-      "listing_reason": "ConnectWise C&C"
-    },
-    {
-      "listing_date": "2026-08-14 07:33:36",
-      "sha1": "183d02c077142b8701d1a719cc8cee3f8fb76072",
-      "listing_reason": "OffLoader C&C"
-    },
-    {
-      "listing_date": "2026-08-14 07:29:34",
-      "sha1": "d18f8b968bd5981971d6699bdc4ed7b96a3e7248",
-      "listing_reason": "Vidar C&C"
-    },
-    {
-      "listing_date": "2026-08-14 07:27:13",
-      "sha1": "95a5eea4198c93663802a9ea047164b5497ea27f",
-      "listing_reason": "Malware C&C"
-    },
-    {
-      "listing_date": "2026-08-14 07:25:32",
-      "sha1": "d0944e5765a9b5767d3cf02e3bdd9f466c5391b7",
-      "listing_reason": "Vidar C&C"
     }
   ]
 }

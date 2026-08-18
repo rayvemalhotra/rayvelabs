@@ -1,89 +1,59 @@
 {
-  "total": 5073,
+  "total": 5311,
   "recent": [
     {
-      "first_seen": "1877672",
-      "ioc": "glaube.li",
-      "ioc_type": "domain",
+      "first_seen": "1878798",
+      "ioc": "http://202.9.122.47:36267/Mozi.m",
+      "ioc_type": "url",
       "threat_type": "payload_delivery",
-      "malware": "unknown",
+      "malware": "elf.mozi",
       "malware_alias": "None",
-      "malware_printable": "Unknown malware",
+      "malware_printable": "Mozi",
       "confidence": "False"
     },
     {
-      "first_seen": "1877668",
-      "ioc": "babmalo.pro",
-      "ioc_type": "domain",
+      "first_seen": "1878799",
+      "ioc": "http://36.255.33.118:34346/Mozi.m",
+      "ioc_type": "url",
       "threat_type": "payload_delivery",
-      "malware": "js.iclickfix",
+      "malware": "elf.mozi",
       "malware_alias": "None",
-      "malware_printable": "IClickFix",
+      "malware_printable": "Mozi",
       "confidence": "False"
     },
     {
-      "first_seen": "1877667",
-      "ioc": "cem.mesoptik.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.iclickfix",
-      "malware_alias": "None",
-      "malware_printable": "IClickFix",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1877666",
-      "ioc": "loepaord.xyz",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.iclickfix",
-      "malware_alias": "None",
-      "malware_printable": "IClickFix",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1877665",
-      "ioc": "185.34.147.32:80",
+      "first_seen": "1878797",
+      "ioc": "103.236.84.103:443",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "win.asyncrat",
-      "malware_alias": "None",
-      "malware_printable": "AsyncRAT",
-      "confidence": "True"
+      "malware": "win.cobalt_strike",
+      "malware_alias": "Agentemis",
+      "malware_printable": "BEACON",
+      "confidence": "Cobalt Strike"
     },
     {
-      "first_seen": "1877664",
-      "ioc": "34.150.91.139:443",
+      "first_seen": "1878796",
+      "ioc": "117.72.159.96:22",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "unknown",
-      "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "True"
+      "malware": "win.cobalt_strike",
+      "malware_alias": "Agentemis",
+      "malware_printable": "BEACON",
+      "confidence": "Cobalt Strike"
     },
     {
-      "first_seen": "1877338",
-      "ioc": "allmobiletools.net",
-      "ioc_type": "domain",
-      "threat_type": "cc_skimming",
-      "malware": "js.magecart",
-      "malware_alias": "None",
-      "malware_printable": "magecart",
-      "confidence": "True"
+      "first_seen": "1878795",
+      "ioc": "110.42.255.63:9999",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.cobalt_strike",
+      "malware_alias": "Agentemis",
+      "malware_printable": "BEACON",
+      "confidence": "Cobalt Strike"
     },
     {
-      "first_seen": "1877663",
-      "ioc": "s570wlpz.us-us-us-goldalign.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1877146",
-      "ioc": "43.129.180.120:9034",
+      "first_seen": "1878794",
+      "ioc": "143.198.84.165:8443",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
       "malware": "elf.aisuru",
@@ -92,34 +62,64 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1877290",
-      "ioc": "coldformat.info",
+      "first_seen": "1878793",
+      "ioc": "whale-complex.site",
       "ioc_type": "domain",
       "threat_type": "botnet_cc",
-      "malware": "unknown_loader",
+      "malware": "unknown",
       "malware_alias": "None",
-      "malware_printable": "Unknown Loader",
+      "malware_printable": "Unknown malware",
       "confidence": "False"
     },
     {
-      "first_seen": "1877269",
-      "ioc": "bimba.anix-to.com",
-      "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1877291",
-      "ioc": "https://coldformat.info/usa",
+      "first_seen": "1878792",
+      "ioc": "https://sdsentura.com/",
       "ioc_type": "url",
-      "threat_type": "botnet_cc",
-      "malware": "unknown_loader",
+      "threat_type": "payload_delivery",
+      "malware": "unknown",
       "malware_alias": "None",
-      "malware_printable": "Unknown Loader",
+      "malware_printable": "Unknown malware",
       "confidence": "False"
+    },
+    {
+      "first_seen": "1878059",
+      "ioc": "167.99.67.141:8811",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.remus",
+      "malware_alias": "None",
+      "malware_printable": "Remus",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1878060",
+      "ioc": "lddjk79018.workers.dev",
+      "ioc_type": "domain",
+      "threat_type": "botnet_cc",
+      "malware": "php.shin_webshell",
+      "malware_alias": "None",
+      "malware_printable": "php.shin_webshell",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1878062",
+      "ioc": "176.98.182.177:8080",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "elf.aisuru",
+      "malware_alias": "None",
+      "malware_printable": "Aisuru",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1878069",
+      "ioc": "api-workers.westinsinsurance.com",
+      "ioc_type": "domain",
+      "threat_type": "botnet_cc",
+      "malware": "js.fakeupdates",
+      "malware_alias": "FakeUpdate",
+      "malware_printable": "GhoLoader",
+      "confidence": ""
     }
   ]
 }
