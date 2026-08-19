@@ -1,69 +1,49 @@
 {
-  "total": 5311,
+  "total": 9014,
   "recent": [
     {
-      "first_seen": "1878798",
-      "ioc": "http://202.9.122.47:36267/Mozi.m",
-      "ioc_type": "url",
-      "threat_type": "payload_delivery",
-      "malware": "elf.mozi",
+      "first_seen": "1881646",
+      "ioc": "connectme.mom",
+      "ioc_type": "domain",
+      "threat_type": "botnet_cc",
+      "malware": "unknown_rat",
       "malware_alias": "None",
-      "malware_printable": "Mozi",
+      "malware_printable": "Unknown RAT",
       "confidence": "False"
     },
     {
-      "first_seen": "1878799",
-      "ioc": "http://36.255.33.118:34346/Mozi.m",
-      "ioc_type": "url",
-      "threat_type": "payload_delivery",
-      "malware": "elf.mozi",
+      "first_seen": "1881645",
+      "ioc": "195.177.94.25:443",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "unknown_rat",
       "malware_alias": "None",
-      "malware_printable": "Mozi",
+      "malware_printable": "Unknown RAT",
       "confidence": "False"
     },
     {
-      "first_seen": "1878797",
-      "ioc": "103.236.84.103:443",
+      "first_seen": "1881644",
+      "ioc": "94.154.32.8:443",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "win.cobalt_strike",
-      "malware_alias": "Agentemis",
-      "malware_printable": "BEACON",
-      "confidence": "Cobalt Strike"
-    },
-    {
-      "first_seen": "1878796",
-      "ioc": "117.72.159.96:22",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.cobalt_strike",
-      "malware_alias": "Agentemis",
-      "malware_printable": "BEACON",
-      "confidence": "Cobalt Strike"
-    },
-    {
-      "first_seen": "1878795",
-      "ioc": "110.42.255.63:9999",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.cobalt_strike",
-      "malware_alias": "Agentemis",
-      "malware_printable": "BEACON",
-      "confidence": "Cobalt Strike"
-    },
-    {
-      "first_seen": "1878794",
-      "ioc": "143.198.84.165:8443",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "elf.aisuru",
+      "malware": "unknown_rat",
       "malware_alias": "None",
-      "malware_printable": "Aisuru",
+      "malware_printable": "Unknown RAT",
       "confidence": "False"
     },
     {
-      "first_seen": "1878793",
-      "ioc": "whale-complex.site",
+      "first_seen": "1881642",
+      "ioc": "138.201.126.72:443",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "unknown",
+      "malware_alias": "None",
+      "malware_printable": "Unknown malware",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1881641",
+      "ioc": "testingherenigger.loophole.site",
       "ioc_type": "domain",
       "threat_type": "botnet_cc",
       "malware": "unknown",
@@ -72,54 +52,74 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1878792",
-      "ioc": "https://sdsentura.com/",
-      "ioc_type": "url",
-      "threat_type": "payload_delivery",
+      "first_seen": "1881639",
+      "ioc": "bravecdp.duckdns.org",
+      "ioc_type": "domain",
+      "threat_type": "botnet_cc",
       "malware": "unknown",
       "malware_alias": "None",
       "malware_printable": "Unknown malware",
       "confidence": "False"
     },
     {
-      "first_seen": "1878059",
-      "ioc": "167.99.67.141:8811",
+      "first_seen": "1881352",
+      "ioc": "23.106.253.199:7443",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "win.remus",
+      "malware": "unknown_stealer",
       "malware_alias": "None",
-      "malware_printable": "Remus",
+      "malware_printable": "Unknown Stealer",
       "confidence": "False"
     },
     {
-      "first_seen": "1878060",
-      "ioc": "lddjk79018.workers.dev",
-      "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "php.shin_webshell",
-      "malware_alias": "None",
-      "malware_printable": "php.shin_webshell",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1878062",
-      "ioc": "176.98.182.177:8080",
+      "first_seen": "1881353",
+      "ioc": "23.106.253.199:7080",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "elf.aisuru",
+      "malware": "unknown_stealer",
       "malware_alias": "None",
-      "malware_printable": "Aisuru",
+      "malware_printable": "Unknown Stealer",
       "confidence": "False"
     },
     {
-      "first_seen": "1878069",
-      "ioc": "api-workers.westinsinsurance.com",
-      "ioc_type": "domain",
+      "first_seen": "1881354",
+      "ioc": "31.40.204.178:7443",
+      "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "js.fakeupdates",
-      "malware_alias": "FakeUpdate",
-      "malware_printable": "GhoLoader",
-      "confidence": ""
+      "malware": "unknown_stealer",
+      "malware_alias": "None",
+      "malware_printable": "Unknown Stealer",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1881355",
+      "ioc": "31.77.138.147:7443",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "unknown_stealer",
+      "malware_alias": "None",
+      "malware_printable": "Unknown Stealer",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1881356",
+      "ioc": "31.77.138.147:7080",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "unknown_stealer",
+      "malware_alias": "None",
+      "malware_printable": "Unknown Stealer",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1881357",
+      "ioc": "31.77.138.156:7080",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "unknown_stealer",
+      "malware_alias": "None",
+      "malware_printable": "Unknown Stealer",
+      "confidence": "False"
     }
   ]
 }

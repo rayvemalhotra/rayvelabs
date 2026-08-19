@@ -1,8 +1,44 @@
 {
-  "total": 1666,
-  "catalog_version": "2026.08.17",
-  "date_released": "2026-08-17T17:00:24.7655Z",
+  "total": 1670,
+  "catalog_version": "2026.08.18",
+  "date_released": "2026-08-18T16:52:08.5398Z",
   "recent": [
+    {
+      "cve": "CVE-2026-33824",
+      "vendor": "Microsoft",
+      "product": "Internet Key Exchange (IKE) Service Extensions",
+      "name": "Microsoft Internet Key Exchange (IKE) Service Extensions Double Free Vulnerability",
+      "date_added": "2026-08-18",
+      "due_date": "2026-08-21",
+      "ransomware": false
+    },
+    {
+      "cve": "CVE-2026-59310",
+      "vendor": "Broadcom",
+      "product": "VMware vCenter",
+      "name": "Broadcom VMware vCenter Path Traversal Vulnerability",
+      "date_added": "2026-08-18",
+      "due_date": "2026-08-21",
+      "ransomware": false
+    },
+    {
+      "cve": "CVE-2026-55040",
+      "vendor": "Microsoft",
+      "product": "SharePoint",
+      "name": "Microsoft SharePoint Weak Authentication Vulnerability",
+      "date_added": "2026-08-18",
+      "due_date": "2026-08-21",
+      "ransomware": false
+    },
+    {
+      "cve": "CVE-2026-65400",
+      "vendor": "Apple",
+      "product": "macOS",
+      "name": "Apple macOS Improper Authentication Vulnerability",
+      "date_added": "2026-08-18",
+      "due_date": "2026-08-21",
+      "ransomware": false
+    },
     {
       "cve": "CVE-2025-62593",
       "vendor": "Ray-Project",
@@ -73,42 +109,6 @@
       "name": "Apache Tomcat Missing Encryption of Sensitive Data Vulnerability",
       "date_added": "2026-08-04",
       "due_date": "2026-08-07",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-9198",
-      "vendor": "IBM",
-      "product": "Langflow",
-      "name": "IBM Langflow Code Injection Vulnerability",
-      "date_added": "2026-08-04",
-      "due_date": "2026-08-07",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-18577",
-      "vendor": "N-able",
-      "product": "N-central",
-      "name": "N-able N-central Authentication Bypass Using an Alternate Path or Channel Vulnerability",
-      "date_added": "2026-08-03",
-      "due_date": "2026-08-06",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-20316",
-      "vendor": "Cisco",
-      "product": "Secure Firewall Management Center (FMC)",
-      "name": "Cisco Secure Firewall Management Center Use of Hard-coded Password Vulnerability",
-      "date_added": "2026-07-29",
-      "due_date": "2026-08-01",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2025-68686",
-      "vendor": "Fortinet",
-      "product": "FortiOS",
-      "name": "Fortinet FortiOS Exposure of Sensitive Information to an Unauthorized Actor Vulnerability",
-      "date_added": "2026-07-27",
-      "due_date": "2026-08-10",
       "ransomware": false
     }
   ]

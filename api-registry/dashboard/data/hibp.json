@@ -1,7 +1,38 @@
 {
-  "total_breaches": 1027,
-  "total_records_exposed": 17779442648,
+  "total_breaches": 1029,
+  "total_records_exposed": 17781575499,
   "recent": [
+    {
+      "name": "OzHairAndBeauty",
+      "title": "Oz Hair and Beauty",
+      "domain": "ozhairandbeauty.com",
+      "breach_date": "2026-08-15",
+      "added_date": "2026-08-19T03:15:00Z",
+      "pwn_count": 1988331,
+      "data_classes": [
+        "Email addresses",
+        "Geographic locations",
+        "Names",
+        "Phone numbers",
+        "Purchases"
+      ],
+      "verified": true
+    },
+    {
+      "name": "Fanlore",
+      "title": "Fanlore",
+      "domain": "fanlore.org",
+      "breach_date": "2026-08-06",
+      "added_date": "2026-08-19T02:09:16Z",
+      "pwn_count": 144520,
+      "data_classes": [
+        "Email addresses",
+        "Names",
+        "Passwords",
+        "Usernames"
+      ],
+      "verified": true
+    },
     {
       "name": "Alcon",
       "title": "Alcon",
@@ -98,36 +129,6 @@
         "Names",
         "Physical addresses",
         "Support tickets"
-      ],
-      "verified": true
-    },
-    {
-      "name": "InterConSecurity",
-      "title": "Inter-Con Security",
-      "domain": "icsecurity.com",
-      "breach_date": "2026-06-18",
-      "added_date": "2026-08-05T23:39:01Z",
-      "pwn_count": 276114,
-      "data_classes": [
-        "Email addresses",
-        "Employers",
-        "Job titles",
-        "Names",
-        "Phone numbers",
-        "Physical addresses"
-      ],
-      "verified": true
-    },
-    {
-      "name": "OperationEndgame4",
-      "title": "Operation Endgame 4.0",
-      "domain": "",
-      "breach_date": "2026-06-18",
-      "added_date": "2026-06-18T20:08:06Z",
-      "pwn_count": 4348526,
-      "data_classes": [
-        "Email addresses",
-        "Passwords"
       ],
       "verified": true
     }
