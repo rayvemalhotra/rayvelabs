@@ -1,140 +1,140 @@
 {
-  "total_recent": 16607,
+  "total_recent": 16720,
   "recent": [
     {
-      "id": "3905566",
-      "date_added": "2026-08-19 06:26:08",
-      "url": "http://27.215.210.140:47517/bin.sh",
+      "id": "3906101",
+      "date_added": "2026-08-20 06:27:17",
+      "url": "http://183.23.132.41:35951/bin.sh",
       "url_status": "online",
       "threat": "malware_download",
-      "tags": "Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3905566/"
+      "tags": "32-bit,arm,elf,mirai,Mozi",
+      "host": "https://urlhaus.abuse.ch/url/3906101/"
     },
     {
-      "id": "3905565",
-      "date_added": "2026-08-19 06:22:12",
-      "url": "http://88.232.49.106:60233/bin.sh",
+      "id": "3906100",
+      "date_added": "2026-08-20 06:21:31",
+      "url": "http://77.239.124.108/atomic/atomic.sh",
+      "url_status": "offline",
+      "threat": "malware_download",
+      "tags": "elf,iot",
+      "host": "https://urlhaus.abuse.ch/url/3906100/"
+    },
+    {
+      "id": "3906099",
+      "date_added": "2026-08-20 06:21:20",
+      "url": "http://110.186.229.108:47843/Mozi.m",
       "url_status": "online",
       "threat": "malware_download",
-      "tags": "Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3905565/"
+      "tags": "elf,iot,mirai,Mozi",
+      "host": "https://urlhaus.abuse.ch/url/3906099/"
     },
     {
-      "id": "3905563",
-      "date_added": "2026-08-19 06:22:07",
-      "url": "https://c2.11179669.cloud/edgeupd.dat",
-      "url_status": "offline",
+      "id": "3906097",
+      "date_added": "2026-08-20 06:21:19",
+      "url": "http://183.63.8.194:46154/Mozi.m",
+      "url_status": "online",
       "threat": "malware_download",
-      "tags": "None",
-      "host": "https://urlhaus.abuse.ch/url/3905563/"
+      "tags": "elf,iot,mirai,Mozi",
+      "host": "https://urlhaus.abuse.ch/url/3906097/"
     },
     {
-      "id": "3905564",
-      "date_added": "2026-08-19 06:22:07",
-      "url": "https://c2.11179669.cloud/ChromeReal.exe",
-      "url_status": "offline",
+      "id": "3906098",
+      "date_added": "2026-08-20 06:21:19",
+      "url": "http://115.57.182.131:41041/Mozi.m",
+      "url_status": "online",
       "threat": "malware_download",
-      "tags": "None",
-      "host": "https://urlhaus.abuse.ch/url/3905564/"
+      "tags": "elf,iot,Mozi",
+      "host": "https://urlhaus.abuse.ch/url/3906098/"
     },
     {
-      "id": "3905562",
-      "date_added": "2026-08-19 06:19:08",
-      "url": "http://175.146.159.250:58407/i",
+      "id": "3906096",
+      "date_added": "2026-08-20 06:14:31",
+      "url": "http://27.215.52.217:41359/i",
       "url_status": "online",
       "threat": "malware_download",
       "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3905562/"
+      "host": "https://urlhaus.abuse.ch/url/3906096/"
     },
     {
-      "id": "3905560",
-      "date_added": "2026-08-19 06:18:21",
-      "url": "http://18.236.12.51/bins/chud.x86",
+      "id": "3906084",
+      "date_added": "2026-08-20 06:10:07",
+      "url": "http://5.182.210.174/76e6f5",
       "url_status": "offline",
       "threat": "malware_download",
-      "tags": "wraith",
-      "host": "https://urlhaus.abuse.ch/url/3905560/"
+      "tags": "ua-wget",
+      "host": "https://urlhaus.abuse.ch/url/3906084/"
     },
     {
-      "id": "3905561",
-      "date_added": "2026-08-19 06:18:21",
-      "url": "http://18.236.12.51/bins/chud.mips",
+      "id": "3906085",
+      "date_added": "2026-08-20 06:10:07",
+      "url": "http://5.182.210.174/85692b",
       "url_status": "offline",
       "threat": "malware_download",
-      "tags": "wraith",
-      "host": "https://urlhaus.abuse.ch/url/3905561/"
+      "tags": "ua-wget",
+      "host": "https://urlhaus.abuse.ch/url/3906085/"
     },
     {
-      "id": "3905559",
-      "date_added": "2026-08-19 06:18:16",
-      "url": "http://91.92.242.236/files-129312398/files/file_6a286233562894b3.exe",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "c2-monitor-auto,dropped-by-amadey,rustystealer",
-      "host": "https://urlhaus.abuse.ch/url/3905559/"
-    },
-    {
-      "id": "3905558",
-      "date_added": "2026-08-19 06:18:10",
-      "url": "http://112.74.47.172:6407/linux",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "honeypot,shardlure",
-      "host": "https://urlhaus.abuse.ch/url/3905558/"
-    },
-    {
-      "id": "3905557",
-      "date_added": "2026-08-19 06:18:08",
-      "url": "http://194.238.57.124:889/gg11",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "elf,iot",
-      "host": "https://urlhaus.abuse.ch/url/3905557/"
-    },
-    {
-      "id": "3905556",
-      "date_added": "2026-08-19 06:18:07",
-      "url": "http://178.16.54.109/getit.exe",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "phorpiex",
-      "host": "https://urlhaus.abuse.ch/url/3905556/"
-    },
-    {
-      "id": "3905544",
-      "date_added": "2026-08-19 06:18:06",
-      "url": "http://31.77.227.121/satan_sh4",
+      "id": "3906086",
+      "date_added": "2026-08-20 06:10:07",
+      "url": "http://5.182.210.174/b39f8f",
       "url_status": "offline",
       "threat": "malware_download",
-      "tags": "mirai",
-      "host": "https://urlhaus.abuse.ch/url/3905544/"
+      "tags": "ua-wget",
+      "host": "https://urlhaus.abuse.ch/url/3906086/"
     },
     {
-      "id": "3905545",
-      "date_added": "2026-08-19 06:18:06",
-      "url": "http://31.77.227.121/satan_sparc",
+      "id": "3906087",
+      "date_added": "2026-08-20 06:10:07",
+      "url": "http://5.182.210.174/e00ee7",
       "url_status": "offline",
       "threat": "malware_download",
-      "tags": "mirai",
-      "host": "https://urlhaus.abuse.ch/url/3905545/"
+      "tags": "ua-wget",
+      "host": "https://urlhaus.abuse.ch/url/3906087/"
     },
     {
-      "id": "3905546",
-      "date_added": "2026-08-19 06:18:06",
-      "url": "http://31.77.227.121/satan_arm7",
+      "id": "3906088",
+      "date_added": "2026-08-20 06:10:07",
+      "url": "http://5.182.210.174/6a20da",
       "url_status": "offline",
       "threat": "malware_download",
-      "tags": "mirai",
-      "host": "https://urlhaus.abuse.ch/url/3905546/"
+      "tags": "ua-wget",
+      "host": "https://urlhaus.abuse.ch/url/3906088/"
     },
     {
-      "id": "3905547",
-      "date_added": "2026-08-19 06:18:06",
-      "url": "http://31.77.227.121/satan_mips_el",
+      "id": "3906089",
+      "date_added": "2026-08-20 06:10:07",
+      "url": "http://5.182.210.174/de19ef",
       "url_status": "offline",
       "threat": "malware_download",
-      "tags": "mirai",
-      "host": "https://urlhaus.abuse.ch/url/3905547/"
+      "tags": "ua-wget",
+      "host": "https://urlhaus.abuse.ch/url/3906089/"
+    },
+    {
+      "id": "3906090",
+      "date_added": "2026-08-20 06:10:07",
+      "url": "http://5.182.210.174/b74d4d",
+      "url_status": "offline",
+      "threat": "malware_download",
+      "tags": "ua-wget",
+      "host": "https://urlhaus.abuse.ch/url/3906090/"
+    },
+    {
+      "id": "3906091",
+      "date_added": "2026-08-20 06:10:07",
+      "url": "http://5.182.210.174/589a29",
+      "url_status": "offline",
+      "threat": "malware_download",
+      "tags": "ua-wget",
+      "host": "https://urlhaus.abuse.ch/url/3906091/"
+    },
+    {
+      "id": "3906092",
+      "date_added": "2026-08-20 06:10:07",
+      "url": "http://5.182.210.174/4d493d",
+      "url_status": "offline",
+      "threat": "malware_download",
+      "tags": "ua-wget",
+      "host": "https://urlhaus.abuse.ch/url/3906092/"
     }
   ]
 }

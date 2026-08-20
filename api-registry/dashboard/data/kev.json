@@ -1,8 +1,17 @@
 {
-  "total": 1670,
-  "catalog_version": "2026.08.18",
-  "date_released": "2026-08-18T16:52:08.5398Z",
+  "total": 1671,
+  "catalog_version": "2026.08.19",
+  "date_released": "2026-08-19T17:00:32.1366Z",
   "recent": [
+    {
+      "cve": "CVE-2026-64849",
+      "vendor": "MLflow",
+      "product": "MLflow",
+      "name": "MLflow Server-Side Request Forgery Vulnerability",
+      "date_added": "2026-08-19",
+      "due_date": "2026-09-02",
+      "ransomware": false
+    },
     {
       "cve": "CVE-2026-33824",
       "vendor": "Microsoft",
@@ -98,15 +107,6 @@
       "vendor": "N-able",
       "product": "N-central",
       "name": "N-able N-central Authentication Bypass Using an Alternate Path or Channel Vulnerability",
-      "date_added": "2026-08-04",
-      "due_date": "2026-08-07",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-34486",
-      "vendor": "Apache",
-      "product": "Tomcat",
-      "name": "Apache Tomcat Missing Encryption of Sensitive Data Vulnerability",
       "date_added": "2026-08-04",
       "due_date": "2026-08-07",
       "ransomware": false

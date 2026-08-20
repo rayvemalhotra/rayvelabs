@@ -1,6 +1,6 @@
 {
-  "total_cves_scored": 360781,
-  "model_metadata": "model_version:v2026.06.15,score_date:2026-08-18T12:04:07Z",
+  "total_cves_scored": 362257,
+  "model_metadata": "model_version:v2026.06.15,score_date:2026-08-19T12:03:07Z",
   "top": [
     {
       "cve": "CVE-2014-0160",

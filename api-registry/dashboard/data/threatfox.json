@@ -1,125 +1,125 @@
 {
-  "total": 9014,
+  "total": 10543,
   "recent": [
     {
-      "first_seen": "1881646",
-      "ioc": "connectme.mom",
+      "first_seen": "1882976",
+      "ioc": "credipaas.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1882950",
+      "ioc": "iritageneral.workers.dev",
       "ioc_type": "domain",
       "threat_type": "botnet_cc",
-      "malware": "unknown_rat",
+      "malware": "php.shin_webshell",
       "malware_alias": "None",
-      "malware_printable": "Unknown RAT",
+      "malware_printable": "php.shin_webshell",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1882967",
+      "ioc": "http://190.196.253.119:10701/Mozi.m",
+      "ioc_type": "url",
+      "threat_type": "payload_delivery",
+      "malware": "elf.mozi",
+      "malware_alias": "None",
+      "malware_printable": "Mozi",
       "confidence": "False"
     },
     {
-      "first_seen": "1881645",
-      "ioc": "195.177.94.25:443",
+      "first_seen": "1882968",
+      "ioc": "http://223.123.44.122:42812/Mozi.m",
+      "ioc_type": "url",
+      "threat_type": "payload_delivery",
+      "malware": "elf.mozi",
+      "malware_alias": "None",
+      "malware_printable": "Mozi",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1882969",
+      "ioc": "http://103.176.16.59:34532/Mozi.m",
+      "ioc_type": "url",
+      "threat_type": "payload_delivery",
+      "malware": "elf.mozi",
+      "malware_alias": "None",
+      "malware_printable": "Mozi",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1882970",
+      "ioc": "http://116.140.6.114:46743/Mozi.m",
+      "ioc_type": "url",
+      "threat_type": "payload_delivery",
+      "malware": "elf.mozi",
+      "malware_alias": "None",
+      "malware_printable": "Mozi",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1882971",
+      "ioc": "http://103.225.191.202:34773/Mozi.m",
+      "ioc_type": "url",
+      "threat_type": "payload_delivery",
+      "malware": "elf.mozi",
+      "malware_alias": "None",
+      "malware_printable": "Mozi",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1882972",
+      "ioc": "http://153.117.40.170:44217/Mozi.m",
+      "ioc_type": "url",
+      "threat_type": "payload_delivery",
+      "malware": "elf.mozi",
+      "malware_alias": "None",
+      "malware_printable": "Mozi",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1882973",
+      "ioc": "http://110.186.229.108:47843/Mozi.m",
+      "ioc_type": "url",
+      "threat_type": "payload_delivery",
+      "malware": "elf.mozi",
+      "malware_alias": "None",
+      "malware_printable": "Mozi",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1882974",
+      "ioc": "http://115.57.182.131:41041/Mozi.m",
+      "ioc_type": "url",
+      "threat_type": "payload_delivery",
+      "malware": "elf.mozi",
+      "malware_alias": "None",
+      "malware_printable": "Mozi",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1882975",
+      "ioc": "http://183.63.8.194:46154/Mozi.m",
+      "ioc_type": "url",
+      "threat_type": "payload_delivery",
+      "malware": "elf.mozi",
+      "malware_alias": "None",
+      "malware_printable": "Mozi",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1882964",
+      "ioc": "91.215.85.6:56001",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "unknown_rat",
-      "malware_alias": "None",
-      "malware_printable": "Unknown RAT",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1881644",
-      "ioc": "94.154.32.8:443",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "unknown_rat",
-      "malware_alias": "None",
-      "malware_printable": "Unknown RAT",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1881642",
-      "ioc": "138.201.126.72:443",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "unknown",
-      "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1881641",
-      "ioc": "testingherenigger.loophole.site",
-      "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "unknown",
-      "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1881639",
-      "ioc": "bravecdp.duckdns.org",
-      "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "unknown",
-      "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1881352",
-      "ioc": "23.106.253.199:7443",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "unknown_stealer",
-      "malware_alias": "None",
-      "malware_printable": "Unknown Stealer",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1881353",
-      "ioc": "23.106.253.199:7080",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "unknown_stealer",
-      "malware_alias": "None",
-      "malware_printable": "Unknown Stealer",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1881354",
-      "ioc": "31.40.204.178:7443",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "unknown_stealer",
-      "malware_alias": "None",
-      "malware_printable": "Unknown Stealer",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1881355",
-      "ioc": "31.77.138.147:7443",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "unknown_stealer",
-      "malware_alias": "None",
-      "malware_printable": "Unknown Stealer",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1881356",
-      "ioc": "31.77.138.147:7080",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "unknown_stealer",
-      "malware_alias": "None",
-      "malware_printable": "Unknown Stealer",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1881357",
-      "ioc": "31.77.138.156:7080",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "unknown_stealer",
-      "malware_alias": "None",
-      "malware_printable": "Unknown Stealer",
-      "confidence": "False"
+      "malware": "win.pure_rat",
+      "malware_alias": "PureHVNC",
+      "malware_printable": "ResolverRAT",
+      "confidence": "75"
     }
   ]
 }
