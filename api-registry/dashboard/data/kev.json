@@ -1,8 +1,26 @@
 {
-  "total": 1671,
-  "catalog_version": "2026.08.19",
-  "date_released": "2026-08-19T17:00:32.1366Z",
+  "total": 1673,
+  "catalog_version": "2026.08.20",
+  "date_released": "2026-08-20T17:00:27.8837Z",
   "recent": [
+    {
+      "cve": "CVE-2026-72530",
+      "vendor": "TrueConf",
+      "product": "Server",
+      "name": "TrueConf Server Code Injection Vulnerability",
+      "date_added": "2026-08-20",
+      "due_date": "2026-09-03",
+      "ransomware": false
+    },
+    {
+      "cve": "CVE-2026-72529",
+      "vendor": "TrueConf",
+      "product": "Server",
+      "name": "TrueConf Server Missing Authentication for Critical Function Vulnerability",
+      "date_added": "2026-08-20",
+      "due_date": "2026-08-23",
+      "ransomware": false
+    },
     {
       "cve": "CVE-2026-64849",
       "vendor": "MLflow",
@@ -91,24 +109,6 @@
       "name": "Progress LoadMaster Command Injection Vulnerability",
       "date_added": "2026-08-07",
       "due_date": "2026-08-10",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-63077",
-      "vendor": "JetBrains",
-      "product": "TeamCity",
-      "name": "JetBrains TeamCity Deserialization of Untrusted Data Vulnerability",
-      "date_added": "2026-08-05",
-      "due_date": "2026-08-08",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-18556",
-      "vendor": "N-able",
-      "product": "N-central",
-      "name": "N-able N-central Authentication Bypass Using an Alternate Path or Channel Vulnerability",
-      "date_added": "2026-08-04",
-      "due_date": "2026-08-07",
       "ransomware": false
     }
   ]

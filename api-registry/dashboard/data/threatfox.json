@@ -1,9 +1,19 @@
 {
-  "total": 10543,
+  "total": 6513,
   "recent": [
     {
-      "first_seen": "1882976",
-      "ioc": "credipaas.com",
+      "first_seen": "1883594",
+      "ioc": "147.189.169.192:8041",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "unknown_rat",
+      "malware_alias": "None",
+      "malware_printable": "Unknown RAT",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1883590",
+      "ioc": "eng-aquaburn.us",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -12,114 +22,104 @@
       "confidence": "True"
     },
     {
-      "first_seen": "1882950",
-      "ioc": "iritageneral.workers.dev",
+      "first_seen": "1883461",
+      "ioc": "ayesahrentacar.com",
       "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "php.shin_webshell",
+      "threat_type": "payload_delivery",
+      "malware": "js.iclickfix",
       "malware_alias": "None",
-      "malware_printable": "php.shin_webshell",
+      "malware_printable": "IClickFix",
       "confidence": "True"
     },
     {
-      "first_seen": "1882967",
-      "ioc": "http://190.196.253.119:10701/Mozi.m",
-      "ioc_type": "url",
+      "first_seen": "1883462",
+      "ioc": "bellaneek.googlemydesign.com",
+      "ioc_type": "domain",
       "threat_type": "payload_delivery",
-      "malware": "elf.mozi",
+      "malware": "js.iclickfix",
       "malware_alias": "None",
-      "malware_printable": "Mozi",
-      "confidence": "False"
+      "malware_printable": "IClickFix",
+      "confidence": "True"
     },
     {
-      "first_seen": "1882968",
-      "ioc": "http://223.123.44.122:42812/Mozi.m",
-      "ioc_type": "url",
+      "first_seen": "1883463",
+      "ioc": "nettbutikk.radiograf.no",
+      "ioc_type": "domain",
       "threat_type": "payload_delivery",
-      "malware": "elf.mozi",
+      "malware": "js.iclickfix",
       "malware_alias": "None",
-      "malware_printable": "Mozi",
-      "confidence": "False"
+      "malware_printable": "IClickFix",
+      "confidence": "True"
     },
     {
-      "first_seen": "1882969",
-      "ioc": "http://103.176.16.59:34532/Mozi.m",
-      "ioc_type": "url",
+      "first_seen": "1883464",
+      "ioc": "susantperkins.clientsitedemo.com",
+      "ioc_type": "domain",
       "threat_type": "payload_delivery",
-      "malware": "elf.mozi",
+      "malware": "js.iclickfix",
       "malware_alias": "None",
-      "malware_printable": "Mozi",
-      "confidence": "False"
+      "malware_printable": "IClickFix",
+      "confidence": "True"
     },
     {
-      "first_seen": "1882970",
-      "ioc": "http://116.140.6.114:46743/Mozi.m",
-      "ioc_type": "url",
+      "first_seen": "1883465",
+      "ioc": "huvipuistokeidas.fi",
+      "ioc_type": "domain",
       "threat_type": "payload_delivery",
-      "malware": "elf.mozi",
+      "malware": "js.iclickfix",
       "malware_alias": "None",
-      "malware_printable": "Mozi",
-      "confidence": "False"
+      "malware_printable": "IClickFix",
+      "confidence": "True"
     },
     {
-      "first_seen": "1882971",
-      "ioc": "http://103.225.191.202:34773/Mozi.m",
-      "ioc_type": "url",
+      "first_seen": "1883466",
+      "ioc": "ideagallery.co",
+      "ioc_type": "domain",
       "threat_type": "payload_delivery",
-      "malware": "elf.mozi",
+      "malware": "js.iclickfix",
       "malware_alias": "None",
-      "malware_printable": "Mozi",
-      "confidence": "False"
+      "malware_printable": "IClickFix",
+      "confidence": "True"
     },
     {
-      "first_seen": "1882972",
-      "ioc": "http://153.117.40.170:44217/Mozi.m",
-      "ioc_type": "url",
+      "first_seen": "1883467",
+      "ioc": "soprisengineering.com",
+      "ioc_type": "domain",
       "threat_type": "payload_delivery",
-      "malware": "elf.mozi",
+      "malware": "js.iclickfix",
       "malware_alias": "None",
-      "malware_printable": "Mozi",
-      "confidence": "False"
+      "malware_printable": "IClickFix",
+      "confidence": "True"
     },
     {
-      "first_seen": "1882973",
-      "ioc": "http://110.186.229.108:47843/Mozi.m",
-      "ioc_type": "url",
+      "first_seen": "1883468",
+      "ioc": "rightwinmedias.com",
+      "ioc_type": "domain",
       "threat_type": "payload_delivery",
-      "malware": "elf.mozi",
+      "malware": "js.iclickfix",
       "malware_alias": "None",
-      "malware_printable": "Mozi",
-      "confidence": "False"
+      "malware_printable": "IClickFix",
+      "confidence": "True"
     },
     {
-      "first_seen": "1882974",
-      "ioc": "http://115.57.182.131:41041/Mozi.m",
-      "ioc_type": "url",
+      "first_seen": "1883469",
+      "ioc": "bishnoivillagesafari.co.in",
+      "ioc_type": "domain",
       "threat_type": "payload_delivery",
-      "malware": "elf.mozi",
+      "malware": "js.iclickfix",
       "malware_alias": "None",
-      "malware_printable": "Mozi",
-      "confidence": "False"
+      "malware_printable": "IClickFix",
+      "confidence": "True"
     },
     {
-      "first_seen": "1882975",
-      "ioc": "http://183.63.8.194:46154/Mozi.m",
-      "ioc_type": "url",
+      "first_seen": "1883470",
+      "ioc": "summershairbraidings.com",
+      "ioc_type": "domain",
       "threat_type": "payload_delivery",
-      "malware": "elf.mozi",
+      "malware": "js.iclickfix",
       "malware_alias": "None",
-      "malware_printable": "Mozi",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1882964",
-      "ioc": "91.215.85.6:56001",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.pure_rat",
-      "malware_alias": "PureHVNC",
-      "malware_printable": "ResolverRAT",
-      "confidence": "75"
+      "malware_printable": "IClickFix",
+      "confidence": "True"
     }
   ]
 }

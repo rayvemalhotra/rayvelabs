@@ -1,5 +1,5 @@
 {
-  "total_listings": 10501,
+  "total_listings": 10507,
   "by_reason": [
     {
       "reason": "AsyncRAT C&C",
@@ -11,7 +11,7 @@
     },
     {
       "reason": "Vidar C&C",
-      "count": 724
+      "count": 726
     },
     {
       "reason": "QuasarRAT C&C",
@@ -23,6 +23,36 @@
     }
   ],
   "recent": [
+    {
+      "listing_date": "2026-08-20 08:00:15",
+      "sha1": "7f73eeb03e7df441484d4610c5a0c3a02f166989",
+      "listing_reason": "PureLogsStealer C&C"
+    },
+    {
+      "listing_date": "2026-08-20 07:42:24",
+      "sha1": "3992dd5edcdf2ce5d143f933e2657640e00a58d4",
+      "listing_reason": "OffLoader C&C"
+    },
+    {
+      "listing_date": "2026-08-20 07:32:16",
+      "sha1": "e0ffdffb5d9bf9216ea5e70d4fe2bae919f5a6ca",
+      "listing_reason": "OffLoader C&C"
+    },
+    {
+      "listing_date": "2026-08-20 07:31:39",
+      "sha1": "e1fadee899789d8e802b8b88dcf67e4cae82ccf1",
+      "listing_reason": "Vidar C&C"
+    },
+    {
+      "listing_date": "2026-08-20 07:31:22",
+      "sha1": "0ad6076cb27bcdd5dd26fe56c022f4ab61ea00be",
+      "listing_reason": "Meterpreter C&C"
+    },
+    {
+      "listing_date": "2026-08-20 06:50:47",
+      "sha1": "732c7efa7d624c30b074e78df6595f54fde9188d",
+      "listing_reason": "Vidar C&C"
+    },
     {
       "listing_date": "2026-08-20 06:24:07",
       "sha1": "45152caa36a93f2aa9dab483d4c57531221c431d",
@@ -41,36 +71,6 @@
     {
       "listing_date": "2026-08-20 06:12:31",
       "sha1": "ab273c45f00b156514b5b6be664484911dbed547",
-      "listing_reason": "PureRAT C&C"
-    },
-    {
-      "listing_date": "2026-08-20 06:11:03",
-      "sha1": "8c6132e27eb7bfe859029b583c55243baf3f3029",
-      "listing_reason": "PureRAT C&C"
-    },
-    {
-      "listing_date": "2026-08-20 06:05:31",
-      "sha1": "865a8d01e86bcf06890c09c7b3e9f2c786d7e600",
-      "listing_reason": "PureRAT C&C"
-    },
-    {
-      "listing_date": "2026-08-20 06:03:38",
-      "sha1": "03cdb8ba1363fb90f77ab53b6fc78d58a5340c35",
-      "listing_reason": "PureRAT C&C"
-    },
-    {
-      "listing_date": "2026-08-20 05:56:56",
-      "sha1": "6d92d180394761c59cc1455cf6a7c773fb4efabe",
-      "listing_reason": "PureRAT C&C"
-    },
-    {
-      "listing_date": "2026-08-20 05:44:20",
-      "sha1": "f52ace7c91f1ad88a78ea62eab06e000e2f88f16",
-      "listing_reason": "PureRAT C&C"
-    },
-    {
-      "listing_date": "2026-08-20 05:42:38",
-      "sha1": "c6d367c9312830fbe81f12e8be9f1d56d2e10b13",
       "listing_reason": "PureRAT C&C"
     }
   ]

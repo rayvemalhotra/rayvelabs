@@ -1,17 +1,15 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1129",
-    "name": "Shared Modules",
-    "description": "Adversaries may execute malicious payloads via loading shared modules. Shared modules are executable files that are loaded into processes to provide access to reusable code, such as specific custom functions or invoking OS API functions (i.e., [Native API](https://attack.mitre.org/techniques/T1106)).",
+    "id": "T1602",
+    "name": "Data from Configuration Repository",
+    "description": "Adversaries may collect data related to managed devices from configuration repositories. Configuration repositories are used by management systems in order to configure, manage, and control data on remote systems. Configuration repositories may also facilitate remote access and administration of devices.",
     "tactics": [
-      "execution"
+      "collection"
     ],
     "platforms": [
-      "Linux",
-      "macOS",
-      "Windows"
+      "Network Devices"
     ],
-    "url": "https://attack.mitre.org/techniques/T1129"
+    "url": "https://attack.mitre.org/techniques/T1602"
   }
 }
