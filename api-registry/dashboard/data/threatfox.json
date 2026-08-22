@@ -1,19 +1,79 @@
 {
-  "total": 6513,
+  "total": 4656,
   "recent": [
     {
-      "first_seen": "1883594",
-      "ioc": "147.189.169.192:8041",
-      "ioc_type": "ip:port",
+      "first_seen": "1884140",
+      "ioc": "http://zakuiru.shop:9048/products",
+      "ioc_type": "url",
       "threat_type": "botnet_cc",
-      "malware": "unknown_rat",
+      "malware": "win.remus",
       "malware_alias": "None",
-      "malware_printable": "Unknown RAT",
+      "malware_printable": "Remus",
       "confidence": "False"
     },
     {
-      "first_seen": "1883590",
-      "ioc": "eng-aquaburn.us",
+      "first_seen": "1884139",
+      "ioc": "http://kupzovo.shop:7567/profiles",
+      "ioc_type": "url",
+      "threat_type": "botnet_cc",
+      "malware": "win.remus",
+      "malware_alias": "None",
+      "malware_printable": "Remus",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1884136",
+      "ioc": "43.136.99.254:3306",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "unknown",
+      "malware_alias": "None",
+      "malware_printable": "Unknown malware",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1884135",
+      "ioc": "113.44.89.87:22",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "unknown",
+      "malware_alias": "None",
+      "malware_printable": "Unknown malware",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1884134",
+      "ioc": "43.155.168.253:8888",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "unknown",
+      "malware_alias": "None",
+      "malware_printable": "Unknown malware",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1884132",
+      "ioc": "d8f3565o.abell.store",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1884131",
+      "ioc": "abell.store",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1884080",
+      "ioc": "ride4you.ch",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -22,104 +82,44 @@
       "confidence": "True"
     },
     {
-      "first_seen": "1883461",
-      "ioc": "ayesahrentacar.com",
+      "first_seen": "1884079",
+      "ioc": "p7yjux0i.en-en-usa-memorylift.com",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
-      "malware": "js.iclickfix",
+      "malware": "js.clearfake",
       "malware_alias": "None",
-      "malware_printable": "IClickFix",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1884077",
+      "ioc": "169.239.128.75:8082",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.vshell",
+      "malware_alias": "None",
+      "malware_printable": "VShell",
       "confidence": "True"
     },
     {
-      "first_seen": "1883462",
-      "ioc": "bellaneek.googlemydesign.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.iclickfix",
+      "first_seen": "1884078",
+      "ioc": "185.242.3.178:80",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.vshell",
       "malware_alias": "None",
-      "malware_printable": "IClickFix",
+      "malware_printable": "VShell",
       "confidence": "True"
     },
     {
-      "first_seen": "1883463",
-      "ioc": "nettbutikk.radiograf.no",
+      "first_seen": "1884076",
+      "ioc": "6hbt9k7l.eng-en-bloodarmor.com",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
-      "malware": "js.iclickfix",
+      "malware": "js.clearfake",
       "malware_alias": "None",
-      "malware_printable": "IClickFix",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1883464",
-      "ioc": "susantperkins.clientsitedemo.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.iclickfix",
-      "malware_alias": "None",
-      "malware_printable": "IClickFix",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1883465",
-      "ioc": "huvipuistokeidas.fi",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.iclickfix",
-      "malware_alias": "None",
-      "malware_printable": "IClickFix",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1883466",
-      "ioc": "ideagallery.co",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.iclickfix",
-      "malware_alias": "None",
-      "malware_printable": "IClickFix",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1883467",
-      "ioc": "soprisengineering.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.iclickfix",
-      "malware_alias": "None",
-      "malware_printable": "IClickFix",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1883468",
-      "ioc": "rightwinmedias.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.iclickfix",
-      "malware_alias": "None",
-      "malware_printable": "IClickFix",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1883469",
-      "ioc": "bishnoivillagesafari.co.in",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.iclickfix",
-      "malware_alias": "None",
-      "malware_printable": "IClickFix",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1883470",
-      "ioc": "summershairbraidings.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.iclickfix",
-      "malware_alias": "None",
-      "malware_printable": "IClickFix",
-      "confidence": "True"
+      "malware_printable": "ClearFake",
+      "confidence": "False"
     }
   ]
 }
