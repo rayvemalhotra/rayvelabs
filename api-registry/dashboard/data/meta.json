@@ -1,57 +1,56 @@
 {
-  "started_at": "2026-08-22T06:35:22Z",
-  "finished_at": "2026-08-22T06:35:29Z",
+  "started_at": "2026-08-23T06:36:30Z",
+  "finished_at": "2026-08-23T06:36:37Z",
   "feeds": {
     "kev": {
       "ok": true,
-      "elapsed_ms": 378
+      "elapsed_ms": 549
     },
     "epss-top": {
       "ok": true,
-      "elapsed_ms": 2633
+      "elapsed_ms": 2803
     },
     "attack-spotlight": {
       "ok": true,
-      "elapsed_ms": 554
+      "elapsed_ms": 648
     },
     "urlhaus": {
       "ok": true,
-      "elapsed_ms": 310
+      "elapsed_ms": 551
     },
     "threatfox": {
       "ok": true,
-      "elapsed_ms": 463
+      "elapsed_ms": 568
     },
     "feodo": {
       "ok": true,
-      "elapsed_ms": 221
+      "elapsed_ms": 201
     },
     "tor": {
       "ok": true,
-      "elapsed_ms": 654
+      "elapsed_ms": 738
     },
     "dshield": {
-      "ok": false,
-      "error": "HTTPError: HTTP Error 500: Internal Server Error",
-      "elapsed_ms": 179
+      "ok": true,
+      "elapsed_ms": 441
     },
     "dataplane-ssh": {
       "ok": true,
-      "elapsed_ms": 547
+      "elapsed_ms": 543
     },
     "spamhaus-drop": {
       "ok": true,
-      "elapsed_ms": 78
+      "elapsed_ms": 82
     },
     "hibp": {
       "ok": true,
-      "elapsed_ms": 135
+      "elapsed_ms": 159
     },
     "sslbl": {
       "ok": true,
-      "elapsed_ms": 332
+      "elapsed_ms": 189
     }
   },
   "feed_count": 12,
-  "ok_count": 11
+  "ok_count": 12
 }
