@@ -1,9 +1,9 @@
 {
-  "total": 5292,
+  "total": 6389,
   "recent": [
     {
-      "first_seen": "1885137",
-      "ioc": "hashtagshopbd.com",
+      "first_seen": "1885920",
+      "ioc": "theflowgarden.ch",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -12,8 +12,8 @@
       "confidence": "True"
     },
     {
-      "first_seen": "1885138",
-      "ioc": "growmag.com",
+      "first_seen": "1885919",
+      "ioc": "eagleagents.ai",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -22,78 +22,58 @@
       "confidence": "True"
     },
     {
-      "first_seen": "1885135",
-      "ioc": "106.54.41.209:81",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "unknown",
+      "first_seen": "1885918",
+      "ioc": "http://91.92.241.160/files/output.exe",
+      "ioc_type": "url",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
       "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "True"
+      "malware_printable": "ClearFake",
+      "confidence": "False"
     },
     {
-      "first_seen": "1885133",
-      "ioc": "45.8.46.122:22",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "unknown",
-      "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1885134",
-      "ioc": "45.8.46.122:5432",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "unknown",
-      "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1885132",
-      "ioc": "giftcardbazaar.com",
+      "first_seen": "1885916",
+      "ioc": "bafybeihryapqa7lq7w3bc7cyqiipfyh7psq7qttgzp5euijblhohcmwweq.ipfs.w3s.link",
       "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "unknown",
+      "threat_type": "botnet_cc",
+      "malware": "js.clearfake",
       "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1885125",
-      "ioc": "https://hzindia.com/",
-      "ioc_type": "url",
-      "threat_type": "payload_delivery",
-      "malware": "unknown",
-      "malware_alias": "None",
-      "malware_printable": "Unknown malware",
+      "malware_printable": "ClearFake",
       "confidence": "False"
     },
     {
-      "first_seen": "1885126",
-      "ioc": "https://josephonetech.com/",
-      "ioc_type": "url",
-      "threat_type": "payload_delivery",
-      "malware": "unknown",
+      "first_seen": "1885911",
+      "ioc": "91.92.240.102:3000",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.quasar_rat",
+      "malware_alias": "CinaRAT",
+      "malware_printable": "QuasarRAT",
+      "confidence": ""
+    },
+    {
+      "first_seen": "1885910",
+      "ioc": "38.97.56.198:3741",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.quasar_rat",
+      "malware_alias": "CinaRAT",
+      "malware_printable": "QuasarRAT",
+      "confidence": ""
+    },
+    {
+      "first_seen": "1885906",
+      "ioc": "fingerprint-verification.info",
+      "ioc_type": "domain",
+      "threat_type": "botnet_cc",
+      "malware": "js.clearfake",
       "malware_alias": "None",
-      "malware_printable": "Unknown malware",
+      "malware_printable": "ClearFake",
       "confidence": "False"
     },
     {
-      "first_seen": "1885127",
-      "ioc": "https://moat55.com/",
-      "ioc_type": "url",
-      "threat_type": "payload_delivery",
-      "malware": "unknown",
-      "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1885122",
-      "ioc": "7ejjnjb6.eng-usa-glycomute.com",
+      "first_seen": "1885905",
+      "ioc": "nx7k0dvp.eng--memorylift.com",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -102,24 +82,44 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1885120",
-      "ioc": "101.200.193.211:8084",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.vshell",
+      "first_seen": "1885904",
+      "ioc": "7wagrm1i.mulip.store",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
       "malware_alias": "None",
-      "malware_printable": "VShell",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1885903",
+      "ioc": "https://cdn.jsdelivr.net/gh/marye4562/4hf7gdy44d5/36gd&hdk",
+      "ioc_type": "url",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1885902",
+      "ioc": "eng-eng-cardioslim.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
       "confidence": "True"
     },
     {
-      "first_seen": "1885121",
-      "ioc": "101.42.96.140:9999",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.vshell",
+      "first_seen": "1885901",
+      "ioc": "ndg2zyyn.ejash.store",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
       "malware_alias": "None",
-      "malware_printable": "VShell",
-      "confidence": "True"
+      "malware_printable": "ClearFake",
+      "confidence": "False"
     }
   ]
 }

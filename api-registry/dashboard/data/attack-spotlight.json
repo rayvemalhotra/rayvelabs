@@ -1,15 +1,17 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1666",
-    "name": "Modify Cloud Resource Hierarchy",
-    "description": "Adversaries may attempt to modify hierarchical structures in infrastructure-as-a-service (IaaS) environments in order to evade defenses.  ",
+    "id": "T1014",
+    "name": "Rootkit",
+    "description": "Adversaries may use rootkits to hide the presence of programs, files, network connections, services, drivers, and other system components. Rootkits are programs that hide the existence of malware by intercepting/hooking and modifying operating system API calls that supply system information. (Citation: Symantec Windows Rootkits) ",
     "tactics": [
-      "defense-impairment"
+      "stealth"
     ],
     "platforms": [
-      "IaaS"
+      "Linux",
+      "macOS",
+      "Windows"
     ],
-    "url": "https://attack.mitre.org/techniques/T1666"
+    "url": "https://attack.mitre.org/techniques/T1014"
   }
 }
