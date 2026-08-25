@@ -1,17 +1,17 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1014",
-    "name": "Rootkit",
-    "description": "Adversaries may use rootkits to hide the presence of programs, files, network connections, services, drivers, and other system components. Rootkits are programs that hide the existence of malware by intercepting/hooking and modifying operating system API calls that supply system information. (Citation: Symantec Windows Rootkits) ",
+    "id": "T1123",
+    "name": "Audio Capture",
+    "description": "An adversary can leverage a computer's peripheral devices (e.g., microphones and webcams) or applications (e.g., voice and video call services) to capture audio recordings for the purpose of listening into sensitive conversations to gather information.(Citation: ESET Attor Oct 2019)",
     "tactics": [
-      "stealth"
+      "collection"
     ],
     "platforms": [
       "Linux",
       "macOS",
       "Windows"
     ],
-    "url": "https://attack.mitre.org/techniques/T1014"
+    "url": "https://attack.mitre.org/techniques/T1123"
   }
 }

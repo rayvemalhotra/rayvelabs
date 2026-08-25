@@ -1,5 +1,5 @@
 {
-  "total_listings": 10528,
+  "total_listings": 10530,
   "by_reason": [
     {
       "reason": "AsyncRAT C&C",
@@ -11,7 +11,7 @@
     },
     {
       "reason": "Vidar C&C",
-      "count": 730
+      "count": 732
     },
     {
       "reason": "QuasarRAT C&C",
@@ -23,6 +23,16 @@
     }
   ],
   "recent": [
+    {
+      "listing_date": "2026-08-24 13:38:10",
+      "sha1": "7a9be497f84c09e7591ba7c7d69539a6e0468302",
+      "listing_reason": "Vidar C&C"
+    },
+    {
+      "listing_date": "2026-08-24 13:37:35",
+      "sha1": "277cf8e1227351964ba2a8e57b49b26f8f8e353a",
+      "listing_reason": "Vidar C&C"
+    },
     {
       "listing_date": "2026-08-22 11:04:08",
       "sha1": "9c0a9291be46e42b67835dff9e6c767fd6660287",
@@ -62,16 +72,6 @@
       "listing_date": "2026-08-22 10:20:21",
       "sha1": "0c587f31dc58c33ef2e3632bb161f4d52231b7c1",
       "listing_reason": "ConnectWise C&C"
-    },
-    {
-      "listing_date": "2026-08-21 08:57:04",
-      "sha1": "de7567aa2ce367cb0915ffd8eb55b1e320e726c9",
-      "listing_reason": "PureLogsStealer C&C"
-    },
-    {
-      "listing_date": "2026-08-21 08:55:40",
-      "sha1": "b95285b6b061fd0acf6a5ae95433d703f52d1872",
-      "listing_reason": "PureLogsStealer C&C"
     }
   ]
 }
