@@ -1,17 +1,19 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1123",
-    "name": "Audio Capture",
-    "description": "An adversary can leverage a computer's peripheral devices (e.g., microphones and webcams) or applications (e.g., voice and video call services) to capture audio recordings for the purpose of listening into sensitive conversations to gather information.(Citation: ESET Attor Oct 2019)",
+    "id": "T1543",
+    "name": "Create or Modify System Process",
+    "description": "Adversaries may create or modify system-level processes to repeatedly execute malicious payloads as part of persistence. When operating systems boot up, they can start processes that perform background system functions. On Windows and Linux, these system processes are referred to as services.(Citation: TechNet Services) On macOS, launchd processes known as [Launch Daemon](https://attack.mitre.org/techniques/T1543/004) and [Launch Agent](https://attack.mitre.org/techniques/T1543/001) are run to finish system initialization and load user specific parameters.(Citation: AppleDocs Launch Agent Daemons) ",
     "tactics": [
-      "collection"
+      "persistence",
+      "privilege-escalation"
     ],
     "platforms": [
+      "Containers",
       "Linux",
       "macOS",
       "Windows"
     ],
-    "url": "https://attack.mitre.org/techniques/T1123"
+    "url": "https://attack.mitre.org/techniques/T1543"
   }
 }

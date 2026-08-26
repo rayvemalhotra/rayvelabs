@@ -1,6 +1,6 @@
 {
-  "total_breaches": 1031,
-  "total_records_exposed": 17782150561,
+  "total_breaches": 1032,
+  "total_records_exposed": 17795083974,
   "recent": [
     {
       "name": "OzHairAndBeauty",
@@ -15,6 +15,21 @@
         "Names",
         "Phone numbers",
         "Purchases"
+      ],
+      "verified": true
+    },
+    {
+      "name": "Carhartt",
+      "title": "Carhartt",
+      "domain": "carhartt.com",
+      "breach_date": "2026-08-13",
+      "added_date": "2026-08-25T21:34:25Z",
+      "pwn_count": 12933413,
+      "data_classes": [
+        "Email addresses",
+        "Names",
+        "Phone numbers",
+        "Physical addresses"
       ],
       "verified": true
     },
@@ -112,23 +127,6 @@
         "Phone numbers",
         "Physical addresses",
         "Purchases"
-      ],
-      "verified": true
-    },
-    {
-      "name": "Fluke",
-      "title": "Fluke",
-      "domain": "fluke.com",
-      "breach_date": "2026-07-01",
-      "added_date": "2026-07-15T08:01:04Z",
-      "pwn_count": 821100,
-      "data_classes": [
-        "Email addresses",
-        "Employers",
-        "Job titles",
-        "Names",
-        "Physical addresses",
-        "Support tickets"
       ],
       "verified": true
     }
