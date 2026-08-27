@@ -1,12 +1,12 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1543",
-    "name": "Create or Modify System Process",
-    "description": "Adversaries may create or modify system-level processes to repeatedly execute malicious payloads as part of persistence. When operating systems boot up, they can start processes that perform background system functions. On Windows and Linux, these system processes are referred to as services.(Citation: TechNet Services) On macOS, launchd processes known as [Launch Daemon](https://attack.mitre.org/techniques/T1543/004) and [Launch Agent](https://attack.mitre.org/techniques/T1543/001) are run to finish system initialization and load user specific parameters.(Citation: AppleDocs Launch Agent Daemons) ",
+    "id": "T1133",
+    "name": "External Remote Services",
+    "description": "Adversaries may leverage external-facing remote services to initially access and/or persist within a network. Remote services such as VPNs, Citrix, and other access mechanisms allow users to connect to internal enterprise network resources from external locations. There are often remote service gateways that manage connections and credential authentication for these services. Services such as [Windows Remote Management](https://attack.mitre.org/techniques/T1021/006) and [VNC](https://attack.mitre.org/techniques/T1021/005) can also be used externally.(Citation: MacOS VNC software for Remote Desktop)",
     "tactics": [
       "persistence",
-      "privilege-escalation"
+      "initial-access"
     ],
     "platforms": [
       "Containers",
@@ -14,6 +14,6 @@
       "macOS",
       "Windows"
     ],
-    "url": "https://attack.mitre.org/techniques/T1543"
+    "url": "https://attack.mitre.org/techniques/T1133"
   }
 }

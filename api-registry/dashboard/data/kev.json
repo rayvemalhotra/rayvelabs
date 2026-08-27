@@ -1,8 +1,62 @@
 {
-  "total": 1676,
-  "catalog_version": "2026.08.25",
-  "date_released": "2026-08-25T17:43:58.4301Z",
+  "total": 1682,
+  "catalog_version": "2026.08.26",
+  "date_released": "2026-08-26T17:00:09.8976Z",
   "recent": [
+    {
+      "cve": "CVE-2021-23758",
+      "vendor": "Ajax.NET Professional",
+      "product": "Ajax.NET Professional",
+      "name": "Ajax.NET Professional Deserialization of Untrusted Data Vulnerability",
+      "date_added": "2026-08-26",
+      "due_date": "2026-09-09",
+      "ransomware": false
+    },
+    {
+      "cve": "CVE-2015-3246",
+      "vendor": "Red Hat",
+      "product": "Libuser",
+      "name": "Red Hat Libuser Race Condition Vulnerability",
+      "date_added": "2026-08-26",
+      "due_date": "2026-09-09",
+      "ransomware": false
+    },
+    {
+      "cve": "CVE-2015-5287",
+      "vendor": "Red Hat",
+      "product": "Automatic Bug Reporting Tool",
+      "name": "Red Hat Automatic Bug Reporting Tool Privilege Escalation Vulnerability",
+      "date_added": "2026-08-26",
+      "due_date": "2026-09-09",
+      "ransomware": false
+    },
+    {
+      "cve": "CVE-2022-0995",
+      "vendor": "Linux",
+      "product": "Kernel",
+      "name": "Linux Kernel Out-of-Bounds Write Vulnerability",
+      "date_added": "2026-08-26",
+      "due_date": "2026-09-09",
+      "ransomware": false
+    },
+    {
+      "cve": "CVE-2026-8452",
+      "vendor": "Citrix",
+      "product": "NetScaler ADC and NetScaler Gateway",
+      "name": "Citrix NetScaler ADC and NetScaler Gateway Improper Restriction of Operations within the Bounds of a Memory Buffer Vulnerability",
+      "date_added": "2026-08-26",
+      "due_date": "2026-08-29",
+      "ransomware": false
+    },
+    {
+      "cve": "CVE-2019-1068",
+      "vendor": "Microsoft",
+      "product": "SQL Server",
+      "name": "Microsoft SQL Server Remote Code Execution Vulnerability",
+      "date_added": "2026-08-26",
+      "due_date": "2026-08-29",
+      "ransomware": false
+    },
     {
       "cve": "CVE-2026-60004",
       "vendor": "Gitea",
@@ -55,60 +109,6 @@
       "name": "MLflow Server-Side Request Forgery Vulnerability",
       "date_added": "2026-08-19",
       "due_date": "2026-09-02",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-33824",
-      "vendor": "Microsoft",
-      "product": "Internet Key Exchange (IKE) Service Extensions",
-      "name": "Microsoft Internet Key Exchange (IKE) Service Extensions Double Free Vulnerability",
-      "date_added": "2026-08-18",
-      "due_date": "2026-08-21",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-59310",
-      "vendor": "Broadcom",
-      "product": "VMware vCenter",
-      "name": "Broadcom VMware vCenter Path Traversal Vulnerability",
-      "date_added": "2026-08-18",
-      "due_date": "2026-08-21",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-55040",
-      "vendor": "Microsoft",
-      "product": "SharePoint",
-      "name": "Microsoft SharePoint Weak Authentication Vulnerability",
-      "date_added": "2026-08-18",
-      "due_date": "2026-08-21",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-65400",
-      "vendor": "Apple",
-      "product": "macOS",
-      "name": "Apple macOS Improper Authentication Vulnerability",
-      "date_added": "2026-08-18",
-      "due_date": "2026-08-21",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2025-62593",
-      "vendor": "Ray-Project",
-      "product": "Ray",
-      "name": "Ray-Project Ray Code Injection Vulnerability",
-      "date_added": "2026-08-17",
-      "due_date": "2026-08-20",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-20349",
-      "vendor": "Cisco",
-      "product": "Secure Firewall Adaptive Security Appliance (ASA) and Secure Firewall Threat Defense (FTD) ",
-      "name": "Cisco Secure Firewall Adaptive Security Appliance (ASA) and Secure Firewall Threat Defense (FTD) Heap Inspection Vulnerability",
-      "date_added": "2026-08-11",
-      "due_date": "2026-08-14",
       "ransomware": false
     }
   ]

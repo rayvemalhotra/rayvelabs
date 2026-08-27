@@ -1,9 +1,29 @@
 {
-  "total": 6391,
+  "total": 6375,
   "recent": [
     {
-      "first_seen": "1888001",
-      "ioc": "www.dataspot.at",
+      "first_seen": "1889450",
+      "ioc": "https://cdn.jsdelivr.net/gh/snowplow-byte/synergy/garter",
+      "ioc_type": "url",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1889444",
+      "ioc": "https://cdn.jsdelivr.net/gh/snowplow-byte/moustache/swimsuit",
+      "ioc_type": "url",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1889443",
+      "ioc": "en-us-theeloncod.com",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -12,114 +32,94 @@
       "confidence": "True"
     },
     {
-      "first_seen": "1887968",
-      "ioc": "nopofomo.workers.dev",
+      "first_seen": "1889441",
+      "ioc": "7fwxhbzb.leviume.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1889439",
+      "ioc": "leviume.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1889437",
+      "ioc": "http://whitepk.click:9001/articles",
+      "ioc_type": "url",
+      "threat_type": "botnet_cc",
+      "malware": "win.remus",
+      "malware_alias": "None",
+      "malware_printable": "Remus",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1889435",
+      "ioc": "http://flreaow.click:6527/collections",
+      "ioc_type": "url",
+      "threat_type": "botnet_cc",
+      "malware": "win.remus",
+      "malware_alias": "None",
+      "malware_printable": "Remus",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1889436",
+      "ioc": "http://shhsift.click:7647/tags",
+      "ioc_type": "url",
+      "threat_type": "botnet_cc",
+      "malware": "win.remus",
+      "malware_alias": "None",
+      "malware_printable": "Remus",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1889432",
+      "ioc": "bnb.123ful.net",
       "ioc_type": "domain",
       "threat_type": "botnet_cc",
-      "malware": "php.shin_webshell",
+      "malware": "win.vidar",
       "malware_alias": "None",
-      "malware_printable": "php.shin_webshell",
+      "malware_printable": "Vidar",
       "confidence": "True"
     },
     {
-      "first_seen": "1887969",
-      "ioc": "darkprn3d3udnhpuxknsrhft3376lrz5tenhgkrxge5hxqe46pkbrwid.onion",
-      "ioc_type": "domain",
+      "first_seen": "1889433",
+      "ioc": "https://bnb.123ful.net/",
+      "ioc_type": "url",
       "threat_type": "botnet_cc",
-      "malware": "unknown",
+      "malware": "win.vidar",
       "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "False"
+      "malware_printable": "Vidar",
+      "confidence": "True"
     },
     {
-      "first_seen": "1887970",
-      "ioc": "jsqsgn6vehow5jnjqohteaqnhko6pmdvjzbim57bdvdtgobrmoibjzad.onion",
+      "first_seen": "1889422",
+      "ioc": "bondijunction.physio",
       "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "unknown",
+      "threat_type": "payload_delivery",
+      "malware": "unknown_loader",
       "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "False"
+      "malware_printable": "Unknown Loader",
+      "confidence": "True"
     },
     {
-      "first_seen": "1887971",
-      "ioc": "frwvvaqob3ofmegrbc4q2ovtwyf5u7ozyyv35unib3saq3ppx2pkwuad.onion",
+      "first_seen": "1889423",
+      "ioc": "borghettipharma.com",
       "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "unknown",
+      "threat_type": "payload_delivery",
+      "malware": "unknown_loader",
       "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1887972",
-      "ioc": "667k2ck7qlzoqt52i6dq7evcfzko2ezfrhgv6zziccjet2cc653kvbid.onion",
-      "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "unknown",
-      "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1887973",
-      "ioc": "e6q3vpkqpqjnerdtseb5wkgmuluqfsluu2sgwjghtrlf2u2pzybrlzid.onion",
-      "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "unknown",
-      "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1887974",
-      "ioc": "kic4bflgzxoo2oq5wn52frqpzba2b75iodhqjgtdulchdeph73kq6zqd.onion",
-      "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "unknown",
-      "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1887975",
-      "ioc": "7y6rr2oawf63yf2zjdidijun7p6gtjqye7b44vqyvilva3or324k3kad.onion",
-      "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "unknown",
-      "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1887976",
-      "ioc": "x4emye5homuwkrvrfaoql53hc5spbazkvcw3m4pv6jaj5tjqmjizleqd.onion",
-      "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "unknown",
-      "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1887977",
-      "ioc": "2zl5qc3mqap7vziqfis65oyjcgdiedigoequxbqsn6uwian7ieozvoqd.onion",
-      "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "unknown",
-      "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1887978",
-      "ioc": "pokttabd2hod47ladeeoin22wmq4remyo3wshwvxfuhgqygcbezq2qqd.onion",
-      "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "unknown",
-      "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "False"
+      "malware_printable": "Unknown Loader",
+      "confidence": "True"
     }
   ]
 }
