@@ -1,10 +1,10 @@
 {
-  "total": 6375,
+  "total": 8109,
   "recent": [
     {
-      "first_seen": "1889450",
-      "ioc": "https://cdn.jsdelivr.net/gh/snowplow-byte/synergy/garter",
-      "ioc_type": "url",
+      "first_seen": "1890759",
+      "ioc": "c2qzm47m.dsm.li",
+      "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
       "malware_alias": "None",
@@ -12,18 +12,8 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1889444",
-      "ioc": "https://cdn.jsdelivr.net/gh/snowplow-byte/moustache/swimsuit",
-      "ioc_type": "url",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1889443",
-      "ioc": "en-us-theeloncod.com",
+      "first_seen": "1890758",
+      "ioc": "dsm.li",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -32,8 +22,18 @@
       "confidence": "True"
     },
     {
-      "first_seen": "1889441",
-      "ioc": "7fwxhbzb.leviume.com",
+      "first_seen": "1890756",
+      "ioc": "www.lankatraveltrails.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1890749",
+      "ioc": "8fnn9rmz.gtsdirect.com",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -42,8 +42,38 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1889439",
-      "ioc": "leviume.com",
+      "first_seen": "1890747",
+      "ioc": "http://flreaow.click:6527/tags",
+      "ioc_type": "url",
+      "threat_type": "botnet_cc",
+      "malware": "win.remus",
+      "malware_alias": "None",
+      "malware_printable": "Remus",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1890748",
+      "ioc": "http://piarl.site:9048/reviews",
+      "ioc_type": "url",
+      "threat_type": "botnet_cc",
+      "malware": "win.remus",
+      "malware_alias": "None",
+      "malware_printable": "Remus",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1890746",
+      "ioc": "gtsdirect.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1890743",
+      "ioc": "rd41sui1.protectconn.com",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -52,74 +82,44 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1889437",
-      "ioc": "http://whitepk.click:9001/articles",
-      "ioc_type": "url",
-      "threat_type": "botnet_cc",
-      "malware": "win.remus",
-      "malware_alias": "None",
-      "malware_printable": "Remus",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1889435",
-      "ioc": "http://flreaow.click:6527/collections",
-      "ioc_type": "url",
-      "threat_type": "botnet_cc",
-      "malware": "win.remus",
-      "malware_alias": "None",
-      "malware_printable": "Remus",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1889436",
-      "ioc": "http://shhsift.click:7647/tags",
-      "ioc_type": "url",
-      "threat_type": "botnet_cc",
-      "malware": "win.remus",
-      "malware_alias": "None",
-      "malware_printable": "Remus",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1889432",
-      "ioc": "bnb.123ful.net",
-      "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "win.vidar",
-      "malware_alias": "None",
-      "malware_printable": "Vidar",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1889433",
-      "ioc": "https://bnb.123ful.net/",
-      "ioc_type": "url",
-      "threat_type": "botnet_cc",
-      "malware": "win.vidar",
-      "malware_alias": "None",
-      "malware_printable": "Vidar",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1889422",
-      "ioc": "bondijunction.physio",
+      "first_seen": "1890742",
+      "ioc": "protectconn.com",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1890741",
+      "ioc": "randevau.hu",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1890740",
+      "ioc": "http://cx288605.tw1.ru/L1nc0In.php",
+      "ioc_type": "url",
+      "threat_type": "botnet_cc",
+      "malware": "win.dcrat",
+      "malware_alias": "DarkCrystal RAT",
+      "malware_printable": "DCRat",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1890739",
+      "ioc": "440c.en-us-theeloncod.com",
+      "ioc_type": "domain",
+      "threat_type": "botnet_cc",
       "malware": "unknown_loader",
       "malware_alias": "None",
       "malware_printable": "Unknown Loader",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1889423",
-      "ioc": "borghettipharma.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "unknown_loader",
-      "malware_alias": "None",
-      "malware_printable": "Unknown Loader",
-      "confidence": "True"
+      "confidence": "False"
     }
   ]
 }

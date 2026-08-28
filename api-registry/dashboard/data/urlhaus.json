@@ -1,140 +1,140 @@
 {
-  "total_recent": 16129,
+  "total_recent": 16083,
   "recent": [
     {
-      "id": "3909015",
-      "date_added": "2026-08-27 16:51:16",
-      "url": "http://103.77.246.150/c.sh",
+      "id": "3909380",
+      "date_added": "2026-08-28 18:03:27",
+      "url": "http://196.251.121.142/a3f8d2/kaizen.arm6",
       "url_status": "online",
       "threat": "malware_download",
-      "tags": "103-77-246-150,sh,ua-wget",
-      "host": "https://urlhaus.abuse.ch/url/3909015/"
+      "tags": "196-251-121-142,elf,mirai,ua-wget",
+      "host": "https://urlhaus.abuse.ch/url/3909380/"
     },
     {
-      "id": "3909013",
-      "date_added": "2026-08-27 16:50:24",
-      "url": "http://103.77.246.150/w.sh",
+      "id": "3909375",
+      "date_added": "2026-08-28 18:02:25",
+      "url": "http://196.251.121.142/a3f8d2/kaizen.m68k",
       "url_status": "online",
       "threat": "malware_download",
-      "tags": "103-77-246-150,sh,ua-wget",
-      "host": "https://urlhaus.abuse.ch/url/3909013/"
+      "tags": "196-251-121-142,elf,mirai,ua-wget",
+      "host": "https://urlhaus.abuse.ch/url/3909375/"
     },
     {
-      "id": "3909014",
-      "date_added": "2026-08-27 16:50:24",
-      "url": "http://103.77.246.150/wget.sh",
+      "id": "3909376",
+      "date_added": "2026-08-28 18:02:25",
+      "url": "http://196.251.121.142/a3f8d2/kaizen.x86",
       "url_status": "online",
       "threat": "malware_download",
-      "tags": "103-77-246-150,sh,ua-wget",
-      "host": "https://urlhaus.abuse.ch/url/3909014/"
+      "tags": "196-251-121-142,elf,ua-wget",
+      "host": "https://urlhaus.abuse.ch/url/3909376/"
     },
     {
-      "id": "3909011",
-      "date_added": "2026-08-27 16:39:30",
-      "url": "http://125.47.247.14:44132/i",
+      "id": "3909377",
+      "date_added": "2026-08-28 18:02:25",
+      "url": "http://196.251.121.142/a3f8d2/kaizen.ppc",
+      "url_status": "online",
+      "threat": "malware_download",
+      "tags": "196-251-121-142,elf,mirai,ua-wget",
+      "host": "https://urlhaus.abuse.ch/url/3909377/"
+    },
+    {
+      "id": "3909378",
+      "date_added": "2026-08-28 18:02:25",
+      "url": "http://196.251.121.142/a3f8d2/kaizen.arm5",
+      "url_status": "online",
+      "threat": "malware_download",
+      "tags": "196-251-121-142,elf,mirai,ua-wget",
+      "host": "https://urlhaus.abuse.ch/url/3909378/"
+    },
+    {
+      "id": "3909379",
+      "date_added": "2026-08-28 18:02:25",
+      "url": "http://196.251.121.142/a3f8d2/kaizen.sh4",
+      "url_status": "online",
+      "threat": "malware_download",
+      "tags": "196-251-121-142,elf,ua-wget",
+      "host": "https://urlhaus.abuse.ch/url/3909379/"
+    },
+    {
+      "id": "3909374",
+      "date_added": "2026-08-28 18:01:24",
+      "url": "http://115.57.48.79:33777/bin.sh",
+      "url_status": "online",
+      "threat": "malware_download",
+      "tags": "32-bit,arm,elf,Mozi",
+      "host": "https://urlhaus.abuse.ch/url/3909374/"
+    },
+    {
+      "id": "3909373",
+      "date_added": "2026-08-28 17:56:15",
+      "url": "http://165.22.225.110/client.exe",
+      "url_status": "online",
+      "threat": "malware_download",
+      "tags": "165-22-225-110,exe,ua-wget",
+      "host": "https://urlhaus.abuse.ch/url/3909373/"
+    },
+    {
+      "id": "3909372",
+      "date_added": "2026-08-28 17:53:12",
+      "url": "http://164.92.220.158/client.exe",
+      "url_status": "online",
+      "threat": "malware_download",
+      "tags": "164-92-220-158,exe,ua-wget",
+      "host": "https://urlhaus.abuse.ch/url/3909372/"
+    },
+    {
+      "id": "3909371",
+      "date_added": "2026-08-28 17:37:24",
+      "url": "http://120.28.215.129:53744/i",
+      "url_status": "online",
+      "threat": "malware_download",
+      "tags": "32-bit,arm,elf,mirai,Mozi",
+      "host": "https://urlhaus.abuse.ch/url/3909371/"
+    },
+    {
+      "id": "3909370",
+      "date_added": "2026-08-28 17:02:27",
+      "url": "http://78.187.104.169:47307/bin.sh",
       "url_status": "online",
       "threat": "malware_download",
       "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3909011/"
+      "host": "https://urlhaus.abuse.ch/url/3909370/"
     },
     {
-      "id": "3909012",
-      "date_added": "2026-08-27 16:39:30",
-      "url": "http://115.57.233.31:33601/bin.sh",
+      "id": "3909369",
+      "date_added": "2026-08-28 16:46:13",
+      "url": "http://103.31.103.204:49856/bin.sh",
+      "url_status": "online",
+      "threat": "malware_download",
+      "tags": "Mozi",
+      "host": "https://urlhaus.abuse.ch/url/3909369/"
+    },
+    {
+      "id": "3909368",
+      "date_added": "2026-08-28 16:20:29",
+      "url": "http://123.12.20.34:40922/i",
       "url_status": "online",
       "threat": "malware_download",
       "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3909012/"
+      "host": "https://urlhaus.abuse.ch/url/3909368/"
     },
     {
-      "id": "3909010",
-      "date_added": "2026-08-27 16:38:28",
-      "url": "http://125.47.247.14:44132/bin.sh",
+      "id": "3909367",
+      "date_added": "2026-08-28 16:19:37",
+      "url": "http://42.226.76.23:50496/i",
       "url_status": "online",
       "threat": "malware_download",
       "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3909010/"
+      "host": "https://urlhaus.abuse.ch/url/3909367/"
     },
     {
-      "id": "3909009",
-      "date_added": "2026-08-27 16:12:17",
-      "url": "https://192.159.99.164/728277/base/base.apk",
+      "id": "3909366",
+      "date_added": "2026-08-28 16:01:14",
+      "url": "https://5.253.59.16/k/jjscotttbpl.dat",
       "url_status": "online",
       "threat": "malware_download",
-      "tags": "192-159-99-164,ua-wget",
-      "host": "https://urlhaus.abuse.ch/url/3909009/"
-    },
-    {
-      "id": "3909008",
-      "date_added": "2026-08-27 16:11:29",
-      "url": "https://192.159.99.164/463869/base/base.apk",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "192-159-99-164,ua-wget",
-      "host": "https://urlhaus.abuse.ch/url/3909008/"
-    },
-    {
-      "id": "3909007",
-      "date_added": "2026-08-27 16:11:28",
-      "url": "https://192.159.99.164/840474/base/base.apk",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "192-159-99-164,ua-wget",
-      "host": "https://urlhaus.abuse.ch/url/3909007/"
-    },
-    {
-      "id": "3909005",
-      "date_added": "2026-08-27 16:11:27",
-      "url": "https://192.159.99.164/840474/dropper/NextGen_mParivahan.apk",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "192-159-99-164,ua-wget",
-      "host": "https://urlhaus.abuse.ch/url/3909005/"
-    },
-    {
-      "id": "3909006",
-      "date_added": "2026-08-27 16:11:27",
-      "url": "https://192.159.99.164/136384/base/base.apk",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "192-159-99-164,ua-wget",
-      "host": "https://urlhaus.abuse.ch/url/3909006/"
-    },
-    {
-      "id": "3909004",
-      "date_added": "2026-08-27 16:11:23",
-      "url": "https://192.159.99.164/710893/dropper/NextGen_mParivahan.apk",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "192-159-99-164,ua-wget",
-      "host": "https://urlhaus.abuse.ch/url/3909004/"
-    },
-    {
-      "id": "3909002",
-      "date_added": "2026-08-27 16:11:19",
-      "url": "https://192.159.99.164/463869/dropper/NextGen_mParivahan.apk",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "192-159-99-164,ua-wget",
-      "host": "https://urlhaus.abuse.ch/url/3909002/"
-    },
-    {
-      "id": "3909003",
-      "date_added": "2026-08-27 16:11:19",
-      "url": "https://192.159.99.164/136384/dropper/NextGen_mParivahan.apk",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "192-159-99-164,ua-wget",
-      "host": "https://urlhaus.abuse.ch/url/3909003/"
-    },
-    {
-      "id": "3909001",
-      "date_added": "2026-08-27 16:07:20",
-      "url": "https://femade.co.uk/wp-content/uploads/QW1.exe",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "3,dropped-by-Stealc,RemusStealer",
-      "host": "https://urlhaus.abuse.ch/url/3909001/"
+      "tags": "MassLogger",
+      "host": "https://urlhaus.abuse.ch/url/3909366/"
     }
   ]
 }

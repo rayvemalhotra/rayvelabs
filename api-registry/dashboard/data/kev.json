@@ -1,8 +1,35 @@
 {
-  "total": 1682,
-  "catalog_version": "2026.08.26",
-  "date_released": "2026-08-26T17:00:09.8976Z",
+  "total": 1685,
+  "catalog_version": "2026.08.27",
+  "date_released": "2026-08-27T17:00:36.6632Z",
   "recent": [
+    {
+      "cve": "CVE-2023-49105",
+      "vendor": "ownCloud",
+      "product": "ownCloud",
+      "name": "ownCloud Improper Authentication Vulnerability",
+      "date_added": "2026-08-27",
+      "due_date": "2026-08-30",
+      "ransomware": false
+    },
+    {
+      "cve": "CVE-2026-53362",
+      "vendor": "Linux",
+      "product": "Kernel",
+      "name": "Linux Kernel Unspecified Vulnerability",
+      "date_added": "2026-08-27",
+      "due_date": "2026-08-30",
+      "ransomware": false
+    },
+    {
+      "cve": "CVE-2026-66384",
+      "vendor": "JFrog",
+      "product": "Artifactory",
+      "name": "JFrog Artifactory Improper Limitation of a Pathname to a Restricted Directory Vulnerability",
+      "date_added": "2026-08-27",
+      "due_date": "2026-09-10",
+      "ransomware": false
+    },
     {
       "cve": "CVE-2021-23758",
       "vendor": "Ajax.NET Professional",
@@ -82,33 +109,6 @@
       "name": "Zimbra Collaboration Suite (ZCS) OS Command Injection Vulnerability",
       "date_added": "2026-08-21",
       "due_date": "2026-08-24",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-72530",
-      "vendor": "TrueConf",
-      "product": "Server",
-      "name": "TrueConf Server Code Injection Vulnerability",
-      "date_added": "2026-08-20",
-      "due_date": "2026-09-03",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-72529",
-      "vendor": "TrueConf",
-      "product": "Server",
-      "name": "TrueConf Server Missing Authentication for Critical Function Vulnerability",
-      "date_added": "2026-08-20",
-      "due_date": "2026-08-23",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-64849",
-      "vendor": "MLflow",
-      "product": "MLflow",
-      "name": "MLflow Server-Side Request Forgery Vulnerability",
-      "date_added": "2026-08-19",
-      "due_date": "2026-09-02",
       "ransomware": false
     }
   ]
