@@ -1,5 +1,5 @@
 {
-  "total_listings": 10584,
+  "total_listings": 10590,
   "by_reason": [
     {
       "reason": "AsyncRAT C&C",
@@ -7,7 +7,7 @@
     },
     {
       "reason": "Vidar C&C",
-      "count": 744
+      "count": 748
     },
     {
       "reason": "Dridex C&C",
@@ -23,6 +23,36 @@
     }
   ],
   "recent": [
+    {
+      "listing_date": "2026-08-30 09:18:51",
+      "sha1": "ca8a5bbb1e6b22fa9ad9757c50f1bdaf2c22011d",
+      "listing_reason": "OffLoader C&C"
+    },
+    {
+      "listing_date": "2026-08-30 08:30:35",
+      "sha1": "bfbcd2802186b6c5707f7ff6341b87c12b97f4a4",
+      "listing_reason": "PureRAT C&C"
+    },
+    {
+      "listing_date": "2026-08-30 08:29:49",
+      "sha1": "a7fa6117a38135c4d9c26ec7e37f15b361535edf",
+      "listing_reason": "Vidar C&C"
+    },
+    {
+      "listing_date": "2026-08-30 07:34:17",
+      "sha1": "711c3a7bd15ae5377f4c395e23b3d8b8f1327ced",
+      "listing_reason": "Vidar C&C"
+    },
+    {
+      "listing_date": "2026-08-30 07:33:36",
+      "sha1": "a0d553e2a130766628359bea489166c63b9892d7",
+      "listing_reason": "Vidar C&C"
+    },
+    {
+      "listing_date": "2026-08-30 07:33:16",
+      "sha1": "1f494cd829ce4d2c465b8e981a0c7f9288354328",
+      "listing_reason": "Vidar C&C"
+    },
     {
       "listing_date": "2026-08-29 10:34:43",
       "sha1": "be12aa485facf3375cc2416e1f8fb28541136b83",
@@ -42,36 +72,6 @@
       "listing_date": "2026-08-29 06:37:26",
       "sha1": "a6e6aa58bac84e56b868f5f618ef227b75d7208e",
       "listing_reason": "QuasarRAT C&C"
-    },
-    {
-      "listing_date": "2026-08-29 06:27:15",
-      "sha1": "ddfdf0aa1923b91144b9886e63430e063ad115a8",
-      "listing_reason": "OffLoader C&C"
-    },
-    {
-      "listing_date": "2026-08-29 06:26:28",
-      "sha1": "e481c58f5012d5d8a5177bf84b055fc93c06e32e",
-      "listing_reason": "NetSupport C&C"
-    },
-    {
-      "listing_date": "2026-08-29 06:25:51",
-      "sha1": "ef5c2a4999763064e2213dbe1c8ed696c0e8914b",
-      "listing_reason": "Vidar C&C"
-    },
-    {
-      "listing_date": "2026-08-28 19:50:35",
-      "sha1": "5e06eaa686adc5ca8fd118752c6667e826bbcad0",
-      "listing_reason": "ConnectWise C&C"
-    },
-    {
-      "listing_date": "2026-08-28 19:50:23",
-      "sha1": "41f8e81a4f9b3e7e70353a84e4bf87d687ddc79e",
-      "listing_reason": "ConnectWise C&C"
-    },
-    {
-      "listing_date": "2026-08-28 19:50:13",
-      "sha1": "407df66ac87ceb177c560e82df9521c8003b5f0d",
-      "listing_reason": "ConnectWise C&C"
     }
   ]
 }

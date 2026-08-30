@@ -1,57 +1,56 @@
 {
-  "started_at": "2026-08-29T12:17:06Z",
-  "finished_at": "2026-08-29T12:17:14Z",
+  "started_at": "2026-08-30T11:15:33Z",
+  "finished_at": "2026-08-30T11:15:40Z",
   "feeds": {
     "kev": {
       "ok": true,
-      "elapsed_ms": 198
+      "elapsed_ms": 357
     },
     "epss-top": {
       "ok": true,
-      "elapsed_ms": 2060
+      "elapsed_ms": 2306
     },
     "attack-spotlight": {
       "ok": true,
-      "elapsed_ms": 1097
+      "elapsed_ms": 709
     },
     "urlhaus": {
       "ok": true,
-      "elapsed_ms": 334
+      "elapsed_ms": 485
     },
     "threatfox": {
       "ok": true,
-      "elapsed_ms": 324
+      "elapsed_ms": 476
     },
     "feodo": {
-      "ok": false,
-      "error": "HTTPError: HTTP Error 503: certificate has expired",
-      "elapsed_ms": 1137
+      "ok": true,
+      "elapsed_ms": 362
     },
     "tor": {
       "ok": true,
-      "elapsed_ms": 685
+      "elapsed_ms": 616
     },
     "dshield": {
       "ok": true,
-      "elapsed_ms": 206
+      "elapsed_ms": 286
     },
     "dataplane-ssh": {
       "ok": true,
-      "elapsed_ms": 932
+      "elapsed_ms": 550
     },
     "spamhaus-drop": {
       "ok": true,
-      "elapsed_ms": 36
+      "elapsed_ms": 196
     },
     "hibp": {
       "ok": true,
-      "elapsed_ms": 66
+      "elapsed_ms": 264
     },
     "sslbl": {
       "ok": true,
-      "elapsed_ms": 273
+      "elapsed_ms": 513
     }
   },
   "feed_count": 12,
-  "ok_count": 11
+  "ok_count": 12
 }

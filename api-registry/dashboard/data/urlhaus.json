@@ -1,140 +1,140 @@
 {
-  "total_recent": 15605,
+  "total_recent": 15610,
   "recent": [
     {
-      "id": "3909730",
-      "date_added": "2026-08-29 12:04:12",
-      "url": "http://105.225.151.76:48347/bin.sh",
+      "id": "3910099",
+      "date_added": "2026-08-30 10:54:29",
+      "url": "http://112.198.130.112:42541/i",
       "url_status": "online",
       "threat": "malware_download",
       "tags": "32-bit,arm,elf,mirai,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3909730/"
+      "host": "https://urlhaus.abuse.ch/url/3910099/"
     },
     {
-      "id": "3909729",
-      "date_added": "2026-08-29 12:04:11",
-      "url": "http://119.179.215.39:34360/bin.sh",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3909729/"
-    },
-    {
-      "id": "3909728",
-      "date_added": "2026-08-29 11:28:11",
-      "url": "http://27.222.232.88:47041/i",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3909728/"
-    },
-    {
-      "id": "3909727",
-      "date_added": "2026-08-29 11:02:21",
-      "url": "http://117.255.13.135:47885/bin.sh",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "32-bit,arm,elf,mirai,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3909727/"
-    },
-    {
-      "id": "3909726",
-      "date_added": "2026-08-29 11:01:13",
-      "url": "http://27.222.232.88:47041/bin.sh",
-      "url_status": "online",
-      "threat": "malware_download",
-      "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3909726/"
-    },
-    {
-      "id": "3909725",
-      "date_added": "2026-08-29 10:48:33",
-      "url": "http://27.44.146.70:45253/i",
+      "id": "3910098",
+      "date_added": "2026-08-30 10:45:42",
+      "url": "http://64.89.163.8/hiddenbin/boatnet.x86_64",
       "url_status": "offline",
       "threat": "malware_download",
-      "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3909725/"
+      "tags": "elf,ua-wget",
+      "host": "https://urlhaus.abuse.ch/url/3910098/"
     },
     {
-      "id": "3909724",
-      "date_added": "2026-08-29 10:22:13",
-      "url": "http://27.44.146.70:45253/bin.sh",
-      "url_status": "online",
+      "id": "3910097",
+      "date_added": "2026-08-30 10:45:38",
+      "url": "http://64.89.163.8/hiddenbin/boatnet.sh4",
+      "url_status": "offline",
       "threat": "malware_download",
-      "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3909724/"
+      "tags": "elf,ua-wget",
+      "host": "https://urlhaus.abuse.ch/url/3910097/"
     },
     {
-      "id": "3909723",
-      "date_added": "2026-08-29 10:05:27",
-      "url": "http://60.23.234.52:36302/i",
-      "url_status": "online",
+      "id": "3910095",
+      "date_added": "2026-08-30 10:45:37",
+      "url": "http://64.89.163.8/hiddenbin/boatnet.x86",
+      "url_status": "offline",
       "threat": "malware_download",
-      "tags": "32-bit,elf,mips,Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3909723/"
+      "tags": "elf,ua-wget",
+      "host": "https://urlhaus.abuse.ch/url/3910095/"
     },
     {
-      "id": "3909722",
-      "date_added": "2026-08-29 10:04:16",
-      "url": "http://124.6.167.121:45202/i",
-      "url_status": "online",
+      "id": "3910096",
+      "date_added": "2026-08-30 10:45:37",
+      "url": "http://64.89.163.8/hiddenbin/boatnet.spc",
+      "url_status": "offline",
       "threat": "malware_download",
-      "tags": "mirai",
-      "host": "https://urlhaus.abuse.ch/url/3909722/"
+      "tags": "elf,ua-wget",
+      "host": "https://urlhaus.abuse.ch/url/3910096/"
     },
     {
-      "id": "3909721",
-      "date_added": "2026-08-29 10:03:43",
-      "url": "http://120.28.215.129:53744/bin.sh",
-      "url_status": "online",
+      "id": "3910092",
+      "date_added": "2026-08-30 10:44:36",
+      "url": "http://64.89.163.8/hiddenbin/boatnet.i686",
+      "url_status": "offline",
       "threat": "malware_download",
-      "tags": "mirai",
-      "host": "https://urlhaus.abuse.ch/url/3909721/"
+      "tags": "elf,ua-wget",
+      "host": "https://urlhaus.abuse.ch/url/3910092/"
     },
     {
-      "id": "3909720",
-      "date_added": "2026-08-29 10:03:29",
-      "url": "http://42.230.34.241:57422/i",
-      "url_status": "online",
+      "id": "3910093",
+      "date_added": "2026-08-30 10:44:36",
+      "url": "http://64.89.163.8/hiddenbin/boatnet.arm6",
+      "url_status": "offline",
       "threat": "malware_download",
-      "tags": "None",
-      "host": "https://urlhaus.abuse.ch/url/3909720/"
+      "tags": "elf,ua-wget",
+      "host": "https://urlhaus.abuse.ch/url/3910093/"
     },
     {
-      "id": "3909719",
-      "date_added": "2026-08-29 10:03:27",
-      "url": "http://42.87.43.36:57830/bin.sh",
-      "url_status": "online",
+      "id": "3910094",
+      "date_added": "2026-08-30 10:44:36",
+      "url": "http://64.89.163.8/hiddenbin/boatnet.arc",
+      "url_status": "offline",
       "threat": "malware_download",
-      "tags": "None",
-      "host": "https://urlhaus.abuse.ch/url/3909719/"
+      "tags": "elf,ua-wget",
+      "host": "https://urlhaus.abuse.ch/url/3910094/"
     },
     {
-      "id": "3909718",
-      "date_added": "2026-08-29 10:03:25",
-      "url": "http://221.15.7.244:38891/i",
-      "url_status": "online",
+      "id": "3910088",
+      "date_added": "2026-08-30 10:44:35",
+      "url": "http://64.89.163.8/hiddenbin/boatnet.mips",
+      "url_status": "offline",
       "threat": "malware_download",
-      "tags": "Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3909718/"
+      "tags": "elf,ua-wget",
+      "host": "https://urlhaus.abuse.ch/url/3910088/"
     },
     {
-      "id": "3909717",
-      "date_added": "2026-08-29 10:03:24",
-      "url": "http://42.234.233.72:38508/bin.sh",
-      "url_status": "online",
+      "id": "3910089",
+      "date_added": "2026-08-30 10:44:35",
+      "url": "http://64.89.163.8/hiddenbin/boatnet.mpsl",
+      "url_status": "offline",
       "threat": "malware_download",
-      "tags": "Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3909717/"
+      "tags": "elf,ua-wget",
+      "host": "https://urlhaus.abuse.ch/url/3910089/"
     },
     {
-      "id": "3909716",
-      "date_added": "2026-08-29 10:03:23",
-      "url": "http://125.41.6.152:46245/bin.sh",
-      "url_status": "online",
+      "id": "3910090",
+      "date_added": "2026-08-30 10:44:35",
+      "url": "http://64.89.163.8/hiddenbin/boatnet.m68k",
+      "url_status": "offline",
       "threat": "malware_download",
-      "tags": "Mozi",
-      "host": "https://urlhaus.abuse.ch/url/3909716/"
+      "tags": "elf,ua-wget",
+      "host": "https://urlhaus.abuse.ch/url/3910090/"
+    },
+    {
+      "id": "3910091",
+      "date_added": "2026-08-30 10:44:35",
+      "url": "http://64.89.163.8/hiddenbin/boatnet.i468",
+      "url_status": "offline",
+      "threat": "malware_download",
+      "tags": "elf,ua-wget",
+      "host": "https://urlhaus.abuse.ch/url/3910091/"
+    },
+    {
+      "id": "3910084",
+      "date_added": "2026-08-30 10:44:33",
+      "url": "http://64.89.163.8/hiddenbin/boatnet.arm",
+      "url_status": "offline",
+      "threat": "malware_download",
+      "tags": "elf,ua-wget",
+      "host": "https://urlhaus.abuse.ch/url/3910084/"
+    },
+    {
+      "id": "3910085",
+      "date_added": "2026-08-30 10:44:33",
+      "url": "http://64.89.163.8/hiddenbin/boatnet.arm5",
+      "url_status": "offline",
+      "threat": "malware_download",
+      "tags": "elf,ua-wget",
+      "host": "https://urlhaus.abuse.ch/url/3910085/"
+    },
+    {
+      "id": "3910086",
+      "date_added": "2026-08-30 10:44:33",
+      "url": "http://64.89.163.8/hiddenbin/boatnet.ppc",
+      "url_status": "offline",
+      "threat": "malware_download",
+      "tags": "elf,ua-wget",
+      "host": "https://urlhaus.abuse.ch/url/3910086/"
     }
   ]
 }
