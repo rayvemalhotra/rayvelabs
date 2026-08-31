@@ -1,10 +1,10 @@
 {
-  "total": 5527,
+  "total": 4590,
   "recent": [
     {
-      "first_seen": "1891429",
-      "ioc": "4u4hidmw.shop-alphaboostpro.us",
-      "ioc_type": "domain",
+      "first_seen": "1891855",
+      "ioc": "https://raw.githubusercontent.com/Christa6547/davidrun",
+      "ioc_type": "url",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
       "malware_alias": "None",
@@ -12,18 +12,68 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1891428",
-      "ioc": "shop-alphaboostpro.us",
+      "first_seen": "1891854",
+      "ioc": "o5kevt4l0w.workers.dev",
       "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
+      "threat_type": "botnet_cc",
+      "malware": "php.shin_webshell",
       "malware_alias": "None",
-      "malware_printable": "ClearFake",
+      "malware_printable": "php.shin_webshell",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1891853",
+      "ioc": "129.204.11.247:22",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.cobalt_strike",
+      "malware_alias": "Agentemis",
+      "malware_printable": "BEACON",
+      "confidence": "Cobalt Strike"
+    },
+    {
+      "first_seen": "1891852",
+      "ioc": "207.148.64.94:8084",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.vshell",
+      "malware_alias": "None",
+      "malware_printable": "VShell",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1891849",
+      "ioc": "http://flreaow.click:6527/transactions",
+      "ioc_type": "url",
+      "threat_type": "botnet_cc",
+      "malware": "win.remus",
+      "malware_alias": "None",
+      "malware_printable": "Remus",
       "confidence": "False"
     },
     {
-      "first_seen": "1891427",
-      "ioc": "199.85.8.183:2404",
+      "first_seen": "1891850",
+      "ioc": "http://cdire.shop:9048/reports",
+      "ioc_type": "url",
+      "threat_type": "botnet_cc",
+      "malware": "win.remus",
+      "malware_alias": "None",
+      "malware_printable": "Remus",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1891848",
+      "ioc": "hitdw76155.workers.dev",
+      "ioc_type": "domain",
+      "threat_type": "botnet_cc",
+      "malware": "php.shin_webshell",
+      "malware_alias": "None",
+      "malware_printable": "php.shin_webshell",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1891847",
+      "ioc": "64.224.17.88:2404",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
       "malware": "win.remcos",
@@ -32,18 +82,8 @@
       "confidence": ""
     },
     {
-      "first_seen": "1891426",
-      "ioc": "hegitylo.workers.dev",
-      "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "php.shin_webshell",
-      "malware_alias": "None",
-      "malware_printable": "php.shin_webshell",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1891425",
-      "ioc": "3pynvhuk.ultralightlondon.uk",
+      "first_seen": "1891846",
+      "ioc": "pjp9p9qh.teamgetdsm.com",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -52,18 +92,8 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1891424",
-      "ioc": "ultralightlondon.uk",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1891423",
-      "ioc": "yzcza03457.workers.dev",
+      "first_seen": "1891845",
+      "ioc": "inckz61wke.workers.dev",
       "ioc_type": "domain",
       "threat_type": "botnet_cc",
       "malware": "php.shin_webshell",
@@ -72,54 +102,24 @@
       "confidence": "True"
     },
     {
-      "first_seen": "1891422",
-      "ioc": "36.255.97.175:8787",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.xworm",
-      "malware_alias": "None",
-      "malware_printable": "XWorm",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1891420",
-      "ioc": "45.55.191.196:8080",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "elf.aisuru",
-      "malware_alias": "None",
-      "malware_printable": "Aisuru",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1891421",
-      "ioc": "64.89.160.222:65481",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "elf.bashlite",
-      "malware_alias": "gayfgt",
-      "malware_printable": "Gafgyt",
-      "confidence": "lizkebab"
-    },
-    {
-      "first_seen": "1891419",
-      "ioc": "zqnro91792.workers.dev",
-      "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "php.shin_webshell",
-      "malware_alias": "None",
-      "malware_printable": "php.shin_webshell",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1891418",
-      "ioc": "1jtxup9c.pura--boost.us",
+      "first_seen": "1891844",
+      "ioc": "wo2n2gl5.shop-biobooster.com",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
       "malware_alias": "None",
       "malware_printable": "ClearFake",
       "confidence": "False"
+    },
+    {
+      "first_seen": "1891843",
+      "ioc": "dascu18032.workers.dev",
+      "ioc_type": "domain",
+      "threat_type": "botnet_cc",
+      "malware": "php.shin_webshell",
+      "malware_alias": "None",
+      "malware_printable": "php.shin_webshell",
+      "confidence": "True"
     }
   ]
 }

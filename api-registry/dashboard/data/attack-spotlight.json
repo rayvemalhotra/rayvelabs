@@ -1,15 +1,22 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1578",
-    "name": "Modify Cloud Compute Infrastructure",
-    "description": "An adversary may attempt to modify a cloud account's compute service infrastructure to evade defenses. A modification to the compute service infrastructure can include the creation, deletion, or modification of one or more components such as compute instances, virtual machines, and snapshots.",
+    "id": "T1069",
+    "name": "Permission Groups Discovery",
+    "description": "Adversaries may attempt to discover group and permission settings. This information can help adversaries determine which user accounts and groups are available, the membership of users in particular groups, and which users and groups have elevated permissions.",
     "tactics": [
-      "defense-impairment"
+      "discovery"
     ],
     "platforms": [
-      "IaaS"
+      "Containers",
+      "IaaS",
+      "Identity Provider",
+      "Linux",
+      "macOS",
+      "Office Suite",
+      "SaaS",
+      "Windows"
     ],
-    "url": "https://attack.mitre.org/techniques/T1578"
+    "url": "https://attack.mitre.org/techniques/T1069"
   }
 }
