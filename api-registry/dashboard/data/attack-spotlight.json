@@ -1,22 +1,18 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1069",
-    "name": "Permission Groups Discovery",
-    "description": "Adversaries may attempt to discover group and permission settings. This information can help adversaries determine which user accounts and groups are available, the membership of users in particular groups, and which users and groups have elevated permissions.",
+    "id": "T1114",
+    "name": "Email Collection",
+    "description": "Adversaries may target user email to collect sensitive information. Emails may contain sensitive data, including trade secrets or personal information, that can prove valuable to adversaries. Emails may also contain details of ongoing incident response operations, which may allow adversaries to adjust their techniques in order to maintain persistence or evade defenses.(Citation: TrustedSec OOB Communications)(Citation: CISA AA20-352A 2021) Adversaries can collect or forward email from mail servers or clients. ",
     "tactics": [
-      "discovery"
+      "collection"
     ],
     "platforms": [
-      "Containers",
-      "IaaS",
-      "Identity Provider",
-      "Linux",
+      "Windows",
       "macOS",
-      "Office Suite",
-      "SaaS",
-      "Windows"
+      "Linux",
+      "Office Suite"
     ],
-    "url": "https://attack.mitre.org/techniques/T1069"
+    "url": "https://attack.mitre.org/techniques/T1114"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "total_listings": 10602,
+  "total_listings": 10614,
   "by_reason": [
     {
       "reason": "AsyncRAT C&C",
@@ -7,7 +7,7 @@
     },
     {
       "reason": "Vidar C&C",
-      "count": 752
+      "count": 755
     },
     {
       "reason": "Dridex C&C",
@@ -24,54 +24,54 @@
   ],
   "recent": [
     {
-      "listing_date": "2026-08-31 09:29:01",
-      "sha1": "b1382377a32ee6c85e47edf264f1f6ef5b49e2a3",
-      "listing_reason": "PureLogsStealer C&C"
-    },
-    {
-      "listing_date": "2026-08-31 08:31:55",
-      "sha1": "d268bd42f68634bb226be6b56dc4b7c13e930d2a",
-      "listing_reason": "PureLogsStealer C&C"
-    },
-    {
-      "listing_date": "2026-08-31 08:23:52",
-      "sha1": "2e5d32f48396874bdbf9e30cbf56d9d5440f24ec",
+      "listing_date": "2026-09-01 06:13:28",
+      "sha1": "696ef14e986d01e7d9186a690a06849c9cc49c4b",
       "listing_reason": "ConnectWise C&C"
     },
     {
-      "listing_date": "2026-08-31 07:36:16",
-      "sha1": "fabe6574c3ef1f4a4782c88475755b7b97f1410d",
-      "listing_reason": "HypeAgent C&C"
+      "listing_date": "2026-09-01 06:12:24",
+      "sha1": "cab93f3d490ed168600f08e5cc4a55d4e8c503c8",
+      "listing_reason": "ConnectWise C&C"
     },
     {
-      "listing_date": "2026-08-31 07:34:54",
-      "sha1": "9df53aa0bf7a64882c66ee9c8122b4eae9cf79a6",
-      "listing_reason": "HypeAgent C&C"
+      "listing_date": "2026-09-01 06:11:34",
+      "sha1": "4e1d76e094c1a61d2e1ed367f67545fabe9bc074",
+      "listing_reason": "Malware C&C"
     },
     {
-      "listing_date": "2026-08-31 07:34:24",
-      "sha1": "f0e6af342ccf5fe1beb177e2bf3cb2cac4aa1fa6",
-      "listing_reason": "RatonRAT C&C"
+      "listing_date": "2026-09-01 06:11:07",
+      "sha1": "d55545d9e23fbf6f6b667d4e055454de1108a627",
+      "listing_reason": "Malware C&C"
     },
     {
-      "listing_date": "2026-08-31 07:12:40",
-      "sha1": "328089d815eb8db2dcb741cd603fc451295636d4",
+      "listing_date": "2026-09-01 06:07:01",
+      "sha1": "4cc4e635af94a219c0c1eaa78c7c1eebdda49e1f",
       "listing_reason": "PureRAT C&C"
     },
     {
-      "listing_date": "2026-08-31 07:12:28",
-      "sha1": "dac0432f5f74d7d465966420968c96166217923f",
+      "listing_date": "2026-09-01 05:56:32",
+      "sha1": "8cbedfb429f0d39039f26e2ce229191f21723e88",
+      "listing_reason": "RatonRAT C&C"
+    },
+    {
+      "listing_date": "2026-09-01 05:51:14",
+      "sha1": "c877ab2eec4efcc42bae4819dce27744bd41c0ef",
+      "listing_reason": "HypeAgent C&C"
+    },
+    {
+      "listing_date": "2026-09-01 05:19:58",
+      "sha1": "851e9888eda6290dc6d0c817ac0c82488a9e0bd8",
       "listing_reason": "Vidar C&C"
     },
     {
-      "listing_date": "2026-08-31 07:11:50",
-      "sha1": "8c2a430246ca36ca14885fe1a101c61eaab4a96c",
-      "listing_reason": "AsyncRAT C&C"
+      "listing_date": "2026-09-01 05:19:19",
+      "sha1": "4bf18cb50cb5bca46aff5785c1ba96a248d1e9fd",
+      "listing_reason": "Vidar C&C"
     },
     {
-      "listing_date": "2026-08-31 06:57:14",
-      "sha1": "4af902fc388e5b848db1767a6c708e2ada0ad99a",
-      "listing_reason": "Vidar C&C"
+      "listing_date": "2026-08-31 14:10:21",
+      "sha1": "a7a6a1125d19a58e8b9ca2c7d187915e06c0adce",
+      "listing_reason": "OffLoader C&C"
     }
   ]
 }

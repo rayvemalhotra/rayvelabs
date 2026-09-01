@@ -1,6 +1,6 @@
 {
-  "total_breaches": 1032,
-  "total_records_exposed": 17795083974,
+  "total_breaches": 1033,
+  "total_records_exposed": 17796310183,
   "recent": [
     {
       "name": "OzHairAndBeauty",
@@ -64,6 +64,24 @@
       "verified": true
     },
     {
+      "name": "Questel",
+      "title": "Questel",
+      "domain": "questel.com",
+      "breach_date": "2026-08-01",
+      "added_date": "2026-09-01T04:49:35Z",
+      "pwn_count": 1226209,
+      "data_classes": [
+        "Email addresses",
+        "Employers",
+        "Job titles",
+        "Names",
+        "Phone numbers",
+        "Physical addresses",
+        "Support tickets"
+      ],
+      "verified": true
+    },
+    {
       "name": "RingCentral",
       "title": "RingCentral",
       "domain": "ringcentral.com",
@@ -109,24 +127,6 @@
         "Personal health data",
         "Phone numbers",
         "Physical addresses"
-      ],
-      "verified": true
-    },
-    {
-      "name": "BrinksHome",
-      "title": "Brinks Home",
-      "domain": "brinkshome.com",
-      "breach_date": "2026-07-13",
-      "added_date": "2026-08-08T10:44:52Z",
-      "pwn_count": 732162,
-      "data_classes": [
-        "Dates of birth",
-        "Email addresses",
-        "Names",
-        "Partial credit card data",
-        "Phone numbers",
-        "Physical addresses",
-        "Purchases"
       ],
       "verified": true
     }

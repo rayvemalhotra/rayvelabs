@@ -1,8 +1,26 @@
 {
-  "total": 1685,
-  "catalog_version": "2026.08.27",
-  "date_released": "2026-08-27T17:00:36.6632Z",
+  "total": 1687,
+  "catalog_version": "2026.08.31",
+  "date_released": "2026-08-31T14:55:13.3856Z",
   "recent": [
+    {
+      "cve": "CVE-2026-82078",
+      "vendor": "PaperCut",
+      "product": "NG/MF",
+      "name": "PaperCut NG/MF Unsafe Reflection Vulnerability",
+      "date_added": "2026-08-31",
+      "due_date": "2026-09-14",
+      "ransomware": false
+    },
+    {
+      "cve": "CVE-2026-81578",
+      "vendor": "PaperCut",
+      "product": "NG/MF",
+      "name": "PaperCut NG/MF Missing Authentication for Critical Function Vulnerability",
+      "date_added": "2026-08-31",
+      "due_date": "2026-09-14",
+      "ransomware": false
+    },
     {
       "cve": "CVE-2023-49105",
       "vendor": "ownCloud",
@@ -91,24 +109,6 @@
       "name": "Gitea Code Injection Vulnerability",
       "date_added": "2026-08-25",
       "due_date": "2026-08-28",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-21962",
-      "vendor": "Oracle",
-      "product": "HTTP Server and Oracle Weblogic Server Proxy Plug-in",
-      "name": "Oracle HTTP Server and Oracle Weblogic Server Proxy Plug-in Improper Access Control Vulnerability",
-      "date_added": "2026-08-24",
-      "due_date": "2026-08-27",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-73570",
-      "vendor": "Synacor",
-      "product": "Zimbra Collaboration Suite (ZCS)",
-      "name": "Zimbra Collaboration Suite (ZCS) OS Command Injection Vulnerability",
-      "date_added": "2026-08-21",
-      "due_date": "2026-08-24",
       "ransomware": false
     }
   ]
