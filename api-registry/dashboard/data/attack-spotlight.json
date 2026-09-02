@@ -1,18 +1,15 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1114",
-    "name": "Email Collection",
-    "description": "Adversaries may target user email to collect sensitive information. Emails may contain sensitive data, including trade secrets or personal information, that can prove valuable to adversaries. Emails may also contain details of ongoing incident response operations, which may allow adversaries to adjust their techniques in order to maintain persistence or evade defenses.(Citation: TrustedSec OOB Communications)(Citation: CISA AA20-352A 2021) Adversaries can collect or forward email from mail servers or clients. ",
+    "id": "T1594",
+    "name": "Search Victim-Owned Websites",
+    "description": "Adversaries may search websites owned by the victim for information that can be used during targeting. Victim-owned websites may contain a variety of details, including names of departments/divisions, physical locations, and data about key employees such as names, roles, and contact info (ex: [Email Addresses](https://attack.mitre.org/techniques/T1589/002)). These sites may also have details highlighting business operations and relationships.(Citation: Comparitech Leak)",
     "tactics": [
-      "collection"
+      "reconnaissance"
     ],
     "platforms": [
-      "Windows",
-      "macOS",
-      "Linux",
-      "Office Suite"
+      "PRE"
     ],
-    "url": "https://attack.mitre.org/techniques/T1114"
+    "url": "https://attack.mitre.org/techniques/T1594"
   }
 }

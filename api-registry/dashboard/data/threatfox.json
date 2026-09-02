@@ -1,10 +1,20 @@
 {
-  "total": 4805,
+  "total": 5245,
   "recent": [
     {
-      "first_seen": "1892457",
-      "ioc": "t4gd7ofi.retinaclier.com",
-      "ioc_type": "domain",
+      "first_seen": "1893157",
+      "ioc": "43.198.116.85:443",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.adaptix_c2",
+      "malware_alias": "None",
+      "malware_printable": "AdaptixC2",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1893156",
+      "ioc": "https://raw.githubusercontent.com/Loolu2846/ruta3742/refs/heads/main/rita80",
+      "ioc_type": "url",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
       "malware_alias": "None",
@@ -12,8 +22,8 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1892456",
-      "ioc": "glyco--mute.com",
+      "first_seen": "1893155",
+      "ioc": "glycomutee.com",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -22,103 +32,93 @@
       "confidence": "True"
     },
     {
-      "first_seen": "1892431",
-      "ioc": "64.89.160.127:2891",
+      "first_seen": "1893153",
+      "ioc": "91.92.47.214:6666",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "win.remcos",
-      "malware_alias": "RemcosRAT",
-      "malware_printable": "Remvio",
-      "confidence": ""
+      "malware": "win.pure_rat",
+      "malware_alias": "PureHVNC",
+      "malware_printable": "ResolverRAT",
+      "confidence": "75"
     },
     {
-      "first_seen": "1892401",
-      "ioc": "165.22.191.159:8080",
+      "first_seen": "1893154",
+      "ioc": "93.114.183.130:8711",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "elf.aisuru",
+      "malware": "win.pure_rat",
+      "malware_alias": "PureHVNC",
+      "malware_printable": "ResolverRAT",
+      "confidence": "75"
+    },
+    {
+      "first_seen": "1893152",
+      "ioc": "85.120.216.8:4321",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.adaptix_c2",
       "malware_alias": "None",
-      "malware_printable": "Aisuru",
+      "malware_printable": "AdaptixC2",
       "confidence": "False"
     },
     {
-      "first_seen": "1892408",
-      "ioc": "155.103.70.232:14555",
+      "first_seen": "1893151",
+      "ioc": "56.69.248.141:443",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "win.remcos",
-      "malware_alias": "RemcosRAT",
-      "malware_printable": "Remvio",
-      "confidence": ""
+      "malware": "win.pure_rat",
+      "malware_alias": "PureHVNC",
+      "malware_printable": "ResolverRAT",
+      "confidence": "75"
     },
     {
-      "first_seen": "1892443",
-      "ioc": "188.166.146.72:8001",
+      "first_seen": "1893150",
+      "ioc": "56.69.232.66:443",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "elf.aisuru",
+      "malware": "win.pure_rat",
+      "malware_alias": "PureHVNC",
+      "malware_printable": "ResolverRAT",
+      "confidence": "75"
+    },
+    {
+      "first_seen": "1893149",
+      "ioc": "5.21.239.104:1723",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.asyncrat",
       "malware_alias": "None",
-      "malware_printable": "Aisuru",
+      "malware_printable": "AsyncRAT",
       "confidence": "False"
     },
     {
-      "first_seen": "1892444",
-      "ioc": "206.189.127.191:8001",
+      "first_seen": "1893148",
+      "ioc": "45.158.116.86:7443",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "elf.aisuru",
+      "malware": "unknown",
       "malware_alias": "None",
-      "malware_printable": "Aisuru",
+      "malware_printable": "Unknown malware",
       "confidence": "False"
     },
     {
-      "first_seen": "1892445",
-      "ioc": "139.59.178.162:8001",
+      "first_seen": "1893147",
+      "ioc": "45.139.104.204:443",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "elf.aisuru",
-      "malware_alias": "None",
-      "malware_printable": "Aisuru",
-      "confidence": "False"
+      "malware": "win.pure_rat",
+      "malware_alias": "PureHVNC",
+      "malware_printable": "ResolverRAT",
+      "confidence": "75"
     },
     {
-      "first_seen": "1892446",
-      "ioc": "164.90.172.4:8001",
+      "first_seen": "1893146",
+      "ioc": "43.133.164.200:9090",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "elf.aisuru",
+      "malware": "unknown",
       "malware_alias": "None",
-      "malware_printable": "Aisuru",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1892447",
-      "ioc": "178.128.173.150:8001",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "elf.aisuru",
-      "malware_alias": "None",
-      "malware_printable": "Aisuru",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1892450",
-      "ioc": "134.122.68.91:8001",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "elf.aisuru",
-      "malware_alias": "None",
-      "malware_printable": "Aisuru",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1892448",
-      "ioc": "164.90.234.119:8001",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "elf.aisuru",
-      "malware_alias": "None",
-      "malware_printable": "Aisuru",
+      "malware_printable": "Unknown malware",
       "confidence": "False"
     }
   ]
