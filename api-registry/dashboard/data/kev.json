@@ -1,8 +1,71 @@
 {
-  "total": 1687,
-  "catalog_version": "2026.09.01",
-  "date_released": "2026-09-01T19:22:46.2162Z",
+  "total": 1694,
+  "catalog_version": "2026.09.02",
+  "date_released": "2026-09-02T16:54:39.8321Z",
   "recent": [
+    {
+      "cve": "CVE-2026-59822",
+      "vendor": "BerriAI",
+      "product": "LiteLLM",
+      "name": "BerriAI LiteLLM Improper Authentication Vulnerability",
+      "date_added": "2026-09-02",
+      "due_date": "2026-09-16",
+      "ransomware": false
+    },
+    {
+      "cve": "CVE-2026-48710",
+      "vendor": "Kludex",
+      "product": "Starlette",
+      "name": "Kludex Starlette HTTP Request/Response Smuggling Vulnerability",
+      "date_added": "2026-09-02",
+      "due_date": "2026-09-16",
+      "ransomware": false
+    },
+    {
+      "cve": "CVE-2026-49869",
+      "vendor": "Kestra",
+      "product": "Kestra OSS",
+      "name": "Kestra OSS OS Command Injection Vulnerability",
+      "date_added": "2026-09-02",
+      "due_date": "2026-09-05",
+      "ransomware": false
+    },
+    {
+      "cve": "CVE-2026-82329",
+      "vendor": "JFrog",
+      "product": "Artifactory",
+      "name": "JFrog Artifactory Improper Authentication Vulnerability",
+      "date_added": "2026-09-02",
+      "due_date": "2026-09-05",
+      "ransomware": false
+    },
+    {
+      "cve": "CVE-2026-9586",
+      "vendor": "Sangoma",
+      "product": "Switchvox",
+      "name": "Sangoma Switchvox SQL Injection Vulnerability",
+      "date_added": "2026-09-02",
+      "due_date": "2026-09-05",
+      "ransomware": false
+    },
+    {
+      "cve": "CVE-2026-83548",
+      "vendor": "SonicWall",
+      "product": "SMA1000 Appliances",
+      "name": "SonicWall SMA1000 Appliances Server-Side Request Forgery Vulnerability",
+      "date_added": "2026-09-02",
+      "due_date": "2026-09-05",
+      "ransomware": false
+    },
+    {
+      "cve": "CVE-2026-83549",
+      "vendor": "SonicWall",
+      "product": "SMA1000 Appliances",
+      "name": "SonicWall SMA1000 Appliances OS Command Injection Vulnerability",
+      "date_added": "2026-09-02",
+      "due_date": "2026-09-05",
+      "ransomware": false
+    },
     {
       "cve": "CVE-2026-82078",
       "vendor": "PaperCut",
@@ -46,69 +109,6 @@
       "name": "JFrog Artifactory Improper Limitation of a Pathname to a Restricted Directory Vulnerability",
       "date_added": "2026-08-27",
       "due_date": "2026-09-10",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2021-23758",
-      "vendor": "Ajax.NET Professional",
-      "product": "Ajax.NET Professional",
-      "name": "Ajax.NET Professional Deserialization of Untrusted Data Vulnerability",
-      "date_added": "2026-08-26",
-      "due_date": "2026-09-09",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2015-3246",
-      "vendor": "Red Hat",
-      "product": "Libuser",
-      "name": "Red Hat Libuser Race Condition Vulnerability",
-      "date_added": "2026-08-26",
-      "due_date": "2026-09-09",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2015-5287",
-      "vendor": "Red Hat",
-      "product": "Automatic Bug Reporting Tool",
-      "name": "Red Hat Automatic Bug Reporting Tool Privilege Escalation Vulnerability",
-      "date_added": "2026-08-26",
-      "due_date": "2026-09-09",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2022-0995",
-      "vendor": "Linux",
-      "product": "Kernel",
-      "name": "Linux Kernel Out-of-Bounds Write Vulnerability",
-      "date_added": "2026-08-26",
-      "due_date": "2026-09-09",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-8452",
-      "vendor": "Citrix",
-      "product": "NetScaler ADC and NetScaler Gateway",
-      "name": "Citrix NetScaler ADC and NetScaler Gateway Improper Restriction of Operations within the Bounds of a Memory Buffer Vulnerability",
-      "date_added": "2026-08-26",
-      "due_date": "2026-08-29",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2019-1068",
-      "vendor": "Microsoft",
-      "product": "SQL Server",
-      "name": "Microsoft SQL Server Remote Code Execution Vulnerability",
-      "date_added": "2026-08-26",
-      "due_date": "2026-08-29",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-60004",
-      "vendor": "Gitea",
-      "product": "Gitea",
-      "name": "Gitea Code Injection Vulnerability",
-      "date_added": "2026-08-25",
-      "due_date": "2026-08-28",
       "ransomware": false
     }
   ]

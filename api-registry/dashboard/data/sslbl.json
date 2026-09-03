@@ -1,5 +1,5 @@
 {
-  "total_listings": 10620,
+  "total_listings": 10625,
   "by_reason": [
     {
       "reason": "AsyncRAT C&C",
@@ -7,7 +7,7 @@
     },
     {
       "reason": "Vidar C&C",
-      "count": 757
+      "count": 759
     },
     {
       "reason": "Dridex C&C",
@@ -23,6 +23,31 @@
     }
   ],
   "recent": [
+    {
+      "listing_date": "2026-09-03 06:13:51",
+      "sha1": "4157992dbca11ebbe0938db99c79c0769ff4e1b1",
+      "listing_reason": "PureRAT C&C"
+    },
+    {
+      "listing_date": "2026-09-03 05:31:24",
+      "sha1": "5e9de84aab8968d3a10710904a0844d0c360d2a8",
+      "listing_reason": "Vidar C&C"
+    },
+    {
+      "listing_date": "2026-09-02 15:54:37",
+      "sha1": "d2ea1d53e2027b0378fa9346965edbcc0215e251",
+      "listing_reason": "DCRat C&C"
+    },
+    {
+      "listing_date": "2026-09-02 15:53:43",
+      "sha1": "dcd0ddb2675731126703bc235532e2fe60457b2a",
+      "listing_reason": "PureRAT C&C"
+    },
+    {
+      "listing_date": "2026-09-02 13:22:02",
+      "sha1": "145f0fa0f6134e66fa5c80989c13987baf799bda",
+      "listing_reason": "Vidar C&C"
+    },
     {
       "listing_date": "2026-09-02 08:10:48",
       "sha1": "6712d3901855387b6d4f3d29576f04df40fa30c1",
@@ -47,31 +72,6 @@
       "listing_date": "2026-09-01 14:19:57",
       "sha1": "17d881f02866b9e629d39d16bdf43ca953b38d5c",
       "listing_reason": "OffLoader C&C"
-    },
-    {
-      "listing_date": "2026-09-01 14:15:26",
-      "sha1": "bfb6503c7c6ce8af43c41197a7fcaec491baa810",
-      "listing_reason": "Vidar C&C"
-    },
-    {
-      "listing_date": "2026-09-01 06:13:28",
-      "sha1": "696ef14e986d01e7d9186a690a06849c9cc49c4b",
-      "listing_reason": "ConnectWise C&C"
-    },
-    {
-      "listing_date": "2026-09-01 06:12:24",
-      "sha1": "cab93f3d490ed168600f08e5cc4a55d4e8c503c8",
-      "listing_reason": "ConnectWise C&C"
-    },
-    {
-      "listing_date": "2026-09-01 06:11:34",
-      "sha1": "4e1d76e094c1a61d2e1ed367f67545fabe9bc074",
-      "listing_reason": "Malware C&C"
-    },
-    {
-      "listing_date": "2026-09-01 06:11:07",
-      "sha1": "d55545d9e23fbf6f6b667d4e055454de1108a627",
-      "listing_reason": "Malware C&C"
     }
   ]
 }

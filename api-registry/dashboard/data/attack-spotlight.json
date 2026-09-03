@@ -1,15 +1,18 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1594",
-    "name": "Search Victim-Owned Websites",
-    "description": "Adversaries may search websites owned by the victim for information that can be used during targeting. Victim-owned websites may contain a variety of details, including names of departments/divisions, physical locations, and data about key employees such as names, roles, and contact info (ex: [Email Addresses](https://attack.mitre.org/techniques/T1589/002)). These sites may also have details highlighting business operations and relationships.(Citation: Comparitech Leak)",
+    "id": "T1561",
+    "name": "Disk Wipe",
+    "description": "Adversaries may wipe or corrupt raw disk data on specific systems or in large numbers in a network to interrupt availability to system and network resources. With direct write access to a disk, adversaries may attempt to overwrite portions of disk data. Adversaries may opt to wipe arbitrary portions of disk data and/or wipe disk structures like the master boot record (MBR). A complete wipe of all disk sectors may be attempted.",
     "tactics": [
-      "reconnaissance"
+      "impact"
     ],
     "platforms": [
-      "PRE"
+      "Linux",
+      "macOS",
+      "Windows",
+      "Network Devices"
     ],
-    "url": "https://attack.mitre.org/techniques/T1594"
+    "url": "https://attack.mitre.org/techniques/T1561"
   }
 }
