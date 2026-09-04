@@ -1,124 +1,124 @@
 {
-  "total": 5841,
+  "total": 5951,
   "recent": [
     {
-      "first_seen": "1893785",
-      "ioc": "try-prostafense.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
+      "first_seen": "1894271",
+      "ioc": "http://neortal.click:8321/folders",
+      "ioc_type": "url",
+      "threat_type": "botnet_cc",
+      "malware": "win.remus",
       "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "True"
+      "malware_printable": "Remus",
+      "confidence": "False"
     },
     {
-      "first_seen": "1893781",
-      "ioc": "193.26.115.223:4411",
+      "first_seen": "1894270",
+      "ioc": "http://bestals.shop:8592/subscriptions",
+      "ioc_type": "url",
+      "threat_type": "botnet_cc",
+      "malware": "win.remus",
+      "malware_alias": "None",
+      "malware_printable": "Remus",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1894266",
+      "ioc": "154.91.63.126:8084",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "win.remcos",
-      "malware_alias": "RemcosRAT",
-      "malware_printable": "Remvio",
-      "confidence": ""
+      "malware": "win.vshell",
+      "malware_alias": "None",
+      "malware_printable": "VShell",
+      "confidence": "True"
     },
     {
-      "first_seen": "1893782",
-      "ioc": "217.60.195.34:18631",
+      "first_seen": "1894265",
+      "ioc": "154.91.63.125:8084",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "win.remcos",
-      "malware_alias": "RemcosRAT",
-      "malware_printable": "Remvio",
-      "confidence": ""
+      "malware": "win.vshell",
+      "malware_alias": "None",
+      "malware_printable": "VShell",
+      "confidence": "True"
     },
     {
-      "first_seen": "1893783",
-      "ioc": "184.107.115.238:2404",
+      "first_seen": "1894264",
+      "ioc": "154.91.63.120:8084",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "win.remcos",
-      "malware_alias": "RemcosRAT",
-      "malware_printable": "Remvio",
-      "confidence": ""
+      "malware": "win.vshell",
+      "malware_alias": "None",
+      "malware_printable": "VShell",
+      "confidence": "True"
     },
     {
-      "first_seen": "1893784",
-      "ioc": "107.161.168.253:7789",
+      "first_seen": "1894263",
+      "ioc": "202.61.160.202:8383",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "win.remcos",
-      "malware_alias": "RemcosRAT",
-      "malware_printable": "Remvio",
-      "confidence": ""
+      "malware": "unknown_rat",
+      "malware_alias": "None",
+      "malware_printable": "Unknown RAT",
+      "confidence": "False"
     },
     {
-      "first_seen": "1893780",
-      "ioc": "try-cardioslim.com",
+      "first_seen": "1894261",
+      "ioc": "https://cloudyrobots.online",
+      "ioc_type": "url",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1894262",
+      "ioc": "https://benotrobot.online",
+      "ioc_type": "url",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1894260",
+      "ioc": "benotrobot.online",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
       "malware_alias": "None",
       "malware_printable": "ClearFake",
-      "confidence": "True"
+      "confidence": "False"
     },
     {
-      "first_seen": "1893779",
-      "ioc": "taxbizguru.com",
+      "first_seen": "1894259",
+      "ioc": "g9564ynbca.workers.dev",
       "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
+      "threat_type": "botnet_cc",
+      "malware": "php.shin_webshell",
       "malware_alias": "None",
-      "malware_printable": "ClearFake",
+      "malware_printable": "php.shin_webshell",
       "confidence": "True"
     },
     {
-      "first_seen": "1893778",
-      "ioc": "nextlevelparks.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1893756",
-      "ioc": "172.111.131.3:56090",
+      "first_seen": "1894258",
+      "ioc": "94.103.1.61:443",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "win.remcos",
-      "malware_alias": "RemcosRAT",
-      "malware_printable": "Remvio",
-      "confidence": "2026-09-03 09:32:56"
+      "malware": "win.pure_rat",
+      "malware_alias": "PureHVNC",
+      "malware_printable": "ResolverRAT",
+      "confidence": "75"
     },
     {
-      "first_seen": "1893777",
-      "ioc": "thadadev.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
+      "first_seen": "1894256",
+      "ioc": "93.233.109.96:51125",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.asyncrat",
       "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1893776",
-      "ioc": "www.ellengromann-texte.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1893775",
-      "ioc": "0ccb70sc.thevictorytoken.org",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
+      "malware_printable": "AsyncRAT",
       "confidence": "False"
     }
   ]

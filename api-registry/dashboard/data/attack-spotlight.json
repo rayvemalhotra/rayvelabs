@@ -1,18 +1,15 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1561",
-    "name": "Disk Wipe",
-    "description": "Adversaries may wipe or corrupt raw disk data on specific systems or in large numbers in a network to interrupt availability to system and network resources. With direct write access to a disk, adversaries may attempt to overwrite portions of disk data. Adversaries may opt to wipe arbitrary portions of disk data and/or wipe disk structures like the master boot record (MBR). A complete wipe of all disk sectors may be attempted.",
+    "id": "T1615",
+    "name": "Group Policy Discovery",
+    "description": "Adversaries may gather information on Group Policy settings to identify paths for privilege escalation, security measures applied within a domain, and to discover patterns in domain objects that can be manipulated or used to blend in the environment. Group Policy allows for centralized management of user and computer settings in Active Directory (AD). Group policy objects (GPOs) are containers for group policy settings made up of files stored within a predictable network path `\\<DOMAIN>\\SYSVOL\\<DOMAIN>\\Policies\\`.(Citation: TechNet Group Policy Basics)(Citation: ADSecurity GPO Persistence 2016)",
     "tactics": [
-      "impact"
+      "discovery"
     ],
     "platforms": [
-      "Linux",
-      "macOS",
-      "Windows",
-      "Network Devices"
+      "Windows"
     ],
-    "url": "https://attack.mitre.org/techniques/T1561"
+    "url": "https://attack.mitre.org/techniques/T1615"
   }
 }

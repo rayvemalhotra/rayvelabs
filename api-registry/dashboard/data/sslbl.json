@@ -1,5 +1,5 @@
 {
-  "total_listings": 10625,
+  "total_listings": 10630,
   "by_reason": [
     {
       "reason": "AsyncRAT C&C",
@@ -7,7 +7,7 @@
     },
     {
       "reason": "Vidar C&C",
-      "count": 759
+      "count": 761
     },
     {
       "reason": "Dridex C&C",
@@ -23,6 +23,31 @@
     }
   ],
   "recent": [
+    {
+      "listing_date": "2026-09-04 10:00:04",
+      "sha1": "cd4fbb7112546836c61911e6b3a09770b6aebf29",
+      "listing_reason": "DCAgentRMM C&C"
+    },
+    {
+      "listing_date": "2026-09-04 09:50:32",
+      "sha1": "09cc432d307b2b2d67a102c9a579f24b511cfea2",
+      "listing_reason": "Vidar C&C"
+    },
+    {
+      "listing_date": "2026-09-04 09:45:14",
+      "sha1": "17ee516f7e99548d2b4d735f2100f2754d814288",
+      "listing_reason": "OffLoader C&C"
+    },
+    {
+      "listing_date": "2026-09-04 06:48:27",
+      "sha1": "1bf12565f5b66f9f938f92411d31aea37d9676e8",
+      "listing_reason": "Vidar C&C"
+    },
+    {
+      "listing_date": "2026-09-03 13:40:41",
+      "sha1": "e85536b156e0cd96f57d1925fb4f9fadaf825b9a",
+      "listing_reason": "Malware C&C"
+    },
     {
       "listing_date": "2026-09-03 06:13:51",
       "sha1": "4157992dbca11ebbe0938db99c79c0769ff4e1b1",
@@ -47,31 +72,6 @@
       "listing_date": "2026-09-02 13:22:02",
       "sha1": "145f0fa0f6134e66fa5c80989c13987baf799bda",
       "listing_reason": "Vidar C&C"
-    },
-    {
-      "listing_date": "2026-09-02 08:10:48",
-      "sha1": "6712d3901855387b6d4f3d29576f04df40fa30c1",
-      "listing_reason": "BoratRAT C&C"
-    },
-    {
-      "listing_date": "2026-09-02 08:10:31",
-      "sha1": "26edae2d62f7008d9a3ea68999f41316f4cdf762",
-      "listing_reason": "PureLogsStealer C&C"
-    },
-    {
-      "listing_date": "2026-09-02 08:09:29",
-      "sha1": "6c6027c8ff18b0f79bd3c40848c2b189a18b49ac",
-      "listing_reason": "QuasarRAT C&C"
-    },
-    {
-      "listing_date": "2026-09-02 06:15:35",
-      "sha1": "6ddb71e5a27eccf80773188066ac92d9d39506d7",
-      "listing_reason": "Vidar C&C"
-    },
-    {
-      "listing_date": "2026-09-01 14:19:57",
-      "sha1": "17d881f02866b9e629d39d16bdf43ca953b38d5c",
-      "listing_reason": "OffLoader C&C"
     }
   ]
 }
