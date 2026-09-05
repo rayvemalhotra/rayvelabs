@@ -1,15 +1,17 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1615",
-    "name": "Group Policy Discovery",
-    "description": "Adversaries may gather information on Group Policy settings to identify paths for privilege escalation, security measures applied within a domain, and to discover patterns in domain objects that can be manipulated or used to blend in the environment. Group Policy allows for centralized management of user and computer settings in Active Directory (AD). Group policy objects (GPOs) are containers for group policy settings made up of files stored within a predictable network path `\\<DOMAIN>\\SYSVOL\\<DOMAIN>\\Policies\\`.(Citation: TechNet Group Policy Basics)(Citation: ADSecurity GPO Persistence 2016)",
+    "id": "T1025",
+    "name": "Data from Removable Media",
+    "description": "Adversaries may search connected removable media on computers they have compromised to find files of interest. Sensitive data can be collected from any removable media (optical disk drive, USB memory, etc.) connected to the compromised system prior to Exfiltration. Interactive command shells may be in use, and common functionality within [cmd](https://attack.mitre.org/software/S0106) may be used to gather information. ",
     "tactics": [
-      "discovery"
+      "collection"
     ],
     "platforms": [
+      "Linux",
+      "macOS",
       "Windows"
     ],
-    "url": "https://attack.mitre.org/techniques/T1615"
+    "url": "https://attack.mitre.org/techniques/T1025"
   }
 }

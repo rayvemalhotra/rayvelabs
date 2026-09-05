@@ -1,5 +1,5 @@
 {
-  "total_listings": 10630,
+  "total_listings": 10632,
   "by_reason": [
     {
       "reason": "AsyncRAT C&C",
@@ -23,6 +23,16 @@
     }
   ],
   "recent": [
+    {
+      "listing_date": "2026-09-04 12:19:09",
+      "sha1": "755c81877937861388f42dc73d5a6bf24c96e13b",
+      "listing_reason": "PureRAT C&C"
+    },
+    {
+      "listing_date": "2026-09-04 11:30:12",
+      "sha1": "972c98978e420c02a8d8c5f87930dadc70adbbd8",
+      "listing_reason": "ConnectWise C&C"
+    },
     {
       "listing_date": "2026-09-04 10:00:04",
       "sha1": "cd4fbb7112546836c61911e6b3a09770b6aebf29",
@@ -62,16 +72,6 @@
       "listing_date": "2026-09-02 15:54:37",
       "sha1": "d2ea1d53e2027b0378fa9346965edbcc0215e251",
       "listing_reason": "DCRat C&C"
-    },
-    {
-      "listing_date": "2026-09-02 15:53:43",
-      "sha1": "dcd0ddb2675731126703bc235532e2fe60457b2a",
-      "listing_reason": "PureRAT C&C"
-    },
-    {
-      "listing_date": "2026-09-02 13:22:02",
-      "sha1": "145f0fa0f6134e66fa5c80989c13987baf799bda",
-      "listing_reason": "Vidar C&C"
     }
   ]
 }

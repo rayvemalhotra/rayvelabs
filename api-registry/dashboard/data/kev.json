@@ -1,8 +1,17 @@
 {
-  "total": 1694,
-  "catalog_version": "2026.09.02",
-  "date_released": "2026-09-02T16:54:39.8321Z",
+  "total": 1695,
+  "catalog_version": "2026.09.04",
+  "date_released": "2026-09-04T16:47:03.5197Z",
   "recent": [
+    {
+      "cve": "CVE-2026-85046",
+      "vendor": "Google",
+      "product": "Chromium V8",
+      "name": "Google Chromium V8 Type Confusion Vulnerability",
+      "date_added": "2026-09-04",
+      "due_date": "2026-09-18",
+      "ransomware": false
+    },
     {
       "cve": "CVE-2026-59822",
       "vendor": "BerriAI",
@@ -100,15 +109,6 @@
       "name": "Linux Kernel Unspecified Vulnerability",
       "date_added": "2026-08-27",
       "due_date": "2026-08-30",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-66384",
-      "vendor": "JFrog",
-      "product": "Artifactory",
-      "name": "JFrog Artifactory Improper Limitation of a Pathname to a Restricted Directory Vulnerability",
-      "date_added": "2026-08-27",
-      "due_date": "2026-09-10",
       "ransomware": false
     }
   ]

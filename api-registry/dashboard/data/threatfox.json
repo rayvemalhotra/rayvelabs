@@ -1,109 +1,39 @@
 {
-  "total": 5951,
+  "total": 5390,
   "recent": [
     {
-      "first_seen": "1894271",
-      "ioc": "http://neortal.click:8321/folders",
-      "ioc_type": "url",
-      "threat_type": "botnet_cc",
-      "malware": "win.remus",
-      "malware_alias": "None",
-      "malware_printable": "Remus",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1894270",
-      "ioc": "http://bestals.shop:8592/subscriptions",
-      "ioc_type": "url",
-      "threat_type": "botnet_cc",
-      "malware": "win.remus",
-      "malware_alias": "None",
-      "malware_printable": "Remus",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1894266",
-      "ioc": "154.91.63.126:8084",
+      "first_seen": "1901286",
+      "ioc": "82.23.246.148:12159",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "win.vshell",
-      "malware_alias": "None",
-      "malware_printable": "VShell",
-      "confidence": "True"
+      "malware": "win.dcrat",
+      "malware_alias": "DarkCrystal RAT",
+      "malware_printable": "DCRat",
+      "confidence": "False"
     },
     {
-      "first_seen": "1894265",
-      "ioc": "154.91.63.125:8084",
+      "first_seen": "1901285",
+      "ioc": "80.190.77.86:1009",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "win.vshell",
+      "malware": "win.asyncrat",
       "malware_alias": "None",
-      "malware_printable": "VShell",
-      "confidence": "True"
+      "malware_printable": "AsyncRAT",
+      "confidence": "False"
     },
     {
-      "first_seen": "1894264",
-      "ioc": "154.91.63.120:8084",
+      "first_seen": "1901284",
+      "ioc": "47.239.61.167:7443",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "win.vshell",
+      "malware": "unknown",
       "malware_alias": "None",
-      "malware_printable": "VShell",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1894263",
-      "ioc": "202.61.160.202:8383",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "unknown_rat",
-      "malware_alias": "None",
-      "malware_printable": "Unknown RAT",
+      "malware_printable": "Unknown malware",
       "confidence": "False"
     },
     {
-      "first_seen": "1894261",
-      "ioc": "https://cloudyrobots.online",
-      "ioc_type": "url",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1894262",
-      "ioc": "https://benotrobot.online",
-      "ioc_type": "url",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1894260",
-      "ioc": "benotrobot.online",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1894259",
-      "ioc": "g9564ynbca.workers.dev",
-      "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "php.shin_webshell",
-      "malware_alias": "None",
-      "malware_printable": "php.shin_webshell",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1894258",
-      "ioc": "94.103.1.61:443",
+      "first_seen": "1901283",
+      "ioc": "45.56.165.197:56003",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
       "malware": "win.pure_rat",
@@ -112,8 +42,78 @@
       "confidence": "75"
     },
     {
-      "first_seen": "1894256",
-      "ioc": "93.233.109.96:51125",
+      "first_seen": "1901282",
+      "ioc": "37.244.231.231:4433",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.danabot",
+      "malware_alias": "DanaTools",
+      "malware_printable": "DanaBot",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1901281",
+      "ioc": "216.126.225.87:443",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "unknown",
+      "malware_alias": "None",
+      "malware_printable": "Unknown malware",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1901280",
+      "ioc": "212.43.153.129:7707",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.asyncrat",
+      "malware_alias": "None",
+      "malware_printable": "AsyncRAT",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1901279",
+      "ioc": "203.88.118.26:4321",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.adaptix_c2",
+      "malware_alias": "None",
+      "malware_printable": "AdaptixC2",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1901278",
+      "ioc": "196.81.251.114:443",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.pure_rat",
+      "malware_alias": "PureHVNC",
+      "malware_printable": "ResolverRAT",
+      "confidence": "75"
+    },
+    {
+      "first_seen": "1901277",
+      "ioc": "194.113.73.246:8443",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.havoc",
+      "malware_alias": "Havokiz",
+      "malware_printable": "Havoc",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1901276",
+      "ioc": "185.233.164.109:443",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.pure_rat",
+      "malware_alias": "PureHVNC",
+      "malware_printable": "ResolverRAT",
+      "confidence": "75"
+    },
+    {
+      "first_seen": "1901275",
+      "ioc": "172.111.232.18:7784",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
       "malware": "win.asyncrat",
