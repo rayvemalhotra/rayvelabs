@@ -1,17 +1,19 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1025",
-    "name": "Data from Removable Media",
-    "description": "Adversaries may search connected removable media on computers they have compromised to find files of interest. Sensitive data can be collected from any removable media (optical disk drive, USB memory, etc.) connected to the compromised system prior to Exfiltration. Interactive command shells may be in use, and common functionality within [cmd](https://attack.mitre.org/software/S0106) may be used to gather information. ",
+    "id": "T1547",
+    "name": "Boot or Logon Autostart Execution",
+    "description": "Adversaries may configure system settings to automatically execute a program during system boot or logon to maintain persistence or gain higher-level privileges on compromised systems. Operating systems may have mechanisms for automatically running a program on system boot or account logon.(Citation: Microsoft Run Key)(Citation: MSDN Authentication Packages)(Citation: Microsoft TimeProvider)(Citation: Cylance Reg Persistence Sept 2013)(Citation: Linux Kernel Programming) These mechanisms may include automatically executing programs that are placed in specially designated directories or are referenced by repositories that store configuration information, such as the Windows Registry. An adversary may achieve the same goal by modifying or extending features of the kernel.",
     "tactics": [
-      "collection"
+      "persistence",
+      "privilege-escalation"
     ],
     "platforms": [
       "Linux",
       "macOS",
-      "Windows"
+      "Windows",
+      "Network Devices"
     ],
-    "url": "https://attack.mitre.org/techniques/T1025"
+    "url": "https://attack.mitre.org/techniques/T1547"
   }
 }

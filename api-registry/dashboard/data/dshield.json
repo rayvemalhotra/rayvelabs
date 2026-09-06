@@ -1,109 +1,109 @@
 {
   "top": [
     {
-      "ip": "91.191.209.198",
-      "attacks": 8153,
+      "ip": "79.124.62.134",
+      "attacks": 460,
       "targets": 0,
-      "first_seen": "2022-06-13",
-      "last_seen": "2026-09-05"
+      "first_seen": "2024-05-10",
+      "last_seen": "2026-09-06"
     },
     {
-      "ip": "185.94.111.1",
-      "attacks": 7310,
+      "ip": "79.124.62.230",
+      "attacks": 453,
       "targets": 0,
-      "first_seen": "2021-09-11",
-      "last_seen": "2026-09-05"
+      "first_seen": "2024-11-25",
+      "last_seen": "2026-09-06"
     },
     {
-      "ip": "66.240.205.34",
-      "attacks": 4671,
+      "ip": "141.98.83.48",
+      "attacks": 450,
       "targets": 0,
-      "first_seen": "2021-09-11",
-      "last_seen": "2026-09-05"
+      "first_seen": "2025-12-14",
+      "last_seen": "2026-09-06"
     },
     {
-      "ip": "207.90.244.6",
-      "attacks": 4525,
+      "ip": "16.5.0.254",
+      "attacks": 383,
       "targets": 0,
-      "first_seen": "2022-12-10",
-      "last_seen": "2026-09-05"
+      "first_seen": "2026-08-28",
+      "last_seen": "2026-09-06"
     },
     {
-      "ip": "80.82.77.33",
-      "attacks": 4497,
+      "ip": "45.148.10.238",
+      "attacks": 381,
       "targets": 0,
-      "first_seen": "2021-09-12",
-      "last_seen": "2026-09-05"
+      "first_seen": "2025-10-11",
+      "last_seen": "2026-09-06"
     },
     {
-      "ip": "80.82.77.139",
-      "attacks": 4488,
+      "ip": "94.154.43.87",
+      "attacks": 372,
       "targets": 0,
-      "first_seen": "2021-09-12",
-      "last_seen": "2026-09-05"
+      "first_seen": "2026-06-28",
+      "last_seen": "2026-09-06"
     },
     {
-      "ip": "207.90.244.3",
-      "attacks": 4466,
+      "ip": "16.5.0.245",
+      "attacks": 344,
       "targets": 0,
-      "first_seen": "2022-12-08",
-      "last_seen": "2026-09-05"
+      "first_seen": "2026-09-02",
+      "last_seen": "2026-09-06"
     },
     {
-      "ip": "207.90.244.5",
-      "attacks": 4392,
+      "ip": "16.5.0.244",
+      "attacks": 340,
       "targets": 0,
-      "first_seen": "2022-12-10",
-      "last_seen": "2026-09-05"
+      "first_seen": "2026-09-02",
+      "last_seen": "2026-09-06"
     },
     {
-      "ip": "71.6.199.23",
-      "attacks": 4282,
+      "ip": "91.92.42.61",
+      "attacks": 298,
       "targets": 0,
-      "first_seen": "2021-09-11",
-      "last_seen": "2026-09-05"
+      "first_seen": "2026-06-06",
+      "last_seen": "2026-09-06"
     },
     {
-      "ip": "167.94.145.27",
-      "attacks": 4112,
+      "ip": "91.92.42.87",
+      "attacks": 294,
       "targets": 0,
-      "first_seen": "2021-11-19",
-      "last_seen": "2026-09-05"
+      "first_seen": "2026-06-27",
+      "last_seen": "2026-09-06"
     },
     {
-      "ip": "167.94.145.29",
-      "attacks": 4105,
+      "ip": "130.12.180.246",
+      "attacks": 294,
       "targets": 0,
-      "first_seen": "2021-11-19",
-      "last_seen": "2026-09-05"
+      "first_seen": "2026-08-27",
+      "last_seen": "2026-09-06"
     },
     {
-      "ip": "167.94.145.25",
-      "attacks": 4103,
+      "ip": "91.92.42.133",
+      "attacks": 289,
       "targets": 0,
-      "first_seen": "2021-11-19",
-      "last_seen": "2026-09-05"
+      "first_seen": "2026-06-06",
+      "last_seen": "2026-09-06"
     },
     {
-      "ip": "167.94.145.16",
-      "attacks": 4078,
+      "ip": "91.92.42.172",
+      "attacks": 289,
       "targets": 0,
-      "first_seen": "2021-11-19",
-      "last_seen": "2026-09-05"
+      "first_seen": "2026-07-10",
+      "last_seen": "2026-09-06"
     },
     {
-      "ip": "167.94.145.28",
-      "attacks": 4074,
+      "ip": "91.92.42.126",
+      "attacks": 281,
       "targets": 0,
-      "first_seen": "2021-11-19",
-      "last_seen": "2026-09-05"
+      "first_seen": "2026-05-30",
+      "last_seen": "2026-09-06"
     },
     {
-      "ip": "167.94.145.24",
-      "attacks": 4062,
+      "ip": "204.76.203.4",
+      "attacks": 280,
       "targets": 0,
-      "first_seen": "2021-11-19",
-      "last_seen": "2026-09-05"
+      "first_seen": "2026-08-29",
+      "last_seen": "2026-09-06"
     }
   ]
 }
