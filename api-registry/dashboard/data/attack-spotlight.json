@@ -1,19 +1,15 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1547",
-    "name": "Boot or Logon Autostart Execution",
-    "description": "Adversaries may configure system settings to automatically execute a program during system boot or logon to maintain persistence or gain higher-level privileges on compromised systems. Operating systems may have mechanisms for automatically running a program on system boot or account logon.(Citation: Microsoft Run Key)(Citation: MSDN Authentication Packages)(Citation: Microsoft TimeProvider)(Citation: Cylance Reg Persistence Sept 2013)(Citation: Linux Kernel Programming) These mechanisms may include automatically executing programs that are placed in specially designated directories or are referenced by repositories that store configuration information, such as the Windows Registry. An adversary may achieve the same goal by modifying or extending features of the kernel.",
+    "id": "T1600",
+    "name": "Weaken Encryption",
+    "description": "Adversaries may compromise a network device\u2019s encryption capability in order to bypass encryption that would otherwise protect data communications.(Citation: Cisco Synful Knock Evolution)",
     "tactics": [
-      "persistence",
-      "privilege-escalation"
+      "defense-impairment"
     ],
     "platforms": [
-      "Linux",
-      "macOS",
-      "Windows",
       "Network Devices"
     ],
-    "url": "https://attack.mitre.org/techniques/T1547"
+    "url": "https://attack.mitre.org/techniques/T1600"
   }
 }
