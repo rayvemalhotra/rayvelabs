@@ -1,5 +1,5 @@
 {
-  "total_listings": 10659,
+  "total_listings": 10664,
   "by_reason": [
     {
       "reason": "AsyncRAT C&C",
@@ -24,6 +24,31 @@
   ],
   "recent": [
     {
+      "listing_date": "2026-09-08 07:57:36",
+      "sha1": "44c6dc94a23e05350af1ff687fef8b78cb089b8b",
+      "listing_reason": "ConnectWise C&C"
+    },
+    {
+      "listing_date": "2026-09-08 07:48:16",
+      "sha1": "32c779b627c28c168bcf744948c35f45462e9307",
+      "listing_reason": "PureRAT C&C"
+    },
+    {
+      "listing_date": "2026-09-08 07:47:43",
+      "sha1": "cb2d6049ca9e2a20d92f8ee6ae28060d9d460b85",
+      "listing_reason": "OffLoader C&C"
+    },
+    {
+      "listing_date": "2026-09-08 07:46:44",
+      "sha1": "bd12ed0d3f8dac14cb7de27202b10331831dc8c7",
+      "listing_reason": "OffLoader C&C"
+    },
+    {
+      "listing_date": "2026-09-08 07:45:48",
+      "sha1": "4c12b6aa784f92a3c50fb7d99289ca32fe21ad4c",
+      "listing_reason": "PureLogsStealer C&C"
+    },
+    {
       "listing_date": "2026-09-07 06:44:32",
       "sha1": "b5daf66c6f8a99f2d6fe3fc678264598ec140049",
       "listing_reason": "PureRAT C&C"
@@ -47,31 +72,6 @@
       "listing_date": "2026-09-07 06:41:53",
       "sha1": "2a2c44f91a961c0b573d1e823f314fb4ffbc88dd",
       "listing_reason": "OffLoader C&C"
-    },
-    {
-      "listing_date": "2026-09-07 06:40:42",
-      "sha1": "7d7d8f52b3aee2d5233b2f8cc838cd08a6036c1d",
-      "listing_reason": "OffLoader C&C"
-    },
-    {
-      "listing_date": "2026-09-06 18:14:32",
-      "sha1": "b1709ae370ca3fb7ddb3fb49b6c1fca1303a4a97",
-      "listing_reason": "Vidar C&C"
-    },
-    {
-      "listing_date": "2026-09-06 13:49:38",
-      "sha1": "a66308a1fb09c8345228ca00335e633b2dabde53",
-      "listing_reason": "Malware C&C"
-    },
-    {
-      "listing_date": "2026-09-06 07:52:59",
-      "sha1": "7fa3afaafe3b7c5eab63712e58c9414a86d559ec",
-      "listing_reason": "AsyncRAT C&C"
-    },
-    {
-      "listing_date": "2026-09-06 07:49:17",
-      "sha1": "1baea4f8295715f075d3c0510b61017840047ae3",
-      "listing_reason": "Vidar C&C"
     }
   ]
 }

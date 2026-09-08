@@ -1,15 +1,19 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1600",
-    "name": "Weaken Encryption",
-    "description": "Adversaries may compromise a network device\u2019s encryption capability in order to bypass encryption that would otherwise protect data communications.(Citation: Cisco Synful Knock Evolution)",
+    "id": "T1489",
+    "name": "Service Stop",
+    "description": "Adversaries may stop or disable services on a system to render those services unavailable to legitimate users. Stopping critical services or processes can inhibit or stop response to an incident or aid in the adversary's overall objectives to cause damage to the environment.(Citation: Talos Olympic Destroyer 2018)(Citation: Novetta Blockbuster) ",
     "tactics": [
-      "defense-impairment"
+      "impact"
     ],
     "platforms": [
-      "Network Devices"
+      "ESXi",
+      "IaaS",
+      "Linux",
+      "macOS",
+      "Windows"
     ],
-    "url": "https://attack.mitre.org/techniques/T1600"
+    "url": "https://attack.mitre.org/techniques/T1489"
   }
 }
