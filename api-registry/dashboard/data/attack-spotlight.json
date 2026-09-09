@@ -1,19 +1,17 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1489",
-    "name": "Service Stop",
-    "description": "Adversaries may stop or disable services on a system to render those services unavailable to legitimate users. Stopping critical services or processes can inhibit or stop response to an incident or aid in the adversary's overall objectives to cause damage to the environment.(Citation: Talos Olympic Destroyer 2018)(Citation: Novetta Blockbuster) ",
+    "id": "T1652",
+    "name": "Device Driver Discovery",
+    "description": "Adversaries may attempt to enumerate local device drivers on a victim host. Information about device drivers may highlight various insights that shape follow-on behaviors, such as the function/purpose of the host, present security tools (i.e. [Security Software Discovery](https://attack.mitre.org/techniques/T1518/001)) or other defenses (e.g., [Virtualization/Sandbox Evasion](https://attack.mitre.org/techniques/T1497)), as well as potential exploitable vulnerabilities (e.g., [Exploitation for Privilege Escalation](https://attack.mitre.org/techniques/T1068)).",
     "tactics": [
-      "impact"
+      "discovery"
     ],
     "platforms": [
-      "ESXi",
-      "IaaS",
       "Linux",
       "macOS",
       "Windows"
     ],
-    "url": "https://attack.mitre.org/techniques/T1489"
+    "url": "https://attack.mitre.org/techniques/T1652"
   }
 }

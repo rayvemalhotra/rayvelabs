@@ -1,8 +1,44 @@
 {
-  "total": 1695,
-  "catalog_version": "2026.09.04",
-  "date_released": "2026-09-04T16:47:03.5197Z",
+  "total": 1699,
+  "catalog_version": "2026.09.08",
+  "date_released": "2026-09-08T18:00:21.1079Z",
   "recent": [
+    {
+      "cve": "CVE-2026-75650",
+      "vendor": "Adobe",
+      "product": "Commerce and Magento",
+      "name": "Adobe Commerce and Magento Improper Neutralization of Special Elements Used in a Template Engine Vulnerability",
+      "date_added": "2026-09-08",
+      "due_date": "2026-09-11",
+      "ransomware": false
+    },
+    {
+      "cve": "CVE-2026-81963",
+      "vendor": "Microsoft",
+      "product": "Windows",
+      "name": "Microsoft Windows Link Following Vulnerability",
+      "date_added": "2026-09-08",
+      "due_date": "2026-09-22",
+      "ransomware": false
+    },
+    {
+      "cve": "CVE-2026-86218",
+      "vendor": "N-able",
+      "product": "N-central",
+      "name": "N-able N-central Static Code Injection Vulnerability",
+      "date_added": "2026-09-08",
+      "due_date": "2026-09-11",
+      "ransomware": false
+    },
+    {
+      "cve": "CVE-2026-85880",
+      "vendor": "Microsoft",
+      "product": "Windows",
+      "name": "Microsoft Windows Heap-Based Buffer Overflow Vulnerability",
+      "date_added": "2026-09-08",
+      "due_date": "2026-09-22",
+      "ransomware": false
+    },
     {
       "cve": "CVE-2026-85046",
       "vendor": "Google",
@@ -73,42 +109,6 @@
       "name": "SonicWall SMA1000 Appliances OS Command Injection Vulnerability",
       "date_added": "2026-09-02",
       "due_date": "2026-09-05",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-82078",
-      "vendor": "PaperCut",
-      "product": "NG/MF",
-      "name": "PaperCut NG/MF Unsafe Reflection Vulnerability",
-      "date_added": "2026-08-31",
-      "due_date": "2026-09-14",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-81578",
-      "vendor": "PaperCut",
-      "product": "NG/MF",
-      "name": "PaperCut NG/MF Missing Authentication for Critical Function Vulnerability",
-      "date_added": "2026-08-31",
-      "due_date": "2026-09-14",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2023-49105",
-      "vendor": "ownCloud",
-      "product": "ownCloud",
-      "name": "ownCloud Improper Authentication Vulnerability",
-      "date_added": "2026-08-27",
-      "due_date": "2026-08-30",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-53362",
-      "vendor": "Linux",
-      "product": "Kernel",
-      "name": "Linux Kernel Unspecified Vulnerability",
-      "date_added": "2026-08-27",
-      "due_date": "2026-08-30",
       "ransomware": false
     }
   ]

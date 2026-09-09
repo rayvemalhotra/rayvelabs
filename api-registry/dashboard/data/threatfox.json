@@ -1,9 +1,9 @@
 {
-  "total": 9779,
+  "total": 9111,
   "recent": [
     {
-      "first_seen": "1905446",
-      "ioc": "capsurlavenir.com",
+      "first_seen": "1906099",
+      "ioc": "www.sahak.ch",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -12,113 +12,113 @@
       "confidence": "True"
     },
     {
-      "first_seen": "1905443",
-      "ioc": "154.91.59.118:8094",
+      "first_seen": "1906026",
+      "ioc": "161.35.166.196:8001",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "win.vshell",
+      "malware": "elf.aisuru",
       "malware_alias": "None",
-      "malware_printable": "VShell",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1905440",
-      "ioc": "154.91.60.126:8094",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.vshell",
-      "malware_alias": "None",
-      "malware_printable": "VShell",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1905441",
-      "ioc": "154.91.61.99:8094",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.vshell",
-      "malware_alias": "None",
-      "malware_printable": "VShell",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1905442",
-      "ioc": "154.91.59.119:8094",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.vshell",
-      "malware_alias": "None",
-      "malware_printable": "VShell",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1905439",
-      "ioc": "154.91.63.108:8094",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.vshell",
-      "malware_alias": "None",
-      "malware_printable": "VShell",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1905438",
-      "ioc": "86.54.29.65:3333",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "elf.evilginx",
-      "malware_alias": "None",
-      "malware_printable": "Evilginx",
+      "malware_printable": "Aisuru",
       "confidence": "False"
     },
     {
-      "first_seen": "1905437",
-      "ioc": "82.115.16.4:4321",
+      "first_seen": "1906027",
+      "ioc": "138.68.130.69:8001",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "win.adaptix_c2",
+      "malware": "elf.aisuru",
       "malware_alias": "None",
-      "malware_printable": "AdaptixC2",
+      "malware_printable": "Aisuru",
       "confidence": "False"
     },
     {
-      "first_seen": "1905436",
-      "ioc": "80.190.77.86:1010",
+      "first_seen": "1906028",
+      "ioc": "159.65.59.117:8001",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "win.asyncrat",
+      "malware": "elf.aisuru",
       "malware_alias": "None",
-      "malware_printable": "AsyncRAT",
+      "malware_printable": "Aisuru",
       "confidence": "False"
     },
     {
-      "first_seen": "1905435",
-      "ioc": "78.39.51.23:7443",
+      "first_seen": "1906029",
+      "ioc": "165.22.113.73:8001",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "unknown",
+      "malware": "elf.aisuru",
       "malware_alias": "None",
-      "malware_printable": "Unknown malware",
+      "malware_printable": "Aisuru",
       "confidence": "False"
     },
     {
-      "first_seen": "1905434",
-      "ioc": "50.60.157.152:443",
+      "first_seen": "1906030",
+      "ioc": "64.225.102.231:8001",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "win.havoc",
-      "malware_alias": "Havokiz",
-      "malware_printable": "Havoc",
+      "malware": "elf.aisuru",
+      "malware_alias": "None",
+      "malware_printable": "Aisuru",
       "confidence": "False"
     },
     {
-      "first_seen": "1905433",
-      "ioc": "5.175.188.199:8443",
+      "first_seen": "1906038",
+      "ioc": "151.80.76.67:1224",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "elf.evilginx",
+      "malware": "js.beavertail",
       "malware_alias": "None",
-      "malware_printable": "Evilginx",
+      "malware_printable": "BeaverTail",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1906039",
+      "ioc": "http://151.80.76.67:1224/api/checkStatus",
+      "ioc_type": "url",
+      "threat_type": "botnet_cc",
+      "malware": "js.beavertail",
+      "malware_alias": "None",
+      "malware_printable": "BeaverTail",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1906040",
+      "ioc": "https://a5lab.co/api/settings/linux",
+      "ioc_type": "url",
+      "threat_type": "payload_delivery",
+      "malware": "js.beavertail",
+      "malware_alias": "None",
+      "malware_printable": "BeaverTail",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1906041",
+      "ioc": "a5lab.co",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.beavertail",
+      "malware_alias": "None",
+      "malware_printable": "BeaverTail",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1906051",
+      "ioc": "643ef35536ff9273fb84b8504467b1a5645cd3ffd5476d64b99244b02131b205",
+      "ioc_type": "sha256_hash",
+      "threat_type": "payload",
+      "malware": "win.amatera",
+      "malware_alias": "None",
+      "malware_printable": "Amatera",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1906049",
+      "ioc": "1819827e17f31e72d456158b6b9c90af25a65945f6f05d04a060da9f24179b25",
+      "ioc_type": "sha256_hash",
+      "threat_type": "payload",
+      "malware": "win.amatera",
+      "malware_alias": "None",
+      "malware_printable": "Amatera",
       "confidence": "False"
     }
   ]

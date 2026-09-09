@@ -1,5 +1,5 @@
 {
-  "total_listings": 10664,
+  "total_listings": 10670,
   "by_reason": [
     {
       "reason": "AsyncRAT C&C",
@@ -7,7 +7,7 @@
     },
     {
       "reason": "Vidar C&C",
-      "count": 770
+      "count": 771
     },
     {
       "reason": "Dridex C&C",
@@ -23,6 +23,36 @@
     }
   ],
   "recent": [
+    {
+      "listing_date": "2026-09-09 08:57:59",
+      "sha1": "d359f356ed88b04089b7afe53f13a913382bd4da",
+      "listing_reason": "PureRAT C&C"
+    },
+    {
+      "listing_date": "2026-09-09 08:54:05",
+      "sha1": "2be2964d2711f536de55aa929fa612ba69ebc405",
+      "listing_reason": "Vidar C&C"
+    },
+    {
+      "listing_date": "2026-09-09 08:39:26",
+      "sha1": "ba98762c6eadc76480a1a97ec9c8b54a3002bc10",
+      "listing_reason": "PureLogsStealer C&C"
+    },
+    {
+      "listing_date": "2026-09-09 08:39:15",
+      "sha1": "401d739effc60f0ddbfc096d8b7a64625744824a",
+      "listing_reason": "OffLoader C&C"
+    },
+    {
+      "listing_date": "2026-09-09 08:39:00",
+      "sha1": "3a62153757fc44e7a948a9c289a08798ea8e8487",
+      "listing_reason": "OffLoader C&C"
+    },
+    {
+      "listing_date": "2026-09-09 08:38:26",
+      "sha1": "9f7f53410f881c40adf0d4e16a67fd8c4446452a",
+      "listing_reason": "OffLoader C&C"
+    },
     {
       "listing_date": "2026-09-08 07:57:36",
       "sha1": "44c6dc94a23e05350af1ff687fef8b78cb089b8b",
@@ -41,36 +71,6 @@
     {
       "listing_date": "2026-09-08 07:46:44",
       "sha1": "bd12ed0d3f8dac14cb7de27202b10331831dc8c7",
-      "listing_reason": "OffLoader C&C"
-    },
-    {
-      "listing_date": "2026-09-08 07:45:48",
-      "sha1": "4c12b6aa784f92a3c50fb7d99289ca32fe21ad4c",
-      "listing_reason": "PureLogsStealer C&C"
-    },
-    {
-      "listing_date": "2026-09-07 06:44:32",
-      "sha1": "b5daf66c6f8a99f2d6fe3fc678264598ec140049",
-      "listing_reason": "PureRAT C&C"
-    },
-    {
-      "listing_date": "2026-09-07 06:44:09",
-      "sha1": "b7c32dab3a4cd691ddcfee4bc1fed6d1d6f81c18",
-      "listing_reason": "AsyncRAT C&C"
-    },
-    {
-      "listing_date": "2026-09-07 06:43:14",
-      "sha1": "206850b799a53982b73accdefec94083f2094a6e",
-      "listing_reason": "PureRAT C&C"
-    },
-    {
-      "listing_date": "2026-09-07 06:43:05",
-      "sha1": "e00005ae100b2af24cf6d7f71b7cd123f8b916be",
-      "listing_reason": "DCRat C&C"
-    },
-    {
-      "listing_date": "2026-09-07 06:41:53",
-      "sha1": "2a2c44f91a961c0b573d1e823f314fb4ffbc88dd",
       "listing_reason": "OffLoader C&C"
     }
   ]
