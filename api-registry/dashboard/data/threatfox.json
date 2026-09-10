@@ -1,9 +1,49 @@
 {
-  "total": 9111,
+  "total": 6014,
   "recent": [
     {
-      "first_seen": "1906099",
-      "ioc": "www.sahak.ch",
+      "first_seen": "1907082",
+      "ioc": "154.91.56.110:8074",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.vshell",
+      "malware_alias": "None",
+      "malware_printable": "VShell",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1907081",
+      "ioc": "119.45.28.237:8081",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.vshell",
+      "malware_alias": "None",
+      "malware_printable": "VShell",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1907080",
+      "ioc": "115.159.72.17:8084",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.vshell",
+      "malware_alias": "None",
+      "malware_printable": "VShell",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1907079",
+      "ioc": "s0ls07nv.www-genesisrevival.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1907076",
+      "ioc": "paintmyparkinglot.com",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -12,114 +52,74 @@
       "confidence": "True"
     },
     {
-      "first_seen": "1906026",
-      "ioc": "161.35.166.196:8001",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "elf.aisuru",
-      "malware_alias": "None",
-      "malware_printable": "Aisuru",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1906027",
-      "ioc": "138.68.130.69:8001",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "elf.aisuru",
-      "malware_alias": "None",
-      "malware_printable": "Aisuru",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1906028",
-      "ioc": "159.65.59.117:8001",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "elf.aisuru",
-      "malware_alias": "None",
-      "malware_printable": "Aisuru",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1906029",
-      "ioc": "165.22.113.73:8001",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "elf.aisuru",
-      "malware_alias": "None",
-      "malware_printable": "Aisuru",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1906030",
-      "ioc": "64.225.102.231:8001",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "elf.aisuru",
-      "malware_alias": "None",
-      "malware_printable": "Aisuru",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1906038",
-      "ioc": "151.80.76.67:1224",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "js.beavertail",
-      "malware_alias": "None",
-      "malware_printable": "BeaverTail",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1906039",
-      "ioc": "http://151.80.76.67:1224/api/checkStatus",
-      "ioc_type": "url",
-      "threat_type": "botnet_cc",
-      "malware": "js.beavertail",
-      "malware_alias": "None",
-      "malware_printable": "BeaverTail",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1906040",
-      "ioc": "https://a5lab.co/api/settings/linux",
-      "ioc_type": "url",
-      "threat_type": "payload_delivery",
-      "malware": "js.beavertail",
-      "malware_alias": "None",
-      "malware_printable": "BeaverTail",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1906041",
-      "ioc": "a5lab.co",
+      "first_seen": "1907077",
+      "ioc": "looseningcaptivesblog.com",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
-      "malware": "js.beavertail",
+      "malware": "js.clearfake",
       "malware_alias": "None",
-      "malware_printable": "BeaverTail",
-      "confidence": "False"
+      "malware_printable": "ClearFake",
+      "confidence": "True"
     },
     {
-      "first_seen": "1906051",
-      "ioc": "643ef35536ff9273fb84b8504467b1a5645cd3ffd5476d64b99244b02131b205",
-      "ioc_type": "sha256_hash",
-      "threat_type": "payload",
-      "malware": "win.amatera",
+      "first_seen": "1907078",
+      "ioc": "linuxbazar.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
       "malware_alias": "None",
-      "malware_printable": "Amatera",
-      "confidence": "False"
+      "malware_printable": "ClearFake",
+      "confidence": "True"
     },
     {
-      "first_seen": "1906049",
-      "ioc": "1819827e17f31e72d456158b6b9c90af25a65945f6f05d04a060da9f24179b25",
-      "ioc_type": "sha256_hash",
-      "threat_type": "payload",
-      "malware": "win.amatera",
+      "first_seen": "1907073",
+      "ioc": "lazycatagency.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
       "malware_alias": "None",
-      "malware_printable": "Amatera",
-      "confidence": "False"
+      "malware_printable": "ClearFake",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1907074",
+      "ioc": "mariafinch.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1907075",
+      "ioc": "ortodoncia-invisible-valencia.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1907072",
+      "ioc": "jolymeza.workers.dev",
+      "ioc_type": "domain",
+      "threat_type": "botnet_cc",
+      "malware": "php.shin_webshell",
+      "malware_alias": "None",
+      "malware_printable": "php.shin_webshell",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1907071",
+      "ioc": "poxizu.workers.dev",
+      "ioc_type": "domain",
+      "threat_type": "botnet_cc",
+      "malware": "php.shin_webshell",
+      "malware_alias": "None",
+      "malware_printable": "php.shin_webshell",
+      "confidence": "True"
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
-  "total_breaches": 1034,
-  "total_records_exposed": 17805159840,
+  "total_breaches": 1035,
+  "total_records_exposed": 17811564180,
   "recent": [
     {
       "name": "ManchesterAirportsGroup",
@@ -18,6 +18,25 @@
         "Phone numbers",
         "Purchases",
         "Vehicle registration plates"
+      ],
+      "verified": true
+    },
+    {
+      "name": "McKesson",
+      "title": "McKesson",
+      "domain": "mckesson.com",
+      "breach_date": "2026-08-21",
+      "added_date": "2026-09-10T05:45:39Z",
+      "pwn_count": 6404340,
+      "data_classes": [
+        "Dates of birth",
+        "Email addresses",
+        "Employers",
+        "Genders",
+        "Names",
+        "Personal health data",
+        "Phone numbers",
+        "Physical addresses"
       ],
       "verified": true
     },
@@ -112,22 +131,6 @@
         "Names",
         "Phone numbers",
         "Physical addresses"
-      ],
-      "verified": true
-    },
-    {
-      "name": "SplitVPN",
-      "title": "SplitVPN",
-      "domain": "splitvpn.io",
-      "breach_date": "2026-07-21",
-      "added_date": "2026-08-01T05:29:26Z",
-      "pwn_count": 865336,
-      "data_classes": [
-        "Device information",
-        "Email addresses",
-        "Geographic locations",
-        "IP addresses",
-        "Partial credit card data"
       ],
       "verified": true
     }

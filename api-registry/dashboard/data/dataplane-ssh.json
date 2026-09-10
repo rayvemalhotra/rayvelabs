@@ -1,27 +1,6 @@
 {
-  "total": 29093,
+  "total": 24770,
   "recent": [
-    {
-      "asn": "73",
-      "as_name": "WASHINGTON-AS - University of",
-      "ip": "140.142.199.122",
-      "last_seen": "2026-09-03 01:20:39",
-      "category": "sshclient"
-    },
-    {
-      "asn": "137",
-      "as_name": "ASGARR Consortium GARR",
-      "ip": "151.97.161.162",
-      "last_seen": "2026-09-02 20:59:55",
-      "category": "sshclient"
-    },
-    {
-      "asn": "137",
-      "as_name": "ASGARR Consortium GARR",
-      "ip": "151.97.50.254",
-      "last_seen": "2026-09-02 21:30:47",
-      "category": "sshclient"
-    },
     {
       "asn": "137",
       "as_name": "ASGARR Consortium GARR",
@@ -46,13 +25,6 @@
     {
       "asn": "174",
       "as_name": "COGENT-174 - Cogent Communicat",
-      "ip": "151.241.122.61",
-      "last_seen": "2026-09-03 05:27:11",
-      "category": "sshclient"
-    },
-    {
-      "asn": "174",
-      "as_name": "COGENT-174 - Cogent Communicat",
       "ip": "151.241.122.70",
       "last_seen": "2026-09-03 10:02:45",
       "category": "sshclient"
@@ -68,7 +40,7 @@
       "asn": "174",
       "as_name": "COGENT-174 - Cogent Communicat",
       "ip": "207.90.244.10",
-      "last_seen": "2026-09-08 23:04:22",
+      "last_seen": "2026-09-09 23:47:56",
       "category": "sshclient"
     },
     {
@@ -103,7 +75,35 @@
       "asn": "174",
       "as_name": "COGENT-174 - Cogent Communicat",
       "ip": "207.90.244.21",
-      "last_seen": "2026-09-08 07:09:25",
+      "last_seen": "2026-09-09 18:22:46",
+      "category": "sshclient"
+    },
+    {
+      "asn": "174",
+      "as_name": "COGENT-174 - Cogent Communicat",
+      "ip": "207.90.244.22",
+      "last_seen": "2026-09-07 16:10:54",
+      "category": "sshclient"
+    },
+    {
+      "asn": "174",
+      "as_name": "COGENT-174 - Cogent Communicat",
+      "ip": "207.90.244.25",
+      "last_seen": "2026-09-07 16:12:27",
+      "category": "sshclient"
+    },
+    {
+      "asn": "174",
+      "as_name": "COGENT-174 - Cogent Communicat",
+      "ip": "207.90.244.27",
+      "last_seen": "2026-09-08 22:22:44",
+      "category": "sshclient"
+    },
+    {
+      "asn": "174",
+      "as_name": "COGENT-174 - Cogent Communicat",
+      "ip": "207.90.244.3",
+      "last_seen": "2026-09-09 18:24:20",
       "category": "sshclient"
     }
   ]

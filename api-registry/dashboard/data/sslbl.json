@@ -1,13 +1,13 @@
 {
-  "total_listings": 10670,
+  "total_listings": 10684,
   "by_reason": [
     {
       "reason": "AsyncRAT C&C",
-      "count": 1444
+      "count": 1447
     },
     {
       "reason": "Vidar C&C",
-      "count": 771
+      "count": 772
     },
     {
       "reason": "Dridex C&C",
@@ -24,54 +24,54 @@
   ],
   "recent": [
     {
-      "listing_date": "2026-09-09 08:57:59",
-      "sha1": "d359f356ed88b04089b7afe53f13a913382bd4da",
-      "listing_reason": "PureRAT C&C"
-    },
-    {
-      "listing_date": "2026-09-09 08:54:05",
-      "sha1": "2be2964d2711f536de55aa929fa612ba69ebc405",
-      "listing_reason": "Vidar C&C"
-    },
-    {
-      "listing_date": "2026-09-09 08:39:26",
-      "sha1": "ba98762c6eadc76480a1a97ec9c8b54a3002bc10",
+      "listing_date": "2026-09-10 05:58:29",
+      "sha1": "da016d8c7ef2176f549cd35927d92a6d9cc9e253",
       "listing_reason": "PureLogsStealer C&C"
     },
     {
-      "listing_date": "2026-09-09 08:39:15",
-      "sha1": "401d739effc60f0ddbfc096d8b7a64625744824a",
+      "listing_date": "2026-09-10 05:57:16",
+      "sha1": "199e1fd0a2f1c805aae75b33803d0e27b874b892",
       "listing_reason": "OffLoader C&C"
     },
     {
-      "listing_date": "2026-09-09 08:39:00",
-      "sha1": "3a62153757fc44e7a948a9c289a08798ea8e8487",
+      "listing_date": "2026-09-10 05:54:53",
+      "sha1": "5df1d8183a0c35eed21884c00e84299ded6ece0c",
+      "listing_reason": "PureLogsStealer C&C"
+    },
+    {
+      "listing_date": "2026-09-10 05:54:46",
+      "sha1": "ad1e251a18db0657b238f75305b312593a6276a4",
+      "listing_reason": "PureLogsStealer C&C"
+    },
+    {
+      "listing_date": "2026-09-10 05:53:19",
+      "sha1": "28f2252914fd660fb663fae3995bfa2202285cfe",
+      "listing_reason": "PureLogsStealer C&C"
+    },
+    {
+      "listing_date": "2026-09-10 05:52:55",
+      "sha1": "048bd151ab0a9c0add6d5bba9dc73521e42d9a20",
+      "listing_reason": "AsyncRAT C&C"
+    },
+    {
+      "listing_date": "2026-09-09 18:10:15",
+      "sha1": "7f350973861d149efb83b0a1f51d0e0db0329dda",
+      "listing_reason": "Malware distribution"
+    },
+    {
+      "listing_date": "2026-09-09 17:51:01",
+      "sha1": "1955a3ce0e4bb011e3e667a51be5f42fb02d769f",
       "listing_reason": "OffLoader C&C"
     },
     {
-      "listing_date": "2026-09-09 08:38:26",
-      "sha1": "9f7f53410f881c40adf0d4e16a67fd8c4446452a",
-      "listing_reason": "OffLoader C&C"
+      "listing_date": "2026-09-09 17:48:17",
+      "sha1": "559a55c8c7779e0037429794a8836a1039dbcdc3",
+      "listing_reason": "AsyncRAT C&C"
     },
     {
-      "listing_date": "2026-09-08 07:57:36",
-      "sha1": "44c6dc94a23e05350af1ff687fef8b78cb089b8b",
-      "listing_reason": "ConnectWise C&C"
-    },
-    {
-      "listing_date": "2026-09-08 07:48:16",
-      "sha1": "32c779b627c28c168bcf744948c35f45462e9307",
-      "listing_reason": "PureRAT C&C"
-    },
-    {
-      "listing_date": "2026-09-08 07:47:43",
-      "sha1": "cb2d6049ca9e2a20d92f8ee6ae28060d9d460b85",
-      "listing_reason": "OffLoader C&C"
-    },
-    {
-      "listing_date": "2026-09-08 07:46:44",
-      "sha1": "bd12ed0d3f8dac14cb7de27202b10331831dc8c7",
-      "listing_reason": "OffLoader C&C"
+      "listing_date": "2026-09-09 17:47:32",
+      "sha1": "8e492f36b0c1412f2d872dc9d51c974d27733d47",
+      "listing_reason": "AsyncRAT C&C"
     }
   ]
 }

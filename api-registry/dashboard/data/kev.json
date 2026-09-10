@@ -1,8 +1,44 @@
 {
-  "total": 1699,
-  "catalog_version": "2026.09.08",
-  "date_released": "2026-09-08T18:00:21.1079Z",
+  "total": 1703,
+  "catalog_version": "2026.09.09",
+  "date_released": "2026-09-09T19:00:50.2591Z",
   "recent": [
+    {
+      "cve": "CVE-2026-19490",
+      "vendor": "Citrix",
+      "product": "NetScaler",
+      "name": "Citrix NetScaler Authentication Bypass Using an Alternate Path or Channel Vulnerability",
+      "date_added": "2026-09-09",
+      "due_date": "2026-09-12",
+      "ransomware": false
+    },
+    {
+      "cve": "CVE-2025-25249",
+      "vendor": "Fortinet",
+      "product": "Multiple Products",
+      "name": "Fortinet Multiple Products Heap-based Buffer Overflow Vulnerability",
+      "date_added": "2026-09-09",
+      "due_date": "2026-09-12",
+      "ransomware": false
+    },
+    {
+      "cve": "CVE-2026-87491",
+      "vendor": "Google",
+      "product": "Chromium V8",
+      "name": "Google Chromium V8 Out of Bounds Write Vulnerability",
+      "date_added": "2026-09-09",
+      "due_date": "2026-09-23",
+      "ransomware": false
+    },
+    {
+      "cve": "CVE-2026-20079",
+      "vendor": "Cisco",
+      "product": "Secure Firewall Management Center (FMC) and Security Cloud Control (SCC) Firewall Management",
+      "name": "Cisco Firewall Management Center Authentication Bypass Using an Alternate Path or Channel Vulnerability",
+      "date_added": "2026-09-09",
+      "due_date": "2026-09-12",
+      "ransomware": false
+    },
     {
       "cve": "CVE-2026-75650",
       "vendor": "Adobe",
@@ -71,42 +107,6 @@
       "vendor": "Kestra",
       "product": "Kestra OSS",
       "name": "Kestra OSS OS Command Injection Vulnerability",
-      "date_added": "2026-09-02",
-      "due_date": "2026-09-05",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-82329",
-      "vendor": "JFrog",
-      "product": "Artifactory",
-      "name": "JFrog Artifactory Improper Authentication Vulnerability",
-      "date_added": "2026-09-02",
-      "due_date": "2026-09-05",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-9586",
-      "vendor": "Sangoma",
-      "product": "Switchvox",
-      "name": "Sangoma Switchvox SQL Injection Vulnerability",
-      "date_added": "2026-09-02",
-      "due_date": "2026-09-05",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-83548",
-      "vendor": "SonicWall",
-      "product": "SMA1000 Appliances",
-      "name": "SonicWall SMA1000 Appliances Server-Side Request Forgery Vulnerability",
-      "date_added": "2026-09-02",
-      "due_date": "2026-09-05",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-83549",
-      "vendor": "SonicWall",
-      "product": "SMA1000 Appliances",
-      "name": "SonicWall SMA1000 Appliances OS Command Injection Vulnerability",
       "date_added": "2026-09-02",
       "due_date": "2026-09-05",
       "ransomware": false
