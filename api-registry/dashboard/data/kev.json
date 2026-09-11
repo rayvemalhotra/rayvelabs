@@ -1,8 +1,26 @@
 {
-  "total": 1703,
-  "catalog_version": "2026.09.09",
-  "date_released": "2026-09-09T19:00:50.2591Z",
+  "total": 1705,
+  "catalog_version": "2026.09.10",
+  "date_released": "2026-09-10T19:00:05.1949Z",
   "recent": [
+    {
+      "cve": "CVE-2026-86060",
+      "vendor": "MikroTik",
+      "product": "RouterOS",
+      "name": "MikroTik RouterOS Improper Neutralization of Argument Delimiters in a Command Vulnerability",
+      "date_added": "2026-09-10",
+      "due_date": "2026-09-13",
+      "ransomware": false
+    },
+    {
+      "cve": "CVE-2026-67277",
+      "vendor": "MikroTik",
+      "product": "RouterOS",
+      "name": "MikroTik RouterOS Missing Authentication for Critical Function Vulnerability",
+      "date_added": "2026-09-10",
+      "due_date": "2026-09-13",
+      "ransomware": false
+    },
     {
       "cve": "CVE-2026-19490",
       "vendor": "Citrix",
@@ -91,24 +109,6 @@
       "name": "BerriAI LiteLLM Improper Authentication Vulnerability",
       "date_added": "2026-09-02",
       "due_date": "2026-09-16",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-48710",
-      "vendor": "Kludex",
-      "product": "Starlette",
-      "name": "Kludex Starlette HTTP Request/Response Smuggling Vulnerability",
-      "date_added": "2026-09-02",
-      "due_date": "2026-09-16",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-49869",
-      "vendor": "Kestra",
-      "product": "Kestra OSS",
-      "name": "Kestra OSS OS Command Injection Vulnerability",
-      "date_added": "2026-09-02",
-      "due_date": "2026-09-05",
       "ransomware": false
     }
   ]

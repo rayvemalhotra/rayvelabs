@@ -1,19 +1,19 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1564",
-    "name": "Hide Artifacts",
-    "description": "Adversaries may attempt to hide artifacts associated with their behaviors to evade detection. Operating systems may have features to hide various artifacts, such as important system files and administrative task execution, to avoid disrupting user work environments and prevent users from changing files or features on the system. Adversaries may abuse these features to hide artifacts such as files, directories, user accounts, or other system activity to evade detection.(Citation: Sofacy Komplex Trojan)(Citation: Cybereason OSX Pirrit)(Citation: MalwareBytes ADS July 2015)",
+    "id": "T1080",
+    "name": "Taint Shared Content",
+    "description": "\nAdversaries may deliver payloads to remote systems by adding content to shared storage locations, such as network drives or internal code repositories. Content stored on network drives or in other shared locations may be tainted by adding malicious programs, scripts, or exploit code to otherwise valid files. Once a user opens the shared tainted content, the malicious portion can be executed to run the adversary's code on a remote system. Adversaries may use tainted shared content to move laterally.",
     "tactics": [
-      "stealth"
+      "lateral-movement"
     ],
     "platforms": [
-      "ESXi",
+      "Windows",
+      "SaaS",
       "Linux",
       "macOS",
-      "Office Suite",
-      "Windows"
+      "Office Suite"
     ],
-    "url": "https://attack.mitre.org/techniques/T1564"
+    "url": "https://attack.mitre.org/techniques/T1080"
   }
 }
