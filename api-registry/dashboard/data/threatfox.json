@@ -1,39 +1,9 @@
 {
-  "total": 15392,
+  "total": 10586,
   "recent": [
     {
-      "first_seen": "1915621",
-      "ioc": "8a0jzezr.api24.store",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1915620",
-      "ioc": "51g2l83a.bvcbx.store",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1915619",
-      "ioc": "bvcbx.store",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1915618",
-      "ioc": "api24.store",
+      "first_seen": "1916195",
+      "ioc": "elitebusinesschronicles.com",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -42,83 +12,113 @@
       "confidence": "True"
     },
     {
-      "first_seen": "1915617",
-      "ioc": "94.26.248.76:50050",
+      "first_seen": "1916194",
+      "ioc": "americandreamlost.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1916193",
+      "ioc": "everyday1297.workers.dev",
+      "ioc_type": "domain",
+      "threat_type": "botnet_cc",
+      "malware": "php.shin_webshell",
+      "malware_alias": "None",
+      "malware_printable": "php.shin_webshell",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1916192",
+      "ioc": "alpha789.online",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1916190",
+      "ioc": "carmencitaclub.org",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1916191",
+      "ioc": "dev-coastal-road-repair.pantheonsite.io",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1916187",
+      "ioc": "43.155.246.58:443",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.cobalt_strike",
+      "malware_alias": "Agentemis",
+      "malware_printable": "BEACON",
+      "confidence": "Cobalt Strike"
+    },
+    {
+      "first_seen": "1916188",
+      "ioc": "43.155.246.58:8080",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.cobalt_strike",
+      "malware_alias": "Agentemis",
+      "malware_printable": "BEACON",
+      "confidence": "Cobalt Strike"
+    },
+    {
+      "first_seen": "1916189",
+      "ioc": "43.155.246.58:22",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.cobalt_strike",
+      "malware_alias": "Agentemis",
+      "malware_printable": "BEACON",
+      "confidence": "Cobalt Strike"
+    },
+    {
+      "first_seen": "1916186",
+      "ioc": "162.35.172.146:8080",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
       "malware": "win.adaptix_c2",
       "malware_alias": "None",
       "malware_printable": "AdaptixC2",
-      "confidence": "False"
+      "confidence": "True"
     },
     {
-      "first_seen": "1915616",
-      "ioc": "84.247.141.236:8443",
+      "first_seen": "1916185",
+      "ioc": "93.82.31.87:8000",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "elf.evilginx",
+      "malware": "win.eye_pyramid",
       "malware_alias": "None",
-      "malware_printable": "Evilginx",
+      "malware_printable": "Eye Pyramid",
       "confidence": "False"
     },
     {
-      "first_seen": "1915613",
-      "ioc": "66.94.113.10:443",
+      "first_seen": "1916184",
+      "ioc": "84.247.187.47:4546",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "win.pure_rat",
-      "malware_alias": "PureHVNC",
-      "malware_printable": "ResolverRAT",
-      "confidence": "75"
-    },
-    {
-      "first_seen": "1915614",
-      "ioc": "68.178.202.150:40056",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.sliver",
+      "malware": "win.asyncrat",
       "malware_alias": "None",
-      "malware_printable": "Sliver",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1915615",
-      "ioc": "68.178.205.17:40056",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.sliver",
-      "malware_alias": "None",
-      "malware_printable": "Sliver",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1915612",
-      "ioc": "65.108.13.44:7443",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "unknown",
-      "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1915611",
-      "ioc": "46.246.4.10:8848",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.dcrat",
-      "malware_alias": "DarkCrystal RAT",
-      "malware_printable": "DCRat",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1915610",
-      "ioc": "37.244.232.113:4433",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.danabot",
-      "malware_alias": "DanaTools",
-      "malware_printable": "DanaBot",
+      "malware_printable": "AsyncRAT",
       "confidence": "False"
     }
   ]

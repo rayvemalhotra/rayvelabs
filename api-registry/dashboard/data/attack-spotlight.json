@@ -1,16 +1,20 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1137",
-    "name": "Office Application Startup",
-    "description": "Adversaries may leverage Microsoft Office-based applications for persistence between startups. Microsoft Office is a fairly common application suite on Windows-based operating systems within an enterprise network. There are multiple mechanisms that can be used with Office for persistence when an Office-based application is started; this can include the use of Office Template Macros and add-ins.",
+    "id": "T1119",
+    "name": "Automated Collection",
+    "description": "Once established within a system or network, an adversary may use automated techniques for collecting internal data. Methods for performing this technique could include use of a [Command and Scripting Interpreter](https://attack.mitre.org/techniques/T1059) to search for and copy information fitting set criteria such as file type, location, or name at specific time intervals. ",
     "tactics": [
-      "persistence"
+      "collection"
     ],
     "platforms": [
-      "Windows",
-      "Office Suite"
+      "IaaS",
+      "Linux",
+      "macOS",
+      "Office Suite",
+      "SaaS",
+      "Windows"
     ],
-    "url": "https://attack.mitre.org/techniques/T1137"
+    "url": "https://attack.mitre.org/techniques/T1119"
   }
 }
