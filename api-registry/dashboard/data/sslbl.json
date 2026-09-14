@@ -1,5 +1,5 @@
 {
-  "total_listings": 10696,
+  "total_listings": 10702,
   "by_reason": [
     {
       "reason": "AsyncRAT C&C",
@@ -7,7 +7,7 @@
     },
     {
       "reason": "Vidar C&C",
-      "count": 776
+      "count": 779
     },
     {
       "reason": "Dridex C&C",
@@ -23,6 +23,36 @@
     }
   ],
   "recent": [
+    {
+      "listing_date": "2026-09-14 06:36:14",
+      "sha1": "14bc0ce6c63bf1c1554b4cd1772c60b57c38ab09",
+      "listing_reason": "Vidar C&C"
+    },
+    {
+      "listing_date": "2026-09-14 06:35:59",
+      "sha1": "7bc298ef18b49cfd44b5b429209035207250e25e",
+      "listing_reason": "Vidar C&C"
+    },
+    {
+      "listing_date": "2026-09-14 06:35:25",
+      "sha1": "d8f9205907b3bd3de4fb0513e5c53f167064a452",
+      "listing_reason": "OffLoader C&C"
+    },
+    {
+      "listing_date": "2026-09-13 19:23:01",
+      "sha1": "009a05eaf082d20ae13a65abda12afd959cd76de",
+      "listing_reason": "VenomRAT C&C"
+    },
+    {
+      "listing_date": "2026-09-13 19:21:19",
+      "sha1": "e129189e0ed0545baad30c054b5f51301d766516",
+      "listing_reason": "OffLoader C&C"
+    },
+    {
+      "listing_date": "2026-09-13 19:01:33",
+      "sha1": "fcfc3b257b12e4c699e343f4c415b60f642d88f6",
+      "listing_reason": "Vidar C&C"
+    },
     {
       "listing_date": "2026-09-12 15:04:33",
       "sha1": "db7000ad8c148580941840ce41d8efb95f478854",
@@ -41,36 +71,6 @@
     {
       "listing_date": "2026-09-12 15:01:34",
       "sha1": "c78af78d930e82506823c8ececf1140c7035d8ef",
-      "listing_reason": "OffLoader C&C"
-    },
-    {
-      "listing_date": "2026-09-12 14:35:46",
-      "sha1": "74afa65e38769e7e58835fd799e353c2fea3a209",
-      "listing_reason": "ACRStealer C&C"
-    },
-    {
-      "listing_date": "2026-09-12 13:18:16",
-      "sha1": "f567b9fc86b00e059bdfea261466360804fbdb38",
-      "listing_reason": "Vidar C&C"
-    },
-    {
-      "listing_date": "2026-09-12 11:00:56",
-      "sha1": "8cffe4fa8f624cb4c15790c414e04acde61e3651",
-      "listing_reason": "QuasarRAT C&C"
-    },
-    {
-      "listing_date": "2026-09-12 11:00:35",
-      "sha1": "00095e3cd5dfc929d16036132665d7e3e9ef7cd6",
-      "listing_reason": "Vidar C&C"
-    },
-    {
-      "listing_date": "2026-09-11 05:41:28",
-      "sha1": "0a1192b7efc4408315bb36a29eaa149bf2306e0c",
-      "listing_reason": "PureLogsStealer C&C"
-    },
-    {
-      "listing_date": "2026-09-11 05:40:59",
-      "sha1": "031491e9d9e07391f330aef5bbdce9febbf1fe90",
       "listing_reason": "OffLoader C&C"
     }
   ]

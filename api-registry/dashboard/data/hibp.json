@@ -1,6 +1,6 @@
 {
-  "total_breaches": 1035,
-  "total_records_exposed": 17811564180,
+  "total_breaches": 1036,
+  "total_records_exposed": 17816217392,
   "recent": [
     {
       "name": "ManchesterAirportsGroup",
@@ -87,6 +87,21 @@
       "verified": true
     },
     {
+      "name": "Chess2026",
+      "title": "Chess.com (2026)",
+      "domain": "chess.com",
+      "breach_date": "2026-08-03",
+      "added_date": "2026-09-13T13:09:11Z",
+      "pwn_count": 4653212,
+      "data_classes": [
+        "Email addresses",
+        "Geographic locations",
+        "Names",
+        "Usernames"
+      ],
+      "verified": true
+    },
+    {
       "name": "Alcon",
       "title": "Alcon",
       "domain": "alcon.com",
@@ -116,21 +131,6 @@
         "Phone numbers",
         "Physical addresses",
         "Support tickets"
-      ],
-      "verified": true
-    },
-    {
-      "name": "RingCentral",
-      "title": "RingCentral",
-      "domain": "ringcentral.com",
-      "breach_date": "2026-07-27",
-      "added_date": "2026-08-13T10:54:40Z",
-      "pwn_count": 1596490,
-      "data_classes": [
-        "Email addresses",
-        "Names",
-        "Phone numbers",
-        "Physical addresses"
       ],
       "verified": true
     }

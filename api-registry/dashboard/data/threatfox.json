@@ -1,124 +1,124 @@
 {
-  "total": 10586,
+  "total": 6348,
   "recent": [
     {
-      "first_seen": "1916195",
-      "ioc": "elitebusinesschronicles.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1916194",
-      "ioc": "americandreamlost.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1916193",
-      "ioc": "everyday1297.workers.dev",
-      "ioc_type": "domain",
+      "first_seen": "1917623",
+      "ioc": "http://23.94.53.109:8888/supershell/login",
+      "ioc_type": "url",
       "threat_type": "botnet_cc",
-      "malware": "php.shin_webshell",
+      "malware": "unknown",
       "malware_alias": "None",
-      "malware_printable": "php.shin_webshell",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1916192",
-      "ioc": "alpha789.online",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1916190",
-      "ioc": "carmencitaclub.org",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1916191",
-      "ioc": "dev-coastal-road-repair.pantheonsite.io",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1916187",
-      "ioc": "43.155.246.58:443",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.cobalt_strike",
-      "malware_alias": "Agentemis",
-      "malware_printable": "BEACON",
-      "confidence": "Cobalt Strike"
-    },
-    {
-      "first_seen": "1916188",
-      "ioc": "43.155.246.58:8080",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.cobalt_strike",
-      "malware_alias": "Agentemis",
-      "malware_printable": "BEACON",
-      "confidence": "Cobalt Strike"
-    },
-    {
-      "first_seen": "1916189",
-      "ioc": "43.155.246.58:22",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.cobalt_strike",
-      "malware_alias": "Agentemis",
-      "malware_printable": "BEACON",
-      "confidence": "Cobalt Strike"
-    },
-    {
-      "first_seen": "1916186",
-      "ioc": "162.35.172.146:8080",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.adaptix_c2",
-      "malware_alias": "None",
-      "malware_printable": "AdaptixC2",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1916185",
-      "ioc": "93.82.31.87:8000",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.eye_pyramid",
-      "malware_alias": "None",
-      "malware_printable": "Eye Pyramid",
+      "malware_printable": "Unknown malware",
       "confidence": "False"
     },
     {
-      "first_seen": "1916184",
-      "ioc": "84.247.187.47:4546",
-      "ioc_type": "ip:port",
+      "first_seen": "1917622",
+      "ioc": "http://194.102.105.70/8jdjZhdf7/Login.php",
+      "ioc_type": "url",
       "threat_type": "botnet_cc",
-      "malware": "win.asyncrat",
+      "malware": "win.amadey",
       "malware_alias": "None",
-      "malware_printable": "AsyncRAT",
+      "malware_printable": "Amadey",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1917621",
+      "ioc": "https://gophish.rsecure.lu/login?next=%2F",
+      "ioc_type": "url",
+      "threat_type": "botnet_cc",
+      "malware": "unknown",
+      "malware_alias": "None",
+      "malware_printable": "Unknown malware",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1917620",
+      "ioc": "https://gophish.ac-system.jp/login?next=%2F",
+      "ioc_type": "url",
+      "threat_type": "botnet_cc",
+      "malware": "unknown",
+      "malware_alias": "None",
+      "malware_printable": "Unknown malware",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1917619",
+      "ioc": "https://gophish.security-verify.com/login?next=%2F",
+      "ioc_type": "url",
+      "threat_type": "botnet_cc",
+      "malware": "unknown",
+      "malware_alias": "None",
+      "malware_printable": "Unknown malware",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1917618",
+      "ioc": "https://admin.microsoft-identities.us/login?next=%2F",
+      "ioc_type": "url",
+      "threat_type": "botnet_cc",
+      "malware": "unknown",
+      "malware_alias": "None",
+      "malware_printable": "Unknown malware",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1917617",
+      "ioc": "http://okta-o.varrysections.digital/",
+      "ioc_type": "url",
+      "threat_type": "botnet_cc",
+      "malware": "elf.evilginx",
+      "malware_alias": "None",
+      "malware_printable": "Evilginx",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1917616",
+      "ioc": "http://okta-sci.varrysections.digital/",
+      "ioc_type": "url",
+      "threat_type": "botnet_cc",
+      "malware": "elf.evilginx",
+      "malware_alias": "None",
+      "malware_printable": "Evilginx",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1917615",
+      "ioc": "http://okta-dot.varrysections.digital/",
+      "ioc_type": "url",
+      "threat_type": "botnet_cc",
+      "malware": "elf.evilginx",
+      "malware_alias": "None",
+      "malware_printable": "Evilginx",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1917614",
+      "ioc": "http://okta-login.varrysections.digital/",
+      "ioc_type": "url",
+      "threat_type": "botnet_cc",
+      "malware": "elf.evilginx",
+      "malware_alias": "None",
+      "malware_printable": "Evilginx",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1917612",
+      "ioc": "http://m365.varrysections.digital/",
+      "ioc_type": "url",
+      "threat_type": "botnet_cc",
+      "malware": "elf.evilginx",
+      "malware_alias": "None",
+      "malware_printable": "Evilginx",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1917613",
+      "ioc": "http://content.lifecycle.varrysections.digital/",
+      "ioc_type": "url",
+      "threat_type": "botnet_cc",
+      "malware": "elf.evilginx",
+      "malware_alias": "None",
+      "malware_printable": "Evilginx",
       "confidence": "False"
     }
   ]

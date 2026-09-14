@@ -1,20 +1,17 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1119",
-    "name": "Automated Collection",
-    "description": "Once established within a system or network, an adversary may use automated techniques for collecting internal data. Methods for performing this technique could include use of a [Command and Scripting Interpreter](https://attack.mitre.org/techniques/T1059) to search for and copy information fitting set criteria such as file type, location, or name at specific time intervals. ",
+    "id": "T1689",
+    "name": "Downgrade Attack",
+    "description": "Adversaries may downgrade or use a version of system features that may be outdated, vulnerable, and/or does not support updated security controls. Downgrade attacks typically take advantage of a system\u2019s backward compatibility to force it into less secure modes of operation.",
     "tactics": [
-      "collection"
+      "defense-impairment"
     ],
     "platforms": [
-      "IaaS",
-      "Linux",
       "macOS",
-      "Office Suite",
-      "SaaS",
-      "Windows"
+      "Windows",
+      "Linux"
     ],
-    "url": "https://attack.mitre.org/techniques/T1119"
+    "url": "https://attack.mitre.org/techniques/T1689"
   }
 }
