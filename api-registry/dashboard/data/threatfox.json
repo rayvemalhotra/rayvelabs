@@ -1,10 +1,110 @@
 {
-  "total": 6348,
+  "total": 9779,
   "recent": [
     {
-      "first_seen": "1917623",
-      "ioc": "http://23.94.53.109:8888/supershell/login",
-      "ioc_type": "url",
+      "first_seen": "1920321",
+      "ioc": "147.90.182.29:2404",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.remcos",
+      "malware_alias": "RemcosRAT",
+      "malware_printable": "Remvio",
+      "confidence": ""
+    },
+    {
+      "first_seen": "1920325",
+      "ioc": "gsawilc2.morgz.store",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1920324",
+      "ioc": "jpfl8cwa.kapkan.store",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1920323",
+      "ioc": "5jtpv8ur.planus.store",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1920322",
+      "ioc": "xn--glckauf-gmbh-elb.de",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1920320",
+      "ioc": "69.48.229.91:8080",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.adaptix_c2",
+      "malware_alias": "None",
+      "malware_printable": "AdaptixC2",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1920319",
+      "ioc": "69.48.229.91:80",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.adaptix_c2",
+      "malware_alias": "None",
+      "malware_printable": "AdaptixC2",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1920318",
+      "ioc": "69.48.229.91:443",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.adaptix_c2",
+      "malware_alias": "None",
+      "malware_printable": "AdaptixC2",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1920317",
+      "ioc": "69.48.229.91:9443",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.adaptix_c2",
+      "malware_alias": "None",
+      "malware_printable": "AdaptixC2",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1920316",
+      "ioc": "45.86.64.228:80",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.cobalt_strike",
+      "malware_alias": "Agentemis",
+      "malware_printable": "BEACON",
+      "confidence": "Cobalt Strike"
+    },
+    {
+      "first_seen": "1920314",
+      "ioc": "95.158.131.144:7443",
+      "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
       "malware": "unknown",
       "malware_alias": "None",
@@ -12,113 +112,13 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1917622",
-      "ioc": "http://194.102.105.70/8jdjZhdf7/Login.php",
-      "ioc_type": "url",
-      "threat_type": "botnet_cc",
-      "malware": "win.amadey",
-      "malware_alias": "None",
-      "malware_printable": "Amadey",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1917621",
-      "ioc": "https://gophish.rsecure.lu/login?next=%2F",
-      "ioc_type": "url",
+      "first_seen": "1920315",
+      "ioc": "95.158.131.151:7443",
+      "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
       "malware": "unknown",
       "malware_alias": "None",
       "malware_printable": "Unknown malware",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1917620",
-      "ioc": "https://gophish.ac-system.jp/login?next=%2F",
-      "ioc_type": "url",
-      "threat_type": "botnet_cc",
-      "malware": "unknown",
-      "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1917619",
-      "ioc": "https://gophish.security-verify.com/login?next=%2F",
-      "ioc_type": "url",
-      "threat_type": "botnet_cc",
-      "malware": "unknown",
-      "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1917618",
-      "ioc": "https://admin.microsoft-identities.us/login?next=%2F",
-      "ioc_type": "url",
-      "threat_type": "botnet_cc",
-      "malware": "unknown",
-      "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1917617",
-      "ioc": "http://okta-o.varrysections.digital/",
-      "ioc_type": "url",
-      "threat_type": "botnet_cc",
-      "malware": "elf.evilginx",
-      "malware_alias": "None",
-      "malware_printable": "Evilginx",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1917616",
-      "ioc": "http://okta-sci.varrysections.digital/",
-      "ioc_type": "url",
-      "threat_type": "botnet_cc",
-      "malware": "elf.evilginx",
-      "malware_alias": "None",
-      "malware_printable": "Evilginx",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1917615",
-      "ioc": "http://okta-dot.varrysections.digital/",
-      "ioc_type": "url",
-      "threat_type": "botnet_cc",
-      "malware": "elf.evilginx",
-      "malware_alias": "None",
-      "malware_printable": "Evilginx",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1917614",
-      "ioc": "http://okta-login.varrysections.digital/",
-      "ioc_type": "url",
-      "threat_type": "botnet_cc",
-      "malware": "elf.evilginx",
-      "malware_alias": "None",
-      "malware_printable": "Evilginx",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1917612",
-      "ioc": "http://m365.varrysections.digital/",
-      "ioc_type": "url",
-      "threat_type": "botnet_cc",
-      "malware": "elf.evilginx",
-      "malware_alias": "None",
-      "malware_printable": "Evilginx",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1917613",
-      "ioc": "http://content.lifecycle.varrysections.digital/",
-      "ioc_type": "url",
-      "threat_type": "botnet_cc",
-      "malware": "elf.evilginx",
-      "malware_alias": "None",
-      "malware_printable": "Evilginx",
       "confidence": "False"
     }
   ]

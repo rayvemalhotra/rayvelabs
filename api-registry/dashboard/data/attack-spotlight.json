@@ -1,17 +1,17 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1689",
-    "name": "Downgrade Attack",
-    "description": "Adversaries may downgrade or use a version of system features that may be outdated, vulnerable, and/or does not support updated security controls. Downgrade attacks typically take advantage of a system\u2019s backward compatibility to force it into less secure modes of operation.",
+    "id": "T1115",
+    "name": "Clipboard Data",
+    "description": "Adversaries may collect data stored in the clipboard from users copying information within or between applications. ",
     "tactics": [
-      "defense-impairment"
+      "collection"
     ],
     "platforms": [
+      "Linux",
       "macOS",
-      "Windows",
-      "Linux"
+      "Windows"
     ],
-    "url": "https://attack.mitre.org/techniques/T1689"
+    "url": "https://attack.mitre.org/techniques/T1115"
   }
 }

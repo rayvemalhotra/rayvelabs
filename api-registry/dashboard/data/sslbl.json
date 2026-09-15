@@ -1,5 +1,5 @@
 {
-  "total_listings": 10702,
+  "total_listings": 10706,
   "by_reason": [
     {
       "reason": "AsyncRAT C&C",
@@ -23,6 +23,26 @@
     }
   ],
   "recent": [
+    {
+      "listing_date": "2026-09-15 10:52:04",
+      "sha1": "f4bcfdf7f5ae1e7732a26da5135223f3ef8ebcde",
+      "listing_reason": "ACRStealer C&C"
+    },
+    {
+      "listing_date": "2026-09-15 10:52:03",
+      "sha1": "9959475fe7721d2c7ebb55e3d5b61ca1c79939f0",
+      "listing_reason": "ACRStealer C&C"
+    },
+    {
+      "listing_date": "2026-09-15 10:51:21",
+      "sha1": "8f57a784420cc1f07ffc8b9e462edf468963834e",
+      "listing_reason": "ACRStealer C&C"
+    },
+    {
+      "listing_date": "2026-09-14 15:24:00",
+      "sha1": "e458b2ccf8647aee41d64e46d1baadfc49e9e853",
+      "listing_reason": "OffLoader C&C"
+    },
     {
       "listing_date": "2026-09-14 06:36:14",
       "sha1": "14bc0ce6c63bf1c1554b4cd1772c60b57c38ab09",
@@ -52,26 +72,6 @@
       "listing_date": "2026-09-13 19:01:33",
       "sha1": "fcfc3b257b12e4c699e343f4c415b60f642d88f6",
       "listing_reason": "Vidar C&C"
-    },
-    {
-      "listing_date": "2026-09-12 15:04:33",
-      "sha1": "db7000ad8c148580941840ce41d8efb95f478854",
-      "listing_reason": "ACRStealer C&C"
-    },
-    {
-      "listing_date": "2026-09-12 15:03:11",
-      "sha1": "60d55d4ff506bc654814ba6b26308f999766054a",
-      "listing_reason": "Vidar C&C"
-    },
-    {
-      "listing_date": "2026-09-12 15:02:11",
-      "sha1": "93edc2f5b2504b5700af766157b2aa96d1edd20f",
-      "listing_reason": "Malware C&C"
-    },
-    {
-      "listing_date": "2026-09-12 15:01:34",
-      "sha1": "c78af78d930e82506823c8ececf1140c7035d8ef",
-      "listing_reason": "OffLoader C&C"
     }
   ]
 }
