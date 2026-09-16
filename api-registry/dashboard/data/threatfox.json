@@ -1,125 +1,125 @@
 {
-  "total": 9779,
+  "total": 9371,
   "recent": [
     {
-      "first_seen": "1920321",
-      "ioc": "147.90.182.29:2404",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.remcos",
-      "malware_alias": "RemcosRAT",
-      "malware_printable": "Remvio",
-      "confidence": ""
-    },
-    {
-      "first_seen": "1920325",
-      "ioc": "gsawilc2.morgz.store",
+      "first_seen": "1921077",
+      "ioc": "fajujyli.workers.dev",
       "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
+      "threat_type": "botnet_cc",
+      "malware": "php.shin_webshell",
       "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
+      "malware_printable": "php.shin_webshell",
+      "confidence": "True"
     },
     {
-      "first_seen": "1920324",
-      "ioc": "jpfl8cwa.kapkan.store",
+      "first_seen": "1921076",
+      "ioc": "xyhysa.workers.dev",
       "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
+      "threat_type": "botnet_cc",
+      "malware": "php.shin_webshell",
       "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1920323",
-      "ioc": "5jtpv8ur.planus.store",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1920322",
-      "ioc": "xn--glckauf-gmbh-elb.de",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
+      "malware_printable": "php.shin_webshell",
       "confidence": "True"
     },
     {
-      "first_seen": "1920320",
-      "ioc": "69.48.229.91:8080",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.adaptix_c2",
-      "malware_alias": "None",
-      "malware_printable": "AdaptixC2",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1920319",
-      "ioc": "69.48.229.91:80",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.adaptix_c2",
-      "malware_alias": "None",
-      "malware_printable": "AdaptixC2",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1920318",
-      "ioc": "69.48.229.91:443",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.adaptix_c2",
-      "malware_alias": "None",
-      "malware_printable": "AdaptixC2",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1920317",
-      "ioc": "69.48.229.91:9443",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.adaptix_c2",
-      "malware_alias": "None",
-      "malware_printable": "AdaptixC2",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1920316",
-      "ioc": "45.86.64.228:80",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.cobalt_strike",
-      "malware_alias": "Agentemis",
-      "malware_printable": "BEACON",
-      "confidence": "Cobalt Strike"
-    },
-    {
-      "first_seen": "1920314",
-      "ioc": "95.158.131.144:7443",
+      "first_seen": "1921050",
+      "ioc": "125.75.36.126:30272",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
       "malware": "unknown",
       "malware_alias": "None",
       "malware_printable": "Unknown malware",
-      "confidence": "False"
+      "confidence": "True"
     },
     {
-      "first_seen": "1920315",
-      "ioc": "95.158.131.151:7443",
+      "first_seen": "1921051",
+      "ioc": "125.75.36.126:50551",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
       "malware": "unknown",
       "malware_alias": "None",
       "malware_printable": "Unknown malware",
-      "confidence": "False"
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1921052",
+      "ioc": "125.75.36.126:59214",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "unknown",
+      "malware_alias": "None",
+      "malware_printable": "Unknown malware",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1921049",
+      "ioc": "125.75.36.126:80",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "unknown",
+      "malware_alias": "None",
+      "malware_printable": "Unknown malware",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1921044",
+      "ioc": "www.snmechanicalhvac.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.iclickfix",
+      "malware_alias": "None",
+      "malware_printable": "IClickFix",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1921045",
+      "ioc": "www.teczkibezkwasowe.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.iclickfix",
+      "malware_alias": "None",
+      "malware_printable": "IClickFix",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1921046",
+      "ioc": "www.weilaizhijiao.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.iclickfix",
+      "malware_alias": "None",
+      "malware_printable": "IClickFix",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1921047",
+      "ioc": "www.wilsondrugs.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.iclickfix",
+      "malware_alias": "None",
+      "malware_printable": "IClickFix",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1921048",
+      "ioc": "www.wrongside.it",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.iclickfix",
+      "malware_alias": "None",
+      "malware_printable": "IClickFix",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1921032",
+      "ioc": "talatatilla.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.iclickfix",
+      "malware_alias": "None",
+      "malware_printable": "IClickFix",
+      "confidence": "True"
     }
   ]
 }

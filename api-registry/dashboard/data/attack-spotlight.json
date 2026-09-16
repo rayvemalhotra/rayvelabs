@@ -1,17 +1,15 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1115",
-    "name": "Clipboard Data",
-    "description": "Adversaries may collect data stored in the clipboard from users copying information within or between applications. ",
+    "id": "T1675",
+    "name": "ESXi Administration Command",
+    "description": "Adversaries may abuse ESXi administration services to execute commands on guest machines hosted within an ESXi virtual environment. Persistent background services on ESXi-hosted VMs, such as the VMware Tools Daemon Service, allow for remote management from the ESXi server. The tools daemon service runs as `vmtoolsd.exe` on Windows guest operating systems, `vmware-tools-daemon` on macOS, and `vmtoolsd ` on Linux.(Citation: Broadcom VMware Tools Services) ",
     "tactics": [
-      "collection"
+      "execution"
     ],
     "platforms": [
-      "Linux",
-      "macOS",
-      "Windows"
+      "ESXi"
     ],
-    "url": "https://attack.mitre.org/techniques/T1115"
+    "url": "https://attack.mitre.org/techniques/T1675"
   }
 }
