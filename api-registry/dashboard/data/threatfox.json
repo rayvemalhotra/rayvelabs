@@ -1,9 +1,69 @@
 {
-  "total": 9371,
+  "total": 6966,
   "recent": [
     {
-      "first_seen": "1921077",
-      "ioc": "fajujyli.workers.dev",
+      "first_seen": "1923102",
+      "ioc": "a7.zk89.net",
+      "ioc_type": "domain",
+      "threat_type": "botnet_cc",
+      "malware": "win.vidar",
+      "malware_alias": "None",
+      "malware_printable": "Vidar",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1923100",
+      "ioc": "a7.199cuan.org",
+      "ioc_type": "domain",
+      "threat_type": "botnet_cc",
+      "malware": "win.vidar",
+      "malware_alias": "None",
+      "malware_printable": "Vidar",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1923101",
+      "ioc": "https://a7.199cuan.org/",
+      "ioc_type": "url",
+      "threat_type": "botnet_cc",
+      "malware": "win.vidar",
+      "malware_alias": "None",
+      "malware_printable": "Vidar",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1923095",
+      "ioc": "http://beautck.click:8291/orders",
+      "ioc_type": "url",
+      "threat_type": "botnet_cc",
+      "malware": "win.remus",
+      "malware_alias": "None",
+      "malware_printable": "Remus",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1923096",
+      "ioc": "http://kipthen.shop:9932/tokens",
+      "ioc_type": "url",
+      "threat_type": "botnet_cc",
+      "malware": "win.remus",
+      "malware_alias": "None",
+      "malware_printable": "Remus",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1923097",
+      "ioc": "http://fuarnpp.shop:5627/subscriptions",
+      "ioc_type": "url",
+      "threat_type": "botnet_cc",
+      "malware": "win.remus",
+      "malware_alias": "None",
+      "malware_printable": "Remus",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1923092",
+      "ioc": "hrwsflkxka.workers.dev",
       "ioc_type": "domain",
       "threat_type": "botnet_cc",
       "malware": "php.shin_webshell",
@@ -12,8 +72,8 @@
       "confidence": "True"
     },
     {
-      "first_seen": "1921076",
-      "ioc": "xyhysa.workers.dev",
+      "first_seen": "1923091",
+      "ioc": "redsissy.workers.dev",
       "ioc_type": "domain",
       "threat_type": "botnet_cc",
       "malware": "php.shin_webshell",
@@ -22,104 +82,44 @@
       "confidence": "True"
     },
     {
-      "first_seen": "1921050",
-      "ioc": "125.75.36.126:30272",
+      "first_seen": "1923089",
+      "ioc": "http://tfoyses.shop:3452/tags",
+      "ioc_type": "url",
+      "threat_type": "botnet_cc",
+      "malware": "win.remus",
+      "malware_alias": "None",
+      "malware_printable": "Remus",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1923090",
+      "ioc": "http://kipthen.shop:9932/accounts",
+      "ioc_type": "url",
+      "threat_type": "botnet_cc",
+      "malware": "win.remus",
+      "malware_alias": "None",
+      "malware_printable": "Remus",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1923086",
+      "ioc": "39.100.66.238:8080",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "unknown",
-      "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "True"
+      "malware": "win.cobalt_strike",
+      "malware_alias": "Agentemis",
+      "malware_printable": "BEACON",
+      "confidence": "Cobalt Strike"
     },
     {
-      "first_seen": "1921051",
-      "ioc": "125.75.36.126:50551",
+      "first_seen": "1923087",
+      "ioc": "39.100.66.238:4330",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "unknown",
-      "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1921052",
-      "ioc": "125.75.36.126:59214",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "unknown",
-      "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1921049",
-      "ioc": "125.75.36.126:80",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "unknown",
-      "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1921044",
-      "ioc": "www.snmechanicalhvac.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.iclickfix",
-      "malware_alias": "None",
-      "malware_printable": "IClickFix",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1921045",
-      "ioc": "www.teczkibezkwasowe.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.iclickfix",
-      "malware_alias": "None",
-      "malware_printable": "IClickFix",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1921046",
-      "ioc": "www.weilaizhijiao.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.iclickfix",
-      "malware_alias": "None",
-      "malware_printable": "IClickFix",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1921047",
-      "ioc": "www.wilsondrugs.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.iclickfix",
-      "malware_alias": "None",
-      "malware_printable": "IClickFix",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1921048",
-      "ioc": "www.wrongside.it",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.iclickfix",
-      "malware_alias": "None",
-      "malware_printable": "IClickFix",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1921032",
-      "ioc": "talatatilla.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.iclickfix",
-      "malware_alias": "None",
-      "malware_printable": "IClickFix",
-      "confidence": "True"
+      "malware": "win.cobalt_strike",
+      "malware_alias": "Agentemis",
+      "malware_printable": "BEACON",
+      "confidence": "Cobalt Strike"
     }
   ]
 }

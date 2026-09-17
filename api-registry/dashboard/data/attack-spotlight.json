@@ -1,15 +1,17 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1675",
-    "name": "ESXi Administration Command",
-    "description": "Adversaries may abuse ESXi administration services to execute commands on guest machines hosted within an ESXi virtual environment. Persistent background services on ESXi-hosted VMs, such as the VMware Tools Daemon Service, allow for remote management from the ESXi server. The tools daemon service runs as `vmtoolsd.exe` on Windows guest operating systems, `vmware-tools-daemon` on macOS, and `vmtoolsd ` on Linux.(Citation: Broadcom VMware Tools Services) ",
+    "id": "T1007",
+    "name": "System Service Discovery",
+    "description": "Adversaries may try to gather information about registered local system services. Adversaries may obtain information about services using tools as well as OS utility commands such as <code>sc query</code>, <code>tasklist /svc</code>, <code>systemctl --type=service</code>, and <code>net start</code>. Adversaries may also gather information about schedule tasks via commands such as `schtasks` on Windows or `crontab -l` on Linux and macOS.(Citation: Elastic Security Labs GOSAR 2024)(Citation: SentinelLabs macOS Malware 2021)(Citation: Splunk Linux Gormir 2024)(Citation: Aquasec Kinsing 2020)",
     "tactics": [
-      "execution"
+      "discovery"
     ],
     "platforms": [
-      "ESXi"
+      "Linux",
+      "macOS",
+      "Windows"
     ],
-    "url": "https://attack.mitre.org/techniques/T1675"
+    "url": "https://attack.mitre.org/techniques/T1007"
   }
 }
