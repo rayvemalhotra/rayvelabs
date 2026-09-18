@@ -1,109 +1,9 @@
 {
-  "total": 6966,
+  "total": 6758,
   "recent": [
     {
-      "first_seen": "1923102",
-      "ioc": "a7.zk89.net",
-      "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "win.vidar",
-      "malware_alias": "None",
-      "malware_printable": "Vidar",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1923100",
-      "ioc": "a7.199cuan.org",
-      "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "win.vidar",
-      "malware_alias": "None",
-      "malware_printable": "Vidar",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1923101",
-      "ioc": "https://a7.199cuan.org/",
-      "ioc_type": "url",
-      "threat_type": "botnet_cc",
-      "malware": "win.vidar",
-      "malware_alias": "None",
-      "malware_printable": "Vidar",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1923095",
-      "ioc": "http://beautck.click:8291/orders",
-      "ioc_type": "url",
-      "threat_type": "botnet_cc",
-      "malware": "win.remus",
-      "malware_alias": "None",
-      "malware_printable": "Remus",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1923096",
-      "ioc": "http://kipthen.shop:9932/tokens",
-      "ioc_type": "url",
-      "threat_type": "botnet_cc",
-      "malware": "win.remus",
-      "malware_alias": "None",
-      "malware_printable": "Remus",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1923097",
-      "ioc": "http://fuarnpp.shop:5627/subscriptions",
-      "ioc_type": "url",
-      "threat_type": "botnet_cc",
-      "malware": "win.remus",
-      "malware_alias": "None",
-      "malware_printable": "Remus",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1923092",
-      "ioc": "hrwsflkxka.workers.dev",
-      "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "php.shin_webshell",
-      "malware_alias": "None",
-      "malware_printable": "php.shin_webshell",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1923091",
-      "ioc": "redsissy.workers.dev",
-      "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "php.shin_webshell",
-      "malware_alias": "None",
-      "malware_printable": "php.shin_webshell",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1923089",
-      "ioc": "http://tfoyses.shop:3452/tags",
-      "ioc_type": "url",
-      "threat_type": "botnet_cc",
-      "malware": "win.remus",
-      "malware_alias": "None",
-      "malware_printable": "Remus",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1923090",
-      "ioc": "http://kipthen.shop:9932/accounts",
-      "ioc_type": "url",
-      "threat_type": "botnet_cc",
-      "malware": "win.remus",
-      "malware_alias": "None",
-      "malware_printable": "Remus",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1923086",
-      "ioc": "39.100.66.238:8080",
+      "first_seen": "1923890",
+      "ioc": "8.160.168.147:80",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
       "malware": "win.cobalt_strike",
@@ -112,14 +12,114 @@
       "confidence": "Cobalt Strike"
     },
     {
-      "first_seen": "1923087",
-      "ioc": "39.100.66.238:4330",
+      "first_seen": "1923891",
+      "ioc": "8.160.168.147:8080",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
       "malware": "win.cobalt_strike",
       "malware_alias": "Agentemis",
       "malware_printable": "BEACON",
       "confidence": "Cobalt Strike"
+    },
+    {
+      "first_seen": "1923889",
+      "ioc": "8.160.168.147:443",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.cobalt_strike",
+      "malware_alias": "Agentemis",
+      "malware_printable": "BEACON",
+      "confidence": "Cobalt Strike"
+    },
+    {
+      "first_seen": "1923888",
+      "ioc": "8.160.168.147:22",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.cobalt_strike",
+      "malware_alias": "Agentemis",
+      "malware_printable": "BEACON",
+      "confidence": "Cobalt Strike"
+    },
+    {
+      "first_seen": "1923887",
+      "ioc": "60.204.248.97:80",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.cobalt_strike",
+      "malware_alias": "Agentemis",
+      "malware_printable": "BEACON",
+      "confidence": "Cobalt Strike"
+    },
+    {
+      "first_seen": "1923886",
+      "ioc": "80.76.49.209:443",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.pure_rat",
+      "malware_alias": "PureHVNC",
+      "malware_printable": "ResolverRAT",
+      "confidence": "75"
+    },
+    {
+      "first_seen": "1923885",
+      "ioc": "5.163.239.119:443",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.havoc",
+      "malware_alias": "Havokiz",
+      "malware_printable": "Havoc",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1923884",
+      "ioc": "46.246.6.18:8848",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.dcrat",
+      "malware_alias": "DarkCrystal RAT",
+      "malware_printable": "DCRat",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1923882",
+      "ioc": "45.202.0.48:8443",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.dcrat",
+      "malware_alias": "DarkCrystal RAT",
+      "malware_printable": "DCRat",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1923883",
+      "ioc": "45.202.0.55:8443",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.dcrat",
+      "malware_alias": "DarkCrystal RAT",
+      "malware_printable": "DCRat",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1923880",
+      "ioc": "45.139.104.222:55006",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.pure_rat",
+      "malware_alias": "PureHVNC",
+      "malware_printable": "ResolverRAT",
+      "confidence": "75"
+    },
+    {
+      "first_seen": "1923881",
+      "ioc": "45.139.104.26:55011",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.pure_rat",
+      "malware_alias": "PureHVNC",
+      "malware_printable": "ResolverRAT",
+      "confidence": "75"
     }
   ]
 }

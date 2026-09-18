@@ -1,3 +1,109 @@
 {
-  "top": []
+  "top": [
+    {
+      "ip": "185.94.111.1",
+      "attacks": 7310,
+      "targets": 0,
+      "first_seen": "2021-09-11",
+      "last_seen": "2026-09-18"
+    },
+    {
+      "ip": "79.124.59.78",
+      "attacks": 500,
+      "targets": 0,
+      "first_seen": "2025-08-16",
+      "last_seen": "2026-09-18"
+    },
+    {
+      "ip": "18.190.15.50",
+      "attacks": 485,
+      "targets": 0,
+      "first_seen": "2026-02-03",
+      "last_seen": "2026-09-18"
+    },
+    {
+      "ip": "100.49.117.77",
+      "attacks": 481,
+      "targets": 0,
+      "first_seen": "2026-02-03",
+      "last_seen": "2026-09-18"
+    },
+    {
+      "ip": "3.131.24.55",
+      "attacks": 480,
+      "targets": 0,
+      "first_seen": "2026-02-04",
+      "last_seen": "2026-09-18"
+    },
+    {
+      "ip": "178.20.210.151",
+      "attacks": 480,
+      "targets": 0,
+      "first_seen": "2025-11-10",
+      "last_seen": "2026-09-18"
+    },
+    {
+      "ip": "35.169.206.177",
+      "attacks": 480,
+      "targets": 0,
+      "first_seen": "2026-02-04",
+      "last_seen": "2026-09-18"
+    },
+    {
+      "ip": "18.221.179.104",
+      "attacks": 480,
+      "targets": 0,
+      "first_seen": "2026-02-03",
+      "last_seen": "2026-09-18"
+    },
+    {
+      "ip": "18.217.208.51",
+      "attacks": 477,
+      "targets": 0,
+      "first_seen": "2026-02-03",
+      "last_seen": "2026-09-18"
+    },
+    {
+      "ip": "34.197.70.90",
+      "attacks": 476,
+      "targets": 0,
+      "first_seen": "2026-02-03",
+      "last_seen": "2026-09-18"
+    },
+    {
+      "ip": "3.83.245.221",
+      "attacks": 475,
+      "targets": 0,
+      "first_seen": "2026-02-03",
+      "last_seen": "2026-09-18"
+    },
+    {
+      "ip": "100.50.17.159",
+      "attacks": 475,
+      "targets": 0,
+      "first_seen": "2026-02-03",
+      "last_seen": "2026-09-18"
+    },
+    {
+      "ip": "34.228.104.231",
+      "attacks": 473,
+      "targets": 0,
+      "first_seen": "2026-02-04",
+      "last_seen": "2026-09-18"
+    },
+    {
+      "ip": "52.20.198.190",
+      "attacks": 466,
+      "targets": 0,
+      "first_seen": "2026-02-03",
+      "last_seen": "2026-09-18"
+    },
+    {
+      "ip": "100.28.153.226",
+      "attacks": 465,
+      "targets": 0,
+      "first_seen": "2026-02-03",
+      "last_seen": "2026-09-18"
+    }
+  ]
 }
