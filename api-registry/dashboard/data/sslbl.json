@@ -1,5 +1,5 @@
 {
-  "total_listings": 10739,
+  "total_listings": 10740,
   "by_reason": [
     {
       "reason": "AsyncRAT C&C",
@@ -23,6 +23,11 @@
     }
   ],
   "recent": [
+    {
+      "listing_date": "2026-09-18 13:25:21",
+      "sha1": "c625552b0cc88337be1533622d895a90d8f2d227",
+      "listing_reason": "Malware C&C"
+    },
     {
       "listing_date": "2026-09-18 05:54:25",
       "sha1": "c8f25096d3b14521a804d30fb8d618f4f0b33950",
@@ -67,11 +72,6 @@
       "listing_date": "2026-09-17 13:34:23",
       "sha1": "35f9f438c4787030939c64cb858a48b7bed8c69d",
       "listing_reason": "PureLogsStealer C&C"
-    },
-    {
-      "listing_date": "2026-09-17 13:32:47",
-      "sha1": "513c67627217e9e62bf86dad646acdccca6bae7d",
-      "listing_reason": "Vidar C&C"
     }
   ]
 }
