@@ -1,9 +1,9 @@
 {
-  "total": 5393,
+  "total": 6352,
   "recent": [
     {
-      "first_seen": "1924851",
-      "ioc": "6p3ramracc.workers.dev",
+      "first_seen": "1926462",
+      "ioc": "wgiqn27255.workers.dev",
       "ioc_type": "domain",
       "threat_type": "botnet_cc",
       "malware": "php.shin_webshell",
@@ -12,98 +12,48 @@
       "confidence": "True"
     },
     {
-      "first_seen": "1924850",
-      "ioc": "lyhawu.workers.dev",
-      "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "php.shin_webshell",
-      "malware_alias": "None",
-      "malware_printable": "php.shin_webshell",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1924849",
-      "ioc": "e555kh1c.belly--flush.com",
-      "ioc_type": "domain",
+      "first_seen": "1926437",
+      "ioc": "https://littlevictories.info/",
+      "ioc_type": "url",
       "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
+      "malware": "unknown",
       "malware_alias": "None",
-      "malware_printable": "ClearFake",
+      "malware_printable": "Unknown malware",
       "confidence": "False"
     },
     {
-      "first_seen": "1924846",
-      "ioc": "103.124.157.49:8084",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.vshell",
-      "malware_alias": "None",
-      "malware_printable": "VShell",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1924843",
-      "ioc": "154.91.57.116:8084",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.vshell",
-      "malware_alias": "None",
-      "malware_printable": "VShell",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1924844",
-      "ioc": "106.15.205.15:8888",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.vshell",
-      "malware_alias": "None",
-      "malware_printable": "VShell",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1924845",
-      "ioc": "101.42.186.233:8092",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.vshell",
-      "malware_alias": "None",
-      "malware_printable": "VShell",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1924842",
-      "ioc": "47.116.130.234:22",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.cobalt_strike",
-      "malware_alias": "Agentemis",
-      "malware_printable": "BEACON",
-      "confidence": "Cobalt Strike"
-    },
-    {
-      "first_seen": "1924841",
-      "ioc": "digitalwithkaviya.wasmer.app",
-      "ioc_type": "domain",
+      "first_seen": "1926438",
+      "ioc": "https://pagyamorim.com.br/",
+      "ioc_type": "url",
       "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
+      "malware": "unknown",
       "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1924840",
-      "ioc": "89.153.179.188:24996",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.asyncrat",
-      "malware_alias": "None",
-      "malware_printable": "AsyncRAT",
+      "malware_printable": "Unknown malware",
       "confidence": "False"
     },
     {
-      "first_seen": "1924838",
-      "ioc": "233fd2c05865e6fc7034e61bf98e64f7afeb24c1b3e88539895eeff764ebb740",
+      "first_seen": "1926401",
+      "ioc": "188.166.158.18:8080",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "elf.aisuru",
+      "malware_alias": "None",
+      "malware_printable": "Aisuru",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1926424",
+      "ioc": "https://77.91.100.107",
+      "ioc_type": "url",
+      "threat_type": "botnet_cc",
+      "malware": "win.vidar",
+      "malware_alias": "None",
+      "malware_printable": "Vidar",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1926435",
+      "ioc": "9f7bfdbf82d08d21fd6e9f31dc5f5e9e9b541bb39f94fa32992281a463e73173",
       "ioc_type": "sha256_hash",
       "threat_type": "payload",
       "malware": "osx.amos",
@@ -112,10 +62,60 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1924839",
-      "ioc": "46.36.40.185:7443",
+      "first_seen": "1926436",
+      "ioc": "542b1els96.workers.dev",
+      "ioc_type": "domain",
+      "threat_type": "botnet_cc",
+      "malware": "php.shin_webshell",
+      "malware_alias": "None",
+      "malware_printable": "php.shin_webshell",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1926432",
+      "ioc": "praxis-harmonie.ch",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1926431",
+      "ioc": "36.255.97.162:27346",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
+      "malware": "win.cobalt_strike",
+      "malware_alias": "Agentemis",
+      "malware_printable": "BEACON",
+      "confidence": "Cobalt Strike"
+    },
+    {
+      "first_seen": "1926430",
+      "ioc": "https://nigerianationalsanitationconference.com/",
+      "ioc_type": "url",
+      "threat_type": "payload_delivery",
+      "malware": "unknown",
+      "malware_alias": "None",
+      "malware_printable": "Unknown malware",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1926427",
+      "ioc": "https://befitacademy.com.ng/",
+      "ioc_type": "url",
+      "threat_type": "payload_delivery",
+      "malware": "unknown",
+      "malware_alias": "None",
+      "malware_printable": "Unknown malware",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1926428",
+      "ioc": "https://cecyrivas.com.co/",
+      "ioc_type": "url",
+      "threat_type": "payload_delivery",
       "malware": "unknown",
       "malware_alias": "None",
       "malware_printable": "Unknown malware",
