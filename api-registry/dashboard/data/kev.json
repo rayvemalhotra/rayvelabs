@@ -1,8 +1,17 @@
 {
-  "total": 1716,
-  "catalog_version": "2026.09.18",
-  "date_released": "2026-09-18T19:00:05.0974Z",
+  "total": 1717,
+  "catalog_version": "2026.09.21",
+  "date_released": "2026-09-21T18:46:35.0873Z",
   "recent": [
+    {
+      "cve": "CVE-2026-7273",
+      "vendor": "Zyxel",
+      "product": "GS1900 Series Switches",
+      "name": "Zyxel GS1900 Series Switches Stack-Based Buffer Overflow Vulnerability",
+      "date_added": "2026-09-21",
+      "due_date": "2026-09-24",
+      "ransomware": false
+    },
     {
       "cve": "CVE-2025-39964",
       "vendor": "Linux",
@@ -100,15 +109,6 @@
       "name": "GitLab Community Edition and Enterprise Edition Path Traversal Vulnerability",
       "date_added": "2026-09-11",
       "due_date": "2026-09-14",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-86060",
-      "vendor": "MikroTik",
-      "product": "RouterOS",
-      "name": "MikroTik RouterOS Improper Neutralization of Argument Delimiters in a Command Vulnerability",
-      "date_added": "2026-09-10",
-      "due_date": "2026-09-13",
       "ransomware": false
     }
   ]

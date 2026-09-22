@@ -1,18 +1,11 @@
 {
-  "total": 29619,
+  "total": 29507,
   "recent": [
     {
       "asn": "14",
       "as_name": "COLUMBIA-GW - Columbia Univers",
       "ip": "128.59.65.44",
       "last_seen": "2026-09-18 13:41:21",
-      "category": "sshclient"
-    },
-    {
-      "asn": "87",
-      "as_name": "INDIANA-AS - Indiana Universit",
-      "ip": "156.56.202.158",
-      "last_seen": "2026-09-14 19:23:41",
       "category": "sshclient"
     },
     {
@@ -27,13 +20,6 @@
       "as_name": "COGENT-174 - Cogent Communicat",
       "ip": "154.59.103.12",
       "last_seen": "2026-09-21 01:59:40",
-      "category": "sshclient"
-    },
-    {
-      "asn": "174",
-      "as_name": "COGENT-174 - Cogent Communicat",
-      "ip": "154.59.103.17",
-      "last_seen": "2026-09-15 08:08:07",
       "category": "sshclient"
     },
     {
@@ -103,7 +89,21 @@
       "asn": "174",
       "as_name": "COGENT-174 - Cogent Communicat",
       "ip": "154.59.103.28",
-      "last_seen": "2026-09-19 22:35:11",
+      "last_seen": "2026-09-22 02:52:09",
+      "category": "sshclient"
+    },
+    {
+      "asn": "174",
+      "as_name": "COGENT-174 - Cogent Communicat",
+      "ip": "154.59.103.29",
+      "last_seen": "2026-09-20 18:47:22",
+      "category": "sshclient"
+    },
+    {
+      "asn": "174",
+      "as_name": "COGENT-174 - Cogent Communicat",
+      "ip": "154.59.103.30",
+      "last_seen": "2026-09-20 11:40:16",
       "category": "sshclient"
     }
   ]
