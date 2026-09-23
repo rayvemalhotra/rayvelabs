@@ -1,8 +1,44 @@
 {
-  "total": 1717,
-  "catalog_version": "2026.09.21",
-  "date_released": "2026-09-21T18:46:35.0873Z",
+  "total": 1721,
+  "catalog_version": "2026.09.22",
+  "date_released": "2026-09-22T19:02:09.9788Z",
   "recent": [
+    {
+      "cve": "CVE-2026-93952",
+      "vendor": "Arista",
+      "product": "VeloCloud Orchestrator",
+      "name": "Arista VeloCloud Orchestrator Improper Input Validation Vulnerability",
+      "date_added": "2026-09-22",
+      "due_date": "2026-09-25",
+      "ransomware": false
+    },
+    {
+      "cve": "CVE-2026-94127",
+      "vendor": "F5",
+      "product": "BIG-IP APM",
+      "name": "F5 BIG-IP APM Heap-based Buffer Overflow Vulnerability",
+      "date_added": "2026-09-22",
+      "due_date": "2026-09-25",
+      "ransomware": false
+    },
+    {
+      "cve": "CVE-2026-93616",
+      "vendor": "Check Point",
+      "product": "Multiple Products",
+      "name": "Check Point Multiple Products Path Traversal Vulnerability",
+      "date_added": "2026-09-22",
+      "due_date": "2026-09-25",
+      "ransomware": false
+    },
+    {
+      "cve": "CVE-2026-85102",
+      "vendor": "Check Point",
+      "product": "Multiple Products",
+      "name": "Check Point Multiple Products Improper Certificate Validation Vulnerability",
+      "date_added": "2026-09-22",
+      "due_date": "2026-09-25",
+      "ransomware": false
+    },
     {
       "cve": "CVE-2026-7273",
       "vendor": "Zyxel",
@@ -73,42 +109,6 @@
       "name": "Cisco Secure Email Gateway SQL Injection Vulnerability",
       "date_added": "2026-09-14",
       "due_date": "2026-09-17",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-84869",
-      "vendor": "ConnectWise",
-      "product": "ScreenConnect",
-      "name": "ConnectWise ScreenConnect Improper Privilege Management and Missing Authorization Vulnerability",
-      "date_added": "2026-09-11",
-      "due_date": "2026-09-14",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-42016",
-      "vendor": "JFrog",
-      "product": "Artifactory",
-      "name": "JFrog Artifactory Incorrect Authorization Vulnerability",
-      "date_added": "2026-09-11",
-      "due_date": "2026-09-25",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-42018",
-      "vendor": "JFrog",
-      "product": "Artifactory",
-      "name": "JFrog Artifactory Improper Authentication Vulnerability",
-      "date_added": "2026-09-11",
-      "due_date": "2026-09-25",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-85706",
-      "vendor": "GitLab",
-      "product": "Community Edition and Enterprise Edition",
-      "name": "GitLab Community Edition and Enterprise Edition Path Traversal Vulnerability",
-      "date_added": "2026-09-11",
-      "due_date": "2026-09-14",
       "ransomware": false
     }
   ]
