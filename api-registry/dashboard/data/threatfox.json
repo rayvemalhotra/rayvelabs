@@ -1,125 +1,125 @@
 {
-  "total": 6997,
+  "total": 9330,
   "recent": [
     {
-      "first_seen": "1929603",
-      "ioc": "72pxs9dq.osatcarton.ir",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1929602",
-      "ioc": "osatcarton.ir",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1929600",
-      "ioc": "ifiyge40.infinityjoespizzaclearwater.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
-      "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1929598",
-      "ioc": "https://uaepi.com/",
-      "ioc_type": "url",
-      "threat_type": "payload_delivery",
-      "malware": "unknown",
-      "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1929599",
-      "ioc": "https://www.tudosobrecavalos.com/",
-      "ioc_type": "url",
-      "threat_type": "payload_delivery",
-      "malware": "unknown",
-      "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1929596",
-      "ioc": "http://petcarv.click:8239/events",
-      "ioc_type": "url",
-      "threat_type": "botnet_cc",
-      "malware": "win.remus",
-      "malware_alias": "None",
-      "malware_printable": "Remus",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1929597",
-      "ioc": "http://obutdor.shop:5003/videos",
-      "ioc_type": "url",
-      "threat_type": "botnet_cc",
-      "malware": "win.remus",
-      "malware_alias": "None",
-      "malware_printable": "Remus",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1929595",
-      "ioc": "8.137.111.232:4321",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.adaptix_c2",
-      "malware_alias": "None",
-      "malware_printable": "AdaptixC2",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1929594",
-      "ioc": "64.227.178.198:7443",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "unknown",
-      "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1929593",
-      "ioc": "51.159.21.191:80",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.havoc",
-      "malware_alias": "Havokiz",
-      "malware_printable": "Havoc",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1929592",
-      "ioc": "47.243.96.54:4322",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.adaptix_c2",
-      "malware_alias": "None",
-      "malware_printable": "AdaptixC2",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1929591",
-      "ioc": "zero2six1.duckdns.org",
+      "first_seen": "1932234",
+      "ioc": "ferdinandcumberbatchx3.duckdns.org",
       "ioc_type": "domain",
       "threat_type": "botnet_cc",
-      "malware": "win.quasar_rat",
-      "malware_alias": "CinaRAT",
-      "malware_printable": "QuasarRAT",
+      "malware": "win.remcos",
+      "malware_alias": "RemcosRAT",
+      "malware_printable": "Remvio",
       "confidence": ""
+    },
+    {
+      "first_seen": "1932233",
+      "ioc": "pish-bini.bet",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1932229",
+      "ioc": "https://www.raideurs.eu/",
+      "ioc_type": "url",
+      "threat_type": "payload_delivery",
+      "malware": "unknown",
+      "malware_alias": "None",
+      "malware_printable": "Unknown malware",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1932228",
+      "ioc": "cyculuwy.workers.dev",
+      "ioc_type": "domain",
+      "threat_type": "botnet_cc",
+      "malware": "php.shin_webshell",
+      "malware_alias": "None",
+      "malware_printable": "php.shin_webshell",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1932227",
+      "ioc": "foropyqa.workers.dev",
+      "ioc_type": "domain",
+      "threat_type": "botnet_cc",
+      "malware": "php.shin_webshell",
+      "malware_alias": "None",
+      "malware_printable": "php.shin_webshell",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1932226",
+      "ioc": "66.179.29.5:8080",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.pure_rat",
+      "malware_alias": "PureHVNC",
+      "malware_printable": "ResolverRAT",
+      "confidence": "75"
+    },
+    {
+      "first_seen": "1932225",
+      "ioc": "45.207.211.207:4322",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.adaptix_c2",
+      "malware_alias": "None",
+      "malware_printable": "AdaptixC2",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1932224",
+      "ioc": "39.105.16.200:4321",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.adaptix_c2",
+      "malware_alias": "None",
+      "malware_printable": "AdaptixC2",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1932223",
+      "ioc": "31.76.45.234:80",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "js.tsundere",
+      "malware_alias": "DinDoor",
+      "malware_printable": "Tsundere",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1932222",
+      "ioc": "http://31.56.19.29",
+      "ioc_type": "url",
+      "threat_type": "botnet_cc",
+      "malware": "win.stealc",
+      "malware_alias": "None",
+      "malware_printable": "Stealc",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1932221",
+      "ioc": "2.27.160.141:61712",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.adaptix_c2",
+      "malware_alias": "None",
+      "malware_printable": "AdaptixC2",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1932220",
+      "ioc": "188.212.158.203:1145",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.asyncrat",
+      "malware_alias": "None",
+      "malware_printable": "AsyncRAT",
+      "confidence": "False"
     }
   ]
 }
