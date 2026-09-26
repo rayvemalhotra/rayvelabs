@@ -1,8 +1,35 @@
 {
-  "total": 1723,
-  "catalog_version": "2026.09.24",
-  "date_released": "2026-09-24T19:00:55.0481Z",
+  "total": 1726,
+  "catalog_version": "2026.09.25",
+  "date_released": "2026-09-25T18:58:16.5029Z",
   "recent": [
+    {
+      "cve": "CVE-2026-67279",
+      "vendor": "MikroTik",
+      "product": "RouterOS",
+      "name": "Mikrotik RouterOS Improper Enforcement of Behavioral Workflow Vulnerability",
+      "date_added": "2026-09-25",
+      "due_date": "2026-09-28",
+      "ransomware": false
+    },
+    {
+      "cve": "CVE-2026-65660",
+      "vendor": "Microsoft",
+      "product": "SharePoint",
+      "name": "Microsoft SharePoint Code Injection Vulnerability",
+      "date_added": "2026-09-25",
+      "due_date": "2026-09-28",
+      "ransomware": false
+    },
+    {
+      "cve": "CVE-2026-87902",
+      "vendor": "WordPress",
+      "product": "Core",
+      "name": "WordPress Core Remote File Inclusion Vulnerability",
+      "date_added": "2026-09-25",
+      "due_date": "2026-09-28",
+      "ransomware": false
+    },
     {
       "cve": "CVE-2026-5430",
       "vendor": "WSO2",
@@ -82,33 +109,6 @@
       "name": "Linux Kernel Out-of-Bounds Write Vulnerability",
       "date_added": "2026-09-18",
       "due_date": "2026-09-21",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2025-39682",
-      "vendor": "Linux",
-      "product": "Kernel",
-      "name": "Linux Kernel Improper Check for Unusual or Exceptional Conditions Vulnerability",
-      "date_added": "2026-09-18",
-      "due_date": "2026-09-21",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-58704",
-      "vendor": "Google",
-      "product": "Pixel",
-      "name": "Google Pixel Improper Authorization Vulnerability",
-      "date_added": "2026-09-16",
-      "due_date": "2026-09-19",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-76460",
-      "vendor": "Cisco",
-      "product": "Identity Services Engine",
-      "name": "Cisco Identity Services Engine Incorrect Use of Privileged APIs Vulnerability",
-      "date_added": "2026-09-16",
-      "due_date": "2026-09-19",
       "ransomware": false
     }
   ]
