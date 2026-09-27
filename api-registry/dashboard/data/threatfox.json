@@ -1,9 +1,9 @@
 {
-  "total": 8376,
+  "total": 12255,
   "recent": [
     {
-      "first_seen": "1932794",
-      "ioc": "47.109.48.152:8080",
+      "first_seen": "1938732",
+      "ioc": "123.60.102.111:80",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
       "malware": "win.cobalt_strike",
@@ -12,58 +12,38 @@
       "confidence": "Cobalt Strike"
     },
     {
-      "first_seen": "1932793",
-      "ioc": "47.109.48.152:80",
+      "first_seen": "1938730",
+      "ioc": "46.8.102.144:443",
       "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "win.cobalt_strike",
-      "malware_alias": "Agentemis",
-      "malware_printable": "BEACON",
-      "confidence": "Cobalt Strike"
-    },
-    {
-      "first_seen": "1932790",
-      "ioc": "e5ufcx9x6e.workers.dev",
-      "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "php.shin_webshell",
+      "malware": "unknown",
       "malware_alias": "None",
-      "malware_printable": "php.shin_webshell",
+      "malware_printable": "Unknown malware",
       "confidence": "True"
     },
     {
-      "first_seen": "1932789",
-      "ioc": "loganwolverin2042.webredirect.org",
-      "ioc_type": "domain",
+      "first_seen": "1938731",
+      "ioc": "46.8.102.144:8888",
+      "ioc_type": "ip:port",
       "threat_type": "botnet_cc",
-      "malware": "win.xworm",
+      "malware": "unknown",
       "malware_alias": "None",
-      "malware_printable": "XWorm",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1932788",
-      "ioc": "pxinb13757.workers.dev",
-      "ioc_type": "domain",
-      "threat_type": "botnet_cc",
-      "malware": "php.shin_webshell",
-      "malware_alias": "None",
-      "malware_printable": "php.shin_webshell",
+      "malware_printable": "Unknown malware",
       "confidence": "True"
     },
     {
-      "first_seen": "1932787",
-      "ioc": "rb33u1g7.jetbaz.ir",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.clearfake",
+      "first_seen": "1938729",
+      "ioc": "46.8.102.144:22",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "unknown",
       "malware_alias": "None",
-      "malware_printable": "ClearFake",
-      "confidence": "False"
+      "malware_printable": "Unknown malware",
+      "confidence": "True"
     },
     {
-      "first_seen": "1932786",
-      "ioc": "jetbaz.ir",
+      "first_seen": "1938728",
+      "ioc": "varzeshitime.ir",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -72,54 +52,74 @@
       "confidence": "True"
     },
     {
-      "first_seen": "1932785",
-      "ioc": "49.233.181.236:8082",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.cobalt_strike",
-      "malware_alias": "Agentemis",
-      "malware_printable": "BEACON",
-      "confidence": "Cobalt Strike"
+      "first_seen": "1938727",
+      "ioc": "4h3y0wdh.varzeshitime.ir",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
     },
     {
-      "first_seen": "1932784",
-      "ioc": "49.233.181.236:8080",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.cobalt_strike",
-      "malware_alias": "Agentemis",
-      "malware_printable": "BEACON",
-      "confidence": "Cobalt Strike"
+      "first_seen": "1938726",
+      "ioc": "g66c3tx3.semilink.ir",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
     },
     {
-      "first_seen": "1932782",
-      "ioc": "49.233.181.236:443",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.cobalt_strike",
-      "malware_alias": "Agentemis",
-      "malware_printable": "BEACON",
-      "confidence": "Cobalt Strike"
+      "first_seen": "1938725",
+      "ioc": "semilink.ir",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
     },
     {
-      "first_seen": "1932783",
-      "ioc": "49.233.181.236:80",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.cobalt_strike",
-      "malware_alias": "Agentemis",
-      "malware_printable": "BEACON",
-      "confidence": "Cobalt Strike"
+      "first_seen": "1938712",
+      "ioc": "40809d1e43d3c5b1973c6c6577d166be0adfe814bfa8c911a02b527702456aa2",
+      "ioc_type": "sha256_hash",
+      "threat_type": "payload",
+      "malware": "osx.amos",
+      "malware_alias": "Atomic macOS Stealer",
+      "malware_printable": "AMOS",
+      "confidence": "False"
     },
     {
-      "first_seen": "1932781",
-      "ioc": "49.233.181.236:4567",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.cobalt_strike",
-      "malware_alias": "Agentemis",
-      "malware_printable": "BEACON",
-      "confidence": "Cobalt Strike"
+      "first_seen": "1938714",
+      "ioc": "d70183a3214c07c3f4235404afeddeba8db9783bc73e8e6f813c7d8e7ce1bdc1",
+      "ioc_type": "sha256_hash",
+      "threat_type": "payload",
+      "malware": "osx.amos",
+      "malware_alias": "Atomic macOS Stealer",
+      "malware_printable": "AMOS",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1938716",
+      "ioc": "9s25krs9.dumanbett.co",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1938715",
+      "ioc": "dumanbett.co",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "False"
     }
   ]
 }

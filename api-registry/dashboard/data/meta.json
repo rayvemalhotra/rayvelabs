@@ -1,57 +1,56 @@
 {
-  "started_at": "2026-09-26T10:49:05Z",
-  "finished_at": "2026-09-26T10:49:10Z",
+  "started_at": "2026-09-27T11:24:21Z",
+  "finished_at": "2026-09-27T11:24:26Z",
   "feeds": {
     "kev": {
       "ok": true,
-      "elapsed_ms": 129
+      "elapsed_ms": 234
     },
     "epss-top": {
       "ok": true,
-      "elapsed_ms": 2105
+      "elapsed_ms": 2024
     },
     "attack-spotlight": {
       "ok": true,
-      "elapsed_ms": 417
+      "elapsed_ms": 462
     },
     "urlhaus": {
       "ok": true,
-      "elapsed_ms": 294
+      "elapsed_ms": 210
     },
     "threatfox": {
-      "ok": false,
-      "error": "HTTPError: HTTP Error 503: Service Unavailable",
-      "elapsed_ms": 177
+      "ok": true,
+      "elapsed_ms": 226
     },
     "feodo": {
       "ok": true,
-      "elapsed_ms": 65
+      "elapsed_ms": 117
     },
     "tor": {
       "ok": true,
-      "elapsed_ms": 445
+      "elapsed_ms": 541
     },
     "dshield": {
       "ok": true,
-      "elapsed_ms": 131
+      "elapsed_ms": 326
     },
     "dataplane-ssh": {
       "ok": true,
-      "elapsed_ms": 686
+      "elapsed_ms": 238
     },
     "spamhaus-drop": {
       "ok": true,
-      "elapsed_ms": 40
+      "elapsed_ms": 99
     },
     "hibp": {
       "ok": true,
-      "elapsed_ms": 457
+      "elapsed_ms": 458
     },
     "sslbl": {
       "ok": true,
-      "elapsed_ms": 70
+      "elapsed_ms": 177
     }
   },
   "feed_count": 12,
-  "ok_count": 11
+  "ok_count": 12
 }

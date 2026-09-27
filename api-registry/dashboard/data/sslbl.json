@@ -1,5 +1,5 @@
 {
-  "total_listings": 10819,
+  "total_listings": 10822,
   "by_reason": [
     {
       "reason": "AsyncRAT C&C",
@@ -7,7 +7,7 @@
     },
     {
       "reason": "Vidar C&C",
-      "count": 805
+      "count": 806
     },
     {
       "reason": "Dridex C&C",
@@ -23,6 +23,21 @@
     }
   ],
   "recent": [
+    {
+      "listing_date": "2026-09-26 15:39:47",
+      "sha1": "e58d378500a9237df93a66f055ac6e0dc900d7fa",
+      "listing_reason": "Malware C&C"
+    },
+    {
+      "listing_date": "2026-09-26 15:24:06",
+      "sha1": "86b5a5612e53988e28ed6604e8e9ff5476a46d0e",
+      "listing_reason": "Vidar C&C"
+    },
+    {
+      "listing_date": "2026-09-26 15:13:56",
+      "sha1": "d92cdd1624e3d004a180b07c2d2f33406564f839",
+      "listing_reason": "Malware C&C"
+    },
     {
       "listing_date": "2026-09-26 08:26:15",
       "sha1": "a09be1ba7013678b6385135c590d4894b890dc75",
@@ -57,21 +72,6 @@
       "listing_date": "2026-09-26 08:21:34",
       "sha1": "2d1fce636c81c10590cc4d0d853b1c6396690d36",
       "listing_reason": "PureRAT C&C"
-    },
-    {
-      "listing_date": "2026-09-26 08:19:53",
-      "sha1": "48561744f5ca383ed077fb47d2471f58a0442d47",
-      "listing_reason": "OffLoader C&C"
-    },
-    {
-      "listing_date": "2026-09-26 08:17:52",
-      "sha1": "75c4ec617ba3bb3d062cd4ad9f0ca62f3f258b1a",
-      "listing_reason": "OffLoader C&C"
-    },
-    {
-      "listing_date": "2026-09-26 08:17:44",
-      "sha1": "5f5d3a3225006f45ff8194536ef8e09cb194884d",
-      "listing_reason": "Vidar C&C"
     }
   ]
 }
