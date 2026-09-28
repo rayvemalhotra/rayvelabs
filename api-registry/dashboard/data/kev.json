@@ -1,8 +1,26 @@
 {
-  "total": 1726,
-  "catalog_version": "2026.09.25",
-  "date_released": "2026-09-25T18:58:16.5029Z",
+  "total": 1728,
+  "catalog_version": "2026.09.27",
+  "date_released": "2026-09-27T21:30:35.5521Z",
   "recent": [
+    {
+      "cve": "CVE-2026-88772",
+      "vendor": "Citrix",
+      "product": "NetScaler",
+      "name": "Citrix NetScaler Improper Restriction of Operations within the Bounds of a Memory Buffer Vulnerability",
+      "date_added": "2026-09-27",
+      "due_date": "2026-09-30",
+      "ransomware": false
+    },
+    {
+      "cve": "CVE-2026-88771",
+      "vendor": "Citrix",
+      "product": "NetScaler",
+      "name": "Citrix NetScaler Improper Input Validation Vulnerability",
+      "date_added": "2026-09-27",
+      "due_date": "2026-09-30",
+      "ransomware": false
+    },
     {
       "cve": "CVE-2026-67279",
       "vendor": "MikroTik",
@@ -91,24 +109,6 @@
       "name": "Zyxel GS1900 Series Switches Stack-Based Buffer Overflow Vulnerability",
       "date_added": "2026-09-21",
       "due_date": "2026-09-24",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2025-39964",
-      "vendor": "Linux",
-      "product": "Kernel",
-      "name": "Linux Kernel Race Condition Vulnerability",
-      "date_added": "2026-09-18",
-      "due_date": "2026-09-21",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-53266",
-      "vendor": "Linux",
-      "product": "Kernel",
-      "name": "Linux Kernel Out-of-Bounds Write Vulnerability",
-      "date_added": "2026-09-18",
-      "due_date": "2026-09-21",
       "ransomware": false
     }
   ]

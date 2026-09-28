@@ -1,15 +1,16 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1202",
-    "name": "Indirect Command Execution",
-    "description": "Adversaries may abuse utilities that allow for command execution to bypass security restrictions that limit the use of command-line interpreters. Various Windows utilities may be used to execute commands, possibly without invoking [cmd](https://attack.mitre.org/software/S0106). For example, [Forfiles](https://attack.mitre.org/software/S0193), the Program Compatibility Assistant (`pcalua.exe`), components of the Windows Subsystem for Linux (WSL), `Scriptrunner.exe`, as well as other utilities may invoke the execution of programs and commands from a [Command and Scripting Interpreter](https://attack.mitre.org/techniques/T1059), Run window, or via scripts.(Citation: VectorSec ForFiles Aug 2017)(Citation: Evi1cg Forfiles Nov 2017)(Citation: Secure Team - Scriptrunner.exe)(Citation: SS64)(Citat",
+    "id": "T1091",
+    "name": "Replication Through Removable Media",
+    "description": "Adversaries may move onto systems, possibly those on disconnected or air-gapped networks, by copying malware to removable media and taking advantage of Autorun features when the media is inserted into a system and executes. In the case of Lateral Movement, this may occur through modification of executable files stored on removable media or by copying malware and renaming it to look like a legitimate file to trick users into executing it on a separate system. In the case of Initial Access, this may occur through manual manipulation of the media, modification of systems used to initially format the media, or modification to the media's firmware itself.",
     "tactics": [
-      "stealth"
+      "lateral-movement",
+      "initial-access"
     ],
     "platforms": [
       "Windows"
     ],
-    "url": "https://attack.mitre.org/techniques/T1202"
+    "url": "https://attack.mitre.org/techniques/T1091"
   }
 }
