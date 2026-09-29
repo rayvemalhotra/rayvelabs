@@ -1,54 +1,54 @@
 {
-  "started_at": "2026-09-28T12:54:58Z",
-  "finished_at": "2026-09-28T12:55:06Z",
+  "started_at": "2026-09-29T12:07:57Z",
+  "finished_at": "2026-09-29T12:08:02Z",
   "feeds": {
     "kev": {
       "ok": true,
-      "elapsed_ms": 259
+      "elapsed_ms": 145
     },
     "epss-top": {
       "ok": true,
-      "elapsed_ms": 2157
+      "elapsed_ms": 2081
     },
     "attack-spotlight": {
       "ok": true,
-      "elapsed_ms": 589
+      "elapsed_ms": 377
     },
     "urlhaus": {
       "ok": true,
-      "elapsed_ms": 315
+      "elapsed_ms": 147
     },
     "threatfox": {
       "ok": true,
-      "elapsed_ms": 279
+      "elapsed_ms": 121
     },
     "feodo": {
       "ok": true,
-      "elapsed_ms": 209
+      "elapsed_ms": 151
     },
     "tor": {
       "ok": true,
-      "elapsed_ms": 2438
+      "elapsed_ms": 696
     },
     "dshield": {
       "ok": true,
-      "elapsed_ms": 276
+      "elapsed_ms": 348
     },
     "dataplane-ssh": {
       "ok": true,
-      "elapsed_ms": 424
+      "elapsed_ms": 281
     },
     "spamhaus-drop": {
       "ok": true,
-      "elapsed_ms": 101
+      "elapsed_ms": 54
     },
     "hibp": {
       "ok": true,
-      "elapsed_ms": 388
+      "elapsed_ms": 437
     },
     "sslbl": {
       "ok": true,
-      "elapsed_ms": 204
+      "elapsed_ms": 156
     }
   },
   "feed_count": 12,
