@@ -1,8 +1,17 @@
 {
-  "total": 1728,
-  "catalog_version": "2026.09.27",
-  "date_released": "2026-09-27T21:30:35.5521Z",
+  "total": 1729,
+  "catalog_version": "2026.09.29",
+  "date_released": "2026-09-29T13:51:33.3852Z",
   "recent": [
+    {
+      "cve": "CVE-2026-86950",
+      "vendor": "Apple",
+      "product": "Multiple Products",
+      "name": "Apple Multiple Products Out-of-Bounds Write Vulnerability",
+      "date_added": "2026-09-29",
+      "due_date": "2026-10-02",
+      "ransomware": false
+    },
     {
       "cve": "CVE-2026-88772",
       "vendor": "Citrix",
@@ -100,15 +109,6 @@
       "name": "Check Point Multiple Products Improper Certificate Validation Vulnerability",
       "date_added": "2026-09-22",
       "due_date": "2026-09-25",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-7273",
-      "vendor": "Zyxel",
-      "product": "GS1900 Series Switches",
-      "name": "Zyxel GS1900 Series Switches Stack-Based Buffer Overflow Vulnerability",
-      "date_added": "2026-09-21",
-      "due_date": "2026-09-24",
       "ransomware": false
     }
   ]

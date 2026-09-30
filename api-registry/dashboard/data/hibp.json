@@ -1,7 +1,26 @@
 {
-  "total_breaches": 1038,
-  "total_records_exposed": 17837211580,
+  "total_breaches": 1039,
+  "total_records_exposed": 17837635527,
   "recent": [
+    {
+      "name": "Medela",
+      "title": "Medela",
+      "domain": "medela.com",
+      "breach_date": "2026-09-07",
+      "added_date": "2026-09-30T11:48:28Z",
+      "pwn_count": 423947,
+      "data_classes": [
+        "Email addresses",
+        "Employers",
+        "Job titles",
+        "Names",
+        "Phone numbers",
+        "Physical addresses",
+        "Salutations",
+        "Support tickets"
+      ],
+      "verified": true
+    },
     {
       "name": "ManchesterAirportsGroup",
       "title": "Manchester Airports Group",
@@ -113,24 +132,6 @@
         "Names",
         "Phone numbers",
         "Physical addresses"
-      ],
-      "verified": true
-    },
-    {
-      "name": "Questel",
-      "title": "Questel",
-      "domain": "questel.com",
-      "breach_date": "2026-08-01",
-      "added_date": "2026-09-01T04:49:35Z",
-      "pwn_count": 1226209,
-      "data_classes": [
-        "Email addresses",
-        "Employers",
-        "Job titles",
-        "Names",
-        "Phone numbers",
-        "Physical addresses",
-        "Support tickets"
       ],
       "verified": true
     }

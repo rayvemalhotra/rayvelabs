@@ -1,19 +1,18 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1005",
-    "name": "Data from Local System",
-    "description": "Adversaries may search local system sources, such as file systems, configuration files, local databases, virtual machine files, or process memory, to find files of interest and sensitive data prior to Exfiltration.",
+    "id": "T1140",
+    "name": "Deobfuscate/Decode Files or Information",
+    "description": "Adversaries may use [Obfuscated Files or Information](https://attack.mitre.org/techniques/T1027) to hide artifacts of an intrusion from analysis. They may require separate mechanisms to decode or deobfuscate that information depending on how they intend to use it. Methods for doing that include built-in functionality of malware or by using utilities present on the system.",
     "tactics": [
-      "collection"
+      "stealth"
     ],
     "platforms": [
       "ESXi",
       "Linux",
       "macOS",
-      "Network Devices",
       "Windows"
     ],
-    "url": "https://attack.mitre.org/techniques/T1005"
+    "url": "https://attack.mitre.org/techniques/T1140"
   }
 }

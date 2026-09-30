@@ -1,60 +1,40 @@
 {
-  "total": 7720,
+  "total": 6797,
   "recent": [
     {
-      "first_seen": "1941697",
-      "ioc": "fa.5-rt.org",
+      "first_seen": "1942855",
+      "ioc": "covypiha.workers.dev",
       "ioc_type": "domain",
       "threat_type": "botnet_cc",
-      "malware": "win.vidar",
+      "malware": "php.shin_webshell",
       "malware_alias": "None",
-      "malware_printable": "Vidar",
+      "malware_printable": "php.shin_webshell",
       "confidence": "True"
     },
     {
-      "first_seen": "1941698",
-      "ioc": "https://fa.5-rt.org/",
-      "ioc_type": "url",
-      "threat_type": "botnet_cc",
-      "malware": "win.vidar",
-      "malware_alias": "None",
-      "malware_printable": "Vidar",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1941695",
-      "ioc": "fa.32naga.net",
+      "first_seen": "1942854",
+      "ioc": "xgyqp87688.workers.dev",
       "ioc_type": "domain",
       "threat_type": "botnet_cc",
-      "malware": "win.vidar",
+      "malware": "php.shin_webshell",
       "malware_alias": "None",
-      "malware_printable": "Vidar",
+      "malware_printable": "php.shin_webshell",
       "confidence": "True"
     },
     {
-      "first_seen": "1941696",
-      "ioc": "https://fa.32naga.net/",
-      "ioc_type": "url",
-      "threat_type": "botnet_cc",
-      "malware": "win.vidar",
-      "malware_alias": "None",
-      "malware_printable": "Vidar",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1941688",
-      "ioc": "https://volanteomaleta.cl/",
-      "ioc_type": "url",
+      "first_seen": "1942853",
+      "ioc": "4twellnesshub.co.tz",
+      "ioc_type": "domain",
       "threat_type": "payload_delivery",
-      "malware": "unknown",
+      "malware": "js.clearfake",
       "malware_alias": "None",
-      "malware_printable": "Unknown malware",
-      "confidence": "False"
+      "malware_printable": "ClearFake",
+      "confidence": "True"
     },
     {
-      "first_seen": "1941687",
-      "ioc": "14fet9qp.hwgrouppik.com",
-      "ioc_type": "domain",
+      "first_seen": "1942851",
+      "ioc": "https://cdn.jsdelivr.net/gh/52-7aa5/a861d732-5ddf-46c2-a574-c0649f8df6b8/859a49159d7b",
+      "ioc_type": "url",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
       "malware_alias": "None",
@@ -62,64 +42,84 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1941678",
-      "ioc": "babatech.store",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "unknown_loader",
+      "first_seen": "1942850",
+      "ioc": "68.183.17.13:3333",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "unknown",
       "malware_alias": "None",
-      "malware_printable": "Unknown Loader",
-      "confidence": "True"
+      "malware_printable": "Unknown malware",
+      "confidence": "False"
     },
     {
-      "first_seen": "1941679",
-      "ioc": "coetica.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "unknown_loader",
+      "first_seen": "1942849",
+      "ioc": "43.133.13.81:1023",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "unknown",
       "malware_alias": "None",
-      "malware_printable": "Unknown Loader",
-      "confidence": "True"
+      "malware_printable": "Unknown malware",
+      "confidence": "False"
     },
     {
-      "first_seen": "1941680",
-      "ioc": "demmiral.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "unknown_loader",
-      "malware_alias": "None",
-      "malware_printable": "Unknown Loader",
-      "confidence": "True"
+      "first_seen": "1942848",
+      "ioc": "16.171.181.149:80",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.havoc",
+      "malware_alias": "Havokiz",
+      "malware_printable": "Havoc",
+      "confidence": "False"
     },
     {
-      "first_seen": "1941681",
-      "ioc": "duocthaolila.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "unknown_loader",
+      "first_seen": "1942847",
+      "ioc": "51.178.49.164:31337",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.sliver",
       "malware_alias": "None",
-      "malware_printable": "Unknown Loader",
-      "confidence": "True"
+      "malware_printable": "Sliver",
+      "confidence": "False"
     },
     {
-      "first_seen": "1941682",
-      "ioc": "serviciointegraldeaguas.com.ar",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "unknown_loader",
+      "first_seen": "1942846",
+      "ioc": "187.145.62.206:31337",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.sliver",
       "malware_alias": "None",
-      "malware_printable": "Unknown Loader",
-      "confidence": "True"
+      "malware_printable": "Sliver",
+      "confidence": "False"
     },
     {
-      "first_seen": "1941683",
-      "ioc": "steady-aim.com",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "unknown_loader",
+      "first_seen": "1942845",
+      "ioc": "74.0.32.177:50050",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.cobalt_strike",
+      "malware_alias": "Agentemis",
+      "malware_printable": "BEACON",
+      "confidence": "Cobalt Strike"
+    },
+    {
+      "first_seen": "1942844",
+      "ioc": "74.0.32.177:443",
+      "ioc_type": "ip:port",
+      "threat_type": "botnet_cc",
+      "malware": "win.cobalt_strike",
+      "malware_alias": "Agentemis",
+      "malware_printable": "BEACON",
+      "confidence": "Cobalt Strike"
+    },
+    {
+      "first_seen": "1942810",
+      "ioc": "https://172.236.206.79",
+      "ioc_type": "url",
+      "threat_type": "botnet_cc",
+      "malware": "win.vidar",
       "malware_alias": "None",
-      "malware_printable": "Unknown Loader",
-      "confidence": "True"
+      "malware_printable": "Vidar",
+      "confidence": "False"
     }
   ]
 }
