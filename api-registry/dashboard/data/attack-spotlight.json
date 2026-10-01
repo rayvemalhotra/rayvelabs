@@ -1,18 +1,18 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1140",
-    "name": "Deobfuscate/Decode Files or Information",
-    "description": "Adversaries may use [Obfuscated Files or Information](https://attack.mitre.org/techniques/T1027) to hide artifacts of an intrusion from analysis. They may require separate mechanisms to decode or deobfuscate that information depending on how they intend to use it. Methods for doing that include built-in functionality of malware or by using utilities present on the system.",
+    "id": "T1195",
+    "name": "Supply Chain Compromise",
+    "description": "Adversaries may manipulate products or product delivery mechanisms prior to receipt by a final consumer for the purpose of data or system compromise.",
     "tactics": [
-      "stealth"
+      "initial-access"
     ],
     "platforms": [
-      "ESXi",
       "Linux",
+      "Windows",
       "macOS",
-      "Windows"
+      "SaaS"
     ],
-    "url": "https://attack.mitre.org/techniques/T1140"
+    "url": "https://attack.mitre.org/techniques/T1195"
   }
 }

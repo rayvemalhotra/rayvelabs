@@ -1,8 +1,17 @@
 {
-  "total": 1729,
-  "catalog_version": "2026.09.29",
-  "date_released": "2026-09-29T13:51:33.3852Z",
+  "total": 1730,
+  "catalog_version": "2026.09.30",
+  "date_released": "2026-09-30T16:59:23.0688Z",
   "recent": [
+    {
+      "cve": "CVE-2026-76504",
+      "vendor": "Cisco",
+      "product": "Catalyst SD-WAN Manager",
+      "name": "Cisco Catalyst SD-WAN Manager Hex Encoding Vulnerability",
+      "date_added": "2026-09-30",
+      "due_date": "2026-10-03",
+      "ransomware": false
+    },
     {
       "cve": "CVE-2026-86950",
       "vendor": "Apple",
@@ -98,15 +107,6 @@
       "vendor": "Check Point",
       "product": "Multiple Products",
       "name": "Check Point Multiple Products Path Traversal Vulnerability",
-      "date_added": "2026-09-22",
-      "due_date": "2026-09-25",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-85102",
-      "vendor": "Check Point",
-      "product": "Multiple Products",
-      "name": "Check Point Multiple Products Improper Certificate Validation Vulnerability",
       "date_added": "2026-09-22",
       "due_date": "2026-09-25",
       "ransomware": false
