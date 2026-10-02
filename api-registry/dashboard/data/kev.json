@@ -1,8 +1,17 @@
 {
-  "total": 1730,
-  "catalog_version": "2026.09.30",
-  "date_released": "2026-09-30T16:59:23.0688Z",
+  "total": 1731,
+  "catalog_version": "2026.10.01",
+  "date_released": "2026-10-01T19:54:04.9308Z",
   "recent": [
+    {
+      "cve": "CVE-2026-104286",
+      "vendor": "Fortinet",
+      "product": "FortiMail",
+      "name": "Fortinet FortiMail Path Traversal Vulnerability",
+      "date_added": "2026-10-01",
+      "due_date": "2026-10-04",
+      "ransomware": false
+    },
     {
       "cve": "CVE-2026-76504",
       "vendor": "Cisco",
@@ -98,15 +107,6 @@
       "vendor": "F5",
       "product": "BIG-IP APM",
       "name": "F5 BIG-IP APM Heap-based Buffer Overflow Vulnerability",
-      "date_added": "2026-09-22",
-      "due_date": "2026-09-25",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-93616",
-      "vendor": "Check Point",
-      "product": "Multiple Products",
-      "name": "Check Point Multiple Products Path Traversal Vulnerability",
       "date_added": "2026-09-22",
       "due_date": "2026-09-25",
       "ransomware": false

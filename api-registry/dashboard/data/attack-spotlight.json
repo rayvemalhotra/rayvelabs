@@ -1,18 +1,21 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1195",
-    "name": "Supply Chain Compromise",
-    "description": "Adversaries may manipulate products or product delivery mechanisms prior to receipt by a final consumer for the purpose of data or system compromise.",
+    "id": "T1190",
+    "name": "Exploit Public-Facing Application",
+    "description": "Adversaries may attempt to exploit a weakness in an Internet-facing host or system to initially access a network. The weakness in the system can be a software bug, a temporary glitch, or a misconfiguration.",
     "tactics": [
       "initial-access"
     ],
     "platforms": [
+      "Containers",
+      "ESXi",
+      "IaaS",
       "Linux",
-      "Windows",
       "macOS",
-      "SaaS"
+      "Network Devices",
+      "Windows"
     ],
-    "url": "https://attack.mitre.org/techniques/T1195"
+    "url": "https://attack.mitre.org/techniques/T1190"
   }
 }
