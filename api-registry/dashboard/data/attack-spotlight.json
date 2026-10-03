@@ -1,21 +1,17 @@
 {
   "total_techniques": 222,
   "technique": {
-    "id": "T1190",
-    "name": "Exploit Public-Facing Application",
-    "description": "Adversaries may attempt to exploit a weakness in an Internet-facing host or system to initially access a network. The weakness in the system can be a software bug, a temporary glitch, or a misconfiguration.",
+    "id": "T1558",
+    "name": "Steal or Forge Kerberos Tickets",
+    "description": "Adversaries may attempt to subvert Kerberos authentication by stealing or forging Kerberos tickets to enable [Pass the Ticket](https://attack.mitre.org/techniques/T1550/003). Kerberos is an authentication protocol widely used in modern Windows domain environments. In Kerberos environments, referred to as \u201crealms\u201d, there are three basic participants: client, service, and Key Distribution Center (KDC).(Citation: ADSecurity Kerberos Ring Decoder) Clients request access to a service and through the exchange of Kerberos tickets, originating from KDC, they are granted access after having successfully authenticated. The KDC is responsible for both authentication and ticket granting.  Adversaries may attempt to abuse Kerberos by stealing tickets or forging tickets to enable unauthorized access.",
     "tactics": [
-      "initial-access"
+      "credential-access"
     ],
     "platforms": [
-      "Containers",
-      "ESXi",
-      "IaaS",
       "Linux",
       "macOS",
-      "Network Devices",
       "Windows"
     ],
-    "url": "https://attack.mitre.org/techniques/T1190"
+    "url": "https://attack.mitre.org/techniques/T1558"
   }
 }

@@ -1,13 +1,13 @@
 {
-  "total_listings": 10871,
+  "total_listings": 10876,
   "by_reason": [
     {
       "reason": "AsyncRAT C&C",
-      "count": 1457
+      "count": 1459
     },
     {
       "reason": "Vidar C&C",
-      "count": 812
+      "count": 813
     },
     {
       "reason": "Dridex C&C",
@@ -23,6 +23,31 @@
     }
   ],
   "recent": [
+    {
+      "listing_date": "2026-10-03 10:57:14",
+      "sha1": "33330e829893dd29699f09a04726f7d489b32157",
+      "listing_reason": "Vidar C&C"
+    },
+    {
+      "listing_date": "2026-10-03 10:57:02",
+      "sha1": "58b3990b07e9caaa2c504a5b9759d14eefcbc5e5",
+      "listing_reason": "AsyncRAT C&C"
+    },
+    {
+      "listing_date": "2026-10-03 10:55:26",
+      "sha1": "64c5f719aa0111be2ac04d785a8904b5baa22a88",
+      "listing_reason": "AsyncRAT C&C"
+    },
+    {
+      "listing_date": "2026-10-03 06:27:08",
+      "sha1": "ef85e36f55755b6b85e9b3739ff7bfbb90f22e3b",
+      "listing_reason": "BridgeAgent C&C"
+    },
+    {
+      "listing_date": "2026-10-02 16:02:09",
+      "sha1": "8c4c2867daf5d6ef1cc9d304fb4c6be488cd645a",
+      "listing_reason": "OffLoader C&C"
+    },
     {
       "listing_date": "2026-10-02 08:24:53",
       "sha1": "d89e701e024880cfd5f20e3f6ca748ee002f6bcd",
@@ -46,31 +71,6 @@
     {
       "listing_date": "2026-10-01 14:33:24",
       "sha1": "d2bf0b9b894431307b05b47812645ef42cf169e6",
-      "listing_reason": "ConnectWise C&C"
-    },
-    {
-      "listing_date": "2026-10-01 14:25:32",
-      "sha1": "b4d984de5a6fad2a262360fede253124b6d08b41",
-      "listing_reason": "ConnectWise C&C"
-    },
-    {
-      "listing_date": "2026-10-01 14:24:52",
-      "sha1": "fae032e423544ab9e33d6e656d1a239e74b04637",
-      "listing_reason": "ConnectWise C&C"
-    },
-    {
-      "listing_date": "2026-10-01 14:24:31",
-      "sha1": "983cbec3d48ec620539fe07e608568279fe973ec",
-      "listing_reason": "ConnectWise C&C"
-    },
-    {
-      "listing_date": "2026-10-01 14:24:21",
-      "sha1": "cc3986460c930a304c6f86172dbafe27e3ab5ff7",
-      "listing_reason": "ConnectWise C&C"
-    },
-    {
-      "listing_date": "2026-10-01 14:23:59",
-      "sha1": "9f429899906495a70ecf478ed1d0f58bf597c991",
       "listing_reason": "ConnectWise C&C"
     }
   ]

@@ -1,9 +1,9 @@
 {
-  "total": 6462,
+  "total": 10979,
   "recent": [
     {
-      "first_seen": "1945301",
-      "ioc": "0ki6ewis.wiskaoane.com",
+      "first_seen": "1948499",
+      "ioc": "1e9124dd.linuxfortravelers.com",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
@@ -12,113 +12,113 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1945250",
-      "ioc": "7bc5a428392326f138fd7e0d94bf36b51609362a92989ebd99079fbf9b1727ad",
-      "ioc_type": "sha256_hash",
-      "threat_type": "payload",
-      "malware": "osx.amos",
-      "malware_alias": "Atomic macOS Stealer",
-      "malware_printable": "AMOS",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1945251",
-      "ioc": "d514c7de802c7d0ff9b747700e0bebb9e0967b6b7ba667536bf726e848f646d3",
-      "ioc_type": "sha256_hash",
-      "threat_type": "payload",
-      "malware": "osx.amos",
-      "malware_alias": "Atomic macOS Stealer",
-      "malware_printable": "AMOS",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1945281",
-      "ioc": "212.192.14.31:27651",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "elf.potassium",
-      "malware_alias": "None",
-      "malware_printable": "Potassium",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1945294",
-      "ioc": "89.185.82.37:27651",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "elf.potassium",
-      "malware_alias": "None",
-      "malware_printable": "Potassium",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1945299",
-      "ioc": "http://kipthen.shop:9932/images",
-      "ioc_type": "url",
-      "threat_type": "botnet_cc",
-      "malware": "win.remus",
-      "malware_alias": "None",
-      "malware_printable": "Remus",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1945300",
-      "ioc": "http://tfoyses.shop:3452/addresses",
-      "ioc_type": "url",
-      "threat_type": "botnet_cc",
-      "malware": "win.remus",
-      "malware_alias": "None",
-      "malware_printable": "Remus",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1945298",
-      "ioc": "openai-credit.com",
+      "first_seen": "1948498",
+      "ioc": "0cbvmet6.tanyavondegurechaff.fit",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
       "malware_alias": "None",
       "malware_printable": "ClearFake",
-      "confidence": "True"
+      "confidence": "False"
     },
     {
-      "first_seen": "1945297",
-      "ioc": "45.142.31.82:8080",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.adaptix_c2",
-      "malware_alias": "None",
-      "malware_printable": "AdaptixC2",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1945296",
-      "ioc": "45.142.31.82:443",
-      "ioc_type": "ip:port",
-      "threat_type": "botnet_cc",
-      "malware": "win.adaptix_c2",
-      "malware_alias": "None",
-      "malware_printable": "AdaptixC2",
-      "confidence": "True"
-    },
-    {
-      "first_seen": "1945295",
-      "ioc": "hemlocktransept.co",
-      "ioc_type": "domain",
-      "threat_type": "payload_delivery",
-      "malware": "js.smartapesg",
-      "malware_alias": "HANEYMANEY",
-      "malware_printable": "ZPHP",
-      "confidence": "100"
-    },
-    {
-      "first_seen": "1945293",
-      "ioc": "9514a4a4a35e00d4b4fc5d137dd09abce68788b36547ae7124f3ce55ac26c0d6",
+      "first_seen": "1948497",
+      "ioc": "ccc3cd3605d7c033a1c17030e047bcafd0f33cac1cc9276740c46dc4228f2070",
       "ioc_type": "sha256_hash",
       "threat_type": "payload",
-      "malware": "unknown_loader",
-      "malware_alias": "None",
-      "malware_printable": "Unknown Loader",
+      "malware": "elf.mirai",
+      "malware_alias": "Katana",
+      "malware_printable": "Mirai",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1948496",
+      "ioc": "226d5f0493530a890fe642db959232b63ba8b7be48ea94a65cc68f8437b10ae5",
+      "ioc_type": "sha256_hash",
+      "threat_type": "payload",
+      "malware": "elf.mirai",
+      "malware_alias": "Katana",
+      "malware_printable": "Mirai",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1948495",
+      "ioc": "744a5384a8bc1749ec3d656c2a123410b336894c771dcc37d8e744e352f6c647",
+      "ioc_type": "sha256_hash",
+      "threat_type": "payload",
+      "malware": "elf.mirai",
+      "malware_alias": "Katana",
+      "malware_printable": "Mirai",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1948494",
+      "ioc": "d835a7b69e2a5554b9390fbc03fe175f47e0c47b64dcce8b1bf5ca6fc6d9c134",
+      "ioc_type": "sha256_hash",
+      "threat_type": "payload",
+      "malware": "elf.mirai",
+      "malware_alias": "Katana",
+      "malware_printable": "Mirai",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1948493",
+      "ioc": "78a57de8eb7d70af3d44dda3ea3fc11ed44879d34db45fb8c22211b852398763",
+      "ioc_type": "sha256_hash",
+      "threat_type": "payload",
+      "malware": "elf.mirai",
+      "malware_alias": "Katana",
+      "malware_printable": "Mirai",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1948491",
+      "ioc": "580ffce9b7b58f51cc4db2973f83300e79ee67583f59a96ebdbb4cc0c65710fb",
+      "ioc_type": "sha256_hash",
+      "threat_type": "payload",
+      "malware": "elf.mirai",
+      "malware_alias": "Katana",
+      "malware_printable": "Mirai",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1948492",
+      "ioc": "1494e1fbe094a19ccf07ed68425128e124e48852c496ef1f9c2e380c06140c35",
+      "ioc_type": "sha256_hash",
+      "threat_type": "payload",
+      "malware": "elf.mirai",
+      "malware_alias": "Katana",
+      "malware_printable": "Mirai",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1948490",
+      "ioc": "81ea2a392b6d71c7cd381f48ebffb992457a1d3897d1484a3fd7823f2e9f69a3",
+      "ioc_type": "sha256_hash",
+      "threat_type": "payload",
+      "malware": "elf.mirai",
+      "malware_alias": "Katana",
+      "malware_printable": "Mirai",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1948489",
+      "ioc": "ab434585775518b79d589ee36a56eafc9a83c81e9bd4fb5c8b5cb9939220ecd4",
+      "ioc_type": "sha256_hash",
+      "threat_type": "payload",
+      "malware": "elf.mirai",
+      "malware_alias": "Katana",
+      "malware_printable": "Mirai",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1948488",
+      "ioc": "02c7c8ec40b82738e76147ce4491ccaa6486899797384e07420269e7d69cbc10",
+      "ioc_type": "sha256_hash",
+      "threat_type": "payload",
+      "malware": "elf.mirai",
+      "malware_alias": "Katana",
+      "malware_printable": "Mirai",
       "confidence": "False"
     }
   ]

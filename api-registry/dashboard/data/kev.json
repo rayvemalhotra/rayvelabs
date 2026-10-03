@@ -1,8 +1,26 @@
 {
-  "total": 1731,
-  "catalog_version": "2026.10.01",
-  "date_released": "2026-10-01T19:54:04.9308Z",
+  "total": 1733,
+  "catalog_version": "2026.10.02",
+  "date_released": "2026-10-02T15:19:38.2945Z",
   "recent": [
+    {
+      "cve": "CVE-2026-102490",
+      "vendor": "Zammad GmbH",
+      "product": "Zammad",
+      "name": "Zammad GmbH Zammad Improper Privilege Management Vulnerability",
+      "date_added": "2026-10-02",
+      "due_date": "2026-10-05",
+      "ransomware": false
+    },
+    {
+      "cve": "CVE-2026-102489",
+      "vendor": "Zammad GmbH",
+      "product": "Zammad",
+      "name": "Zammad GmbH Zammad Session Fixation Vulnerability",
+      "date_added": "2026-10-02",
+      "due_date": "2026-10-05",
+      "ransomware": false
+    },
     {
       "cve": "CVE-2026-104286",
       "vendor": "Fortinet",
@@ -91,24 +109,6 @@
       "name": "Adobe Commerce and Magento Incorrect Authorization Vulnerability ",
       "date_added": "2026-09-24",
       "due_date": "2026-09-27",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-93952",
-      "vendor": "Arista",
-      "product": "VeloCloud Orchestrator",
-      "name": "Arista VeloCloud Orchestrator Improper Input Validation Vulnerability",
-      "date_added": "2026-09-22",
-      "due_date": "2026-09-25",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-94127",
-      "vendor": "F5",
-      "product": "BIG-IP APM",
-      "name": "F5 BIG-IP APM Heap-based Buffer Overflow Vulnerability",
-      "date_added": "2026-09-22",
-      "due_date": "2026-09-25",
       "ransomware": false
     }
   ]
