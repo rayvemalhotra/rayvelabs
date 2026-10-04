@@ -1,29 +1,59 @@
 {
-  "total": 10979,
+  "total": 11003,
   "recent": [
     {
-      "first_seen": "1948499",
-      "ioc": "1e9124dd.linuxfortravelers.com",
+      "first_seen": "1950143",
+      "ioc": "https://yummyhomebase.com/",
+      "ioc_type": "url",
+      "threat_type": "payload_delivery",
+      "malware": "unknown",
+      "malware_alias": "None",
+      "malware_printable": "Unknown malware",
+      "confidence": "False"
+    },
+    {
+      "first_seen": "1950141",
+      "ioc": "azulinvestsa.com",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
       "malware_alias": "None",
       "malware_printable": "ClearFake",
-      "confidence": "False"
+      "confidence": "True"
     },
     {
-      "first_seen": "1948498",
-      "ioc": "0cbvmet6.tanyavondegurechaff.fit",
+      "first_seen": "1950142",
+      "ioc": "insight-labs.co.uk",
       "ioc_type": "domain",
       "threat_type": "payload_delivery",
       "malware": "js.clearfake",
       "malware_alias": "None",
       "malware_printable": "ClearFake",
-      "confidence": "False"
+      "confidence": "True"
     },
     {
-      "first_seen": "1948497",
-      "ioc": "ccc3cd3605d7c033a1c17030e047bcafd0f33cac1cc9276740c46dc4228f2070",
+      "first_seen": "1950139",
+      "ioc": "www.victoryanera.com",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1950140",
+      "ioc": "www.quantica.pro",
+      "ioc_type": "domain",
+      "threat_type": "payload_delivery",
+      "malware": "js.clearfake",
+      "malware_alias": "None",
+      "malware_printable": "ClearFake",
+      "confidence": "True"
+    },
+    {
+      "first_seen": "1950138",
+      "ioc": "6a30af3de496a4669809c306a40c31978202edd1d41314c35caef8dbf7659c6c",
       "ioc_type": "sha256_hash",
       "threat_type": "payload",
       "malware": "elf.mirai",
@@ -32,8 +62,18 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1948496",
-      "ioc": "226d5f0493530a890fe642db959232b63ba8b7be48ea94a65cc68f8437b10ae5",
+      "first_seen": "1950136",
+      "ioc": "56895890b492b7436372e3a6d20d83044429712bd40c6738706048cffff8b08f",
+      "ioc_type": "sha256_hash",
+      "threat_type": "payload",
+      "malware": "elf.bashlite",
+      "malware_alias": "gayfgt",
+      "malware_printable": "Gafgyt",
+      "confidence": "lizkebab"
+    },
+    {
+      "first_seen": "1950137",
+      "ioc": "598b7ddffd2c6f7188358d71674dfbe4fd8feef9294940c6825fee1191dbb34d",
       "ioc_type": "sha256_hash",
       "threat_type": "payload",
       "malware": "elf.mirai",
@@ -42,8 +82,8 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1948495",
-      "ioc": "744a5384a8bc1749ec3d656c2a123410b336894c771dcc37d8e744e352f6c647",
+      "first_seen": "1950135",
+      "ioc": "2aabae20e3321ad0e102a7a3fcf546115a310710110712dad7b43127fa0eb6b0",
       "ioc_type": "sha256_hash",
       "threat_type": "payload",
       "malware": "elf.mirai",
@@ -52,8 +92,8 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1948494",
-      "ioc": "d835a7b69e2a5554b9390fbc03fe175f47e0c47b64dcce8b1bf5ca6fc6d9c134",
+      "first_seen": "1950134",
+      "ioc": "769b5c6f875497f6ffa4129b44f47fdf9f186da0cf8359b2b55d14cd0ec9dd41",
       "ioc_type": "sha256_hash",
       "threat_type": "payload",
       "malware": "elf.mirai",
@@ -62,58 +102,18 @@
       "confidence": "False"
     },
     {
-      "first_seen": "1948493",
-      "ioc": "78a57de8eb7d70af3d44dda3ea3fc11ed44879d34db45fb8c22211b852398763",
+      "first_seen": "1950133",
+      "ioc": "60d18a0c9029b527e71a0b54600d8c7feab14190e9b911fd2bc18e75bd7b60ff",
       "ioc_type": "sha256_hash",
       "threat_type": "payload",
-      "malware": "elf.mirai",
-      "malware_alias": "Katana",
-      "malware_printable": "Mirai",
+      "malware": "elf.snowlight",
+      "malware_alias": "None",
+      "malware_printable": "SNOWLIGHT",
       "confidence": "False"
     },
     {
-      "first_seen": "1948491",
-      "ioc": "580ffce9b7b58f51cc4db2973f83300e79ee67583f59a96ebdbb4cc0c65710fb",
-      "ioc_type": "sha256_hash",
-      "threat_type": "payload",
-      "malware": "elf.mirai",
-      "malware_alias": "Katana",
-      "malware_printable": "Mirai",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1948492",
-      "ioc": "1494e1fbe094a19ccf07ed68425128e124e48852c496ef1f9c2e380c06140c35",
-      "ioc_type": "sha256_hash",
-      "threat_type": "payload",
-      "malware": "elf.mirai",
-      "malware_alias": "Katana",
-      "malware_printable": "Mirai",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1948490",
-      "ioc": "81ea2a392b6d71c7cd381f48ebffb992457a1d3897d1484a3fd7823f2e9f69a3",
-      "ioc_type": "sha256_hash",
-      "threat_type": "payload",
-      "malware": "elf.mirai",
-      "malware_alias": "Katana",
-      "malware_printable": "Mirai",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1948489",
-      "ioc": "ab434585775518b79d589ee36a56eafc9a83c81e9bd4fb5c8b5cb9939220ecd4",
-      "ioc_type": "sha256_hash",
-      "threat_type": "payload",
-      "malware": "elf.mirai",
-      "malware_alias": "Katana",
-      "malware_printable": "Mirai",
-      "confidence": "False"
-    },
-    {
-      "first_seen": "1948488",
-      "ioc": "02c7c8ec40b82738e76147ce4491ccaa6486899797384e07420269e7d69cbc10",
+      "first_seen": "1950132",
+      "ioc": "a0be1c01913ee53e6ea5fe2af57aec9024c5a02573e78b87ee10a8222f464b3f",
       "ioc_type": "sha256_hash",
       "threat_type": "payload",
       "malware": "elf.mirai",
