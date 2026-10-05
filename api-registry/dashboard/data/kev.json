@@ -1,8 +1,17 @@
 {
-  "total": 1733,
-  "catalog_version": "2026.10.02",
-  "date_released": "2026-10-02T15:19:38.2945Z",
+  "total": 1734,
+  "catalog_version": "2026.10.04",
+  "date_released": "2026-10-04T18:52:56.0635Z",
   "recent": [
+    {
+      "cve": "CVE-2026-88779",
+      "vendor": "Citrix",
+      "product": "NetScaler",
+      "name": "Citrix NetScaler Improper Restriction of Operations within the Bounds of a Memory Buffer Vulnerability",
+      "date_added": "2026-10-04",
+      "due_date": "2026-10-07",
+      "ransomware": false
+    },
     {
       "cve": "CVE-2026-102490",
       "vendor": "Zammad GmbH",
@@ -98,15 +107,6 @@
       "vendor": "WSO2",
       "product": "Multiple Products",
       "name": "WSO2 Multiple Products Path Traversal Vulnerability ",
-      "date_added": "2026-09-24",
-      "due_date": "2026-09-27",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-71362",
-      "vendor": "Adobe",
-      "product": "Commerce and Magento ",
-      "name": "Adobe Commerce and Magento Incorrect Authorization Vulnerability ",
       "date_added": "2026-09-24",
       "due_date": "2026-09-27",
       "ransomware": false
