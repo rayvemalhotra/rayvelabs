@@ -1,6 +1,6 @@
 {
-  "started_at": "2026-10-05T13:36:33Z",
-  "finished_at": "2026-10-05T13:36:40Z",
+  "started_at": "2026-10-07T12:39:06Z",
+  "finished_at": "2026-10-07T12:39:41Z",
   "feeds": {
     "kev": {
       "ok": true,
@@ -8,23 +8,24 @@
     },
     "epss-top": {
       "ok": true,
-      "elapsed_ms": 2254
+      "elapsed_ms": 2243
     },
     "attack-spotlight": {
       "ok": true,
-      "elapsed_ms": 418
+      "elapsed_ms": 417
     },
     "urlhaus": {
-      "ok": true,
-      "elapsed_ms": 362
+      "ok": false,
+      "error": "TimeoutError: The read operation timed out",
+      "elapsed_ms": 30268
     },
     "threatfox": {
       "ok": true,
-      "elapsed_ms": 154
+      "elapsed_ms": 215
     },
     "feodo": {
       "ok": true,
-      "elapsed_ms": 223
+      "elapsed_ms": 57
     },
     "tor": {
       "ok": true,
@@ -32,25 +33,25 @@
     },
     "dshield": {
       "ok": true,
-      "elapsed_ms": 251
+      "elapsed_ms": 148
     },
     "dataplane-ssh": {
       "ok": true,
-      "elapsed_ms": 892
+      "elapsed_ms": 417
     },
     "spamhaus-drop": {
       "ok": true,
-      "elapsed_ms": 398
+      "elapsed_ms": 78
     },
     "hibp": {
       "ok": true,
-      "elapsed_ms": 151
+      "elapsed_ms": 363
     },
     "sslbl": {
       "ok": true,
-      "elapsed_ms": 438
+      "elapsed_ms": 82
     }
   },
   "feed_count": 12,
-  "ok_count": 12
+  "ok_count": 11
 }

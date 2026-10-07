@@ -1,5 +1,5 @@
 {
-  "total_listings": 10902,
+  "total_listings": 10913,
   "by_reason": [
     {
       "reason": "AsyncRAT C&C",
@@ -7,7 +7,7 @@
     },
     {
       "reason": "Vidar C&C",
-      "count": 820
+      "count": 822
     },
     {
       "reason": "Dridex C&C",
@@ -24,54 +24,54 @@
   ],
   "recent": [
     {
-      "listing_date": "2026-10-05 13:04:04",
-      "sha1": "6def2654b3b68fb89142113e6c5ad1b9e866134c",
+      "listing_date": "2026-10-07 07:17:48",
+      "sha1": "6bfc8dafb875c3e2ae6476df215805eb15298cbb",
       "listing_reason": "Vidar C&C"
     },
     {
-      "listing_date": "2026-10-05 12:57:51",
-      "sha1": "920de17c5bfce79df2950dacfb6a1f473e918edc",
-      "listing_reason": "AokigaharaStealer C&C"
-    },
-    {
-      "listing_date": "2026-10-05 08:51:24",
-      "sha1": "184e5ede55f2eaf584182989d8a41411b6d34ae0",
+      "listing_date": "2026-10-06 06:52:06",
+      "sha1": "2c32691ea854fdd88474aec7283283c4e4fe9d10",
       "listing_reason": "PureLogsStealer C&C"
     },
     {
-      "listing_date": "2026-10-05 08:42:42",
-      "sha1": "77c620cd80ac90a263808350b4133b607d973373",
-      "listing_reason": "PureLogsStealer C&C"
+      "listing_date": "2026-10-06 06:29:07",
+      "sha1": "d6b483d29d98e74b22cf0275061f76fbb0574176",
+      "listing_reason": "ConnectWise C&C"
     },
     {
-      "listing_date": "2026-10-05 08:17:27",
-      "sha1": "4e01833ef19ddbe7747012a4b08e54601bc318ae",
-      "listing_reason": "PureLogsStealer C&C"
+      "listing_date": "2026-10-06 06:28:46",
+      "sha1": "0446b968d2664c7d195cb91e4938bf6b92d819da",
+      "listing_reason": "ConnectWise C&C"
     },
     {
-      "listing_date": "2026-10-05 08:13:44",
-      "sha1": "9df78fcc97d1d3ee0d6a49ad2f2ac31559d77e8b",
-      "listing_reason": "Malware C&C"
+      "listing_date": "2026-10-06 06:20:57",
+      "sha1": "85eeedf7693129c522860142f2eb0c84f5fb355e",
+      "listing_reason": "ConnectWise C&C"
     },
     {
-      "listing_date": "2026-10-05 08:13:13",
-      "sha1": "4bacdd95bace5a7e29064123c1326e2035f617c6",
+      "listing_date": "2026-10-06 06:19:25",
+      "sha1": "6917195681c5f23ea6ebabed360e26ab7ff93a67",
+      "listing_reason": "DCAgentRMM C&C"
+    },
+    {
+      "listing_date": "2026-10-06 06:18:40",
+      "sha1": "120de53c383886e618516713331d4b91f87cd855",
       "listing_reason": "OffLoader C&C"
     },
     {
-      "listing_date": "2026-10-05 08:12:45",
-      "sha1": "f8f56c66c440df5666400e34a532c04d6ca4e5b0",
-      "listing_reason": "Vidar C&C"
+      "listing_date": "2026-10-06 06:17:32",
+      "sha1": "604d5a356e733c294284f85139f3da71d2ee3f34",
+      "listing_reason": "PureLogsStealer C&C"
     },
     {
-      "listing_date": "2026-10-05 08:12:29",
-      "sha1": "a06e3d9da60d6d6b57b1ef0bc4bf4a5187196fef",
-      "listing_reason": "Vidar C&C"
+      "listing_date": "2026-10-06 06:16:28",
+      "sha1": "65959355ba118cbe669682caf104b2f3466d12f7",
+      "listing_reason": "PureLogsStealer C&C"
     },
     {
-      "listing_date": "2026-10-05 08:11:17",
-      "sha1": "9d97ad9422a82188bb315281c6a5afdc851a04c1",
-      "listing_reason": "PureRAT C&C"
+      "listing_date": "2026-10-06 06:15:16",
+      "sha1": "99c899767c5745e980b27cf06025ab1e3b2e33d7",
+      "listing_reason": "PureLogsStealer C&C"
     }
   ]
 }

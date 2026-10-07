@@ -1,11 +1,25 @@
 {
-  "total": 20754,
+  "total": 20482,
   "recent": [
+    {
+      "asn": "137",
+      "as_name": "ASGARR Consortium GARR",
+      "ip": "159.149.130.195",
+      "last_seen": "2026-10-06 17:58:18",
+      "category": "sshclient"
+    },
     {
       "asn": "174",
       "as_name": "COGENT-174 - Cogent Communicat",
       "ip": "154.42.4.29",
-      "last_seen": "2026-10-05 10:43:24",
+      "last_seen": "2026-10-05 12:10:38",
+      "category": "sshclient"
+    },
+    {
+      "asn": "174",
+      "as_name": "COGENT-174 - Cogent Communicat",
+      "ip": "154.58.4.134",
+      "last_seen": "2026-10-05 19:31:50",
       "category": "sshclient"
     },
     {
@@ -90,20 +104,6 @@
       "as_name": "COGENT-174 - Cogent Communicat",
       "ip": "154.59.103.29",
       "last_seen": "2026-10-02 01:13:53",
-      "category": "sshclient"
-    },
-    {
-      "asn": "174",
-      "as_name": "COGENT-174 - Cogent Communicat",
-      "ip": "154.59.103.30",
-      "last_seen": "2026-09-28 19:33:54",
-      "category": "sshclient"
-    },
-    {
-      "asn": "174",
-      "as_name": "COGENT-174 - Cogent Communicat",
-      "ip": "154.59.103.31",
-      "last_seen": "2026-10-02 01:13:46",
       "category": "sshclient"
     }
   ]

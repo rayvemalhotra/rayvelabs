@@ -1,7 +1,22 @@
 {
-  "total_breaches": 1039,
-  "total_records_exposed": 17837635527,
+  "total_breaches": 1041,
+  "total_records_exposed": 17844675503,
   "recent": [
+    {
+      "name": "DoubleCounter",
+      "title": "Double Counter",
+      "domain": "doublecounter.gg",
+      "breach_date": "2026-10-04",
+      "added_date": "2026-10-07T05:42:24Z",
+      "pwn_count": 274922,
+      "data_classes": [
+        "Email addresses",
+        "Geographic locations",
+        "Names",
+        "Usernames"
+      ],
+      "verified": true
+    },
     {
       "name": "Medela",
       "title": "Medela",
@@ -117,21 +132,6 @@
         "Geographic locations",
         "Names",
         "Usernames"
-      ],
-      "verified": true
-    },
-    {
-      "name": "Alcon",
-      "title": "Alcon",
-      "domain": "alcon.com",
-      "breach_date": "2026-08-01",
-      "added_date": "2026-08-09T10:04:34Z",
-      "pwn_count": 218395,
-      "data_classes": [
-        "Email addresses",
-        "Names",
-        "Phone numbers",
-        "Physical addresses"
       ],
       "verified": true
     }
