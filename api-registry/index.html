@@ -358,7 +358,7 @@ footer a:hover{ color:var(--ink) }
     <nav>
       <a href="/">Home</a>
       <a href="/rayvenet.html">Labs</a>
-      <a href="https://github.com/Reckless8/rayvelabs" target="_blank" rel="noopener">Repo</a>
+      <a href="https://github.com/rayvemalhotra/rayvelabs" target="_blank" rel="noopener">Repo</a>
     </nav>
   </div>
 </header>
@@ -507,6 +507,7 @@ footer a:hover{ color:var(--ink) }
     `;
     const entriesEl = section.querySelector('.entries');
     inCat.forEach(e => entriesEl.appendChild(renderEntry(e)));
+    if (location.hash) { const t = document.getElementById(location.hash.slice(1)); if (t) setTimeout(() => t.scrollIntoView({ block: 'start' }), 0); }
     main.appendChild(section);
   });
 
@@ -519,6 +520,7 @@ footer a:hover{ color:var(--ink) }
 
     const div = document.createElement('article');
     div.className = 'entry';
+    div.id = e.id;   // anchor target for deep links (map, external)
     div.dataset.cat = e.category;
     div.dataset.text = ((e.title||'') + ' ' + (e.publisher||'') + ' ' + (e.description||'') + ' ' + (e.format||'') + ' ' + (e.filename||'')).toLowerCase();
     div.innerHTML = `

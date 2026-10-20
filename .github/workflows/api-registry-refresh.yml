@@ -52,4 +52,6 @@ jobs:
             exit 0
           fi
           git commit -m "API Registry + Atlas: daily refresh ($(date -u +%Y-%m-%d))"
+          # a human push can land between checkout and push; rebase instead of failing the run
+          git pull --rebase origin main || true
           git push

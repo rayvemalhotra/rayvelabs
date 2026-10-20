@@ -4,6 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Beyond Twin Authority — Structural Drift &amp; Value-of-Information · RayveLabs</title>
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://rayvelabs.com/lab6-ext/">
 <meta name="description" content="A RayveLabs research extension to SEAS-8414 Chapter 6: a structural typed graph-edit-distance drift detector that catches the targeted changes KL/JS divergence misses, and a value-of-information authority rule (Act / Resync / Block) that replaces the heuristic Twin Authority Gate.">
 <style>
   :root{
@@ -90,9 +92,13 @@
     <span class="brand">RayveLabs <span class="dim">— research extension</span></span>
     <span class="crumb">Lab 6 · <b>Beyond Twin Authority</b></span>
     <nav class="topnav">
-      <a href="/lab6-demo/">← Lab 6 demo</a>
-      <a href="https://8414.bwater.io/chapters/chapter-06-digital-twin">Ch 6</a>
-      <a href="https://rayvelabs.com/">Home</a>
+      <a href="/lab3-demo/">Lab 3</a>
+      <a href="/lab4-demo/">Lab 4</a>
+      <a href="/lab6-demo/">Lab 6</a>
+      <a href="/lab6-ext/" class="on">Beyond</a>
+      <a href="/rayvenet.html">RayveNet</a>
+      <a href="/portal/">Atlas</a>
+      <a href="/">Home</a>
     </nav>
   </div>
 </header>
@@ -100,7 +106,7 @@
 <div class="wrap">
   <div class="hero">
     <span class="tag">RayveLabs original · extends SEAS-8414 Ch 6 Ex 11</span>
-    <h1>His Exercise 11 ends on a finding. <span class="accent">This closes it.</span></h1>
+    <h1>Chapter 6's Exercise 11 ends on a finding. <span class="accent">This closes it.</span></h1>
     <p class="lede">Chapter 6 proves that KL and Jensen-Shannon divergence are blind to the small, targeted changes that actually invalidate a remediation decision — and stops there. Two contributions pick it up: a <b>structural drift detector</b> that catches every material change divergence misses, and a <b>value-of-information authority rule</b> that replaces the heuristic Twin Authority Gate with an explicit Act / Resync / Block decision under uncertainty.</p>
     <p class="notice">RayveLabs teaching + research demo, fully client-side, synthetic dependency graph. Builds on Dr. Mallarapu's SEAS-8414 Chapter 6 (© Dr. Mallarapu / GWU) — it does not reproduce it.</p>
   </div>
@@ -113,7 +119,7 @@
   <div class="sec-h"><span class="sec-n">The gap</span><h2>Why divergence fails — and what kind of metric won't</h2></div>
   <p class="sec-sub">KL/JS measure the <em>magnitude of a distribution shift</em>. A single firewall rule, one swapped dependency, or one profile downgrade changes almost no aggregate distribution — so divergence reads ~0 while the decision is now unsafe. The fix is not a better distribution test; it is a metric over <em>structure and evidence</em>: a typed diff of the twin's dependency graph plus a predicate for "does the change touch the remediation path or a safety-critical asset?" That metric is never zero for a real change.</p>
   <div class="scoreboard">
-    <div class="score bad"><div class="lab">Distributional (KL / JS) — his Ex 11</div><div class="big" id="sbDist">—</div><div class="hint">material changes detected, of 8</div></div>
+    <div class="score bad"><div class="lab">Distributional (KL / JS) — Ch 6 Ex 11</div><div class="big" id="sbDist">—</div><div class="hint">material changes detected, of 8</div></div>
     <div class="score good"><div class="lab">Structural + evidence — this work</div><div class="big" id="sbStruct">—</div><div class="hint">material changes detected, of 8</div></div>
   </div>
 </section>

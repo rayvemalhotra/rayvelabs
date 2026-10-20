@@ -9,3 +9,9 @@ node_modules/
 .env.local
 CLAUDE.md
 OPERATIONS.md
+
+scripts/node_modules/
+scripts/package-lock.json
+scripts/package.json
+_site/
+__pycache__/

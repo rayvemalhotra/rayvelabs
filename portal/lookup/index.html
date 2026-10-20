@@ -124,7 +124,7 @@ footer .row{ max-width:1200px; margin:0 auto; display:flex; justify-content:spac
 
 <section class="about-tool">
   <h3>How the lookup works</h3>
-  <p>Every supported feed is fetched server-side once a day by a GitHub Actions cron, indexed by the right key (IP, host, hash, CVE), and committed to <a href="/api-registry/" target="_blank">this repo</a>. When you click <em>look up</em>, your browser searches those indexes locally — no API keys, no rate limits, nothing leaves your machine except the request for the indexes themselves.</p>
+  <p>Every supported feed is fetched server-side once a day by a GitHub Actions cron, indexed by the right key (IP, host, hash, CVE), and published as static JSON indexes (catalogued in the <a href="/api-registry/">registry</a>). When you click <em>look up</em>, your browser searches those indexes locally — no API keys, no rate limits, nothing leaves your machine except the request for the indexes themselves.</p>
   <h3 style="margin-top:24px">Feeds checked</h3>
   <div class="feed-list">
     <div class="f"><span class="ic">→</span><span><strong>CISA KEV</strong> — actively exploited CVEs</span></div>
@@ -178,9 +178,15 @@ footer .row{ max-width:1200px; margin:0 auto; display:flex; justify-content:spac
   }
   loadStatus.innerHTML = pills.join('');
 
-  await Promise.all(FEEDS.map(async ([key, name, url]) => {
+  // Indexes (~10 MB total) are loaded LAZILY on the first lookup, not on page open,
+  // and are allowed to cache (files refresh daily). The page is usable instantly.
+  let indexesReady = null;
+  function ensureIndexes(){
+    if (indexesReady) return indexesReady;
+    loadStatus.innerHTML = pills.join('');
+    indexesReady = Promise.all(FEEDS.map(async ([key, name, url]) => {
     try {
-      const r = await fetch(url, { cache: 'no-cache' });
+      const r = await fetch(url, { cache: 'default' });
       if (!r.ok) throw new Error('HTTP ' + r.status);
       indexes[key] = await r.json();
       document.getElementById('pill-' + key).classList.add('ok');
@@ -189,10 +195,13 @@ footer .row{ max-width:1200px; margin:0 auto; display:flex; justify-content:spac
       document.getElementById('pill-' + key).classList.add('no');
       document.getElementById('pill-' + key).textContent = name + ' ✗';
     }
-  }));
-
-  const totalCount = Object.keys(indexes).length;
-  loadStatus.innerHTML = `<span style="color:var(--accent)">●</span> ${totalCount}/${FEEDS.length} indexes loaded — ready to query.`;
+    })).then(() => {
+      const totalCount = Object.keys(indexes).length;
+      loadStatus.innerHTML = `<span style="color:var(--accent)">●</span> ${totalCount}/${FEEDS.length} indexes loaded — ready to query.`;
+    });
+    return indexesReady;
+  }
+  loadStatus.innerHTML = `<span style="color:var(--faint)">●</span> ${FEEDS.length} feeds · indexes load on your first lookup (cached after).`;
   go.disabled = false;
 
   function classifyInput(s){
@@ -342,8 +351,9 @@ footer .row{ max-width:1200px; margin:0 auto; display:flex; justify-content:spac
       ${recent.map(b => `<div class="row" style="margin-top:8px"><span class="v">${escapeHtml(b.title||b.name||'')}</span> · <span class="k">${escapeHtml(b.breach_date||'')}</span><div style="margin-left:0;color:var(--dim);font-size:12.5px">${Number(b.pwn_count||0).toLocaleString()} records · ${(b.data_classes||[]).slice(0,3).map(escapeHtml).join(', ')}</div></div>`).join('')}`;
   }
 
-  function render(input){
+  async function render(input){
     if (!input.trim()) { main.innerHTML = ''; return; }
+    await ensureIndexes();
     const { type, value, findings } = lookup(input);
     const hits = findings.filter(f => f.hit);
     const verdict = hits.length > 0

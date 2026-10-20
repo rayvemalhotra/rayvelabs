@@ -46,7 +46,14 @@ jobs:
             --exclude='.gitignore' \
             --exclude='.claude' \
             --exclude='OPERATIONS.md' \
+            --exclude='CLAUDE.md' \
+            --exclude='scripts' \
+            --exclude='writing' \
             ./ _site/
+
+          # build /writing from markdown (topics + posts -> HTML, RSS, homepage strip)
+          npm install --prefix scripts --no-save --silent marked@12
+          node scripts/build-writing.mjs --out _site
 
           # minify each HTML file aggressively
           # quote_style:1 forces Terser to emit single-quoted strings, which

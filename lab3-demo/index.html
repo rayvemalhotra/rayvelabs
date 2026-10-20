@@ -293,6 +293,9 @@ footer.demo a:hover{ color:var(--ink) }
     <a href="/" class="brand">RayveLabs <span class="sub">— teaching demo</span></a>
     <div class="crumb">Labs · <b>Chapter 3 — Vulnerability Assessment</b></div>
     <nav>
+      <a href="/lab4-demo/">Lab 4 →</a>
+      <a href="/lab6-demo/">Lab 6</a>
+      <a href="/lab6-ext/">Beyond</a>
       <a href="/rayvenet.html">RayveNet</a>
       <a href="/api-registry/">Registry</a>
       <a href="/portal/">Atlas</a>
@@ -326,7 +329,7 @@ footer.demo a:hover{ color:var(--ink) }
     </nav>
     <div class="roe">
       <div class="lbl">ROE · Rules of Engagement</div>
-      <div class="v"><b>Phase 1 (active probes)</b> permitted on 172.30.0.0/24 except <code>172.30.0.40</code> (infusion pump — policy-blocked).</div>
+      <div class="v"><b>Phase 3 (active probes)</b> permitted on 172.30.0.0/24 except <code>172.30.0.40</code> (infusion pump — policy-blocked).</div>
     </div>
     <div class="who">
       <b>Source material:</b><br>
@@ -342,8 +345,7 @@ footer.demo a:hover{ color:var(--ink) }
 
 <footer class="demo">
   <div class="row">
-    <div>© 2026 Rayve Malhotra · <a href="/">RayveLabs</a> · Demonstration only. Synthetic network, real CVE data.</div>
-    <div>Course material © Dr. Mallarapu / SEAS-8414 · GWU. <a href="https://8414.bwater.io" target="_blank" rel="noopener">8414.bwater.io ↗</a></div>
+    <div>© 2026 Rayve Malhotra · <a href="/">RayveLabs</a> · Demonstration only. Original course material © Dr. Ravi Mallarapu / The George Washington University · <a href="https://8414.bwater.io" target="_blank" rel="noopener">SEAS-8414 ↗</a>. Synthetic network, real CVE data.</div>
   </div>
 </footer>
 
@@ -684,7 +686,7 @@ const EXERCISES = [
 const VIEWS = {};
 
 VIEWS.exercises = () => `
-  <div class="h-eyebrow">// phase 3 lab · 14 exercises · deliverables for puppeteer-grading</div>
+  <div class="h-eyebrow">// phase 3 lab · 14 exercises</div>
   <h1>Each exercise, <em>each deliverable</em>.</h1>
   <p class="h-lede">The 14 exercises from Dr. Mallarapu's Phase 3 lab (Ex 0 pre-commit through Ex 13 CPE construction), each with the exact deliverable the lab prompt asks for. Use this view as the homework submission; every card is tagged <code>data-exercise=&quot;N&quot;</code> for automated grading.</p>
   <div class="feat-ribbon" data-feature="1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25"><span class="lbl">Map</span><div>Exercises ↔ features: <strong>Ex 1, 13</strong> → features #1–5 · <strong>Ex 2, 12</strong> → #6–7 · <strong>Ex 5, 9</strong> → #11–13 · <strong>Ex 3, 7, 11</strong> → #8–10, #21–24 · <strong>Ex 8</strong> → #14–16 · <strong>Ex 6, 10</strong> → #17–20 · <strong>Ex 0, 4</strong> → analyst discipline.</div></div>
@@ -702,9 +704,6 @@ VIEWS.exercises = () => `
     </div>
   `).join('')}
 
-  <div class="aside-note">
-    <strong>Puppeteer grading.</strong> All 14 deliverables are reachable via <code>page.$$('[data-exercise]')</code> on this view, or via <code>document.getElementById('exercise-N')</code> for direct addressing. The data behind each is also exposed at <code>window.LAB3.exercises</code>.
-  </div>
 `;
 
 VIEWS.overview = () => `

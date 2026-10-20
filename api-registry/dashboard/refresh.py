@@ -27,7 +27,7 @@ import zipfile
 from pathlib import Path
 
 UA = "RayveLabs-Registry-Refresh/1.0 (+https://rayvelabs.com/api-registry/)"
-TIMEOUT = 30
+TIMEOUT = 90   # urlhaus/dataplane are large; 30s timed out in the Oct 7 run
 HERE = Path(__file__).parent
 DATA = HERE / "data"
 DATA.mkdir(exist_ok=True)
@@ -114,11 +114,24 @@ def fetch_epss_top() -> dict:
     header_idx = next(i for i, ln in enumerate(lines) if ln.startswith("cve"))
     reader = csv.DictReader(lines[header_idx:])
     rows = [(r["cve"], float(r["epss"]), float(r["percentile"])) for r in reader]
-    # Full feed for portal CVE explorer — every CVE keyed by ID
-    write_portal("epss.json", {
-        "by_cve": {c: {"epss": round(e, 5), "percentile": round(p, 5)} for c, e, p in rows}
-    })
     rows.sort(key=lambda x: x[1], reverse=True)
+    # TRIMMED local index for the portal CVE explorer: KEV-listed CVEs + top-N by
+    # score. The long tail is resolved live by the page via FIRST's EPSS API, so
+    # the committed file stays ~0.5 MB (was ~20 MB re-committed daily, bloating
+    # the repo and the page load) with no loss of coverage.
+    TOP_N = 8000
+    kev_ids: set = set()
+    try:
+        kev_ids = set(json.loads((PORTAL_DATA / "kev.json").read_text()).get("by_cve", {}).keys())
+    except Exception:
+        pass
+    keep = {c for c, _, _ in rows[:TOP_N]} | kev_ids
+    write_portal("epss.json", {
+        "trimmed": True,
+        "rule": f"KEV-listed CVEs + top {TOP_N} by EPSS score; others resolved live via FIRST API",
+        "live_fallback": "https://api.first.org/data/v1/epss?cve=",
+        "by_cve": {c: {"epss": round(e, 5), "percentile": round(p, 5)} for c, e, p in rows if c in keep},
+    })
     top = [{"cve": c, "epss": round(e, 5), "percentile": round(p, 5)} for c, e, p in rows[:25]]
     # Metadata line
     meta_line = next((ln for ln in lines[:2] if ln.startswith("#")), "")
@@ -453,6 +466,10 @@ FEEDS = {
 }
 
 
+# Dashboard summaries nobody reads (portal has its own copy). Fetch still runs for /status.
+DASHBOARD_SKIP = {"threatfox"}
+
+
 def main() -> int:
     started = datetime.datetime.utcnow().replace(microsecond=0)
     status: dict[str, dict] = {}
@@ -461,7 +478,8 @@ def main() -> int:
         t0 = time.time()
         try:
             payload = fn()
-            (DATA / f"{key}.json").write_text(json.dumps(payload, indent=2) + "\n")
+            if key not in DASHBOARD_SKIP:   # feeds the dashboard page never reads
+                (DATA / f"{key}.json").write_text(json.dumps(payload, indent=2) + "\n")
             status[key] = {"ok": True, "elapsed_ms": int((time.time() - t0) * 1000)}
             print(f"  ok   {key:<18} {status[key]['elapsed_ms']:>6} ms")
         except Exception as e:  # noqa: BLE001

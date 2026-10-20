@@ -132,6 +132,9 @@ footer .row{ max-width:1200px; margin:0 auto; display:flex; justify-content:spac
 </footer>
 
 <script>
+  // map node id -> registry entry id (registry.json ids)
+  const REG_ID = {cve:'nvd-cve', nvd:'nvd-cve', kev:'cisa-kev', epss:'epss-current', cwe:'cwe', capec:'capec', attack:'attack-enterprise', d3fend:'d3fend', osv:'osv-pypi', exploitdb:'exploit-db', urlhaus:'urlhaus-recent', threatfox:'threatfox', feodo:'feodo', sslbl:'sslbl', spamhaus:'spamhaus-drop', tor:'tor-exits', dshield:'dshield-top', dataplane:'dataplane-ssh', hibp:'hibp-breaches', nist53:'nist-800-53', nist171:'nist-800-171', research:'cicids2017'};
+
 // ─────────────────────────────────────────────────────────────────────
 // The atlas — nodes + edges
 //
@@ -372,7 +375,7 @@ function select(id){
     ${outs.length > 0 ? `<h4 class="out">↑ Outputs (what this enriches)</h4>
       <ul>${outs.map(o => `<li data-jump="${escapeAttr(o.id)}"><span class="arr">↳</span>${escapeHtml(o.label)} <span style="color:var(--faint);font-size:12px"> · ${escapeHtml(o.sub||'')}</span></li>`).join('')}</ul>` : ''}
     <div class="links">
-      <a href="/api-registry/#${escapeAttr(id)}">View in registry ↗</a>
+      <a href="/api-registry/#${escapeAttr(REG_ID[id] || id)}">View in registry ↗</a>
       ${n.open_url ? `<a href="${escapeAttr(n.open_url)}" target="_blank">Visit source ↗</a>` : ''}
     </div>
   `;

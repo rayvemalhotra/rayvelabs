@@ -4,6 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lab 6 demo — Digital Twin Trustworthiness &amp; Remediation Simulation · RayveLabs</title>
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://rayvelabs.com/lab6-demo/">
 <meta name="description" content="Interactive teaching demo of Chapter 6 (Digital Twin construction, remediation simulation, cascading failures, zero-disruption validation, Twin Authority, and Exercise 11 KL/Jensen-Shannon drift) from Dr. Mallarapu's SEAS-8414 course at GWU. Built by RayveLabs.">
 <style>
   :root{
@@ -129,17 +131,20 @@
     <span class="brand">RayveLabs <span class="dim">— teaching demo</span></span>
     <span class="crumb">Labs · <b>Chapter 6 — Digital Twin Trustworthiness</b></span>
     <nav class="topnav">
-      <a href="https://rayvelabs.com/lab3-demo/">Lab 3</a>
-      <a href="/lab4-demo/">← Lab 4</a>
-      <a href="https://rayvelabs.com/portal/">Atlas</a>
-      <a href="https://rayvelabs.com/">Home</a>
+      <a href="/lab3-demo/">Lab 3</a>
+      <a href="/lab4-demo/">Lab 4</a>
+      <a href="/lab6-demo/" class="on">Lab 6</a>
+      <a href="/lab6-ext/">Beyond</a>
+      <a href="/rayvenet.html">RayveNet</a>
+      <a href="/portal/">Atlas</a>
+      <a href="/">Home</a>
     </nav>
   </div>
 </header>
 
 <div class="wrap">
   <div class="hero">
-    <span class="tag">SEAS-8414 · Phase 6 · 11 exercises</span>
+    <span class="tag">SEAS-8414 · Phase 6 · 10 of 11 exercises</span>
     <h1>What happens <span class="accent">if we apply this fix?</span> — and can we trust the model that told us?</h1>
     <p class="lede">Phase 4 predicted the attack paths. Phase 6 asks the operational question before anyone touches production: simulate every remediation against a <b>digital twin</b>, catch the cascading failures, prove zero disruption — and then decide whether the twin itself is <em>authoritative enough</em> to support the decision. The showpiece below is <b>Exercise 11</b>: a live drift lab that computes KL and Jensen-Shannon divergence and shows exactly when those metrics fail to see the change that matters.</p>
     <p class="notice">Teaching demo built by RayveLabs to illustrate <b>Dr. Mallarapu's SEAS-8414 Chapter 6</b>. This is a client-side <em>simulator</em> with a synthetic 22-device network — it is not graded lab evidence (that requires the Dockerized Breakwater stack and real API output). Original course material © Dr. Mallarapu / The George Washington University.</p>
@@ -387,7 +392,7 @@
 
 <!-- VERDICT -->
 <section id="verdict">
-  <div class="sec-h"><span class="sec-n">Ex 9.10–9.11</span><h2>Final verdict &amp; do-not-execute conditions</h2></div>
+  <div class="sec-h"><span class="sec-n">Ex 9 · items 10–11</span><h2>Final verdict &amp; do-not-execute conditions</h2></div>
   <div class="grid g2">
     <div class="card">
       <h3>Twin Authority verdict</h3>
@@ -409,8 +414,7 @@
 
 <footer>
   <div class="wrap">
-    <p>© 2026 Rayve Malhotra · <a href="https://rayvelabs.com/">RayveLabs</a> · Teaching demo. Synthetic 22-device twin; KL/JS computed live in your browser.</p>
-    <p>Source material: SEAS-8414 Phase 6, Dr. Mallarapu, GWU · course material © Dr. Mallarapu / SEAS-8414 · <a href="https://8414.bwater.io">8414.bwater.io ↗</a></p>
+    <p>© 2026 Rayve Malhotra · <a href="/">RayveLabs</a> · Demonstration only. Original course material © Dr. Ravi Mallarapu / The George Washington University · <a href="https://8414.bwater.io">SEAS-8414 ↗</a>. Synthetic network, real CVE / ATT&amp;CK data.</p>
     <p style="color:var(--faint)">the twin tells you what would happen · the authority gate tells you whether to believe it</p>
   </div>
 </footer>

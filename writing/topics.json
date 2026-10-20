@@ -1,0 +1,35 @@
+{
+  "_comment": "Topics for /writing. Order = display order. One topic per post. Add a topic here, then use its slug in a post's frontmatter.",
+  "topics": [
+    {
+      "slug": "signal",
+      "name": "Signal & Noise",
+      "blurb": "What a detector actually knows — recall by attack class, false positives, and what a detection is worth."
+    },
+    {
+      "slug": "discovery",
+      "name": "Discovery & Identity",
+      "blurb": "What a scan can and can't tell you. Existence ≠ identity."
+    },
+    {
+      "slug": "risk",
+      "name": "Risk & Attack Paths",
+      "blurb": "Attack graphs, context-aware risk, digital twins, and when a model loses the authority to decide."
+    },
+    {
+      "slug": "trust",
+      "name": "Trust & Attestation",
+      "blurb": "Compliance attestations, provenance, and verifiable trust across a supply chain."
+    },
+    {
+      "slug": "cryptography",
+      "name": "Practical Cryptography",
+      "blurb": "Post-quantum readiness for the people who actually have to deploy it."
+    },
+    {
+      "slug": "notes",
+      "name": "Notes",
+      "blurb": "Short, unfinished thoughts. Sketches, not papers."
+    }
+  ]
+}

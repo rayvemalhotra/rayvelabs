@@ -140,7 +140,7 @@ footer .row{ max-width:1200px; margin:0 auto; display:flex; justify-content:spac
   // Build a small lookup: CWE → list of ATT&CK technique IDs that mention that CWE in their description.
   // This is a heuristic, not authoritative, but useful as a starting point.
 
-  function render(input){
+  async function render(input){
     const cve = (input || '').trim().toUpperCase();
     if (!/^CVE-\d{4}-\d{4,}$/.test(cve)) {
       main.innerHTML = `<div class="empty-state">Enter a CVE id (format: <code>CVE-YYYY-NNNNN</code>).</div>`;
@@ -148,7 +148,15 @@ footer .row{ max-width:1200px; margin:0 auto; display:flex; justify-content:spac
     }
 
     const k = indexes.kev?.by_cve?.[cve];
-    const e = indexes.epss?.by_cve?.[cve];
+    let e = indexes.epss?.by_cve?.[cve];
+    if (!e) {
+      // Local EPSS index is trimmed (KEV + top scores); resolve the long tail live from FIRST.
+      try {
+        const r = await fetch(`https://api.first.org/data/v1/epss?cve=${encodeURIComponent(cve)}`);
+        const d = r.ok ? (await r.json())?.data?.[0] : null;
+        if (d && d.epss != null) e = { epss: parseFloat(d.epss), percentile: parseFloat(d.percentile), live: true };
+      } catch (_) {}
+    }
 
     const badges = [];
     if (k) badges.push(`<span class="badge kev">⚠ KEV · actively exploited</span>`);
@@ -159,7 +167,7 @@ footer .row{ max-width:1200px; margin:0 auto; display:flex; justify-content:spac
     }
     if (!k && !e) badges.push(`<span class="badge clean">Not in KEV · No EPSS data</span>`);
 
-    const summary = k?.short_desc ? `<strong>${escapeHtml(k.vendor||'')} ${escapeHtml(k.product||'')}</strong> — ${escapeHtml(k.short_desc)}` : `CVE id verified. <span style="color:var(--dim)">Click NVD below for the full record.</span>`;
+    const summary = k?.short_desc ? `<strong>${escapeHtml(k.vendor||'')} ${escapeHtml(k.product||'')}</strong> — ${escapeHtml(k.short_desc)}` : `Not in local KEV/EPSS indexes. <span style="color:var(--dim)">Click NVD below for the full record.</span>`;
 
     const cwes = k?.cwes || [];
 
