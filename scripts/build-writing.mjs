@@ -71,9 +71,11 @@ ${p.summary ? `<p class="lede">${esc(p.summary)}</p>` : ""}
 // ---------- topic pages ----------
 for (const t of topics) {
   const tp = posts.filter(p => p.topic === t.slug);
-  if (!tp.length) continue;
-  const body = `<div class="kicker"><a href="/writing/">Writing</a></div><h1>${esc(t.name)}</h1><p class="lede">${esc(t.blurb)}</p>
-<div class="meta"><span>${tp.length} ${tp.length === 1 ? "post" : "posts"}</span></div><ul class="post-list">${tp.map(li).join("")}</ul>`;
+  // Always emit a topic page so homepage/topic links never 404; empty topics say so honestly.
+  const list = tp.length
+    ? `<div class="meta"><span>${tp.length} ${tp.length === 1 ? "post" : "posts"}</span></div><ul class="post-list">${tp.map(li).join("")}</ul>`
+    : `<div class="meta"><span>first piece in progress</span><a href="/writing/feed.xml">subscribe via RSS</a></div><p class="lede" style="color:var(--faint)">Nothing published here yet. <a href="/writing/">See what's live →</a></p>`;
+  const body = `<div class="kicker"><a href="/writing/">Writing</a></div><h1>${esc(t.name)}</h1><p class="lede">${esc(t.blurb)}</p>${list}`;
   write(`writing/${t.slug}/index.html`, page({ title: t.name, desc: t.blurb, body, urlPath: `/writing/${t.slug}/` }));
 }
 

@@ -616,7 +616,7 @@ body.rl-scrolled .tabs{
 
 <div class="lede">
   <h2>See what's <em>really</em> on your network.</h2>
-  <p>Practice on a simulated network where ground truth is known. Then scan your own and see why a real network won't let you measure what you missed.</p>
+  <p>Five hands-on steps, in order: discover what's on the network, work out what each thing really is, hunt for what shouldn't be there, find what's vulnerable, and read the logs. Practice on a simulated network where ground truth is known — then scan your own.</p>
 </div>
 
 <div class="instructor-credit">
@@ -627,117 +627,14 @@ body.rl-scrolled .tabs{
 </div>
 
 <div class="tabs">
-  <button class="tab on" data-pane="discovery">Network Discovery</button>
-  <button class="tab" data-pane="sim2">Cascade Lab</button>
-  <button class="tab" data-pane="threat">Threat Hunt</button>
-  <button class="tab" data-pane="weblog">Fingerprinting</button>
-  <button class="tab" data-pane="lecture">Lecture</button>
-  <button class="tab" data-pane="gwulab">Vuln Assessment Lab</button>
-  <button class="tab" data-pane="terms">Key terms</button>
+  <button class="tab on" data-pane="discovery">Discovery</button>
+  <button class="tab" data-pane="sim2">Device Fingerprinting</button>
+  <button class="tab" data-pane="threat">Threat Hunting</button>
+  <button class="tab" data-pane="weblog">Log Analysis</button>
+  <button class="tab" data-pane="gwulab">Vulnerability Assessment</button>
+  <button class="tab" data-pane="terms">Key Terms</button>
 </div>
 
-<!-- ===================== LECTURE · DR. RAVINDER MALLARAPU ===================== -->
-<div id="lecture" class="pane">
-<style>
-/* Lecture — scoped (.lec-*) */
-.lec-wrap{max-width:820px}
-.lec-kicker{font:600 11.5px/1 'Inter',system-ui,sans-serif;letter-spacing:1.4px;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
-.lec-wrap h2{font:600 30px/1.2 'Source Serif Pro',Georgia,serif;letter-spacing:-.5px;color:var(--ink);margin:0 0 8px}
-.lec-by{font:italic 400 15px/1.5 'Source Serif Pro',Georgia,serif;color:var(--dim);margin:0 0 4px}
-.lec-by b{font-style:normal;font-weight:600;color:var(--ink)}
-.lec-meta{font:500 11.5px/1.4 'Inter',system-ui,sans-serif;letter-spacing:.6px;color:var(--faint);margin:0 0 24px}
-.lec-lede{font:400 17px/1.6 'Source Serif Pro',Georgia,serif;color:var(--dim);margin:0 0 26px;padding-bottom:22px;border-bottom:1px solid var(--rule)}
-.lec-obj{background:var(--paper2);border:1px solid var(--line);border-radius:10px;padding:18px 22px;margin:0 0 30px;max-width:760px}
-.lec-obj .lec-h{font:700 11.5px/1 'Inter',system-ui,sans-serif;letter-spacing:1.2px;text-transform:uppercase;color:var(--ink);margin:0 0 12px}
-.lec-obj ul{list-style:none;margin:0;padding:0}
-.lec-obj li{position:relative;padding:5px 0 5px 22px;font:400 14.5px/1.5 'Inter',system-ui,sans-serif;color:var(--dim)}
-.lec-obj li::before{content:"\2014";position:absolute;left:0;color:var(--gold)}
-.lec-sec{margin:0 0 26px;max-width:760px}
-.lec-sec h3{font:600 13px/1.3 'Inter',system-ui,sans-serif;letter-spacing:.3px;color:var(--ink);margin:0;display:flex;align-items:center;gap:10px}
-.lec-sec h3 b{font:700 11px/1 'JetBrains Mono',ui-monospace,Menlo,monospace;color:#fff;background:var(--gold);border-radius:5px;padding:4px 7px}
-.lec-sec p{font:400 15.5px/1.65 'Source Serif Pro',Georgia,serif;color:var(--dim);margin:10px 0 0}
-.lec-sec p b{color:var(--ink);font-weight:600}
-.lec-key{font:400 13.5px/1.6 'Inter',system-ui,sans-serif;color:var(--dim);background:rgba(157,133,82,.07);border-left:3px solid var(--gold);border-radius:0 6px 6px 0;padding:10px 16px;margin:12px 0 0}
-.lec-key b{color:var(--ink)}
-.lec-cta{display:inline-flex;align-items:center;gap:8px;font:600 14px/1 'Inter',system-ui,sans-serif;text-decoration:none;color:var(--paper);background:var(--ink);border-radius:8px;padding:13px 22px;margin-top:8px;transition:opacity .15s}
-.lec-cta:hover{opacity:.85;text-decoration:none}
-.lec-foot{margin-top:30px;padding-top:14px;border-top:1px solid var(--rule);font:400 12px/1.55 'Inter',system-ui,sans-serif;color:var(--faint);max-width:760px}
-</style>
-
-  <div class="lec-wrap">
-    <div class="lec-kicker">GWU · SEAS-8414 · Lecture</div>
-    <h2>Vulnerability Assessment, Correlation &amp; Prioritization</h2>
-    <p class="lec-by">A lecture overview by <b>Dr. Ravi Mallarapu</b></p>
-    <p class="lec-meta">Analytical Tools for Cyber &middot; SEAS-8414 &middot; The George Washington University</p>
-
-    <p class="lec-lede">Discovery tells you <i>what</i> is on the network. This lecture is about the
-    harder question that follows: of everything you found, what actually puts the mission at risk, and
-    in what order should you fix it? We move from raw asset fingerprints to a defensible, ranked
-    remediation plan.</p>
-
-    <div class="lec-obj">
-      <div class="lec-h">By the end of this lecture you should be able to</div>
-      <ul>
-        <li>Turn an asset fingerprint into a set of candidate vulnerabilities</li>
-        <li>Read a CVSS vector and explain what actually drives the score</li>
-        <li>Separate severity from real-world exploitation likelihood</li>
-        <li>Confirm a finding with direct evidence instead of trusting a guess</li>
-        <li>Rank findings so the most dangerous work rises to the top</li>
-      </ul>
-    </div>
-
-    <div class="lec-sec">
-      <h3><b>1</b> From discovery to assessment</h3>
-      <p>A discovered host is a <b>hypothesis</b>, not a finding. Knowing that a device runs a
-      particular product and version is the starting point &mdash; assessment is the work of asking
-      <i>which known weaknesses that software carries</i>, and whether they are actually reachable and
-      relevant here. Skipping this step is how teams drown in noise.</p>
-    </div>
-
-    <div class="lec-sec">
-      <h3><b>2</b> Identification &mdash; CPE and the CVE match</h3>
-      <p>We name software with a structured identifier (a <b>CPE</b>) so it can be matched against the
-      public vulnerability record (the <b>CVE</b> list). The match is powerful but blunt: version
-      ranges overlap, back-ported patches hide real state, and one string can map to dozens of CVEs.
-      Treat the result as a candidate list to be narrowed &mdash; never a verdict.</p>
-      <div class="lec-key"><b>Watch for:</b> false positives from version-only matching &mdash; a
-      vendor may patch the flaw without changing the banner.</div>
-    </div>
-
-    <div class="lec-sec">
-      <h3><b>3</b> Severity is not likelihood</h3>
-      <p>A <b>CVSS</b> base score describes how bad an exploit <i>would</i> be &mdash; remote? no
-      privileges? no user interaction? It says nothing about whether anyone is actually using it.
-      <b>EPSS</b> estimates the probability a vulnerability will be exploited in the near term, and the
-      <b>CISA KEV</b> catalog lists what is being exploited <i>right now</i>. The three answer different
-      questions, and you need all three.</p>
-    </div>
-
-    <div class="lec-sec">
-      <h3><b>4</b> Correlation &mdash; confirming with evidence</h3>
-      <p>The strongest finding is corroborated by more than one independent signal: the version match,
-      a service banner you pulled yourself, observed protocol behavior, traffic patterns. When several
-      evidence paths agree, confidence rises and false positives fall. <b>Direct evidence beats
-      inference</b> every time.</p>
-    </div>
-
-    <div class="lec-sec">
-      <h3><b>5</b> Prioritization &mdash; the remediation queue</h3>
-      <p>Finally we triage like an operator with limited hours. Anything actively exploited (KEV) jumps
-      the line; then weight by exploitation likelihood (EPSS) and by raw severity (CVSS) scaled to
-      <b>how critical the affected asset is to the mission</b>. The output is a single ordered list that
-      tells the team exactly what to touch first.</p>
-    </div>
-
-    <a class="lec-cta" href="#gwulab" onclick="event.preventDefault();var b=document.querySelector('.tab[data-pane=&quot;gwulab&quot;]');if(b){b.click();window.scrollTo(0,0);}">Continue to the lab &rarr;</a>
-
-    <div class="lec-foot">Original lecture overview prepared for rayvelabs.com. It summarizes the
-    concepts of the SEAS-8414 module in original wording and does not reproduce
-    Dr.&nbsp;Mallarapu&rsquo;s slides, notes, or graded materials.</div>
-  </div>
-</div>
-
-<!-- ===================== GWU · DR M LAB ===================== -->
 <div id="gwulab" class="pane">
 <style>
 /* GWU Dr M Lab — scoped (.sl-*) */
@@ -787,7 +684,7 @@ body.rl-scrolled .tabs{
 </style>
 
   <div class="sl-lede">
-    <div class="sl-kicker">Vulnerability Assessment · worked walkthrough</div>
+    <div class="sl-kicker">Vulnerability Assessment</div>
     <h2>The Phase&nbsp;3 lesson, <em>rebuilt</em> to run.</h2>
     <p>A from-scratch recreation of the vulnerability-assessment lesson &mdash; the full
     reasoning path from a device fingerprint to a defensible remediation queue, with every
@@ -1060,7 +957,7 @@ body.rl-scrolled .tabs{
   <script>function bwGo(v){var b=document.querySelector('#bwApp [data-view="'+v+'"]');if(b){b.click();}var a=document.getElementById('bwApp');if(a){a.scrollIntoView({behavior:'smooth',block:'start'});}}</script>
 
   <section class="mapwrap">
-    <div class="map-kick">Lesson &rarr; Lab</div>
+    <div class="map-kick">Lesson &rarr; Practice</div>
     <h2 class="map-h2">Where each idea becomes hands-on</h2>
     <p class="map-intro">The lab is the lesson, made concrete. The course runs it as six exercises &mdash;
     each one takes a concept from above, gives you a real call to make, and produces evidence you reason
@@ -1134,7 +1031,7 @@ body.rl-scrolled .tabs{
 
   <article class="sl-lab">
     <div class="sl-lab-head">
-      <div class="sl-lab-tag">Chapter 3 &middot; Hands-on</div>
+      <div class="sl-lab-tag">Hands-on</div>
       <div class="sl-lab-title">Run the workflow on one host</div>
       <div class="sl-lab-meta">
         <span>SEAS-8414</span><span class="sl-dot">&middot;</span>
@@ -1273,7 +1170,7 @@ curl -sI http://TARGET/ | grep -i '^Server:'</div>
     <div class="sl-pyhead">Python toolkit · copy &amp; run</div>
     <h3>The assessment pipeline, in five short scripts</h3>
     <p class="sl-pylede">The console above shows the <i>result</i>. These scripts show the <i>method</i> &mdash;
-    the same vulnerability-assessment, correlation and prioritization flow the lab asks you to build,
+    the same vulnerability-assessment, correlation and prioritization flow this walkthrough asks you to build,
     written from scratch against public data sources so you can run each step and watch it work.</p>
 
     <div class="sl-step"><b>1</b> Fingerprint &rarr; candidate CVEs</div>
@@ -1479,7 +1376,7 @@ for f in queue[:10]:
   </style>
 
   <section class="bw-wrap">
-    <div class="bw-kick">Lab runtime · interactive</div>
+    <div class="bw-kick">Interactive · runs in your browser</div>
     <p class="bw-lede">A working build of the Chapter&nbsp;3 <b>Discovery &amp; Evidence</b> workflow
     &mdash; six linked views from asset inventory through to a live, ranked remediation queue.
     Data is deterministic and generated locally in your browser; there is no backend and nothing
@@ -1855,7 +1752,7 @@ for f in queue[:10]:
       var v=viewFor();
       var activeNav=state.view==='detail'?'assets':state.view;
       var h='';
-      h+='<div class="bw-top"><div class="bw-logo"><span class="bw-mark">M</span><div><b>Dr. Mallarapu&rsquo;s Lab</b><span>Discovery &amp; Evidence</span></div></div>';
+      h+='<div class="bw-top"><div class="bw-logo"><span class="bw-mark">M</span><div><b>Vulnerability Assessment</b><span>Discovery &amp; Evidence</span></div></div>';
       h+='<nav class="bw-nav">'+NAV.map(function(n){return '<button data-view="'+n[0]+'" class="'+(activeNav===n[0]?'on':'')+'">'+n[1]+'</button>'}).join('')+'</nav>';
       h+='<span class="bw-conn"><i></i> Simulator connected</span></div>';
       h+='<div class="bw-main"><div class="bw-head"><div><h3>'+esc(v.title)+'</h3><p>'+esc(v.sub)+'</p></div></div><div class="bw-body">'+v.body+'</div></div>';
@@ -2379,7 +2276,7 @@ for f in queue[:10]:
     <a href="#nd-9" class="nd-sn">9 · Five Methods</a>
     <a href="#nd-10" class="nd-sn">10 · Streaming</a>
     <a href="#nd-11" class="nd-sn">11 · Host Record</a>
-    <a href="#nd-12" class="nd-sn">12 · Capstone Lab</a>
+    <a href="#nd-12" class="nd-sn">12 · Capstone</a>
     <a href="#nd-13" class="nd-sn">13 · Discipline</a>
   </nav>
 
@@ -2576,7 +2473,7 @@ for f in queue[:10]:
         <div class="nd-rung-num">DIAGNOSTIC</div>
         <div class="nd-rung-label">What is it?</div>
         <div class="nd-rung-q">Identity, vendor, model, role.</div>
-        <div class="nd-rung-ch">Chapter 2 · Cascade Lab</div>
+        <div class="nd-rung-ch">Chapter 2 · Device Fingerprinting</div>
       </div>
       <div class="nd-rung" data-rung="2">
         <div class="nd-rung-num">DETECTIVE</div>
@@ -2647,7 +2544,7 @@ for f in queue[:10]:
         <div class="nd-reason-h">Identity is inference, not lookup</div>
         <div class="nd-reason-d">No authoritative inventory means identity is reconstructed from OUI prefixes, hostnames, banners, port signatures.</div>
         <div class="nd-reason-x">
-          In a managed enterprise, you look up a host in the CMDB and get its model, owner, OS, criticality. <b>In unmanaged fleets, every identity claim has to be inferred from evidence the device emits.</b> An OUI of <code>D4:F5:47</code> says "this MAC was assigned to Google Inc." — not which Google product. A realm of <code>"Hik"</code> hints at Hikvision firmware — not which model. Identity becomes an evidence problem that Chapter 2 (Cascade Lab) solves with cascading corroboration.
+          In a managed enterprise, you look up a host in the CMDB and get its model, owner, OS, criticality. <b>In unmanaged fleets, every identity claim has to be inferred from evidence the device emits.</b> An OUI of <code>D4:F5:47</code> says "this MAC was assigned to Google Inc." — not which Google product. A realm of <code>"Hik"</code> hints at Hikvision firmware — not which model. Identity becomes an evidence problem that Chapter 2 (Device Fingerprinting) solves with cascading corroboration.
         </div>
       </div>
       <div class="nd-reason" data-r="4">
@@ -3082,7 +2979,7 @@ for f in queue[:10]:
           <button class="rl-q-opt" data-v="c">Because existence evidence (a Google OUI + ports 80/443) is not identity evidence — it could be a Chromecast, Nest, Wi-Fi product, or virtualized interface. Chapter 2 does identity.</button>
           <button class="rl-q-opt" data-v="d">Because Chapter 1 is descriptive only and hands off to Chapter 3 next.</button>
         </div>
-        <div class="rl-q-why"><b>Correct: C.</b> Same vendor prefix and port set can belong to many products. Chapter 1's job is to admit hosts and preserve evidence — preferring honest uncertainty to false precision. Chapter 2 (Cascade Lab) takes the identity question; Chapter 3 follows.</div>
+        <div class="rl-q-why"><b>Correct: C.</b> Same vendor prefix and port set can belong to many products. Chapter 1's job is to admit hosts and preserve evidence — preferring honest uncertainty to false precision. Chapter 2 (Device Fingerprinting) takes the identity question; Chapter 3 follows.</div>
       </div>
 
       <div class="rl-quiz-score"></div>
@@ -3274,7 +3171,7 @@ Get-DhcpServerv4Lease -ScopeId 192.168.1.0</div>
       <div class="nd-mdns-svcs" id="ndMdnsSvcs"></div>
       <div class="nd-mdns-impl" id="ndMdnsImpl"></div>
       <p class="nd-prose" style="font-size:13.5px;margin-top:14px;max-width:780px">
-        <b>The Chapter 1 discipline:</b> admit the host, preserve the service evidence, refuse to overstate. Chapter 2 (Cascade Lab) decides what identity claim, if any, follows from these strings.
+        <b>The Chapter 1 discipline:</b> admit the host, preserve the service evidence, refuse to overstate. Chapter 2 (Device Fingerprinting) decides what identity claim, if any, follows from these strings.
       </p>
 
       <div class="nd-try">
@@ -3617,7 +3514,7 @@ nmap -sT --open -p 22,80,443,445,554,631,1400,1883,3000,5000,8001,8008,8080,8443
     </div>
 
     <h3 style="font-family:'Source Serif Pro',Georgia,serif;font-size:20px;font-weight:500;color:var(--ink);margin:36px 0 4px;max-width:780px">The formal handoff to Chapter 2</h3>
-    <p class="nd-prose" style="margin-bottom:10px">Treat the handoff as an API contract. Chapter 2 (Cascade Lab) consumes this shape — and is entitled to refuse it if required fields are missing or forbidden assertions appear.</p>
+    <p class="nd-prose" style="margin-bottom:10px">Treat the handoff as an API contract. Chapter 2 (Device Fingerprinting) consumes this shape — and is entitled to refuse it if required fields are missing or forbidden assertions appear.</p>
 
     <div class="nd-handoff">
       <div class="nd-handoff-h">interface ChapterOneHandoff · v1</div>
@@ -3661,7 +3558,7 @@ nmap -sT --open -p 22,80,443,445,554,631,1400,1883,3000,5000,8001,8008,8080,8443
   <!-- ========== §12 Capstone Lab ========== -->
   <section id="nd-12" class="nd-section">
     <div class="nd-sec-num">SECTION 12 · CAPSTONE</div>
-    <h2 class="nd-sec-title">The 26-Device Lab</h2>
+    <h2 class="nd-sec-title">The 26-Device Network</h2>
     <div class="nd-sec-sub">172.30.0.0/24 · known ground truth · score your discovery against reality.</div>
 
     <p class="nd-prose">
@@ -3734,7 +3631,7 @@ nmap -sT --open -p 22,80,443,445,554,631,1400,1883,3000,5000,8001,8008,8080,8443
       <div class="nd-cap-contrib" id="ndCapContrib"></div>
       <div class="nd-cap-reflect" id="ndCapReflect"></div>
       <div class="nd-cap-handoff">
-        <button class="nd-btn primary" id="ndCapHandoff">Hand running case to Cascade Lab →</button>
+        <button class="nd-btn primary" id="ndCapHandoff">Hand running case to Device Fingerprinting →</button>
         <button class="nd-btn ghost" id="ndCapRerun">↺ Re-run with different methods</button>
       </div>
     </div>
@@ -4785,9 +4682,9 @@ nmap -sT --open -p 22,80,443,445,554,631,1400,1883,3000,5000,8001,8008,8080,8443
 <!-- ===================== KEY TERMS / GLOSSARY ===================== -->
 <div id="terms" class="pane">
   <div class="card">
-    <div class="label">Lab 1 vocabulary · concepts you'll see used throughout the tool</div>
+    <div class="label">Discovery vocabulary · concepts you'll see used throughout the tool</div>
     <p class="glossary-intro">
-      These are the terms the Lab 1 lectures use, mapped to what the tool actually shows. Every label, callout, and metric in <i>Learn</i> and <i>Scan Mine</i> comes from this vocabulary — knowing the words is half the discipline.
+      These are the terms the Step 1 lectures use, mapped to what the tool actually shows. Every label, callout, and metric in <i>Learn</i> and <i>Scan Mine</i> comes from this vocabulary — knowing the words is half the discipline.
     </p>
 
     <div class="glossary-group">
@@ -5233,7 +5130,7 @@ nmap -sT --open -p 22,80,443,445,554,631,1400,1883,3000,5000,8001,8008,8080,8443
   <!-- ============== Chapter header ============== -->
   <header class="nd-chapter-header">
     <div class="nd-chapter-meta">
-      <span class="nd-chapter-kicker">Chapter 2 · Cascade Lab</span>
+      <span class="nd-chapter-kicker">Chapter 2 · Device Fingerprinting</span>
       <span class="nd-chapter-credit">Lectures of <b>Dr. Ravi Mallarapu</b> · SEAS-8414 · GW · interactive lab by Rayve Malhotra</span>
     </div>
     <h1 class="nd-chapter-title">Service Enrichment &amp; <em>Device Fingerprinting</em></h1>
@@ -8174,7 +8071,7 @@ identity:      <span style="color:#8a6321">unresolved · hand off to Ch.2</span>
           <li><a href="https://github.com/rayvemalhotra/rayvelabs" target="_blank" rel="noopener">rayvemalhotra / rayvelabs</a><span class="note">The full source — everything you see in your browser is built from this HTML, CSS, and JavaScript.</span></li>
           <li><a href="https://github.com/rayvemalhotra/rayvelabs/blob/main/rayvenet.html" target="_blank" rel="noopener">rayvenet.html (this page)</a><span class="note">Open in GitHub to read the un-minified source. View Source in your browser shows the deployed minified version.</span></li>
           <li><a href="https://github.com/rayvemalhotra/rayvelabs/blob/main/LICENSE" target="_blank" rel="noopener">LICENSE</a><span class="note">© Rayve Malhotra · All Rights Reserved. Read freely; copying or submitting as your own work (academic, employment, commercial) is expressly prohibited.</span></li>
-          <li><a href="https://github.com/rayvemalhotra/rayvelabs/blob/main/SECURITY.md" target="_blank" rel="noopener">SECURITY.md</a><span class="note">Responsible-disclosure policy for the lab itself.</span></li>
+          <li><a href="https://github.com/rayvemalhotra/rayvelabs/blob/main/SECURITY.md" target="_blank" rel="noopener">SECURITY.md</a><span class="note">Responsible-disclosure policy for this walkthrough itself.</span></li>
           <li><a href="https://github.com/rayvemalhotra/rayvelabs/blob/main/OPERATIONS.md" target="_blank" rel="noopener">OPERATIONS.md</a><span class="note">DNS records, GitHub Pages setup, recovery runbook — the back-of-house.</span></li>
           <li><a href="https://github.com/rayvemalhotra/rayvelabs/actions" target="_blank" rel="noopener">Build pipeline</a><span class="note">Every deploy runs a syntax check before shipping — see the GitHub Actions log.</span></li>
           <li>Found a bug or have a suggestion? <a href="mailto:rayvemalhotra@gmail.com">email Rayve</a> or <a href="https://github.com/rayvemalhotra/rayvelabs/issues" target="_blank" rel="noopener">open an issue</a>.</li>
@@ -9319,7 +9216,7 @@ footer a:hover{color:var(--ink);text-decoration-color:var(--ink)}
 <!-- =========================== 1C. USE THIS WITH YOUR OWN DATA =========================== -->
 <div class="card" style="background:#fbf6e8;border-color:var(--amber);border-left-width:4px;border-left-color:var(--amber)">
   <div class="label" style="color:var(--amber)">Use this with your own data</div>
-  <p class="note" style="margin-top:0;margin-bottom:14px"><b>This page is a real tool.</b> If you operate a web server, you can paste your own access logs into Section 2 below and the lab will convert each request into a fingerprint you can: <b>group</b> (which requests behaved similarly?), <b>compare</b> (does this new request match an old one?), <b>publish</b> (share patterns without exposing the original log).</p>
+  <p class="note" style="margin-top:0;margin-bottom:14px"><b>This page is a real tool.</b> If you operate a web server, you can paste your own access logs into Section 2 below and this walkthrough will convert each request into a fingerprint you can: <b>group</b> (which requests behaved similarly?), <b>compare</b> (does this new request match an old one?), <b>publish</b> (share patterns without exposing the original log).</p>
 
   <ol style="margin:0 0 14px 22px;font-family:'Source Serif Pro',Georgia,serif;font-size:15px;color:var(--ink);line-height:1.8">
     <li>Tail or copy a slice of your access log (e.g. <code style="background:var(--paper);border:1px solid var(--line);padding:1px 6px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:13px">tail -n 200 /var/log/nginx/access.log</code>).</li>
@@ -9465,7 +9362,7 @@ footer a:hover{color:var(--ink);text-decoration-color:var(--ink)}
 <!-- =========================== 7. WHAT CHANGED? =========================== -->
 <div class="card" id="changedCard" style="display:none">
   <div class="label">7 · What changed?</div>
-  <p class="note" style="margin-top:0;margin-bottom:8px">When you toggle features on a row, the lab reports what changed and why the fingerprint hash changed with it.</p>
+  <p class="note" style="margin-top:0;margin-bottom:8px">When you toggle features on a row, this walkthrough reports what changed and why the fingerprint hash changed with it.</p>
   <div id="changedFeed" style="font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.6;background:var(--paper2);border:1px solid var(--line);border-radius:4px;padding:14px;min-height:80px;color:var(--dim)">No changes yet. Toggle a feature on a row above.</div>
 </div>
 
