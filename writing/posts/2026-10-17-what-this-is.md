@@ -1,7 +1,6 @@
 ---
 title: What this is
 date: 2026-10-17
-topic: notes
 summary: A place for small, finished thoughts — organized by topic, published when they're ready, not when they're perfect.
 tags: [meta]
 ---
