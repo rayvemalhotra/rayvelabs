@@ -1,114 +1,114 @@
 {
-  "total": 1734,
-  "catalog_version": "2026.10.04",
-  "date_released": "2026-10-04T18:52:56.0635Z",
+  "total": 1754,
+  "catalog_version": "2026.10.21",
+  "date_released": "2026-10-21T14:04:39.8983Z",
   "recent": [
     {
-      "cve": "CVE-2026-88779",
-      "vendor": "Citrix",
-      "product": "NetScaler",
-      "name": "Citrix NetScaler Improper Restriction of Operations within the Bounds of a Memory Buffer Vulnerability",
-      "date_added": "2026-10-04",
-      "due_date": "2026-10-07",
+      "cve": "CVE-2026-106931",
+      "vendor": "EG Secure Solutions",
+      "product": "SiteGuard Server Edition",
+      "name": "EG Secure Solutions SiteGuard Server Edition OS Command Injection Vulnerability",
+      "date_added": "2026-10-20",
+      "due_date": "2026-10-23",
       "ransomware": false
     },
     {
-      "cve": "CVE-2026-102490",
-      "vendor": "Zammad GmbH",
-      "product": "Zammad",
-      "name": "Zammad GmbH Zammad Improper Privilege Management Vulnerability",
-      "date_added": "2026-10-02",
-      "due_date": "2026-10-05",
+      "cve": "CVE-2026-96656",
+      "vendor": "Plex",
+      "product": "Media Server",
+      "name": "Plex Media Server External Control of File Name or Path Vulnerability",
+      "date_added": "2026-10-20",
+      "due_date": "2026-10-23",
       "ransomware": false
     },
     {
-      "cve": "CVE-2026-102489",
-      "vendor": "Zammad GmbH",
-      "product": "Zammad",
-      "name": "Zammad GmbH Zammad Session Fixation Vulnerability",
-      "date_added": "2026-10-02",
-      "due_date": "2026-10-05",
+      "cve": "CVE-2026-96655",
+      "vendor": "Plex",
+      "product": "Media Server",
+      "name": "Plex Media Server Server-Side Request Forgery (SSRF) Vulnerability",
+      "date_added": "2026-10-20",
+      "due_date": "2026-11-03",
       "ransomware": false
     },
     {
-      "cve": "CVE-2026-104286",
+      "cve": "CVE-2026-96654",
+      "vendor": "Plex",
+      "product": "Media Server",
+      "name": "Plex Media Server Improper Neutralization of Encoded URI Schemes in a Web Page Vulnerability",
+      "date_added": "2026-10-20",
+      "due_date": "2026-10-23",
+      "ransomware": false
+    },
+    {
+      "cve": "CVE-2026-96652",
+      "vendor": "Plex",
+      "product": "Media Server",
+      "name": "Plex Media Server Server-Side Request Forgery (SSRF) Vulnerability",
+      "date_added": "2026-10-20",
+      "due_date": "2026-11-03",
+      "ransomware": false
+    },
+    {
+      "cve": "CVE-2026-110936",
+      "vendor": "Siemens",
+      "product": "Software Center",
+      "name": "Siemens Software Center Uncontrolled Search Path Element Vulnerability",
+      "date_added": "2026-10-20",
+      "due_date": "2026-11-03",
+      "ransomware": false
+    },
+    {
+      "cve": "CVE-2026-102764",
+      "vendor": "BeyondTrust",
+      "product": "Remote Support",
+      "name": "BeyondTrust Remote Support Authentication Bypass by Spoofing Vulnerability",
+      "date_added": "2026-10-16",
+      "due_date": "2026-10-19",
+      "ransomware": false
+    },
+    {
+      "cve": "CVE-2025-61624",
       "vendor": "Fortinet",
-      "product": "FortiMail",
-      "name": "Fortinet FortiMail Path Traversal Vulnerability",
-      "date_added": "2026-10-01",
-      "due_date": "2026-10-04",
+      "product": "Multiple Products",
+      "name": "Fortinet Multiple Products Path Traversal Vulnerability",
+      "date_added": "2026-10-16",
+      "due_date": "2026-10-19",
       "ransomware": false
     },
     {
-      "cve": "CVE-2026-76504",
+      "cve": "CVE-2026-21589",
+      "vendor": "Atlassian",
+      "product": "Multiple Products",
+      "name": "Atlassian Multiple Products Files or Directories Accessible to External Parties Vulnerability",
+      "date_added": "2026-10-15",
+      "due_date": "2026-10-18",
+      "ransomware": false
+    },
+    {
+      "cve": "CVE-2026-105134",
+      "vendor": "Ahsay",
+      "product": "AhsayCBS",
+      "name": "Ahsay AhsayCBS Command Injection Vulnerability",
+      "date_added": "2026-10-14",
+      "due_date": "2026-10-17",
+      "ransomware": false
+    },
+    {
+      "cve": "CVE-2026-76519",
       "vendor": "Cisco",
-      "product": "Catalyst SD-WAN Manager",
-      "name": "Cisco Catalyst SD-WAN Manager Hex Encoding Vulnerability",
-      "date_added": "2026-09-30",
-      "due_date": "2026-10-03",
+      "product": "Secure Email Gateway",
+      "name": "Cisco Secure Email Gateway Relative Path Traversal Vulnerability",
+      "date_added": "2026-10-14",
+      "due_date": "2026-10-17",
       "ransomware": false
     },
     {
-      "cve": "CVE-2026-86950",
-      "vendor": "Apple",
-      "product": "Multiple Products",
-      "name": "Apple Multiple Products Out-of-Bounds Write Vulnerability",
-      "date_added": "2026-09-29",
-      "due_date": "2026-10-02",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-88772",
-      "vendor": "Citrix",
-      "product": "NetScaler",
-      "name": "Citrix NetScaler Improper Restriction of Operations within the Bounds of a Memory Buffer Vulnerability",
-      "date_added": "2026-09-27",
-      "due_date": "2026-09-30",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-88771",
-      "vendor": "Citrix",
-      "product": "NetScaler",
-      "name": "Citrix NetScaler Improper Input Validation Vulnerability",
-      "date_added": "2026-09-27",
-      "due_date": "2026-09-30",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-67279",
-      "vendor": "MikroTik",
-      "product": "RouterOS",
-      "name": "Mikrotik RouterOS Improper Enforcement of Behavioral Workflow Vulnerability",
-      "date_added": "2026-09-25",
-      "due_date": "2026-09-28",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-65660",
-      "vendor": "Microsoft",
-      "product": "SharePoint",
-      "name": "Microsoft SharePoint Code Injection Vulnerability",
-      "date_added": "2026-09-25",
-      "due_date": "2026-09-28",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-87902",
-      "vendor": "WordPress",
-      "product": "Core",
-      "name": "WordPress Core Remote File Inclusion Vulnerability",
-      "date_added": "2026-09-25",
-      "due_date": "2026-09-28",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-5430",
-      "vendor": "WSO2",
-      "product": "Multiple Products",
-      "name": "WSO2 Multiple Products Path Traversal Vulnerability ",
-      "date_added": "2026-09-24",
-      "due_date": "2026-09-27",
+      "cve": "CVE-2026-105133",
+      "vendor": "Ahsay",
+      "product": "AhsayCBS",
+      "name": "Ahsay AhsayCBS Improper Authentication Vulnerability",
+      "date_added": "2026-10-14",
+      "due_date": "2026-10-17",
       "ransomware": false
     }
   ]

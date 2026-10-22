@@ -1,6 +1,6 @@
 {
-  "total_breaches": 1041,
-  "total_records_exposed": 17844675503,
+  "total_breaches": 1047,
+  "total_records_exposed": 17846550965,
   "recent": [
     {
       "name": "DoubleCounter",
@@ -33,6 +33,24 @@
         "Physical addresses",
         "Salutations",
         "Support tickets"
+      ],
+      "verified": true
+    },
+    {
+      "name": "Neogen",
+      "title": "Neogen",
+      "domain": "neogen.com",
+      "breach_date": "2026-08-29",
+      "added_date": "2026-10-09T07:06:25Z",
+      "pwn_count": 435963,
+      "data_classes": [
+        "Email addresses",
+        "Employers",
+        "Job titles",
+        "Names",
+        "Phone numbers",
+        "Physical addresses",
+        "Salutations"
       ],
       "verified": true
     },
@@ -106,32 +124,23 @@
       "verified": true
     },
     {
-      "name": "Fanlore",
-      "title": "Fanlore",
-      "domain": "fanlore.org",
-      "breach_date": "2026-08-06",
-      "added_date": "2026-08-19T02:09:16Z",
-      "pwn_count": 144520,
+      "name": "Sharecare",
+      "title": "Sharecare",
+      "domain": "sharecare.com",
+      "breach_date": "2026-08-12",
+      "added_date": "2026-10-12T23:28:32Z",
+      "pwn_count": 318185,
       "data_classes": [
+        "Dates of birth",
         "Email addresses",
+        "Employers",
+        "Genders",
+        "Government issued IDs",
+        "Job titles",
+        "Marital statuses",
         "Names",
-        "Passwords",
-        "Usernames"
-      ],
-      "verified": true
-    },
-    {
-      "name": "Chess2026",
-      "title": "Chess.com (2026)",
-      "domain": "chess.com",
-      "breach_date": "2026-08-03",
-      "added_date": "2026-09-13T13:09:11Z",
-      "pwn_count": 4653212,
-      "data_classes": [
-        "Email addresses",
-        "Geographic locations",
-        "Names",
-        "Usernames"
+        "Phone numbers",
+        "Physical addresses"
       ],
       "verified": true
     }

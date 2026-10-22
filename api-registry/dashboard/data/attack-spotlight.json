@@ -1,19 +1,17 @@
 {
-  "total_techniques": 222,
+  "total_techniques": 227,
   "technique": {
-    "id": "T1684",
-    "name": "Social Engineering",
-    "description": "Adversaries may use social engineering techniques to influence users to take actions that result in unauthorized access, approval of changes, disclosure of sensitive information, or execution of adversary-supplied instructions (i.e., introduction of malicious payloads or software), while minimizing technical indicators. ",
+    "id": "T1029",
+    "name": "Scheduled Transfer",
+    "description": "Adversaries may schedule data exfiltration to be performed only at certain times of day or at certain intervals. This could be done to blend traffic patterns with normal activity or availability.(Citation: Delay Code Execution in Java)",
     "tactics": [
-      "stealth"
+      "exfiltration"
     ],
     "platforms": [
       "Linux",
       "macOS",
-      "Office Suite",
-      "SaaS",
       "Windows"
     ],
-    "url": "https://attack.mitre.org/techniques/T1684"
+    "url": "https://attack.mitre.org/techniques/T1029"
   }
 }
