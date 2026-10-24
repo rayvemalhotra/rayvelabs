@@ -1,8 +1,26 @@
 {
-  "total": 1754,
-  "catalog_version": "2026.10.21",
-  "date_released": "2026-10-21T14:04:39.8983Z",
+  "total": 1756,
+  "catalog_version": "2026.10.23",
+  "date_released": "2026-10-23T19:30:18.9209Z",
   "recent": [
+    {
+      "cve": "CVE-2026-114625",
+      "vendor": "Arista",
+      "product": "VeloCloud Orchestrator",
+      "name": "Arista VeloCloud Orchestrator SQL Injection Vulnerability",
+      "date_added": "2026-10-23",
+      "due_date": "2026-10-26",
+      "ransomware": false
+    },
+    {
+      "cve": "CVE-2026-110447",
+      "vendor": "Collabora",
+      "product": "Collabora Online \u2013 Built-in CODE Server",
+      "name": "Collabora Online \u2013 Built-in CODE Server OS Command Injection Vulnerability",
+      "date_added": "2026-10-23",
+      "due_date": "2026-10-26",
+      "ransomware": false
+    },
     {
       "cve": "CVE-2026-106931",
       "vendor": "EG Secure Solutions",
@@ -89,24 +107,6 @@
       "vendor": "Ahsay",
       "product": "AhsayCBS",
       "name": "Ahsay AhsayCBS Command Injection Vulnerability",
-      "date_added": "2026-10-14",
-      "due_date": "2026-10-17",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-76519",
-      "vendor": "Cisco",
-      "product": "Secure Email Gateway",
-      "name": "Cisco Secure Email Gateway Relative Path Traversal Vulnerability",
-      "date_added": "2026-10-14",
-      "due_date": "2026-10-17",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-105133",
-      "vendor": "Ahsay",
-      "product": "AhsayCBS",
-      "name": "Ahsay AhsayCBS Improper Authentication Vulnerability",
       "date_added": "2026-10-14",
       "due_date": "2026-10-17",
       "ransomware": false

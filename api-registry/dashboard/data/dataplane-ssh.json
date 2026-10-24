@@ -1,5 +1,5 @@
 {
-  "total": 21171,
+  "total": 20850,
   "recent": [
     {
       "asn": "174",
@@ -61,7 +61,7 @@
       "asn": "174",
       "as_name": "COGENT-174 - Cogent Communicat",
       "ip": "207.90.244.25",
-      "last_seen": "2026-10-21 23:34:10",
+      "last_seen": "2026-10-23 21:51:13",
       "category": "sshclient"
     },
     {
@@ -75,14 +75,14 @@
       "asn": "174",
       "as_name": "COGENT-174 - Cogent Communicat",
       "ip": "207.90.244.3",
-      "last_seen": "2026-10-21 09:43:57",
+      "last_seen": "2026-10-23 21:47:05",
       "category": "sshclient"
     },
     {
       "asn": "174",
       "as_name": "COGENT-174 - Cogent Communicat",
       "ip": "207.90.244.5",
-      "last_seen": "2026-10-19 03:12:33",
+      "last_seen": "2026-10-23 21:48:01",
       "category": "sshclient"
     },
     {
@@ -100,10 +100,10 @@
       "category": "sshclient"
     },
     {
-      "asn": "553",
-      "as_name": "BELWUE Universitaet Stuttgart",
-      "ip": "134.2.251.1",
-      "last_seen": "2026-10-18 10:43:34",
+      "asn": "174",
+      "as_name": "COGENT-174 - Cogent Communicat",
+      "ip": "38.146.25.142",
+      "last_seen": "2026-10-24 03:58:39",
       "category": "sshclient"
     }
   ]
