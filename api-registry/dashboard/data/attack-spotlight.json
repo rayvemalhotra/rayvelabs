@@ -1,18 +1,21 @@
 {
   "total_techniques": 227,
   "technique": {
-    "id": "T1572",
-    "name": "Protocol Tunneling",
-    "description": "Adversaries may tunnel network communications to and from a victim system within a separate protocol to avoid detection/network filtering and/or enable access to otherwise unreachable systems. Tunneling involves explicitly encapsulating a protocol within another. This behavior may conceal malicious traffic by blending in with existing traffic and/or provide an outer layer of encryption (similar to a VPN). Tunneling could also enable routing of network packets that would otherwise not reach their intended destination, such as SMB, RDP, or other traffic that would be filtered by network appliances or not routed over the Internet. ",
+    "id": "T1550",
+    "name": "Use Alternate Authentication Material",
+    "description": "Adversaries may use alternate authentication material, such as password hashes, Kerberos tickets, and application access tokens, in order to move laterally within an environment and bypass normal system access controls. ",
     "tactics": [
-      "command-and-control"
+      "lateral-movement"
     ],
     "platforms": [
-      "ESXi",
+      "Containers",
+      "IaaS",
+      "Identity Provider",
       "Linux",
-      "macOS",
+      "Office Suite",
+      "SaaS",
       "Windows"
     ],
-    "url": "https://attack.mitre.org/techniques/T1572"
+    "url": "https://attack.mitre.org/techniques/T1550"
   }
 }
