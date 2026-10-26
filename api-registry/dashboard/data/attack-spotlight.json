@@ -1,21 +1,17 @@
 {
   "total_techniques": 227,
   "technique": {
-    "id": "T1550",
-    "name": "Use Alternate Authentication Material",
-    "description": "Adversaries may use alternate authentication material, such as password hashes, Kerberos tickets, and application access tokens, in order to move laterally within an environment and bypass normal system access controls. ",
+    "id": "T1011",
+    "name": "Exfiltration Over Other Network Medium",
+    "description": "Adversaries may attempt to exfiltrate data over a different network medium than the command and control channel. If the command and control network is a wired Internet connection, the exfiltration may occur, for example, over a WiFi connection, modem, cellular data connection, Bluetooth, or another radio frequency (RF) channel.",
     "tactics": [
-      "lateral-movement"
+      "exfiltration"
     ],
     "platforms": [
-      "Containers",
-      "IaaS",
-      "Identity Provider",
       "Linux",
-      "Office Suite",
-      "SaaS",
+      "macOS",
       "Windows"
     ],
-    "url": "https://attack.mitre.org/techniques/T1550"
+    "url": "https://attack.mitre.org/techniques/T1011"
   }
 }

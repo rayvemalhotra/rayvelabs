@@ -1,56 +1,56 @@
 {
-  "started_at": "2026-10-25T10:43:18Z",
-  "finished_at": "2026-10-25T10:43:23Z",
+  "started_at": "2026-10-26T12:15:33Z",
+  "finished_at": "2026-10-26T12:15:37Z",
   "feeds": {
     "kev": {
       "ok": true,
-      "elapsed_ms": 293
+      "elapsed_ms": 362
     },
     "epss-top": {
       "ok": true,
-      "elapsed_ms": 1487
+      "elapsed_ms": 1376
     },
     "attack-spotlight": {
       "ok": true,
-      "elapsed_ms": 462
+      "elapsed_ms": 417
     },
     "urlhaus": {
       "ok": false,
       "error": "HTTPError: HTTP Error 410: Gone",
-      "elapsed_ms": 37
+      "elapsed_ms": 99
     },
     "threatfox": {
       "ok": false,
       "error": "HTTPError: HTTP Error 410: Gone",
-      "elapsed_ms": 256
+      "elapsed_ms": 123
     },
     "feodo": {
       "ok": true,
-      "elapsed_ms": 141
+      "elapsed_ms": 117
     },
     "tor": {
       "ok": true,
-      "elapsed_ms": 443
+      "elapsed_ms": 494
     },
     "dshield": {
       "ok": true,
-      "elapsed_ms": 333
+      "elapsed_ms": 272
     },
     "dataplane-ssh": {
       "ok": true,
-      "elapsed_ms": 549
+      "elapsed_ms": 450
     },
     "spamhaus-drop": {
       "ok": true,
-      "elapsed_ms": 65
+      "elapsed_ms": 95
     },
     "hibp": {
       "ok": true,
-      "elapsed_ms": 475
+      "elapsed_ms": 424
     },
     "sslbl": {
       "ok": true,
-      "elapsed_ms": 77
+      "elapsed_ms": 183
     }
   },
   "feed_count": 12,
