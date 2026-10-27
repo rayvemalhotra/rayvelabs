@@ -1,8 +1,26 @@
 {
-  "total": 1756,
-  "catalog_version": "2026.10.23",
-  "date_released": "2026-10-23T19:30:18.9209Z",
+  "total": 1758,
+  "catalog_version": "2026.10.26",
+  "date_released": "2026-10-26T22:24:24.6101Z",
   "recent": [
+    {
+      "cve": "CVE-2026-109618",
+      "vendor": "PHP Group",
+      "product": "PHP",
+      "name": "PHP Memory Corruption Vulnerability",
+      "date_added": "2026-10-26",
+      "due_date": "2026-10-29",
+      "ransomware": false
+    },
+    {
+      "cve": "CVE-2026-109619",
+      "vendor": "PHP Group",
+      "product": "PHP",
+      "name": "PHP Stale Internal Request-State Vulnerability",
+      "date_added": "2026-10-26",
+      "due_date": "2026-10-29",
+      "ransomware": false
+    },
     {
       "cve": "CVE-2026-114625",
       "vendor": "Arista",
@@ -91,24 +109,6 @@
       "name": "Fortinet Multiple Products Path Traversal Vulnerability",
       "date_added": "2026-10-16",
       "due_date": "2026-10-19",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-21589",
-      "vendor": "Atlassian",
-      "product": "Multiple Products",
-      "name": "Atlassian Multiple Products Files or Directories Accessible to External Parties Vulnerability",
-      "date_added": "2026-10-15",
-      "due_date": "2026-10-18",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-105134",
-      "vendor": "Ahsay",
-      "product": "AhsayCBS",
-      "name": "Ahsay AhsayCBS Command Injection Vulnerability",
-      "date_added": "2026-10-14",
-      "due_date": "2026-10-17",
       "ransomware": false
     }
   ]

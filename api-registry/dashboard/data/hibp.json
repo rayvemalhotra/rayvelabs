@@ -1,6 +1,6 @@
 {
-  "total_breaches": 1047,
-  "total_records_exposed": 17846550965,
+  "total_breaches": 1048,
+  "total_records_exposed": 17846896404,
   "recent": [
     {
       "name": "DoubleCounter",
@@ -14,6 +14,19 @@
         "Geographic locations",
         "Names",
         "Usernames"
+      ],
+      "verified": true
+    },
+    {
+      "name": "AfD",
+      "title": "AfD",
+      "domain": "afd.de",
+      "breach_date": "2026-09-09",
+      "added_date": "2026-10-27T07:01:06Z",
+      "pwn_count": 345439,
+      "data_classes": [
+        "Email addresses",
+        "Email messages"
       ],
       "verified": true
     },
@@ -117,27 +130,6 @@
       "pwn_count": 12933413,
       "data_classes": [
         "Email addresses",
-        "Names",
-        "Phone numbers",
-        "Physical addresses"
-      ],
-      "verified": true
-    },
-    {
-      "name": "Sharecare",
-      "title": "Sharecare",
-      "domain": "sharecare.com",
-      "breach_date": "2026-08-12",
-      "added_date": "2026-10-12T23:28:32Z",
-      "pwn_count": 318185,
-      "data_classes": [
-        "Dates of birth",
-        "Email addresses",
-        "Employers",
-        "Genders",
-        "Government issued IDs",
-        "Job titles",
-        "Marital statuses",
         "Names",
         "Phone numbers",
         "Physical addresses"

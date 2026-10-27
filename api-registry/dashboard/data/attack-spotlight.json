@@ -1,17 +1,15 @@
 {
   "total_techniques": 227,
   "technique": {
-    "id": "T1011",
-    "name": "Exfiltration Over Other Network Medium",
-    "description": "Adversaries may attempt to exfiltrate data over a different network medium than the command and control channel. If the command and control network is a wired Internet connection, the exfiltration may occur, for example, over a WiFi connection, modem, cellular data connection, Bluetooth, or another radio frequency (RF) channel.",
+    "id": "T1589",
+    "name": "Gather Victim Identity Information",
+    "description": "Adversaries may gather information about the victim's identity that can be used during targeting. Information about identities may include a variety of details, including personal data (ex: employee names, email addresses, security question responses, etc.) as well as sensitive details such as credentials or multi-factor authentication (MFA) configurations.",
     "tactics": [
-      "exfiltration"
+      "reconnaissance"
     ],
     "platforms": [
-      "Linux",
-      "macOS",
-      "Windows"
+      "PRE"
     ],
-    "url": "https://attack.mitre.org/techniques/T1011"
+    "url": "https://attack.mitre.org/techniques/T1589"
   }
 }
