@@ -1,8 +1,26 @@
 {
-  "total": 1758,
-  "catalog_version": "2026.10.26",
-  "date_released": "2026-10-26T22:24:24.6101Z",
+  "total": 1760,
+  "catalog_version": "2026.10.27",
+  "date_released": "2026-10-27T19:00:02.2307Z",
   "recent": [
+    {
+      "cve": "CVE-2026-48356",
+      "vendor": "Adobe",
+      "product": "Commerce and Magento",
+      "name": "Adobe Commerce and Magento Unrestricted Upload of File with Dangerous Type Vulnerability",
+      "date_added": "2026-10-27",
+      "due_date": "2026-11-10",
+      "ransomware": false
+    },
+    {
+      "cve": "CVE-2026-111497",
+      "vendor": "Google",
+      "product": "Brotli",
+      "name": "Google Brotli Unchecked Return Value Vulnerability",
+      "date_added": "2026-10-27",
+      "due_date": "2026-11-10",
+      "ransomware": false
+    },
     {
       "cve": "CVE-2026-109618",
       "vendor": "PHP Group",
@@ -91,24 +109,6 @@
       "name": "Siemens Software Center Uncontrolled Search Path Element Vulnerability",
       "date_added": "2026-10-20",
       "due_date": "2026-11-03",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-102764",
-      "vendor": "BeyondTrust",
-      "product": "Remote Support",
-      "name": "BeyondTrust Remote Support Authentication Bypass by Spoofing Vulnerability",
-      "date_added": "2026-10-16",
-      "due_date": "2026-10-19",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2025-61624",
-      "vendor": "Fortinet",
-      "product": "Multiple Products",
-      "name": "Fortinet Multiple Products Path Traversal Vulnerability",
-      "date_added": "2026-10-16",
-      "due_date": "2026-10-19",
       "ransomware": false
     }
   ]

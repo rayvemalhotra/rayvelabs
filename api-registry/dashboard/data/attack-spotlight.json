@@ -1,15 +1,17 @@
 {
   "total_techniques": 227,
   "technique": {
-    "id": "T1589",
-    "name": "Gather Victim Identity Information",
-    "description": "Adversaries may gather information about the victim's identity that can be used during targeting. Information about identities may include a variety of details, including personal data (ex: employee names, email addresses, security question responses, etc.) as well as sensitive details such as credentials or multi-factor authentication (MFA) configurations.",
+    "id": "T1560",
+    "name": "Archive Collected Data",
+    "description": "An adversary may compress and/or encrypt data that is collected prior to exfiltration. Compressing the data can help to obfuscate the collected data and minimize the amount of data sent over the network.(Citation: DOJ GRU Indictment Jul 2018) Encryption can be used to hide information that is being exfiltrated from detection or make exfiltration less conspicuous upon inspection by a defender.",
     "tactics": [
-      "reconnaissance"
+      "collection"
     ],
     "platforms": [
-      "PRE"
+      "Linux",
+      "macOS",
+      "Windows"
     ],
-    "url": "https://attack.mitre.org/techniques/T1589"
+    "url": "https://attack.mitre.org/techniques/T1560"
   }
 }
