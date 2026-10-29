@@ -1,5 +1,5 @@
 {
-  "total_listings": 11086,
+  "total_listings": 11087,
   "by_reason": [
     {
       "reason": "AsyncRAT C&C",
@@ -23,6 +23,11 @@
     }
   ],
   "recent": [
+    {
+      "listing_date": "2026-10-28 16:05:31",
+      "sha1": "32facbb63422b11875f949b45ceb306e4673a3b7",
+      "listing_reason": "Malware C&C"
+    },
     {
       "listing_date": "2026-10-28 09:25:25",
       "sha1": "db1370abc2fbcfc4d9dc332b56f0d2e91deb9d23",
@@ -67,11 +72,6 @@
       "listing_date": "2026-10-28 08:49:10",
       "sha1": "875a92bb886a52699413fb2e4370adc03c1eda37",
       "listing_reason": "QuasarRAT C&C"
-    },
-    {
-      "listing_date": "2026-10-27 15:35:42",
-      "sha1": "b3419f377a0765d386af3f3a61bede653db873f7",
-      "listing_reason": "ArvionRAT C&C"
     }
   ]
 }

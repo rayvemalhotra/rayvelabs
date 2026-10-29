@@ -1,17 +1,15 @@
 {
   "total_techniques": 227,
   "technique": {
-    "id": "T1560",
-    "name": "Archive Collected Data",
-    "description": "An adversary may compress and/or encrypt data that is collected prior to exfiltration. Compressing the data can help to obfuscate the collected data and minimize the amount of data sent over the network.(Citation: DOJ GRU Indictment Jul 2018) Encryption can be used to hide information that is being exfiltrated from detection or make exfiltration less conspicuous upon inspection by a defender.",
+    "id": "T1185",
+    "name": "Browser Session Hijacking",
+    "description": "Adversaries may take advantage of security vulnerabilities and inherent functionality in browser software to change content, modify user-behaviors, and intercept information as part of various browser session hijacking techniques.(Citation: Wikipedia Man in the Browser)",
     "tactics": [
       "collection"
     ],
     "platforms": [
-      "Linux",
-      "macOS",
       "Windows"
     ],
-    "url": "https://attack.mitre.org/techniques/T1560"
+    "url": "https://attack.mitre.org/techniques/T1185"
   }
 }
