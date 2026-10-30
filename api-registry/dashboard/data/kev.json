@@ -1,8 +1,26 @@
 {
-  "total": 1762,
-  "catalog_version": "2026.10.28",
-  "date_released": "2026-10-28T19:00:04.8077Z",
+  "total": 1764,
+  "catalog_version": "2026.10.29",
+  "date_released": "2026-10-29T19:09:34.4003Z",
   "recent": [
+    {
+      "cve": "CVE-2026-97229",
+      "vendor": "GitLab",
+      "product": "Community Edition and Enterprise Edition",
+      "name": "GitLab Community Edition and Enterprise Edition Integer Overflow or Wraparound Vulnerability",
+      "date_added": "2026-10-29",
+      "due_date": "2026-11-01",
+      "ransomware": false
+    },
+    {
+      "cve": "CVE-2026-76418",
+      "vendor": "Cisco",
+      "product": "Secure Firewall ASA Software and Cisco Secure FTD Software",
+      "name": "Cisco Secure Firewall ASA Software and Cisco Secure FTD Software Unchecked Return Value to NULL Pointer Dereference Vulnerability",
+      "date_added": "2026-10-29",
+      "due_date": "2026-11-01",
+      "ransomware": false
+    },
     {
       "cve": "CVE-2026-41709",
       "vendor": "Broadcom",
@@ -89,24 +107,6 @@
       "vendor": "Plex",
       "product": "Media Server",
       "name": "Plex Media Server External Control of File Name or Path Vulnerability",
-      "date_added": "2026-10-20",
-      "due_date": "2026-10-23",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-96655",
-      "vendor": "Plex",
-      "product": "Media Server",
-      "name": "Plex Media Server Server-Side Request Forgery (SSRF) Vulnerability",
-      "date_added": "2026-10-20",
-      "due_date": "2026-11-03",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-96654",
-      "vendor": "Plex",
-      "product": "Media Server",
-      "name": "Plex Media Server Improper Neutralization of Encoded URI Schemes in a Web Page Vulnerability",
       "date_added": "2026-10-20",
       "due_date": "2026-10-23",
       "ransomware": false
