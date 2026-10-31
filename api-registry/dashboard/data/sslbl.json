@@ -1,77 +1,77 @@
 {
-  "total_listings": 11097,
+  "total_listings": 6898,
   "by_reason": [
     {
       "reason": "AsyncRAT C&C",
-      "count": 1460
+      "count": 1108
     },
     {
       "reason": "Vidar C&C",
-      "count": 879
-    },
-    {
-      "reason": "Dridex C&C",
-      "count": 735
+      "count": 882
     },
     {
       "reason": "QuasarRAT C&C",
-      "count": 724
+      "count": 675
     },
     {
       "reason": "OffLoader C&C",
-      "count": 558
+      "count": 559
+    },
+    {
+      "reason": "LummaStealer C&C",
+      "count": 557
     }
   ],
   "recent": [
     {
-      "listing_date": "2026-10-30 07:11:53",
-      "sha1": "c81dfb846d72043d82cfedada7b5fbc3f1ed956d",
-      "listing_reason": "AsyncRAT C&C"
+      "listing_date": "2026-10-31 10:58:29",
+      "sha1": "f9542c3038dc3632d71c1e3735408c8577e8568a",
+      "listing_reason": "PureRAT C&C"
     },
     {
-      "listing_date": "2026-10-30 07:06:01",
-      "sha1": "de045f977bb3fcb870a7c70433ec3c4055b4df56",
-      "listing_reason": "AokigaharaStealer C&C"
+      "listing_date": "2026-10-31 08:52:19",
+      "sha1": "3b1a9b1ca40319bdd405d0dd09923c58d250baa0",
+      "listing_reason": "ACRStealer C&C"
     },
     {
-      "listing_date": "2026-10-30 06:51:16",
-      "sha1": "794a98bb8dfb1c8707541d2f1136fc7c1faa123f",
-      "listing_reason": "Malware C&C"
+      "listing_date": "2026-10-31 08:15:05",
+      "sha1": "44c6ec85d52ecb270148701bc655e2af697e010f",
+      "listing_reason": "ACRStealer malware distribution"
     },
     {
-      "listing_date": "2026-10-30 06:47:55",
-      "sha1": "aebfe1d6a7db6458477771a467698c52ec1cd181",
+      "listing_date": "2026-10-31 08:14:07",
+      "sha1": "9d47db624532e58342c036323af03246682b8535",
+      "listing_reason": "ACRStealer malware distribution"
+    },
+    {
+      "listing_date": "2026-10-31 08:07:33",
+      "sha1": "d22e586d60cc68c0488c7ede7b46ebc0341cd3ce",
       "listing_reason": "Vidar C&C"
     },
     {
-      "listing_date": "2026-10-30 06:47:42",
-      "sha1": "b8b817853b031f3c2ef9ff332422a2f75cdafb14",
+      "listing_date": "2026-10-31 08:06:36",
+      "sha1": "cf7e51ae64c43d0e0ecf6f00bddb8899f51af644",
       "listing_reason": "Vidar C&C"
     },
     {
-      "listing_date": "2026-10-29 15:13:09",
-      "sha1": "8bc6b066cdd4399e5217c58236bb0f32971a4d49",
+      "listing_date": "2026-10-30 19:12:16",
+      "sha1": "47477bdad9212d35e0ad21867e929825d5c668a7",
       "listing_reason": "OffLoader C&C"
     },
     {
-      "listing_date": "2026-10-29 14:49:27",
-      "sha1": "a3e3e53c9b5eb4d1d1197181c599f07ca61b3c9e",
+      "listing_date": "2026-10-30 19:12:00",
+      "sha1": "c66e709b5d5107c52235593e2e70293f810817e0",
+      "listing_reason": "PureRAT C&C"
+    },
+    {
+      "listing_date": "2026-10-30 19:11:51",
+      "sha1": "7f7f0cc383cc408a31be236f521a474f9fa955bf",
       "listing_reason": "Vidar C&C"
     },
     {
-      "listing_date": "2026-10-29 14:49:18",
-      "sha1": "d7d1025725506635e295b7a5eb61c2162f2a1f93",
-      "listing_reason": "Vidar C&C"
-    },
-    {
-      "listing_date": "2026-10-29 09:44:22",
-      "sha1": "88dfcb0baeaaec06b4973eeb6b8bf76e7ff16315",
-      "listing_reason": "ConnectWise C&C"
-    },
-    {
-      "listing_date": "2026-10-29 06:58:49",
-      "sha1": "8439a45334bfd81293cf20abb44f3e20843131db",
-      "listing_reason": "Vidar C&C"
+      "listing_date": "2026-10-30 07:11:53",
+      "sha1": "c81dfb846d72043d82cfedada7b5fbc3f1ed956d",
+      "listing_reason": "AsyncRAT C&C"
     }
   ]
 }

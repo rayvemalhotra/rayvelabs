@@ -1,6 +1,13 @@
 {
-  "total": 21537,
+  "total": 21739,
   "recent": [
+    {
+      "asn": "20",
+      "as_name": "UR - University of Rochester",
+      "ip": "128.151.167.72",
+      "last_seen": "2026-10-31 07:53:33",
+      "category": "sshclient"
+    },
     {
       "asn": "60",
       "as_name": "AINET-AS60-PDFFILE - American",
@@ -12,7 +19,7 @@
       "asn": "174",
       "as_name": "COGENT-174 - Cogent Communicat",
       "ip": "154.29.156.141",
-      "last_seen": "2026-10-30 09:38:58",
+      "last_seen": "2026-10-30 10:45:08",
       "category": "sshclient"
     },
     {
@@ -47,7 +54,7 @@
       "asn": "174",
       "as_name": "COGENT-174 - Cogent Communicat",
       "ip": "207.90.244.14",
-      "last_seen": "2026-10-24 23:53:03",
+      "last_seen": "2026-10-30 15:34:49",
       "category": "sshclient"
     },
     {
@@ -82,7 +89,7 @@
       "asn": "174",
       "as_name": "COGENT-174 - Cogent Communicat",
       "ip": "207.90.244.25",
-      "last_seen": "2026-10-30 01:31:51",
+      "last_seen": "2026-10-30 14:00:18",
       "category": "sshclient"
     },
     {
@@ -97,13 +104,6 @@
       "as_name": "COGENT-174 - Cogent Communicat",
       "ip": "207.90.244.5",
       "last_seen": "2026-10-27 02:37:00",
-      "category": "sshclient"
-    },
-    {
-      "asn": "174",
-      "as_name": "COGENT-174 - Cogent Communicat",
-      "ip": "38.146.25.142",
-      "last_seen": "2026-10-25 19:00:04",
       "category": "sshclient"
     }
   ]

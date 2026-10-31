@@ -1,19 +1,15 @@
 {
   "total_techniques": 227,
   "technique": {
-    "id": "T1021",
-    "name": "Remote Services",
-    "description": "Adversaries may use [Valid Accounts](https://attack.mitre.org/techniques/T1078) to log into a service that accepts remote connections, such as telnet, SSH, and VNC. The adversary may then perform actions as the logged-on user.",
+    "id": "T1596",
+    "name": "Search Open Technical Databases",
+    "description": "Adversaries may search freely available technical databases for information about victims that can be used during targeting. Information about victims may be available in online databases and repositories, such as registrations of domains/certificates as well as public collections of network data/artifacts gathered from traffic and/or scans.(Citation: WHOIS)(Citation: DNS Dumpster)(Citation: Circl Passive DNS)(Citation: Medium SSL Cert)(Citation: SSLShopper Lookup)(Citation: DigitalShadows CDN)(Citation: Shodan)",
     "tactics": [
-      "lateral-movement"
+      "reconnaissance"
     ],
     "platforms": [
-      "Linux",
-      "macOS",
-      "Windows",
-      "IaaS",
-      "ESXi"
+      "PRE"
     ],
-    "url": "https://attack.mitre.org/techniques/T1021"
+    "url": "https://attack.mitre.org/techniques/T1596"
   }
 }
