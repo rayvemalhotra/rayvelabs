@@ -1,77 +1,77 @@
 {
-  "total_listings": 6898,
+  "total_listings": 11119,
   "by_reason": [
     {
       "reason": "AsyncRAT C&C",
-      "count": 1108
+      "count": 1460
     },
     {
       "reason": "Vidar C&C",
-      "count": 882
+      "count": 885
+    },
+    {
+      "reason": "Dridex C&C",
+      "count": 735
     },
     {
       "reason": "QuasarRAT C&C",
-      "count": 675
+      "count": 725
     },
     {
       "reason": "OffLoader C&C",
       "count": 559
-    },
-    {
-      "reason": "LummaStealer C&C",
-      "count": 557
     }
   ],
   "recent": [
     {
-      "listing_date": "2026-10-31 10:58:29",
-      "sha1": "f9542c3038dc3632d71c1e3735408c8577e8568a",
+      "listing_date": "2026-11-01 11:37:26",
+      "sha1": "937b0696c1b45add349c0bb80ccb2c5bf1b45e8d",
+      "listing_reason": "QuasarRAT C&C"
+    },
+    {
+      "listing_date": "2026-11-01 11:12:21",
+      "sha1": "7971c98d08ecbd1c681c9b7e24d9c051b2cab4d5",
       "listing_reason": "PureRAT C&C"
     },
     {
-      "listing_date": "2026-10-31 08:52:19",
-      "sha1": "3b1a9b1ca40319bdd405d0dd09923c58d250baa0",
-      "listing_reason": "ACRStealer C&C"
-    },
-    {
-      "listing_date": "2026-10-31 08:15:05",
-      "sha1": "44c6ec85d52ecb270148701bc655e2af697e010f",
-      "listing_reason": "ACRStealer malware distribution"
-    },
-    {
-      "listing_date": "2026-10-31 08:14:07",
-      "sha1": "9d47db624532e58342c036323af03246682b8535",
-      "listing_reason": "ACRStealer malware distribution"
-    },
-    {
-      "listing_date": "2026-10-31 08:07:33",
-      "sha1": "d22e586d60cc68c0488c7ede7b46ebc0341cd3ce",
-      "listing_reason": "Vidar C&C"
-    },
-    {
-      "listing_date": "2026-10-31 08:06:36",
-      "sha1": "cf7e51ae64c43d0e0ecf6f00bddb8899f51af644",
-      "listing_reason": "Vidar C&C"
-    },
-    {
-      "listing_date": "2026-10-30 19:12:16",
-      "sha1": "47477bdad9212d35e0ad21867e929825d5c668a7",
-      "listing_reason": "OffLoader C&C"
-    },
-    {
-      "listing_date": "2026-10-30 19:12:00",
-      "sha1": "c66e709b5d5107c52235593e2e70293f810817e0",
+      "listing_date": "2026-11-01 11:12:17",
+      "sha1": "ea4723a7e20c5d7a484f1839bbdeb7264e390b67",
       "listing_reason": "PureRAT C&C"
     },
     {
-      "listing_date": "2026-10-30 19:11:51",
-      "sha1": "7f7f0cc383cc408a31be236f521a474f9fa955bf",
-      "listing_reason": "Vidar C&C"
+      "listing_date": "2026-11-01 11:10:35",
+      "sha1": "557e284271700e2d215ccfd45928ca26e7010195",
+      "listing_reason": "PureRAT C&C"
     },
     {
-      "listing_date": "2026-10-30 07:11:53",
-      "sha1": "c81dfb846d72043d82cfedada7b5fbc3f1ed956d",
-      "listing_reason": "AsyncRAT C&C"
+      "listing_date": "2026-11-01 11:09:45",
+      "sha1": "939dee92e7a71c659a53d1080e2eedf80c447b5b",
+      "listing_reason": "ACRStealer malware distribution"
+    },
+    {
+      "listing_date": "2026-11-01 11:09:32",
+      "sha1": "b9dfaffdab120dab2356b97d90d45c5f48065887",
+      "listing_reason": "AdaptixC2 C&C"
+    },
+    {
+      "listing_date": "2026-11-01 11:01:05",
+      "sha1": "ec9a883b6bc64865d35acff1bb2ef03b88aa5e41",
+      "listing_reason": "PavinLoader C&C"
+    },
+    {
+      "listing_date": "2026-11-01 10:58:23",
+      "sha1": "c7661472410f15e671d6f85acba76f5b54e12b42",
+      "listing_reason": "PureRAT C&C"
+    },
+    {
+      "listing_date": "2026-11-01 10:57:17",
+      "sha1": "4dcd0af12d82ecc86eb1bb0425ec59fa08122e19",
+      "listing_reason": "Malware C&C"
+    },
+    {
+      "listing_date": "2026-11-01 10:52:36",
+      "sha1": "afd4e0dbe6138ee5718f9bf93aa72943c3be5336",
+      "listing_reason": "PureRAT C&C"
     }
   ]
 }
