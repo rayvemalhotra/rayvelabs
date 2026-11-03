@@ -1,5 +1,5 @@
 {
-  "total_listings": 11124,
+  "total_listings": 11126,
   "by_reason": [
     {
       "reason": "AsyncRAT C&C",
@@ -7,7 +7,7 @@
     },
     {
       "reason": "Vidar C&C",
-      "count": 886
+      "count": 887
     },
     {
       "reason": "Dridex C&C",
@@ -23,6 +23,16 @@
     }
   ],
   "recent": [
+    {
+      "listing_date": "2026-11-03 12:23:24",
+      "sha1": "2264e0945e0afa792cdde7b564a6fb1d1e286618",
+      "listing_reason": "Vidar C&C"
+    },
+    {
+      "listing_date": "2026-11-02 16:09:46",
+      "sha1": "66c657533cb5d25c1cef98a173f26b69536b67d6",
+      "listing_reason": "ResolverRAT C&C"
+    },
     {
       "listing_date": "2026-11-02 13:12:05",
       "sha1": "1b2f2ca48067d909791338a6c32cf2e0104f6a7f",
@@ -62,16 +72,6 @@
       "listing_date": "2026-11-01 11:12:17",
       "sha1": "ea4723a7e20c5d7a484f1839bbdeb7264e390b67",
       "listing_reason": "PureRAT C&C"
-    },
-    {
-      "listing_date": "2026-11-01 11:10:35",
-      "sha1": "557e284271700e2d215ccfd45928ca26e7010195",
-      "listing_reason": "PureRAT C&C"
-    },
-    {
-      "listing_date": "2026-11-01 11:09:45",
-      "sha1": "939dee92e7a71c659a53d1080e2eedf80c447b5b",
-      "listing_reason": "ACRStealer malware distribution"
     }
   ]
 }

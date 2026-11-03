@@ -1,5 +1,5 @@
 {
-  "total": 21709,
+  "total": 21220,
   "recent": [
     {
       "asn": "20",
@@ -60,6 +60,13 @@
     {
       "asn": "174",
       "as_name": "COGENT-174 - Cogent Communicat",
+      "ip": "207.90.244.27",
+      "last_seen": "2026-11-03 03:33:32",
+      "category": "sshclient"
+    },
+    {
+      "asn": "174",
+      "as_name": "COGENT-174 - Cogent Communicat",
       "ip": "207.90.244.28",
       "last_seen": "2026-10-31 16:42:15",
       "category": "sshclient"
@@ -69,13 +76,6 @@
       "as_name": "COGENT-174 - Cogent Communicat",
       "ip": "207.90.244.3",
       "last_seen": "2026-10-28 03:20:40",
-      "category": "sshclient"
-    },
-    {
-      "asn": "174",
-      "as_name": "COGENT-174 - Cogent Communicat",
-      "ip": "207.90.244.5",
-      "last_seen": "2026-10-27 02:37:00",
       "category": "sshclient"
     },
     {
@@ -102,8 +102,8 @@
     {
       "asn": "577",
       "as_name": "BACOM - Bell Canada",
-      "ip": "142.112.44.100",
-      "last_seen": "2026-10-27 09:47:07",
+      "ip": "142.127.98.70",
+      "last_seen": "2026-11-02 11:56:31",
       "category": "sshclient"
     }
   ]
