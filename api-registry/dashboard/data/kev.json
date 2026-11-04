@@ -1,8 +1,17 @@
 {
-  "total": 1766,
-  "catalog_version": "2026.10.30",
-  "date_released": "2026-10-30T17:02:45.3665Z",
+  "total": 1767,
+  "catalog_version": "2026.11.03",
+  "date_released": "2026-11-03T20:00:24.8741Z",
   "recent": [
+    {
+      "cve": "CVE-2026-119977",
+      "vendor": "WordPress",
+      "product": "WordPress Core",
+      "name": "WordPress WordPress Core Time-of-check Time-of-use (TOCTOU) Race Condition Vulnerability",
+      "date_added": "2026-11-03",
+      "due_date": "2026-11-06",
+      "ransomware": false
+    },
     {
       "cve": "CVE-2026-118527",
       "vendor": "Ivanti",
@@ -98,15 +107,6 @@
       "vendor": "Arista",
       "product": "VeloCloud Orchestrator",
       "name": "Arista VeloCloud Orchestrator SQL Injection Vulnerability",
-      "date_added": "2026-10-23",
-      "due_date": "2026-10-26",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-110447",
-      "vendor": "Collabora",
-      "product": "Collabora Online \u2013 Built-in CODE Server",
-      "name": "Collabora Online \u2013 Built-in CODE Server OS Command Injection Vulnerability",
       "date_added": "2026-10-23",
       "due_date": "2026-10-26",
       "ransomware": false

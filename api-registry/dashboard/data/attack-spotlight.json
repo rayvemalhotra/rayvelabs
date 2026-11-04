@@ -1,16 +1,15 @@
 {
   "total_techniques": 227,
   "technique": {
-    "id": "T1112",
-    "name": "Modify Registry",
-    "description": "Adversaries may interact with the Windows Registry as part of a variety of other techniques to aid in defense evasion, persistence, and execution.",
+    "id": "T1580",
+    "name": "Cloud Infrastructure Discovery",
+    "description": "An adversary may attempt to discover infrastructure and resources that are available within an infrastructure-as-a-service (IaaS) environment. This includes compute service resources such as instances, virtual machines, and snapshots as well as resources of other services including the storage and database services.",
     "tactics": [
-      "defense-impairment",
-      "persistence"
+      "discovery"
     ],
     "platforms": [
-      "Windows"
+      "IaaS"
     ],
-    "url": "https://attack.mitre.org/techniques/T1112"
+    "url": "https://attack.mitre.org/techniques/T1580"
   }
 }
