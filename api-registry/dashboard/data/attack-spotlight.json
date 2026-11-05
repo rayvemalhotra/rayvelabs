@@ -1,15 +1,19 @@
 {
   "total_techniques": 227,
   "technique": {
-    "id": "T1580",
-    "name": "Cloud Infrastructure Discovery",
-    "description": "An adversary may attempt to discover infrastructure and resources that are available within an infrastructure-as-a-service (IaaS) environment. This includes compute service resources such as instances, virtual machines, and snapshots as well as resources of other services including the storage and database services.",
+    "id": "T1491",
+    "name": "Defacement",
+    "description": "Adversaries may modify visual content available internally or externally to an enterprise network, thus affecting the integrity of the original content. Reasons for [Defacement](https://attack.mitre.org/techniques/T1491) include delivering messaging, intimidation, or claiming (possibly false) credit for an intrusion. Disturbing or offensive images may be used as a part of [Defacement](https://attack.mitre.org/techniques/T1491) in order to cause user discomfort, or to pressure compliance with accompanying messages.(Citation: Defacement Attacks)\n",
     "tactics": [
-      "discovery"
+      "impact"
     ],
     "platforms": [
-      "IaaS"
+      "Windows",
+      "IaaS",
+      "Linux",
+      "macOS",
+      "ESXi"
     ],
-    "url": "https://attack.mitre.org/techniques/T1580"
+    "url": "https://attack.mitre.org/techniques/T1491"
   }
 }

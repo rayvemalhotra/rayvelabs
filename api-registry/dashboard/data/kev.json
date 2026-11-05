@@ -1,8 +1,17 @@
 {
-  "total": 1767,
-  "catalog_version": "2026.11.03",
-  "date_released": "2026-11-03T20:00:24.8741Z",
+  "total": 1768,
+  "catalog_version": "2026.11.04",
+  "date_released": "2026-11-04T20:00:05.774Z",
   "recent": [
+    {
+      "cve": "CVE-2024-27834",
+      "vendor": "Apple",
+      "product": "Multiple Products",
+      "name": "Apple Multiple Products Improper Authentication Vulnerability",
+      "date_added": "2026-11-04",
+      "due_date": "2026-11-18",
+      "ransomware": false
+    },
     {
       "cve": "CVE-2026-119977",
       "vendor": "WordPress",
@@ -100,15 +109,6 @@
       "name": "PHP Stale Internal Request-State Vulnerability",
       "date_added": "2026-10-26",
       "due_date": "2026-10-29",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-114625",
-      "vendor": "Arista",
-      "product": "VeloCloud Orchestrator",
-      "name": "Arista VeloCloud Orchestrator SQL Injection Vulnerability",
-      "date_added": "2026-10-23",
-      "due_date": "2026-10-26",
       "ransomware": false
     }
   ]

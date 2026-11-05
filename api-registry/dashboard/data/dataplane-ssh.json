@@ -1,18 +1,11 @@
 {
-  "total": 21519,
+  "total": 22437,
   "recent": [
     {
       "asn": "20",
       "as_name": "UR - University of Rochester",
       "ip": "128.151.167.72",
       "last_seen": "2026-11-01 12:15:17",
-      "category": "sshclient"
-    },
-    {
-      "asn": "60",
-      "as_name": "AINET-AS60-PDFFILE - American",
-      "ip": "205.134.166.114",
-      "last_seen": "2026-10-28 13:47:26",
       "category": "sshclient"
     },
     {
@@ -39,15 +32,15 @@
     {
       "asn": "174",
       "as_name": "COGENT-174 - Cogent Communicat",
-      "ip": "207.90.244.11",
-      "last_seen": "2026-10-28 21:36:08",
+      "ip": "207.90.244.14",
+      "last_seen": "2026-11-04 20:08:34",
       "category": "sshclient"
     },
     {
       "asn": "174",
       "as_name": "COGENT-174 - Cogent Communicat",
-      "ip": "207.90.244.14",
-      "last_seen": "2026-10-30 15:34:49",
+      "ip": "207.90.244.22",
+      "last_seen": "2026-11-04 21:03:41",
       "category": "sshclient"
     },
     {
@@ -69,6 +62,13 @@
       "as_name": "COGENT-174 - Cogent Communicat",
       "ip": "207.90.244.28",
       "last_seen": "2026-10-31 16:42:15",
+      "category": "sshclient"
+    },
+    {
+      "asn": "174",
+      "as_name": "COGENT-174 - Cogent Communicat",
+      "ip": "207.90.244.3",
+      "last_seen": "2026-11-04 21:08:21",
       "category": "sshclient"
     },
     {
@@ -103,7 +103,7 @@
       "asn": "577",
       "as_name": "BACOM - Bell Canada",
       "ip": "184.146.168.168",
-      "last_seen": "2026-11-03 23:49:17",
+      "last_seen": "2026-11-05 03:07:08",
       "category": "sshclient"
     }
   ]
