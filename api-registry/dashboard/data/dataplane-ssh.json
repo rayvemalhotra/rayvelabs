@@ -1,5 +1,5 @@
 {
-  "total": 22437,
+  "total": 22527,
   "recent": [
     {
       "asn": "20",
@@ -25,13 +25,6 @@
     {
       "asn": "174",
       "as_name": "COGENT-174 - Cogent Communicat",
-      "ip": "154.29.156.141",
-      "last_seen": "2026-10-30 10:45:08",
-      "category": "sshclient"
-    },
-    {
-      "asn": "174",
-      "as_name": "COGENT-174 - Cogent Communicat",
       "ip": "207.90.244.14",
       "last_seen": "2026-11-04 20:08:34",
       "category": "sshclient"
@@ -47,14 +40,14 @@
       "asn": "174",
       "as_name": "COGENT-174 - Cogent Communicat",
       "ip": "207.90.244.25",
-      "last_seen": "2026-10-31 17:22:49",
+      "last_seen": "2026-11-06 02:00:47",
       "category": "sshclient"
     },
     {
       "asn": "174",
       "as_name": "COGENT-174 - Cogent Communicat",
       "ip": "207.90.244.27",
-      "last_seen": "2026-11-03 03:33:32",
+      "last_seen": "2026-11-05 17:47:46",
       "category": "sshclient"
     },
     {
@@ -69,20 +62,6 @@
       "as_name": "COGENT-174 - Cogent Communicat",
       "ip": "207.90.244.3",
       "last_seen": "2026-11-04 21:08:21",
-      "category": "sshclient"
-    },
-    {
-      "asn": "174",
-      "as_name": "COGENT-174 - Cogent Communicat",
-      "ip": "38.77.234.153",
-      "last_seen": "2026-10-29 23:50:33",
-      "category": "sshclient"
-    },
-    {
-      "asn": "174",
-      "as_name": "COGENT-174 - Cogent Communicat",
-      "ip": "38.77.234.253",
-      "last_seen": "2026-10-29 21:23:32",
       "category": "sshclient"
     },
     {
@@ -103,7 +82,28 @@
       "asn": "577",
       "as_name": "BACOM - Bell Canada",
       "ip": "184.146.168.168",
-      "last_seen": "2026-11-05 03:07:08",
+      "last_seen": "2026-11-06 06:39:26",
+      "category": "sshclient"
+    },
+    {
+      "asn": "577",
+      "as_name": "BACOM - Bell Canada",
+      "ip": "69.156.93.100",
+      "last_seen": "2026-11-02 22:23:29",
+      "category": "sshclient"
+    },
+    {
+      "asn": "577",
+      "as_name": "BACOM - Bell Canada",
+      "ip": "70.51.136.242",
+      "last_seen": "2026-11-03 21:29:03",
+      "category": "sshclient"
+    },
+    {
+      "asn": "577",
+      "as_name": "BACOM - Bell Canada",
+      "ip": "70.54.182.130",
+      "last_seen": "2026-11-06 11:55:53",
       "category": "sshclient"
     }
   ]
