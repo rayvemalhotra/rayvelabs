@@ -1,15 +1,17 @@
 {
   "total_techniques": 227,
   "technique": {
-    "id": "T1535",
-    "name": "Unused/Unsupported Cloud Regions",
-    "description": "Adversaries may create cloud instances in unused geographic service regions in order to evade detection. Access is usually obtained through compromising accounts used to manage cloud infrastructure.",
+    "id": "T1563",
+    "name": "Remote Service Session Hijacking",
+    "description": "Adversaries may take control of preexisting sessions with remote services to move laterally in an environment. Users may use valid credentials to log into a service specifically designed to accept remote connections, such as telnet, SSH, and RDP. When a user logs into a service, a session will be established that will allow them to maintain a continuous interaction with that service.",
     "tactics": [
-      "stealth"
+      "lateral-movement"
     ],
     "platforms": [
-      "IaaS"
+      "Linux",
+      "macOS",
+      "Windows"
     ],
-    "url": "https://attack.mitre.org/techniques/T1535"
+    "url": "https://attack.mitre.org/techniques/T1563"
   }
 }

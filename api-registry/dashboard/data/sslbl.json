@@ -1,5 +1,5 @@
 {
-  "total_listings": 11163,
+  "total_listings": 11164,
   "by_reason": [
     {
       "reason": "AsyncRAT C&C",
@@ -7,7 +7,7 @@
     },
     {
       "reason": "Vidar C&C",
-      "count": 900
+      "count": 901
     },
     {
       "reason": "Dridex C&C",
@@ -23,6 +23,11 @@
     }
   ],
   "recent": [
+    {
+      "listing_date": "2026-11-07 07:52:09",
+      "sha1": "9c43558bb0f7fe4afdeb6ed73197abe2365589c3",
+      "listing_reason": "Vidar C&C"
+    },
     {
       "listing_date": "2026-11-06 10:47:34",
       "sha1": "07e76b646820ea12065b4aa925d2a7e31f2b0841",
@@ -67,11 +72,6 @@
       "listing_date": "2026-11-05 16:25:51",
       "sha1": "788de1386a4226d0993c1434a2d820bc1259b88e",
       "listing_reason": "PureLogsStealer C&C"
-    },
-    {
-      "listing_date": "2026-11-05 09:16:07",
-      "sha1": "8fa5d5b8ff264dcc0eb6b1d29b5520beeba1e81f",
-      "listing_reason": "Malware C&C"
     }
   ]
 }

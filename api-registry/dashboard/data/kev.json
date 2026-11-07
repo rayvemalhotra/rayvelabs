@@ -1,8 +1,17 @@
 {
-  "total": 1768,
-  "catalog_version": "2026.11.04",
-  "date_released": "2026-11-04T20:00:05.774Z",
+  "total": 1769,
+  "catalog_version": "2026.11.06",
+  "date_released": "2026-11-06T19:44:45.1797Z",
   "recent": [
+    {
+      "cve": "CVE-2026-19868",
+      "vendor": "SonicWall",
+      "product": "SonicOS SSLVPN",
+      "name": "SonicWall SonicOS SSLVPN Use of Single-factor Authentication Vulnerability",
+      "date_added": "2026-11-06",
+      "due_date": "2026-11-20",
+      "ransomware": false
+    },
     {
       "cve": "CVE-2024-27834",
       "vendor": "Apple",
@@ -98,15 +107,6 @@
       "vendor": "PHP Group",
       "product": "PHP",
       "name": "PHP Memory Corruption Vulnerability",
-      "date_added": "2026-10-26",
-      "due_date": "2026-10-29",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-109619",
-      "vendor": "PHP Group",
-      "product": "PHP",
-      "name": "PHP Stale Internal Request-State Vulnerability",
       "date_added": "2026-10-26",
       "due_date": "2026-10-29",
       "ransomware": false
