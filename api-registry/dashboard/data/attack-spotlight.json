@@ -1,17 +1,17 @@
 {
   "total_techniques": 227,
   "technique": {
-    "id": "T1563",
-    "name": "Remote Service Session Hijacking",
-    "description": "Adversaries may take control of preexisting sessions with remote services to move laterally in an environment. Users may use valid credentials to log into a service specifically designed to accept remote connections, such as telnet, SSH, and RDP. When a user logs into a service, a session will be established that will allow them to maintain a continuous interaction with that service.",
+    "id": "T1217",
+    "name": "Browser Information Discovery",
+    "description": "Adversaries may enumerate information about browsers to learn more about compromised environments. Data saved by browsers (such as bookmarks, accounts, and browsing history) may reveal a variety of personal information about users (e.g., banking sites, relationships/interests, social media, etc.) as well as details about internal network resources such as servers, tools/dashboards, or other related infrastructure.(Citation: Kaspersky Autofill)",
     "tactics": [
-      "lateral-movement"
+      "discovery"
     ],
     "platforms": [
       "Linux",
       "macOS",
       "Windows"
     ],
-    "url": "https://attack.mitre.org/techniques/T1563"
+    "url": "https://attack.mitre.org/techniques/T1217"
   }
 }
