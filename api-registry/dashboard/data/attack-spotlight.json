@@ -1,17 +1,15 @@
 {
   "total_techniques": 227,
   "technique": {
-    "id": "T1217",
-    "name": "Browser Information Discovery",
-    "description": "Adversaries may enumerate information about browsers to learn more about compromised environments. Data saved by browsers (such as bookmarks, accounts, and browsing history) may reveal a variety of personal information about users (e.g., banking sites, relationships/interests, social media, etc.) as well as details about internal network resources such as servers, tools/dashboards, or other related infrastructure.(Citation: Kaspersky Autofill)",
+    "id": "T1681",
+    "name": "Search Threat Vendor Data",
+    "description": "Threat actors may seek information/indicators from closed or open threat intelligence sources gathered about their own campaigns, as well as those conducted by other adversaries that may align with their target industries, capabilities/objectives, or other operational concerns. These reports may include descriptions of behavior, detailed breakdowns of attacks, atomic indicators such as malware hashes or IP addresses, timelines of a group\u2019s activity, and more. Adversaries may change their behavior when planning their future operations. ",
     "tactics": [
-      "discovery"
+      "reconnaissance"
     ],
     "platforms": [
-      "Linux",
-      "macOS",
-      "Windows"
+      "PRE"
     ],
-    "url": "https://attack.mitre.org/techniques/T1217"
+    "url": "https://attack.mitre.org/techniques/T1681"
   }
 }

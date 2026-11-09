@@ -1,20 +1,6 @@
 {
-  "total": 22369,
+  "total": 22827,
   "recent": [
-    {
-      "asn": "20",
-      "as_name": "UR - University of Rochester",
-      "ip": "128.151.167.72",
-      "last_seen": "2026-11-01 12:15:17",
-      "category": "sshclient"
-    },
-    {
-      "asn": "137",
-      "as_name": "ASGARR Consortium GARR",
-      "ip": "160.80.30.23",
-      "last_seen": "2026-11-02 07:28:21",
-      "category": "sshclient"
-    },
     {
       "asn": "137",
       "as_name": "ASGARR Consortium GARR",
@@ -40,7 +26,7 @@
       "asn": "174",
       "as_name": "COGENT-174 - Cogent Communicat",
       "ip": "207.90.244.17",
-      "last_seen": "2026-11-08 09:05:59",
+      "last_seen": "2026-11-08 11:52:33",
       "category": "sshclient"
     },
     {
@@ -61,7 +47,7 @@
       "asn": "174",
       "as_name": "COGENT-174 - Cogent Communicat",
       "ip": "207.90.244.22",
-      "last_seen": "2026-11-06 17:09:37",
+      "last_seen": "2026-11-08 20:21:49",
       "category": "sshclient"
     },
     {
@@ -82,7 +68,14 @@
       "asn": "174",
       "as_name": "COGENT-174 - Cogent Communicat",
       "ip": "207.90.244.3",
-      "last_seen": "2026-11-04 21:08:21",
+      "last_seen": "2026-11-08 20:21:19",
+      "category": "sshclient"
+    },
+    {
+      "asn": "174",
+      "as_name": "COGENT-174 - Cogent Communicat",
+      "ip": "38.146.28.54",
+      "last_seen": "2026-11-08 16:50:32",
       "category": "sshclient"
     },
     {
@@ -96,14 +89,21 @@
       "asn": "174",
       "as_name": "COGENT-174 - Cogent Communicat",
       "ip": "38.86.222.20",
-      "last_seen": "2026-11-08 09:43:56",
+      "last_seen": "2026-11-09 09:41:04",
       "category": "sshclient"
     },
     {
       "asn": "577",
       "as_name": "BACOM - Bell Canada",
-      "ip": "142.127.98.70",
-      "last_seen": "2026-11-02 11:56:31",
+      "ip": "174.94.236.211",
+      "last_seen": "2026-11-03 12:58:42",
+      "category": "sshclient"
+    },
+    {
+      "asn": "577",
+      "as_name": "BACOM - Bell Canada",
+      "ip": "184.146.168.168",
+      "last_seen": "2026-11-09 09:42:05",
       "category": "sshclient"
     }
   ]
