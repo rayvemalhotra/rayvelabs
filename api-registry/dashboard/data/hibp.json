@@ -1,6 +1,6 @@
 {
-  "total_breaches": 1049,
-  "total_records_exposed": 17847746941,
+  "total_breaches": 1051,
+  "total_records_exposed": 17858196501,
   "recent": [
     {
       "name": "DoubleCounter",
