@@ -1,18 +1,15 @@
 {
   "total_techniques": 227,
   "technique": {
-    "id": "T1222",
-    "name": "File and Directory Permissions Modification",
-    "description": "Adversaries may modify file or directory permissions/attributes to evade access control lists (ACLs) and access protected files.(Citation: Hybrid Analysis Icacls1 June 2018)(Citation: Hybrid Analysis Icacls2 May 2018) File and directory permissions are commonly managed by ACLs configured by the file or directory owner, or users with the appropriate permissions. File and directory ACL implementations vary by platform, but generally explicitly designate which users or groups can perform which actions (read, write, execute, etc.).",
+    "id": "T1595",
+    "name": "Active Scanning",
+    "description": "Adversaries may execute active reconnaissance scans to gather information that can be used during targeting. Active scans are those where the adversary probes victim infrastructure via network traffic, as opposed to other forms of reconnaissance that do not involve direct interaction.",
     "tactics": [
-      "defense-impairment"
+      "reconnaissance"
     ],
     "platforms": [
-      "ESXi",
-      "Linux",
-      "macOS",
-      "Windows"
+      "PRE"
     ],
-    "url": "https://attack.mitre.org/techniques/T1222"
+    "url": "https://attack.mitre.org/techniques/T1595"
   }
 }

@@ -1,7 +1,20 @@
 {
-  "total_breaches": 1051,
-  "total_records_exposed": 17858196501,
+  "total_breaches": 1052,
+  "total_records_exposed": 17858376246,
   "recent": [
+    {
+      "name": "CastleRAT",
+      "title": "CastleRAT",
+      "domain": "",
+      "breach_date": "2026-11-12",
+      "added_date": "2026-11-13T05:41:32Z",
+      "pwn_count": 179745,
+      "data_classes": [
+        "Email addresses",
+        "Passwords"
+      ],
+      "verified": true
+    },
     {
       "name": "DoubleCounter",
       "title": "Double Counter",
@@ -118,21 +131,6 @@
         "Names",
         "Phone numbers",
         "Purchases"
-      ],
-      "verified": true
-    },
-    {
-      "name": "Carhartt",
-      "title": "Carhartt",
-      "domain": "carhartt.com",
-      "breach_date": "2026-08-13",
-      "added_date": "2026-08-25T21:34:25Z",
-      "pwn_count": 12933413,
-      "data_classes": [
-        "Email addresses",
-        "Names",
-        "Phone numbers",
-        "Physical addresses"
       ],
       "verified": true
     }
