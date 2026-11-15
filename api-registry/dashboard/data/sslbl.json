@@ -1,5 +1,5 @@
 {
-  "total_listings": 11261,
+  "total_listings": 11264,
   "by_reason": [
     {
       "reason": "AsyncRAT C&C",
@@ -7,7 +7,7 @@
     },
     {
       "reason": "Vidar C&C",
-      "count": 927
+      "count": 929
     },
     {
       "reason": "Dridex C&C",
@@ -23,6 +23,21 @@
     }
   ],
   "recent": [
+    {
+      "listing_date": "2026-11-14 15:43:07",
+      "sha1": "cbe8f557e3190083e91514273c218917ec46534a",
+      "listing_reason": "Vidar C&C"
+    },
+    {
+      "listing_date": "2026-11-14 15:40:56",
+      "sha1": "02d3e8f5f12d2b94432870d2c5a07e819001b6f3",
+      "listing_reason": "Vidar C&C"
+    },
+    {
+      "listing_date": "2026-11-14 15:38:57",
+      "sha1": "e0df07e0a7e6dc641bca1a7f24403a0f2ef6996f",
+      "listing_reason": "RemusStealer C&C"
+    },
     {
       "listing_date": "2026-11-14 09:14:20",
       "sha1": "c8e6fc7bb95a5fe2122679cfca61f87c7ce2875a",
@@ -57,21 +72,6 @@
       "listing_date": "2026-11-13 19:50:49",
       "sha1": "262c1f81aee686adb3f6fc3a17951096265bf1b0",
       "listing_reason": "FunStealer C&C"
-    },
-    {
-      "listing_date": "2026-11-13 13:26:25",
-      "sha1": "9c24fe0ff6b7d2e3cd6fba2446f7ba0e4d18b737",
-      "listing_reason": "FunStealer C&C"
-    },
-    {
-      "listing_date": "2026-11-13 13:26:24",
-      "sha1": "0799f487e606540102c11948be32f12439eee1ec",
-      "listing_reason": "FunStealer C&C"
-    },
-    {
-      "listing_date": "2026-11-13 08:31:07",
-      "sha1": "9d0751a9eab469ff9a399a086ea2531b3c22dc30",
-      "listing_reason": "OffLoader C&C"
     }
   ]
 }

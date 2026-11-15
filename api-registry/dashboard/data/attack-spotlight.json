@@ -1,20 +1,18 @@
 {
   "total_techniques": 227,
   "technique": {
-    "id": "T1548",
-    "name": "Abuse Elevation Control Mechanism",
-    "description": "Adversaries may circumvent mechanisms designed to control privilege elevation to gain higher-level permissions. Most modern systems contain native elevation control mechanisms that are intended to limit privileges that a user can perform on a machine. Authorization has to be granted to specific users in order to perform tasks that can be considered of higher risk.(Citation: TechNet How UAC Works)(Citation: sudo man page 2018) An adversary can perform several methods to take advantage of built-in control mechanisms in order to escalate privileges on a system.(Citation: OSX Keydnap malware)(Citation: Fortinet Fareit)",
+    "id": "T1673",
+    "name": "Virtual Machine Discovery",
+    "description": "An adversary may attempt to enumerate running virtual machines (VMs) after gaining access to a host or hypervisor. For example, adversaries may enumerate a list of VMs on an ESXi hypervisor using a [Hypervisor CLI](https://attack.mitre.org/techniques/T1059/012) such as `esxcli` or `vim-cmd` (e.g. `esxcli vm process list or vim-cmd vmsvc/getallvms`).(Citation: Crowdstrike Hypervisor Jackpotting Pt 2 2021)(Citation: TrendMicro Play) Adversaries may also directly leverage a graphical user interface, such as VMware vCenter, in order to view virtual machines on a host. ",
     "tactics": [
-      "privilege-escalation"
+      "discovery"
     ],
     "platforms": [
+      "ESXi",
       "Linux",
       "macOS",
-      "Windows",
-      "IaaS",
-      "Office Suite",
-      "Identity Provider"
+      "Windows"
     ],
-    "url": "https://attack.mitre.org/techniques/T1548"
+    "url": "https://attack.mitre.org/techniques/T1673"
   }
 }
