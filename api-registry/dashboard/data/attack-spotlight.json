@@ -1,17 +1,19 @@
 {
   "total_techniques": 227,
   "technique": {
-    "id": "T1125",
-    "name": "Video Capture",
-    "description": "An adversary can leverage a computer's peripheral devices (e.g., integrated cameras or webcams) or applications (e.g., video call services) to capture video recordings for the purpose of gathering information. Images may also be captured from devices or applications, potentially in specified intervals, in lieu of video files.",
+    "id": "T1016",
+    "name": "System Network Configuration Discovery",
+    "description": "Adversaries may look for details about the network configuration and settings, such as IP and/or MAC addresses, of systems they access or through information discovery of remote systems. Several operating system administration utilities exist that can be used to gather this information. Examples include [Arp](https://attack.mitre.org/software/S0099), [ipconfig](https://attack.mitre.org/software/S0100)/[ifconfig](https://attack.mitre.org/software/S0101), [nbtstat](https://attack.mitre.org/software/S0102), and [route](https://attack.mitre.org/software/S0103).",
     "tactics": [
-      "collection"
+      "discovery"
     ],
     "platforms": [
+      "ESXi",
       "Linux",
       "macOS",
+      "Network Devices",
       "Windows"
     ],
-    "url": "https://attack.mitre.org/techniques/T1125"
+    "url": "https://attack.mitre.org/techniques/T1016"
   }
 }

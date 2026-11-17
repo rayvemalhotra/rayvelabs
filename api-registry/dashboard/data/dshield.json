@@ -1,109 +1,109 @@
 {
   "top": [
     {
-      "ip": "195.182.16.23",
-      "attacks": 427,
-      "targets": 0,
-      "first_seen": "2026-07-16",
-      "last_seen": "2026-11-16"
-    },
-    {
-      "ip": "160.119.66.206",
-      "attacks": 397,
-      "targets": 0,
-      "first_seen": "2026-09-13",
-      "last_seen": "2026-11-16"
-    },
-    {
       "ip": "195.178.110.78",
-      "attacks": 359,
+      "attacks": 365,
       "targets": 0,
       "first_seen": "2026-11-04",
-      "last_seen": "2026-11-16"
+      "last_seen": "2026-11-17"
     },
     {
       "ip": "77.239.124.252",
-      "attacks": 339,
+      "attacks": 353,
       "targets": 0,
       "first_seen": "2026-11-13",
-      "last_seen": "2026-11-16"
+      "last_seen": "2026-11-17"
     },
     {
       "ip": "204.76.203.4",
-      "attacks": 325,
+      "attacks": 327,
       "targets": 0,
       "first_seen": "2026-08-29",
-      "last_seen": "2026-11-16"
+      "last_seen": "2026-11-17"
     },
     {
-      "ip": "172.110.223.179",
-      "attacks": 306,
+      "ip": "147.50.195.35",
+      "attacks": 313,
       "targets": 0,
-      "first_seen": "2026-05-16",
-      "last_seen": "2026-11-16"
+      "first_seen": "2025-08-22",
+      "last_seen": "2026-11-17"
     },
     {
-      "ip": "146.88.240.173",
-      "attacks": 144,
+      "ip": "2.57.122.190",
+      "attacks": 119,
       "targets": 0,
-      "first_seen": "2026-11-16",
-      "last_seen": "2026-11-16"
+      "first_seen": "2026-11-17",
+      "last_seen": "2026-11-17"
     },
     {
-      "ip": "146.88.240.133",
-      "attacks": 131,
+      "ip": "5.77.39.15",
+      "attacks": 75,
       "targets": 0,
-      "first_seen": "2026-11-16",
-      "last_seen": "2026-11-16"
+      "first_seen": "2026-11-17",
+      "last_seen": "2026-11-17"
     },
     {
-      "ip": "43.224.117.10",
-      "attacks": 111,
+      "ip": "58.165.250.23",
+      "attacks": 54,
       "targets": 0,
-      "first_seen": "2026-11-16",
-      "last_seen": "2026-11-16"
+      "first_seen": "2026-11-17",
+      "last_seen": "2026-11-17"
     },
     {
-      "ip": "146.88.240.103",
-      "attacks": 64,
+      "ip": "77.239.124.113",
+      "attacks": 53,
       "targets": 0,
-      "first_seen": "2026-11-16",
-      "last_seen": "2026-11-16"
+      "first_seen": "2026-11-17",
+      "last_seen": "2026-11-17"
     },
     {
-      "ip": "82.147.84.96",
-      "attacks": 45,
+      "ip": "104.155.66.115",
+      "attacks": 41,
       "targets": 0,
-      "first_seen": "2026-11-16",
-      "last_seen": "2026-11-16"
+      "first_seen": "2026-11-17",
+      "last_seen": "2026-11-17"
     },
     {
-      "ip": "38.244.22.20",
-      "attacks": 36,
-      "targets": 0,
-      "first_seen": "2026-11-16",
-      "last_seen": "2026-11-16"
-    },
-    {
-      "ip": "72.255.33.244",
+      "ip": "207.175.103.117",
       "attacks": 29,
       "targets": 0,
-      "first_seen": "2026-03-16",
-      "last_seen": "2026-11-16"
+      "first_seen": "2026-11-17",
+      "last_seen": "2026-11-17"
     },
     {
-      "ip": "38.244.5.121",
-      "attacks": 26,
+      "ip": "139.162.121.203",
+      "attacks": 25,
       "targets": 0,
-      "first_seen": "2026-11-16",
-      "last_seen": "2026-11-16"
+      "first_seen": "2026-11-17",
+      "last_seen": "2026-11-17"
     },
     {
-      "ip": "34.131.55.25",
+      "ip": "34.142.99.97",
       "attacks": 23,
       "targets": 0,
-      "first_seen": "2026-11-16",
-      "last_seen": "2026-11-16"
+      "first_seen": "2026-11-17",
+      "last_seen": "2026-11-17"
+    },
+    {
+      "ip": "2.29.194.227",
+      "attacks": 18,
+      "targets": 0,
+      "first_seen": "2026-11-17",
+      "last_seen": "2026-11-17"
+    },
+    {
+      "ip": "34.88.48.173",
+      "attacks": 17,
+      "targets": 0,
+      "first_seen": "2026-11-17",
+      "last_seen": "2026-11-17"
+    },
+    {
+      "ip": "138.197.123.81",
+      "attacks": 16,
+      "targets": 0,
+      "first_seen": "2026-11-17",
+      "last_seen": "2026-11-17"
     }
   ]
 }
