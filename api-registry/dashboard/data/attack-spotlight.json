@@ -1,19 +1,22 @@
 {
   "total_techniques": 227,
   "technique": {
-    "id": "T1016",
-    "name": "System Network Configuration Discovery",
-    "description": "Adversaries may look for details about the network configuration and settings, such as IP and/or MAC addresses, of systems they access or through information discovery of remote systems. Several operating system administration utilities exist that can be used to gather this information. Examples include [Arp](https://attack.mitre.org/software/S0099), [ipconfig](https://attack.mitre.org/software/S0100)/[ifconfig](https://attack.mitre.org/software/S0101), [nbtstat](https://attack.mitre.org/software/S0102), and [route](https://attack.mitre.org/software/S0103).",
+    "id": "T1087",
+    "name": "Account Discovery",
+    "description": "Adversaries may attempt to get a listing of valid accounts, usernames, or email addresses on a system or within a compromised environment. This information can help adversaries determine which accounts exist, which can aid in follow-on behavior such as brute-forcing, spear-phishing attacks, or account takeovers (e.g., [Valid Accounts](https://attack.mitre.org/techniques/T1078)).",
     "tactics": [
       "discovery"
     ],
     "platforms": [
       "ESXi",
+      "IaaS",
+      "Identity Provider",
       "Linux",
       "macOS",
-      "Network Devices",
+      "Office Suite",
+      "SaaS",
       "Windows"
     ],
-    "url": "https://attack.mitre.org/techniques/T1016"
+    "url": "https://attack.mitre.org/techniques/T1087"
   }
 }

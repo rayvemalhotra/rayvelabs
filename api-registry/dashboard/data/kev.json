@@ -1,8 +1,17 @@
 {
-  "total": 1781,
-  "catalog_version": "2026.11.13",
-  "date_released": "2026-11-13T20:24:18.3008Z",
+  "total": 1782,
+  "catalog_version": "2026.11.17",
+  "date_released": "2026-11-17T17:53:15.5664Z",
   "recent": [
+    {
+      "cve": "CVE-2026-115731",
+      "vendor": "Perforce",
+      "product": "Puppet Enterprise",
+      "name": "Perforce Puppet Enterprise Deserialization of Untrusted Data Vulnerability",
+      "date_added": "2026-11-17",
+      "due_date": "2026-12-01",
+      "ransomware": false
+    },
     {
       "cve": "CVE-2026-114713",
       "vendor": "UnrealIRCd",
@@ -98,15 +107,6 @@
       "vendor": "SignalWire",
       "product": "FreeSwitch",
       "name": "SignalWire FreeSwitch Code Injection Vulnerability",
-      "date_added": "2026-11-09",
-      "due_date": "2026-11-12",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-123218",
-      "vendor": "IBM",
-      "product": "Aspera Faspex",
-      "name": "IBM Aspera Faspex Incorrect Authorization Vulnerability",
       "date_added": "2026-11-09",
       "due_date": "2026-11-12",
       "ransomware": false
