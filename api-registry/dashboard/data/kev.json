@@ -1,8 +1,44 @@
 {
-  "total": 1782,
-  "catalog_version": "2026.11.17",
-  "date_released": "2026-11-17T17:53:15.5664Z",
+  "total": 1786,
+  "catalog_version": "2026.11.18",
+  "date_released": "2026-11-18T19:17:41.0354Z",
   "recent": [
+    {
+      "cve": "CVE-2024-10441",
+      "vendor": "Synology",
+      "product": "DiskStation Manager (DSM)",
+      "name": "Synology DiskStation Manager (DSM) Improper Encoding or Escaping of Output Vulnerability",
+      "date_added": "2026-11-18",
+      "due_date": "2026-11-21",
+      "ransomware": false
+    },
+    {
+      "cve": "CVE-2026-40217",
+      "vendor": "BerriAI",
+      "product": "LiteLLM",
+      "name": "BerriAI LiteLLM Unprotected Alternate Channel Vulnerability",
+      "date_added": "2026-11-18",
+      "due_date": "2026-12-02",
+      "ransomware": false
+    },
+    {
+      "cve": "CVE-2026-90817",
+      "vendor": "Vanderbilt University",
+      "product": "Research Electronic Data Capture (REDCap)",
+      "name": "Vanderbilt University Research Electronic Data Capture (REDCap) Code Injection Vulnerability",
+      "date_added": "2026-11-18",
+      "due_date": "2026-11-21",
+      "ransomware": false
+    },
+    {
+      "cve": "CVE-2026-90436",
+      "vendor": "Apache",
+      "product": "Axis",
+      "name": "Apache Axis Unsafe Reflection Vulnerability",
+      "date_added": "2026-11-18",
+      "due_date": "2026-11-21",
+      "ransomware": false
+    },
     {
       "cve": "CVE-2026-115731",
       "vendor": "Perforce",
@@ -73,42 +109,6 @@
       "name": "Barracuda Networks Email Security Gateway (ESG) Authentication Bypass Using an Alternate Path or Channel Vulnerability",
       "date_added": "2026-11-10",
       "due_date": "2026-11-13",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-125350",
-      "vendor": "Google",
-      "product": "Chromium",
-      "name": "Google Chromium Use-After-Free Vulnerability",
-      "date_added": "2026-11-10",
-      "due_date": "2026-11-24",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-102895",
-      "vendor": "GPUStack",
-      "product": "GPUStack",
-      "name": "GPUStack Improper Authentication Vulnerability",
-      "date_added": "2026-11-09",
-      "due_date": "2026-11-12",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-123158",
-      "vendor": "OpenBSD",
-      "product": "OpenSSH",
-      "name": "OpenBSD OpenSSH Unexpected Status Code or Return Value Vulnerability",
-      "date_added": "2026-11-09",
-      "due_date": "2026-11-12",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-116779",
-      "vendor": "SignalWire",
-      "product": "FreeSwitch",
-      "name": "SignalWire FreeSwitch Code Injection Vulnerability",
-      "date_added": "2026-11-09",
-      "due_date": "2026-11-12",
       "ransomware": false
     }
   ]

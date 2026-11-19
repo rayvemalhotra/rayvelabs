@@ -1,28 +1,33 @@
 {
-  "total_listings": 6895,
+  "total_listings": 11300,
   "by_reason": [
     {
       "reason": "AsyncRAT C&C",
-      "count": 1041
+      "count": 1460
     },
     {
       "reason": "Vidar C&C",
       "count": 937
     },
     {
+      "reason": "Dridex C&C",
+      "count": 735
+    },
+    {
       "reason": "QuasarRAT C&C",
-      "count": 669
+      "count": 728
     },
     {
       "reason": "OffLoader C&C",
       "count": 579
-    },
-    {
-      "reason": "LummaStealer C&C",
-      "count": 557
     }
   ],
   "recent": [
+    {
+      "listing_date": "2026-11-18 07:59:11",
+      "sha1": "c2c7c65a60e250f94f78944558c5db7d8086dca4",
+      "listing_reason": "PureLogsStealer C&C"
+    },
     {
       "listing_date": "2026-11-18 03:51:44",
       "sha1": "5d4337304f628324e97723e352148d9d259ef3c3",
@@ -67,11 +72,6 @@
       "listing_date": "2026-11-17 08:06:34",
       "sha1": "29a612773b379e945229a831f7d69280a2b0fd49",
       "listing_reason": "Vidar C&C"
-    },
-    {
-      "listing_date": "2026-11-17 08:05:33",
-      "sha1": "36210d41f78bcf7c4e3dcd32a9c6ea0392c435c2",
-      "listing_reason": "xeffStealer C&C"
     }
   ]
 }
