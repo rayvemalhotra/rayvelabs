@@ -1,19 +1,24 @@
 {
   "total_techniques": 227,
   "technique": {
-    "id": "T1090",
-    "name": "Proxy",
-    "description": "Adversaries may use a connection proxy to direct network traffic between systems or act as an intermediary for network communications to a command and control server to avoid direct connections to their infrastructure. Many tools exist that enable traffic redirection through proxies or port redirection, including [HTRAN](https://attack.mitre.org/software/S0040), ZXProxy, and ZXPortMap.(Citation: Trend Micro APT Attack Tools) Adversaries use these types of proxies to manage command and control communications, reduce the number of simultaneous outbound network connections, provide resiliency in the face of connection loss, or to ride over existing trusted communications paths between victims to avoid suspicion. Adversaries may chain together multiple proxies to further disguise the source of",
+    "id": "T1059",
+    "name": "Command and Scripting Interpreter",
+    "description": "Adversaries may abuse command and script interpreters to execute commands, scripts, or binaries. These interfaces and languages provide ways of interacting with computer systems and are a common feature across many different platforms. Most systems come with some built-in command-line interface and scripting capabilities, for example, macOS and Linux distributions include some flavor of [Unix Shell](https://attack.mitre.org/techniques/T1059/004) while Windows installations include the [Windows Command Shell](https://attack.mitre.org/techniques/T1059/003) and [PowerShell](https://attack.mitre.org/techniques/T1059/001).",
     "tactics": [
-      "command-and-control"
+      "execution"
     ],
     "platforms": [
+      "Containers",
       "ESXi",
+      "IaaS",
+      "Identity Provider",
       "Linux",
       "macOS",
       "Network Devices",
+      "Office Suite",
+      "SaaS",
       "Windows"
     ],
-    "url": "https://attack.mitre.org/techniques/T1090"
+    "url": "https://attack.mitre.org/techniques/T1059"
   }
 }

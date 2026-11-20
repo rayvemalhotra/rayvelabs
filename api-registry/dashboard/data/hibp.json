@@ -1,7 +1,24 @@
 {
-  "total_breaches": 1052,
-  "total_records_exposed": 17858376246,
+  "total_breaches": 1053,
+  "total_records_exposed": 17861985667,
   "recent": [
+    {
+      "name": "Careers360",
+      "title": "Careers360",
+      "domain": "careers360.com",
+      "breach_date": "2026-11-14",
+      "added_date": "2026-11-20T03:44:54Z",
+      "pwn_count": 3609421,
+      "data_classes": [
+        "Academic records",
+        "Castes",
+        "Email addresses",
+        "Genders",
+        "Names",
+        "Phone numbers"
+      ],
+      "verified": true
+    },
     {
       "name": "CastleRAT",
       "title": "CastleRAT",
@@ -115,22 +132,6 @@
         "Personal health data",
         "Phone numbers",
         "Physical addresses"
-      ],
-      "verified": true
-    },
-    {
-      "name": "OzHairAndBeauty",
-      "title": "Oz Hair and Beauty",
-      "domain": "ozhairandbeauty.com",
-      "breach_date": "2026-08-15",
-      "added_date": "2026-08-19T03:15:00Z",
-      "pwn_count": 1988331,
-      "data_classes": [
-        "Email addresses",
-        "Geographic locations",
-        "Names",
-        "Phone numbers",
-        "Purchases"
       ],
       "verified": true
     }
