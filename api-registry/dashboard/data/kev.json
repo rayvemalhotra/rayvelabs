@@ -1,8 +1,44 @@
 {
-  "total": 1786,
-  "catalog_version": "2026.11.18",
-  "date_released": "2026-11-18T19:17:41.0354Z",
+  "total": 1790,
+  "catalog_version": "2026.11.20",
+  "date_released": "2026-11-20T17:48:39.1516Z",
   "recent": [
+    {
+      "cve": "CVE-2026-129448",
+      "vendor": "Apache",
+      "product": "Roller",
+      "name": "Apache Roller Deserialization of Untrusted Data Vulnerability",
+      "date_added": "2026-11-20",
+      "due_date": "2026-11-23",
+      "ransomware": false
+    },
+    {
+      "cve": "CVE-2026-123890",
+      "vendor": "Broadcom",
+      "product": "VMware vCenter",
+      "name": "VMWare vCenter Authentication Bypass Using an Alternate Path or Channel Vulnerability",
+      "date_added": "2026-11-20",
+      "due_date": "2026-11-23",
+      "ransomware": false
+    },
+    {
+      "cve": "CVE-2025-42884",
+      "vendor": "SAP",
+      "product": "NetWeaver",
+      "name": "SAP NetWeaver Improper Neutralization of Special Elements in Data Query Logic Vulnerability",
+      "date_added": "2026-11-20",
+      "due_date": "2026-11-23",
+      "ransomware": false
+    },
+    {
+      "cve": "CVE-2026-76466",
+      "vendor": "Cisco",
+      "product": "Expressway Series",
+      "name": "Cisco Expressway Series Use of Hard-coded Credentials Vulnerability",
+      "date_added": "2026-11-20",
+      "due_date": "2026-11-23",
+      "ransomware": false
+    },
     {
       "cve": "CVE-2024-10441",
       "vendor": "Synology",
@@ -73,42 +109,6 @@
       "name": "Microsoft Office Outlook Missing User Interaction for Potentially Unsafe Action Vulnerability",
       "date_added": "2026-11-10",
       "due_date": "2026-11-24",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-111793",
-      "vendor": "Openwave Messaging Limited",
-      "product": "Webtop Media Transcoder",
-      "name": "Openwave Messaging Limited Webtop Media Transcoder Incorrect Resource Transfer Between Spheres Vulnerability",
-      "date_added": "2026-11-10",
-      "due_date": "2026-11-24",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-20320",
-      "vendor": "Cisco",
-      "product": "BroadWorks",
-      "name": "Cisco BroadWorks Improper Restriction of XML External Entity Reference Vulnerability",
-      "date_added": "2026-11-10",
-      "due_date": "2026-11-24",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-111560",
-      "vendor": "Barracuda Networks",
-      "product": "Multiple Products",
-      "name": "Barracuda Networks Multiple Products OS Command Injection Vulnerability",
-      "date_added": "2026-11-10",
-      "due_date": "2026-11-13",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-116606",
-      "vendor": "Barracuda Networks",
-      "product": "Barracuda Email Security Gateway (ESG)",
-      "name": "Barracuda Networks Email Security Gateway (ESG) Authentication Bypass Using an Alternate Path or Channel Vulnerability",
-      "date_added": "2026-11-10",
-      "due_date": "2026-11-13",
       "ransomware": false
     }
   ]

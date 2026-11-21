@@ -1,6 +1,6 @@
 {
-  "total_breaches": 1053,
-  "total_records_exposed": 17861985667,
+  "total_breaches": 1054,
+  "total_records_exposed": 17862709990,
   "recent": [
     {
       "name": "Careers360",
@@ -29,6 +29,31 @@
       "data_classes": [
         "Email addresses",
         "Passwords"
+      ],
+      "verified": true
+    },
+    {
+      "name": "TooLost",
+      "title": "Too Lost",
+      "domain": "toolost.com",
+      "breach_date": "2026-11-02",
+      "added_date": "2026-11-20T19:17:16Z",
+      "pwn_count": 724323,
+      "data_classes": [
+        "Dates of birth",
+        "Driver's licenses",
+        "Email addresses",
+        "Government issued IDs",
+        "IP addresses",
+        "Names",
+        "Partial credit card data",
+        "Passport numbers",
+        "Passwords",
+        "Payment histories",
+        "Physical addresses",
+        "Places of birth",
+        "Social media profiles",
+        "Usernames"
       ],
       "verified": true
     },
@@ -113,25 +138,6 @@
         "Phone numbers",
         "Purchases",
         "Vehicle registration plates"
-      ],
-      "verified": true
-    },
-    {
-      "name": "McKesson",
-      "title": "McKesson",
-      "domain": "mckesson.com",
-      "breach_date": "2026-08-21",
-      "added_date": "2026-09-10T05:45:39Z",
-      "pwn_count": 6404340,
-      "data_classes": [
-        "Dates of birth",
-        "Email addresses",
-        "Employers",
-        "Genders",
-        "Names",
-        "Personal health data",
-        "Phone numbers",
-        "Physical addresses"
       ],
       "verified": true
     }
