@@ -1,5 +1,5 @@
 {
-  "total_listings": 11337,
+  "total_listings": 11342,
   "by_reason": [
     {
       "reason": "AsyncRAT C&C",
@@ -7,7 +7,7 @@
     },
     {
       "reason": "Vidar C&C",
-      "count": 947
+      "count": 950
     },
     {
       "reason": "Dridex C&C",
@@ -23,6 +23,31 @@
     }
   ],
   "recent": [
+    {
+      "listing_date": "2026-11-21 19:20:38",
+      "sha1": "7b300d4e1d68c65b07fecb53031c40f91f965a0f",
+      "listing_reason": "WARDENStealer C&C"
+    },
+    {
+      "listing_date": "2026-11-21 19:20:05",
+      "sha1": "c8daa804756c213ecc0d8f48e4231765ad1914f4",
+      "listing_reason": "Vidar C&C"
+    },
+    {
+      "listing_date": "2026-11-21 19:18:56",
+      "sha1": "963ff7dc4fd9d851ba7c7a3da113a1091a9582b3",
+      "listing_reason": "Vidar C&C"
+    },
+    {
+      "listing_date": "2026-11-21 18:55:18",
+      "sha1": "e8fd09728405f4135a200e7adf15303dfa8cbf35",
+      "listing_reason": "Vidar C&C"
+    },
+    {
+      "listing_date": "2026-11-21 07:59:31",
+      "sha1": "8602c6e50940880e8f3ba1d9f53ad97b481c1617",
+      "listing_reason": "Malware distribution"
+    },
     {
       "listing_date": "2026-11-20 09:57:04",
       "sha1": "d66a7599fc875b9ca6633470adadfa8cc5b9c04f",
@@ -47,31 +72,6 @@
       "listing_date": "2026-11-20 08:19:15",
       "sha1": "c3c9181f153a966d5e57ac0da2caa02ee0268451",
       "listing_reason": "Vidar C&C"
-    },
-    {
-      "listing_date": "2026-11-20 08:18:44",
-      "sha1": "d07fefbb493d25b4e602bd75a5f847a76ce8817a",
-      "listing_reason": "Vidar C&C"
-    },
-    {
-      "listing_date": "2026-11-20 08:18:25",
-      "sha1": "162ae181924c0382ac8c4d1b59bd2a5ab71d68f2",
-      "listing_reason": "Malware distribution"
-    },
-    {
-      "listing_date": "2026-11-20 08:17:49",
-      "sha1": "6e5c85d2f880211cfc2b36d1e5140890c1a26399",
-      "listing_reason": "PureLogsStealer C&C"
-    },
-    {
-      "listing_date": "2026-11-20 08:17:46",
-      "sha1": "09d1e05f957a313204823679e8b23199ddfd85d1",
-      "listing_reason": "Vidar C&C"
-    },
-    {
-      "listing_date": "2026-11-20 07:58:06",
-      "sha1": "311d90972082954ffd0a2da52a40209f4ded4de8",
-      "listing_reason": "RemusStealer C&C"
     }
   ]
 }
