@@ -1,15 +1,18 @@
 {
   "total_techniques": 227,
   "technique": {
-    "id": "T1482",
-    "name": "Domain Trust Discovery",
-    "description": "Adversaries may attempt to gather information on domain trust relationships that may be used to identify lateral movement opportunities in Windows multi-domain/forest environments. Domain trusts provide a mechanism for a domain to allow access to resources based on the authentication procedures of another domain.(Citation: Microsoft Trusts) Domain trusts allow the users of the trusted domain to access resources in the trusting domain. The information discovered may help the adversary conduct [SID-History Injection](https://attack.mitre.org/techniques/T1134/005), [Pass the Ticket](https://attack.mitre.org/techniques/T1550/003), and [Kerberoasting](https://attack.mitre.org/techniques/T1558/003).(Citation: AdSecurity Forging Trust Tickets)(Citation: Harmj0y Domain Trusts) Domain trusts can be",
+    "id": "T1020",
+    "name": "Automated Exfiltration",
+    "description": "Adversaries may exfiltrate data, such as sensitive documents, through the use of automated processing after being gathered during Collection.(Citation: ESET Gamaredon June 2020) ",
     "tactics": [
-      "discovery"
+      "exfiltration"
     ],
     "platforms": [
+      "Linux",
+      "macOS",
+      "Network Devices",
       "Windows"
     ],
-    "url": "https://attack.mitre.org/techniques/T1482"
+    "url": "https://attack.mitre.org/techniques/T1020"
   }
 }
