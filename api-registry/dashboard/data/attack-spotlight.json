@@ -1,18 +1,21 @@
 {
   "total_techniques": 227,
   "technique": {
-    "id": "T1020",
-    "name": "Automated Exfiltration",
-    "description": "Adversaries may exfiltrate data, such as sensitive documents, through the use of automated processing after being gathered during Collection.(Citation: ESET Gamaredon June 2020) ",
+    "id": "T1070",
+    "name": "Indicator Removal",
+    "description": "Adversaries may selectively delete or modify artifacts generated to reduce indications of their presence and blend in with legitimate activity. Rather than broadly removing evidence, adversaries may target specific artifacts that appear anomalous or are likely to draw scrutiny, while leaving sufficient data intact to maintain the appearance of normal system behavior.",
     "tactics": [
-      "exfiltration"
+      "stealth"
     ],
     "platforms": [
+      "Containers",
+      "ESXi",
       "Linux",
       "macOS",
       "Network Devices",
+      "Office Suite",
       "Windows"
     ],
-    "url": "https://attack.mitre.org/techniques/T1020"
+    "url": "https://attack.mitre.org/techniques/T1070"
   }
 }

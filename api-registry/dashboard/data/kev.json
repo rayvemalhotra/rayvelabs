@@ -1,8 +1,26 @@
 {
-  "total": 1790,
-  "catalog_version": "2026.11.20",
-  "date_released": "2026-11-20T17:48:39.1516Z",
+  "total": 1792,
+  "catalog_version": "2026.11.23",
+  "date_released": "2026-11-23T19:43:55.7979Z",
   "recent": [
+    {
+      "cve": "CVE-2026-133968",
+      "vendor": "Project MONAI",
+      "product": "MONAI Label",
+      "name": "Project MONAI MONAI Label Path Traversal Vulnerability",
+      "date_added": "2026-11-23",
+      "due_date": "2026-11-26",
+      "ransomware": false
+    },
+    {
+      "cve": "CVE-2026-134624",
+      "vendor": "N-able",
+      "product": "MailAssure",
+      "name": "N-able MailAssure (SpamExperts) Server-Side Request Forgery (SSRF) Vulnerability",
+      "date_added": "2026-11-23",
+      "due_date": "2026-11-26",
+      "ransomware": false
+    },
     {
       "cve": "CVE-2026-129448",
       "vendor": "Apache",
@@ -46,7 +64,7 @@
       "name": "Synology DiskStation Manager (DSM) Improper Encoding or Escaping of Output Vulnerability",
       "date_added": "2026-11-18",
       "due_date": "2026-11-21",
-      "ransomware": false
+      "ransomware": true
     },
     {
       "cve": "CVE-2026-40217",
@@ -91,24 +109,6 @@
       "name": "UnrealIRCd Improper Neutralization of Delimiters Vulnerability",
       "date_added": "2026-11-13",
       "due_date": "2026-11-16",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-123039",
-      "vendor": "Check Point",
-      "product": "Multiple Products",
-      "name": "Check Point Multiple Products Incorrect Permission Assignment for Critical Resource Vulnerability",
-      "date_added": "2026-11-13",
-      "due_date": "2026-11-16",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-124194",
-      "vendor": "Microsoft",
-      "product": "Office",
-      "name": "Microsoft Office Outlook Missing User Interaction for Potentially Unsafe Action Vulnerability",
-      "date_added": "2026-11-10",
-      "due_date": "2026-11-24",
       "ransomware": false
     }
   ]
