@@ -1,8 +1,35 @@
 {
-  "total": 1792,
-  "catalog_version": "2026.11.23",
-  "date_released": "2026-11-23T19:43:55.7979Z",
+  "total": 1795,
+  "catalog_version": "2026.11.24",
+  "date_released": "2026-11-24T17:47:46.199Z",
   "recent": [
+    {
+      "cve": "CVE-2026-132224",
+      "vendor": "Optimizely",
+      "product": "Web Experimentation",
+      "name": "Optimizely Web Experimentation External Control of Critical State Data Vulnerability",
+      "date_added": "2026-11-24",
+      "due_date": "2026-11-27",
+      "ransomware": false
+    },
+    {
+      "cve": "CVE-2026-131914",
+      "vendor": "Idunno",
+      "product": "AntiCsrf",
+      "name": "Idunno AntiCsrf Deserialization of Untrusted Data Vulnerability",
+      "date_added": "2026-11-24",
+      "due_date": "2026-11-27",
+      "ransomware": false
+    },
+    {
+      "cve": "CVE-2026-132165",
+      "vendor": "Drupal",
+      "product": "Core",
+      "name": "Drupal Core Remote Code Execution Vulnerability",
+      "date_added": "2026-11-24",
+      "due_date": "2026-11-27",
+      "ransomware": false
+    },
     {
       "cve": "CVE-2026-133968",
       "vendor": "Project MONAI",
@@ -82,33 +109,6 @@
       "name": "Vanderbilt University Research Electronic Data Capture (REDCap) Code Injection Vulnerability",
       "date_added": "2026-11-18",
       "due_date": "2026-11-21",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-90436",
-      "vendor": "Apache",
-      "product": "Axis",
-      "name": "Apache Axis Unsafe Reflection Vulnerability",
-      "date_added": "2026-11-18",
-      "due_date": "2026-11-21",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-115731",
-      "vendor": "Perforce",
-      "product": "Puppet Enterprise",
-      "name": "Perforce Puppet Enterprise Deserialization of Untrusted Data Vulnerability",
-      "date_added": "2026-11-17",
-      "due_date": "2026-12-01",
-      "ransomware": false
-    },
-    {
-      "cve": "CVE-2026-114713",
-      "vendor": "UnrealIRCd",
-      "product": "UnrealIRCd",
-      "name": "UnrealIRCd Improper Neutralization of Delimiters Vulnerability",
-      "date_added": "2026-11-13",
-      "due_date": "2026-11-16",
       "ransomware": false
     }
   ]

@@ -1,21 +1,15 @@
 {
   "total_techniques": 227,
   "technique": {
-    "id": "T1070",
-    "name": "Indicator Removal",
-    "description": "Adversaries may selectively delete or modify artifacts generated to reduce indications of their presence and blend in with legitimate activity. Rather than broadly removing evidence, adversaries may target specific artifacts that appear anomalous or are likely to draw scrutiny, while leaving sufficient data intact to maintain the appearance of normal system behavior.",
+    "id": "T1609",
+    "name": "Container Administration Command",
+    "description": "Adversaries may abuse a container administration service to execute commands within a container. A container administration service such as the Docker daemon, the Kubernetes API server, or the kubelet may allow remote management of containers within an environment.(Citation: Docker Daemon CLI)(Citation: Kubernetes API)(Citation: Kubernetes Kubelet)",
     "tactics": [
-      "stealth"
+      "execution"
     ],
     "platforms": [
-      "Containers",
-      "ESXi",
-      "Linux",
-      "macOS",
-      "Network Devices",
-      "Office Suite",
-      "Windows"
+      "Containers"
     ],
-    "url": "https://attack.mitre.org/techniques/T1070"
+    "url": "https://attack.mitre.org/techniques/T1609"
   }
 }
