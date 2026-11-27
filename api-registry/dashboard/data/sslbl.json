@@ -1,5 +1,5 @@
 {
-  "total_listings": 11388,
+  "total_listings": 11390,
   "by_reason": [
     {
       "reason": "AsyncRAT C&C",
@@ -7,7 +7,7 @@
     },
     {
       "reason": "Vidar C&C",
-      "count": 965
+      "count": 967
     },
     {
       "reason": "Dridex C&C",
@@ -23,6 +23,16 @@
     }
   ],
   "recent": [
+    {
+      "listing_date": "2026-11-26 06:43:06",
+      "sha1": "e3f4ba4c9edce49b6cd05a517115f1c555f35d81",
+      "listing_reason": "Vidar C&C"
+    },
+    {
+      "listing_date": "2026-11-26 06:29:19",
+      "sha1": "fc106a1b721f1e8f48d8992745a69506ffbfb0f7",
+      "listing_reason": "Vidar C&C"
+    },
     {
       "listing_date": "2026-11-25 18:28:00",
       "sha1": "9ca8233118bf720ea5c2e141f0dde31c4cc9c818",
@@ -62,16 +72,6 @@
       "listing_date": "2026-11-25 12:51:36",
       "sha1": "2e1c386f86155aa8886428c40f01681c692f286f",
       "listing_reason": "FunStealer C&C"
-    },
-    {
-      "listing_date": "2026-11-25 12:51:28",
-      "sha1": "900cfd996ea2d66b333f8a2408cb4071b2239ff7",
-      "listing_reason": "FunStealer C&C"
-    },
-    {
-      "listing_date": "2026-11-25 12:51:08",
-      "sha1": "0f2c70bc8079380e50364e46bbe8458606091fe3",
-      "listing_reason": "Malware distribution"
     }
   ]
 }
