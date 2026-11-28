@@ -1,6 +1,6 @@
 {
-  "total_cves_scored": 413377,
-  "model_metadata": "model_version:v2026.06.15,score_date:2026-11-26T12:00:25Z",
+  "total_cves_scored": 413901,
+  "model_metadata": "model_version:v2026.06.15,score_date:2026-11-27T12:00:25Z",
   "top": [
     {
       "cve": "CVE-2012-1823",

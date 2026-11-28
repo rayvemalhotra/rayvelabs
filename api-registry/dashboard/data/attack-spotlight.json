@@ -1,18 +1,15 @@
 {
   "total_techniques": 227,
   "technique": {
-    "id": "T1568",
-    "name": "Dynamic Resolution",
-    "description": "Adversaries may dynamically establish connections to command and control infrastructure to evade common detections and remediations. This may be achieved by using malware that shares a common algorithm with the infrastructure the adversary uses to receive the malware's communications. These calculations can be used to dynamically adjust parameters such as the domain name, IP address, or port number the malware uses for command and control.",
+    "id": "T1647",
+    "name": "Plist File Modification",
+    "description": "Adversaries may modify property list files (plist files) to enable other malicious activity, while also potentially evading and bypassing system defenses. macOS applications use plist files, such as the <code>info.plist</code> file, to store properties and configuration settings that inform the operating system how to handle the application at runtime. Plist files are structured metadata in key-value pairs formatted in XML based on Apple's Core Foundation DTD. Plist files can be saved in text or binary format.(Citation: fileinfo plist file description) ",
     "tactics": [
-      "command-and-control"
+      "defense-impairment"
     ],
     "platforms": [
-      "ESXi",
-      "Linux",
-      "macOS",
-      "Windows"
+      "macOS"
     ],
-    "url": "https://attack.mitre.org/techniques/T1568"
+    "url": "https://attack.mitre.org/techniques/T1647"
   }
 }

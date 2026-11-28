@@ -1,5 +1,5 @@
 {
-  "total_listings": 11390,
+  "total_listings": 11391,
   "by_reason": [
     {
       "reason": "AsyncRAT C&C",
@@ -23,6 +23,11 @@
     }
   ],
   "recent": [
+    {
+      "listing_date": "2026-11-27 07:07:22",
+      "sha1": "ca762af05d70b15789214db60a0f775de37c7b29",
+      "listing_reason": "Malware C&C"
+    },
     {
       "listing_date": "2026-11-26 06:43:06",
       "sha1": "e3f4ba4c9edce49b6cd05a517115f1c555f35d81",
@@ -67,11 +72,6 @@
       "listing_date": "2026-11-25 12:52:51",
       "sha1": "7b9d238f14baeab95bdaf3180491bfe280ce44f3",
       "listing_reason": "OffLoader C&C"
-    },
-    {
-      "listing_date": "2026-11-25 12:51:36",
-      "sha1": "2e1c386f86155aa8886428c40f01681c692f286f",
-      "listing_reason": "FunStealer C&C"
     }
   ]
 }
